@@ -10,13 +10,14 @@
 
 include_directories(
   ${Boost_INCLUDE_DIRS}
-  ${PROJECT_SOURCE_DIR}/common/src
-  ${PROJECT_SOURCE_DIR}/counters/src
-  ${PROJECT_SOURCE_DIR}/network/src
-  ${PROJECT_SOURCE_DIR}/serializer/src
-)
+  ${common_INCLUDE_DIRS}
+  ${serializer_INCLUDE_DIRS}
+  ${network_INCLUDE_DIRS}
+  ${counters_INCLUDE_DIRS}
+  ${servers_INCLUDE_DIRS}
+  )
 
-add_library(servers
+add_shared_static_library(servers
   src/app/HtmlOArchive.cc
   src/app/HttpServer.cc
   src/app/Server.cc
