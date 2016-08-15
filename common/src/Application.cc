@@ -4,15 +4,16 @@
 #include <fstream>
 #include <sstream>
 #include <utility>
-#include <boost/assign/std/vector.hpp>
-#include <boost/assign/list_of.hpp>
 #include <boost/filesystem.hpp>
-#include <boost/bind.hpp>
 
+
+
+#ifdef HAVE_DEPENDENCY_TRACKING
 extern char rcsid[];
+#else
+const static char rcsid[] = "$rscid: include 'xtdmake/tracking/module.cmake' to enable binary tracking system $";
+#endif
 
-using namespace boost;
-using namespace boost::assign;
 
 namespace xtd {
 
@@ -32,15 +33,19 @@ Application::Application(void) :
             argument::none,
             requirement::optional,
             "imprime ce message",
-            bindAction(boost::bind(&Application::usageWrapper, this)));
+            bindCallback(std::bind(&Application::usageWrapper, this)));
 
   addOption('e', "log-level",
             argument::mandatory,
             requirement::optional,
             "change le niveau de log à <arg> (defaut 2)",
-            bindValues(m_logLevel, list_of(0u)(1u)(2u)(3u)(4u)(5u)(6u)(7u)));
+            bindValues(m_logLevel, vector<uint32_t>({0u, 1u, 2u, 3u, 4u, 5u, 6u, 7u})));
 
-  m_signals.async_wait(boost::bind(&Application::handleSignal, this, _1, _2));
+  m_signals.async_wait(std::bind(&Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
+}
+
+Application::~Application(void)
+{
 }
 
 const string&
@@ -49,74 +54,50 @@ Application::getVersion(void) const
   return m_rcsid;
 }
 
+
 Application::t_callback
-Application::bindFile(string& p_target, bool p_readable)
+Application::bindFile(string& p_target, bool p_readable) const
 {
-  return boost::bind(&Application::h_file, this, _1, _2, boost::ref(p_target), p_readable);
+  return [&p_target, p_readable, this](const string& p_value, const t_option& p_opt) {
+    p_target = p_value;
+    if (p_readable && (false == boost::filesystem::exists(p_value)))
+      error(1, "invalid option -%c=%s, must be readable file", p_opt.m_shortOpt, p_value);
+  };
 }
 
 Application::t_callback
-Application::bindDir(string& p_target, bool p_readable)
+Application::bindDir(string& p_target, bool p_readable) const
 {
-  return boost::bind(&Application::h_dir, this, _1, _2, boost::ref(p_target), p_readable);
+  return [&p_target, p_readable, this](const string& p_value, const t_option& p_opt) {
+    p_target = p_value;
+    if (false == boost::filesystem::is_directory(p_value))
+      error(1, "invalid option -%c=%s, must be a directory", p_opt.m_shortOpt, p_value);
+    if (p_readable && (false == boost::filesystem::exists(p_value)))
+      error(1, "invalid option -%c=%s, must be readable", p_opt.m_shortOpt, p_value);
+
+  };
+
 }
 
 Application::t_callback
-Application::bindString(string& p_target)
+Application::bindString(string& p_target) const
 {
-  return boost::bind(&Application::h_string, this, _1, _2, boost::ref(p_target));
+  return [&p_target](const string& p_value, const t_option&) {
+    p_target = p_value;
+  };
+
 }
 
 
 Application::t_callback
-Application::bindGiven(bool& p_target)
+Application::bindGiven(bool& p_target) const
 {
   p_target = false;
-  return boost::bind(&Application::h_given, this, _1, _2, boost::ref(p_target));
+  return [&p_target](const string&, const t_option&) {
+    p_target = true;
+  };
 }
 
-void
-Application::h_file(const string&     p_path,
-                    const t_option& p_opt,
-                    string&         p_target,
-                    bool            p_readable)
-{
-  p_target = p_path;
-  if (p_readable && (false == boost::filesystem::exists(p_path)))
-    error(1, "invalid option -%c=%s, must be readable file", p_opt.m_shortOpt, p_path.c_str());
-}
-
-
-void
-Application::h_dir(const string&   p_path,
-                   const t_option& p_opt,
-                   string&         p_target,
-                   bool            p_readable)
-{
-  p_target = p_path;
-
-  if (false == boost::filesystem::is_directory(p_path))
-    error(1, "invalid option -%c=%s, must be a directory", p_opt.m_shortOpt, p_path);
-  if (p_readable && (false == boost::filesystem::exists(p_path)))
-    error(1, "invalid option -%c=%s, must be readable", p_opt.m_shortOpt, p_path);
-}
-
-
-void
-Application::h_string(const string&      p_value,
-                      const t_option& /* p_opt  */,
-                      string&            p_target)
-{
-  p_target = p_value;
-}
-
-void
-Application::h_given(const string&    /* p_path */,
-                     const t_option&  /* p_opt  */,
-                     bool&               p_target)
-{
-  p_target = true;
-}
 
 int
 Application::execute(int p_argc, char** p_argv)
@@ -134,7 +115,7 @@ Application::execute(int p_argc, char** p_argv)
     logger::get().setAllLevels(logger::get().levelOf(m_logLevel));
     initialize();
 
-    m_runThread = thread(bind(&asio::io_service::run, &m_ioService));
+    m_runThread = boost::thread(boost::bind(&boost::asio::io_service::run, &m_ioService));
 
     l_status = process();
 
@@ -162,12 +143,12 @@ Application::handleSignal(const boost::system::error_code& /* p_error */,
   if (l_it == m_signalHandlerMap.end())
   {
     logger::crit("common.application", "No signal corresponding to %i found", p_signalNumber, HERE);
-    m_signals.async_wait(bind(&Application::handleSignal, this, _1, _2));
+    m_signals.async_wait(std::bind(&Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
     return;
   }
 
   (*l_it).second();
-  m_signals.async_wait(bind(&Application::handleSignal, this, _1, _2));
+  m_signals.async_wait(std::bind(&Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 bool
@@ -386,13 +367,5 @@ Application::addHelpMsg(const string& p_helpMessage)
   m_helpText += "  " + p_helpMessage;
 }
 
-
-void
-Application::h_action(const string&    /* p_value */,
-                      const t_option&  /* p_opt */,
-                      t_action            p_action)
-{
-  p_action();
-}
 
 }

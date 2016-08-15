@@ -28,7 +28,7 @@ namespace http {
  ** non-nulle, on se met à lire jusqu'à avoir suffisamment d'octets.
  **
  ** Pour des raisons pratique, le parsing du header et la récupération de la taille de la
- ** data est déléguée à l'objet @ref Request
+ ** data est déléguée à l'objet @ref xtd::network::http::Request
  **
  ** <h2> Séquence de dialogue </h2>
  **

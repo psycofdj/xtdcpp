@@ -50,7 +50,7 @@ namespace base {
  **   objet pour deux raisons :
  **   - pour garantir la mise sur le strand
  **   - garantir l'initialisation correct des informations de socket (appel
- **     à @ref setSocketInfo qu'il faut effectuer seulement après ouverture
+ **     à setSocketInfo qu'il faut effectuer seulement après ouverture
  **     effective de la socket)
  */
 template <typename Domain>
@@ -188,8 +188,9 @@ private:
    ** distante, c'est à dire lorsque la socket à été ouverte.
    */
   status setSocketInfo(void);
-  void             setSocketOptions(void);
-  void             readEndpoint(void);
+
+  void setSocketOptions(void);
+  void readEndpoint(void);
 
 protected:
   virtual void async_write(utils::sharedBuf_t p_outData,    utils::handler_t p_onSent)     = 0;

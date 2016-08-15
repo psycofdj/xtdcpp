@@ -116,16 +116,16 @@ class Template;
  ** Elles sont toutes préfixées par "bind".
  **
  ** - @code void bind(const string& p_url, handler p_handler, [filter p_filter]); @endcode
- **   @copydoc bind <br><br>
+ **   @copydoc xtd::network::http::Server::bind <br><br>
  **
  ** - @code void bind_any(handler p_handler, [filter p_filter]); @endcode
- **   @copydoc bind_any <br><br>
+ **   @copydoc xtd::network::http::Server::bind_any <br><br>
  **
  ** - @code void bind_default(handler p_handler); @endcode
- **   @copydoc bind_default <br><br>
+ **   @copydoc xtd::network::http::Server::bind_default <br><br>
  **
  ** - @code void bind_redirect(const string& p_src, const string& p_dst, [filter p_filter]); @endcode
- **   @copydoc bind_redirect <br><br>
+ **   @copydoc xtd::network::http::Server::bind_redirect <br><br>
  **
  ** - @code
  ** void bind_file(const string& p_path,
@@ -133,7 +133,7 @@ class Template;
  **                const string& p_contentType = "text/plain",
  **                [filter            p_filter]);
  **   @endcode
- **   @copydoc bind_file <br><br>
+ **   @copydoc xtd::network::http::Server::bind_file <br><br>
  **
  ** - @code
  ** void bind_dir(const string& p_path,
@@ -141,70 +141,67 @@ class Template;
  **               const string& p_contentType = "text/plain",
  **               [filter            p_filter]);
  **   @endcode
- **   @copydoc bind_dir <br><br>
+ **   @copydoc xtd::network::http::Server::bind_dir <br><br>
  **
  **
  ** <h2> Les handlers prédéfinis </h2>
  **
  ** - @code h_redirect(const string& p_dst, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_redirect
+ **   @copydoc xtd::network::http::Server::h_redirect
  **
  ** - @code h_raw(const string& p_data, const string& p_contentType, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_raw
+ **   @copydoc xtd::network::http::Server::h_raw
  **
  ** - @code h_file(const string& p_filePath, const string& p_contentType, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_file
+ **   @copydoc xtd::network::http::Server::h_file
  **
  ** - @code h_dir(const string& p_dirPath, const string& p_contentType, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_dir
+ **   @copydoc xtd::network::http::Server::h_dir
  **
  ** - @code h_template_file(const Template& p_tmpl, const string& const uint32_t p_requestID, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_template_file
- **
- ** - @code h_gen(const Generator& p_gen, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_template
+ **   @copydoc xtd::network::http::Server::h_template_file
  **
  ** - @code h_error_text(const string& p_message, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_error_text
+ **   @copydoc xtd::network::http::Server::h_error_text
  **
  ** - @code h_error_html(const string& p_message, const uint32_t p_requestId, const Request& p_request, Response& p_response); @endcode
- **   @copydoc Server::h_error_html
+ **   @copydoc xtd::network::http::Server::h_error_html
  **
  ** <h2> Les filtres prédéfinis </h2>
  **
  **
  ** - @code static bool f_none(const Request& p_request); @endcode
- **   @copydoc f_none <br><br>
+ **   @copydoc xtd::network::http::Server::f_none <br><br>
  **
  ** - @code bool f_cgi_exist(const string& p_cgiName, const Request& p_request); @endcode
- **   @copydoc f_cgi_exist <br><br>
+ **   @copydoc xtd::network::http::Server::f_cgi_exist <br><br>
  **
  ** - @code bool f_one_cgi_exist(const vector <string > & p_cgiName, const Request& p_req); @endcode
- **   @copydoc f_one_cgi_exist <br><br>
+ **   @copydoc xtd::network::http::Server::f_one_cgi_exist <br><br>
  **
  ** - @code bool f_cgi_equal(const string& p_cgiName, const string& p_value, const Request& p_request); @endcode
- **   @copydoc f_cgi_equal <br><br>
+ **   @copydoc xtd::network::http::Server::f_cgi_equal <br><br>
  **
  ** - @code bool f_cgi_match(const string& p_cgiName, const string& p_regex, const Request& p_request); @endcode
- **   @copydoc f_cgi_match <br><br>
+ **   @copydoc xtd::network::http::Server::f_cgi_match <br><br>
  **
  ** - @code bool f_post_exist(const string& p_cgiName, const Request& p_request); @endcode
- **   @copydoc f_post_exist <br><br>
+ **   @copydoc xtd::network::http::Server::f_post_exist <br><br>
  **
  ** - @code bool f_post_equal(const string& p_cgiName, const string& p_value, const Request& p_request); @endcode
- **   @copydoc f_post_equal <br><br>
+ **   @copydoc xtd::network::http::Server::f_post_equal <br><br>
  **
  ** - @code bool f_post_match(const string& p_cgiName, const string& p_regex, const Request& p_request); @endcode
- **   @copydoc f_post_match <br><br>
+ **   @copydoc xtd::network::http::Server::f_post_match <br><br>
  **
  ** - @code bool f_header_exist(const string& p_headerName, const Request& p_request); @endcode
- **   @copydoc f_header_exist <br><br>
+ **   @copydoc xtd::network::http::Server::f_header_exist <br><br>
  **
  ** - @code bool f_header_equal(const string& p_headerName, const string& p_value, const Request& p_request); @endcode
- **   @copydoc f_header_equal <br><br>
+ **   @copydoc xtd::network::http::Server::f_header_equal <br><br>
  **
  ** - @code bool f_header_match(const string& p_headerName, const string& p_value, const Request& p_request); @endcode
- **   @copydoc f_header_match <br><br>
+ **   @copydoc xtd::network::http::Server::f_header_match <br><br>
  **
  */
 template<typename Domain = utils::af_inet>
@@ -429,32 +426,30 @@ protected:
    ** @brief Handler de redirection
    ** @param p_dst destination de la redirection HTTP
    ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_request @ref xtd::network::http::Request "requête"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Créer une redirection HTTP (@ref Response::STATUS_302 "code 302") redirigeant sur p_dst
+   ** Créer une redirection HTTP Response::STATUS_302 "code 302" redirigeant sur p_dst
    */
-  status h_redirect(const string& p_dst,
+  status h_redirect(const string&  p_dst,
                     const uint32_t p_requestId,
-                    const Request&     p_request,
-                    Response&          p_response);
+                    const Request& p_request,
+                    Response&      p_response);
 
   /**
    ** @brief Handler de contenu
    ** @param p_data donnée à insérer dans la réponse
    ** @param p_contentType type MIME de la donnée
-   ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Créer une réponse HTTP (@ref Response::STATUS_200 "code 200") contenant la
+   ** Créer une réponse HTTP (Response::STATUS_200 contenant la
    ** donnée p_data et le header @b Content-Type p_contentType
    */
-  status h_raw(const string&    p_data,
-               const string&    p_contentType,
+  status h_raw(const string&     p_data,
+               const string&     p_contentType,
                const uint32_t /* p_requestId*/,
-               const Request&     /* p_request */,
-               Response&             p_response);
+               const Request& /* p_request */,
+               Response&         p_response);
 
   /**
    ** @brief Handler de fichier
@@ -462,12 +457,12 @@ protected:
    ** @param p_contentType type MIME du fichier
    ** @param p_cachable La reponse peut elle mettre en mis en cache par le navigateur ?
    ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_request @ref xtd::network::http::Request "requête"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Créer une réponse HTTP (@ref Response::STATUS_200 "code 200") embarquant le
+   ** Créer une réponse HTTP Response::STATUS_200 embarquant le
    ** contenu du fichier pointé par p_filePath et le header @b Content-Type p_contentType.
-   ** Si p_filePath n'éxiste pas, la réponse sera générée par @ref h_error_text.
+   ** Si p_filePath n'éxiste pas, la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
    */
   status h_file(const string& p_filePath,
                 const string& p_contentType,
@@ -482,65 +477,65 @@ protected:
    ** @param p_contentType type MIME des fichiers du répertoire
    ** @param p_cachable La reponse peut elle mettre en mis en cache par le navigateur ?
    ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_request @ref xtd::network::http::Request "requête"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Comme @ref h_file mais trouve automatiquement quel fichier de p_dirPath à servir en fonction de la
+   ** Comme @ref xtd::network::http::Server::h_file mais trouve automatiquement quel fichier de p_dirPath à servir en fonction de la
    ** ressource demandé dans p_request.
    */
-  status h_dir(const string& p_dirPath,
-               const string& p_contentType,
-               bool               p_cachable,
+  status h_dir(const string&  p_dirPath,
+               const string&  p_contentType,
+               bool           p_cachable,
                const uint32_t p_requestId,
-               const Request&     p_request,
-               Response&          p_response);
+               const Request& p_request,
+               Response&      p_response);
 
 
   /**
    ** @brief Handler de texte templaté a partir d'un fichier
-   ** @param p_tmpl objet @ref Template "template"
+   ** @param p_tmpl objet @ref xtd::network::http::Template "template"
    ** @param p_filePath fichier a partir duquel initialiser le template
    ** @param p_requestID identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_req @ref xtd::network::http::Request "requête"
+   ** @param p_res @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl (@ref Response::STATUS_200 "code 200").
+   ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl Response::STATUS_200.
    ** Le header @b Content-Type est également donné par p_tmpl.
    ** Si la lecture du fichier p_filePath ou si la résolution des variable
-   ** du template échouent, alors la réponse sera générée par @ref h_error_text.
+   ** du template échouent, alors la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
    */
-  status h_template_file(Template&          p_tmpl,
-                         const string& p_filePath,
+  status h_template_file(Template&      p_tmpl,
+                         const string&  p_filePath,
                          const uint32_t p_requestID,
-                         const Request&     p_req,
-                         Response&          p_res);
+                         const Request& p_req,
+                         Response&      p_res);
 
 
   /**
    ** @brief Handler de generation de texte
-   ** @param p_gen objet @ref Generator "generateur"
+   ** @param p_gen objet @ref xtd::network::http::Generator "generateur"
    ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_request @ref xtd::network::http::Request "requête"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl (@ref Response::STATUS_200 "code 200").
+   ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl Response::STATUS_200.
    ** Le header @b Content-Type est également donné par p_tmpl.
-   ** Si la résolution des variable du template échoue, alors la réponse sera générée par @ref h_error_text.
+   ** Si la résolution des variable du template échoue, alors la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
    */
-  status h_gen(Generator&         p_gen,
+  status h_gen(Generator&     p_gen,
                const uint32_t p_requestId,
-               const Request&     p_request,
-               Response&          p_response);
+               const Request& p_request,
+               Response&      p_response);
 
 
   /**
    ** @brief Handler de génération de message d'erreur en texte
    ** @param p_message contenu du message d'erreur
    ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_request @ref xtd::network::http::Request "requête"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Génère une réponse HTTP d'erreur (@ref Response::STATUS_500 "code 500") de type
+   ** Génère une réponse HTTP d'erreur Response::STATUS_500 de type
    ** @b Content-Type "text/plain" contenant le message p_message.
    */
   status h_error_text(const string& p_message,
@@ -553,10 +548,10 @@ protected:
    ** @brief Handler de génération de message d'erreur en html
    ** @param p_message contenu du message d'erreur
    ** @param p_requestId identifiant de requête
-   ** @param p_request @ref Request "requête"
-   ** @param p_response @ref Response "réponse"
+   ** @param p_request @ref xtd::network::http::Request "requête"
+   ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Même chose que @ref h_error_text mais le méssage généré est de type "text/html".
+   ** Même chose que @ref xtd::network::http::Server::h_error_text mais le méssage généré est de type "text/html".
    */
   status h_error_html(const string& p_message,
                       const uint32_t p_requestId,
@@ -569,10 +564,10 @@ protected:
   /**
    ** @param p_src ressource sur laquelle déclencher la redirection
    ** @param p_dst destination de la redirection
-   ** @param p_filter @ref filter "filtre" optionnel
+   ** @param p_filter filter "filtre" optionnel
    ** @details
    ** Enregistrement d'un handler de redirection. Créer une réponse http qui contient le header
-   ** "Location : p_dst" et le code HTTP @ref Response::STATUS_302 "302".
+   ** "Location : p_dst" et le code HTTP Response::STATUS_302.
    */
   void bind_redirect(const string& p_src,
                      const string& p_dst,
@@ -585,7 +580,7 @@ protected:
 
   /**
    ** @details
-   ** Voir @ref h_file
+   ** Voir @ref xtd::network::http::Server::h_file
    */
   void bind_file(const string& p_path,
                  const string& p_filePath,
@@ -595,7 +590,7 @@ protected:
 
   /**
    ** @details
-   ** Voir @ref h_dir
+   ** Voir @ref xtd::network::http::Server::h_dir
    */
   void bind_dir(const string& p_url,
                 const string& p_filePath,
@@ -605,43 +600,44 @@ protected:
 
   /**
    ** @param p_url ressource à enregistrer
-   ** @param p_handler @ref handler à enregistrer
-   ** @param p_filter @ref filter "filtre" optionnel
+   ** @param p_handler handler à enregistrer
+   ** @param p_filter filter "filtre" optionnel
+   ** @param p_descr description du handler (optionnel)
    ** @details
    ** Enregistrement générique de la ressource p_url sous condition optionnelle p_filter
    ** sur le handler p_handler.
    */
   void bind(const string& p_url,
-            handler            p_handler,
-            filter             p_filter = f(&Server::f_none),
+            handler       p_handler,
+            filter        p_filter = f(&Server::f_none),
             const string& p_descr  = string());
 
 
   /**
    ** @param p_url ressource à enregistrer
-   ** @param p_handler @ref handler à enregistrer
-   ** @param p_description description du handler
+   ** @param p_handler handler à enregistrer
+   ** @param p_descr description du handler
    ** @details
    ** Enregistrement générique de la ressource p_url sur le handler p_handler.
    ** Cette ressource sera automatique mise a disposition dans
    ** la création de l'index automatique.
    */
   void bind_public(const string& p_url,
-                   handler            p_handler,
+                   handler       p_handler,
                    const string& p_descr);
 
 
   /**
-   ** @param p_handler @ref handler à enregistrer
-   ** @param p_filter @ref filter "filtre" optionnel
+   ** @param p_handler handler à enregistrer
+   ** @param p_filter filter "filtre" optionnel
    ** @details
-   ** Comme @ref bind mais se déclenche quelque soit la ressource demandée.
+   ** Comme @ref xtd::network::http::Server::bind mais se déclenche quelque soit la ressource demandée.
    */
   void bind_any(handler p_handler,
                 filter p_filter = f(&Server::f_none));
 
   /**
-   ** @param p_handler @ref handler à enregistrer
+   ** @param p_handler handler à enregistrer
    ** @details
    ** Enregistrement du handler à exécuter lorsqu'aucun handler valide n'a été trouvé.
    ** A la construction, le handler par défaut est Server::h_error_template.

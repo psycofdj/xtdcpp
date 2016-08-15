@@ -1,10 +1,3 @@
-/*
- * boost_serialization_unorderedmap.hh
- *
- *  Created on: 30 janv. 2013
- *      Author: cdelattre
- */
-
 #ifndef BOOST_SERIALIZATION_UNORDEREDMAP_HH_
 #define BOOST_SERIALIZATION_UNORDEREDMAP_HH_
 
@@ -43,22 +36,22 @@ inline void save(
     >(ar, t);
 }
 
-  template<class Archive, class Type, class Key, class Hash, class Compare, class Allocator >
-  inline void load(
-                   Archive & ar,
-                   boost::unordered_map<Key, Type, Hash, Compare, Allocator> &t,
-                   const unsigned int /* file_version */
-                   ){
-    boost::serialization::stl::load_collection<
-      Archive,
-      boost::unordered_map<Key, Type, Hash, Compare, Allocator>,
-      boost::serialization::stl::archive_input_map<
-        Archive, boost::unordered_map<Key, Type, Hash, Compare, Allocator> >,
-      boost::serialization::stl::no_reserve_imp<boost::unordered_map<
-        Key, Type, Hash, Compare, Allocator
-        >
+template<class Archive, class Type, class Key, class Hash, class Compare, class Allocator >
+inline void load(
+                 Archive & ar,
+                 boost::unordered_map<Key, Type, Hash, Compare, Allocator> &t,
+                 const unsigned int /* file_version */
+                 ){
+  boost::serialization::stl::load_collection<
+    Archive,
+    boost::unordered_map<Key, Type, Hash, Compare, Allocator>,
+    boost::serialization::stl::archive_input_map<
+      Archive, boost::unordered_map<Key, Type, Hash, Compare, Allocator> >,
+    boost::serialization::stl::no_reserve_imp<boost::unordered_map<
+      Key, Type, Hash, Compare, Allocator
                                                 >
-      >(ar, t);
+                                              >
+    >(ar, t);
 }
 
 // split non-intrusive serialization function member into separate

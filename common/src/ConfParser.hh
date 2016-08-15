@@ -71,7 +71,7 @@ public:
   status get(const string& p_name, unsigned char&      p_ival) const;
   status get(const string& p_name, unsigned short&     p_ival) const;
   status get(const string& p_name, int&                p_ival) const;
-  status get(const string& p_name, long int&           p_ival) const;
+  status get(const string& p_name, long&               p_ival) const;
   status get(const string& p_name, unsigned long long& p_ival) const;
   status get(const string& p_name, unsigned long&      p_ival) const;
   status get(const string& p_name, unsigned int&       p_ival) const;

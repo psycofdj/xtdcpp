@@ -155,8 +155,7 @@ public:
   /**
    * @brief Specify the setter to modify the parameter
    * @details This function will be called each time a call to set is done
-   *
-   * @param p_listener a modification function
+   * @param p_constraint a modification function
    * @return a self reference
    */
   template<typename T>
@@ -237,38 +236,33 @@ public:
 public:
   /**
    * @brief Initialize the POD from a string
-   * @details N/A
-   *
    * @param p_src The string to be casted
    * @return true if the string casting and the value setting succeeds
+   * @details N/A
    */
-  bool        fromStr(const string& p_src);
+  bool fromStr(const string& p_src);
 
   /**
    * @brief Function to verify if given string value can be setted on parameter
-   * @details N/A
-   *
    * @param p_src the new value
    * @return true if value can be setted
-   */
-  bool        verify(const string& p_src);
+   * @details N/A   */
+  bool verify(const string& p_src);
 
   /**
    * @brief Get a string from the POD representing the current value
-   * @details N/A
-   *
-   * @param p_src The string containing the current value
+   * @param p_dst The string containing the current value
    * @return true if the value getting and string building succeeds
+   * @details N/A
    */
-  bool        toStr(string& p_dst)  const;
+  bool toStr(string& p_dst)  const;
 
   /**
    * @brief Register this parameter to a visitor
-   * @details N/A
-   *
    * @param p_visitor the right visitor
+   * @details N/A
    */
-  void        accept(Visitor& p_visitor)  const;
+  void accept(Visitor& p_visitor)  const;
 
 private:
 
@@ -411,3 +405,7 @@ Base::listen(boost::function<void(const T&, const T&)> p_constraint)
 }}}
 
 #endif // !KESERVERS_PARAM_BASE_HH_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

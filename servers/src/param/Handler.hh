@@ -93,27 +93,26 @@ public:
    *
    * @param p_visitor the right visitor
    */
-  void   accept(Visitor& p_visitor) const;
+  void accept(Visitor& p_visitor) const;
 
   /**
    * @brief Function to verify if given string value can be setted on parameter
-   * @details N/A
-   *
+   * @param p_name parameter value
    * @param p_src the new value
    * @return true if value can be setted
+   * @details N/A
    */
-  bool   verify(const string& p_name, const string& p_src);
+  bool verify(const string& p_name, const string& p_src);
 
   /**
    * @brief Retreive parameter value from a string
-   * @details N/A
-   *
    * @param p_name the parameter name
    * @param p_src the string value
-   *
+   * @param p_log logging message
    * @return true if it succeeds
+   * @details N/A
    */
-  bool   fromStr(const string& p_name, const string& p_src, const string& p_log);
+  bool fromStr(const string& p_name, const string& p_src, const string& p_log);
 
   /**
    * @brief return an iterator on a find call on map
@@ -257,3 +256,7 @@ Handler::constraint(const string& p_name, T p_handler)
 }}}
 
 #endif // !SERVERS_APP_PARAMHANDLER_HH_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:
