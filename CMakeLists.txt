@@ -4,6 +4,7 @@ project (xtdcpp)
 include(xtdmake/tracking/module.cmake)
 include(xtdmake/static-shared/module.cmake)
 include(xtdmake/doc/module.cmake)
+include(xtdmake/doc-coverage/module.cmake)
 
 find_package(Boost REQUIRED thread filesystem)
 find_package(Threads REQUIRED)
@@ -17,4 +18,4 @@ set(servers_INCLUDE_DIRS    ${PROJECT_SOURCE_DIR}/servers/src)
 subdirs(common counters serializer network servers)
 
 set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_FLAGS -std=c++11)
+set(CMAKE_CXX_FLAGS "-std=c++11 -fprofile-arcs -ftest-coverage")

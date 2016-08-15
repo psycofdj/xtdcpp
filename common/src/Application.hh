@@ -22,6 +22,14 @@ namespace xtd {
 
 
 /**
+ ** @brief some doc
+ */
+void freefunc(void)
+{
+  return;
+}
+
+/**
  ** @brief Parses arguments from main(int,char**) function
  ** @details
  ** - @ref sec_intro

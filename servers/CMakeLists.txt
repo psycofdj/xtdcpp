@@ -25,3 +25,7 @@ add_shared_static_library(servers
   src/param/Base.cc
   src/param/Visitor.cc
 )
+
+
+add_doc(servers WERROR)
+add_doc_coverage(servers)

@@ -19,3 +19,9 @@ add_shared_static_library(counters
   src/Cache.cc
   src/CounterManager.cc
 )
+
+
+add_doc(counters)
+add_doc_coverage(counters)
+
+

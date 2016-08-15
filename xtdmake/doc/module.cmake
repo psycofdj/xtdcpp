@@ -1,7 +1,10 @@
 find_package(Doxygen)
 
 if (DOXYGEN_FOUND)
-  function(add_doxygen module)
+  add_custom_target(doc)
+  add_custom_target(doc-clean)
+
+  function(add_doc module)
     set(multiValueArgs  EXCLUDE FILE_PATTERNS CALL_GRAPHS)
     set(oneValueArgs    EXAMPLE)
     set(options         WERROR)
@@ -10,7 +13,7 @@ if (DOXYGEN_FOUND)
     set(CMAKE_DOXYGEN_SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
     set(CMAKE_DOXYGEN_INPUT    ${CMAKE_CURRENT_SOURCE_DIR}/src)
     set(CMAKE_DOXYGEN_MODULE   "${module}")
-    set(CMAKE_DOXYGEN_OUTPUT   ${CMAKE_BINARY_DIR}/reports/${module}/doc)
+    set(CMAKE_DOXYGEN_OUTPUT   "${CMAKE_BINARY_DIR}/reports/${module}/doc")
 
     string(REPLACE  ";"    " "                                CMAKE_DOXYGEN_EXCLUDE "${CMAKE_DOXYGEN_EXCLUDE}")
     string(REPLACE  "src/" "${CMAKE_CURRENT_SOURCE_DIR}/src/" CMAKE_DOXYGEN_EXCLUDE "${CMAKE_DOXYGEN_EXCLUDE}")
@@ -51,8 +54,8 @@ if (DOXYGEN_FOUND)
       "${CMAKE_CURRENT_SOURCE_DIR}/src/*.hh"
       "${CMAKE_CURRENT_SOURCE_DIR}/src/*.hxx")
 
-
     configure_file(${PROJECT_SOURCE_DIR}/xtdmake/doc/doxygen.in ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg @ONLY)
+
     add_custom_command(
       OUTPUT ${CMAKE_DOXYGEN_OUTPUT}/html/index.html
       COMMAND mkdir -p ${CMAKE_DOXYGEN_OUTPUT}
@@ -60,8 +63,15 @@ if (DOXYGEN_FOUND)
       DEPENDS ${files} ${files_doc}
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       COMMENT "Generating ${module} API documentation with doxygen" VERBATIM)
-    add_custom_target(doc
-      DEPENDS ${CMAKE_DOXYGEN_OUTPUT}/html/index.html
-      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
-  endfunction(add_doxygen)
+
+    add_custom_target(doc-${module}
+      DEPENDS ${CMAKE_DOXYGEN_OUTPUT}/html/index.html)
+    set_target_properties(doc-${module}
+      PROPERTIES OUTPUT_DIR "${CMAKE_DOXYGEN_OUTPUT}")
+    add_custom_target(doc-${module}-clean
+      COMMAND rm -rf ${CMAKE_DOXYGEN_OUTPUT})
+
+    add_dependencies(doc       doc-${module})
+    add_dependencies(doc-clean doc-${module}-clean)
+  endfunction()
 endif(DOXYGEN_FOUND)

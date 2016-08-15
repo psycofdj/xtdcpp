@@ -25,3 +25,8 @@ add_shared_static_library(network
   src/http/Server.cc
   src/http/cpptempl.cc
 )
+
+
+
+add_doc(network WERROR)
+add_doc_coverage(network)

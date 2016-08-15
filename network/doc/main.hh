@@ -188,15 +188,15 @@
  **
  ** <br/>
  ** @subsection ssec_bip_cnx Format et workflow
- ** @copydoc xtd::network::protocol::bip::Connection
+ ** @copydoc xtd::network::bip::Connection
  **
  ** <br/>
  ** @subsection ssec_bip_client Client bip
- ** @copydoc xtd::network::protocol::bip::Client
+ ** @copydoc xtd::network::bip::Client
  **
  ** <br/>
  ** @subsection ssec_bip_server Serveur bip
- ** @copydoc xtd::network::protocol::bip::Server
+ ** @copydoc xtd::network::bip::Server
  **
  **
  **
@@ -208,11 +208,11 @@
  **
  ** <br/>
  ** @subsection ssec_http_cnx Format et workflow
- ** @copydoc xtd::network::protocol::http::Connection
+ ** @copydoc xtd::network::http::Connection
  **
  ** <br/>
  ** @subsection ssec_http_server Serveur http
- ** @copydoc xtd::network::protocol::http::Server
+ ** @copydoc xtd::network::http::Server
  **
  **
  **
