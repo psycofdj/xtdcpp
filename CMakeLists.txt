@@ -5,6 +5,7 @@ include(xtdmake/tracking/module.cmake)
 include(xtdmake/static-shared/module.cmake)
 include(xtdmake/doc/module.cmake)
 include(xtdmake/doc-coverage/module.cmake)
+include(xtdmake/cloc/module.cmake)
 
 find_package(Boost REQUIRED thread filesystem)
 find_package(Threads REQUIRED)

@@ -9,10 +9,12 @@ add_shared_static_library(common
   src/Application.cc
   src/ConfParser.cc)
 
+
 add_doc(common
   EXCLUDE     src/json_parser.hpp src/json_parser_write.hpp
   WERROR)
 add_doc_coverage(common)
+add_cloc(common)
 
 add_executable(common_tf  src/main.cc)
 add_executable(common_tf2 src/main.cc)
