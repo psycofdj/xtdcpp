@@ -8,6 +8,7 @@ find_package(DocCoverage REQUIRED)
 find_package(Cppcheck REQUIRED)
 find_package(Cloc REQUIRED)
 find_package(Reports REQUIRED)
+find_package(Tracking REQUIRED)
 
 find_package(Boost REQUIRED thread filesystem)
 find_package(Threads REQUIRED)
