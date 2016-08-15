@@ -30,3 +30,5 @@ add_shared_static_library(network
 
 add_doc(network WERROR)
 add_doc_coverage(network)
+add_cloc(network)
+add_cppcheck(network)

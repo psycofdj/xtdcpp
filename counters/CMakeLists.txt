@@ -23,5 +23,7 @@ add_shared_static_library(counters
 
 add_doc(counters)
 add_doc_coverage(counters)
+add_cloc(counters)
+add_cppcheck(counters)
 
 

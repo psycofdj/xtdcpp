@@ -15,6 +15,7 @@ add_doc(common
   WERROR)
 add_doc_coverage(common)
 add_cloc(common)
+add_cppcheck(common)
 
 add_executable(common_tf  src/main.cc)
 add_executable(common_tf2 src/main.cc)

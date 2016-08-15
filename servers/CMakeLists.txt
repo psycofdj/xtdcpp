@@ -29,3 +29,5 @@ add_shared_static_library(servers
 
 add_doc(servers WERROR)
 add_doc_coverage(servers)
+add_cloc(servers)
+add_cppcheck(servers)

@@ -13,3 +13,5 @@ add_doc(serializer
   EXCLUDE src/objects/unorderedmap.hh
   WERROR)
 add_doc_coverage(serializer)
+add_cloc(serializer)
+add_cppcheck(serializer)

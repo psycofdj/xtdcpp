@@ -6,6 +6,7 @@ include(xtdmake/static-shared/module.cmake)
 include(xtdmake/doc/module.cmake)
 include(xtdmake/doc-coverage/module.cmake)
 include(xtdmake/cloc/module.cmake)
+include(xtdmake/cppcheck/module.cmake)
 
 find_package(Boost REQUIRED thread filesystem)
 find_package(Threads REQUIRED)
