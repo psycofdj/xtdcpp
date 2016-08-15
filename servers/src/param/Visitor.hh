@@ -12,8 +12,7 @@ namespace servers {
 namespace param {
 
 /**
- * \class
- * \brief Visitor base class
+ * @brief Visitor base class
  */
 class Visitor
 {
@@ -46,7 +45,6 @@ public:
 
 
 /**
- * \class
  * \brief Json specific visitor
  */
 class JsonVisitor : public Visitor

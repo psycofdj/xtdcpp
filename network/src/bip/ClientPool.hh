@@ -29,24 +29,23 @@ public:
   public:
     /**
      ** Constructor
-     ** @param p_poolSize: the minimum number of object's instance at the creation
      */
-    PersistentClient(const string&                      p_hostname,
-                     const uint32_t                      p_port,
+    PersistentClient(const string&        p_hostname,
+                     const uint32_t       p_port,
                      const utils::Config& p_conf);
     ~PersistentClient(void);
 
   private:
-    void         async_connect(void);
+    void    async_connect(void);
     status  wait_async_connect(void);
     status  send(const TRequest& p_request, bool  p_debug);
     status  receive(TResponse& p_response,  bool& p_debug);
-    bool         isObsolete(uint32_t p_ttlMs) const;
-    void         invalidate(void);
+    bool    isObsolete(uint32_t p_ttlMs) const;
+    void    invalidate(void);
 
   private:
-    const string&       m_hostname;
-    const uint32_t       m_port;
+    const string&            m_hostname;
+    const uint32_t           m_port;
     bool                     m_isConnected;
     boost::posix_time::ptime m_lastUsed;
   };
@@ -57,12 +56,11 @@ public:
 public:
   /**
    ** Constructor
-   ** @param p_poolSize: the minimum number of object's instance at the creation
    */
-  ClientPool(const string&                      p_hostname,
-             const uint32_t                      p_port,
+  ClientPool(const string&        p_hostname,
+             const uint32_t       p_port,
              const utils::Config& p_conf,
-             const uint32_t                      p_ttlMs = 20000);
+             const uint32_t       p_ttlMs = 20000);
 
 public:
   inline const uint32_t& getSendTotal(void) const             { return m_sendTotal;   }
