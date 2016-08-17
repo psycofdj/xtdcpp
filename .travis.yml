@@ -1,0 +1,4 @@
+language: cpp
+compiler: gcc
+install: sudo apt-get cmake install doxygen lcov xsltproc graphviz cppcheck python3-pip && sudo pip3 install coverxygen
+script: mkdir .release && cd .release && cmake .. && make && make reports
