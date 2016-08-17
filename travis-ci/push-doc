@@ -1,0 +1,59 @@
+#!/bin/bash
+set -e
+
+SOURCE_BRANCH="${TRAVIS_BRANCH}"
+TARGET_BRANCH="gh-pages"
+COMMIT_AUTHOR_EMAIL=$(git log -n1 --pretty="%ae")
+
+# Pull requests and commits to other branches shouldn't try to deploy, just build to verify
+if [ -z "${SOURCE_BRANCH}" ]; then
+    echo "Skipping push-doc for pull requests."
+    exit 0
+fi
+
+# Save some useful information
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SHA=`git rev-parse --verify HEAD`
+
+# Clone the existing gh-pages for this repo into out/
+# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
+echo "Cloning gh-pages branch from ${REPO}..."
+git clone -q -b ${TARGET_BRANCH} $REPO out
+
+echo "Copying generated documentation..."
+mkdir -p out/${SOURCE_BRANCH}/
+rm -rf out/${SOURCE_BRANCH}/*
+cp -r ./reports/* out/${SOURCE_BRANCH}/
+
+cd out
+git config user.name "Travis CI"
+git config user.email "${COMMIT_AUTHOR_EMAIL}"
+
+# # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
+# if [ -z `git diff --exit-code` ]; then
+#     echo "No changes to the output on this push; exiting."
+#     exit 0
+# fi
+
+# Commit the "changes", i.e. the new version.
+# The delta will show diffs between new and old versions.
+echo "Adding files to git..."
+git add ${SOURCE_BRANCH}/*
+git commit -m "Deploy to GitHub Pages: ${SHA}"
+
+# Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+echo "Decoding deploy key..."
+ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
+ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
+ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ${TRAVIS_BUILD_DIR}/travis-ci/deploy_key.enc -out deploy_key -d
+chmod 600 deploy_key
+eval `ssh-agent -s`
+ssh-add deploy_key
+
+# Now that we're all set up, we can push.
+echo "Pushing gh-pages branch..."
+git push -q $SSH_REPO ${TARGET_BRANCH}
+rm -f deploy_key

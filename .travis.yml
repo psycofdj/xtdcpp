@@ -1,4 +1,28 @@
 language: cpp
 compiler: gcc
-install: sudo apt-get cmake install doxygen lcov xsltproc graphviz cppcheck python3-pip && sudo pip3 install coverxygen
-script: mkdir .release && cd .release && cmake .. && make && make reports
+dist: xenial
+
+env:
+  global:
+  - ENCRYPTION_LABEL: "cac0dab93c8f"
+
+# disable the default submodule logic
+git:
+  submodules: false
+
+# use sed to replace the SSH URL with the public URL, then init and update submodules
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+
+install:
+  - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip
+  - sudo pip3 install coverxygen
+
+script:
+  - mkdir ${TRAVIS_BUILD_DIR}/.release
+  - cd ${TRAVIS_BUILD_DIR}/.release
+  - cmake ${TRAVIS_BUILD_DIR}
+  - make -j2
+  - make reports
+  - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
