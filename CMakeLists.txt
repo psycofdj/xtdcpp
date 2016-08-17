@@ -9,9 +9,11 @@ find_package(Cppcheck REQUIRED)
 find_package(Cloc REQUIRED)
 find_package(Reports REQUIRED)
 find_package(Tracking REQUIRED)
-
+find_package(Cppunit REQUIRED)
+find_package(Tests REQUIRED)
 find_package(Boost REQUIRED thread filesystem system)
 find_package(Threads REQUIRED)
+
 
 set(common_INCLUDE_DIRS     ${PROJECT_SOURCE_DIR}/common/src)
 set(counters_INCLUDE_DIRS   ${PROJECT_SOURCE_DIR}/counters/src)
