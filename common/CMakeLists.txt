@@ -11,20 +11,24 @@ add_shared_static_library(common
 
 
 add_doc(common
-  EXCLUDE     src/json_parser.hpp src/json_parser_write.hpp
+  EXCLUDE  src/json_parser.hpp src/json_parser_write.hpp
   WERROR)
 add_doc_coverage(common)
 add_cloc(common)
 add_cppcheck(common)
+add_check(common
+  INCLUDES ${common_INCLUDE_DIRS}
+  LINKS    common_s ${Boost_LIBRARIES})
 
-add_executable(common_tf  src/main.cc)
-add_executable(common_tf2 src/main.cc)
 
-target_link_libraries(common_tf  common_s ${Boost_LIBRARIES})
-target_link_libraries(common_tf2
-  common
-  ${CMAKE_THREAD_LIBS_INIT}
-  ${Boost_THREAD_LIBRARIES}
-  ${Boost_FILESYSTEM_LIBRARIES}
-  ${Boost_SYSTEM_LIBRARIES}
-  )
+# add_executable(common_tf  src/main.cc)
+# add_executable(common_tf2 src/main.cc)
+
+# target_link_libraries(common_tf  common_s ${Boost_LIBRARIES})
+# target_link_libraries(common_tf2
+#   common
+#   ${CMAKE_THREAD_LIBS_INIT}
+#   ${Boost_THREAD_LIBRARIES}
+#   ${Boost_FILESYSTEM_LIBRARIES}
+#   ${Boost_SYSTEM_LIBRARIES}
+#   )

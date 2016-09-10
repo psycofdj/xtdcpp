@@ -107,7 +107,6 @@ Application::execute(int p_argc, char** p_argv)
   try
   {
     m_binName = basename(p_argv[0]);
-
     logger::get().initialize(string(m_binName), logger::level::crit);
     readArgs(p_argc, p_argv);
     parseConfig();
@@ -205,7 +204,7 @@ Application::readArgs(int p_argc, char** p_argv)
   char                    l_option_name = 0;
   int                     l_option_index = 0;
   string                  l_shortOptString;
-  struct option           l_options[100];
+  struct option           l_options[100] = {};
   size_t                  c_optIdx = 0;
   t_option_list::iterator c_opt;
 
@@ -232,6 +231,7 @@ Application::readArgs(int p_argc, char** p_argv)
     case argument::optional:  l_shortOptString += ";"; break;
     }
   }
+
 
   while (1)
   {
