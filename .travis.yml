@@ -16,13 +16,13 @@ before_install:
   - git submodule update --init --recursive
 
 install:
-  - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip libcppunit-dev
+  - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip libcppunit-dev plantuml texlive-font-utils
   - sudo pip3 install coverxygen
 
 script:
   - mkdir ${TRAVIS_BUILD_DIR}/.release
   - cd ${TRAVIS_BUILD_DIR}/.release
-  - cmake ${TRAVIS_BUILD_DIR} -DDCI=TRUE -DCMAKE_BUILD_TYPE=Debug
+  - cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug
   - make -j2
   - make reports
   - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
