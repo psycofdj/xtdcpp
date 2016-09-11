@@ -246,6 +246,13 @@ protected:
   t_callback bindString(string& p_target) const;
 
   /**
+   ** @brief Set targeted variable to option's parameter regex
+   ** @param p_target Reference variable
+   ** @return generated option callback
+   */
+  t_callback bindRegex(string& p_target) const;
+
+  /**
    ** @brief Associate option to given generic callback
    ** @param p_action function compatible with @code std::function<void(void)> @endcode signature
    ** @return generated option callback
@@ -331,7 +338,6 @@ protected:
 
 private:
   void readArgs(int p_argc, char** p_argv);
-  void usageWrapper(void) const;
   void usage(void)        const;
   void handleSignal(const boost::system::error_code& p_error, int p_signalNumber);
 

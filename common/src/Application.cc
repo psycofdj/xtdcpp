@@ -5,8 +5,10 @@
 #include <sstream>
 #include <utility>
 #include <boost/filesystem.hpp>
-
-
+#include <boost/regex.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/algorithm/string/classification.hpp>
 
 #ifdef HAVE_DEPENDENCY_TRACKING
 extern char rcsid[];
@@ -33,12 +35,20 @@ Application::Application(void) :
             argument::none,
             requirement::optional,
             "imprime ce message",
-            bindCallback(std::bind(&Application::usageWrapper, this)));
+            bindCallback(std::bind(&Application::usage, this)));
 
   addOption('e', "log-level",
             argument::mandatory,
             requirement::optional,
-            "change le niveau de log à <arg> (defaut 2)",
+            R"(change le niveau de log à <arg> (defaut 2).
+               0 -> emergency
+               1 -> alert
+               2 -> critical
+               3 -> error
+               4 -> warning
+               5 -> notice
+               6 -> info
+               7 -> debug)",
             bindValues(m_logLevel, vector<uint32_t>({0u, 1u, 2u, 3u, 4u, 5u, 6u, 7u})));
 
   m_signals.async_wait(std::bind(&Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
@@ -78,6 +88,21 @@ Application::bindDir(string& p_target, bool p_readable) const
   };
 
 }
+
+Application::t_callback
+Application::bindRegex(string& p_target) const
+{
+  return [&p_target, this](const string& p_value, const t_option& p_opt) {
+    try {
+      boost::regex l_regex(p_value);
+    } catch (boost::bad_expression&) {
+      error(1, "invalid option --%s=%s, must be a valid regex", p_value, p_opt.m_longOpt);
+    }
+    p_target = p_value;
+  };
+
+}
+
 
 Application::t_callback
 Application::bindString(string& p_target) const
@@ -275,12 +300,6 @@ Application::readArgs(int p_argc, char** p_argv)
   }
 }
 
-void
-Application::usageWrapper(void) const
-{
-  usage();
-}
-
 
 bool
 Application::isOptionGiven(const string& p_optionName) const
@@ -312,16 +331,17 @@ Application::usage(void) const
   std::cerr << "usage : " << m_binName << " [options]" << endl
             << endl;
 
-  size_t                             l_maxOptStrSize = 0;
-  vector<std::pair<string, string> > l_data;
+  size_t                                    l_maxOptStrSize = 0;
+  vector<std::pair<string, vector<string>>> l_data;
 
   for (cc_optItem = m_optionList.begin();
        cc_optItem != m_optionList.end();
        cc_optItem++)
   {
-    string       l_shortForm = "-";
-    string       l_longForm  = "";
-    stringstream l_format;
+    string         l_shortForm = "-";
+    string         l_longForm  = "";
+    stringstream   l_format;
+    vector<string> l_lines;
 
     l_shortForm += cc_optItem->m_shortOpt;
     if (cc_optItem->m_longOpt.size())
@@ -339,13 +359,17 @@ Application::usage(void) const
 
     l_format << std::right << std::setw(5) << l_shortForm << " | " << l_longForm;
     l_maxOptStrSize = std::max(l_maxOptStrSize, l_format.str().size());
-    l_data.push_back(std::make_pair(l_format.str(), cc_optItem->m_description));
+
+    boost::split(l_lines, cc_optItem->m_description, boost::is_any_of("\n"));
+    l_data.push_back(std::make_pair(l_format.str(), l_lines));
   }
 
   for (size_t c_idx = 0; c_idx < l_data.size(); c_idx++)
   {
     std::cerr << std::left << std::setw(l_maxOptStrSize) << l_data[c_idx].first
-              << " : " << l_data[c_idx].second << endl;
+              << " : " << l_data[c_idx].second[0] << endl;
+    for (size_t c_lineIdx = 1; c_lineIdx < l_data[c_idx].second.size(); c_lineIdx++)
+      std::cerr << std::setw(l_maxOptStrSize + 3) << " " << boost::trim_copy(l_data[c_idx].second[c_lineIdx]) << std::endl;
   }
 
   if (m_helpText.size() != 0)

@@ -17,8 +17,10 @@ add_doc_coverage(common)
 add_cloc(common)
 add_cppcheck(common)
 add_check(common
-  INCLUDES ${common_INCLUDE_DIRS}
-  LINKS    common_s ${Boost_LIBRARIES})
+  ARGS     -p -o compiler
+  INCLUDES ${common_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
+  LINKS    common_s tests_s ${Boost_LIBRARIES})
+
 
 
 # add_executable(common_tf  src/main.cc)
