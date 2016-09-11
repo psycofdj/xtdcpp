@@ -16,6 +16,7 @@ before_install:
   - git submodule update --init --recursive
 
 install:
+  - sudo apt-get update
   - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip libcppunit-dev plantuml texlive-font-utils
   - sudo pip3 install coverxygen
 
