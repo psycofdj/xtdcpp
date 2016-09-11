@@ -18,6 +18,7 @@
 # include "logger.hh"
 
 
+class TestApplication;
 
 namespace xtd {
 
@@ -85,6 +86,8 @@ namespace xtd {
  */
 class Application
 {
+  friend class ::TestApplication;
+
 protected:
   typedef std::function<void(void)> t_sig_handler;
 
@@ -94,7 +97,6 @@ protected:
    */
   enum class argument : uint32_t
   {
-    optional  = 0, ///< optional argument for option
     mandatory = 1, ///< mandatory argument for option
     none      = 2  ///< forbidden argument for option
   };
@@ -130,8 +132,10 @@ private:
 public:
   /**
    ** @brief Constructor
+   ** @param p_disableExit If true, throws exception instead of exiting on error
+   ** @throw std::runtime_error
    */
-  Application(void);
+  Application(bool p_disableExit = false);
 
   /**
    ** @brief Destructor
@@ -145,7 +149,7 @@ public:
    ** @param p_argv argument list (first is binary name)
    ** @return depends on @ref Application::process implementation, usually 0 if process succeed
    */
-  int execute(int p_argc, char** p_argv);
+  int execute(int p_argc, const char* const p_argv[]);
 
 protected:
   ///////////////
@@ -218,10 +222,9 @@ protected:
   /**
    ** @brief Bind option's parameter to a directory
    ** @param p_target Reference variable to store the option's value
-   ** @param p_readable If true, check that given directory exists and is readable
    ** @return generated option callback
    */
-  t_callback bindDir(string& p_target,  bool p_readable = true) const;
+  t_callback bindDir(string& p_target) const;
 
   /**
    ** @brief Bind option's parameter to a file name
@@ -337,8 +340,8 @@ protected:
 
 
 private:
-  void readArgs(int p_argc, char** p_argv);
-  void usage(void)        const;
+  void readArgs(int p_argc, const char* const p_argv[]);
+  void usage(std::ostream& p_stream = std::cerr) const;
   void handleSignal(const boost::system::error_code& p_error, int p_signalNumber);
 
 protected:
@@ -355,6 +358,7 @@ private:
   boost::asio::io_service::work m_work;
   boost::asio::signal_set       m_signals;
   map<int, t_sig_handler>       m_signalHandlerMap;
+  bool                          m_disableExit;
 };
 
 }

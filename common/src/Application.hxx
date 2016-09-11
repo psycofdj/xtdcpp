@@ -11,6 +11,9 @@ void
 Application::error_nohelp(int p_code, const string& p_format, Arguments&&... p_args) const
 {
   string l_message = logger::format_vargs(p_format, p_args...);
+  if (true == m_disableExit)
+    throw std::runtime_error(l_message);
+
   std::cerr << l_message << endl;
   logger::crit("common.application", "%s", l_message);
   exit(p_code);
@@ -21,6 +24,9 @@ void
 Application::error(int p_code, const string& p_format, Arguments&&... p_args) const
 {
   string l_message = logger::format_vargs(p_format, p_args...);
+  if (true == m_disableExit)
+    throw std::runtime_error(l_message);
+
   std::cerr << "error : " << l_message << endl;
   logger::crit("common.application", "error : %s", l_message);
   usage();

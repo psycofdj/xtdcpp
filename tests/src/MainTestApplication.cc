@@ -51,9 +51,10 @@ MainTestApplication::createOutputter(CppUnit::TestResultCollector& p_result, std
   if (m_ouputter == "text")
     return new CppUnit::TextOutputter(&p_result, p_stream);
   if (m_ouputter == "compiler")
-    return new CppUnit::CompilerOutputter(&p_result, p_stream, "%p:%l : error: ");
+    return new CppUnit::CompilerOutputter(&p_result, p_stream, "%p:%l:1 : error: ");
   if (m_ouputter == "text")
     return new CppUnit::XmlOutputter(&p_result, p_stream, "UTF-8");
+  return new CppUnit::TextOutputter(&p_result, p_stream);
 }
 
 /**
@@ -97,6 +98,8 @@ MainTestApplication::process(void)
   }
 
   l_runner.setOutputter(l_outputter);
+  if (m_noCatch)
+    l_runner.eventManager().popProtector();
   if (m_progress)
     l_runner.eventManager().addListener(new ProgressListener(std::cerr));
   return !l_runner.run("", false, true, false);

@@ -44,7 +44,6 @@ TestApplication2::fakeTest1(void)
   logger::err   ("module2.submodule2", "error  in file '%s' line '%d'", l_filename, l_line, HERE);
   logger::info  ("module2.submodule2", "info   in file '%s' line '%d'", l_filename, l_line, HERE);
   logger::debug ("module2.submodule2", "debug  in file '%s' line '%d'", l_filename, l_line, HERE);
-  CPPUNIT_ASSERT_EQUAL(false, true);
 }
 
 
