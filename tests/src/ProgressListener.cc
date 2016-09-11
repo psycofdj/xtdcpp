@@ -21,7 +21,7 @@ ProgressListener::endTest (CppUnit::Test* p_test)
 }
 
 void
-ProgressListener::addFailure (const CppUnit::TestFailure& p_failure)
+ProgressListener::addFailure (const CppUnit::TestFailure&)
 {
   m_failed = true;
 }
