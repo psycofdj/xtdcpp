@@ -10,7 +10,6 @@
 # include <getopt.h>
 # include <libgen.h>
 # include <stdlib.h>
-
 # include <boost/system/error_code.hpp>
 # include <boost/thread.hpp>
 # include <boost/asio.hpp>
@@ -18,8 +17,9 @@
 # include "types.hh"
 # include "logger.hh"
 
-namespace xtd {
 
+
+namespace xtd {
 
 
 /**

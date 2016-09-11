@@ -20,17 +20,4 @@ add_check(common
   ARGS     -p -o compiler
   INCLUDES ${common_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
   LINKS    common_s tests_s ${Boost_LIBRARIES})
-
-
-
-# add_executable(common_tf  src/main.cc)
-# add_executable(common_tf2 src/main.cc)
-
-# target_link_libraries(common_tf  common_s ${Boost_LIBRARIES})
-# target_link_libraries(common_tf2
-#   common
-#   ${CMAKE_THREAD_LIBS_INIT}
-#   ${Boost_THREAD_LIBRARIES}
-#   ${Boost_FILESYSTEM_LIBRARIES}
-#   ${Boost_SYSTEM_LIBRARIES}
-#   )
+add_cov(common)

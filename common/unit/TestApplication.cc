@@ -1,6 +1,8 @@
 #include "logger.hh"
 #include "Application.hh"        //libcommon
 #include "MainTestApplication.hh" //libtests
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/thread/thread.hpp>
 
 using namespace xtd;
 
@@ -22,6 +24,7 @@ CPPUNIT_TEST_SUITE_REGISTRATION(TestApplication);
 void
 TestApplication::fakeTest1(void)
 {
+  boost::this_thread::sleep(boost::posix_time::milliseconds(5*1000));
   string   l_filename = "/tmp/conf/test.conf";
   uint32_t l_line  = 324;
 

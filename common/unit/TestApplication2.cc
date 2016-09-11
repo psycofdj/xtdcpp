@@ -5,9 +5,9 @@
 using namespace xtd;
 
 
-class TestApplication : public CppUnit::TestFixture
+class TestApplication2 : public CppUnit::TestFixture
 {
-  CPPUNIT_TEST_SUITE(TestApplication);
+  CPPUNIT_TEST_SUITE(TestApplication2);
   CPPUNIT_TEST(fakeTest1);
   CPPUNIT_TEST(fakeTest2);
   CPPUNIT_TEST_SUITE_END();
@@ -17,14 +17,11 @@ public:
   void fakeTest2(void);
 };
 
-CPPUNIT_TEST_SUITE_REGISTRATION(TestApplication);
+CPPUNIT_TEST_SUITE_REGISTRATION(TestApplication2);
 
 void
-TestApplication::fakeTest1(void)
+TestApplication2::fakeTest1(void)
 {
-  for (size_t c_idx = 0; c_idx < 100; c_idx++)
-    std::cout << "  some full log line" << std::endl;
-
   string   l_filename = "/tmp/conf/test.conf";
   uint32_t l_line  = 324;
 
@@ -51,12 +48,10 @@ TestApplication::fakeTest1(void)
 }
 
 
-void
-TestApplication::fakeTest2(void)
-{
-  for (size_t c_idx = 0; c_idx < 100; c_idx++)
-    std::cout << "  some full log line" << std::endl;
 
+void
+TestApplication2::fakeTest2(void)
+{
   string   l_filename = "/tmp/conf/test.conf";
   uint32_t l_line  = 324;
 

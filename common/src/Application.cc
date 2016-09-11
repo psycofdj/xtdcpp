@@ -10,6 +10,7 @@
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string/classification.hpp>
 
+
 #ifdef HAVE_DEPENDENCY_TRACKING
 extern char rcsid[];
 #else
