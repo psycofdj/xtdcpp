@@ -22,7 +22,7 @@ install:
 script:
   - mkdir ${TRAVIS_BUILD_DIR}/.release
   - cd ${TRAVIS_BUILD_DIR}/.release
-  - cmake ${TRAVIS_BUILD_DIR}
+  - cmake ${TRAVIS_BUILD_DIR} DCI=TRUE -DCMAKE_BUILD_TYPE=Debug
   - make -j2
   - make reports
   - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
