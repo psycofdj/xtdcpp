@@ -48,8 +48,8 @@ class StatusHelper:
       l_req = requests.get(l_url, params=l_params, headers=l_headers)
       l_data = l_req.json()
       return l_data["head"]["sha"]
-    except BaseException:
-      print("error while sending comment to github")
+    except BaseException as l_error:
+      print("error while seding comment to github : %s" % str(l_error))
       sys.exit(1)
 
 
@@ -95,8 +95,8 @@ class StatusHelper:
 
     try:
       l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
-    except BaseException:
-      print("error while sending comment to github")
+    except BaseException as l_error:
+      print("error while seding comment to github : %s" % str(l_error))
       sys.exit(1)
     return l_req.json()
 
@@ -116,8 +116,8 @@ class StatusHelper:
     }
     try:
       l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
-    except BaseException:
-      print("error while seding comment to github")
+    except BaseException as l_error:
+      print("error while seding comment to github : %s" % str(l_error))
       sys.exit(1)
     return l_req.json()
 
@@ -139,8 +139,8 @@ class StatusHelper:
 
     try:
       l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
-    except BaseException:
-      print("error while seding comment to github")
+    except BaseException as l_error:
+      print("error while seding comment to github : %s" % str(l_error))
       sys.exit(1)
     return l_req.json()
 
