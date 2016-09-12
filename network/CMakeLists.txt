@@ -32,3 +32,8 @@ add_doc(network WERROR)
 add_doc_coverage(network)
 add_cloc(network)
 add_cppcheck(network)
+add_check(network
+  ARGS     -p -o compiler
+  INCLUDES ${common_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
+  LINKS    common_s tests_s network_s ${Boost_LIBRARIES})
+add_cov(network)

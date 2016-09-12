@@ -15,3 +15,8 @@ add_doc(serializer
 add_doc_coverage(serializer)
 add_cloc(serializer)
 add_cppcheck(serializer)
+add_check(serializer
+  ARGS     -p -o compiler
+  INCLUDES ${common_INCLUDE_DIRS} ${serializer_INCLUDE_DIRS}${tests_INCLUDE_DIRS}
+  LINKS    common_s tests_s serializer_s ${Boost_LIBRARIES})
+add_cov(serializer)
