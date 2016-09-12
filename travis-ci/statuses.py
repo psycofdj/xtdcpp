@@ -329,8 +329,9 @@ class StatusHelper:
     print("")
 
   def run(self):
+    self.m_pr_commit = "false"
     if self.m_prid != "false" :
-      self.m_commit = self.get_pr_commit()
+      self.m_pr_commit = self.get_pr_commit()
 
     self.send_status("pending", "kpi/unittests",    "collecting unittests")
     self.send_status("pending", "kpi/coverage",     "collecting coverage")
@@ -347,13 +348,16 @@ class StatusHelper:
     self.collect_doc_coverage()
 
     if self.m_prid != "false" :
-      self.comment_pr("Automatic build report for commit %(commit)s:\n\n%(results)s" % {
-        "commit" : self.m_commit,
+      self.comment_pr("Build report #%(buildid)s for PR %(prid)s:\n\n%(results)s" % {
+        "prid"    : self.m_prid,
+        "buildid" : self.m_buildID,
         "results" : self.m_comment
       })
-    else:
-      self.comment_commit("Automatic build report for commit %(commit)s:\n\n%(results)s" % {
+
+    if self.m_pr_commit != self.m_commit:
+      self.comment_commit("Build report #%(buildid)s for sha %(commit)s:\n\n%(results)s" % {
         "commit" : self.m_commit,
+        "buildid" : self.m_buildID,
         "results" : self.m_comment
       })
 
