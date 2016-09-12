@@ -49,7 +49,7 @@ class StatusHelper:
       l_data = l_req.json()
       return l_data["head"]["sha"]
     except BaseException as l_error:
-      print("error while seding comment to github : %s" % str(l_error))
+      print("error while sending comment to github : %s" % str(l_error))
       sys.exit(1)
 
 
@@ -96,7 +96,7 @@ class StatusHelper:
     try:
       l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
     except BaseException as l_error:
-      print("error while seding comment to github : %s" % str(l_error))
+      print("error while sending comment to github : %s" % str(l_error))
       sys.exit(1)
     return l_req.json()
 
@@ -117,7 +117,7 @@ class StatusHelper:
     try:
       l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
     except BaseException as l_error:
-      print("error while seding comment to github : %s" % str(l_error))
+      print("error while sending comment to github : %s" % str(l_error))
       sys.exit(1)
     return l_req.json()
 
@@ -140,7 +140,7 @@ class StatusHelper:
     try:
       l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
     except BaseException as l_error:
-      print("error while seding comment to github : %s" % str(l_error))
+      print("error while sending comment to github : %s" % str(l_error))
       sys.exit(1)
     return l_req.json()
 
@@ -329,9 +329,12 @@ class StatusHelper:
     print("")
 
   def run(self):
-    self.m_pr_commit = "false"
+    self.m_pr_commit       = "false"
+    self.m_doCommentCommit = True
     if self.m_prid != "false" :
-      self.m_pr_commit = self.get_pr_commit()
+      l_commit = self.get_pr_commit()
+      self.m_doCommentCommit = (l_commit != self.m_commit)
+      self.m_commit = l_commit
 
     self.send_status("pending", "kpi/unittests",    "collecting unittests")
     self.send_status("pending", "kpi/coverage",     "collecting coverage")
@@ -354,7 +357,7 @@ class StatusHelper:
         "results" : self.m_comment
       })
 
-    if self.m_pr_commit != self.m_commit:
+    if self.m_doCommentCommit:
       self.comment_commit("Build report #%(buildid)s for sha %(commit)s:\n\n%(results)s" % {
         "commit" : self.m_commit,
         "buildid" : self.m_buildID,
