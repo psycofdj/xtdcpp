@@ -12,15 +12,12 @@
 #include <unistd.h>
 
 #ifdef HAVE_DEPENDENCY_TRACKING
+///! RSC keyword
 extern char rcsid[];
 #else
+///! RSC keyword
 const static char rcsid[] = "$rscid: include 'xtdmake/tracking/module.cmake' to enable binary tracking system $";
 #endif
-
-
-extern char *optarg;
-extern int optind, optopt, opterr;
-
 
 namespace xtd {
 
@@ -225,8 +222,8 @@ Application::addOption(const char        p_shortOpt,
 
   std::for_each(m_optionList.begin(), m_optionList.end(), l_checker);
 
-  if (0 == p_longOpt.find_first_of("-"))
-    error(1, "invalid long option '%s', leading dash is forbidden", p_longOpt);
+  if (0 == p_longOpt.find_first_of("-") || (p_shortOpt == '-'))
+    error(1, "invalid option '%s', leading dash is forbidden", p_longOpt);
 
   l_opt.m_given        = false;
   l_opt.m_shortOpt     = p_shortOpt;
@@ -403,8 +400,10 @@ Application::usage(std::ostream& p_stream) const
   }
 
 
+  // LCOV_EXCL_START
   if (false == m_disableExit)
     std::exit(1);
+  // LCOV_EXCL_STOP
 }
 
 void

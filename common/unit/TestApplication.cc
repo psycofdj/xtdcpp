@@ -20,7 +20,13 @@ class TestApplication : public CppUnit::TestFixture
   CPPUNIT_TEST(bindDir);
   CPPUNIT_TEST(bindString);
   CPPUNIT_TEST(bindRegex);
+  CPPUNIT_TEST(bindValues);
+  CPPUNIT_TEST(bindCallback);
+  CPPUNIT_TEST(bindNumber);
+  CPPUNIT_TEST(bindValueIfGiven);
+  CPPUNIT_TEST(bindAccumulator);
   CPPUNIT_TEST(getVersion);
+  CPPUNIT_TEST(warn);
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -34,6 +40,12 @@ public:
   void bindString(void);
   void bindRegex(void);
   void getVersion(void);
+  void bindValues(void);
+  void bindNumber(void);
+  void bindCallback(void);
+  void bindValueIfGiven(void);
+  void bindAccumulator(void);
+  void warn(void);
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestApplication);
@@ -61,6 +73,13 @@ struct MyApp : public Application
   bool m_started;
 };
 
+
+void
+TestApplication::warn(void)
+{
+  Application l_app(false);
+  CPPUNIT_ASSERT_NO_THROW(l_app.warn("warning message with printf format %d", 5));
+}
 
 /**
  ** @details
@@ -268,6 +287,266 @@ TestApplication::bindString(void)
   CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(3, l_args));
   CPPUNIT_ASSERT_EQUAL(std::string("toto"), l_string);
 }
+
+
+void
+TestApplication::bindAccumulator(void)
+{
+  {
+    // OK, options are stored
+    Application       l_app(true);
+    vector<uint32_t>  l_values;
+    const char* const l_args[] = { "binary", "--string", "12", "--string", "21" };
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::optional,
+                                            "",
+                                            l_app.bindAccumulator(l_values)));
+
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(5, l_args));
+    CPPUNIT_ASSERT_EQUAL(2ul, l_values.size());
+    CPPUNIT_ASSERT_EQUAL(12u, l_values[0]);
+    CPPUNIT_ASSERT_EQUAL(21u, l_values[1]);
+  }
+
+  {
+    // KO, one of given parameters is not castable to dest
+    Application       l_app(true);
+    vector<uint32_t>  l_values;
+    const char* const l_args[] = { "binary", "--string", "12", "--string", "titi" };
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::optional,
+                                            "",
+                                            l_app.bindAccumulator(l_values)));
+
+
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(5, l_args), std::runtime_error);
+  }
+}
+
+
+void
+TestApplication::bindValueIfGiven(void)
+{
+  {
+    Application       l_app(true);
+    std::string       l_string = "toto";
+    const char* const l_args[] = { "binary", "--opt" };
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "opt",
+                                            Application::argument::none,
+                                            Application::requirement::optional,
+                                            "",
+                                            l_app.bindValueIfGiven(l_string, string("super"))));
+
+    CPPUNIT_ASSERT_EQUAL(std::string("toto"), l_string);
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(2, l_args));
+    CPPUNIT_ASSERT_EQUAL(std::string("super"), l_string);
+  }
+
+  {
+    Application       l_app(true);
+    std::string       l_string = "toto";
+    const char* const l_args[] = { "binary" };
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "opt",
+                                            Application::argument::none,
+                                            Application::requirement::optional,
+                                            "",
+                                            l_app.bindValueIfGiven(l_string, string("super"))));
+
+    CPPUNIT_ASSERT_EQUAL(std::string("toto"), l_string);
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(1, l_args));
+    CPPUNIT_ASSERT_EQUAL(std::string("toto"), l_string);
+  }
+}
+
+
+void
+TestApplication::bindCallback(void)
+{
+  bool              l_called;
+  auto              l_function = [&l_called](void) {
+    l_called = true;
+  };
+
+
+  {
+    Application       l_app(true);
+    const char* const l_args[] = { "binary" };
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('o', "opt",
+                                            Application::argument::none,
+                                            Application::requirement::optional,
+                                            "",
+                                            l_app.bindCallback(l_function)));
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(1, l_args));
+    CPPUNIT_ASSERT_EQUAL(false, l_called);
+  }
+
+  {
+    Application       l_app(true);
+    const char* const l_args[] = { "binary", "--opt" };
+
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('o', "opt",
+                                            Application::argument::none,
+                                            Application::requirement::optional,
+                                            "",
+                                            l_app.bindCallback(l_function)));
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(2, l_args));
+    CPPUNIT_ASSERT_EQUAL(true, l_called);
+  }
+}
+
+
+void
+TestApplication::bindValues(void)
+{
+
+  {
+    // OK given string in list
+    Application       l_app(true);
+    std::string       l_string;
+    const char* const l_args[] = { "binary", "--string", "string1" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindValues(l_string, vector<string>({"string1", "string2"}))));
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(3, l_args));
+    CPPUNIT_ASSERT_EQUAL(std::string("string1"), l_string);
+  }
+
+  {
+    // KO given string not list
+    Application       l_app(true);
+    std::string       l_string;
+    const char* const l_args[] = { "binary", "--string", "unknown" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindValues(l_string, vector<string>({"string1", "string2"}))));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+
+  {
+    // OK given unsigned int in list
+    Application       l_app(true);
+    uint32_t          l_value;
+    const char* const l_args[] = { "binary", "--string", "50" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindValues(l_value, vector<uint32_t>({10u, 30u, 50u}))));
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(3, l_args));
+    CPPUNIT_ASSERT_EQUAL(50u, l_value);
+  }
+
+  {
+    // KO given unsigned int not in list
+    Application       l_app(true);
+    uint32_t          l_value;
+    const char* const l_args[] = { "binary", "--string", "120" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindValues(l_value, vector<uint32_t>({10u, 30u, 50u}))));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+
+  {
+    // KO given unsigned int not uint castable
+    Application       l_app(true);
+    uint32_t          l_value;
+    const char* const l_args[] = { "binary", "--string", "fdsfds120" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindValues(l_value, vector<uint32_t>({10u, 30u, 50u}))));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+
+  {
+    // KO given unsigned int not uint castable
+    Application       l_app(true);
+    uint32_t          l_value;
+    const char* const l_args[] = { "binary", "--string", "-500" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "string",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindValues(l_value, vector<uint32_t>({10u, 30u, 50u}))));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+}
+
+void
+TestApplication::bindNumber(void)
+{
+
+  {
+    // OK given arg is number
+    Application       l_app(true);
+    int32_t           l_value;
+    const char* const l_args[] = { "binary", "--opt", "123" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "opt",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindNumber(l_value)));
+    CPPUNIT_ASSERT_NO_THROW(l_app.readArgs(3, l_args));
+    CPPUNIT_ASSERT_EQUAL(123, l_value);
+  }
+
+  {
+    // KO given arg is not a number
+    Application       l_app(true);
+    int32_t           l_value;
+    const char* const l_args[] = { "binary", "--opt", "toto" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "opt",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindNumber(l_value)));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+
+  {
+    // KO given arg is too low
+    Application       l_app(true);
+    int32_t           l_value;
+    const char* const l_args[] = { "binary", "--opt", "100" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "opt",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindNumber(l_value, 150, 300)));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+
+  {
+    // KO given arg is too high
+    Application       l_app(true);
+    int32_t           l_value;
+    const char* const l_args[] = { "binary", "--opt", "500" };
+    CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "opt",
+                                            Application::argument::mandatory,
+                                            Application::requirement::mandatory,
+                                            "",
+                                            l_app.bindNumber(l_value, 150, 300)));
+    CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
+  }
+
+}
+
 
 void
 TestApplication::bindRegex(void)

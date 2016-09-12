@@ -89,6 +89,9 @@ class Application
   friend class ::TestApplication;
 
 protected:
+  /**
+   ** @brief Signal handler functor prototype, @see addSignalHandler
+   */
   typedef std::function<void(void)> t_sig_handler;
 
 
@@ -118,15 +121,14 @@ private:
   typedef std::function<void(const string&, const t_option&)> t_callback;
   struct t_option
   {
-    char        m_shortOpt;
-    string      m_longOpt;
-    string      m_description;
-    argument    m_argumentType;
-    t_callback  m_callback;
-    requirement m_status;
-    bool        m_given;
+    char        m_shortOpt;     ///< short form
+    string      m_longOpt;      ///< long form
+    string      m_description;  ///< usage description
+    argument    m_argumentType; ///< need argument ?
+    t_callback  m_callback;     ///< associated callback functor
+    requirement m_status;       ///< is option required ?
+    bool        m_given;        ///< is option encountered ?
   };
-
   typedef vector<t_option> t_option_list;
 
 public:
@@ -196,6 +198,24 @@ protected:
   /////////////////////
   // option handling //
   /////////////////////
+
+
+  /**
+   ** @brief Register an option to parser
+   ** @param p_shortOpt short form, single character
+   ** @param p_longOpt long form, not starting with dash
+   ** @param p_argType shall we expect an argument
+   ** @param p_status  should the option be given by user
+   ** @param p_description usage help description
+   ** @param p_callback functor to call when option is encountered
+   ** @details
+   ** Option must :
+   **  - a unique short form
+   **  - a unique long form
+   **  - short and long forms must not start by a dash (-)
+   **
+   ** Programs logs and exit in case of error.
+   */
   void addOption(const char        p_shortOpt,
                  const string&     p_longOpt,
                  const argument    p_argType,
@@ -305,8 +325,8 @@ protected:
    ** @param p_target Reference variable container
    ** @return generated option callback
    */
-  template<typename T, template<class> class TCollection>
-  t_callback bindAccumulator(TCollection<T>& p_target) const;
+  template<class TCollection>
+  t_callback bindAccumulator(TCollection& p_target) const;
 
 
   ////////////////////

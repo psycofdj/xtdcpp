@@ -3,6 +3,7 @@
 
 # include <boost/lexical_cast.hpp>
 
+
 namespace xtd {
 
 
@@ -14,9 +15,11 @@ Application::error_nohelp(int p_code, const string& p_format, Arguments&&... p_a
   if (true == m_disableExit)
     throw std::runtime_error(l_message);
 
+  // LCOV_EXCL_START
   std::cerr << l_message << endl;
   logger::crit("common.application", "%s", l_message);
   exit(p_code);
+  // LCOV_EXCL_STOP
 }
 
 template<typename... Arguments>
@@ -27,10 +30,12 @@ Application::error(int p_code, const string& p_format, Arguments&&... p_args) co
   if (true == m_disableExit)
     throw std::runtime_error(l_message);
 
+  // LCOV_EXCL_START
   std::cerr << "error : " << l_message << endl;
   logger::crit("common.application", "error : %s", l_message);
   usage();
   exit(p_code);
+  // LCOV_EXCL_STOP
 }
 
 template<typename... Arguments>
@@ -43,14 +48,14 @@ Application::warn(const string& p_format, Arguments&&... p_args) const
 }
 
 
-template<typename T, template<class> class TCollection>
+template<class TCollection>
 Application::t_callback
-Application::bindAccumulator(TCollection<T>& p_target) const
+Application::bindAccumulator(TCollection& p_target) const
 {
   return [&p_target, this](const string& p_value, const t_option& p_opt) {
-    T l_value;
+    typename TCollection::value_type l_value;
     try {
-      l_value = boost::lexical_cast<T, string>(p_value);
+      l_value = boost::lexical_cast<typename TCollection::value_type, string>(p_value);
     }
     catch (boost::bad_lexical_cast& l_error) {
       error_nohelp(1, "invalid option -%c='%s', nost castable", p_opt.m_shortOpt, p_value);
