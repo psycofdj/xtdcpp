@@ -14,13 +14,13 @@ git:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - docker pull psycofdj/xtdcpp-xenial:latest
+  - docker pull psycofdj/xtdcpp-xenial:1.0.0
 
 script:
   - mkdir ${TRAVIS_BUILD_DIR}/.release
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:latest bash -c "cd ${TRAVIS_BUILD_DIR}/.release && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug"
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:latest bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make all -j2"
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:latest bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make reports -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make all -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make reports -j2"
   - cd ${TRAVIS_BUILD_DIR}/.release
   - ${TRAVIS_BUILD_DIR}/travis-ci/statuses.py --token=${access_token} --build-id=${TRAVIS_BUILD_ID} --commit=${TRAVIS_COMMIT} --pull-id=${TRAVIS_PULL_REQUEST} --build-dir=${TRAVIS_BUILD_DIR}/.release
   - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
