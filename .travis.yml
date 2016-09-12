@@ -16,9 +16,11 @@ before_install:
   - git submodule update --init --recursive
 
 install:
-  - sudo add-apt-repository universe
-  - sudo apt-get update
-  - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip libcppunit-dev plantuml texlive-font-utils
+  - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip libcppunit-dev texlive-font-utils
+  - sudo mkdir -p /usr/share/plantuml/
+  - sudo wget 'http://downloads.sourceforge.net/project/plantuml/plantuml.jar?r=&ts=1473638399&use_mirror=netix' -O /usr/share/plantuml/plantuml.jar
+  - sudo cp ${TRAVIS_BUILD_DIR}/travis-ci/plantuml /usr/bin/plantuml
+  - sudo chmod +x /usr/bin/plantuml
   - sudo pip3 install coverxygen
 
 script:
