@@ -20,7 +20,7 @@ os.chdir(os.path.dirname(l_path))
 sys.path.append(".")
 
 #------------------------------------------------------------------#
-#1f4b936aacfd9c687f4c6577687ddcb2d1cecfdd
+
 class StatusHelper:
   def __init__(self):
     self.m_dryrun = False
@@ -145,9 +145,9 @@ class StatusHelper:
     return l_req.json()
 
   def collect_unittests(self):
-    print("----------------------")
-    print("Collecting unittests ")
-    print("----------------------")
+    print("--------------------")
+    print("Collecting unittests")
+    print("--------------------")
     try:
       l_tests  = glob.glob("%s/reports/*/check/tests.xml" % self.m_dir)
       l_total  = 0
@@ -180,9 +180,9 @@ class StatusHelper:
 
 
   def collect_coverage(self):
-    print("--------------------")
-    print("Collecting coverage ")
-    print("--------------------")
+    print("-------------------")
+    print("Collecting coverage")
+    print("-------------------")
     try:
       l_tests   = glob.glob("%s/reports/*/coverage/coverage.xml" % self.m_dir)
       l_total   = 0
@@ -212,9 +212,9 @@ class StatusHelper:
     print("")
 
   def collect_cppcheck(self):
-    print("--------------------")
-    print("Collecting cppcheck ")
-    print("--------------------")
+    print("-------------------")
+    print("Collecting cppcheck")
+    print("-------------------")
     try:
       l_tests   = glob.glob("%s/reports/*/cppcheck/cppcheck.xml" % self.m_dir)
       l_total   = 0
@@ -235,7 +235,7 @@ class StatusHelper:
       l_description  = "Unable to collect cppcheck"
     l_badge = self.make_badge("Cppcheck", "cppcheck", l_badge_descr, l_badge_status)
     self.m_comment += "%s\n" % l_badge
-    self.send_status(l_status, "kpi/coverage", l_description)
+    self.send_status(l_status, "kpi/cppcheck", l_description)
     print("")
 
 
