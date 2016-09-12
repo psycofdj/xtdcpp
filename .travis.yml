@@ -1,20 +1,28 @@
 sudo: required
+language: python
 services:
     - docker
+
+python:
+    - "3.4"
 
 env:
   global:
   - ENCRYPTION_LABEL: "cac0dab93c8f"
 
-# disable the default submodule logic
 git:
+  # disable the default submodule logic
   submodules: false
 
-# use sed to replace the SSH URL with the public URL, then init and update submodules
 before_install:
+  # use sed to replace the SSH URL with the public URL, then init and update submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
   - docker pull psycofdj/xtdcpp-xenial:1.0.0
+
+install:
+  - sudo -H pip3 install requests
+  - sudo -H pip3 install lxml
 
 script:
   - mkdir ${TRAVIS_BUILD_DIR}/.release
