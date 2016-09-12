@@ -28,5 +28,6 @@ script:
   - cd ${TRAVIS_BUILD_DIR}/.release
   - cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug
   - make -j2
+  - make doc doc-coverage cppcheck cloc check cov
   - make reports
   - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
