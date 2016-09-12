@@ -33,10 +33,6 @@ class StatusHelper:
     self.m_parser.add_argument("--dry-run",  help="Do not push statuses to github",          dest="m_dryrun",    action="store_true")
     self.m_parser.parse_args(sys.argv[1:], self)
     self.m_comment = ""
-    print("pr id : ", self.m_prid)
-    print("dir : ", self.m_dir)
-    print("commit : ", self.m_commit)
-    print("buildid : ", self.m_buildID)
 
   def get_pr_commit(self):
     if self.m_dryrun:
@@ -51,7 +47,6 @@ class StatusHelper:
     try:
       l_req = requests.get(l_url, params=l_params, headers=l_headers)
       l_data = l_req.json()
-      print(str(l_data))
       return l_data["head"]["sha"]
     except BaseException as l_error:
       print("error while seding comment to github : %s" % str(l_error))
@@ -351,12 +346,13 @@ class StatusHelper:
     self.collect_doc()
     self.collect_doc_coverage()
 
-    self.comment_commit("Automatic build report for commit %(commit)s:\n\n%(results)s" % {
-      "commit" : self.m_commit,
-      "results" : self.m_comment
-    })
     if self.m_prid != "false" :
       self.comment_pr("Automatic build report for commit %(commit)s:\n\n%(results)s" % {
+        "commit" : self.m_commit,
+        "results" : self.m_comment
+      })
+    else:
+      self.comment_commit("Automatic build report for commit %(commit)s:\n\n%(results)s" % {
         "commit" : self.m_commit,
         "results" : self.m_comment
       })
