@@ -1,33 +1,25 @@
-language: cpp
-compiler: gcc
-dist: xenial
+sudo: required
+services:
+    - docker
 
 env:
   global:
   - ENCRYPTION_LABEL: "cac0dab93c8f"
 
-# disable the default submodule logic
 git:
+  # disable the default submodule logic
   submodules: false
 
-# use sed to replace the SSH URL with the public URL, then init and update submodules
 before_install:
+  # use sed to replace the SSH URL with the public URL, then init and update submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-
-install:
-  - sudo apt-get install cmake doxygen lcov xsltproc graphviz cppcheck cloc libboost-all-dev python3-pip libcppunit-dev texlive-font-utils
-  - sudo mkdir -p /usr/share/plantuml/
-  - sudo wget 'http://downloads.sourceforge.net/project/plantuml/plantuml.jar?r=&ts=1473638399&use_mirror=netix' -O /usr/share/plantuml/plantuml.jar
-  - sudo cp ${TRAVIS_BUILD_DIR}/travis-ci/plantuml /usr/bin/plantuml
-  - sudo chmod +x /usr/bin/plantuml
-  - sudo pip3 install coverxygen
+  - docker pull psycofdj/xtdcpp-xenial:1.0.0
 
 script:
   - mkdir ${TRAVIS_BUILD_DIR}/.release
-  - cd ${TRAVIS_BUILD_DIR}/.release
-  - cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug
-  - make -j2
-  - make doc doc-coverage cppcheck cloc check cov
-  - make reports
-  - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make all -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make reports -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.0.0 bash -c "${TRAVIS_BUILD_DIR}/travis-ci/statuses.py --token=${access_token} --build-id=${TRAVIS_BUILD_ID} --commit=${TRAVIS_COMMIT} --pull-id=${TRAVIS_PULL_REQUEST} --build-dir=${TRAVIS_BUILD_DIR}/.release"
+  - cd ${TRAVIS_BUILD_DIR}/.release && ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
