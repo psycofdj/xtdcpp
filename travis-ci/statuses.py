@@ -33,6 +33,11 @@ class StatusHelper:
     self.m_parser.add_argument("--dry-run",  help="Do not push statuses to github",          dest="m_dryrun",    action="store_true")
     self.m_parser.parse_args(sys.argv[1:], self)
     self.m_comment = ""
+    print("pr id : %s", self.m_prid)
+    print("dir : %s", self.m_dir)
+    print("commit : %s", self.m_commit)
+    print("duildif : %s", self.m_buildID)
+    sys.exit(0)
 
   def get_pr_commit(self):
     if self.m_dryrun:
