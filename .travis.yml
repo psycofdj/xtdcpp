@@ -21,4 +21,4 @@ script:
   - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:latest bash -c "cd ${TRAVIS_BUILD_DIR}/.release && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug"
   - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:latest bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make all -j2"
   - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:latest bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make reports -j2"
-  - ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
+  - cd ${TRAVIS_BUILD_DIR}/.release && ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
