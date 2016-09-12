@@ -199,7 +199,9 @@ class StatusHelper:
         l_covered += int(l_coverage.get("lines-covered"))
 
       l_status = "success"
-      l_percent = (float(l_covered) / float(l_total)) * 100
+      l_percent = 0
+      if l_total != 0:
+        l_percent = (float(l_covered) / float(l_total)) * 100
       l_badge_status = "success"
       if l_percent < 75.0:
         l_badge_status = "warning"
@@ -258,7 +260,9 @@ class StatusHelper:
         l_code    += int(l_elem.get("code"))
         l_comment += int(l_elem.get("comment"))
 
-      l_percent = float(l_comment) / float(l_code) * 100
+      l_percent = 0
+      if l_code != 0:
+        l_percent = float(l_comment) / float(l_code) * 100
       l_status       = "success"
       l_badge_status = "success"
       if l_percent < 50:
@@ -309,7 +313,9 @@ class StatusHelper:
         l_covered += int(l_coverage.get("lines-covered"))
 
       l_status = "success"
-      l_percent = (float(l_covered) / float(l_total)) * 100
+      l_percent = 0
+      if l_total != 0:
+        l_percent = (float(l_covered) / float(l_total)) * 100
       l_badge_status = "success"
       if l_percent < 50:
         l_badge_status = "warning"

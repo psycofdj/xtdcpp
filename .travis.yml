@@ -14,7 +14,7 @@ before_install:
   # use sed to replace the SSH URL with the public URL, then init and update submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - docker pull psycofdj/xtdcpp-xenial:1.0.0
+  #- docker pull psycofdj/xtdcpp-xenial:1.0.0
 
 script:
   - mkdir ${TRAVIS_BUILD_DIR}/.release
