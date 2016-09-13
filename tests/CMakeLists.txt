@@ -4,13 +4,12 @@ include_directories(
   ${Cppunit_INCLUDE_DIR}
   )
 
-
 add_shared_static_library(tests
   src/MainTestApplication.cc
   src/ProgressListener.cc
 )
 
-add_shared_static_library(libc_test_wrapper
-  src/libc_wrapper.cc
+add_shared_static_library(cwrap
+  src/CWrap.cc
 )
 

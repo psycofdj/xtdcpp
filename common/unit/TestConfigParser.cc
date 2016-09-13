@@ -1,9 +1,12 @@
+#include <boost/filesystem.hpp>
 #include "MainTestApplication.hh" // libtests
+#include "CWrap.hh"               // libtests
 #include "ConfParser.hh"          // libcommon
 #include "error.hh"               // libcommon
-#include "libc_wrapper.hh"
+
 
 using namespace std;
+using namespace xtd::tests;
 using xtd::ConfParser;
 
 class TestConfParser : public CppUnit::TestFixture
@@ -34,14 +37,15 @@ TestConfParser::Constructor(void)
 
   {
     // KO read error
-    LibCWrapper::set("fread", {{ "error", 1 }});
+    CWrap::state l_state("fread", {{ "error", 1 }});
+
     CPPUNIT_ASSERT_THROW(ConfParser l_obj("/dev/random"), xtd::error);
-    LibCWrapper::reset();
   }
 
   {
     // OK read
-    CPPUNIT_ASSERT_NO_THROW(ConfParser l_obj("/dev/random"));
+    string l_config = Globals::get().testDir() + "/data/simple.conf";
+    CPPUNIT_ASSERT_NO_THROW(ConfParser l_obj(l_config));
   }
 }
 
