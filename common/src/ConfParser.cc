@@ -61,7 +61,6 @@ ConfParser::loadFile(const string& p_filename)
   }
 
   l_fd = fopen(p_filename.c_str(), "r");
-
   if (l_fd == NULL)
   {
     logger::crit("common.confparser", "failed to fopen file '%s'", p_filename, HERE);

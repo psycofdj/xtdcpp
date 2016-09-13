@@ -48,6 +48,7 @@ public:
     inline bool               operator==(const const_iterator& p_obj) const;
     inline bool               operator!=(const const_iterator& p_obj) const;
     inline const t_result     operator*(void) const;
+    inline const t_result     operator->(void) const;
 
   private:
     t_section_list::const_iterator m_iter;
@@ -113,9 +114,9 @@ private:
   status parseFile(char* p_line);
   status loadFile(const string& p_filename);
   status evaluateVal(const string& p_keyName,
-                     char*              p_pLine,
-                     char*              p_dest,
-                     std::size_t        p_maxChar);
+                     char*         p_pLine,
+                     char*         p_dest,
+                     std::size_t   p_maxChar);
 
 public:
   inline const t_value_map& getValueMap(void) const;
@@ -124,7 +125,7 @@ protected:
   t_value_map    m_values;
   t_section_list m_sections;
   int            m_nblines;
-  string    m_filename;
+  string         m_filename;
   t_param_map    m_paramMap;
 };
 
@@ -175,6 +176,13 @@ ConfParser::const_iterator::operator*(void) const
 {
   return std::make_pair(m_iter->first.c_str(),
                         m_iter->second.c_str());
+}
+
+
+const ConfParser::const_iterator::t_result
+ConfParser::const_iterator::operator->(void) const
+{
+  return *(*this);
 }
 
 

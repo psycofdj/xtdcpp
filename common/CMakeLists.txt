@@ -19,5 +19,5 @@ add_cppcheck(common)
 add_check(common
   ARGS     -p -o compiler
   INCLUDES ${common_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    common_s tests_s ${Boost_LIBRARIES})
+  LINKS    common_s tests_s libc_test_wrapper ${Boost_LIBRARIES})
 add_cov(common)
