@@ -47,6 +47,37 @@ TestConfParser::Constructor(void)
     string l_config = Globals::get().testDir() + "/data/simple.conf";
     CPPUNIT_ASSERT_NO_THROW(ConfParser l_obj(l_config));
   }
+
+
+  xtd::config_parser<std::string::const_iterator> l_grammar;
+  sections l_result;
+  string l_data = R"data(
+  [s1]
+  {
+    s1key1 : s1key1val
+    [s1s2]
+    {
+      s1s2key1 : s1s2key1val
+      s1s2key2 : s1s2key2val
+    }
+  }
+  )data";
+
+  string::const_iterator l_start = l_data.begin();
+  string::const_iterator l_end   = l_data.end();
+  CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_start, l_end, l_grammar, boost::spirit::ascii::space, l_result));
+  CPPUNIT_ASSERT(l_start == l_end);
+
+  l_start = l_data.begin() + 5;
+  l_end   = l_data.end();
+  CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_start, l_end, l_grammar, boost::spirit::ascii::space, l_result));
+  CPPUNIT_ASSERT(l_start != l_end);
+
+
+  // string::const_iterator l_start = l_data.begin();
+  // string::const_iterator l_end   = l_data.end();
+  // CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_start, l_end, l_grammar, boost::spirit::ascii::space, l_result));
+  // CPPUNIT_ASSERT_EQUAL(l_start, l_end);
 }
 
 XTD_TEST_MAIN();

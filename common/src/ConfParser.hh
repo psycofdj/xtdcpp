@@ -234,4 +234,5 @@ ConfParser::end(void) const
 
 }
 
+#include "ConfParser.hxx"
 #endif // !COMMON_CONF_HH
