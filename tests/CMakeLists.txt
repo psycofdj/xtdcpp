@@ -10,3 +10,7 @@ add_shared_static_library(tests
   src/ProgressListener.cc
 )
 
+add_shared_static_library(libc_test_wrapper
+  src/libc_wrapper.cc
+)
+
