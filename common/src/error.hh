@@ -3,7 +3,15 @@
 # include "types.hh"
 # include "logger.hh"
 
+
 namespace xtd {
+
+template<class TType, typename... Arguments>
+void do_throw(const string& p_module, const string& p_format, Arguments&&... p_args)
+{
+  logger::crit(p_module, p_format, p_args...);
+  throw TType(logger::format_vargs(p_format + " in %s:%s:%d ", p_args...));
+}
 
 class error : std::exception
 {
@@ -11,8 +19,7 @@ public:
   template<typename... Arguments>
   static void do_throw(const string& p_module, const string& p_format, Arguments&&... p_args)
   {
-    logger::crit(p_module, p_format, p_args...);
-    throw error(logger::format_vargs(p_format + " in %s:%s:%d ", p_args...));
+    xtd::do_throw<error>(p_module, p_format, p_args...);
   }
 
 public:

@@ -7,7 +7,9 @@ add_shared_static_library(common
   src/logger.cc
   src/text.cc
   src/Application.cc
-  src/ConfParser.cc)
+  src/ConfParser.cc
+  src/config/Parser.cc
+  src/config/Grammar.cc)
 
 add_doc(common
   EXCLUDE  src/json_parser.hpp src/json_parser_write.hpp
