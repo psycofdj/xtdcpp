@@ -24,6 +24,7 @@ using std::ofstream;
 using std::istream;
 using std::ostream;
 using std::endl;
+using std::pair;
 
 namespace xtd {
 

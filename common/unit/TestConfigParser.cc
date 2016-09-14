@@ -49,8 +49,9 @@ TestConfParser::Constructor(void)
   }
 
 
-  xtd::config_parser<std::string::const_iterator> l_grammar;
-  sections l_result;
+
+
+  xtd::ConfigParser2::sections l_result;
   string l_data = R"data(
   [s1]
   {
@@ -60,18 +61,41 @@ TestConfParser::Constructor(void)
       s1s2key1 : s1s2key1val
       s1s2key2 : s1s2key2val
     }
-  }
-  )data";
+  })data";
 
-  string::const_iterator l_start = l_data.begin();
-  string::const_iterator l_end   = l_data.end();
-  CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_start, l_end, l_grammar, boost::spirit::ascii::space, l_result));
-  CPPUNIT_ASSERT(l_start == l_end);
 
-  l_start = l_data.begin() + 5;
-  l_end   = l_data.end();
-  CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_start, l_end, l_grammar, boost::spirit::ascii::space, l_result));
-  CPPUNIT_ASSERT(l_start != l_end);
+
+  xtd::ConfigParser2::Iterator l_start(l_data.begin());
+  xtd::ConfigParser2::Iterator l_cur(l_data.begin());
+  xtd::ConfigParser2::Iterator l_end(l_data.end());
+
+
+  xtd::ConfigParser2::config_grammar l_grammar;
+
+
+
+  // //  CPPUNIT_ASSERT_EQUAL(true,
+  // phrase_parse(l_cur, l_end, l_grammar, l_skipper, l_result);
+  // //);
+  // std::cout << std::endl << std::endl;
+
+
+  // auto l_error = l_grammar.getLastError();
+
+  // std::cout
+  //   << "error at line "      << l_error.line
+  //   << ", column "           << l_error.col
+  //   << " : expecting token " << l_error.token
+  //   << ", near '"            << l_error.preview
+  //   << std::endl;
+  // CPPUNIT_ASSERT(l_cur == l_end);
+  // CPPUNIT_ASSERT(false);
+
+  // l_start = t_iterator(l_data.begin() + 5);
+  // l_cur   = t_iterator(l_data.begin() + 5);
+  // l_end   = t_iterator(l_data.end());
+  // CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_cur, l_end, l_grammar, l_skipper, l_result));
+  // CPPUNIT_ASSERT(l_cur != l_end);
 
 
   // string::const_iterator l_start = l_data.begin();

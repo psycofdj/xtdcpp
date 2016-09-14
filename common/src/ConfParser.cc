@@ -627,3 +627,100 @@ ConfParser::getParamMap(void) const
 }
 
 }
+
+
+
+namespace xtd {
+
+const ConfigParser2::config_grammar::error_info&
+ConfigParser2::config_grammar::getLastError(void) const
+{
+  return m_error;
+}
+
+
+bool
+ConfigParser2::config_grammar::handleError(Iterator                   p_first,
+                                           Iterator                   p_last,
+                                           Iterator                   p_pos,
+                                           const boost::spirit::info& p_info)
+{
+  std::stringstream l_token;
+  std::size_t       l_dist = std::distance(p_pos, p_last);
+  Iterator          l_end  = std::next(p_pos, std::min(10ul, l_dist));
+  l_token << p_info;
+  m_error.line = get_line(p_pos);
+  m_error.col = get_column(p_first, p_pos);
+  m_error.preview = std::string(p_pos, l_end);
+  m_error.token   = l_token.str();
+  return false;
+}
+
+
+ConfigParser2::config_grammar::config_grammar(void) :
+  ConfigParser2::config_grammar::base_type(m_start, "sections")
+{
+  namespace ascii = boost::spirit::ascii;
+  namespace qi    = boost::spirit::qi;
+  namespace qil   = boost::spirit::qi::labels;
+  namespace phx   = boost::phoenix;
+
+  m_key = qi::lexeme[+(ascii::alnum)                      [ qil::_val += qil::_1 ]];
+  m_val = qi::lexeme[+(ascii::char_ - boost::spirit::eol) [ qil::_val += qil::_1 ]];
+
+  m_property =
+    /**/ m_key
+    >    ascii::char_(':')
+    >    m_val
+    >   +boost::spirit::eol
+    ;
+
+  m_section_name =
+    /**/ qi::lit('[')
+    >   *ascii::alnum           [ qil::_val += qil::_1 ]
+    >    qi::lit(']')
+    >   *boost::spirit::eol
+    ;
+
+  m_subsection =
+    /**/ m_section_name         [phx::at_c<0>(qil::_val) = qil::_1]
+    >    qi::lit('{')
+    >    *boost::spirit::eol
+    >    *m_property            [phx::push_back(phx::at_c<1>(qil::_val), qil::_1)]
+    >    *boost::spirit::eol
+    >    qi::lit('}')
+    >    *boost::spirit::eol
+    ;
+
+  m_section =
+    /**/ m_section_name         [phx::at_c<0>(qil::_val) = qil::_1]
+    >     qi::lit('{')
+    >   *boost::spirit::eol
+    >>  *(
+          m_subsection          [phx::push_back(phx::at_c<2>(qil::_val), qil::_1)]
+          |
+          m_property            [phx::push_back(phx::at_c<1>(qil::_val), qil::_1)]
+          )
+    >     qi::lit('}')
+    >   *boost::spirit::eol
+    ;
+
+  m_start =
+    /**/ *boost::spirit::eol
+    >    *m_section             [phx::push_back(phx::at_c<0>(qil::_val), qil::_1)]
+    >    *boost::spirit::eol;
+
+
+
+  m_key.name("key");
+  m_val.name("value");
+  m_property.name("property");
+  m_start.name("sections");
+  m_section.name("section");
+  m_subsection.name("subsection");
+
+  auto ll =  phx::bind(&config_grammar::handleError, this, qil::_1, qil::_2, qil::_3, qil::_4);
+  qi::on_error<qi::fail>(m_section, ll);
+}
+
+}
