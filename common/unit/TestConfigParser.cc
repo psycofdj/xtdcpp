@@ -54,7 +54,7 @@ TestConfParser::Constructor(void)
   [s1]
   {
     s1key1 : s1key1val
-    [s1s2]
+    [s_1s2]
     {
       s1s2key1 : s1s2key1val
       s1s2key2 : s1s2key2val
@@ -65,7 +65,7 @@ TestConfParser::Constructor(void)
       param1 : ${testwithenv} with trail
       param2 : ${testwithenv} ${double} with trail
       param3 :   ${testwithenv} $PARAM{double} with trail and ${param}
-      param4 :   ${testwithenv} $PARAM{double} with $fakes vars and ${param}
+      par_am4 :   ${te_stwithenv} $PARAM{dou_ble} with $fakes vars and ${para_m}
     }
   })data";
 
