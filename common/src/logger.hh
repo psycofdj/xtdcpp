@@ -3,7 +3,6 @@
 # include <iostream>
 # include <vector>
 # include <map>
-# include <boost/format.hpp>
 # include <syslog.h>
 # include <stdarg.h>
 # include "types.hh"
@@ -16,14 +15,14 @@ class logger
 public:
   enum class level : int32_t {
     emerg   = LOG_EMERG,
-      alert   = LOG_ALERT,
-      crit    = LOG_CRIT,
-      err     = LOG_ERR,
-      warning = LOG_WARNING,
-      notice  = LOG_NOTICE,
-      info    = LOG_INFO,
-      debug   = LOG_DEBUG
-      };
+    alert   = LOG_ALERT,
+    crit    = LOG_CRIT,
+    err     = LOG_ERR,
+    warning = LOG_WARNING,
+    notice  = LOG_NOTICE,
+    info    = LOG_INFO,
+    debug   = LOG_DEBUG
+  };
 
 private:
   typedef map<string, level> t_levels;
@@ -67,8 +66,6 @@ public:
   static void notice(const string& p_module, const string& p_format, Args... p_args);
   template<typename ... Args>
   static void debug(const string& p_module, const string& p_format, Args... p_args);
-  template<typename... Arguments>
-  static string format_vargs(string const& p_fmt, Arguments&&... p_args);
 
 private:
   void  wrap_syslog(int __pri, const char *__fmt, ...);

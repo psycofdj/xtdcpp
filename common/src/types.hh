@@ -35,8 +35,7 @@ typename std::underlying_type<T>::type valueof(T p_item)
   return static_cast<typename std::underlying_type<T>::type>(p_item);
 }
 
-enum class status : uint32_t { ok = 0, error = 1, timeout = 2, notfound = 3 };
+enum class status : uint32_t { ok = 0, error = 1, timeout = 2, notfound = 3, next = 4 };
 
 }
-
 #endif // !COMMON_TYPES_HH_

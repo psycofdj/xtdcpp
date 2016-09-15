@@ -3,6 +3,7 @@
 #include "CWrap.hh"               // libtests
 #include "ConfParser.hh"          // libcommon
 #include "error.hh"               // libcommon
+#include <config/Parser.hh>       // libcommon
 
 
 using namespace std;
@@ -49,9 +50,6 @@ TestConfParser::Constructor(void)
   }
 
 
-
-
-  xtd::ConfigParser2::sections l_result;
   string l_data = R"data(
   [s1]
   {
@@ -60,48 +58,22 @@ TestConfParser::Constructor(void)
     {
       s1s2key1 : s1s2key1val
       s1s2key2 : s1s2key2val
+      var   : ${testwithenv}
+      env   : $ENV{testwithenv}
+      param : $PARAM{testwithenv}
+
+      param1 : ${testwithenv} with trail
+      param2 : ${testwithenv} ${double} with trail
+      param3 :   ${testwithenv} $PARAM{double} with trail and ${param}
+      param4 :   ${testwithenv} $PARAM{double} with $fakes vars and ${param}
     }
   })data";
 
 
-
-  xtd::ConfigParser2::Iterator l_start(l_data.begin());
-  xtd::ConfigParser2::Iterator l_cur(l_data.begin());
-  xtd::ConfigParser2::Iterator l_end(l_data.end());
-
-
-  xtd::ConfigParser2::config_grammar l_grammar;
-
-
-
-  // //  CPPUNIT_ASSERT_EQUAL(true,
-  // phrase_parse(l_cur, l_end, l_grammar, l_skipper, l_result);
-  // //);
-  // std::cout << std::endl << std::endl;
-
-
-  // auto l_error = l_grammar.getLastError();
-
-  // std::cout
-  //   << "error at line "      << l_error.line
-  //   << ", column "           << l_error.col
-  //   << " : expecting token " << l_error.token
-  //   << ", near '"            << l_error.preview
-  //   << std::endl;
-  // CPPUNIT_ASSERT(l_cur == l_end);
-  // CPPUNIT_ASSERT(false);
-
-  // l_start = t_iterator(l_data.begin() + 5);
-  // l_cur   = t_iterator(l_data.begin() + 5);
-  // l_end   = t_iterator(l_data.end());
-  // CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_cur, l_end, l_grammar, l_skipper, l_result));
-  // CPPUNIT_ASSERT(l_cur != l_end);
-
-
-  // string::const_iterator l_start = l_data.begin();
-  // string::const_iterator l_end   = l_data.end();
-  // CPPUNIT_ASSERT_EQUAL(true, phrase_parse(l_start, l_end, l_grammar, boost::spirit::ascii::space, l_result));
-  // CPPUNIT_ASSERT_EQUAL(l_start, l_end);
+  xtd::config::Parser l_parser;
+  l_parser.parse(l_data.begin(), l_data.end());
+  l_parser.dump();
+  CPPUNIT_ASSERT(false);
 }
 
 XTD_TEST_MAIN();

@@ -11,7 +11,7 @@ template<typename... Arguments>
 void
 Application::error_nohelp(int p_code, const string& p_format, Arguments&&... p_args) const
 {
-  string l_message = logger::format_vargs(p_format, p_args...);
+  string l_message = format::vargs_noexcept(p_format, p_args...);
   if (true == m_disableExit)
     throw std::runtime_error(l_message);
 
@@ -26,7 +26,7 @@ template<typename... Arguments>
 void
 Application::error(int p_code, const string& p_format, Arguments&&... p_args) const
 {
-  string l_message = logger::format_vargs(p_format, p_args...);
+  string l_message = format::vargs_noexcept(p_format, p_args...);
   if (true == m_disableExit)
     throw std::runtime_error(l_message);
 
@@ -42,7 +42,7 @@ template<typename... Arguments>
 void
 Application::warn(const string& p_format, Arguments&&... p_args) const
 {
-  string l_message = logger::format_vargs(p_format, p_args...);
+  string l_message = format::vargs_noexcept(p_format, p_args...);
   std::cerr << "warning : " << l_message << endl;
   logger::warning("common.application", "warning : %s", l_message);
 }

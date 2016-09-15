@@ -1,10 +1,12 @@
 #ifndef  XTD_COMMON_CONFIG_TYPES_HH_
 # define  XTD_COMMON_CONFIG_TYPES_HH_
+# include <string>
+# include <vector>
 # include <boost/spirit/include/support_line_pos_iterator.hpp>
 # include <boost/spirit/include/qi_char_class.hpp>
 
-// namespace xtd {
-// namespace config {
+namespace xtd {
+namespace config {
 
 struct types
 {
@@ -12,10 +14,21 @@ struct types
   typedef decltype(boost::spirit::ascii::blank)                         skipper;
 };
 
+struct error_info
+{
+  size_t      line;
+  size_t      col;
+  std::string preview;
+  std::string token;
+};
+
 struct property
 {
-  std::string m_name;
-  std::string m_value;
+  std::string              m_name;
+  std::string              m_value;
+  std::vector<std::string> m_vars;
+  std::vector<std::string> m_envs;
+  std::vector<std::string> m_params;
 };
 
 struct subsection
@@ -26,34 +39,12 @@ struct subsection
 
 struct section
 {
-  string             m_name;
+  std::string             m_name;
   std::vector<property>   m_properties;
   std::vector<subsection> m_subsections;
 };
 
-struct sections
-{
-  std::vector<section> m_sections;
-};
 
-// }}
-
-
-BOOST_FUSION_ADAPT_STRUCT(property,
-                          (std::string, m_name)
-                          (std::string, m_value));
-
-
-BOOST_FUSION_ADAPT_STRUCT(subsection,
-                          (std::string,                        m_name)
-                          (std::vector<property>, m_properties));
-
-BOOST_FUSION_ADAPT_STRUCT(section,
-                          (std::string,                          m_name)
-                          (std::vector<property>,   m_properties)
-                          (std::vector<subsection>, m_subsections));
-
-BOOST_FUSION_ADAPT_STRUCT(sections,
-                          (std::vector<section>, m_sections));
+}}
 
 #endif // XTD_COMMON_CONFIG_TYPES_HH_

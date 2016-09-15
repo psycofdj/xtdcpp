@@ -66,7 +66,7 @@ public:
   inline const_iterator     begin(void) const;
 
 public:
-  status get(const string& p_name, string&        p_dval) const;
+  status get(const string& p_name, string&             p_dval) const;
   status get(const string& p_name, const char*&        p_dval) const;
   status get(const string& p_name, char&               p_ival) const;
   status get(const string& p_name, unsigned char&      p_ival) const;
