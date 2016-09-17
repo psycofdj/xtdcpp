@@ -106,7 +106,7 @@ Server<TReq, TRes, Domain>::parseConfig(void)
 
   if (getSpecificConfKey().size() != 0)
   {
-    l_specific = str(format("%s:%s") % l_common % l_specific);
+    l_specific = format::vargs("%s:%s", l_common, l_specific);
   }
 
   // bip port
@@ -116,11 +116,11 @@ Server<TReq, TRes, Domain>::parseConfig(void)
 
 
   // listen interface
-  l_key = str(format("%s:listen") % l_common);
+  l_key = format::vargs("%s:listen", l_common);
   readConf(l_key, m_bipHost, string(mcs_defaultListenInterface));
 
   // use compression
-  l_key = str(format("%s:useCompression") % l_common);
+  l_key = format::vargs("%s:useCompression", l_common);
   readConf(l_key,  m_useCompression, false);
   m_bipConfig.setCompress(m_useCompression);
 
@@ -157,7 +157,7 @@ template<typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::parseBipPort(void)
 {
-  string l_key = str(format("%s:listenport") % getSpecificConfKey());
+  string l_key = format::vargs("%s:listenport", getSpecificConfKey());
   readConf(l_key, m_bipPort);
 }
 
@@ -182,7 +182,7 @@ template<typename TReq, typename TRes, typename Domain>
 status
 Server<TReq, TRes, Domain>::defineProbes(void)
 {
-  string l_serverDir = str(format("server"));
+  string l_serverDir = "server";
   string l_queryTimeoutLabel = "qry.timeout";
 
   if (bip_net::m_isPersistent)
@@ -379,7 +379,7 @@ Server<TReq, TRes, Domain>::h_query(const uint32_t                p_requestID,
   catch (std::exception& l_error)
   {
     l_message = "unable to create request object from given xml, %s : \n [%s] \n";
-    l_message = boost::str(boost::format(l_message) % l_error.what() % l_xmlData);
+    l_message = format::vargs(l_message, l_error.what(), l_xmlData);
     return h_error_text(l_message, p_requestID, p_req, p_res);
   }
 
@@ -408,7 +408,7 @@ Server<TReq, TRes, Domain>::h_ihm_query(const uint32_t                p_requestI
   to_javascript<TReq>(l_jsData);
 
   l_tmpl
-    .setTitle(boost::str(boost::format("BIP %s : query generator") % m_binName))
+    .setTitle(format::vargs("BIP %s : query generator", m_binName))
     .addCss("/css/codemirror.css")
     .addJs("/js/codemirror.js")
     .addJs("/js/codemirror.xml.js")

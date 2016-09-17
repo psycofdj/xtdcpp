@@ -23,19 +23,19 @@ Grammar<Iterator>::Grammar(void) :
 
   m_var =
     /**/ no_skip[boost::spirit::qi::string("${")       [ qil::_val += qil::_1 ]]
-    >    no_skip[+(alnum | char_('_'))   [ qil::_val += qil::_1 ]]
+    >    no_skip[+(alnum | char_('_') | char_('.'))   [ qil::_val += qil::_1 ]]
     >    no_skip[char_('}') [ qil::_val += qil::_1 ]]
     ;
 
   m_env =
     /**/ no_skip[boost::spirit::qi::string("$ENV{")    [ qil::_val += qil::_1 ]]
-    >    no_skip[+(alnum | char_('_'))   [ qil::_val += qil::_1 ]]
+    >    no_skip[+(alnum | char_('_') | char_('.'))   [ qil::_val += qil::_1 ]]
     >    no_skip[char_('}') [ qil::_val += qil::_1 ]]
     ;
 
   m_param =
     /**/ no_skip[boost::spirit::qi::string("$PARAM{")  [ qil::_val += qil::_1 ]]
-    >    no_skip[+(alnum | char_('_'))   [ qil::_val += qil::_1 ]]
+    >    no_skip[+(alnum | char_('_') | char_('.'))   [ qil::_val += qil::_1 ]]
     >    no_skip[char_('}') [ qil::_val += qil::_1 ]]
     ;
 

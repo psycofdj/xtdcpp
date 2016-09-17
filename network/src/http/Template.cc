@@ -84,7 +84,7 @@ Json::resolve(string& p_result)
     p_result = l_out.str();
   } catch (const boost::property_tree::ptree_error& l_error)
   {
-    addError(str(format("json resolve error : %s") % l_error.what()));
+    addError(boost::str(boost::format("json resolve error : %s") % l_error.what()));
     return status::error;
   }
   return status::ok;
@@ -123,7 +123,7 @@ Template::resolve(string& p_result)
     }
     catch (cpptempl::TemplateException& l_error)
     {
-      addError(str(format("template parsing error : %s") % l_error.what()));
+      addError(format::vargs("template parsing error : %s", l_error.what()));
       p_result.clear();
       return status::error;
     }

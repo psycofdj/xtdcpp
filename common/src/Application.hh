@@ -134,10 +134,11 @@ private:
 public:
   /**
    ** @brief Constructor
-   ** @param p_disableExit If true, throws exception instead of exiting on error
+   ** @param p_disableExit   If true, throws exception instead of exiting on error
+   ** @param p_disableCatch  If true, exception are not caught at top level
    ** @throw std::runtime_error
    */
-  Application(bool p_disableExit = false);
+  Application(bool p_disableExit = false, bool p_disableCatch = false);
 
   /**
    ** @brief Destructor
@@ -369,6 +370,8 @@ protected:
   uint32_t       m_logLevel;      ///< log level read from command line
   vector<string> m_remainingArgs; ///< positional command line arguments
   string         m_rcsid;         ///< binary identity information
+  bool           m_disableExit;   ///< holds exit activation state
+  bool           m_disableCatch;  ///< holds exception catching state
 
 private:
   t_option_list                 m_optionList;
@@ -378,7 +381,6 @@ private:
   boost::asio::io_service::work m_work;
   boost::asio::signal_set       m_signals;
   map<int, t_sig_handler>       m_signalHandlerMap;
-  bool                          m_disableExit;
 };
 
 }

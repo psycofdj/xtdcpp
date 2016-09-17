@@ -501,11 +501,11 @@ Connection<Domain>::setSocketInfo(void)
     l_status = status::error;
   }
 
-  m_info = str(format("%s:%d -> %s:%d")
-               % m_localAddr
-               % m_localPort
-               % m_remoteAddr
-               % m_remotePort);
+  m_info = format::vargs("%s:%d -> %s:%d",
+                         m_localAddr,
+                         m_localPort,
+                         m_remoteAddr,
+                         m_remotePort);
 
   return l_status;
 }

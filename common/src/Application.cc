@@ -21,18 +21,19 @@ const static char rcsid[] = "$rscid: include 'xtdmake/tracking/module.cmake' to 
 
 namespace xtd {
 
-Application::Application(bool p_disableExit) :
+Application::Application(bool p_disableExit, bool p_disableCatch) :
   m_binName(),
   m_logLevel(logger::get().valueOf(logger::level::crit)),
   m_remainingArgs(),
   m_rcsid(rcsid),
+  m_disableExit(p_disableExit),
+  m_disableCatch(p_disableCatch),
   m_optionList(),
   m_helpText(),
   m_runThread(),
   m_work(m_ioService),
   m_signals(m_ioService),
-  m_signalHandlerMap(),
-  m_disableExit(p_disableExit)
+  m_signalHandlerMap()
 {
   addOption('h', "help",
             argument::none,
@@ -131,29 +132,47 @@ Application::execute(int p_argc, const char* const p_argv[])
   int l_status = 0;
   char* l_name = 0;
 
-  try
-  {
-    l_name = strdup(p_argv[0]);
-    m_binName = basename(l_name);
-    free(l_name);
+  l_name = strdup(p_argv[0]);
+  m_binName = basename(l_name);
+  free(l_name);
 
+  std::function<void(std::function<void(void)>)> l_noProtect = [&](std::function<void(void)> p_handler) {
+    p_handler();
+  };
+
+  std::function<void(std::function<void(void)>)> l_doProtect = [&](std::function<void(void)> p_handler) {
+    try {
+      p_handler();
+    }
+    catch (std::exception& l_error) {
+      error_nohelp(1, "caught exception : %s", l_error.what());
+    }
+  };
+
+  auto l_init = [&](void) {
     logger::get().initialize(string(m_binName), logger::level::crit);
     readArgs(p_argc, p_argv);
     parseConfig();
     checkOptions();
     logger::get().setAllLevels(logger::get().levelOf(m_logLevel));
     initialize();
+  };
 
+  auto l_process = [&](void) {
     m_runThread = boost::thread(boost::bind(&boost::asio::io_service::run, &m_ioService));
-
     l_status = process();
-
     m_ioService.stop();
     m_runThread.join();
-  }
-  catch (std::exception& l_error) {
-    error_nohelp(1, "caught exception : %s", l_error.what());
-  }
+  };
+
+  auto l_getProtector = [&](void) {
+    if (true == m_disableCatch)
+      return l_noProtect;
+    return l_doProtect;
+  };
+
+  l_getProtector()(l_init);
+  l_getProtector()(l_process);
 
   return l_status;
 }

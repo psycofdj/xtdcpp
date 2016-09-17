@@ -14,10 +14,12 @@ class TestConfParser : public CppUnit::TestFixture
 {
   CPPUNIT_TEST_SUITE(TestConfParser);
   CPPUNIT_TEST(Constructor);
+  CPPUNIT_TEST(parse);
   CPPUNIT_TEST_SUITE_END();
 private:
 
   void Constructor(void);
+  void parse(void);
 };
 
 
@@ -48,32 +50,266 @@ TestConfParser::Constructor(void)
     string l_config = Globals::get().testDir() + "/data/simple.conf";
     CPPUNIT_ASSERT_NO_THROW(ConfParser l_obj(l_config));
   }
+}
 
 
-  string l_data = R"data(
-  [s1]
+void
+TestConfParser::parse(void)
+{
+  string l_val;
+
   {
-    s1key1 : s1key1val
-    [s_1s2]
+    // KO : parse error
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : value1
+        [subsec]
+          kkey1 : vvalue1
+          kkey2 : vvalue2
+          kkey3 : vvalue3
+        }
+      })data";
+
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+  {
+    // OK : plain values
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : value1
+        [subsec]
+        {
+          kkey1 : vvalue1
+          kkey2 : vvalue2
+          kkey3 : vvalue3
+        }
+      })data";
+
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.parse(l_data.begin(), l_data.end()));
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.key1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("value1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey2", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey3", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue3"), l_val);
+  }
+
+  {
+    // OK : simple reference
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : value1
+        [subsec]
+        {
+          kkey1 : vvalue1
+          kkey2 : vvalue2
+          kkey3 : ${sec.subsec.kkey2}
+        }
+      })data";
+
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.parse(l_data.begin(), l_data.end()));
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.key1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("value1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey2", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey3", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2"), l_val);
+  }
+
+  {
+    // OK : multiple references in same key
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : value1
+        [subsec]
+        {
+          kkey1 : vvalue1
+          kkey2 : vvalue2
+          kkey3 : ${sec.subsec.kkey2} ${sec.subsec.kkey1}
+        }
+      })data";
+
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.parse(l_data.begin(), l_data.end()));
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.key1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("value1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey2", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey3", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2 vvalue1"), l_val);
+  }
+
+  {
+    // OK : cascading references
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : value1
+        [subsec]
+        {
+          kkey1 : ${sec.key1}
+          kkey2 : vvalue2
+          kkey3 : ${sec.subsec.kkey2} ${sec.subsec.kkey1}
+        }
+      })data";
+
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.parse(l_data.begin(), l_data.end()));
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.key1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("value1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("value1"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey2", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey3", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("vvalue2 value1"), l_val);
+  }
+
+  {
+    // OK : reverse cascading references
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : ${sec.subsec.kkey1}
+        [subsec]
+        {
+          kkey1 : 1 ${sec.subsec.kkey2}
+          kkey2 : 2 ${sec.subsec.kkey3}
+          kkey3 : term
+        }
+      })data";
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.parse(l_data.begin(), l_data.end()));
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.key1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("1 2 term"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey1", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("1 2 term"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey2", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("2 term"), l_val);
+    CPPUNIT_ASSERT(xtd::status::ok == l_parser.get("sec.subsec.kkey3", l_val));
+    CPPUNIT_ASSERT_EQUAL(string("term"), l_val);
+  }
+
+  {
+    // KO : undefinied reference
+    xtd::config::Parser l_parser;
+    string l_data = R"data(
+      [sec]
+      {
+        key1 : ${sec.subsec.kkey1}
+        [subsec]
+        {
+          kkey1 : 1 ${sec.subsec.kkey2} ${sec.subsec.kkey3}
+          kkey2 : 2 ${sec.subsec.kkey3}
+          kkey3 : ${i.dont.exist}
+        }
+      })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+
+  {
+    // KO : cycling references
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec]
     {
-      s1s2key1 : s1s2key1val
-      s1s2key2 : s1s2key2val
-      var   : ${testwithenv}
-      env   : $ENV{testwithenv}
-      param : $PARAM{testwithenv}
+      key1 : ${sec.subsec.kkey1}
+      [subsec]
+      {
+        kkey1 : 1 ${sec.subsec.kkey2} ${sec.subsec.kkey3}
+        kkey2 : 2 ${sec.subsec.kkey3}
+        kkey3 : ${sec.key1}
+      }
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
 
-      param1 : ${testwithenv} with trail
-      param2 : ${testwithenv} ${double} with trail
-      param3 :   ${testwithenv} $PARAM{double} with trail and ${param}
-      par_am4 :   ${te_stwithenv} $PARAM{dou_ble} with $fakes vars and ${para_m}
-    }
-  })data";
+  {
+    // KO : multiply defined section key
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec]  {
+      key1 : ${sec.subsec.kkey1}
+      key1 : other value
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
 
 
-  xtd::config::Parser l_parser;
-  l_parser.parse(l_data.begin(), l_data.end());
-  l_parser.dump();
-  CPPUNIT_ASSERT(false);
+  {
+    // KO : multiply defined dubsection key
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec]  {
+      [subsec] {
+        key1 : ${sec.subsec.kkey1}
+        key1 : other value
+      }
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+  {
+    // KO : unresolved section PARAM
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec]  {
+      key1 : $PARAM{sec.subsec.kkey1}
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+  {
+    // KO : unresolved subsection PARAM
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec] {
+      [subsec] {
+        key1 : $PARAM{value}
+      }
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+  {
+    // KO : unresolved section ENV
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec]
+    {
+      key1 : $ENV{sec.subsec.kkey1}
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+  {
+    // KO : unresolved subsection ENV
+    xtd::config::Parser l_parser;
+    string              l_data = R"data(
+    [sec] {
+      [subsec] {
+        key1 : $ENV{sec.subsec.kkey2}
+      }
+    })data";
+    CPPUNIT_ASSERT(xtd::status::error == l_parser.parse(l_data.begin(), l_data.end()));
+  }
+
+
 }
 
 XTD_TEST_MAIN();

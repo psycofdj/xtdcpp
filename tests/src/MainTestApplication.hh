@@ -29,7 +29,6 @@ protected:
   string m_filter;
   bool   m_progress;
   string m_ouputter;
-  bool   m_noCatch;
   string m_srcDir;
   string m_topSrcDir;
   string m_topBuildDir;

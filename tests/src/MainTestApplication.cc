@@ -21,8 +21,7 @@ namespace tests {
 MainTestApplication::MainTestApplication(void):
   Application(),
   m_filter(),
-  m_ouputter("text"),
-  m_noCatch(false)
+  m_ouputter("text")
 {
   Globals& l_glob = Globals::get();
 
@@ -40,7 +39,7 @@ MainTestApplication::MainTestApplication(void):
 
   addOption('n', "nocatch", argument::none, requirement::optional,
             "disable cppunit excaption catching, useful when debugging in gdb",
-            bindGiven(m_noCatch));
+            bindGiven(m_disableCatch));
 
   addOption('s', "srcdir", argument::mandatory, requirement::mandatory,
             "current source directory",
@@ -116,7 +115,7 @@ MainTestApplication::process(void)
   }
 
   l_runner.setOutputter(l_outputter);
-  if (m_noCatch)
+  if (m_disableCatch)
     l_runner.eventManager().popProtector();
   if (m_progress)
     l_runner.eventManager().addListener(new ProgressListener(std::cerr));

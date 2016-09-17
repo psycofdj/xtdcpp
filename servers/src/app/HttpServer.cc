@@ -129,41 +129,41 @@ HttpServer::parseConfig(void)
   // log level
   if (false == isOptionGiven("e"))
   {
-    l_key = str(format("%s:server:log_level") % l_common);
+    l_key = format::vargs("%s:server:log_level", l_common);
     readConf(l_key, m_logLevel, m_logLevel);
   }
 
   // snmp path
-  l_key      = str(format("%s:server:snmp_dir") % l_common);
-  l_strValue = str(format("/var/run/snmp/%s") % l_common);
+  l_key      = format::vargs("%s:server:snmp_dir", l_common);
+  l_strValue = format::vargs("/var/run/snmp/%s", l_common);
   readConf(l_key, m_snmpPath, l_strValue);
 
   // action dir
-  l_key      = str(format("%s:server:action_dir") % l_specific);
-  l_strValue = str(format("%s/admin") % m_snmpPath);
+  l_key      = format::vargs("%s:server:action_dir", l_specific);
+  l_strValue = format::vargs("%s/admin", m_snmpPath);
   readConf(l_key, m_adminDir, l_strValue);
 
 
   // refresh delay
-  l_key = str(format("%s:server:snmp_refresh_delay_sec") % l_common);
+  l_key = format::vargs("%s:server:snmp_refresh_delay_sec", l_common);
   readConf(l_key, m_probeDelay);
 
   // assets dir
-  l_key = str(format("%s:server:http:assets_dir") % l_common);
+  l_key = format::vargs("%s:server:http:assets_dir", l_common);
   readConf(l_key, m_httpConfigPath, m_httpConfigPath);
 
   // listen interface
-  l_key = str(format("%s:server:http:listen") % l_common);
+  l_key = format::vargs("%s:server:http:listen", l_common);
   readConf(l_key, m_httpHost, string(mcs_defaultListenInterface));
 
   // threads
   if (false == isOptionGiven("n"))
   {
-    l_key = str(format("%s:server:http:threads") % l_common);
+    l_key = format::vargs("%s:server:http:threads", l_common);
     readConf(l_key, m_nbThread);
   }
 
-  l_key = str(format("%s:server:http:threshold_ms") % l_common);
+  l_key = format::vargs("%s:server:http:threshold_ms", l_common);
   readConf(l_key, m_thresholdMs, m_thresholdMs);
 
   // http port : delegate to child class
@@ -171,12 +171,12 @@ HttpServer::parseConfig(void)
     parseHttpPort();
 
   // http receive timeout
-  l_key = str(format("%s:server:http:rcv_timeout_ms") % l_common);
+  l_key = format::vargs("%s:server:http:rcv_timeout_ms", l_common);
   readConf(l_key, l_timeoutMs, m_httpConfig.getReceiveTimeoutMs());
   m_httpConfig.setReceiveTimeoutMs(l_timeoutMs);
 
   // http send timeout ms
-  l_key = str(format("%s:server:http:send_timeout_ms") % l_common);
+  l_key = format::vargs("%s:server:http:send_timeout_ms", l_common);
   readConf(l_key, l_timeoutMs, m_httpConfig.getSendTimeoutMs());
   m_httpConfig.setSendTimeoutMs(l_timeoutMs);
 }
@@ -449,7 +449,7 @@ HttpServer::h_index(const uint32_t       p_requestID,
   Handler::t_listof l_list;
   HtmlTemplate      l_tmpl(true);
   Template::t_list  l_links;
-  string            l_title = str(format("%s : Handler list") % m_binName);
+  string            l_title = format::vargs("%s : Handler list", m_binName);
 
   getMatchingHandlers(p_req, l_list);
 
@@ -602,7 +602,7 @@ HttpServer::h_admin(const uint32_t       p_requestID,
     {
       if (false == m_params->verify(c_param.first, c_param.second))
       {
-        string l_msg = str(format("Parameter '%s' from cgi can't be setted to value '%s'") %c_param.first %c_param.second);
+        string l_msg = format::vargs("Parameter '%s' from cgi can't be setted to value '%s'",  c_param.first, c_param.second);
         logger::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
         return h_error_text(l_msg, p_requestID, p_req, p_res);
       }
@@ -628,9 +628,9 @@ HttpServer::h_admin(const uint32_t       p_requestID,
       {
         if (false == m_params->fromStr(c_param.first, c_param.second, l_log))
         {
-          string l_msg = str(format("unable to set parameter '%s' to value '%s' despite verification !!!")
-                             % c_param.first
-                             % c_param.second);
+          string l_msg = format::vargs("unable to set parameter '%s' to value '%s' despite verification !!!",
+                                       c_param.first,
+                                       c_param.second);
           logger::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
           return h_error_text(l_msg, p_requestID, p_req, p_res);
         }
