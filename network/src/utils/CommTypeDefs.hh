@@ -6,7 +6,7 @@
 # include <boost/thread/thread.hpp>
 # include <memory>
 # include <boost/function.hpp>
-# include <types.hh> //libcommon
+# include <types.hh> //libcore
 
 namespace xtd {
 namespace network {

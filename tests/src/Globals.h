@@ -1,10 +1,10 @@
-#include "types.hh" // libcommon
-#include "mixin/Singleton.hh"
+#include "types.hh" // libcore
+#include "mixins/singleton.hh"
 
 namespace xtd {
 namespace tests {
 
-class Globals : public mixin::Singleton<Globals>
+class Globals : public mixins::Singleton<Globals>
 {
 public:
   string& sourceDir(void)    { return m_srcDir; }

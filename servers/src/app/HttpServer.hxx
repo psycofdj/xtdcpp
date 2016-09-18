@@ -1,6 +1,6 @@
 #ifndef SERVERS_APP_HTTPSERVER_HXX_
 # define SERVERS_APP_HTTPSERVER_HXX_
-# include <config/Parser.hh> // libcommon
+# include <config/Parser.hh> // libcore
 
 namespace xtd {
 namespace servers {

@@ -4,13 +4,13 @@
 #include <map>
 #include <algorithm>
 #include <iostream>
-#include "types.hh"           // /libcommon
-#include "mixin/Singleton.hh" // /libcommon
+#include "types.hh"            // /libcore
+#include "mixins/singleton.hh" // /libcore
 
 namespace xtd {
 namespace tests {
 
-class CWrap : private mixin::Singleton<CWrap>
+class CWrap : private mixins::Singleton<CWrap>
 {
 public:
   typedef std::pair<string, uint32_t> t_state;

@@ -6,7 +6,7 @@
 # include <map>
 # include <boost/regex.hpp>
 # include <boost/noncopyable.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 
 namespace xtd {
 namespace network {

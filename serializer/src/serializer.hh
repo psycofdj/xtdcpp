@@ -2,7 +2,7 @@
 # define SERIALIZER_SERIALIZER_HH_
 
 # include <iostream>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "serializer_fwd.hh"
 # include "archives/DebugArchive.hh"
 

@@ -7,6 +7,7 @@
 # include <boost/iostreams/filter/zlib.hpp>
 # include <boost/iostreams/filter/gzip.hpp>
 # include <boost/iostreams/filter/bzip2.hpp>
+# include <log.hh> // libcore
 # include "bip/Connection.hh"
 # include "bip/tools.hh"
 
@@ -32,16 +33,16 @@ void
 Server<TReq, TRes, Domain>::start(void)
 {
   TBase::start();
-  logger::crit("network.base.client", "bip server started", HERE);
+  log::crit("network.base.client", "bip server started", HERE);
 }
 
 template<typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::stop(void)
 {
-  logger::info("network.base.client", "stopping network::bip server...", HERE);
+  log::info("network.base.client", "stopping network::bip server...", HERE);
   TBase::stop();
-  logger::info("network.base.client", "stopping network::bip server...done", HERE);
+  log::info("network.base.client", "stopping network::bip server...done", HERE);
 }
 
 
@@ -100,7 +101,7 @@ Server<TReq, TRes, Domain>::onReceiveError(const boost::system::error_code p_err
   if (p_error == boost::asio::error::eof){
     boost::interprocess::ipcdetail::atomic_inc32(&m_receiveEof);
     if (true == m_isPersistent){
-      logger::info("network.base.client", "onReceivedError (%s) : closed by client", p_conn->info(), HERE);
+      log::info("network.base.client", "onReceivedError (%s) : closed by client", p_conn->info(), HERE);
     }
   }
   else  TBase::onReceiveError(p_error, p_conn);
@@ -114,9 +115,9 @@ Server<TReq, TRes, Domain>::onReceiveTimeout(const boost::system::error_code p_e
   std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (m_isPersistent)
-    logger::info("network.base.client", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
+    log::info("network.base.client", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
   else
-    logger::err("network.base.client", "onReceivedTimeout (%s) : receive aborted, no answer from client before timeout", p_conn->info(), HERE);
+    log::err("network.base.client", "onReceivedTimeout (%s) : receive aborted, no answer from client before timeout", p_conn->info(), HERE);
   TBase::onReceiveTimeout(p_error, p_conn);
 }
 
@@ -141,7 +142,7 @@ Server<TReq, TRes, Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (status::ok != loadCompress<serializer::mode::bin>(TBase::m_conf, *p_inBuffer, l_req, l_reqDebug))
   {
-    logger::crit("network.base.client", "Error while unserializing request (%s)", p_conn->info(), HERE);
+    log::crit("network.base.client", "Error while unserializing request (%s)", p_conn->info(), HERE);
     return;
   }
 
@@ -149,7 +150,7 @@ Server<TReq, TRes, Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (status::ok != saveCompress<serializer::mode::bin>(TBase::m_conf, l_res, l_resDebug, l_resBuff))
   {
-    logger::crit("network.base.client", "Error while serializing request (%s)", p_conn->info(), HERE);
+    log::crit("network.base.client", "Error while serializing request (%s)", p_conn->info(), HERE);
     return;
   }
 

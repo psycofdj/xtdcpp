@@ -1,7 +1,7 @@
 #ifndef NETWORK_HTTP_REQUEST_HXX_
 # define NETWORK_HTTP_REQUEST_HXX_
 # include <boost/lexical_cast.hpp>
-# include <logger.hh>
+# include <log.hh>
 
 namespace xtd {
 namespace network {
@@ -94,7 +94,7 @@ Request::as(const string& p_src, TDst& p_dst) const
     p_dst = boost::lexical_cast<TDst>(p_src);
   }
   catch (boost::bad_lexical_cast&) {
-    logger::err("network.http.request", "warning : invalid conversion of key %s", p_src, HERE);
+    log::err("network.http.request", "warning : invalid conversion of key %s", p_src, HERE);
     return false;
   }
   return true;

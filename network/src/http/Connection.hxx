@@ -2,7 +2,9 @@
 # define NETWORK_HTTP_CONNECTION_HXX_
 # include <boost/regex.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
+# include <log.hh> // libcore
 # include "http/Request.hh"
+
 
 
 namespace xtd {
@@ -109,12 +111,12 @@ Connection<Domain>::onHeaderReceived(const bs::error_code             p_error,
   if ((status::error == l_req.readHead(l_fis)) ||
       (status::error == l_req.getDataSize(l_dataSize)))
   {
-    logger::err("network.http.cnx", "http cnx (%s) : malformated http header", this->info(), HERE);
+    log::err("network.http.cnx", "http cnx (%s) : malformated http header", this->info(), HERE);
     p_onReceived(ba::error::not_found);
     return;
   }
 
-  logger::info("network.http.cnx", "http cnx (%s) : header OK", this->info(), HERE);
+  log::info("network.http.cnx", "http cnx (%s) : header OK", this->info(), HERE);
 
   size_t l_suppBytes = ba::buffer_size(l_buffs) - p_bytesTransferred;
 

@@ -3,7 +3,7 @@
 
 # include <string>
 # include <boost/property_tree/ptree.hpp>
-# include <json_parser.hpp> // libcommon
+# include <json_parser.hpp> // libcore
 # include "Visitor.hh"
 
 

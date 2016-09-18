@@ -7,7 +7,7 @@
 # include <boost/noncopyable.hpp>
 # include <memory>
 # include <boost/make_shared.hpp>
-# include <types.hh> //libcommon
+# include <types.hh> //libcore
 
 namespace xtd {
 namespace network {

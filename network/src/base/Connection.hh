@@ -3,7 +3,7 @@
 
 
 # include <boost/asio.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "utils/Config.hh"
 # include "utils/CommTypeDefs.hh"
 # include "utils/Resolver.hh"

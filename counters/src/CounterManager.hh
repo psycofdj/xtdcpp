@@ -5,7 +5,7 @@
 # include <boost/thread/mutex.hpp>
 # include <boost/filesystem.hpp>
 # include <boost/property_tree/ptree.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "counters_fwd.hh"
 # include "Base.hh"
 

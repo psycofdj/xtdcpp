@@ -3,7 +3,7 @@
 
 # include <boost/thread/mutex.hpp>
 # include <boost/noncopyable.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "Visitor.hh"
 
 

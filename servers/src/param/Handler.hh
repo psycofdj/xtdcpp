@@ -5,8 +5,8 @@
 #include <map>
 #include <memory>
 #include <boost/any.hpp>
-#include <types.hh> // libcommon
-#include <error.hh> // libcommon
+#include <types.hh> // libcore
+#include <error.hh> // libcore
 #include "param/Base.hh"
 
 

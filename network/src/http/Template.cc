@@ -7,8 +7,9 @@
 #include <boost/lambda/lambda.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/format.hpp>
-#include <json_parser.hpp> // libcommon
-#include <text.hh>         // libcommon
+#include <json_parser.hpp> // libcore
+#include <text.hh>         // libcore
+#include <log.hh>          // libcore
 
 using namespace boost::assign;
 using namespace boost;
@@ -145,7 +146,7 @@ Template::loadTemplate(const string& p_templatePath)
 
   if (!l_templateFile)
   {
-    logger::err("network.http.template", "unable to open template file '%s'", p_templatePath, HERE);
+    log::err("network.http.template", "unable to open template file '%s'", p_templatePath, HERE);
     return status::error;
   }
 

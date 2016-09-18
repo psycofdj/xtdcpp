@@ -9,9 +9,9 @@
 # include <boost/filesystem.hpp>
 # include <boost/filesystem/convenience.hpp>
 
-# include <config/Parser.hh>  // libcommon
-# include <json_parser.hpp>      // libcommon
-# include <logger.hh>            // libcommon
+# include <config/Parser.hh>     // libcore
+# include <json_parser.hpp>      // libcore
+# include <log.hh>               // libcore
 # include <counters.hh>          // libcounters
 # include <http/Request.hh>      // libnetwork
 # include <http/Response.hh>     // libnetwork
@@ -75,7 +75,7 @@ HttpServer::~HttpServer(void)
 void
 HttpServer::handleTERM(void)
 {
-  logger::crit("servers.app.http", "received 'SIGTERM' signal");
+  log::crit("servers.app.http", "received 'SIGTERM' signal");
   stop();
 }
 
@@ -85,14 +85,14 @@ HttpServer::start(void)
   m_params->initialize();
   m_prober->start();
   http_net::start();
-  logger::crit("servers.app.http", "app::http server started");
+  log::crit("servers.app.http", "app::http server started");
 }
 
 void
 HttpServer::stop(void)
 {
   http_net::stop();
-  logger::crit("servers.app.http", "app::http server stopped");
+  log::crit("servers.app.http", "app::http server stopped");
   m_prober->stop();
 }
 
@@ -306,7 +306,7 @@ HttpServer::process(void)
 void
 HttpServer::handleUSR2(void)
 {
-  logger::crit("servers.app.http", "Received a 'SIGUSR2' signal : mode PROBE activated", HERE);
+  log::crit("servers.app.http", "Received a 'SIGUSR2' signal : mode PROBE activated", HERE);
   modeProbeActivation();
 }
 
@@ -345,7 +345,7 @@ HttpServer::h_runAction(const string&        p_name,
   if (c_action == m_actions.end())
   {
     l_status = "UNKNOWN";
-    logger::crit("servers.app.http", "can't find action '%s' into map actions ; action aborted.", p_name, HERE);
+    log::crit("servers.app.http", "can't find action '%s' into map actions ; action aborted.", p_name, HERE);
   }
   else
   {
@@ -360,7 +360,7 @@ HttpServer::h_runAction(const string&        p_name,
       c_action->second->m_timestamp = boost::posix_time::microsec_clock::local_time();
       c_action->second->m_log       = l_log;
     }
-    logger::crit("servers.app.http", "action '%s' - execution status : %s", p_name, l_status, HERE);
+    log::crit("servers.app.http", "action '%s' - execution status : %s", p_name, l_status, HERE);
   }
 
   // Create Json response
@@ -604,7 +604,7 @@ HttpServer::h_admin(const uint32_t       p_requestID,
       if (false == m_params->verify(c_param.first, c_param.second))
       {
         string l_msg = format::vargs("Parameter '%s' from cgi can't be setted to value '%s'",  c_param.first, c_param.second);
-        logger::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
+        log::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
         return h_error_text(l_msg, p_requestID, p_req, p_res);
       }
     }
@@ -614,7 +614,7 @@ HttpServer::h_admin(const uint32_t       p_requestID,
   if(!l_log.empty() && p_req.getCgis().size()==1)
   {
     string l_msg = "Parameter 'log' is alone, parameter change skipped";
-    logger::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
+    log::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
     return h_error_text(l_msg, p_requestID, p_req, p_res);
   }
   else
@@ -632,7 +632,7 @@ HttpServer::h_admin(const uint32_t       p_requestID,
           string l_msg = format::vargs("unable to set parameter '%s' to value '%s' despite verification !!!",
                                        c_param.first,
                                        c_param.second);
-          logger::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
+          log::crit("servers.app.http", "h_admin: %s", l_msg, HERE);
           return h_error_text(l_msg, p_requestID, p_req, p_res);
         }
 
@@ -641,7 +641,7 @@ HttpServer::h_admin(const uint32_t       p_requestID,
     }
 
     // Trace action
-    logger::info("servers.app.http", "h_admin: update action executed : %s", ss.str(), HERE);
+    log::info("servers.app.http", "h_admin: update action executed : %s", ss.str(), HERE);
   }
 
   http::Json l_tmpl;
@@ -677,8 +677,8 @@ HttpServer::h_log(const uint32_t       p_requestID,
                   const http::Request& p_req,
                   http::Response&      p_res)
 {
-  http::Json l_tmpl;
-  logger&    l_logger = logger::get();
+  http::Json       l_tmpl;
+  log::RootLogger& l_logger = log::getRoot();
 
   const auto&          l_cgis = p_req.getCgis();
 
@@ -686,14 +686,14 @@ HttpServer::h_log(const uint32_t       p_requestID,
   {
     for (const auto& c_param : p_req.getCgis())
     {
-      if (false == l_logger.isValidStringLevel(c_param.second))
+      if (false == log::is_valid(c_param.second))
         continue;
       if (c_param.first == "all")
-        l_logger.clearAll(l_logger.fromString(c_param.second));
+        l_logger.clearAll(log::from(c_param.second));
       else if (c_param.first == "default")
-        l_logger.setLevel("", l_logger.fromString(c_param.second));
+        l_logger.setLevelTo("", log::from(c_param.second));
       else
-        l_logger.updateLevels(c_param.first, l_logger.fromString(c_param.second));
+        l_logger.updateLevels(c_param.first, log::from(c_param.second));
     }
     return h_redirect("/log", p_requestID, p_req, p_res);
   }
@@ -701,9 +701,9 @@ HttpServer::h_log(const uint32_t       p_requestID,
   for (const auto& cc_value : l_logger.getLevels())
   {
     if (cc_value.first == "")
-      l_tmpl.add("", "default", l_logger.stringOf(cc_value.second));
+      l_tmpl.add("", "default", log::to_string(cc_value.second));
     else
-      l_tmpl.add("modules", cc_value.first, l_logger.stringOf(cc_value.second));
+      l_tmpl.add("modules", cc_value.first, log::to_string(cc_value.second));
   }
 
   return h_gen(l_tmpl, p_requestID, p_req, p_res);

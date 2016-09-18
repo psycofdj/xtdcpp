@@ -7,7 +7,7 @@
 #include <boost/algorithm/string.hpp>
 #include "JsonVisitor.hh"
 #include "FileVisitor.hh"
-#include <logger.hh> // libcommon
+#include <log.hh> // libcore
 
 
 
@@ -35,7 +35,7 @@ CounterManager::start(void)
 {
   if (m_counters.size() == 0)
   {
-    logger::crit("counters.manager", "no counter to monitor", HERE);
+    log::crit("counters.manager", "no counter to monitor", HERE);
     return status::error;
   }
 

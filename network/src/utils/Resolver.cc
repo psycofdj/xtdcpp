@@ -1,5 +1,5 @@
 #include "utils/Resolver.hh"
-#include <logger.hh> // libcommon
+#include <log.hh> // libcore
 #include <boost/make_shared.hpp>
 
 namespace xtd {
@@ -54,7 +54,7 @@ Resolver<af_inet>::resolve(const string&  p_host,
     }
     catch(const boost::system::system_error& ex)
     {
-      logger::crit("network.utils", "Can't resolve hostname %s:%s", p_host, p_port, HERE);
+      log::crit("network.utils", "Can't resolve hostname %s:%s", p_host, p_port, HERE);
     }
     return l_endpoint;
   }

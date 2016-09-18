@@ -9,7 +9,7 @@
 # include <memory>
 # include <boost/lexical_cast.hpp>
 
-# include <Application.hh>   // libcommon
+# include <Application.hh>   // libcore
 # include <network_fwd.hh>   // libnetwork
 # include <http/Server.hh>   // libnetwork
 # include <utils/Config.hh>  // libnetwork

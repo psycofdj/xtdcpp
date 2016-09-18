@@ -47,11 +47,11 @@ if (CheckRule_FOUND)
   list(APPEND CheckRule_DEFAULT_LINKS    "${Boost_LIBRARIES}")
 endif()
 
-set(common_INCLUDE_DIRS     ${PROJECT_SOURCE_DIR}/common/src)
+set(core_INCLUDE_DIRS       ${PROJECT_SOURCE_DIR}/core/src)
 set(counters_INCLUDE_DIRS   ${PROJECT_SOURCE_DIR}/counters/src)
 set(serializer_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/serializer/src)
 set(network_INCLUDE_DIRS    ${PROJECT_SOURCE_DIR}/network/src)
 set(servers_INCLUDE_DIRS    ${PROJECT_SOURCE_DIR}/servers/src)
 set(tests_INCLUDE_DIRS      ${PROJECT_SOURCE_DIR}/tests/src)
 
-subdirs(common tests counters serializer network servers)
+subdirs(core tests counters serializer network servers)

@@ -16,6 +16,7 @@
 # include <boost/range/algorithm/for_each.hpp>
 # include <boost/range/algorithm/copy.hpp>
 
+# include <log.hh>           // libcore
 # include <serializer.hh>    // libserializer
 # include <counters.hh>      // libcounters
 # include <http/Request.hh>  // libnetwork
@@ -141,7 +142,7 @@ Server<TReq, TRes, Domain>::start(void)
 {
   http_app::start();
   bip_net::start();
-  logger::crit("servers.app.bip", "app::bip server started");
+  log::crit("servers.app.bip", "app::bip server started");
 }
 
 template<typename TReq, typename TRes, typename Domain>
@@ -149,7 +150,7 @@ void
 Server<TReq, TRes, Domain>::stop(void)
 {
   bip_net::stop();
-  logger::crit("servers.app.bip", "app::bip server stopped");
+  log::crit("servers.app.bip", "app::bip server stopped");
   http_app::stop();
 }
 
@@ -414,7 +415,7 @@ Server<TReq, TRes, Domain>::h_ihm_query(const uint32_t                p_requestI
     .addJs("/js/codemirror.xml.js")
     .add("__jsData", l_jsData.str());
 
-  return h_template_file(l_tmpl, m_httpConfigPath + "/1.0/common/tpl/query.tpl", p_requestID, p_req, p_res);
+  return h_template_file(l_tmpl, m_httpConfigPath + "/1.0/core/tpl/query.tpl", p_requestID, p_req, p_res);
 }
 
 

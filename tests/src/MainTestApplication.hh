@@ -1,5 +1,5 @@
 #pragma once
-#include "Application.hh" // libcommon
+#include "Application.hh" // libcore
 #include "cppunit/TestFixture.h"
 #include <cppunit/extensions/HelperMacros.h>
 #include "Globals.h"

@@ -1,6 +1,6 @@
 #ifndef NETWORK_UTILS_HXX_
 # define NETWORK_UTILS_HXX_
-# include <logger.hh> // libcommon
+# include <log.hh> // libcore
 
 namespace xtd {
 namespace network {
@@ -14,7 +14,7 @@ deque_id<T>::push(const T& p_param)
 
   if (m_deque.end() != std::find(m_deque.begin(), m_deque.end(), p_param))
   {
-    logger::debug("network.utils", "double push detected on id '%d'", p_param, HERE);
+    log::debug("network.utils", "double push detected on id '%d'", p_param, HERE);
     return;
   }
 

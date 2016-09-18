@@ -1,6 +1,6 @@
 include_directories(
   ${Boost_INCLUDE_DIRS}
-  ${common_INCLUDE_DIRS}
+  ${core_INCLUDE_DIRS}
   ${Cppunit_INCLUDE_DIR}
   )
 

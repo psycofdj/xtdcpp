@@ -6,10 +6,7 @@
 # include <boost/interprocess/sync/interprocess_semaphore.hpp>
 # include <boost/noncopyable.hpp>
 # include <boost/enable_shared_from_this.hpp>
-
-# include <types.hh> // libcommon
-# include <logger.hh>   // libcommon
-
+# include <types.hh> // libcore
 # include "utils/Config.hh"
 # include "utils/CommTypeDefs.hh"
 # include "utils/Utils.hh"
@@ -42,7 +39,7 @@ public:
 
 public:
   status connect(const string& p_hostname,
-                      const uint32_t p_port);
+                 const uint32_t p_port);
   void async_connect(const string& p_hostname,
                      const uint32_t p_port);
   status wait_async_connect();

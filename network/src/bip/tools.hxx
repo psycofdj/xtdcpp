@@ -1,6 +1,7 @@
 #ifndef NETWORK_BIP_TOOLS_HXX_
 # define NETWORK_BIP_TOOLS_HXX_
 
+
 # include <boost/serialization/serialization.hpp>
 # include <boost/serialization/version.hpp>
 # include <boost/serialization/base_object.hpp>
@@ -21,8 +22,9 @@
 # include <boost/iostreams/filter/zlib.hpp>
 # include <boost/iostreams/filter/gzip.hpp>
 # include <boost/iostreams/filter/bzip2.hpp>
-# include "utils/Config.hh"
+# include <log.hh> // libcore
 # include <serializer.hh> // libserializer
+# include "utils/Config.hh"
 
 namespace xtd {
 namespace network {
@@ -60,12 +62,12 @@ status loadCompress(const utils::Config&        p_conf,
   }
   catch (boost::archive::archive_exception& l_error)
   {
-    logger::crit("network.bip.tools", "Error while unserializing request, %s", l_error.what());
+    log::crit("network.bip.tools", "Error while unserializing request, %s", l_error.what());
     return status::error;
   }
   catch (std::exception l_e)
   {
-    logger::crit("network.bip.tools", "Error while unserializing request, %s", l_e.what());
+    log::crit("network.bip.tools", "Error while unserializing request, %s", l_e.what());
     return status::error;
   }
 
@@ -106,7 +108,7 @@ status saveCompress(const utils::Config&  p_conf,
   }
   catch (boost::archive::archive_exception& l_error)
   {
-    logger::crit("network.bip.tools", "Error while serializing request : %s", l_error.what());
+    log::crit("network.bip.tools", "Error while serializing request : %s", l_error.what());
     return status::error;
   }
 
