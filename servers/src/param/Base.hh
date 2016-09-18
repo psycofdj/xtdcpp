@@ -39,7 +39,7 @@ public:
   static T cast(const boost::any& p_val);
 
 public:
-  typedef boost::shared_ptr<Base> t_sptr;
+  typedef std::shared_ptr<Base> t_sptr;
 
 private:
   typedef boost::function<void(const boost::any&, const boost::any&)> t_listener;

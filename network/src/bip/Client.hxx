@@ -3,7 +3,7 @@
 
 # include <boost/interprocess/sync/lock_options.hpp>
 # include <boost/interprocess/detail/atomic.hpp>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/make_shared.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
 # include <boost/iostreams/filter/zlib.hpp>
@@ -81,8 +81,8 @@ Client<TReq, TRes, TDomain>::send(const TReq& p_request,
 
   bool l_shouldReceive = shouldReceive(p_request, p_debug);
 
-  boost::shared_ptr<Connection<TDomain> > l_conn =
-    boost::static_pointer_cast<Connection<TDomain> >(TBase::m_connection);
+  std::shared_ptr<Connection<TDomain> > l_conn =
+    std::static_pointer_cast<Connection<TDomain> >(TBase::m_connection);
 
   l_conn->incCounter();
 
@@ -131,7 +131,7 @@ Client<TReq, TRes, TDomain>::do_receive(void)
 {
   logger::debug("network.bip.client", "bip client do_receive (%s) : entering", TBase::m_connection->info(), HERE);
 
-  utils::sharedBuf_t l_res = boost::make_shared<utils::vectorBytes_t>();
+  utils::sharedBuf_t l_res = std::make_shared<utils::vectorBytes_t>();
 
   TBase::m_connection->receive(l_res,
                                boost::bind(&Client::onReceived,

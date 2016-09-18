@@ -659,11 +659,13 @@ HttpServer::h_conf(const uint32_t       p_requestID,
                    http::Response&      p_res)
 {
   http::Json l_tmpl;
+  auto       l_range = m_config->search("");
 
-  for (auto& cc_value : m_config->getValueMap())
+  while (l_range.first != l_range.second)
   {
-    string l_s = boost::replace_all_copy(cc_value.first, ":", "!");
-    l_tmpl.add("", l_s, cc_value.second);
+    string l_s = boost::replace_all_copy(l_range.first->first, ":", "!");
+    l_tmpl.add("", l_s, l_range.first->second);
+    l_range.first++;
   }
 
   return h_gen(l_tmpl, p_requestID, p_req, p_res);

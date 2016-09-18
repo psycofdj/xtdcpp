@@ -8,7 +8,7 @@
 # include <boost/asio/ip/host_name.hpp>
 # include <boost/thread/thread.hpp>
 # include <boost/noncopyable.hpp>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/make_shared.hpp>
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <boost/interprocess/detail/atomic.hpp>
@@ -230,7 +230,7 @@ Server<Domain>::do_receive(cnx_sptr_t p_conn)
 {
   logger::debug("network.base.server", "do_receive (%s) : entering",  p_conn->info(), HERE);
 
-  utils::sharedBuf_t l_inBuffer = make_shared<utils::vectorBytes_t>();
+  utils::sharedBuf_t l_inBuffer = std::make_shared<utils::vectorBytes_t>();
 
   p_conn->receive(l_inBuffer,
                   bind(&Server::onReceived,

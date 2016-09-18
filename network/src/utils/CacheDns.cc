@@ -25,10 +25,10 @@ CacheDns::popElem(const string& p_url,
   if (it != m_cacheMap.end())
   {
     //found it
-    boost::shared_ptr<EntryPair> ep (*(*it).second);
+    std::shared_ptr<EntryPair> ep (*(*it).second);
     if (ep)
     {
-      boost::shared_ptr<CacheEntry> cacheEntry(ep->second);
+      std::shared_ptr<CacheEntry> cacheEntry(ep->second);
       if (cacheEntry)
       {
         //check and update stamp before returning value
@@ -60,10 +60,10 @@ CacheDns::pushElem(const string& p_url,
   std::time_t l_timestamp;
   createTimeStamp(l_timestamp);
 
-  boost::shared_ptr<CacheEntry> l_entry = boost::make_shared<CacheEntry>(p_ipAddr, l_timestamp);
+  std::shared_ptr<CacheEntry> l_entry = std::make_shared<CacheEntry>(p_ipAddr, l_timestamp);
 
-  boost::shared_ptr<EntryPair> l_ep =
-    boost::make_shared<EntryPair>(std::make_pair(p_url, l_entry));
+  std::shared_ptr<EntryPair> l_ep =
+    std::make_shared<EntryPair>(std::make_pair(p_url, l_entry));
 
   // push it to the front;
   m_cacheList.push_front(l_ep);
@@ -102,7 +102,7 @@ CacheDns::checkUpdateStamp(std::time_t& p_stamp, uint32_t p_dnsTimeoutSeconds)
 }
 
 void
-CacheDns::moveElementFrontLst(const boost::shared_ptr<EntryPair> p_elem)
+CacheDns::moveElementFrontLst(const std::shared_ptr<EntryPair> p_elem)
 {
   //finds the element
   CacheList::iterator c_ite = std::find(m_cacheList.begin(),m_cacheList.end(), p_elem);
@@ -130,4 +130,3 @@ CacheDns::checkAndResize(void)
 }
 
 }}} // end namespaces
-

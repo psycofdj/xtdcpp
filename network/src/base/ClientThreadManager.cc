@@ -35,7 +35,7 @@ ThreadManager::createThread(const size_t p_threadId)
   threadMap_t::iterator l_threadMapIt = m_threadMap.find(p_threadId);
   if (l_threadMapIt == m_threadMap.end())
   {
-    m_threadMap[p_threadId] = boost::make_shared<boost::thread>(boost::bind(&boost::asio::io_service::run, m_ioService));
+    m_threadMap[p_threadId] = std::make_shared<boost::thread>(boost::bind(&boost::asio::io_service::run, m_ioService));
   }
 }
 

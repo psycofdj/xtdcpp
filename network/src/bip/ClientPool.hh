@@ -6,7 +6,7 @@
 #include <string>
 
 #include <boost/thread/mutex.hpp>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/make_shared.hpp>
 
 #include "protocol/bip/Client.hh"
@@ -50,7 +50,7 @@ public:
     boost::posix_time::ptime m_lastUsed;
   };
 
-  typedef boost::shared_ptr<PersistentClient> t_client_sptr;
+  typedef std::shared_ptr<PersistentClient> t_client_sptr;
   typedef std::deque<t_client_sptr>           t_pool;
 
 public:

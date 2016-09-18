@@ -6,7 +6,7 @@
 # include <map>
 # include <iostream>
 # include <ctime>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/lexical_cast.hpp>
 
 # include <Application.hh>   // libcommon
@@ -63,11 +63,11 @@ private:
 protected:
   typedef HttpServer                                               http_app;
   typedef network::http::Server<network::utils::af_inet>           http_net;
-  typedef boost::shared_ptr<servers::param::Handler>               t_param_handler;
+  typedef std::shared_ptr<servers::param::Handler>               t_param_handler;
   typedef counters::CounterManager::t_sptr                         t_prober;
-  typedef boost::shared_ptr<Action>                                t_action;
+  typedef std::shared_ptr<Action>                                t_action;
   typedef map<string, t_action>                                    t_actions;
-  typedef boost::shared_ptr<counters::Base>                        t_counter;
+  typedef std::shared_ptr<counters::Base>                        t_counter;
 
 public:
   static const uint32_t mcs_defaultProbeDelay        = 30;

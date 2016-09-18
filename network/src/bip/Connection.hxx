@@ -60,9 +60,9 @@ template <typename Domain>
 void
 Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p_onSent)
 {
-  uint8_t                             l_crc8       = computeDataCrc(*p_outData);
-  boost::shared_ptr<utils::vectorUint32_t> l_headerBuff = make_shared<utils::vectorUint32_t>();
-  utils::sharedBuf_t                       l_outBuff    = make_shared<utils::vectorBytes_t>();
+  uint8_t                                l_crc8       = computeDataCrc(*p_outData);
+  std::shared_ptr<utils::vectorUint32_t> l_headerBuff = std::make_shared<utils::vectorUint32_t>();
+  utils::sharedBuf_t                     l_outBuff    = std::make_shared<utils::vectorBytes_t>();
 
 
   //build buffer to send
@@ -108,7 +108,7 @@ template <typename Domain>
 void
 Connection<Domain>::onSent(bs::error_code                           p_error,
                            size_t                          /*       p_bytesTransferred */,
-                           boost::shared_ptr<utils::vectorUint32_t> p_outHeader,
+                           std::shared_ptr<utils::vectorUint32_t> p_outHeader,
                            utils::sharedBuf_t                       p_outData,
                            utils::handler_t                         p_onSent)
 {

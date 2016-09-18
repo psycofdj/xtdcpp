@@ -64,7 +64,7 @@ private:
   void onHeaderReceived(const boost::system::error_code           p_error,
                         size_t                               /* p_bytesTransferred */,
                         utils::sharedBuf_t                        p_inData,
-                        boost::shared_ptr<boost::asio::streambuf> p_header,
+                        std::shared_ptr<boost::asio::streambuf> p_header,
                         utils::handler_t                          p_onReceived);
 
   void onDataReceived(const boost::system::error_code           p_error,

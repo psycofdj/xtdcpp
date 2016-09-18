@@ -32,7 +32,7 @@ template <typename Domain>
 class Client : private boost::noncopyable
 {
 protected:
-  typedef boost::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef std::shared_ptr<Connection<Domain> > cnx_sptr_t;
 
 protected:
   Client(const utils::Config& p_conf);
@@ -61,7 +61,7 @@ protected:
 
 private:
   ThreadManager&                              m_threadManager;
-  boost::shared_ptr<utils::Resolver<Domain> > m_resolver;
+  std::shared_ptr<utils::Resolver<Domain> > m_resolver;
   string                                 m_hostname;
   uint32_t                               m_port;
   boost::interprocess::interprocess_semaphore m_semaphoreConnect;

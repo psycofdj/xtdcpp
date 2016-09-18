@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/any.hpp>
 #include <types.hh> // libcommon
 #include <error.hh> // libcommon

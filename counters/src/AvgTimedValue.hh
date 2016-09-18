@@ -3,7 +3,7 @@
 # define COUNTERS_AVGTIMEDVALUE_HH_
 
 # include <deque>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <types.hh> // libommon
 # include "Value.hh"
 # include "Composed.hh"
@@ -26,7 +26,7 @@ protected:
   typedef std::deque< boost::posix_time::ptime >            t_timevect;
 
 public:
-  typedef boost::shared_ptr<AvgTimedValue> t_sptr;
+  typedef std::shared_ptr<AvgTimedValue> t_sptr;
 
 public:
   AvgTimedValue(const string& p_name,

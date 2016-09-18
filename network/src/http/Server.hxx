@@ -101,8 +101,8 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveError(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  boost::shared_ptr<Connection<Domain> > l_conn =
-    boost::static_pointer_cast<Connection<Domain> >(p_conn);
+  std::shared_ptr<Connection<Domain> > l_conn =
+    std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if ((p_error == ba::error::eof) && (false == l_conn->getClosedByServer()))
     logger::info("network.http.server", "onReceivedError (%s) : closed by client", p_conn->info(), HERE);
@@ -115,7 +115,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  boost::shared_ptr<Connection<Domain> > l_conn = boost::static_pointer_cast<Connection<Domain> >(p_conn);
+  std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if(!l_conn->getClosedByServer())
   {
@@ -154,8 +154,8 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (true == l_closeByServer)
   {
-    boost::shared_ptr<Connection<Domain> > l_conn =
-      boost::static_pointer_cast<Connection<Domain> >(p_conn);
+    std::shared_ptr<Connection<Domain> > l_conn =
+      std::static_pointer_cast<Connection<Domain> >(p_conn);
     l_conn->setClosedByServer(true);
     l_res.addHeader("Connection", "close");
   }
@@ -175,8 +175,8 @@ template<typename Domain>
 void
 Server<Domain>::afterSend(cnx_sptr_t p_conn)
 {
-  boost::shared_ptr<Connection<Domain> > l_conn =
-    boost::static_pointer_cast<Connection<Domain> >(p_conn);
+  std::shared_ptr<Connection<Domain> > l_conn =
+    std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (false == l_conn->getClosedByServer())
     TBase::do_receive(p_conn);

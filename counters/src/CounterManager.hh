@@ -19,7 +19,7 @@ class CounterManager
 {
 
 public:
-  typedef boost::shared_ptr<CounterManager>                    t_sptr;
+  typedef std::shared_ptr<CounterManager>                    t_sptr;
   typedef std::multimap<boost::filesystem::path, Base::t_sptr> t_counters;
 
 public:
