@@ -64,7 +64,7 @@ attrs::attrs(void) :
 }
 
 attrs::attrs(s p_attr) :
-  m_attrs(1, static_cast<uint32_t>(p_attr))
+  m_attrs(1, valueof(p_attr))
 {
 }
 
@@ -92,7 +92,7 @@ attrs::isSet(void) const
 /* -------------------------------------------------------------------------- */
 
 color::color(c p_color) :
-  m_value(static_cast<uint32_t>(p_color)),
+  m_value(valueof(p_color)),
   m_extended(false)
 {
 }

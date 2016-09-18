@@ -28,7 +28,14 @@ using std::endl;
 using std::pair;
 using std::shared_ptr;
 
+/**
+ ** @brief Alias to std::shared_ptr<T>
+ */
 template<class T> using sptr = std::shared_ptr<T>;
+
+/**
+ ** @brief Alias to std::function<T>
+ */
 template<class T> using fn   = std::function<T>;
 
 namespace xtd {
