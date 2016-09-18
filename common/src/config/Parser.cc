@@ -19,7 +19,7 @@ Parser::Parser(const string& p_file,
                const t_data& p_params) :
   Parser(p_params)
 {
-  if (status::ok != parseFile(p_file))
+  if (status::ok != parse(p_file))
     parse_error::raise("common.config", "unable to parse file '%s'", p_file, HERE);
 }
 
@@ -101,8 +101,8 @@ Parser::search(const string& p_item) const
 }
 
 status
-Parser::translate(vector<section>& p_sections,
-                  t_data&          p_data) const
+Parser::translate(vector<impl::section>& p_sections,
+                  t_data&                p_data) const
 {
   string l_name;
   t_refs l_refs;
@@ -159,7 +159,7 @@ Parser::extractKey(const string& p_item) const
 }
 
 status
-Parser::resolveExt(property& p_prop) const
+Parser::resolveExt(impl::property& p_prop) const
 {
   for (auto& c_item : p_prop.m_envs)
   {
@@ -246,7 +246,7 @@ Parser::parse(istream& p_stream)
 
 
 status
-Parser::parseFile(const string& p_file)
+Parser::parse(const string& p_file)
 {
   ifstream l_file(p_file.c_str());
 

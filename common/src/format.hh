@@ -6,8 +6,20 @@
 
 namespace xtd {
 
+/**
+ ** @brief Regroups c++-style printf functions
+ */
 struct format
 {
+
+  /**
+   ** @brief Applies given arguments to input format.
+   ** @tparam Args Variable number of argument types
+   ** @param p_fmt Format string, compatible with boost::format
+   ** @param p_args template variadic arguments to apply to p_fmt
+   ** @throw boost::io::format_error on error
+   ** @return resolved format
+   */
   template<typename... Arguments>
   static string
   vargs(string const& p_fmt, Arguments&&... p_args)
@@ -19,6 +31,16 @@ struct format
     return boost::str(l_format);
   }
 
+  /**
+   ** @brief Applies given arguments to input format, give adulterate result on error
+   ** @tparam Args Variable number of argument types
+   ** @param p_fmt Format string, compatible with boost::format
+   ** @param p_args template variadic arguments to apply to p_fmt
+   ** @return resolved format or modified format
+   ** @details
+   ** On error, the function returns the given p_fmt string concatenated to the caught
+   ** boost::io::format_error.
+   */
   template<typename... Arguments>
   static string
   vargs_noexcept(string const& p_fmt, Arguments&&... p_args)
@@ -40,3 +62,7 @@ struct format
 }
 
 #endif // !XTD_COMMON_FORMAT_HH_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

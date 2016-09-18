@@ -11,12 +11,6 @@
 namespace xtd {
 namespace config {
 
-void
-Parser::setParams(const t_data& p_params)
-{
-  m_params = p_params;
-}
-
 
 template<typename T>
 status
@@ -55,14 +49,14 @@ template<typename Iterator>
 status
 Parser::parse(Iterator p_begin, Iterator p_end)
 {
-  typedef Grammar<Iterator> TGrammar;
+  typedef impl::Grammar<Iterator> TGrammar;
 
-  auto            l_cur = TGrammar::wrap(p_begin);
-  auto            l_end = TGrammar::wrap(p_end);
-  TGrammar        l_grammar;
-  error_info      l_error;
-  bool            l_ret;
-  vector<section> l_sections;
+  auto                  l_cur = TGrammar::wrap(p_begin);
+  auto                  l_end = TGrammar::wrap(p_end);
+  TGrammar              l_grammar;
+  impl::error_info      l_error;
+  bool                  l_ret;
+  vector<impl::section> l_sections;
 
   m_data.clear();
   l_ret = phrase_parse(l_cur, l_end, l_grammar, boost::spirit::ascii::blank, l_sections);

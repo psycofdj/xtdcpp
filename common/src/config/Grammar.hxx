@@ -3,6 +3,7 @@
 
 namespace xtd {
 namespace config {
+namespace impl {
 
 template<typename Iterator>
 Grammar<Iterator>::Grammar(void) :
@@ -137,7 +138,7 @@ Grammar<Iterator>::handleError(wrapped_iterator           p_first,
 }
 
 
-}}
+}}}
 
 
 #endif // XTD_COMMON_CONFIG_GRAMMAR_HXX_

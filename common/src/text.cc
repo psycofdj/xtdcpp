@@ -11,11 +11,11 @@ xml::t_data
 xml::initialize(void)
 {
   return boost::assign::tuple_list_of
-    ("&",    "&",  "&amp;")    // & (must be first)
-    ("\"",   "\"", "&quot;")   // "
-    ("'",    "'",  "&apos;")   // '
-    ("<",    "<",  "&lt;")     // <
-    (">",    ">",  "&gt;");    // >
+    ("&",  "&amp;")    // & (must be first)
+    ("\"", "&quot;")   // "
+    ("'",  "&apos;")   // '
+    ("<",  "&lt;")     // <
+    (">",  "&gt;");    // >
 }
 
 
@@ -24,10 +24,8 @@ xml::encode(string& p_str)
 {
   t_data::const_iterator c_tuple;
 
-  for (c_tuple  = ms_entityList.begin();
-       c_tuple != ms_entityList.end();
-       c_tuple++)
-    boost::replace_all(p_str, c_tuple->get<0>(), c_tuple->get<2>());
+  for (auto& c_tuple, ms_entityList)
+    boost::replace_all(p_str, c_tuple->get<0>(), c_tuple->get<1>());
 }
 
 string

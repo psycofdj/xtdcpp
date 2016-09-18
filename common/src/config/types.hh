@@ -7,6 +7,7 @@
 
 namespace xtd {
 namespace config {
+namespace impl {
 
 struct types
 {
@@ -45,6 +46,6 @@ struct section
 };
 
 
-}}
+}}}
 
 #endif // XTD_COMMON_CONFIG_TYPES_HH_

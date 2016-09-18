@@ -21,25 +21,26 @@
 # include "config/types.hh" // libcommon
 
 
-
-BOOST_FUSION_ADAPT_STRUCT(xtd::config::property,
+BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::property,
                           (std::string,              m_name)
                           (std::string,              m_value),
                           (std::vector<std::string>, m_vars),
                           (std::vector<std::string>, m_envs),
                           (std::vector<std::string>, m_params));
 
-BOOST_FUSION_ADAPT_STRUCT(xtd::config::subsection,
+BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::subsection,
                           (std::string,                        m_name)
-                          (std::vector<xtd::config::property>, m_properties));
+                          (std::vector<xtd::config::impl::property>, m_properties));
 
-BOOST_FUSION_ADAPT_STRUCT(xtd::config::section,
+BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::section,
                           (std::string,                          m_name)
-                          (std::vector<xtd::config::property>,   m_properties)
-                          (std::vector<xtd::config::subsection>, m_subsections));
+                          (std::vector<xtd::config::impl::property>,   m_properties)
+                          (std::vector<xtd::config::impl::subsection>, m_subsections));
 
 namespace xtd {
 namespace config {
+namespace impl {
+
 
 template<typename Iterator>
 struct Grammar : boost::spirit::qi::grammar<boost::spirit::line_pos_iterator<Iterator>, std::vector<section>(), types::skipper>
@@ -74,6 +75,6 @@ private:
   boost::spirit::qi::rule<wrapped_iterator, std::vector<section>(), types::skipper> m_start;
 };
 
-}}
+}}}
 
 #endif // !XTD_COMMON_CONFIG_GRAMMAR_HH_

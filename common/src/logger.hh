@@ -50,25 +50,34 @@ public:
   bool     isValidStringLevel(string p_level);
 
   static logger&  get(void);
+
   template<typename ... Args>
   static void emerg(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void alert(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void crit(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void err(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void warning(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void info(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void notice(const string& p_module, const string& p_format, Args... p_args);
+
   template<typename ... Args>
   static void debug(const string& p_module, const string& p_format, Args... p_args);
 
 private:
   void  wrap_syslog(int __pri, const char *__fmt, ...);
+
   template<typename ... Args>
   void log(level p_level, const string& p_module, const string& p_format, Args... p_args);
 

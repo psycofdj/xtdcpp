@@ -558,15 +558,14 @@ void
 TestConfParser::setParams(void)
 {
   // OK : plain values
-  string              l_value;
-  string              l_data = R"data(
-                                      [sec1] {
-                                      key1 : key1
-                                          [subsec1] {
-                                        key1 : $PARAM{param1}
-                                        }
-                                      })data";
-
+  string l_value;
+  string l_data = R"data(
+    [sec1] {
+    key1 : key1
+        [subsec1] {
+      key1 : $PARAM{param1}
+      }
+    })data";
 
   {
     // KO : unresovled param
@@ -576,19 +575,11 @@ TestConfParser::setParams(void)
 
   {
     // KO : unresovled param
-    xtd::config::Parser l_parser;
-    l_parser.setParams({{ "param1", "test1" }});
+    xtd::config::Parser l_parser(xtd::config::Parser::t_data{{ "param1", "test1" }});
     CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_parser.parse(l_data.begin(), l_data.end()));
     CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_parser.get("sec1.subsec1.key1", l_value));
     CPPUNIT_ASSERT_EQUAL(string("test1"), l_value);
-
-    // Params are resolved at parse time
-    l_parser.setParams({{ "param1", "newval" }});
-    CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_parser.get("sec1.subsec1.key1", l_value));
-    CPPUNIT_ASSERT_EQUAL(string("test1"), l_value);
-
   }
-
 }
 
 
@@ -598,13 +589,13 @@ TestConfParser::parseFile(void)
   {
     // OK : config from file
     xtd::config::Parser l_parser;
-    CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_parser.parseFile(Globals::get().testDir() + "/data/simple.conf"));
+    CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_parser.parse(Globals::get().testDir() + "/data/simple.conf"));
   }
 
   {
     // OK : file not found
     xtd::config::Parser l_parser;
-    CPPUNIT_ASSERT_EQUAL(xtd::status::error, l_parser.parseFile("/i/dont/exist"));
+    CPPUNIT_ASSERT_EQUAL(xtd::status::error, l_parser.parse("/i/dont/exist"));
   }
 }
 
