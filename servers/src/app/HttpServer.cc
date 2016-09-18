@@ -9,6 +9,7 @@
 # include <boost/filesystem.hpp>
 # include <boost/filesystem/convenience.hpp>
 
+# include <config/Parser.hh>  // libcommon
 # include <json_parser.hpp>      // libcommon
 # include <logger.hh>            // libcommon
 # include <counters.hh>          // libcounters
@@ -118,7 +119,7 @@ HttpServer::parseConfig(void)
       error_nohelp(1, "invalid --config-file='%s' option, file unreadable", m_configPath);
     }
 
-    m_config.reset(new ConfParser(m_configPath));
+    m_config.reset(new config::Parser(m_configPath));
   }
   catch (std::exception& l_error)
   {

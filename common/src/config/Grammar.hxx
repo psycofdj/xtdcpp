@@ -20,74 +20,69 @@ Grammar<Iterator>::Grammar(void) :
   using boost::spirit::qi::fail;
   using boost::spirit::qi::no_skip;
 
+  auto add     = qil::_val += qil::_1;
+  auto add_m0  = phx::at_c<0>(qil::_val) += qil::_1;
+  auto add_m1  = phx::at_c<1>(qil::_val) += qil::_1;
+  auto set_m0  = phx::at_c<0>(qil::_val)  = qil::_1;
+  auto push_m1 = phx::push_back(phx::at_c<1>(qil::_val), qil::_1);
+  auto push_m2 = phx::push_back(phx::at_c<2>(qil::_val), qil::_1);
+  auto push_m3 = phx::push_back(phx::at_c<3>(qil::_val), qil::_1);
+  auto push_m4 = phx::push_back(phx::at_c<4>(qil::_val), qil::_1);
 
   m_var =
-    /**/ no_skip[boost::spirit::qi::string("${")       [ qil::_val += qil::_1 ]]
-    >    no_skip[+(alnum | char_('_') | char_('.'))   [ qil::_val += qil::_1 ]]
-    >    no_skip[char_('}') [ qil::_val += qil::_1 ]]
+    /**/ no_skip[boost::spirit::qi::string("${")      [ add ]]
+    >    no_skip[+(alnum | char_('_') | char_('.'))   [ add ]]
+    >    no_skip[char_('}')                           [ add ]]
     ;
 
   m_env =
-    /**/ no_skip[boost::spirit::qi::string("$ENV{")    [ qil::_val += qil::_1 ]]
-    >    no_skip[+(alnum | char_('_') | char_('.'))   [ qil::_val += qil::_1 ]]
-    >    no_skip[char_('}') [ qil::_val += qil::_1 ]]
+    /**/ no_skip[boost::spirit::qi::string("$ENV{")   [ add ]]
+    >    no_skip[+(alnum | char_('_') | char_('.'))   [ add ]]
+    >    no_skip[char_('}')                           [ add ]]
     ;
 
   m_param =
-    /**/ no_skip[boost::spirit::qi::string("$PARAM{")  [ qil::_val += qil::_1 ]]
-    >    no_skip[+(alnum | char_('_') | char_('.'))   [ qil::_val += qil::_1 ]]
-    >    no_skip[char_('}') [ qil::_val += qil::_1 ]]
+    /**/ no_skip[boost::spirit::qi::string("$PARAM{") [ add ]]
+    >    no_skip[+(alnum | char_('_') | char_('.'))   [ add ]]
+    >    no_skip[char_('}')                           [ add ]]
     ;
 
   m_property =
-    /**/ lexeme[+(alnum | char_('_'))  [ phx::at_c<0>(qil::_val) += qil::_1 ]]
+    /**/ lexeme[+(alnum | char_('_'))                 [ add_m0 ]]
     > lit(':')
     > *blank
     >
-    *(
-      m_var                    [ phx::at_c<1>(qil::_val) +=  qil::_1,
-                                 phx::push_back(phx::at_c<2>(qil::_val), qil::_1) ]
-      |
-      m_env                    [ phx::at_c<1>(qil::_val) += qil::_1,
-                                 phx::push_back(phx::at_c<3>(qil::_val), qil::_1) ]
-      |
-      m_param                  [ phx::at_c<1>(qil::_val) += qil::_1,
-                                 phx::push_back(phx::at_c<4>(qil::_val), qil::_1) ]
-      |
-      no_skip[+(char_ - eol - lit('$')) [ phx::at_c<1>(qil::_val) += qil::_1 ]]
-      |
-      no_skip[char_('$')                       [ phx::at_c<1>(qil::_val) += qil::_1 ]]
-      )
+    *(m_var                                           [ add_m1, push_m2 ]
+      | m_env                                         [ add_m1, push_m3 ]
+      | m_param                                       [ add_m1, push_m4 ]
+      | no_skip[+(char_ - eol - lit('$'))             [ add_m1 ]]
+      | no_skip[char_('$')                            [ add_m1 ]])
     >   +eol
     ;
 
   m_section_name =
     /**/ lit('[')
-    >   *(alnum|char_('_'))      [ qil::_val += qil::_1 ]
+    >   *(alnum|char_('_'))                           [ add ]
     >    lit(']')
     >   *eol
     ;
 
   m_subsection =
-    /**/ m_section_name         [phx::at_c<0>(qil::_val) = qil::_1]
+    /**/ m_section_name                               [ set_m0 ]
     >    lit('{')
     >    *eol
-    >    *m_property            [phx::push_back(phx::at_c<1>(qil::_val), qil::_1)]
+    >    *m_property                                  [ push_m1 ]
     >    *eol
     >    lit('}')
     >    *eol
     ;
 
   m_section =
-    /**/ m_section_name         [phx::at_c<0>(qil::_val) = qil::_1]
-    >     lit('{')
+    /**/ m_section_name                               [ set_m0 ]
+    >    lit('{')
     >   *eol
-    >>  *(
-          m_subsection          [phx::push_back(phx::at_c<2>(qil::_val), qil::_1)]
-          |
-          m_property            [phx::push_back(phx::at_c<1>(qil::_val), qil::_1)]
-          )
-    >     lit('}')
+    >>  *(m_subsection [ push_m2 ] | m_property[ push_m1 ])
+    >    lit('}')
     >    *eol
     ;
 
@@ -104,7 +99,7 @@ Grammar<Iterator>::Grammar(void) :
   m_subsection.name("subsection");
 
   auto ll =  phx::bind(&Grammar<Iterator>::handleError, this, qil::_1, qil::_2, qil::_3, qil::_4);
-  on_error<fail>(m_section, ll);
+  on_error<fail>(m_start, ll);
 }
 
 
@@ -131,7 +126,7 @@ Grammar<Iterator>::handleError(wrapped_iterator           p_first,
 {
   std::stringstream l_token;
   size_t            l_dist = std::distance(p_pos, p_last);
-  wrapped_iterator  l_end  = std::next(p_pos, std::min(10ul, l_dist));
+  wrapped_iterator  l_end  = std::next(p_pos, std::min(30ul, l_dist));
 
   l_token << p_info;
   m_error.line    = boost::spirit::get_line(p_pos);

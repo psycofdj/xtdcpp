@@ -4,10 +4,10 @@ include_directories(
   )
 
 add_shared_static_library(common
+  src/types.cc
   src/logger.cc
   src/text.cc
   src/Application.cc
-  src/ConfParser.cc
   src/config/Parser.cc
   src/config/Grammar.cc)
 

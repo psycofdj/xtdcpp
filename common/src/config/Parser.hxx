@@ -11,27 +11,33 @@
 namespace xtd {
 namespace config {
 
+void
+Parser::setParams(const t_data& p_params)
+{
+  m_params = p_params;
+}
+
 
 template<typename T>
 status
 Parser::get(const string& p_name, T& p_val) const
 {
-  t_data::const_iterator c_item;
-  if (m_data.end() == (c_item = m_data.find(p_name)))
-  {
-    logger::info("common.config", "key '%s' not found", p_name, HERE);
-    return status::notfound;
-  }
+  string l_value;
+  status l_ret;
+
+  if (status::ok != (l_ret = get(p_name, l_value)))
+    return l_ret;
 
   try {
-    p_val = boost::lexical_cast<T>(c_item->second);
+    p_val = boost::lexical_cast<T>(l_value);
   } catch (boost::bad_lexical_cast&) {
-    logger::info("common.config", "key '%s' found but not lexicaly castable to %s",
-                 p_name,  boost::typeindex::type_id<T>().pretty_name(), HERE);
+    logger::info("common.config", "key '%s' found but '%s' is lexically castable to %s",
+                 p_name,  l_value, boost::typeindex::type_id<T>().pretty_name(), HERE);
     return status::error;
   }
   return status::ok;
 }
+
 
 template<typename T>
 status
@@ -58,11 +64,12 @@ Parser::parse(Iterator p_begin, Iterator p_end)
   bool            l_ret;
   vector<section> l_sections;
 
+  m_data.clear();
   l_ret = phrase_parse(l_cur, l_end, l_grammar, boost::spirit::ascii::blank, l_sections);
   if ((false == l_ret) || (l_cur != l_end))
   {
     l_error = l_grammar.getLastError();
-    logger::crit("common.config", "parse error at (line %d, column %d). expecting token '%s' near '%s'",
+    logger::crit("common.config", "parse error at (line %d, column %d). expecting token %s near '%s'",
                  l_error.line, l_error.col, l_error.token, l_error.preview, HERE);
     return status::error;
   }

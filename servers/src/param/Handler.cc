@@ -33,7 +33,7 @@ Handler::Handler(const string& p_actionPath) :
     if (false == create_directories(m_actionPath))
     {
       if (false == is_directory(m_actionPath))
-        error::do_throw("servers.param.handler", "failed to create action directory '%s', exit now!", m_actionPath, HERE);
+        param_error::raise("servers.param.handler", "failed to create action directory '%s', exit now!", m_actionPath, HERE);
     }
     else
     {

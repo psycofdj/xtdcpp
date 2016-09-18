@@ -5,6 +5,7 @@
 # include <vector>
 # include <sstream>
 # include <fstream>
+# include <memory>
 
 using std::string;
 using std::map;
@@ -25,9 +26,9 @@ using std::istream;
 using std::ostream;
 using std::endl;
 using std::pair;
+using std::shared_ptr;
 
 namespace xtd {
-
 
 template<typename T>
 typename std::underlying_type<T>::type valueof(T p_item)
@@ -37,5 +38,9 @@ typename std::underlying_type<T>::type valueof(T p_item)
 
 enum class status : uint32_t { ok = 0, error = 1, timeout = 2, notfound = 3, next = 4 };
 
+
+ostream& operator<<(ostream& p_buf, const xtd::status& p_status);
+
 }
+
 #endif // !COMMON_TYPES_HH_

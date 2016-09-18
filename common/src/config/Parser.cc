@@ -3,21 +3,33 @@
 #include <boost/range/algorithm/copy.hpp>
 #include "logger.hh"
 #include "config/types.hh"
+#include <fstream>
 
 namespace xtd {
 namespace config {
 
 
-Parser::Parser(void)
+Parser::Parser(const t_data& p_params) :
+  m_data(),
+  m_params(p_params)
 {
 }
 
-Parser::Parser(const std::string&)
+Parser::Parser(const string& p_file,
+               const t_data& p_params) :
+  Parser(p_params)
 {
+  if (status::ok != parseFile(p_file))
+    parse_error::raise("common.config", "unable to parse file '%s'", p_file, HERE);
 }
 
-Parser::Parser(const std::ifstream&)
+Parser::Parser(istream&      p_file,
+               const t_data& p_params) :
+  Parser(p_params)
+
 {
+  if (status::ok != parse(p_file))
+    parse_error::raise("common.config", "unable to parse stream", HERE);
 }
 
 
@@ -27,7 +39,7 @@ Parser::get(const string& p_name, string& p_dval) const
   t_data::const_iterator c_item;
   if (m_data.end() == (c_item = m_data.find(p_name)))
   {
-    logger::crit("common.config", "key '%s' not found", p_name, HERE);
+    logger::err("common.config", "key '%s' not found", p_name, HERE);
     return status::notfound;
   }
   p_dval = c_item->second;
@@ -40,7 +52,7 @@ Parser::get(const string& p_name, const char*& p_dval) const
   t_data::const_iterator c_item;
   if (m_data.end() == (c_item = m_data.find(p_name)))
   {
-    logger::crit("common.config", "key '%s' not found", p_name, HERE);
+    logger::err("common.config", "key '%s' not found", p_name, HERE);
     return status::notfound;
   }
   p_dval = c_item->second.c_str();
@@ -57,20 +69,20 @@ Parser::get(const string& p_name, bool& p_dval) const
   t_data::const_iterator c_item;
   if (m_data.end() == (c_item = m_data.find(p_name)))
   {
-    logger::crit("common.config", "key '%s' not found", p_name, HERE);
+    logger::err("common.config", "key '%s' not found", p_name, HERE);
     return status::notfound;
   }
 
-  auto l_functor = [&c_item](const std::string& p_item) {
-    return boost::is_iequal()(c_item->second, p_item);
+  auto l_pred = [&c_item](const string& p_bool) {
+    return boost::iequals(p_bool, c_item->second);
   };
 
-  if (ls_true.end() != boost::find_if(ls_true, l_functor))
+  if (ls_true.end() != boost::find_if(ls_true, l_pred))
     p_dval = true;
-  else if (ls_false.end() != boost::find_if(ls_false, l_functor))
+  else if (ls_false.end() != boost::find_if(ls_false, l_pred))
     p_dval = false;
   else {
-    logger::crit("common.config", "key '%s' found but not lexicaly castable to bool", p_name, HERE);
+    logger::err("common.config", "key '%s' found but not lexicaly castable to bool", p_name, HERE);
     l_ret = status::error;
   }
   return l_ret;
@@ -105,11 +117,11 @@ Parser::translate(vector<section>& p_sections,
 
         if (0 != m_data.count(l_name))
         {
-          logger::crit("common.config", "multiply defined key '%s'", l_name, HERE);
+          logger::err("common.config", "multiply defined key '%s'", l_name, HERE);
           return status::error;
         }
 
-        if (status::ok != resolve_ext(c_prop))
+        if (status::ok != resolveExt(c_prop))
           return status::error;
 
         p_data[l_name] = c_prop.m_value;
@@ -123,10 +135,10 @@ Parser::translate(vector<section>& p_sections,
       string l_name = c_sec.m_name + "." + c_prop.m_name;
       if (0 != m_data.count(l_name))
       {
-        logger::crit("common.config", "multiply defined key '%s'", l_name, HERE);
+        logger::err("common.config", "multiply defined key '%s'", l_name, HERE);
         return status::error;
       }
-      if (status::ok != resolve_ext(c_prop))
+      if (status::ok != resolveExt(c_prop))
         return status::error;
 
       p_data[l_name] = c_prop.m_value;
@@ -135,7 +147,7 @@ Parser::translate(vector<section>& p_sections,
     }
   }
 
-  return resolve_refs(l_refs, p_data);
+  return resolveRefs(l_refs, p_data);
 }
 
 string
@@ -147,7 +159,7 @@ Parser::extractKey(const string& p_item) const
 }
 
 status
-Parser::resolve_ext(property& p_prop) const
+Parser::resolveExt(property& p_prop) const
 {
   for (auto& c_item : p_prop.m_envs)
   {
@@ -155,7 +167,7 @@ Parser::resolve_ext(property& p_prop) const
     string l_key = extractKey(c_item);
     if (0 == (l_val = getenv(l_key.c_str())))
     {
-      logger::crit("common.config", "unresolved environment variable $ENV{%s}", l_key, HERE);
+      logger::err("common.config", "unresolved environment variable $ENV{%s}", l_key, HERE);
       return status::error;
     }
     boost::replace_all(p_prop.m_value, "$ENV{" + l_key + "}", string(l_val));
@@ -168,7 +180,7 @@ Parser::resolve_ext(property& p_prop) const
 
     if (m_params.end() == (c_param = m_params.find(l_key)))
     {
-      logger::crit("common.config", "unresolved parameter $PARAM{%s}", l_key, HERE);
+      logger::err("common.config", "unresolved parameter $PARAM{%s}", l_key, HERE);
       return status::error;
     }
     boost::replace_all(p_prop.m_value, "$PARAM{" + l_key + "}", c_param->second);
@@ -178,7 +190,7 @@ Parser::resolve_ext(property& p_prop) const
 }
 
 status
-Parser::resolve_refs(t_refs& p_refs, t_data& p_data) const
+Parser::resolveRefs(t_refs& p_refs, t_data& p_data) const
 {
   size_t l_count = p_refs.size();
 
@@ -197,13 +209,13 @@ Parser::resolve_refs(t_refs& p_refs, t_data& p_data) const
 
         if (p_data.end() == c_target_data)
         {
-          logger::crit("common.config", "undefined reference to key '%s'", l_refKey, HERE);
+          logger::err("common.config", "undefined reference to key '%s'", l_refKey, HERE);
           return status::error;
         }
 
         if (l_refKey == c_ref_data->first)
         {
-          logger::crit("common.config", "circular reference detected to key '%s'", c_ref_data->first, HERE);
+          logger::err("common.config", "circular reference detected to key '%s'", c_ref_data->first, HERE);
           return status::error;
         }
 
@@ -217,6 +229,34 @@ Parser::resolve_refs(t_refs& p_refs, t_data& p_data) const
   }
 
   return status::ok;
+}
+
+status
+Parser::parse(istream& p_stream)
+{
+  if (false == p_stream.good())
+  {
+    logger::err("common.config", "bad input stream", HERE);
+    return status::error;
+  }
+
+  p_stream >> std::noskipws;
+  return parse(std::istream_iterator<char>(p_stream), std::istream_iterator<char>());
+}
+
+
+status
+Parser::parseFile(const string& p_file)
+{
+  ifstream l_file(p_file.c_str());
+
+  if (false == l_file.is_open())
+  {
+    logger::err("common.config", "unable to open file '%s'", p_file, HERE);
+    return status::error;
+  }
+
+  return parse(l_file);
 }
 
 

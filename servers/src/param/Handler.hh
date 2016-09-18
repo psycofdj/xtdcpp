@@ -6,12 +6,15 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
 #include <types.hh> // libcommon
+#include <error.hh> // libcommon
 #include "param/Base.hh"
 
 
 namespace xtd {
 namespace servers {
 namespace param {
+
+xtd_error_class(param_error, error);
 
 class Visitor;
 
