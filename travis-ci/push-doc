@@ -1,15 +1,13 @@
 #!/bin/bash
 set -e
 
-SOURCE_BRANCH="${TRAVIS_BRANCH}"
+DEST_DIR="pr/${TRAVIS_PULL_REQUEST}";
+if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+    DEST_DIR="${TRAVIS_BRANCH}";
+fi
+
 TARGET_BRANCH="gh-pages"
 COMMIT_AUTHOR_EMAIL=$(git log -n1 --pretty="%ae")
-
-# Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ -z "${SOURCE_BRANCH}" ]; then
-    echo "Skipping push-doc for pull requests."
-    exit 0
-fi
 
 # Save some useful information
 REPO=`git config remote.origin.url`
@@ -22,9 +20,9 @@ echo "Cloning gh-pages branch from ${REPO}..."
 git clone -q -b ${TARGET_BRANCH} $REPO out
 
 echo "Copying generated documentation..."
-mkdir -p out/${SOURCE_BRANCH}/
-rm -rf out/${SOURCE_BRANCH}/*
-cp -r ./reports/* out/${SOURCE_BRANCH}/
+mkdir -p out/${DEST_DIR}/
+rm -rf out/${DEST_DIR}/*
+cp -r ./reports/* out/${DEST_DIR}/
 
 cd out
 git config user.name "Travis CI"
@@ -39,7 +37,7 @@ git config user.email "${COMMIT_AUTHOR_EMAIL}"
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 echo "Adding files to git..."
-git add ${SOURCE_BRANCH}/*
+git add ${DEST_DIR}/*
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc

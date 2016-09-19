@@ -28,6 +28,7 @@ class StatusHelper:
     self.m_parser.add_argument("--token",    help="Github API secret token",                 dest="m_token",     required=True)
     self.m_parser.add_argument("--build-dir",help="Travis build directory",                  dest="m_dir",       required=True)
     self.m_parser.add_argument("--build-id", help="Travis build-id",                         dest="m_buildID",   required=True)
+    self.m_parser.add_argument("--branch",   help="Target branch",                           dest="m_branch",    required=True)
     self.m_parser.add_argument("--commit",   help="Current git commit hash",                 dest="m_commit",    required=True)
     self.m_parser.add_argument("--pull-id",  help="Current pull request, false if not a PR", dest="m_prid",      required=True)
     self.m_parser.add_argument("--dry-run",  help="Do not push statuses to github",          dest="m_dryrun",    action="store_true")
@@ -351,14 +352,27 @@ class StatusHelper:
     self.collect_doc_coverage()
 
     if self.m_prid != "false" :
-      self.comment_pr("Build report #%(buildid)s for PR %(prid)s:\n\n%(results)s" % {
+      self.comment_pr("""
+      Build report #%(buildid)s for PR %(prid)s.
+
+      %(results)s
+
+      https://psycofdj.github.io/xtdcpp/pr/%(prid)s/
+      """ % {
         "prid"    : self.m_prid,
         "buildid" : self.m_buildID,
         "results" : self.m_comment
       })
 
     if self.m_doCommentCommit:
-      self.comment_commit("Build report #%(buildid)s for sha %(commit)s:\n\n%(results)s" % {
+      self.comment_commit("""
+      Build report #%(buildid)s for sha %(commit)s:
+
+      %(results)s
+
+      https://psycofdj.github.io/xtdcpp/%(branch)s/
+      """ % {
+        "branch" : self.m_branch,
         "commit" : self.m_commit,
         "buildid" : self.m_buildID,
         "results" : self.m_comment
