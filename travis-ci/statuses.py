@@ -353,11 +353,11 @@ class StatusHelper:
 
     if self.m_prid != "false" :
       self.comment_pr("""
-      Build report #%(buildid)s for PR %(prid)s.
+Build report #%(buildid)s for PR %(prid)s.
 
-      %(results)s
+%(results)s
 
-      https://psycofdj.github.io/xtdcpp/pr/%(prid)s/
+[Reports](https://psycofdj.github.io/xtdcpp/pr/%(prid)s/)
       """ % {
         "prid"    : self.m_prid,
         "buildid" : self.m_buildID,
@@ -366,11 +366,11 @@ class StatusHelper:
 
     if self.m_doCommentCommit:
       self.comment_commit("""
-      Build report #%(buildid)s for sha %(commit)s:
+Build report #%(buildid)s for sha %(commit)s:
 
-      %(results)s
+%(results)s
 
-      https://psycofdj.github.io/xtdcpp/%(branch)s/
+[Reports](https://psycofdj.github.io/xtdcpp/%(branch)s/)
       """ % {
         "branch" : self.m_branch,
         "commit" : self.m_commit,
