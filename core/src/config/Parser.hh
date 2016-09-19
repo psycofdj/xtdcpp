@@ -6,6 +6,12 @@
 namespace xtd {
 namespace config { namespace impl { class section;   }}
 namespace config { namespace impl { class property;  }}
+
+
+
+/**
+ ** @brief Parse and read configuration files
+ */
 namespace config {
 
 /**

@@ -7,6 +7,10 @@
 # include <syslog.h>
 
 namespace xtd {
+
+/**
+ ** @brief Rich and flexible logging facilities
+ */
 namespace log {
 
 xtd_error_class(log_error, error);
@@ -62,3 +66,7 @@ public:
 }}
 
 #endif // !XTD_CORE_LOG_LOGTYPES_HH_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

@@ -3,7 +3,12 @@
 # include <boost/tuple/tuple.hpp>
 # include "types.hh"
 
+
 namespace xtd {
+
+/**
+ ** @brief Various text manipulation routines
+ */
 namespace text {
 
 /**
@@ -48,3 +53,7 @@ private:
 }}
 
 #endif // !COMMON_TEXT_HH_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

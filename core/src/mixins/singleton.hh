@@ -2,6 +2,10 @@
 #include <memory>
 
 namespace xtd {
+
+/**
+ ** @brief Mixin utility classes
+ */
 namespace mixins {
 
 /**
@@ -40,7 +44,7 @@ public:
 public:
   /**
    ** @brief Construct TClass instance if needed and return them
-   ** @tparam Args Variable number of template argumnet
+   ** @tparam Args Variable number of template argument
    ** @param p_args TClass constructor arguments
    ** @return Singleton instance
    */
@@ -63,3 +67,7 @@ template<class TClass>
 std::shared_ptr<TClass> Singleton<TClass>::ms_instance;
 
 }}
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:
