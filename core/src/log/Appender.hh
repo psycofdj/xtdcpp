@@ -38,10 +38,6 @@ namespace log {
  ** - @ref Appender::clearFilters "clearFilters()"
  **   - @copybrief Appender::clearFilters
  **
- ** #### Configuration
- **
- ** some text here
- ** fdjisfjds6
  */
 class Appender
 {
@@ -65,15 +61,6 @@ public:
    ** @brief Destructor
    */
   virtual ~Appender(void);
-
-public:
-  /**
-   ** @brief Create and initialize new Appender from configuration
-   ** @param p_name Appender name
-   ** @param p_properties Configuration property map
-   */
-  static sptr<Appender> create(const string&             p_name,
-                               const map<string,string>& p_properties);
 
 public:
   /**
