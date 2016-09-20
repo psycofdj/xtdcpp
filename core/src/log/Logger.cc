@@ -53,7 +53,7 @@ Logger::~Logger(void)
 }
 
 Logger&
-Logger::addAppender(const std::shared_ptr<Appender>& p_appender)
+Logger::addAppender(const sptr<Appender>& p_appender)
 {
   std::lock_guard<std::mutex> l_lock(m_mutex);
   m_appenders.push_back(p_appender);
@@ -65,15 +65,6 @@ Logger::clearAppenders(void)
 {
   std::lock_guard<std::mutex> l_lock(m_mutex);
   m_appenders.clear();
-  return *this;
-}
-
-Logger&
-Logger::replaceAppenders(const std::shared_ptr<Appender>& p_appender)
-{
-  std::lock_guard<std::mutex> l_lock(m_mutex);
-  m_appenders.clear();
-  m_appenders.push_back(p_appender);
   return *this;
 }
 
@@ -166,14 +157,14 @@ RootLogger::setAllValueLevels(uint32_t p_level)
 }
 
 RootLogger&
-RootLogger::updateLevels(const string& p_module, level p_level)
+RootLogger::updateLevels(const string& p_regexp, level p_level)
 {
-  std::regex l_matcher(p_module + ".*");
+  boost::regex l_matcher(p_module + ".*");
   std::lock_guard<std::mutex> l_lock(m_mutex);
 
   for (auto c_item : m_loggers)
   {
-    if (true == std::regex_match(c_item.first, l_matcher))
+    if (true == boost::regex_match(c_item.first, l_matcher))
       c_item.second->setLevel(p_level);
   }
   setLevelTo(p_module, p_level);

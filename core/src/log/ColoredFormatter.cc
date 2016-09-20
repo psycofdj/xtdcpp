@@ -135,13 +135,12 @@ ColoredFormatter::getFulllog(const FormattedRecord& p_rec)  const
   return tty::Text(Formatter::getFulllog(p_rec), m_fieldStyles.m_fulllog);
 }
 
-std::shared_ptr<Formatter>
+sptr<Formatter>
 ColoredFormatter::create(const string& p_name, const map<string,string>& p_properties)
 {
-  std::shared_ptr<Formatter>        l_base = Formatter::create(p_name, p_properties);
-  std::shared_ptr<ColoredFormatter> l_result(new ColoredFormatter(*l_base));
-
-  vector<string> l_fields  = {
+  sptr<Formatter>        l_base   = Formatter::create(p_name, p_properties);
+  sptr<ColoredFormatter> l_result(new ColoredFormatter(*l_base));
+  vector<string>         l_fields = {
     "name",     "pid",    "ppid",     "module",   "threadid",
     "slevel",   "ilevel", "message",  "filename", "line",
     "function", "time",   "location", "fulllog"

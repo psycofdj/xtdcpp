@@ -150,21 +150,21 @@ Formatter::create(const string& p_name, const map<string,string>& p_properties)
 {
   std::shared_ptr<Formatter> l_result(new Formatter());
 
-  vector<string> l_formats = { "fulllog", "location", "time" };
-  vector<string> l_fields  = {
+  static const vector<string> ls_formats = { "fulllog", "location", "time" };
+  static const vector<string> ls_fields  = {
     "name",     "pid",    "ppid",     "module",   "threadid",
     "slevel",   "ilevel", "message",  "filename", "line",
     "function", "time",   "location", "fulllog"
   };
 
-  for (auto& c_format : l_formats)
+  for (const auto& c_format : ls_formats)
   {
     auto c_item = p_properties.find("log.formatter." + p_name + ".format." + c_format);
     if (c_item != p_properties.end())
       l_result->setLayout(c_format, c_item->second);
   }
 
-  for (auto& c_field : l_fields)
+  for (const auto& c_field : ls_fields)
   {
     auto c_item = p_properties.find("log.formatter." + p_name + ".field." + c_field + ".format");
     if (c_item != p_properties.end())

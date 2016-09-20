@@ -41,49 +41,49 @@ Logger::emerg(const string& p_format, Args... p_args) const
 
 template<typename ... Args>
 void
-Logger::alert(const string& p_format, Args... p_args)
+Logger::alert(const string& p_format, Args... p_args) const
 {
   log(level::alert, p_format, p_args...);
 }
 
 template<typename ... Args>
 void
-Logger::crit(const string& p_format, Args... p_args)
+Logger::crit(const string& p_format, Args... p_args) const
 {
   log(level::crit, p_format, p_args...);
 }
 
 template<typename ... Args>
 void
-Logger::err(const string& p_format, Args... p_args)
+Logger::err(const string& p_format, Args... p_args) const
 {
   log(level::err, p_format, p_args...);
 }
 
 template<typename ... Args>
 void
-Logger::warning(const string& p_format, Args... p_args)
+Logger::warning(const string& p_format, Args... p_args) const
 {
   log(level::warning, p_format, p_args...);
 }
 
 template<typename ... Args>
 void
-Logger::info(const string& p_format, Args... p_args...)
+Logger::info(const string& p_format, Args... p_args...) const
 {
   log(level::info, p_format, p_args...);
 }
 
 template<typename ... Args>
 void
-Logger::notice(const string& p_format, Args... p_args)
+Logger::notice(const string& p_format, Args... p_args) const
 {
   log(level::notice, p_format, p_args...);
 }
 
 template<typename ... Args>
 void
-Logger::debug(const string& p_format, Args... p_args)
+Logger::debug(const string& p_format, Args... p_args) const
 {
   log(level::debug, p_format, p_args...);
 }

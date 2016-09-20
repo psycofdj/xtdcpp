@@ -7,6 +7,9 @@
 namespace xtd {
 namespace log {
 
+/**
+ ** @brief Formats log record
+ */
 class Formatter
 {
   friend class ConfLoader;

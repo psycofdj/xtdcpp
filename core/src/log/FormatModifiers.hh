@@ -23,7 +23,7 @@ struct AutoWidth
   void operator()(const FormattedRecord& p_rec,
                   Formatter::t_formats&  p_formats)
   {
-    static const map<string, std::function<size_t(const FormattedRecord&)>> l_func = {
+    static const map<string, fn<size_t(const FormattedRecord&)>> l_func = {
       { "name",     [](const FormattedRecord& p_rec) { return p_rec.m_name.size();     } },
       { "message",  [](const FormattedRecord& p_rec) { return p_rec.m_message.size();  } },
       { "function", [](const FormattedRecord& p_rec) { return p_rec.m_function.size(); } },

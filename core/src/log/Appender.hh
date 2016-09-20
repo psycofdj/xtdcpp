@@ -7,11 +7,14 @@
 namespace xtd {
 namespace log {
 
+/**
+ ** @brief Displays log record to a particular output
+ */
 class Appender
 {
 private:
-  typedef std::function<bool(const FormattedRecord&)> t_filter;
-  typedef vector<t_filter>                            t_filters;
+  typedef fn<bool(const FormattedRecord&)> t_filter;
+  typedef vector<t_filter>                 t_filters;
 
 public:
   Appender(void);

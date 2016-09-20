@@ -34,7 +34,7 @@ public:
   T m_ppid;
 
 private:
-  map<string, std::function<T&(void)> > mc_functors;
+  map<string, fn<T&(void)> > mc_functors;
 };
 
 }}
