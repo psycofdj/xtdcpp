@@ -31,7 +31,7 @@ xtd_error_class(parse_error, error);
  **
  ** @section format_spec Format specification
  **
- ** - A @ configuration has:
+ ** - A @configuration has:
  **   - zero--or-more @b section
  ** - A @b section has:
  **   - a name
