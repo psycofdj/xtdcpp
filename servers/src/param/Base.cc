@@ -2,7 +2,7 @@
 #include "param/Base.hxx"
 
 #include <string>
-#include <types.hh> // libcommon
+#include <types.hh> // libcore
 
 
 namespace xtd {

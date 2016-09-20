@@ -1,7 +1,8 @@
 #pragma once
-#include "Application.hh" // libcommon
+#include "Application.hh" // libcore
 #include "cppunit/TestFixture.h"
 #include <cppunit/extensions/HelperMacros.h>
+#include "Globals.h"
 
 namespace CppUnit {
 class Outputter;
@@ -28,7 +29,10 @@ protected:
   string m_filter;
   bool   m_progress;
   string m_ouputter;
-  bool   m_noCatch;
+  string m_srcDir;
+  string m_topSrcDir;
+  string m_topBuildDir;
+  string m_testDir;
 };
 
 }}

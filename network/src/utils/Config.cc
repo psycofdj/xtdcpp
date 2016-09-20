@@ -1,5 +1,5 @@
 #include "utils/Config.hh"
-#include <types.hh> // libcommon
+#include <types.hh> // libcore
 
 namespace xtd {
 namespace network {

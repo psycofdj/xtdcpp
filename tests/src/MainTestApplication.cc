@@ -21,9 +21,10 @@ namespace tests {
 MainTestApplication::MainTestApplication(void):
   Application(),
   m_filter(),
-  m_ouputter("text"),
-  m_noCatch(false)
+  m_ouputter("text")
 {
+  Globals& l_glob = Globals::get();
+
   addOption('f', "filter", argument::mandatory, requirement::optional,
             "filter test cases on given regex pattern",
             bindRegex(m_filter));
@@ -38,7 +39,23 @@ MainTestApplication::MainTestApplication(void):
 
   addOption('n', "nocatch", argument::none, requirement::optional,
             "disable cppunit excaption catching, useful when debugging in gdb",
-            bindGiven(m_noCatch));
+            bindGiven(m_disableCatch));
+
+  addOption('s', "srcdir", argument::mandatory, requirement::mandatory,
+            "current source directory",
+            bindDir(l_glob.sourceDir()));
+
+  addOption('t', "top-srcdir", argument::mandatory, requirement::mandatory,
+            "project top source directory",
+            bindDir(l_glob.topSourceDir()));
+
+  addOption('b', "top-builddir", argument::mandatory, requirement::mandatory,
+            "project top build directory",
+            bindDir(l_glob.topBuildDir()));
+
+  addOption('d', "testdir", argument::mandatory, requirement::mandatory,
+            "project test source directory",
+            bindDir(l_glob.testDir()));
 }
 
 
@@ -98,7 +115,7 @@ MainTestApplication::process(void)
   }
 
   l_runner.setOutputter(l_outputter);
-  if (m_noCatch)
+  if (m_disableCatch)
     l_runner.eventManager().popProtector();
   if (m_progress)
     l_runner.eventManager().addListener(new ProgressListener(std::cerr));

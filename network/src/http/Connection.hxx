@@ -2,7 +2,9 @@
 # define NETWORK_HTTP_CONNECTION_HXX_
 # include <boost/regex.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
+# include <log.hh> // libcore
 # include "http/Request.hh"
+
 
 
 namespace xtd {
@@ -60,7 +62,7 @@ template <typename Domain>
 void
 Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_onReceived)
 {
-  boost::shared_ptr<ba::streambuf> l_header = boost::make_shared<ba::streambuf>();
+  std::shared_ptr<ba::streambuf> l_header = std::make_shared<ba::streambuf>();
 
   ba::async_read_until(this->m_socket,
                        *l_header,
@@ -84,7 +86,7 @@ void
 Connection<Domain>::onHeaderReceived(const bs::error_code             p_error,
                                      size_t                           p_bytesTransferred,
                                      utils::sharedBuf_t               p_inData,
-                                     boost::shared_ptr<ba::streambuf> p_header,
+                                     std::shared_ptr<ba::streambuf> p_header,
                                      utils::handler_t                 p_onReceived)
 {
   if (p_error)
@@ -109,12 +111,12 @@ Connection<Domain>::onHeaderReceived(const bs::error_code             p_error,
   if ((status::error == l_req.readHead(l_fis)) ||
       (status::error == l_req.getDataSize(l_dataSize)))
   {
-    logger::err("network.http.cnx", "http cnx (%s) : malformated http header", this->info(), HERE);
+    log::err("network.http.cnx", "http cnx (%s) : malformated http header", this->info(), HERE);
     p_onReceived(ba::error::not_found);
     return;
   }
 
-  logger::info("network.http.cnx", "http cnx (%s) : header OK", this->info(), HERE);
+  log::info("network.http.cnx", "http cnx (%s) : header OK", this->info(), HERE);
 
   size_t l_suppBytes = ba::buffer_size(l_buffs) - p_bytesTransferred;
 
@@ -146,7 +148,7 @@ Connection<Domain>::do_receive_data(size_t             p_dataSize,
                                     utils::sharedBuf_t p_inData,
                                     utils::handler_t   p_onReceived)
 {
-  utils::sharedBuf_t l_data = make_shared<utils::vectorBytes_t>();
+  utils::sharedBuf_t l_data = std::make_shared<utils::vectorBytes_t>();
 
   l_data->resize(p_dataSize, 0);
   ba::async_read(this->m_socket,

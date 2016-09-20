@@ -99,7 +99,7 @@ protected:
   string                 m_structgenFilename;
 
 private:
-  boost::shared_ptr<counters::AvgTimedValue> m_perfCounter;
+  std::shared_ptr<counters::AvgTimedValue> m_perfCounter;
   t_param_sptr                               m_assertRTT;
 };
 

@@ -5,9 +5,9 @@
 # include <boost/thread.hpp>
 # include <boost/thread/mutex.hpp>
 # include <boost/noncopyable.hpp>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/make_shared.hpp>
-# include <types.hh> //libcommon
+# include <types.hh> //libcore
 
 namespace xtd {
 namespace network {
@@ -16,7 +16,7 @@ namespace base {
 class ThreadManager : boost::noncopyable
 {
 public:
-  typedef map<size_t, boost::shared_ptr<boost::thread> > threadMap_t;
+  typedef map<size_t, std::shared_ptr<boost::thread> > threadMap_t;
 
 private:
   ThreadManager(void);
@@ -33,9 +33,9 @@ private:
   static boost::asio::io_service*                  m_ioService;
   static boost::mutex                              m_mutex;
   static ThreadManager*                            m_threadManager;
-  boost::shared_ptr<boost::asio::io_service::work> m_workPtr;
+  std::shared_ptr<boost::asio::io_service::work> m_workPtr;
   threadMap_t                                      m_threadMap;
-  boost::shared_ptr<boost::thread>                 m_threadPtr;
+  std::shared_ptr<boost::thread>                 m_threadPtr;
 };
 
 }}} // end namespaces

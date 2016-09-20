@@ -3,7 +3,7 @@
 
 # include <boost/thread/mutex.hpp>
 # include <boost/noncopyable.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "Visitor.hh"
 
 
@@ -15,7 +15,7 @@ class Base : boost::noncopyable
   friend class Composed;
 
 public:
-  typedef boost::shared_ptr<Base> t_sptr;
+  typedef std::shared_ptr<Base> t_sptr;
   typedef map<string, string>     t_data;
 
 public:

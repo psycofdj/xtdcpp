@@ -1,12 +1,11 @@
 #ifndef NETWORK_BASE_CONNECTION_HXX_
 # define NETWORK_BASE_CONNECTION_HXX_
 
-# include <types.hh> // libcommon
-# include <logger.hh>   // libcommon
-# include <boost/format.hpp>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <boost/algorithm/string/replace.hpp>
+# include <log.hh> //libcore
+# include <types.hh> // libcore
 
 namespace xtd {
 namespace network {
@@ -60,17 +59,17 @@ Connection<Domain>::~Connection(void)
  */
 template <typename Domain>
 void
-Connection<Domain>::accept(boost::shared_ptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
+Connection<Domain>::accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
                            utils::handler_t                                      p_onAccepted)
 {
-  logger::debug("network.base.cnx", "cnx accept : entering", HERE);
+  log::debug("network.base.cnx", "cnx accept : entering", HERE);
 
   m_strand.post(bind(&Connection::do_accept,
                      this->shared_from_this(),
                      p_acceptor,
                      p_onAccepted));
 
-  logger::debug("network.base.cnx", "cnx accept : leaving", HERE);
+  log::debug("network.base.cnx", "cnx accept : leaving", HERE);
 }
 
 
@@ -81,10 +80,10 @@ Connection<Domain>::accept(boost::shared_ptr<ba::basic_socket_acceptor<Domain> >
  */
 template <typename Domain>
 void
-Connection<Domain>::do_accept(boost::shared_ptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
+Connection<Domain>::do_accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
                               utils::handler_t                                      p_onAccepted)
 {
-  logger::debug("network.base.cnx", "cnx do_accept : entering", HERE);
+  log::debug("network.base.cnx", "cnx do_accept : entering", HERE);
 
   m_localAddr = m_hostname;
   m_localPort = m_port;
@@ -96,7 +95,7 @@ Connection<Domain>::do_accept(boost::shared_ptr<ba::basic_socket_acceptor<Domain
                                 p_acceptor,
                                 p_onAccepted));
 
-  logger::debug("network.base.cnx", "cnx do_accept : leaving", HERE);
+  log::debug("network.base.cnx", "cnx do_accept : leaving", HERE);
 }
 
 
@@ -108,10 +107,10 @@ Connection<Domain>::do_accept(boost::shared_ptr<ba::basic_socket_acceptor<Domain
 template <typename Domain>
 void
 Connection<Domain>::onAccepted(bs::error_code                                           p_error,
-                               boost::shared_ptr<ba::basic_socket_acceptor<Domain> > /* p_acceptor */,
+                               std::shared_ptr<ba::basic_socket_acceptor<Domain> > /* p_acceptor */,
                                utils::handler_t                                         p_onAccepted)
 {
-  logger::debug("network.base.cnx", "cnx onAccepted : entering", HERE);
+  log::debug("network.base.cnx", "cnx onAccepted : entering", HERE);
 
   // 1. Set socket informations
   status l_ret = setSocketInfo();
@@ -125,7 +124,7 @@ Connection<Domain>::onAccepted(bs::error_code                                   
   else
     m_strand.post(bind(p_onAccepted, p_error));
 
-  logger::debug("network.base.cnx", "cnx onAccepted (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx onAccepted (%s) : leaving", info(), HERE);
 }
 
 
@@ -135,17 +134,17 @@ Connection<Domain>::onAccepted(bs::error_code                                   
  */
 template <typename Domain>
 void
-Connection<Domain>::connect(boost::shared_ptr<utils::Resolver<Domain> > p_resolver,
+Connection<Domain>::connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
                             utils::handler_t                            p_onConnected)
 {
-  logger::debug("network.base.cnx", "cnx connect (%s:%d): entering", m_hostname, m_port, HERE);
+  log::debug("network.base.cnx", "cnx connect (%s:%d): entering", m_hostname, m_port, HERE);
 
   m_strand.post(bind(&Connection::do_connect,
                      this->shared_from_this(),
                      p_resolver,
                      p_onConnected));
 
-  logger::debug("network.base.cnx", "cnx connect (%s:%d): leaving", m_hostname, m_port, HERE);
+  log::debug("network.base.cnx", "cnx connect (%s:%d): leaving", m_hostname, m_port, HERE);
 }
 
 
@@ -155,16 +154,16 @@ Connection<Domain>::connect(boost::shared_ptr<utils::Resolver<Domain> > p_resolv
  */
 template <typename Domain>
 void
-Connection<Domain>::do_connect(boost::shared_ptr<utils::Resolver<Domain> > p_resolver,
+Connection<Domain>::do_connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
                                utils::handler_t                            p_onConnected)
 {
-  logger::debug("network.base.cnx", "cnx do_connect (%s:%d): entering", m_hostname, m_port, HERE);
+  log::debug("network.base.cnx", "cnx do_connect (%s:%d): entering", m_hostname, m_port, HERE);
 
   m_remoteAddr = m_hostname;
   m_remotePort = m_port;
 
   typename Domain::endpoint                 l_endpoint = p_resolver->resolve(m_hostname, boost::lexical_cast<string>(m_port));
-  boost::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
+  std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
 
 
   l_timer->expires_from_now(posix_time::milliseconds(m_conf.getConnectTimeoutMs()));
@@ -179,7 +178,7 @@ Connection<Domain>::do_connect(boost::shared_ptr<utils::Resolver<Domain> > p_res
                                             l_timer,
                                             p_onConnected)));
 
-  logger::debug("network.base.cnx", "cnx do_connect (%s:%d): leaving", m_hostname, m_port, HERE);
+  log::debug("network.base.cnx", "cnx do_connect (%s:%d): leaving", m_hostname, m_port, HERE);
 }
 
 
@@ -197,15 +196,15 @@ template <typename Domain>
 void
 Connection<Domain>::connectTimeout(const bs::error_code p_error)
 {
-  logger::debug("network.base.cnx", "cnx connectTimeout : entering", HERE);
+  log::debug("network.base.cnx", "cnx connectTimeout : entering", HERE);
 
   if (p_error != ba::error::operation_aborted)
   {
-    logger::err("network.base.cnx", "cnx connectTimeout : timeout detected", HERE);
+    log::err("network.base.cnx", "cnx connectTimeout : timeout detected", HERE);
     cancel();
   }
 
-  logger::debug("network.base.cnx", "cnx connectTimeout : leaving", HERE);
+  log::debug("network.base.cnx", "cnx connectTimeout : leaving", HERE);
 }
 
 
@@ -228,15 +227,15 @@ Connection<Domain>::connectTimeout(const bs::error_code p_error)
 template <typename Domain>
 void
 Connection<Domain>::onConnected(const bs::error_code                      p_error,
-                                boost::shared_ptr<utils::deadLineTimer_t> p_timer,
+                                std::shared_ptr<utils::deadLineTimer_t> p_timer,
                                 utils::handler_t                          p_onConnected)
 {
-  logger::debug("network.base.cnx", "cnx onConnected : entering", HERE);
+  log::debug("network.base.cnx", "cnx onConnected : entering", HERE);
 
   // 1. Cancel timer
   if (p_error != ba::error::operation_aborted)
   {
-    logger::info("network.base.cnx", "cnx onConnected : no abort detected, cancelling timer", HERE);
+    log::info("network.base.cnx", "cnx onConnected : no abort detected, cancelling timer", HERE);
     p_timer->cancel();
   }
 
@@ -251,7 +250,7 @@ Connection<Domain>::onConnected(const bs::error_code                      p_erro
   else
     m_strand.post(bind(p_onConnected, p_error));
 
-  logger::debug("network.base.cnx", "cnx onConnected (%s) : leaving", HERE);
+  log::debug("network.base.cnx", "cnx onConnected (%s) : leaving", HERE);
 }
 
 
@@ -267,10 +266,10 @@ void
 Connection<Domain>::send(const utils::vectorBytes_t& p_outData,
                          utils::handler_t            p_onSent)
 {
-  logger::debug("network.base.cnx", "cnx send (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx send (%s) : entering", info(), HERE);
 
   // 1.
-  utils::sharedBuf_t l_outBuff = make_shared<utils::vectorBytes_t>();
+  utils::sharedBuf_t l_outBuff = std::make_shared<utils::vectorBytes_t>();
 
   l_outBuff->assign(p_outData.begin(), p_outData.end());
 
@@ -279,7 +278,7 @@ Connection<Domain>::send(const utils::vectorBytes_t& p_outData,
                      l_outBuff,
                      p_onSent));
 
-  logger::debug("network.base.cnx", "cnx send (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx send (%s) : leaving", info(), HERE);
 }
 
 
@@ -292,9 +291,9 @@ void
 Connection<Domain>::do_send(utils::sharedBuf_t p_outData,
                             utils::handler_t   p_onSent)
 {
-  logger::debug("network.base.cnx", "cnx do_send (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx do_send (%s) : entering", info(), HERE);
 
-  boost::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
+  std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
 
   l_timer->expires_from_now(posix_time::milliseconds(m_conf.getSendTimeoutMs()));
   l_timer->async_wait(m_strand.wrap(bind(&Connection::sendTimeout,
@@ -311,7 +310,7 @@ Connection<Domain>::do_send(utils::sharedBuf_t p_outData,
 
   async_write(p_outData, l_handler);
 
-  logger::debug("network.base.cnx", "cnx do_send (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx do_send (%s) : leaving", info(), HERE);
 }
 
 
@@ -319,15 +318,15 @@ template <typename Domain>
 void
 Connection<Domain>::sendTimeout(const bs::error_code  p_error)
 {
-  logger::debug("network.base.cnx", "cnx sendTimeout (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx sendTimeout (%s) : entering", info(), HERE);
 
   if (p_error != ba::error::operation_aborted)
   {
-    logger::err("network.base.cnx", "cnx sendTimeout (%s) : timeout detected", info(), HERE);
+    log::err("network.base.cnx", "cnx sendTimeout (%s) : timeout detected", info(), HERE);
     cancel();
   }
 
-  logger::debug("network.base.cnx", "cnx sendTimeout (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx sendTimeout (%s) : leaving", info(), HERE);
 }
 
 
@@ -335,20 +334,20 @@ template <typename Domain>
 void
 Connection<Domain>::onSent(const bs::error_code                      p_error,
                            utils::sharedBuf_t                        p_outData,
-                           boost::shared_ptr<utils::deadLineTimer_t> p_timer,
+                           std::shared_ptr<utils::deadLineTimer_t> p_timer,
                            utils::handler_t                          p_onSent)
 {
-  logger::debug("network.base.cnx", "cnx onSent (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx onSent (%s) : entering", info(), HERE);
 
   if (p_error != ba::error::operation_aborted)
   {
-    logger::info("network.base.cnx", "cnx onSent (%s) : no abort detected, cancelling timer", info(), HERE);
+    log::info("network.base.cnx", "cnx onSent (%s) : no abort detected, cancelling timer", info(), HERE);
     p_timer->cancel();
   }
 
   m_strand.post(bind(p_onSent, p_error));
   p_outData.reset();
-  logger::debug("network.base.cnx", "cnx onSent (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx onSent (%s) : leaving", info(), HERE);
 }
 
 
@@ -359,14 +358,14 @@ void
 Connection<Domain>::receive(utils::sharedBuf_t p_inData,
                             utils::handler_t   p_onReceived)
 {
-  logger::debug("network.base.cnx", "cnx receive (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx receive (%s) : entering", info(), HERE);
 
   m_strand.post(bind(&Connection::do_receive,
                      this->shared_from_this(),
                      p_inData,
                      p_onReceived));
 
-  logger::debug("network.base.cnx", "cnx receive (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx receive (%s) : leaving", info(), HERE);
 }
 
 
@@ -376,10 +375,10 @@ void
 Connection<Domain>::do_receive(utils::sharedBuf_t p_inData,
                                utils::handler_t   p_onReceived)
 {
-  logger::debug("network.base.cnx", "cnx do_receive (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx do_receive (%s) : entering", info(), HERE);
 
 
-  boost::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
+  std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
 
   l_timer->expires_from_now(posix_time::milliseconds(m_conf.getReceiveTimeoutMs()));
   l_timer->async_wait(m_strand.wrap(bind(&Connection::receiveTimeout,
@@ -395,7 +394,7 @@ Connection<Domain>::do_receive(utils::sharedBuf_t p_inData,
 
   async_read(p_inData, l_handler);
 
-  logger::debug("network.base.cnx", "cnx do_receive (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx do_receive (%s) : leaving", info(), HERE);
 }
 
 
@@ -405,15 +404,15 @@ template <typename Domain>
 void
 Connection<Domain>::receiveTimeout(const bs::error_code p_error)
 {
-  logger::debug("network.base.cnx", "cnx receiveTimeout (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx receiveTimeout (%s) : entering", info(), HERE);
 
   if (p_error != ba::error::operation_aborted)
   {
-    logger::debug("network.base.cnx", "cnx receiveTimeout (%s) : timeout detected", info(), HERE);
+    log::debug("network.base.cnx", "cnx receiveTimeout (%s) : timeout detected", info(), HERE);
     cancel();
   }
 
-  logger::debug("network.base.cnx", "cnx receiveTimeout (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx receiveTimeout (%s) : leaving", info(), HERE);
 }
 
 
@@ -422,19 +421,19 @@ Connection<Domain>::receiveTimeout(const bs::error_code p_error)
 template <typename Domain>
 void
 Connection<Domain>::onReceived(const bs::error_code                      p_error,
-                               boost::shared_ptr<utils::deadLineTimer_t> p_timer,
+                               std::shared_ptr<utils::deadLineTimer_t> p_timer,
                                utils::handler_t                          p_onReceived)
 {
-  logger::debug("network.base.cnx", "cnx onReceived (%s) : entering", info(), HERE);
+  log::debug("network.base.cnx", "cnx onReceived (%s) : entering", info(), HERE);
 
   if (p_error != ba::error::operation_aborted)
   {
-    logger::info("network.base.cnx", "cnx onReceived (%s) : no abort detected, cancelling timer", info(), HERE);
+    log::info("network.base.cnx", "cnx onReceived (%s) : no abort detected, cancelling timer", info(), HERE);
     p_timer->cancel();
   }
 
   m_strand.post(bind(p_onReceived, p_error));
-  logger::debug("network.base.cnx", "cnx onReceived (%s) : leaving", info(), HERE);
+  log::debug("network.base.cnx", "cnx onReceived (%s) : leaving", info(), HERE);
 }
 
 
@@ -446,7 +445,7 @@ Connection<Domain>::cancel(void)
   m_socket.cancel(l_error);
 
   if (l_error)
-    logger::err("network.base.cnx", "cnx (%s) : error on cancel : %s", info(), l_error.message(), HERE);
+    log::err("network.base.cnx", "cnx (%s) : error on cancel : %s", info(), l_error.message(), HERE);
 }
 
 
@@ -461,11 +460,11 @@ Connection<Domain>::close(void)
 
   m_socket.shutdown(ba::ip::tcp::socket::shutdown_both, l_error);
   if (l_error)
-    logger::err("network.base.cnx", "cnx (%s) : error on shutdown : %s", info(), l_error.message(), HERE);
+    log::err("network.base.cnx", "cnx (%s) : error on shutdown : %s", info(), l_error.message(), HERE);
 
   m_socket.close(l_error);
   if (l_error)
-    logger::err("network.base.cnx", "cnx (%s) : error on close : %s", info(), l_error.message(), HERE);
+    log::err("network.base.cnx", "cnx (%s) : error on close : %s", info(), l_error.message(), HERE);
 }
 
 
@@ -491,21 +490,21 @@ Connection<Domain>::setSocketInfo(void)
     }
     catch (const boost::system::system_error& l_error)
     {
-      logger::err("network.base.cnx", "setSocketInfo() : error while setting socket option '%s'", l_error.what(), HERE);
+      log::err("network.base.cnx", "setSocketInfo() : error while setting socket option '%s'", l_error.what(), HERE);
       l_status = status::error;
     }
   }
   else
   {
-    logger::err("network.base.cnx", "setSocketInfo() : socket is yet closed!", HERE);
+    log::err("network.base.cnx", "setSocketInfo() : socket is yet closed!", HERE);
     l_status = status::error;
   }
 
-  m_info = str(format("%s:%d -> %s:%d")
-               % m_localAddr
-               % m_localPort
-               % m_remoteAddr
-               % m_remotePort);
+  m_info = format::vargs("%s:%d -> %s:%d",
+                         m_localAddr,
+                         m_localPort,
+                         m_remoteAddr,
+                         m_remotePort);
 
   return l_status;
 }

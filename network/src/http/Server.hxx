@@ -11,11 +11,11 @@
 # include <boost/asio/error.hpp>
 # include <boost/foreach.hpp>
 # include <boost/regex.hpp>
+# include <log.hh> //libcore
 # include "http/Connection.hh"
 # include "http/Request.hh"
 # include "http/Response.hh"
 # include "http/Template.hh"
-
 
 
 namespace ba = boost::asio;
@@ -58,18 +58,18 @@ template<typename Domain>
 void
 Server<Domain>::start(void)
 {
-  logger::info("network.http.server", "starting network::http server...");
+  log::info("network.http.server", "starting network::http server...");
   TBase::start();
-  logger::info("network.http.server", "starting network::http server...done");
+  log::info("network.http.server", "starting network::http server...done");
 }
 
 template<typename Domain>
 void
 Server<Domain>::stop(void)
 {
-  logger::info("network.http.server", "stopping network::http server...");
+  log::info("network.http.server", "stopping network::http server...");
   TBase::stop();
-  logger::info("network.http.server", "stopping network::http server...done");
+  log::info("network.http.server", "stopping network::http server...done");
 }
 
 template<typename Domain>
@@ -101,11 +101,11 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveError(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  boost::shared_ptr<Connection<Domain> > l_conn =
-    boost::static_pointer_cast<Connection<Domain> >(p_conn);
+  std::shared_ptr<Connection<Domain> > l_conn =
+    std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if ((p_error == ba::error::eof) && (false == l_conn->getClosedByServer()))
-    logger::info("network.http.server", "onReceivedError (%s) : closed by client", p_conn->info(), HERE);
+    log::info("network.http.server", "onReceivedError (%s) : closed by client", p_conn->info(), HERE);
   else
     TBase::onReceiveError(p_error, p_conn);
 }
@@ -115,15 +115,15 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  boost::shared_ptr<Connection<Domain> > l_conn = boost::static_pointer_cast<Connection<Domain> >(p_conn);
+  std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if(!l_conn->getClosedByServer())
   {
-    logger::info("network.http.server", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
+    log::info("network.http.server", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
   }
   else
   {
-    logger::err("network.http.server", "onReceivedTimeout (%s) : receive aborted, no answer from client before timeout", p_conn->info(), HERE);
+    log::err("network.http.server", "onReceivedTimeout (%s) : receive aborted, no answer from client before timeout", p_conn->info(), HERE);
   }
 
   TBase::onReceiveTimeout(p_error, p_conn);
@@ -154,8 +154,8 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (true == l_closeByServer)
   {
-    boost::shared_ptr<Connection<Domain> > l_conn =
-      boost::static_pointer_cast<Connection<Domain> >(p_conn);
+    std::shared_ptr<Connection<Domain> > l_conn =
+      std::static_pointer_cast<Connection<Domain> >(p_conn);
     l_conn->setClosedByServer(true);
     l_res.addHeader("Connection", "close");
   }
@@ -175,8 +175,8 @@ template<typename Domain>
 void
 Server<Domain>::afterSend(cnx_sptr_t p_conn)
 {
-  boost::shared_ptr<Connection<Domain> > l_conn =
-    boost::static_pointer_cast<Connection<Domain> >(p_conn);
+  std::shared_ptr<Connection<Domain> > l_conn =
+    std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (false == l_conn->getClosedByServer())
     TBase::do_receive(p_conn);
@@ -192,7 +192,7 @@ Server<Domain>::processRequest(uint32_t       p_processID,
 {
   if (status::ok != p_req.read(p_request))
   {
-    logger::err("network.http.server", "invalid http request", HERE);
+    log::err("network.http.server", "invalid http request", HERE);
     p_res.setVersion("1.0");
     p_res.setData("request parsing error...");
     p_res.setStatus(code::internal_error);

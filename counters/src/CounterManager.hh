@@ -5,7 +5,7 @@
 # include <boost/thread/mutex.hpp>
 # include <boost/filesystem.hpp>
 # include <boost/property_tree/ptree.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "counters_fwd.hh"
 # include "Base.hh"
 
@@ -19,7 +19,7 @@ class CounterManager
 {
 
 public:
-  typedef boost::shared_ptr<CounterManager>                    t_sptr;
+  typedef std::shared_ptr<CounterManager>                    t_sptr;
   typedef std::multimap<boost::filesystem::path, Base::t_sptr> t_counters;
 
 public:

@@ -1,5 +1,5 @@
 #include "utils/Resolver.hh"
-#include <logger.hh> // libcommon
+#include <log.hh> // libcore
 #include <boost/make_shared.hpp>
 
 namespace xtd {
@@ -13,7 +13,7 @@ namespace utils {
 Resolver<af_inet>::Resolver(boost::asio::io_service& p_ioService,uint32_t p_ttl) :
   m_ioService(p_ioService)
 {
-  m_cacheDns_ptr = boost::make_shared<CacheDns>(CACHE_CAPACITY_MAX,p_ttl);
+  m_cacheDns_ptr = std::make_shared<CacheDns>(CACHE_CAPACITY_MAX,p_ttl);
 }
 
 Resolver<af_inet>::~Resolver(void)
@@ -54,7 +54,7 @@ Resolver<af_inet>::resolve(const string&  p_host,
     }
     catch(const boost::system::system_error& ex)
     {
-      logger::crit("network.utils", "Can't resolve hostname %s:%s", p_host, p_port, HERE);
+      log::crit("network.utils", "Can't resolve hostname %s:%s", p_host, p_port, HERE);
     }
     return l_endpoint;
   }

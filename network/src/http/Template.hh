@@ -3,7 +3,7 @@
 
 # include <string>
 # include <boost/property_tree/ptree.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "cpptempl.hh"
 
 namespace xtd {

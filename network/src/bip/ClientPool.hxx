@@ -35,7 +35,7 @@ template<class TRequest, class TResponse, typename TDomain>
 void
 ClientPool<TRequest, TResponse, TDomain>::PersistentClient::invalidate(void)
 {
-  common::logger::err("network.bip.clientpool", "bip PersistentClient : invalidating client", HERE);
+  core::logger::err("network.bip.clientpool", "bip PersistentClient : invalidating client", HERE);
   m_lastUsed = boost::posix_time::ptime(boost::posix_time::min_date_time);
 }
 
@@ -64,7 +64,7 @@ ClientPool<TRequest, TResponse, TDomain>::PersistentClient::wait_async_connect(v
       m_isConnected = true;
     else
     {
-      common::logger::err("network.bip.clientpool", "bip PersistentClient : can't connect (%s:%d)", m_hostname, m_port, HERE);
+      core::logger::err("network.bip.clientpool", "bip PersistentClient : can't connect (%s:%d)", m_hostname, m_port, HERE);
       invalidate();
     }
   }
@@ -92,7 +92,7 @@ ClientPool<TRequest, TResponse, TDomain>::PersistentClient::send(const TRequest&
   l_status = bip::Client<TRequest, TResponse, TDomain>::send(p_request, p_debug);
   if (status::ok != l_status)
   {
-    common::logger::err("network.bip.clientpool", "bip PersistentClient : can't connect (%s:%d)", m_hostname, m_port, HERE);
+    core::logger::err("network.bip.clientpool", "bip PersistentClient : can't connect (%s:%d)", m_hostname, m_port, HERE);
     invalidate();
   }
 
@@ -111,7 +111,7 @@ ClientPool<TRequest, TResponse, TDomain>::PersistentClient::receive(TResponse& p
 
   if (status::ok != l_status)
   {
-    common::logger::err("network.bip.clientpool", "bip PersistentClient : can't receive", HERE);
+    core::logger::err("network.bip.clientpool", "bip PersistentClient : can't receive", HERE);
     invalidate();
   }
 

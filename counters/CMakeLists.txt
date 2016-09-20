@@ -1,6 +1,6 @@
 include_directories(
   ${Boost_INCLUDE_DIRS}
-  ${common_INCLUDE_DIRS}
+  ${core_INCLUDE_DIRS}
   ${counters_INCLUDE_DIRS}
   )
 
@@ -27,8 +27,8 @@ add_cloc(counters)
 add_cppcheck(counters)
 add_check(counters
   ARGS     -p -o compiler
-  INCLUDES ${common_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    common_s tests_s counters_s ${Boost_LIBRARIES})
+  INCLUDES ${core_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
+  LINKS    core_s tests_s counters_s ${Boost_LIBRARIES})
 add_cov(counters)
 
 

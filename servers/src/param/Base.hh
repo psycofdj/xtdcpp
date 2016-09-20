@@ -8,8 +8,8 @@
 # include <boost/lexical_cast.hpp>
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <ctime>
-# include <types.hh> // libcommon
-# include <logger.hh>   // libcommon
+# include <types.hh> // libcore
+# include <log.hh>   // libcore
 
 
 namespace xtd {
@@ -39,7 +39,7 @@ public:
   static T cast(const boost::any& p_val);
 
 public:
-  typedef boost::shared_ptr<Base> t_sptr;
+  typedef std::shared_ptr<Base> t_sptr;
 
 private:
   typedef boost::function<void(const boost::any&, const boost::any&)> t_listener;
@@ -336,7 +336,7 @@ Base::get(T& p_dst) const
     return true;
   }
   catch (boost::bad_any_cast l_error) {
-    logger::crit("servers.param.base", "unable to cast param '%s' as destination type (%s)", m_name, l_error.what(), HERE);
+    log::crit("servers.param.base", "unable to cast param '%s' as destination type (%s)", m_name, l_error.what(), HERE);
     return false;
   }
 }
@@ -382,7 +382,7 @@ Base::set(const T& p_src)
     m_value = p_src;
     toStr(l_newStr);
 
-    logger::crit("servers.param.base", "parameter '%s' has been changed from '%s' to '%s'", m_name, l_oldStr, l_newStr, HERE);
+    log::crit("servers.param.base", "parameter '%s' has been changed from '%s' to '%s'", m_name, l_oldStr, l_newStr, HERE);
 
     for (auto& c_callback : m_listeners)
       c_callback(l_old, m_value);

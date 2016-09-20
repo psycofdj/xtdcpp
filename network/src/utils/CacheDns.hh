@@ -9,7 +9,7 @@
 
 # include <boost/thread/thread.hpp>
 # include <boost/function.hpp>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/noncopyable.hpp>
 # include <boost/bind.hpp>
 # pragma GCC diagnostic push
@@ -42,9 +42,9 @@ struct CacheEntry
 };
 
 /// typedef for URL/Entry(IP address) pair
-typedef std::pair< string, boost::shared_ptr<CacheEntry> > EntryPair;
+typedef std::pair< string, std::shared_ptr<CacheEntry> > EntryPair;
 /// typedef for Cache list
-typedef std::list< boost::shared_ptr<EntryPair> > CacheList;
+typedef std::list< std::shared_ptr<EntryPair> > CacheList;
 /// typedef for URL-indexed map (aka hash map) into the CacheList
 typedef boost::unordered_map< string, CacheList::iterator > CacheMap;
 
@@ -106,7 +106,7 @@ private:
    * \brief moves element to the front of the cache (most recent)
    * @param p_elem cache entry to move to the front of the cache
    */
-  void moveElementFrontLst(const boost::shared_ptr<EntryPair> p_elem);
+  void moveElementFrontLst(const std::shared_ptr<EntryPair> p_elem);
 
   /**
    * \brief checks if the cache is full(maximum capacity reached) and evicts the oldest element from the cache
