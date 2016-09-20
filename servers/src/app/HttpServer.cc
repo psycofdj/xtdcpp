@@ -679,8 +679,7 @@ HttpServer::h_log(const uint32_t       p_requestID,
 {
   http::Json       l_tmpl;
   log::RootLogger& l_logger = log::getRoot();
-
-  const auto&          l_cgis = p_req.getCgis();
+  const auto&      l_cgis   = p_req.getCgis();
 
   if (0 != l_cgis.size())
   {
@@ -689,7 +688,7 @@ HttpServer::h_log(const uint32_t       p_requestID,
       if (false == log::is_valid(c_param.second))
         continue;
       if (c_param.first == "all")
-        l_logger.clearAll(log::from(c_param.second));
+        l_logger.setAllLevels(log::from(c_param.second));
       else if (c_param.first == "default")
         l_logger.setLevelTo("", log::from(c_param.second));
       else

@@ -18,13 +18,20 @@ namespace log {
  ** and propagating the others to its registered @ref Appender objects.
  **
  ** #### Object methods
- ** - @ref Logger::getLevel "getLevel"             : @copybrief Logger::getLevel
- ** - @ref Logger::setLevel "setLevel"             : @copybrief Logger::setLevel
- ** - @ref Logger::addAppender "addAppender"       : @copybrief Logger::addAppender
- ** - @ref Logger::clearAppenders "clearAppenders" : @copybrief Logger::clearAppenders
- ** - @ref Logger::log "log"                       : @copybrief Logger::log
+ **
+ ** - @ref Logger::getLevel "getLevel()"
+ **   - @copybrief Logger::getLevel
+ ** - @ref Logger::setLevel "setLevel(level)"
+ **   - @copybrief Logger::setLevel
+ ** - @ref Logger::addAppender "addAppender(object)"
+ **   - @copybrief Logger::addAppender
+ ** - @ref Logger::clearAppenders "clearAppenders()"
+ **   - @copybrief Logger::clearAppenders
+ ** - @ref Logger::log "log(format, args...)"
+ **   - @copybrief Logger::log
  **
  ** #### Variadic arguments format
+ **
  ** @ref Logger::log and all following logging shorthands allow to provide a format
  ** message with variadic template argument. Functionally, its equivalent to plain
  ** old **C-printf** argument but allows to pass std::string and user-defined
@@ -40,15 +47,23 @@ namespace log {
  **
  **
  ** #### Logging shorthands
- ** - @ref Logger::emerg "emerg"      : @copybrief Logger::emerg
- ** - @ref Logger::alert "alert"      : @copybrief Logger::alert
- ** - @ref Logger::crit "crit"        : @copybrief Logger::crit
- ** - @ref Logger::err "err"          : @copybrief Logger::err
- ** - @ref Logger::warning "warning"  : @copybrief Logger::warning
- ** - @ref Logger::notice "notice"    : @copybrief Logger::notice
- ** - @ref Logger::info "info"        : @copybrief Logger::info
- ** - @ref Logger::debug "debug"      : @copybrief Logger::debug
  **
+ ** - @ref Logger::emerg "emerg(format, args...)"
+ **   - @copybrief Logger::emerg
+ ** - @ref Logger::alert "alert(format, args...)"
+ **   - @copybrief Logger::alert
+ ** - @ref Logger::crit "crit(format, args...)"
+ **   - @copybrief Logger::crit
+ ** - @ref Logger::err "err(format, args...)"
+ **   - @copybrief Logger::err
+ ** - @ref Logger::warning "warning(format, args...)"
+ **   - @copybrief Logger::warning
+ ** - @ref Logger::notice "notice(format, args...)"
+ **   - @copybrief Logger::notice
+ ** - @ref Logger::info "info(format, args...)"
+ **   - @copybrief Logger::info
+ ** - @ref Logger::debug "debug(format, args...)"
+ **   - @copybrief Logger::debug
  **
  ** @code
  ** Logger& l_obj  = log::getRoot();
@@ -257,16 +272,56 @@ private:
  ** @brief Manage @ref Logger childs, one for each requests module
  ** @details
  **
- ** This object blabla
+ **
+ ** This object is responsible for creating and serving Logger for requested
+ ** modules.
+ **
+ ** In addition, it offer convenient methods to forward calls to
+ ** targeted module Logger.
+ **
+ ** ### Methods
+ **
+ ** - @ref RootLogger::get "get(module)"
+ **   - @copybrief RootLogger::get
+ ** - @ref RootLogger::getLevels "getLevels()"
+ **   - @copybrief RootLogger::getLevels
+ ** - @ref RootLogger::setAllLevels "setAllLevels(level)"
+ **   - @copybrief RootLogger::setAllLevels
+ ** - @ref RootLogger::setAllValueLevels "setAllValueLevels(int)"
+ **   - @copybrief RootLogger::setAllValueLevels
+ ** - @ref RootLogger::updateLevels "updateLevels(regexp, level)"
+ **   - @copybrief RootLogger::updateLevels
+ **
+ **
+ ** ### Shorthand methods
+ **
+ ** - @ref RootLogger::initialize "initialize(name, level)"
+ **   - @copybrief RootLogger::initialize
+ ** - @ref RootLogger::getLevelTo "getLevelTo(module)"
+ **   - @copybrief RootLogger::getLevelTo
+ ** - @ref RootLogger::setLevelTo "setLevelTo(module, level)"
+ **   - @copybrief RootLogger::setLevelTo
+ ** - @ref RootLogger::alertTo "alertTo(module, format, args...)"
+ **   - @copybrief RootLogger::alertTo
+ ** - @ref RootLogger::critTo "critTo(module, format, args...)"
+ **   - @copybrief RootLogger::critTo
+ ** - @ref RootLogger::warningTo "warningTo(module, format, args...)"
+ **   - @copybrief RootLogger::warningTo
+ ** - @ref RootLogger::infoTo "infoTo(module, format, args...)"
+ **   - @copybrief RootLogger::infoTo
+ ** - @ref RootLogger::noticeTo "noticeTo(module, format, args...)"
+ **   - @copybrief RootLogger::noticeTo
+ ** - @ref RootLogger::debugTo "debugTo(module, format, args...)"
+ **   - @copybrief RootLogger::debugTo
+ **
  **
  ** ### Modules and hierarchy
  **
  ** When a Logger is requested by any of the object methods referring to the
  ** **p_module** parameter, the RootLogger will either return the previously
  ** created Logger if it exists, or will create a new instance.
- **
  ** Newly created instances inherit all parameters from their closest parent
- ** in the module hierarchy. Ultimatly, the RootLogger itself will be used
+ ** in the module hierarchy. Ultimately, the RootLogger itself will be used
  ** create the new instance if no parent were found.
  **
  ** Hierarchy among module is determined by their name. Each period **.** found
@@ -279,7 +334,6 @@ private:
  ** ancestor in this hierarchy.
  ** Example :
  ** - module "a.b.c" as closest parent "a" (assuming "a.b" was never created)
- **
  **
  ** @code
  ** RootLogger& l_root = log::getRoot();
@@ -348,7 +402,7 @@ public:
   const t_levels getLevels(void) const;
 
   /**
-   ** @brief Shortand for @ref setName and @ref setLevel
+   ** @brief Shortand for @ref Logger::setName and @ref Logger::setLevel
    ** @param p_name New module name
    ** @param p_level New active log @ref level
    ** @return self
@@ -364,7 +418,7 @@ public:
 
 
   /**
-   ** @brief Same as @ref setAllLevels with integer level value
+   ** @brief Same as @ref RootLogger::setAllLevels with integer level value
    ** @param p_level integer level value
    ** @return self
    */
@@ -380,7 +434,6 @@ public:
    ** on "@<prefix_regex@>.*".
    */
   RootLogger& updateLevels(const string& p_regexpPrefix, level p_level);
-
 
 public:
   /**
