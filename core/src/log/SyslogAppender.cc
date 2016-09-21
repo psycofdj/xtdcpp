@@ -8,12 +8,19 @@
 namespace xtd {
 namespace log {
 
-uint32_t SyslogAppender::ms_instances = 0;
+std::mutex SyslogAppender::ms_mutex;
+uint32_t   SyslogAppender::ms_instances = 0;
 
-SyslogAppender::SyslogAppender(const string& p_identity, int32_t p_opts, int32_t p_facility) :
+SyslogAppender::SyslogAppender(const string&          p_identity,
+                               int32_t                p_opts,
+                               int32_t                p_facility,
+                               const sptr<Formatter>& p_formatter) :
+  Appender(p_formatter),
   m_opts(p_opts),
   m_facility(p_facility)
 {
+  std::lock_guard<std::mutex> l_lock(ms_mutex);
+
   if (0 == ms_instances)
   {
     if (p_identity == "%(binname)")
@@ -26,6 +33,8 @@ SyslogAppender::SyslogAppender(const string& p_identity, int32_t p_opts, int32_t
 
 SyslogAppender::~SyslogAppender(void)
 {
+  std::lock_guard<std::mutex> l_lock(ms_mutex);
+
   ms_instances--;
   if (0 == ms_instances)
     closelog();

@@ -152,9 +152,9 @@ ColoredFormatter::create(const string& p_name, const map<string,string>& p_prope
     tty::color                         l_bg    = tty::color::unset;
     tty::attrs                         l_attrs = tty::attrs::unset;
 
-    auto c_fgColor = p_properties.find("log.formatter." + p_name + ".field." + c_field + ".fgColor");
-    auto c_bgColor = p_properties.find("log.formatter." + p_name + ".field." + c_field + ".bgColor");
-    auto c_attrs   = p_properties.find("log.formatter." + p_name + ".field." + c_field + ".style");
+    auto c_fgColor = p_properties.find("log.formatter." + p_name + ".style." + c_field + ".fgColor");
+    auto c_bgColor = p_properties.find("log.formatter." + p_name + ".style." + c_field + ".bgColor");
+    auto c_attrs   = p_properties.find("log.formatter." + p_name + ".style." + c_field + ".attrs");
 
     if ((p_properties.end() == c_fgColor) &&
         (p_properties.end() == c_bgColor) &&

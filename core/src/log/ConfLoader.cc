@@ -1,4 +1,5 @@
 # include <log/ConfLoader.hh>
+# include <boost/regex.hpp>
 # include <boost/algorithm/string/split.hpp>
 # include <boost/algorithm/string/classification.hpp>
 # include <boost/algorithm/string/case_conv.hpp>
@@ -17,9 +18,9 @@ namespace xtd {
 namespace log {
 
 bool
-ConfLoader::configure(const map<string, string>& p_lines)
+ConfLoader::configure(const map<string, string>& p_properties)
 {
-  for (auto c_line : p_lines)
+  for (auto c_line : p_properties)
   {
     boost::smatch l_matches;
     boost::regex  l_re("^log\\.logger\\.(.*)$");
@@ -29,7 +30,7 @@ ConfLoader::configure(const map<string, string>& p_lines)
       if (l_matches.size() == 2)
       {
         try {
-          createLogger(l_matches[1], c_line.second, p_lines);
+          createLogger(l_matches[1], c_line.second, p_properties);
         } catch (const error& l_error) {
           std::cout << "unable to initialize loggers : " << l_error.what() << std::endl;
           return false;
@@ -125,10 +126,12 @@ ConfLoader::createLogger(const string&              p_name,
   }
 }
 
-XTD_CORE_LOG_REGISTER_APPENDER(MemoryAppender);
-XTD_CORE_LOG_REGISTER_APPENDER(SyslogAppender);
-XTD_CORE_LOG_REGISTER_APPENDER(StreamAppender);
-XTD_CORE_LOG_REGISTER_FORMATTER(Formatter);
-XTD_CORE_LOG_REGISTER_FORMATTER(ColoredFormatter);
+#ifndef DOXYGEN_SKIP
+XTD_CORE_LOG_REGISTER_APPENDER(MemoryAppender);    ///< registers MemoryAppender class
+XTD_CORE_LOG_REGISTER_APPENDER(SyslogAppender);    ///< registers SyslogAppender class
+XTD_CORE_LOG_REGISTER_APPENDER(StreamAppender);    ///< registers StreamAppender class
+XTD_CORE_LOG_REGISTER_FORMATTER(Formatter);        ///< registers Formatter class
+XTD_CORE_LOG_REGISTER_FORMATTER(ColoredFormatter); ///< registers ColoredFormatter class
+#endif
 
 }}

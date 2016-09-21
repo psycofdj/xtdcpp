@@ -13,9 +13,13 @@ namespace xtd {
 namespace tty {
 
 /**
- ** @brief Holds a TTY display attributes
+ ** @brief ANSI codes for terminal output options
  ** @details
- ** Available options are :
+ **
+ ** This object holds one or more terminal output option.
+ **
+ ** It cannot be constructed and can only be used through pre-defined constants.
+ ** Available constants are :
  ** - attrs::unset       : @copybrief attrs::unset
  ** - attrs::reset       : @copybrief attrs::reset
  ** - attrs::dim         : @copybrief attrs::dim
@@ -25,20 +29,25 @@ namespace tty {
  ** - attrs::reverse     : @copybrief attrs::reverse
  ** - attrs::hidden      : @copybrief attrs::hidden
  **
- ** These constants can be combined with attrs::operator|.
+ ** Multiple constants can be combined together with
+ ** @ref attrs::operator| "operator|". Example :
  ** @code
- ** attrs l_val;
+ ** attrs l_val = attrs::unset;
  **
  ** l_val  = attrs::bold;
  ** l_val  = attrs::bold | attrs::underlined;
  ** l_val |= reset;
  ** @endcode
+ **
+ ** Available methods :
+ ** - @ref attrs::getValues "getValues" : @copybrief attrs::getValues
+ ** - @ref attrs::isSet "isSet"         : @copybrief attrs::isSet
  */
 class attrs
 {
 private:
   enum class s : uint32_t {
-    reset       = 0,
+    reset      = 0,
     bold       = 1,
     dim        = 2,
     underlined = 4,
@@ -48,22 +57,14 @@ private:
   };
 
 public:
-  /*** @brief Default attribute, no effect */
-  static const attrs unset;
-  /*** @brief Remove all other effects */
-  static const attrs reset;
-  /*** @brief Reduced weight effect */
-  static const attrs dim;
-  /*** @brief Increased weight effect */
-  static const attrs bold;
-  /*** @brief Underlined effect */
-  static const attrs underlined;
-  /*** @brief Blinking effect */
-  static const attrs blink;
-  /*** @brief Revered foreground and background effect */
-  static const attrs reverse;
-  /*** @brief Hidden font effect */
-  static const attrs hidden;
+  static const attrs unset;      ///< Default output attribute, no effect
+  static const attrs reset;      ///< Remove all previously defined attribute
+  static const attrs dim;        ///< Reduced weight effect
+  static const attrs bold;       ///< Increased weight effect
+  static const attrs underlined; ///< Underlined effect
+  static const attrs blink;      ///< Blinking effect
+  static const attrs reverse;    ///< brief Revered foreground and background effect
+  static const attrs hidden;     ///< Hidden font effect
 
 private:
   attrs(void);
@@ -86,7 +87,7 @@ public:
   attrs operator|(const attrs& p_attrs) const;
 
   /**
-   ** @brief Returns internal values
+   ** @brief Returns internal ANSI code values
    ** @return vector of each effect id
    */
   const vector<uint32_t>& getValues(void) const;
@@ -102,35 +103,59 @@ private:
 
 
 /**
- ** @brief Represents a TTY color
+ ** @brief ANSI code for terminal output color
  ** @details
  ** There's two types of TTY colors, standard predefined and extended.
- ** - Predefined colors are built from constants and can be displayed on 16-colors terminals.
- ** - Extended colors are build from color(uint32_t) constructor and their compatibility
- **   depends on terminal capabilities.
+ **
+ ** Predefined colors are built from constants and can be displayed on almost every
+ ** terminals. Available colors are :
+ ** - @ref color::unset    : @copybrief color::unset
+ ** - @ref color::normal   : @copybrief color::normal
+ ** - @ref color::black    : @copybrief color::black
+ ** - @ref color::red      : @copybrief color::red
+ ** - @ref color::green    : @copybrief color::green
+ ** - @ref color::yellow   : @copybrief color::yellow
+ ** - @ref color::blue     : @copybrief color::blue
+ ** - @ref color::magenta  : @copybrief color::magenta
+ ** - @ref color::cyan     : @copybrief color::cyan
+ ** - @ref color::gray     : @copybrief color::gray
+ ** - @ref color::lblack   : @copybrief color::lblack
+ ** - @ref color::lred     : @copybrief color::lred
+ ** - @ref color::lgreen   : @copybrief color::lgreen
+ ** - @ref color::lyellow  : @copybrief color::lyellow
+ ** - @ref color::lblue    : @copybrief color::lblue
+ ** - @ref color::lmagenta : @copybrief color::lmagenta
+ ** - @ref color::lcyan    : @copybrief color::lcyan
+ ** - @ref color::lgray    : @copybrief color::lgray
+ ** - @ref color::white    : @copybrief color::white
+ **
+ **
+ ** Extended colors are direclty from their ANSI color code using the
+ ** *uint32_t* constructor. Their compatibility depends on the terminal
+ ** capabilities.
  */
 class color
 {
 public:
-  static const color unset;
-  static const color normal;
-  static const color black;
-  static const color red;
-  static const color green;
-  static const color yellow;
-  static const color blue;
-  static const color magenta;
-  static const color cyan;
-  static const color gray;
-  static const color lblack;
-  static const color lred;
-  static const color lgreen;
-  static const color lyellow;
-  static const color lblue;
-  static const color lmagenta;
-  static const color lcyan;
-  static const color lgray;
-  static const color white;
+  static const color unset;    ///< no color directive
+  static const color normal;   ///< default color
+  static const color black;    ///< black
+  static const color red;      ///< red
+  static const color green;    ///< green
+  static const color yellow;   ///< yellow
+  static const color blue;     ///< blue
+  static const color magenta;  ///< magenta
+  static const color cyan;     ///< cyan
+  static const color gray;     ///< gray
+  static const color lblack;   ///< light black
+  static const color lred;     ///< light red
+  static const color lgreen;   ///< light green
+  static const color lyellow;  ///< light yellow
+  static const color lblue;    ///< light blue
+  static const color lmagenta; ///< light magenta
+  static const color lcyan;    ///< light cyan
+  static const color lgray;    ///< light gray
+  static const color white;    ///< white
 
 private:
   enum class c : uint32_t {
@@ -197,11 +222,8 @@ private:
 
 
 /**
- ** @brief TTY Style information for a chunk of text
+ ** @brief Aggregates foreground color, background color and display options
  ** @details
- ** - Foreground color
- ** - Background color
- ** - Effects attributes
  **
  ** Usage example :
  ** @code
@@ -283,14 +305,22 @@ private:
 };
 
 /**
- ** @brief Chunk of TTY text
+ ** @brief Generates ANSI codes for given text and style
  ** @details
- ** Generates the TTY colors codes depending of its style and string content.
- ** Defines an implicit "to string" cast operator.
  **
- ** Usage example :
+ ** This object defines several constructors allowing to define only foreground
+ ** colors, foreground and background colors, colors and attributes or only
+ ** foreground color and attributes.
+ **
+ ** The method @ref Text::str return the full ANSI espace sequence for given text
+ ** and style options.
+ **
+ ** It also defines an implicit *string* cast operator allowing to use this object
+ ** as a genuine string.
+ **
+ ** Example :
  ** @code
- ** Text l_msg = Text("some text in red", color::red);
+ ** Text   l_msg = Text("some text in red", color::red);
  ** string l_val = l_msg;
  ** @endcode
  */

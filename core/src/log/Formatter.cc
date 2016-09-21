@@ -10,6 +10,8 @@
 namespace xtd {
 namespace log {
 
+
+
 Formatter::Formatter(void)
 {
   setLayouts({
@@ -159,14 +161,14 @@ Formatter::create(const string& p_name, const map<string,string>& p_properties)
 
   for (const auto& c_format : ls_formats)
   {
-    auto c_item = p_properties.find("log.formatter." + p_name + ".format." + c_format);
+    auto c_item = p_properties.find("log.formatter." + p_name + ".layout." + c_format);
     if (c_item != p_properties.end())
       l_result->setLayout(c_format, c_item->second);
   }
 
   for (const auto& c_field : ls_fields)
   {
-    auto c_item = p_properties.find("log.formatter." + p_name + ".field." + c_field + ".format");
+    auto c_item = p_properties.find("log.formatter." + p_name + ".format." + c_field);
     if (c_item != p_properties.end())
       l_result->setFieldFormat(c_field, c_item->second);
   }

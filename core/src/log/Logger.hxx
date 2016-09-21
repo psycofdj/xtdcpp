@@ -103,11 +103,8 @@ Logger::log(level p_level, const string& p_format, Args... p_args) const
     l_rec.m_module   = m_module;
     l_rec.m_name     = m_name;
 
-    {
-      std::lock_guard<std::mutex> l_lock(m_mutex);
-      for (auto c_appender : m_appenders)
-        c_appender->log(l_rec, p_args...);
-    }
+    for (auto c_appender : getAppenders())
+      c_appender->log(l_rec, p_args...);
   }
 }
 

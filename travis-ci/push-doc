@@ -26,6 +26,9 @@ echo "Copying generated documentation..."
 mkdir -p out/${DEST_DIR}/
 rm -rf out/${DEST_DIR}/*
 cp -r ./reports/* out/${DEST_DIR}/
+find out/${DEST_DIR}/ -name latex -type d | xargs rm -rf
+find out/${DEST_DIR}/ -name xml   -type d | xargs rm -rf
+
 
 cd out
 git config user.name "Travis CI"
@@ -43,6 +46,9 @@ echo "Adding files to git..."
 git add ${DEST_DIR}/*
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
+
+
+
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 echo "Decoding deploy key..."
 ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
@@ -56,5 +62,7 @@ ssh-add deploy_key
 
 # Now that we're all set up, we can push.
 echo "Pushing gh-pages branch..."
-git push -q $SSH_REPO ${TARGET_BRANCH}
+git branch ${TARGET_BRANCH}-clean $(echo "Deploy to GitHub Pages: ${SHA}" | git commit-tree HEAD^{tree})
+git checkout ${TARGET_BRANCH}-clean
+git push -f -q $SSH_REPO ${TARGET_BRANCH}-clean:${TARGET_BRANCH}
 rm -f deploy_key

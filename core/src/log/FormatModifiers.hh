@@ -1,89 +1,107 @@
 #ifndef XTD_CORE_LOG_FORMATMODIFIERS_HH_
 # define XTD_CORE_LOG_FORMATMODIFIERS_HH_
-# include "log/Formatter.hh"
-# include "log/ColoredFormatter.hh"
+# include <boost/regex.hpp>
+# include "types.hh"
+# include "tty.hh"
+# include "log/logtypes.hh"
+# include "log/Fields.hh"
+
 
 namespace xtd {
 namespace log {
 
-
+/**
+ ** @brief Dynamically change format to pad fields to maximum known size
+ */
 struct AutoWidth
 {
-  AutoWidth(const string& p_fields) :
-    AutoWidth(vector<string>({ p_fields }))
-  {
-  }
+  /**
+   ** @brief Constructor
+   ** @param p_fields Field list to pad automatically, see @ref Formatter for names
+   */
+  AutoWidth(const vector<string>& p_fields);
 
-  AutoWidth(const vector<string>& p_fields)
-  {
-    for (auto& c_field : p_fields)
-      m_widths[c_field] = 0;
-  }
+  /**
+   ** @brief Constructor
+   ** @param p_field Name of field to pad automatically, see @ref Formatter for names
+   */
+  AutoWidth(const string& p_field);
 
-  void operator()(const FormattedRecord& p_rec,
-                  Formatter::t_formats&  p_formats)
-  {
-    static const map<string, fn<size_t(const FormattedRecord&)>> l_func = {
-      { "name",     [](const FormattedRecord& p_rec) { return p_rec.m_name.size();     } },
-      { "message",  [](const FormattedRecord& p_rec) { return p_rec.m_message.size();  } },
-      { "function", [](const FormattedRecord& p_rec) { return p_rec.m_function.size(); } },
-      { "fulllog",  [](const FormattedRecord& p_rec) { return p_rec.m_fulllog.size();  } },
-      { "module",   [](const FormattedRecord& p_rec) { return p_rec.m_module.size();   } },
-      { "slevel",   [](const FormattedRecord& p_rec) { return to_string(p_rec.m_level).size();   } }
-    };
-
-    for (auto& c_width : m_widths)
-    {
-      auto c_functor = l_func.find(c_width.first);
-      if (l_func.end() != c_functor) {
-        c_width.second = std::max(c_width.second, c_functor->second(p_rec));
-        string l_format = boost::str(boost::format("%%-%ds") % c_width.second);
-        p_formats.set(c_width.first, l_format);
-      }
-    }
-  }
+  /**
+   ** @brief Call operator
+   ** @param p_rec current log record
+   ** @param p_formats fields format to modify
+   ** @details
+   ** Compare current log record fields width against maximum know width and modify
+   ** p_formats accordingly
+   */
+  void operator()(const FormattedRecord& p_rec, Fields<string>&  p_formats);
 
 private:
-  map<string, size_t> m_widths;
+  Fields<size_t> m_widths;
+  vector<string> m_fields;
 };
 
+/**
+ ** @brief Dynamically set slevel field style depending of record level
+ */
 struct StyleByLevel
 {
-  StyleByLevel(const map<level, tty::style>& p_conds) :
-    m_conds(p_conds)
-  { }
+  /**
+   ** @brief Constructor
+   ** @param p_conds Configuration map of style to apply for each level
+   */
+  StyleByLevel(const map<level, tty::style>& p_conds);
 
-  void operator()(const FormattedRecord& p_rec, ColoredFormatter::t_styles& p_style)
-  {
-    auto c_item = m_conds.find(p_rec.m_level);
-    if (c_item != m_conds.end())
-      p_style.m_slevel = c_item->second;
-  }
+  /**
+   ** @brief Call operator
+   ** @param p_rec current log record
+   ** @param p_styles fields styles to modify
+   ** @details
+   ** Sets slevel field style to value found in configuration map for level of
+   ** current log record.
+   */
+  void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles);
 
 private:
   map<level, tty::style> m_conds;
 };
 
+
+/**
+ ** @brief Dynamically set message field style depending of log record content
+ */
 struct MatchMessage
 {
-  MatchMessage(const std::regex& p_match, const tty::style& p_style) :
-    m_match(p_match),
-    m_style(p_style)
-  { }
+  /**
+   ** @brief Constructor
+   ** @param p_match Regexp matching log record message
+   ** @param p_style Style to apply to field message if regexp matches
+   */
+  MatchMessage(const boost::regex& p_match, const tty::style& p_style);
 
-  void operator() (const FormattedRecord& p_rec, ColoredFormatter::t_styles& p_style)
-  {
-    if (true == std::regex_match(p_rec.m_message, m_match))
-      p_style.m_message = m_style;
-  };
+  /**
+   ** @brief Call operator
+   ** @param p_rec current log record
+   ** @param p_styles fields styles to modify
+   ** @details
+   ** Sets message field style to value given at construction if current log message
+   ** matches construction regexp.
+   */
+  void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles);
 
 private:
-  std::regex m_match;
-  tty::style m_style;
+  boost::regex m_match;
+  tty::style   m_style;
 };
+
 
 
 
 }}
 
 #endif // !XTD_CORE_LOG_FORMATMODIFIERS_HH_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

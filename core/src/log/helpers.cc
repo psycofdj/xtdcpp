@@ -7,7 +7,7 @@ namespace {
 sptr<RootLogger> m_instance;
 }
 
-level from(const uint32_t& p_level)
+level from(const std::uint32_t& p_level)
 {
   if (p_level == LOG_EMERG)
     return level::emerg;
@@ -28,7 +28,7 @@ level from(const uint32_t& p_level)
   return level::crit;
 }
 
-level from(string p_level)
+level from(const std::string& p_level)
 {
   if (p_level == "emerg")
     return level::emerg;
@@ -49,7 +49,7 @@ level from(string p_level)
   return level::crit;
 }
 
-uint32_t to_value(level p_level)
+std::uint32_t to_value(level p_level)
 {
   switch (p_level)
   {
@@ -73,7 +73,7 @@ uint32_t to_value(level p_level)
   return LOG_CRIT;
 }
 
-string to_string(level p_level)
+std::string to_string(level p_level)
 {
   switch (p_level)
   {
@@ -97,7 +97,7 @@ string to_string(level p_level)
   return "crit";
 }
 
-bool is_valid(string p_level)
+bool is_valid(const std::string& p_level)
 {
   return
     ((p_level == "emerg")   ||
@@ -108,6 +108,23 @@ bool is_valid(string p_level)
      (p_level == "notice")  ||
      (p_level == "info")    ||
      (p_level == "debug"));
+}
+
+bool is_valid(const std::uint32_t& p_level)
+{
+  switch (p_level)
+  {
+  case LOG_EMERG :
+  case LOG_ALERT :
+  case LOG_CRIT :
+  case LOG_ERR :
+  case LOG_WARNING :
+  case LOG_NOTICE :
+  case LOG_INFO :
+  case LOG_DEBUG :
+    return true;
+  }
+  return false;
 }
 
 

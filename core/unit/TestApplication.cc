@@ -1,6 +1,6 @@
 #include "log.hh"                 //libcore
 #include "Application.hh"         //libcore
-#include "MainTestApplication.hh" //libtests
+#include <MainTestApplication.hh> //libtests
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 #include <stdexcept>

@@ -17,7 +17,7 @@ namespace log {
  ** The Logger handles user logs by filtering those under configured @ref level
  ** and propagating the others to its registered @ref Appender objects.
  **
- ** #### Object methods
+ ** ### Object methods
  **
  ** - @ref Logger::getLevel "getLevel()"
  **   - @copybrief Logger::getLevel
@@ -30,7 +30,7 @@ namespace log {
  ** - @ref Logger::log "log(format, args...)"
  **   - @copybrief Logger::log
  **
- ** #### Variadic arguments format
+ ** ### Variadic arguments format
  **
  ** @ref Logger::log and all following logging shorthands allow to provide a format
  ** message with variadic template argument. Functionally, its equivalent to plain
@@ -46,7 +46,7 @@ namespace log {
  ** @endcode
  **
  **
- ** #### Logging shorthands
+ ** ### Logging shorthands
  **
  ** - @ref Logger::emerg "emerg(format, args...)"
  **   - @copybrief Logger::emerg
@@ -78,10 +78,22 @@ namespace log {
  ** l_obj.debug("debug message");
  ** @endcode
  **
+ ** ### Thread Safety
+ **
+ ** - Concurrent calls to multiple objects : **YES**
+ ** - Concurrent calls to single object    : **YES**
+ **
+ ** The class uses a mutex-based locking that provides thread safeness for all
+ ** read and write operations on internal Appender list.
+ ** However record forwarding to each appender it not lock. The Appender object
+ ** is responsible of its own thread safeness.
  */
 class Logger
 {
 protected:
+  /**
+   ** @brief Type for child Appender list
+   */
   typedef vector<sptr<Appender>> t_appenders;
 
   /**
@@ -365,6 +377,17 @@ private:
  ** give you already enough flexibility. If you really need to, be aware that
  ** all helper free functions defined in the namespace uses a single static
  ** RootLogger instance.
+ **
+ ** ### Thread Safety
+ **
+ ** - Concurrent calls to multiple objects : **YES**
+ ** - Concurrent calls to single object    : **YES**
+ **
+ ** The class uses a mutex-based locking that provides thread safeness for all
+ ** read and write operations on internal child Logger list.
+ **
+ ** Calls to child logger methods are not protected, Logger object is
+ ** responsible of its own thread safeness.
  */
 class RootLogger : public Logger
 {
@@ -505,7 +528,6 @@ private:
 private:
   t_loggers          m_loggers;
   mutable std::mutex m_mutex;
-
 };
 
 }}
