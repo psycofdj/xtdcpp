@@ -1,7 +1,7 @@
 #ifndef NETWORK_UTILS_RESOLVER_HH_
 # define NETWORK_UTILS_RESOLVER_HH_
 
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include "utils/CommTypeDefs.hh"
 # include "utils/CacheDns.hh"
 
@@ -60,7 +60,7 @@ public:
 
 private:
   boost::asio::io_service&      m_ioService;
-  boost::shared_ptr<CacheDns> m_cacheDns_ptr;
+  std::shared_ptr<CacheDns> m_cacheDns_ptr;
 };
 
 

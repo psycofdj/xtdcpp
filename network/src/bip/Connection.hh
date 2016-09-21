@@ -87,7 +87,7 @@ private:
 
   void onSent(boost::system::error_code                p_error,
               size_t                              /* p_bytesTransferred */,
-              boost::shared_ptr<utils::vectorUint32_t> p_outHeader,
+              std::shared_ptr<utils::vectorUint32_t> p_outHeader,
               utils::sharedBuf_t                       p_outData,
               utils::handler_t                         p_onSent);
 

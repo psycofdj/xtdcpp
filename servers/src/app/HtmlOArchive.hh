@@ -10,7 +10,7 @@
 # include <boost/archive/impl/basic_xml_oarchive.ipp>
 # include <boost/archive/detail/archive_serializer_map.hpp>
 # include <boost/archive/impl/archive_serializer_map.ipp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 
 namespace xtd {
 namespace servers {

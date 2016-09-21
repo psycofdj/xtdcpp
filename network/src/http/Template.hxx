@@ -3,8 +3,8 @@
 
 # include <boost/algorithm/string/replace.hpp>
 # include <boost/format.hpp>
-# include <json_parser.hpp> // libcommon
-# include <logger.hh>          // libcommon
+# include <json_parser.hpp> // libcore
+# include <log.hh>          // libcore
 
 namespace xtd {
 namespace network {
@@ -30,7 +30,7 @@ Generator::addError(const string& p_error)
     m_error += ", ";
   m_error += p_error;
 
-  logger::err("network.http.template", "%s", p_error, HERE);
+  log::err("network.http.template", "%s", p_error, HERE);
 }
 
 

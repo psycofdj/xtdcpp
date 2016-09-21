@@ -3,15 +3,18 @@
 
 #include <string>
 #include <map>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/any.hpp>
-#include <types.hh> // libcommon
+#include <types.hh> // libcore
+#include <error.hh> // libcore
 #include "param/Base.hh"
 
 
 namespace xtd {
 namespace servers {
 namespace param {
+
+xtd_error_class(param_error, error);
 
 class Visitor;
 

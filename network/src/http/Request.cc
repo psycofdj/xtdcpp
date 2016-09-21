@@ -18,7 +18,7 @@
 #include <boost/assign/std/vector.hpp>
 #include <boost/foreach.hpp>
 #include <boost/algorithm/string/join.hpp>
-#include <logger.hh>
+#include <log.hh> // libcore
 
 
 using boost::assign::operator+=;
@@ -241,13 +241,13 @@ Request::read(std::istream& p_request)
 {
   if (status::ok != readHead(p_request))
   {
-    logger::err("network.http.request", "protocol error : bad initial line", HERE);
+    log::err("network.http.request", "protocol error : bad initial line", HERE);
     return status::error;
   }
 
   if (status::ok != readData(p_request))
   {
-    logger::err("network.http.request", "protocol error : invalid data", HERE);
+    log::err("network.http.request", "protocol error : invalid data", HERE);
     return status::error;
   }
 
@@ -259,13 +259,13 @@ Request::readHead(std::istream& p_request)
 {
   if (status::ok != readInitial(p_request))
   {
-    logger::err("network.http.request", "protocol error : bad initial line", HERE);
+    log::err("network.http.request", "protocol error : bad initial line", HERE);
     return status::error;
   }
 
   if (status::ok != readHeaders(p_request))
   {
-    logger::err("network.http.request", "protocol error : bad headers lines", HERE);
+    log::err("network.http.request", "protocol error : bad headers lines", HERE);
     return status::error;
   }
 
@@ -283,32 +283,32 @@ Request::readInitial(istream& p_request)
 
   if (0 == l_line.size())
   {
-    logger::err("network.http.request", "initial line error : no initial line", HERE);
+    log::err("network.http.request", "initial line error : no initial line", HERE);
     return status::error;
   }
 
   boost::split(l_parts, l_line, boost::is_any_of(" "));
   if (3 != l_parts.size())
   {
-    logger::err("network.http.request", "initial line error : invalid initial line format '%s'", l_line, HERE);
+    log::err("network.http.request", "initial line error : invalid initial line format '%s'", l_line, HERE);
     return status::error;
   }
 
   if (status::ok != readMethod(l_parts[0]))
   {
-    logger::err("network.http.request", "initial line error : unknown method '%s'", l_parts[0], HERE);
+    log::err("network.http.request", "initial line error : unknown method '%s'", l_parts[0], HERE);
     return status::error;
   }
 
   if (status::ok != readUrl(l_parts[1]))
   {
-    logger::err("network.http.request", "initial line error : invalid url '%s'", l_parts[1], HERE);
+    log::err("network.http.request", "initial line error : invalid url '%s'", l_parts[1], HERE);
     return status::error;
   }
 
   if (status::ok != readVersion(l_parts[2]))
   {
-    logger::err("network.http.request", "initial line error : invalid version '%s'", l_parts[2], HERE);
+    log::err("network.http.request", "initial line error : invalid version '%s'", l_parts[2], HERE);
     return status::error;
   }
 
@@ -329,7 +329,7 @@ Request::readMethod(const string& p_method)
     setMethod(Request::METHOD_HEAD);
   else
   {
-    logger::err("network.http.request", "initial line error : unknown method '%s'", l_value, HERE);
+    log::err("network.http.request", "initial line error : unknown method '%s'", l_value, HERE);
     return status::error;
   }
   return status::ok;
@@ -399,7 +399,7 @@ Request::readUrl(const string& p_url)
 
   if (0 == p_url.size())
   {
-    logger::err("network.http.request", "url error : invalid 0 size", HERE);
+    log::err("network.http.request", "url error : invalid 0 size", HERE);
     return status::error;
   }
   string::size_type l_pos = p_url.find("?");
@@ -454,7 +454,7 @@ Request::readVersion(const string& p_version)
 
   if (p_version.substr(0, l_pos) != "HTTP")
   {
-    logger::err("network.http.request", "version error : invalid", HERE);
+    log::err("network.http.request", "version error : invalid", HERE);
     return status::error;
   }
 
@@ -467,7 +467,7 @@ Request::readVersion(const string& p_version)
     setVersion(Request::VERSION_1_1);
   else
   {
-    logger::err("network.http.request", "initial line error : unknown version '%s'", l_version, HERE);
+    log::err("network.http.request", "initial line error : unknown version '%s'", l_version, HERE);
     return status::error;
   }
 
@@ -493,7 +493,7 @@ Request::readHeaders(istream& p_request)
     boost::trim(l_parts[0]);
     boost::trim(l_parts[1]);
     addHeader(l_parts[0], l_parts[1]);
-    logger::info("network.http.request", "received header %s: %s", l_parts[0], l_parts[1], HERE);
+    log::info("network.http.request", "received header %s: %s", l_parts[0], l_parts[1], HERE);
   }
 
   return status::ok;
@@ -517,7 +517,7 @@ Request::getDataSize(size_t& p_length) const
   catch (boost::bad_lexical_cast)
   {
 
-    logger::err("network.http.request", "read data : unable to interpret content-length '%s' as int", l_strVal, HERE);
+    log::err("network.http.request", "read data : unable to interpret content-length '%s' as int", l_strVal, HERE);
     return status::error;
   }
 
@@ -542,13 +542,13 @@ Request::readData(istream& p_request)
 
   if (status::error == getDataSize(l_length))
   {
-    logger::err("network.http.request", "read data : error while gettin data length", HERE);
+    log::err("network.http.request", "read data : error while gettin data length", HERE);
     return status::error;
   }
 
   if (l_length < l_data.size())
   {
-    logger::err("network.http.request", "read data : read more data than expected", HERE);
+    log::err("network.http.request", "read data : read more data than expected", HERE);
     return status::error;
   }
 
@@ -557,7 +557,7 @@ Request::readData(istream& p_request)
 
   if (false == getHeader("Content-Type", l_contentType))
   {
-    logger::err("network.http.request", "read data : unable to get Content-Type", HERE);
+    log::err("network.http.request", "read data : unable to get Content-Type", HERE);
     return status::error;
   }
 
@@ -567,7 +567,7 @@ Request::readData(istream& p_request)
   }
   else
   {
-    logger::err("network.http.request", "read data : unknown content type '%s'", l_contentType, HERE);
+    log::err("network.http.request", "read data : unknown content type '%s'", l_contentType, HERE);
     return status::error;
   }
   return status::ok;
@@ -595,7 +595,7 @@ Request::readDataFormEncoded(const string& p_data)
       l_value = l_post[1];
     else if (l_post.size() > 2)
     {
-      logger::err("network.http.request", "read data form : invalid post", HERE);
+      log::err("network.http.request", "read data form : invalid post", HERE);
       return status::error;
     }
 

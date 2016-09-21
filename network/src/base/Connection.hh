@@ -3,7 +3,7 @@
 
 
 # include <boost/asio.hpp>
-# include <types.hh> // libcommon
+# include <types.hh> // libcore
 # include "utils/Config.hh"
 # include "utils/CommTypeDefs.hh"
 # include "utils/Resolver.hh"
@@ -59,7 +59,7 @@ class Connection : public boost::enable_shared_from_this<Connection<Domain> >,
 {
 public:
   /** @brief shared_ptr sur this */
-  typedef boost::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef std::shared_ptr<Connection<Domain> > cnx_sptr_t;
 
 protected:
   // 1.
@@ -86,7 +86,7 @@ public:
    ** L'acceptor est passe en parametre car c'est chez lui qu'il faut
    ** enregistré l'évenement.
    */
-  void accept(boost::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
+  void accept(std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
               utils::handler_t                                               p_onAccepted);
 
   /**
@@ -95,7 +95,7 @@ public:
    ** Appel a p_onConnected lorsque l'appel aura ete execute (qu'il y ait erreur
    ** ou non)
    */
-  void connect(boost::shared_ptr<utils::Resolver<Domain> > p_resolver,
+  void connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
                utils::handler_t                            p_onConnected);
 
   /**
@@ -134,7 +134,7 @@ public:
 
 
 private:
-  void do_accept(boost::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
+  void do_accept(std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
                  utils::handler_t                                               p_onAccepted);
   /**
    ** @details
@@ -143,7 +143,7 @@ private:
    ** ait décidé d'instancier un acceptor pour chaque connection...)
    */
   void onAccepted(boost::system::error_code                                      p_error,
-                  boost::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
+                  std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
                   utils::handler_t                                               p_onAccepted);
 
 
@@ -154,11 +154,11 @@ private:
    ** 1. parametres p_host et p_port en copie pour garantir la duree
    **    de vie des donnees et eviter les dangling references
    */
-  void do_connect(boost::shared_ptr<utils::Resolver<Domain> > p_resolver,
+  void do_connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
                   utils::handler_t                            p_onConnected);
   void connectTimeout(const boost::system::error_code p_error);
   void onConnected(const boost::system::error_code           p_error,
-                   boost::shared_ptr<utils::deadLineTimer_t> p_timer,
+                   std::shared_ptr<utils::deadLineTimer_t> p_timer,
                    utils::handler_t                          p_onConnected);
 
   /* envoi */
@@ -167,7 +167,7 @@ private:
   void sendTimeout(const boost::system::error_code p_error);
   void onSent(const boost::system::error_code           p_error,
               utils::sharedBuf_t                        p_outData,
-              boost::shared_ptr<utils::deadLineTimer_t> p_timer,
+              std::shared_ptr<utils::deadLineTimer_t> p_timer,
               utils::handler_t                          p_onSent);
 
 
@@ -176,7 +176,7 @@ private:
                   utils::handler_t   p_onReceived);
   void receiveTimeout(const boost::system::error_code p_error);
   void onReceived(const boost::system::error_code           p_error,
-                  boost::shared_ptr<utils::deadLineTimer_t> p_timer,
+                  std::shared_ptr<utils::deadLineTimer_t> p_timer,
                   utils::handler_t                          p_onReceived);
 
   /**

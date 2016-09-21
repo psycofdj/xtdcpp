@@ -30,7 +30,7 @@ template <typename Domain>
 class Server : private boost::noncopyable
 {
 protected:
-  typedef typename boost::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef typename std::shared_ptr<Connection<Domain> > cnx_sptr_t;
 
 public:
   Server(void);
@@ -131,10 +131,10 @@ protected:
   utils::deque_id<uint32_t>                                  m_dequeId;
   utils::ioServicePtr_t                                          m_ioService;
   utils::workPtr_t                                               m_work;
-  boost::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > m_acceptor;
+  std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > m_acceptor;
 
 private:
-  boost::shared_ptr<utils::Resolver<Domain> > m_resolver;
+  std::shared_ptr<utils::Resolver<Domain> > m_resolver;
   size_t                                 m_threadNb;
   boost::thread_group                         m_threadGroup;
   // counters

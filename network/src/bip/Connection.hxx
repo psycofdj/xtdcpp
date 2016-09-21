@@ -1,7 +1,9 @@
 #ifndef NETWORK_BIP_CONNECTION_HXX_
 # define NETWORK_BIP_CONNECTION_HXX_
 
+
 # include <boost/asio.hpp>
+# include <log.hh> // libcore
 # include "utils/Config.hh"
 
 
@@ -60,9 +62,9 @@ template <typename Domain>
 void
 Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p_onSent)
 {
-  uint8_t                             l_crc8       = computeDataCrc(*p_outData);
-  boost::shared_ptr<utils::vectorUint32_t> l_headerBuff = make_shared<utils::vectorUint32_t>();
-  utils::sharedBuf_t                       l_outBuff    = make_shared<utils::vectorBytes_t>();
+  uint8_t                                l_crc8       = computeDataCrc(*p_outData);
+  std::shared_ptr<utils::vectorUint32_t> l_headerBuff = std::make_shared<utils::vectorUint32_t>();
+  utils::sharedBuf_t                     l_outBuff    = std::make_shared<utils::vectorBytes_t>();
 
 
   //build buffer to send
@@ -83,7 +85,7 @@ Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p
 
   (*l_headerBuff)[mcs_headerSize - 1] = l_crc;
 
-  logger::debug("network.bip.cnx", "bip cnx async_write (%s) : Header created (%d)", TBase::info(), m_counter, HERE);
+  log::debug("network.bip.cnx", "bip cnx async_write (%s) : Header created (%d)", TBase::info(), m_counter, HERE);
 
   // construct vector containing header (data size) and data
   vector<ba::const_buffer> l_buffers;
@@ -108,7 +110,7 @@ template <typename Domain>
 void
 Connection<Domain>::onSent(bs::error_code                           p_error,
                            size_t                          /*       p_bytesTransferred */,
-                           boost::shared_ptr<utils::vectorUint32_t> p_outHeader,
+                           std::shared_ptr<utils::vectorUint32_t> p_outHeader,
                            utils::sharedBuf_t                       p_outData,
                            utils::handler_t                         p_onSent)
 {
@@ -122,7 +124,7 @@ template <typename Domain>
 void
 Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_onReceived)
 {
-  logger::debug("network.bip.cnx", "bip cnx async_read (%s) : enterring (%d)", TBase::info(), m_counter, HERE);
+  log::debug("network.bip.cnx", "bip cnx async_read (%s) : enterring (%d)", TBase::info(), m_counter, HERE);
 
   // async read makes sure to receive all the data
   ba::async_read(this->m_socket,
@@ -134,7 +136,7 @@ Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_o
                              p_inData,
                              p_onReceived));
 
-  logger::debug("network.bip.cnx", "bip cnx async_read (%s) : leaving (%d)", TBase::info(), m_counter, HERE);
+  log::debug("network.bip.cnx", "bip cnx async_read (%s) : leaving (%d)", TBase::info(), m_counter, HERE);
 }
 
 template <typename Domain>
@@ -146,7 +148,7 @@ Connection<Domain>::onHeaderReceived(const bs::error_code& p_error,
 {
   if (p_error)
   {
-    logger::err("network.bip.cnx", "bip cnx onHeaderReceived (%s) : header receive error %s", TBase::info(), p_error.message(), HERE);
+    log::err("network.bip.cnx", "bip cnx onHeaderReceived (%s) : header receive error %s", TBase::info(), p_error.message(), HERE);
     p_onReceived(p_error);
     return;
   }
@@ -155,7 +157,7 @@ Connection<Domain>::onHeaderReceived(const bs::error_code& p_error,
 
   if (l_crc  != m_header[mcs_headerSize - 1])
   {
-    logger::err("network.bip.cnx", "bip cnx onHeaderReceived (%s) : bad header CRC error (0x%hhX != 0x%hhX)", TBase::info(), m_header[mcs_headerSize - 1], l_crc, HERE);
+    log::err("network.bip.cnx", "bip cnx onHeaderReceived (%s) : bad header CRC error (0x%hhX != 0x%hhX)", TBase::info(), m_header[mcs_headerSize - 1], l_crc, HERE);
     p_onReceived(ba::error::invalid_argument);
     return;
   }
@@ -163,7 +165,7 @@ Connection<Domain>::onHeaderReceived(const bs::error_code& p_error,
   m_counter = m_header[1];
   m_inboundData.resize(m_header[0]);
 
-  logger::debug("network.bip.cnx", "bip cnx onHeaderReceived (%s) : header received (id : %d)", TBase::info(), m_counter, HERE);
+  log::debug("network.bip.cnx", "bip cnx onHeaderReceived (%s) : header received (id : %d)", TBase::info(), m_counter, HERE);
   receive_data(p_inData, p_onReceived);
 }
 
@@ -206,7 +208,7 @@ Connection<Domain>::onDataReceived(const bs::error_code&    p_error,
 {
   if (p_error)
   {
-    logger::err("network.bip.cnx", "bip cnx onDataReceived (%s) : data receive error %s (id: %d) ", TBase::info(), p_error.message(), m_counter, HERE);
+    log::err("network.bip.cnx", "bip cnx onDataReceived (%s) : data receive error %s (id: %d) ", TBase::info(), p_error.message(), m_counter, HERE);
     p_onReceived(p_error);
     return;
   }
@@ -216,12 +218,12 @@ Connection<Domain>::onDataReceived(const bs::error_code&    p_error,
 
   if (l_dataCrc != l_crc8)
   {
-    logger::err("network.bip.cnx", "bip cnx onDataReceived (%s) : bad data crc error (0x%hhX != 0x%hhX) (id : %d)", TBase::info(), l_dataCrc, l_crc8, m_counter, HERE);
+    log::err("network.bip.cnx", "bip cnx onDataReceived (%s) : bad data crc error (0x%hhX != 0x%hhX) (id : %d)", TBase::info(), l_dataCrc, l_crc8, m_counter, HERE);
     p_onReceived(ba::error::invalid_argument);
     return;
   }
 
-  logger::debug("network.bip.cnx", "bip cnx onDataReceived (%s) : Data received (id : %d)", TBase::info(), m_counter, HERE);
+  log::debug("network.bip.cnx", "bip cnx onDataReceived (%s) : Data received (id : %d)", TBase::info(), m_counter, HERE);
 
   p_inData->swap(m_inboundData);
   p_onReceived(p_error);

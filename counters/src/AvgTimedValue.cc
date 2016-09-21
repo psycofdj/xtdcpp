@@ -4,7 +4,7 @@
 #include <boost/bind.hpp>
 #include <boost/foreach.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <logger.hh> // libcommon
+#include <log.hh> // libcore
 
 
 
@@ -51,7 +51,7 @@ AvgTimedValue::startChrono(uint32_t p_requestID)
 {
   if(m_reseted[p_requestID] == 1)
   {
-    logger::crit("counters.avgtimedvalue", "AvgTimedValue chrono started but not stopped (ID:%d)!!! Cancel init start date. ", p_requestID, HERE);
+    log::crit("counters.avgtimedvalue", "AvgTimedValue chrono started but not stopped (ID:%d)!!! Cancel init start date. ", p_requestID, HERE);
   }
   else
   {
@@ -68,7 +68,7 @@ AvgTimedValue::stopChrono(uint32_t p_requestID)
 
   if (m_reseted[p_requestID] == 0)
   {
-    logger::crit("counters.avgtimedvalue", "AvgTimedValue chrono stopped but not started (ID:%d)!!! Value is discarded. ", p_requestID, HERE);
+    log::crit("counters.avgtimedvalue", "AvgTimedValue chrono stopped but not started (ID:%d)!!! Value is discarded. ", p_requestID, HERE);
     return;
   }
 
@@ -109,7 +109,7 @@ AvgTimedValue::thresdhold_safe(uint32_t p_timeUs)
   if ((m_thresholdMs != 0) && (p_timeUs > m_thresholdMs * 1000))
   {
     m_overThreshold++;
-    logger::crit("counters.avgtimedvalue", "AvgTimedValue over threshold (%d us / threshold : %d000 us)", p_timeUs, m_thresholdMs, HERE);
+    log::crit("counters.avgtimedvalue", "AvgTimedValue over threshold (%d us / threshold : %d000 us)", p_timeUs, m_thresholdMs, HERE);
 
     if (true == m_assert)
     {

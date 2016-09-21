@@ -38,7 +38,7 @@ class Value : public Base
   friend class Composed;
 
 public:
-  typedef boost::shared_ptr<Value<TType> > t_sptr;
+  typedef std::shared_ptr<Value<TType> > t_sptr;
 
 public:
   Value(const string& p_name);

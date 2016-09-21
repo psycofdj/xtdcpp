@@ -40,10 +40,10 @@
 # define NETWORK_HTTP_CPPTEMPL_HH_
 
 #include <exception>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
-#include <types.hh> //libcommon
+#include <types.hh> //libcore
 
 namespace xtd {
 namespace network {
@@ -53,12 +53,12 @@ namespace cpptempl {
 
 // various typedefs
 class Data;
-typedef boost::shared_ptr<Data>   data_ptr;
+typedef std::shared_ptr<Data>   data_ptr;
 typedef vector<data_ptr>          data_list;
 typedef map<string, data_ptr>     data_map;
 
 class Token;
-typedef boost::shared_ptr<Token>  token_ptr;
+typedef std::shared_ptr<Token>  token_ptr;
 typedef vector<token_ptr>         token_vector;
 
 

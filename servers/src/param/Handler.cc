@@ -6,7 +6,8 @@
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/filesystem.hpp>
-#include <error.hh> // libcommon
+#include <error.hh> // libcore
+#include <log.hh>   // libcore
 #include "param/Base.hh"
 #include "param/Visitor.hh"
 
@@ -29,15 +30,15 @@ Handler::Handler(const string& p_actionPath) :
 {
   if (false == is_directory(m_actionPath))
   {
-    logger::info("servers.param.handler", "action directory '%s' does not exist, trying to create it", m_actionPath, HERE);
+    log::info("servers.param.handler", "action directory '%s' does not exist, trying to create it", m_actionPath, HERE);
     if (false == create_directories(m_actionPath))
     {
       if (false == is_directory(m_actionPath))
-        error::do_throw("servers.param.handler", "failed to create action directory '%s', exit now!", m_actionPath, HERE);
+        log::raise<param_error>("servers.param.handler", "failed to create action directory '%s', exit now!", m_actionPath, HERE);
     }
     else
     {
-      logger::info("servers.param.handler", "action directory '%s' created", m_actionPath, HERE);
+      log::info("servers.param.handler", "action directory '%s' created", m_actionPath, HERE);
     }
   }
 }
@@ -55,7 +56,7 @@ Handler::initialize(void)
 
       if (false == is_regular_file(l_path))
       {
-        logger::info("servers.param.handler", "can't find persistent file to initalize parameter '%s', path = %s", c_param.first, l_path, HERE);
+        log::info("servers.param.handler", "can't find persistent file to initalize parameter '%s', path = %s", c_param.first, l_path, HERE);
         c_param.second->sync();
       }
       else
@@ -67,7 +68,7 @@ Handler::initialize(void)
         l_content.assign(std::istreambuf_iterator<char>(l_file), std::istreambuf_iterator<char>());
         l_file.close();
         if (false == c_param.second->fromStr(l_content))
-          logger::crit("servers.param.handler", "unable to initialize param '%s' from value '%s'", c_param.first, l_content, HERE);
+          log::crit("servers.param.handler", "unable to initialize param '%s' from value '%s'", c_param.first, l_content, HERE);
       }
     }
   }

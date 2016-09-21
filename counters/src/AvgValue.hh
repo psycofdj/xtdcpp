@@ -16,7 +16,7 @@ class AvgValue : public Composed
   friend class Composed;
 
 public:
-  typedef boost::shared_ptr<AvgValue<TType> > t_sptr;
+  typedef std::shared_ptr<AvgValue<TType> > t_sptr;
 
 protected:
   typedef std::deque<TType> t_samples;

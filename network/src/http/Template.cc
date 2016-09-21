@@ -7,8 +7,9 @@
 #include <boost/lambda/lambda.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/format.hpp>
-#include <json_parser.hpp> // libcommon
-#include <text.hh>         // libcommon
+#include <json_parser.hpp> // libcore
+#include <text.hh>         // libcore
+#include <log.hh>          // libcore
 
 using namespace boost::assign;
 using namespace boost;
@@ -84,7 +85,7 @@ Json::resolve(string& p_result)
     p_result = l_out.str();
   } catch (const boost::property_tree::ptree_error& l_error)
   {
-    addError(str(format("json resolve error : %s") % l_error.what()));
+    addError(boost::str(boost::format("json resolve error : %s") % l_error.what()));
     return status::error;
   }
   return status::ok;
@@ -123,7 +124,7 @@ Template::resolve(string& p_result)
     }
     catch (cpptempl::TemplateException& l_error)
     {
-      addError(str(format("template parsing error : %s") % l_error.what()));
+      addError(format::vargs("template parsing error : %s", l_error.what()));
       p_result.clear();
       return status::error;
     }
@@ -145,7 +146,7 @@ Template::loadTemplate(const string& p_templatePath)
 
   if (!l_templateFile)
   {
-    logger::err("network.http.template", "unable to open template file '%s'", p_templatePath, HERE);
+    log::err("network.http.template", "unable to open template file '%s'", p_templatePath, HERE);
     return status::error;
   }
 

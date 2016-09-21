@@ -2,7 +2,7 @@
 # define SERVERS_PARAM_VISITOR_HH_
 
 # include <string>
-# include <json_parser.hpp>  // libcommon
+# include <json_parser.hpp>  // libcore
 # include <http/Template.hh> // libnetwork
 # include "param/Base.hh"
 

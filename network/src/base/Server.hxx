@@ -8,11 +8,11 @@
 # include <boost/asio/ip/host_name.hpp>
 # include <boost/thread/thread.hpp>
 # include <boost/noncopyable.hpp>
-# include <boost/shared_ptr.hpp>
+# include <memory>
 # include <boost/make_shared.hpp>
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <boost/interprocess/detail/atomic.hpp>
-# include <logger.hh> // libcommon
+# include <log.hh> // libcore
 
 # include "utils/Resolver.hh"
 # include "base/Connection.hh"
@@ -114,7 +114,7 @@ template<typename Domain>
 void
 Server<Domain>::start(void)
 {
-  logger::info("network.base.server", "starting Server threads",  HERE);
+  log::info("network.base.server", "starting Server threads",  HERE);
 
   //!\ WARNING /!\\ : +1 is needed to have a free slot to refuse a request
   for (size_t i = 0; i < m_threadNb+1; ++i)
@@ -132,9 +132,9 @@ template<typename Domain>
 void
 Server<Domain>::join(void)
 {
-  logger::info("network.base.server", "joining Server thread",  HERE);
+  log::info("network.base.server", "joining Server thread",  HERE);
   m_threadGroup.join_all();
-  logger::info("network.base.server", "stopping network::base server...done",  HERE);
+  log::info("network.base.server", "stopping network::base server...done",  HERE);
 }
 
 
@@ -151,7 +151,7 @@ template<typename Domain>
 void
 Server<Domain>::stop(void)
 {
-  logger::info("network.base.server", "stopping network::base server...",  HERE);
+  log::info("network.base.server", "stopping network::base server...",  HERE);
   m_ioService->stop();
 }
 
@@ -167,13 +167,13 @@ template<typename Domain>
 void
 Server<Domain>::accept(void)
 {
-  logger::debug("network.base.server", "accept : enterring, creating new cnx",  HERE);
+  log::debug("network.base.server", "accept : enterring, creating new cnx",  HERE);
 
   cnx_sptr_t l_conn = createCnx(m_resolver->getAddr(m_acceptor->local_endpoint()),
                                 m_resolver->getPort(m_acceptor->local_endpoint()));
   l_conn->accept(m_acceptor, bind(&Server::onAccepted, this, _1, l_conn));
 
-  logger::debug("network.base.server", "accept : leaving",  HERE);
+  log::debug("network.base.server", "accept : leaving",  HERE);
 }
 
 
@@ -199,7 +199,7 @@ void
 Server<Domain>::onAccepted(const bs::error_code p_error,
                            cnx_sptr_t           p_conn)
 {
-  logger::debug("network.base.server", "onAccepted (%s) : entering",  p_conn->info(), HERE);
+  log::debug("network.base.server", "onAccepted (%s) : entering",  p_conn->info(), HERE);
 
   // 1.
   utils::scoped_method l_acceptOnExit(bind(&Server::accept, this));
@@ -210,17 +210,17 @@ Server<Domain>::onAccepted(const bs::error_code p_error,
   if (p_error)
   {
     atomic::atomic_inc32(&m_cnxRejected);
-    logger::err("network.base.server", "onAccepted (%s) : error '%s'",  p_conn->info(), p_error.message(), HERE);
+    log::err("network.base.server", "onAccepted (%s) : error '%s'",  p_conn->info(), p_error.message(), HERE);
     return;
   }
 
   atomic::atomic_inc32(&m_cnxAccepted);
-  logger::info("network.base.server", "onAccepted (%s) : connection accepted",  p_conn->info(), HERE);
+  log::info("network.base.server", "onAccepted (%s) : connection accepted",  p_conn->info(), HERE);
 
   // 3.
   afterAccept(p_conn);
 
-  logger::debug("network.base.server", "onAccepted : leaving",  HERE);
+  log::debug("network.base.server", "onAccepted : leaving",  HERE);
 }
 
 
@@ -228,9 +228,9 @@ template<typename Domain>
 void
 Server<Domain>::do_receive(cnx_sptr_t p_conn)
 {
-  logger::debug("network.base.server", "do_receive (%s) : entering",  p_conn->info(), HERE);
+  log::debug("network.base.server", "do_receive (%s) : entering",  p_conn->info(), HERE);
 
-  utils::sharedBuf_t l_inBuffer = make_shared<utils::vectorBytes_t>();
+  utils::sharedBuf_t l_inBuffer = std::make_shared<utils::vectorBytes_t>();
 
   p_conn->receive(l_inBuffer,
                   bind(&Server::onReceived,
@@ -239,7 +239,7 @@ Server<Domain>::do_receive(cnx_sptr_t p_conn)
                        p_conn,
                        l_inBuffer));
 
-  logger::debug("network.base.server", "do_receive (%s) : leaving",  p_conn->info(), HERE);
+  log::debug("network.base.server", "do_receive (%s) : leaving",  p_conn->info(), HERE);
 }
 
 
@@ -247,7 +247,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveError(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  logger::err("network.base.server", "onReceiveError (%s) : %s",  p_conn->info(), p_error.message(), HERE);
+  log::err("network.base.server", "onReceiveError (%s) : %s",  p_conn->info(), p_error.message(), HERE);
   atomic::atomic_inc32(&m_receiveTotal);
   atomic::atomic_inc32(&m_receiveError);
 }
@@ -257,7 +257,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  logger::info("network.base.server", "onReceiveTimeout (%s) : %s",  p_conn->info(), p_error.message(), HERE);
+  log::info("network.base.server", "onReceiveTimeout (%s) : %s",  p_conn->info(), p_error.message(), HERE);
   atomic::atomic_inc32(&m_receiveTotal);
   atomic::atomic_inc32(&m_receiveTimeout);
 }
@@ -291,7 +291,7 @@ Server<Domain>::onReceived(const bs::error_code p_error,
   uint32_t          l_durationMs;
   uint32_t          l_processID;
 
-  logger::debug("network.base.server", "onReceived (%s) : entering",  p_conn->info(), HERE);
+  log::debug("network.base.server", "onReceived (%s) : entering",  p_conn->info(), HERE);
 
   if (p_error == ba::error::operation_aborted)
   {
@@ -311,7 +311,7 @@ Server<Domain>::onReceived(const bs::error_code p_error,
   if (false == m_dequeId.pop(l_processID))
   {
     atomic::atomic_inc32(&m_receiveError);
-    logger::crit("network.base.server", "onReceived (%s) : no processID available",  p_conn->info(), HERE);
+    log::crit("network.base.server", "onReceived (%s) : no processID available",  p_conn->info(), HERE);
     return;
   }
 
@@ -327,7 +327,7 @@ Server<Domain>::onReceived(const bs::error_code p_error,
   l_diffTime   = bt::microsec_clock::local_time() - l_beginTime;
   l_durationMs = l_diffTime.total_milliseconds();
   atomic::atomic_write32(&m_receivedLastTime, l_durationMs);
-  logger::debug("network.base.server", "onReceived (%s) : leaving",  p_conn->info(), HERE);
+  log::debug("network.base.server", "onReceived (%s) : leaving",  p_conn->info(), HERE);
 }
 
 
@@ -336,11 +336,11 @@ void
 Server<Domain>::do_send(cnx_sptr_t                  p_conn,
                         const utils::vectorBytes_t& p_outData)
 {
-  logger::debug("network.base.server", "do_send (%s) : entering",  p_conn->info(), HERE);
+  log::debug("network.base.server", "do_send (%s) : entering",  p_conn->info(), HERE);
 
   p_conn->send(p_outData, bind(&Server::onSent, this, _1, p_conn));
 
-  logger::debug("network.base.server", "do_send (%s) : leaving",  p_conn->info(), HERE);
+  log::debug("network.base.server", "do_send (%s) : leaving",  p_conn->info(), HERE);
 }
 
 
@@ -349,26 +349,26 @@ void
 Server<Domain>::onSent(const bs::error_code p_error,
                        cnx_sptr_t           p_conn)
 {
-  logger::debug("network.base.server", "onSent (%s) : entering",  p_conn->info(), HERE);
+  log::debug("network.base.server", "onSent (%s) : entering",  p_conn->info(), HERE);
   atomic::atomic_inc32(&m_sendTotal);
 
   if (p_error == ba::error::operation_aborted)
   {
-    logger::err("network.base.server", "onSent (%s) : receive canceled, probably due to timeout",  p_conn->info(), HERE);
+    log::err("network.base.server", "onSent (%s) : receive canceled, probably due to timeout",  p_conn->info(), HERE);
     atomic::atomic_inc32(&m_sendTimeout);
     return;
   }
 
   if (p_error)
   {
-    logger::err("network.base.server", "onSent (%s) : error '%s'",  p_conn->info(), p_error.message(), HERE);
+    log::err("network.base.server", "onSent (%s) : error '%s'",  p_conn->info(), p_error.message(), HERE);
     atomic::atomic_inc32(&m_sendError);
     return;
   }
 
   afterSend(p_conn);
   atomic::atomic_inc32(&m_sendSuccess);
-  logger::debug("network.base.server", "onSent (%s) : leaving",  p_conn->info(), HERE);
+  log::debug("network.base.server", "onSent (%s) : leaving",  p_conn->info(), HERE);
 }
 
 

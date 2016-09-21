@@ -24,7 +24,7 @@ class Cache : public Composed
   friend class Composed;
 
 public:
-  typedef boost::shared_ptr<Cache> t_sptr;
+  typedef std::shared_ptr<Cache> t_sptr;
 
 public:
   Cache(const string& p_name,

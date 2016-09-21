@@ -1,7 +1,7 @@
 #ifndef SERIALIZER_OBJECTS_DOC_HH_
 # define SERIALIZER_OBJECTS_DOC_HH_
 
-# include <types.hh>   // libcommon
+# include <types.hh>   // libcore
 # include "serializer.hh"
 
 namespace xtd {

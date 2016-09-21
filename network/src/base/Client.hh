@@ -6,10 +6,7 @@
 # include <boost/interprocess/sync/interprocess_semaphore.hpp>
 # include <boost/noncopyable.hpp>
 # include <boost/enable_shared_from_this.hpp>
-
-# include <types.hh> // libcommon
-# include <logger.hh>   // libcommon
-
+# include <types.hh> // libcore
 # include "utils/Config.hh"
 # include "utils/CommTypeDefs.hh"
 # include "utils/Utils.hh"
@@ -32,7 +29,7 @@ template <typename Domain>
 class Client : private boost::noncopyable
 {
 protected:
-  typedef boost::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef std::shared_ptr<Connection<Domain> > cnx_sptr_t;
 
 protected:
   Client(const utils::Config& p_conf);
@@ -42,7 +39,7 @@ public:
 
 public:
   status connect(const string& p_hostname,
-                      const uint32_t p_port);
+                 const uint32_t p_port);
   void async_connect(const string& p_hostname,
                      const uint32_t p_port);
   status wait_async_connect();
@@ -61,7 +58,7 @@ protected:
 
 private:
   ThreadManager&                              m_threadManager;
-  boost::shared_ptr<utils::Resolver<Domain> > m_resolver;
+  std::shared_ptr<utils::Resolver<Domain> > m_resolver;
   string                                 m_hostname;
   uint32_t                               m_port;
   boost::interprocess::interprocess_semaphore m_semaphoreConnect;
