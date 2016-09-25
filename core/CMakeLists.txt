@@ -3,7 +3,7 @@ include_directories(
   ${core_INCLUDE_DIRS}
   )
 
-add_shared_static_library(core
+add_shared_static_library(xtd-core
   src/types.cc
   src/log/Appender.cc
   src/log/ColoredFormatter.cc
@@ -31,10 +31,12 @@ add_doc(core
   EXPAND_AS_DEFINED
   "xtd_error_class(p_name,p_base)"
   WERROR)
+
 add_doc_coverage(core)
 add_cloc(core)
 add_cppcheck(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    core_s tests_s cwrap)
+  LINKS    xtd-core_s xtd-tests_s xtd-cwrap)
+
 add_cov(core)

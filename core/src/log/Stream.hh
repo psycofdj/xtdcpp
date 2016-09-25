@@ -2,6 +2,7 @@
 # define XTD_CORE_LOG_STREAM_HH_
 # include "types.hh"
 # include <mutex>
+# include <iostream>
 
 namespace xtd {
 namespace log {
@@ -31,6 +32,11 @@ public:
    ** @param p_value value to write
    */
   void append(const string& p_value);
+
+  /**
+   ** @brief Flush underlying stream
+   */
+  void flush(void);
 
   /**
    ** @brief Write given value to underlying stream

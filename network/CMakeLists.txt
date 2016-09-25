@@ -5,7 +5,7 @@ include_directories(
   ${network_INCLUDE_DIRS}
 )
 
-add_shared_static_library(network
+add_shared_static_library(xtd-network
   src/utils/Config.cc
   src/utils/Utils.cc
   src/utils/Resolver.cc
@@ -35,5 +35,5 @@ add_cppcheck(network)
 add_check(network
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    core_s tests_s network_s ${Boost_LIBRARIES})
+  LINKS    xtd-core_s xtd-tests_s xtd-network_s ${Boost_LIBRARIES})
 add_cov(network)

@@ -23,4 +23,10 @@ Stream::append(const string& p_value)
   m_stream << p_value;
 }
 
+void
+Stream::flush(void)
+{
+  m_stream.flush();
+}
+
 }}

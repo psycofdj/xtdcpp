@@ -1,4 +1,5 @@
 #include <MainTestApplication.hh> //libtests
+#include <TestFixture.hh>         //libtests
 #include "log/StreamAppender.hh"  //libtests
 #include <boost/filesystem.hpp>
 
@@ -6,7 +7,7 @@
 using namespace xtd;
 using namespace xtd::log;
 
-class TestStreamAppender : public CppUnit::TestFixture
+class TestStreamAppender : public tests::TestFixture
 {
   CPPUNIT_TEST_SUITE(TestStreamAppender);
   CPPUNIT_TEST(constructor);
@@ -62,32 +63,40 @@ TestStreamAppender::print(void)
 void
 TestStreamAppender::create(void)
 {
-  auto l_name = boost::filesystem::unique_path();
+  namespace bfs = boost::filesystem;
+
+  auto   l_upath = bfs::temp_directory_path() / bfs::unique_path();
+  string l_name  = l_upath.native();
 
   {
     // OK, target file, default
     auto l_app = StreamAppender::create("A1", {
-        { "log.appender.A1.fd",   l_name.native() }
+        { "log.appender.A1.fd",   l_name }
       });
-
-    std::static_pointer_cast<StreamAppender>(l_app)->print(rec("test rec"));
+    std::static_pointer_cast<StreamAppender>(l_app)->print(rec("1"));
+    CPPUNIT_ASSERT_EQUAL(string("1\n"), getFileContent(l_name, XTD_TESTS_LOC));
   }
 
   {
     // OK, target file, append mode
     auto l_app = StreamAppender::create("A1", {
-        { "log.appender.A1.fd",   l_name.native() },
+        { "log.appender.A1.fd",   l_name },
         { "log.appender.A1.mode", "append" }
       });
+    std::static_pointer_cast<StreamAppender>(l_app)->print(rec("2"));
+    CPPUNIT_ASSERT_EQUAL(string("1\n2\n"), getFileContent(l_name, XTD_TESTS_LOC));
   }
 
   {
     // OK, target file, truncate mode
     auto l_app = StreamAppender::create("A1", {
-        { "log.appender.A1.fd",   l_name.native() },
-        { "log.appender.A1.mode", "append" }
+        { "log.appender.A1.fd",   l_name },
+        { "log.appender.A1.mode", "truncate" }
       });
+    std::static_pointer_cast<StreamAppender>(l_app)->print(rec("3"));
+    CPPUNIT_ASSERT_EQUAL(string("3\n"), getFileContent(l_name, XTD_TESTS_LOC));
   }
+
 
 
   {
@@ -112,17 +121,19 @@ TestStreamAppender::create(void)
   {
     // KO, target file, invalid mode
     CPPUNIT_ASSERT_THROW(StreamAppender::create("A1", {
-          { "log.appender.A1.fd",   "/dev/mem" }
-        }), log_error);
+          { "log.appender.A1.fd",   l_name    },
+          { "log.appender.A1.mode", "unknown" },
+            }), log_error);
   }
 
   {
-    // KO, target writable  file
+    // KO, target writable file
     CPPUNIT_ASSERT_THROW(StreamAppender::create("A1", {
           { "log.appender.A1.fd",   "/dev/mem" }
         }), log_error);
   }
 
+  boost::filesystem::remove_all(l_upath);
 }
 
 

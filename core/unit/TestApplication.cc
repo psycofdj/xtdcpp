@@ -149,8 +149,8 @@ TestApplication::getVersion(void)
   CPPUNIT_ASSERT(string::npos != l_version.find("$user:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$host:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$pwd:"));
-  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libcore_s]"));
-  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libtests_s]"));
+  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libxtd-core_s]"));
+  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libxtd-tests_s]"));
 #endif
 }
 

@@ -24,7 +24,8 @@ StreamAppender::~StreamAppender(void)
 void
 StreamAppender::print(const FormattedRecord& p_rec) const
 {
-  *m_stream << p_rec.m_fulllog << "\n";
+  *m_stream << (p_rec.m_fulllog + "\n");
+  m_stream->flush();
 };
 
 
@@ -34,7 +35,7 @@ StreamAppender::create(const string& p_name, const map<string,string>& p_propert
   string                  l_key     = "log.appender." + p_name;
   auto                    c_stream  = p_properties.find(l_key + ".fd");
   auto                    c_modeKey = p_properties.find(l_key + ".mode");
-  std::ios_base::openmode l_mode    = std::ios_base::out;
+  std::ios_base::openmode l_mode    = std::ios_base::out | std::ios_base::binary;
 
   if (p_properties.end() == c_stream)
     log::raise<log_error>("unable to find key '%s'", "log.appender." + p_name + ".fd", HERE);
@@ -67,7 +68,10 @@ StreamAppender::create(const string& p_name, const map<string,string>& p_propert
 
   log::raise<log_error>("could not open file '%s' given by key '%s'",
                         c_stream->second, c_stream->first);
+
+  // LCOV_EXCL_START
   return sptr<Appender>();
+  // LCOV_EXCL_STOP
 }
 
 }}
