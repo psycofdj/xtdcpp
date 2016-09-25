@@ -46,12 +46,13 @@ private:
 };
 
 
+
 template<class T>
 Stream& Stream::operator<<(const T& p_value)
 {
   std::lock_guard<std::mutex> l_lock(ms_mutex);
   m_stream << p_value;
-  return this;
+  return *this;
 }
 
 

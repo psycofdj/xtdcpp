@@ -24,7 +24,7 @@ StreamAppender::~StreamAppender(void)
 void
 StreamAppender::print(const FormattedRecord& p_rec) const
 {
-  m_stream->append(p_rec.m_fulllog + "\n");
+  *m_stream << p_rec.m_fulllog << "\n";
 };
 
 

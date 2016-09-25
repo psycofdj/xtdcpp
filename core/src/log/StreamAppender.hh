@@ -4,6 +4,8 @@
 # include "log/Appender.hh"
 # include "log/Stream.hh"
 
+class TestStreamAppender;
+
 namespace xtd {
 namespace log {
 
@@ -39,6 +41,7 @@ namespace log {
 class StreamAppender : public Appender
 {
   friend class ConfLoader;
+  friend class ::TestStreamAppender;
 
 public:
   /**
@@ -54,7 +57,7 @@ public:
    ** @param p_stream generic output stream wrapped by Stream object
    ** @param p_formatter log record formatter, default is Formatter
    */
-  StreamAppender(const sptr<Stream>&    p_stream    = std::make_shared<Stream>(std::cerr),
+  StreamAppender(const sptr<Stream>&    p_stream,
                  const sptr<Formatter>& p_formatter = std::make_shared<Formatter>());
 
   /**
