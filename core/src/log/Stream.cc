@@ -17,13 +17,6 @@ Stream::Stream(const sptr<std::ostream>& p_stream) :
 }
 
 void
-Stream::append(const string& p_value)
-{
-  std::lock_guard<std::mutex> l_lock(ms_mutex);
-  m_stream << p_value;
-}
-
-void
 Stream::flush(void)
 {
   m_stream.flush();

@@ -5,6 +5,8 @@
 # include <mutex>
 # include <boost/circular_buffer.hpp>
 
+class TestMemoryAppender;
+
 namespace xtd {
 namespace log {
 
@@ -36,6 +38,7 @@ namespace log {
 class MemoryAppender : public Appender
 {
   friend class ConfLoader;
+  friend class ::TestMemoryAppender;
 
 public:
   /**

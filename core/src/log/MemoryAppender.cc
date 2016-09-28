@@ -27,17 +27,17 @@ MemoryAppender::print(const FormattedRecord& p_rec) const
 std::shared_ptr<Appender>
 MemoryAppender::create(const string& p_name, const map<string,string>& p_properties)
 {
-  size_t l_size    = 5000;
-  auto   c_sizeKey = p_properties.find("log.appender." + p_name);
+  int64_t l_size    = 5000;
+  auto    c_sizeKey = p_properties.find("log.appender." + p_name + ".size");
 
   if (p_properties.end() != c_sizeKey)
   {
     try {
-      l_size = boost::lexical_cast<size_t>(c_sizeKey->second);
+      l_size = boost::lexical_cast<int64_t>(c_sizeKey->second);
     } catch (boost::bad_lexical_cast&) {
       l_size = 0;
     }
-    if (0 == l_size)
+    if (0 >= l_size)
     {
       string l_fmt = "invalid value '%s' key '%s', must be valid positive number";
       log::raise<log_error>(l_fmt, c_sizeKey->second, c_sizeKey->first, HERE);

@@ -28,12 +28,6 @@ public:
 
 public:
   /**
-   ** @brief Write given value to underlying stream
-   ** @param p_value value to write
-   */
-  void append(const string& p_value);
-
-  /**
    ** @brief Flush underlying stream
    */
   void flush(void);

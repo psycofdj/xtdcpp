@@ -4,6 +4,8 @@
 # include "log/Appender.hh"
 # include "mixins/cloneable.hh"
 
+class TestSyslogAppender;
+
 namespace xtd {
 namespace log {
 
@@ -74,6 +76,7 @@ namespace log {
 class SyslogAppender : public Appender
 {
   friend class ConfLoader;
+  friend class ::TestSyslogAppender;
 
 public:
   /**
