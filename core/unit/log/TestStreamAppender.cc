@@ -129,7 +129,7 @@ TestStreamAppender::create(void)
   {
     // KO, target writable file
     CPPUNIT_ASSERT_THROW(StreamAppender::create("A1", {
-          { "log.appender.A1.fd",   "/dev/mem" }
+          { "log.appender.A1.fd",   "/" }
         }), log_error);
   }
 
