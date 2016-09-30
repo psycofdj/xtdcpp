@@ -4,6 +4,8 @@
 # include "log/logtypes.hh"
 # include "log/Fields.hh"
 
+class TestFormatter;
+
 namespace xtd {
 namespace log {
 
@@ -168,6 +170,7 @@ namespace log {
 class Formatter
 {
   friend class ConfLoader;
+  friend class ::TestFormatter;
 
 protected:
   /**
@@ -175,7 +178,6 @@ protected:
    */
   typedef Fields<string> t_formats;
 
-protected:
   /**
    ** @brief Format modifier functor prototype
    */

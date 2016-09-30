@@ -15,6 +15,9 @@ namespace log {
 template<typename T>
 struct Fields
 {
+private:
+  typedef Fields<T> this_type;
+
 public:
   /**
    ** @brief Constructor
@@ -34,14 +37,14 @@ public:
    ** @brief Returns true when field name is valid
    ** @param p_field field name
    */
-  bool exists(const string& p_field)          const;
+  bool exists(const string& p_field) const;
 
   /**
-   ** @brief Return field value, no name validation
+   ** @brief Return field value, @b Undefined behavior is field is unknown
    ** @param p_field field name
    ** @return field value
    */
-  T& get(const string& p_field)             const;
+  T& get(const string& p_field);
 
   /**
    ** @brief Sets value for given field
@@ -68,7 +71,7 @@ public:
   T m_ppid;     ///< log parent process id
 
 private:
-  map<string, fn<T&(void)> > mc_functors;
+  map<string, fn<T&(this_type&)> > m_functors;
 };
 
 }}

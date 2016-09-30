@@ -110,7 +110,7 @@ Formatter::resolveLayout(const string& p_layout, const Fields<string>& p_args) c
 }
 
 void
-Formatter::createFields(const FormattedRecord& p_rec, Fields<string>& p_args) const
+Formatter::createFields(const FormattedRecord& p_rec, t_formats& p_args) const
 {
   using boost::str;
   using boost::format;

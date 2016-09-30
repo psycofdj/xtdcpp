@@ -23,14 +23,15 @@ add_shared_static_library(xtd-core
   src/config/Grammar.cc)
 
 add_doc(core
-  EXCLUDE  src/json_parser.hpp src/json_parser_write.hpp
+  EXCLUDE
+  src/json_parser.hpp
+  src/json_parser_write.hpp
   PREDEFINED
   "XTD_CORE_LOG_REGISTER_FORMATTER"
   "XTD_CORE_LOG_REGISTER_APPENDER"
   "DOXYGEN_SKIP"
   EXPAND_AS_DEFINED
-  "xtd_error_class(p_name,p_base)"
-  WERROR)
+  "xtd_error_class(p_name,p_base)")
 
 add_doc_coverage(core)
 add_cloc(core)
