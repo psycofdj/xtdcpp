@@ -93,8 +93,7 @@ ColoredFormatter::setStyle(const string&     p_field,
                            const tty::color& p_bg,
                            const tty::attrs& p_attrs)
 {
-  m_fieldStyles.set(p_field, tty::style(p_fg, p_bg, p_attrs));
-  return *this;
+  return setStyle(p_field, tty::style(p_fg, p_bg, p_attrs));
 }
 
 ColoredFormatter&
@@ -109,6 +108,7 @@ void
 ColoredFormatter::createFields(const FormattedRecord& p_rec, Fields<string>& p_args) const
 {
   t_styles l_style(m_fieldStyles);
+
   for (auto& c_fn : m_styleModifiers)
     c_fn(p_rec, l_style);
 
@@ -147,9 +147,9 @@ ColoredFormatter::create(const string& p_name, const map<string,string>& p_prope
 
   for (auto& c_field : l_fields)
   {
-    tty::color                         l_fg    = tty::color::unset;
-    tty::color                         l_bg    = tty::color::unset;
-    tty::attrs                         l_attrs = tty::attrs::unset;
+    tty::color l_fg    = tty::color::unset;
+    tty::color l_bg    = tty::color::unset;
+    tty::attrs l_attrs = tty::attrs::unset;
 
     auto c_fgColor = p_properties.find("log.formatter." + p_name + ".style." + c_field + ".fgColor");
     auto c_bgColor = p_properties.find("log.formatter." + p_name + ".style." + c_field + ".bgColor");
@@ -162,24 +162,28 @@ ColoredFormatter::create(const string& p_name, const map<string,string>& p_prope
 
     if (p_properties.end() != c_fgColor)
       if (false == tty::color::from_string(c_fgColor->second, l_fg))
-        log::raise<log_error>("invalid color '%s' in key '%s'", c_fgColor->second, c_fgColor->first);
+        log::raise<log_error>("core.log", "invalid color '%s' in key '%s'",
+                              c_fgColor->second, c_fgColor->first, HERE);
 
     if (p_properties.end() != c_bgColor)
     {
       if (false == tty::color::from_string(c_bgColor->second, l_bg))
-        log::raise<log_error>("invalid color '%s' in key '%s'", c_bgColor->second, c_bgColor->first);
+        log::raise<log_error>("core.log", "invalid color '%s' in key '%s'",
+                              c_bgColor->second, c_bgColor->first, HERE);
     }
 
     if (p_properties.end() != c_attrs)
     {
       vector<string> l_parts;
       boost::split(l_parts, c_attrs->second, boost::is_any_of(" ,|"), boost::token_compress_on);
+      std::cout << "args size : " << l_parts.size() << std::endl;
       for (auto& c_val : l_parts)
       {
         tty::attrs l_tmp(tty::attrs::unset);
-        if (false == tty::attrs::from_string(c_val, l_attrs))
-          log::raise<log_error>("invalid attribute '%s' in key '%s'", c_val, c_attrs->first);
-        l_attrs = l_attrs | l_tmp;
+        if (false == tty::attrs::from_string(c_val, l_tmp))
+          log::raise<log_error>("core.log", "invalid attribute '%s' in key '%s'",
+                                c_val, c_attrs->first, HERE);
+        l_attrs |= l_tmp;
       }
     }
     l_result->setStyles({{ c_field, tty::style(l_fg, l_bg, l_attrs) }});
@@ -189,3 +193,7 @@ ColoredFormatter::create(const string& p_name, const map<string,string>& p_prope
 }
 
 }}
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

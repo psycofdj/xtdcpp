@@ -223,10 +223,10 @@ namespace log {
  **
  ** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  **
- ** ## MatchMessage {#modifiers_match_message}
+ ** ## StyleMatch {#modifiers_match_message}
  **
- ** @copydoc MatchMessage
- ** See @ref MatchMessage
+ ** @copydoc StyleMatch
+ ** See @ref StyleMatch
  **
  ** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  **

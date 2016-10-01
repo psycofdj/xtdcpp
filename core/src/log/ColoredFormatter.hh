@@ -6,9 +6,10 @@
 # include "tty.hh"
 # include "log/Fields.hh"
 
+class TestColoredFormatter;
+
 namespace xtd {
 namespace log {
-
 
 /**
  ** @brief Formats log record with @ref tty styles
@@ -65,6 +66,7 @@ namespace log {
 class ColoredFormatter : public Formatter
 {
   friend class ConfLoader;
+  friend class ::TestColoredFormatter;
 
 protected:
   /**

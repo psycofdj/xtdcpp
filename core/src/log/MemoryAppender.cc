@@ -40,7 +40,7 @@ MemoryAppender::create(const string& p_name, const map<string,string>& p_propert
     if (0 >= l_size)
     {
       string l_fmt = "invalid value '%s' key '%s', must be valid positive number";
-      log::raise<log_error>(l_fmt, c_sizeKey->second, c_sizeKey->first, HERE);
+      log::raise<log_error>("core.log", l_fmt, c_sizeKey->second, c_sizeKey->first, HERE);
     }
   }
 

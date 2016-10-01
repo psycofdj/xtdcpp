@@ -1,10 +1,10 @@
-#include <MainTestApplication.hh> //libtests
-#include <TestFixture.hh>         //libtests
-#include <CWrap.hh>               //libtests
-#include "log/Formatter.hh"  //libcore
 #include <boost/filesystem.hpp>
 #include <boost/any.hpp>
 #include <boost/algorithm/string/predicate.hpp>
+#include <MainTestApplication.hh> //libtests
+#include <TestFixture.hh>         //libtests
+#include <CWrap.hh>               //libtests
+#include "log/Formatter.hh"       //libcore
 
 using namespace xtd;
 using namespace xtd::log;

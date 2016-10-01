@@ -56,21 +56,38 @@ void debug(const string& p_module, const string& p_format, Args... p_args)
 
 
 template<class TError, typename... Arguments>
-static void raise(const string& p_module, const string& p_format, Arguments&&... p_args)
+void raise(const string& p_module, const string& p_format, Arguments&&... p_args)
 {
   log::crit(p_module, p_format, p_args...);
 
-  boost::format l_format(p_format);
-  size_t        l_fmtArgsCount = l_format.expected_args();
-  size_t        l_argsCount    = sizeof...(Arguments);
-  string        l_message;
+  string l_message;
 
-  if (l_fmtArgsCount != l_argsCount)
-    l_message += " in %s:%s:%d";
+  try {
+    boost::format l_format(p_format);
+    size_t        l_fmtArgsCount = l_format.expected_args();
+    size_t        l_argsCount    = sizeof...(Arguments);
+
+    if (l_fmtArgsCount == l_argsCount) {
+      l_message = format::vargs(l_format, p_args...);
+    }
+    else if (l_fmtArgsCount + 3 == l_argsCount) {
+      l_message = format::vargs(p_format + " in %s:%s:%d", p_args...);
+    } else {
+      l_message = "unable to render format : " + p_format + " : wrong number of arguments";
+    }
+  } catch (std::exception& l_error) {
+    l_message = "unable to render format : " + p_format + " : " + l_error.what();
+  }
+
   throw TError(format::vargs_noexcept(l_message, p_args...));
+
 }
 
 
 }}
 
 #endif // !XTD_CORE_LOG_HELPERS_HXX_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

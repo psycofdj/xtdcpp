@@ -30,7 +30,8 @@ namespace tty {
  ** - attrs::hidden      : @copybrief attrs::hidden
  **
  ** Multiple constants can be combined together with
- ** @ref attrs::operator| "operator|". Example :
+ ** @ref attrs::operator| "operator|" or @ref attrs::operator|= "operator|=".
+ **  Example :
  ** @code
  ** attrs l_val = attrs::unset;
  **
@@ -79,12 +80,30 @@ public:
    */
   static bool from_string(const string& p_value, attrs& p_attrs);
 
+  /**
+   ** @brief Convert attrs to string
+   ** @param p_attrs attrs to convert
+   */
+  static string to_string(const attrs& p_attrs);
+
 public:
   /**
-   ** @brief Add given attributes to current object
-   ** @param p_attrs attributes to add
+   ** @brief Creates the bitwise or self and given attrs
+   ** @param p_o1 attributes to add
    */
-  attrs operator|(const attrs& p_attrs) const;
+  attrs operator|(const attrs& p_o1) const;
+
+  /**
+   ** @brief Merge given attributes into self
+   ** @param p_o1 attributes to merge
+   */
+  attrs& operator|=(const attrs& p_o1);
+
+  /**
+   ** @brief Tells if given attrs is equivalent to current object
+   ** @param p_obj Object to compare
+   */
+  bool operator==(const attrs& p_obj) const;
 
   /**
    ** @brief Returns internal ANSI code values
@@ -199,11 +218,22 @@ public:
    */
   static bool from_string(const string& p_value, color& p_attrs);
 
+  /**
+   ** @brief Converts color to string
+   */
+  static string to_string(const color& p_color);
+
 public:
+  /**
+   ** @brief Tells if given color is equivalent to current object
+   ** @param p_obj Object to compare
+   */
+  bool operator==(const color& p_obj) const;
+
   /**
    ** @brief Tells if color is extended
    */
-  bool     isExtended(void) const;
+  bool isExtended(void) const;
 
   /**
    ** @brief Get terminal color code
@@ -374,11 +404,28 @@ private:
 };
 
 /**
- ** @brief Outputs Text to ostream
+ ** @brief Outputs @ref Text to ostream
  ** @param p_buf input stream
  ** @param p_text input Text
  */
 ostream& operator<<(ostream& p_buf, const Text& p_text);
+
+
+/**
+ ** @brief Outputs @ref color to ostream
+ ** @param p_buf input stream
+ ** @param p_color input color
+ */
+ostream& operator<<(ostream& p_buf, const color& p_color);
+
+
+/**
+ ** @brief Outputs @ref attrs to ostream
+ ** @param p_buf input stream
+ ** @param p_attrs input attrs
+ */
+ostream& operator<<(ostream& p_buf, const attrs& p_attrs);
+
 
 
 }}

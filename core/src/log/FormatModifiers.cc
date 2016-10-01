@@ -4,6 +4,7 @@
 namespace xtd {
 namespace log {
 
+
 AutoWidth::AutoWidth(const vector<string>& p_fields) :
   m_widths(),
   m_fields(p_fields)
@@ -19,6 +20,7 @@ AutoWidth::AutoWidth(const string& p_field) :
 void
 AutoWidth::operator()(const FormattedRecord& p_rec, Fields<string>& p_formats)
 {
+  // LCOV_EXCL_START
   const static auto l_intSize = [](size_t p_value) {
     return std::to_string(p_value).size();
   };
@@ -37,6 +39,7 @@ AutoWidth::operator()(const FormattedRecord& p_rec, Fields<string>& p_formats)
     { "function", [](const FormattedRecord& p_rec) { return p_rec.m_function.size();           } },
     { "fulllog",  [](const FormattedRecord& p_rec) { return p_rec.m_fulllog.size();            } }
   };
+  // LCOV_EXCL_STOP
 
   for (auto& c_field : m_fields)
   {
@@ -58,20 +61,22 @@ StyleByLevel::StyleByLevel(const map<level, tty::style>& p_conds) :
 { }
 
 void
-StyleByLevel::operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles)
+StyleByLevel::operator()(const FormattedRecord& p_rec,
+                         Fields<tty::style>&    p_styles) const
 {
   auto c_item = m_conds.find(p_rec.m_level);
   if (c_item != m_conds.end())
     p_styles.m_slevel = c_item->second;
 }
 
-MatchMessage::MatchMessage(const boost::regex& p_match, const tty::style& p_style) :
+StyleMatch::StyleMatch(const boost::regex& p_match, const tty::style& p_style) :
   m_match(p_match),
   m_style(p_style)
 { }
 
 void
-MatchMessage::operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles)
+StyleMatch::operator()(const FormattedRecord& p_rec,
+                       Fields<tty::style>&    p_styles) const
 {
   if (true == boost::regex_match(p_rec.m_message, m_match))
     p_styles.m_message = m_style;

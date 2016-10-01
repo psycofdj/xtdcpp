@@ -21,7 +21,6 @@ Formatter::format(const Record& p_rec, Arguments&&... p_args) const
     size_t          l_fmtArgsCount = l_format.expected_args();
     size_t          l_argsCount    = sizeof...(Arguments);
 
-
     if (l_fmtArgsCount == l_argsCount) {
       l_rec.m_message = format::vargs(l_format, p_args...);
     }

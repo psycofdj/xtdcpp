@@ -61,7 +61,7 @@ struct StyleByLevel
    ** Sets slevel field style to value found in configuration map for level of
    ** current log record.
    */
-  void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles);
+  void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles) const;
 
 private:
   map<level, tty::style> m_conds;
@@ -71,14 +71,14 @@ private:
 /**
  ** @brief Dynamically set message field style depending of log record content
  */
-struct MatchMessage
+struct StyleMatch
 {
   /**
    ** @brief Constructor
    ** @param p_match Regexp matching log record message
    ** @param p_style Style to apply to field message if regexp matches
    */
-  MatchMessage(const boost::regex& p_match, const tty::style& p_style);
+  StyleMatch(const boost::regex& p_match, const tty::style& p_style);
 
   /**
    ** @brief Call operator
@@ -88,7 +88,7 @@ struct MatchMessage
    ** Sets message field style to value given at construction if current log message
    ** matches construction regexp.
    */
-  void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles);
+  void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles) const;
 
 private:
   boost::regex m_match;

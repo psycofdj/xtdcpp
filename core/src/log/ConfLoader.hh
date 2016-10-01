@@ -5,6 +5,7 @@
 # include <iostream>
 # include <boost/preprocessor/cat.hpp>
 # include "log/fwd.hh"
+# include "log/helpers.hh"
 
 
 /**
@@ -30,9 +31,10 @@
   }
 
 
+class TestConfLoader;
+
 namespace xtd {
 namespace log {
-
 
 
 /**
@@ -185,6 +187,8 @@ namespace log {
  */
 class ConfLoader : public mixins::Singleton<ConfLoader>
 {
+  friend class ::TestConfLoader;
+
 private:
   typedef map<string,string>                                      t_properties;
   typedef fn<sptr<Appender>(const string&, const t_properties&)>  t_appender_constructor;
@@ -192,13 +196,13 @@ private:
 
 public:
   /**
-   ** @brief
-   ** @param p_properties
-   ** @return
-   ** @details
-   **
+   ** @brief Initialize logging facility from properties
+   ** @param p_properties logging configuration
+   ** @param p_root Target root logger, default is global Rootlogger
+   ** @throw log_error when encountered error in given properties
    */
-  bool configure(const t_properties& p_properties);
+  void configure(const t_properties& p_properties,
+                 RootLogger&         p_root = getRoot());
 
   /**
    ** @brief Registers given class type to appender factory
@@ -227,7 +231,8 @@ private:
 
   void createLogger(const string&       p_name,
                     const string&       p_value,
-                    const t_properties& p_properties);
+                    const t_properties& p_properties,
+                    RootLogger&         p_root);
 
 private:
   map<string, sptr<Appender>>          m_appenders;

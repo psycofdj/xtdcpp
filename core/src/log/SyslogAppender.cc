@@ -120,13 +120,13 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
     l_identity = c_identity->second;
 
   if (p_properties.end() == c_options)
-    log::raise<log_error>("unable to find key 'log.appender.%s.options'", p_name, HERE);
+    log::raise<log_error>("core.log", "unable to find key 'log.appender.%s.options'", p_name, HERE);
 
   if (p_properties.end() == c_facility)
-    log::raise<log_error>("unable to find key 'log.appender.%s.facility'", p_name, HERE);
+    log::raise<log_error>("core.log", "unable to find key 'log.appender.%s.facility'", p_name, HERE);
 
   if (false == to_facility(c_facility->second, l_facility))
-    log::raise<log_error>("unable to convert '%s' as syslog facility", c_facility->second, HERE);
+    log::raise<log_error>("core.log", "unable to convert '%s' as syslog facility", c_facility->second, HERE);
 
   if (p_properties.end() != c_options)
   {
@@ -136,7 +136,7 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
     {
       uint32_t l_value;
       if (false == to_option(c_opt, l_value))
-        log::raise<log_error>("unable to convert '%s' as syslog options", c_opt, HERE);
+        log::raise<log_error>("core.log", "unable to convert '%s' as syslog options", c_opt, HERE);
       l_options |= l_value;
     }
   }
@@ -145,3 +145,7 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
 }
 
 }}
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

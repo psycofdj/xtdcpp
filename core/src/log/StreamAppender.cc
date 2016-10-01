@@ -38,7 +38,7 @@ StreamAppender::create(const string& p_name, const map<string,string>& p_propert
   std::ios_base::openmode l_mode    = std::ios_base::out | std::ios_base::binary;
 
   if (p_properties.end() == c_stream)
-    log::raise<log_error>("unable to find key '%s'", "log.appender." + p_name + ".fd", HERE);
+    log::raise<log_error>("core.log", "unable to find key '%s'", "log.appender." + p_name + ".fd", HERE);
 
   if (c_stream->second == "cout")
     return std::make_shared<StreamAppender>(std::cout);
@@ -53,8 +53,8 @@ StreamAppender::create(const string& p_name, const map<string,string>& p_propert
     l_mode |= std::ios_base::trunc;
   else
   {
-    log::raise<log_error>("invalid mode value '%s' for key '%s'",
-                          c_modeKey->second, c_modeKey->first);
+    log::raise<log_error>("core.log", "invalid mode value '%s' for key '%s'",
+                          c_modeKey->second, c_modeKey->first, HERE);
   }
 
   ofstream*          l_pFile = new ofstream(c_stream->second.c_str(), l_mode);
@@ -66,8 +66,8 @@ StreamAppender::create(const string& p_name, const map<string,string>& p_propert
     return std::make_shared<StreamAppender>(l_stream);
   }
 
-  log::raise<log_error>("could not open file '%s' given by key '%s'",
-                        c_stream->second, c_stream->first);
+  log::raise<log_error>("core.log", "could not open file '%s' given by key '%s'",
+                        c_stream->second, c_stream->first, HERE);
 
   // LCOV_EXCL_START
   return sptr<Appender>();
