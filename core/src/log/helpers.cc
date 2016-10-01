@@ -4,129 +4,72 @@ namespace xtd {
 namespace log {
 
 namespace {
+
 sptr<RootLogger> m_instance;
+
+static const map<string, level> lcs_labels({
+    {"emerg",   level::emerg},
+    {"alert",   level::alert},
+    {"crit",    level::crit},
+    {"err",     level::err},
+    {"warning", level::warning},
+    {"notice",  level::notice},
+    {"info",    level::info},
+    {"debug",   level::debug}
+  });
+
+static const map<level, string> lcs_levels({
+    {level::emerg,   "emerg"   },
+    {level::alert,   "alert"   },
+    {level::crit,    "crit"    },
+    {level::err,     "err"     },
+    {level::warning, "warning" },
+    {level::notice,  "notice"  },
+    {level::info,    "info"    },
+    {level::debug,   "debug"   }
+  });
 }
 
 level from(const std::uint32_t& p_level)
 {
-  if (p_level == LOG_EMERG)
-    return level::emerg;
-  else if (p_level == LOG_ALERT)
-    return level::alert;
-  else if (p_level == LOG_CRIT)
+  if (false == is_valid(p_level))
     return level::crit;
-  else if (p_level == LOG_ERR)
-    return level::err;
-  else if (p_level == LOG_WARNING)
-    return level::warning;
-  else if (p_level == LOG_NOTICE)
-    return level::notice;
-  else if (p_level == LOG_INFO)
-    return level::info;
-  else if (p_level == LOG_DEBUG)
-    return level::debug;
-  return level::crit;
+  return to_enum<level>(p_level);
 }
 
 level from(const std::string& p_level)
 {
-  if (p_level == "emerg")
-    return level::emerg;
-  if (p_level == "alert")
-    return level::alert;
-  if (p_level == "crit")
-    return level::crit;
-  if (p_level == "err")
-    return level::err;
-  if (p_level == "warning")
-    return level::warning;
-  if (p_level == "notice")
-    return level::notice;
-  if (p_level == "info")
-    return level::info;
-  if (p_level == "debug")
-    return level::debug;
+  auto c_val = lcs_labels.find(p_level);
+  if (lcs_labels.end() != c_val)
+    return c_val->second;
   return level::crit;
 }
 
 std::uint32_t to_value(level p_level)
 {
-  switch (p_level)
-  {
-  case level::emerg:
-    return LOG_EMERG;
-  case level::alert:
-    return LOG_ALERT;
-  case level::crit:
-    return LOG_CRIT;
-  case level::err:
-    return LOG_ERR;
-  case level::warning:
-    return LOG_WARNING;
-  case level::notice:
-    return LOG_NOTICE;
-  case level::info:
-    return LOG_INFO;
-  case level::debug:
-    return LOG_DEBUG;
-  }
-  return LOG_CRIT;
+  return valueof(p_level);
 }
 
 std::string to_string(level p_level)
 {
-  switch (p_level)
-  {
-  case level::emerg:
-    return "emerg";
-  case level::alert:
-    return "alert";
-  case level::crit:
-    return "crit";
-  case level::err:
-    return "err";
-  case level::warning:
-    return "warning";
-  case level::notice:
-    return "notice";
-  case level::info:
-    return "info";
-  case level::debug:
-    return "debug";
-  }
+  auto c_val = lcs_levels.find(p_level);
+  if (lcs_levels.end() != c_val)
+    return c_val->second;
   return "crit";
 }
 
 bool is_valid(const std::string& p_level)
 {
-  return
-    ((p_level == "emerg")   ||
-     (p_level == "alert")   ||
-     (p_level == "crit")    ||
-     (p_level == "err")     ||
-     (p_level == "warning") ||
-     (p_level == "notice")  ||
-     (p_level == "info")    ||
-     (p_level == "debug"));
+  return (0 != lcs_labels.count(p_level));
 }
 
 bool is_valid(const std::uint32_t& p_level)
 {
-  switch (p_level)
-  {
-  case LOG_EMERG :
-  case LOG_ALERT :
-  case LOG_CRIT :
-  case LOG_ERR :
-  case LOG_WARNING :
-  case LOG_NOTICE :
-  case LOG_INFO :
-  case LOG_DEBUG :
-    return true;
-  }
-  return false;
+  typename std::underlying_type<level>::type l_val = p_level;
+  return
+    ((l_val >= valueof(level::emerg)) &&
+     (l_val <= valueof(level::debug)));
 }
-
 
 RootLogger& getRoot(void)
 {
@@ -134,5 +77,18 @@ RootLogger& getRoot(void)
     m_instance.reset(new RootLogger());
   return *m_instance;
 }
+
+/**
+ ** @brief
+ ** @param p_buff
+ ** @param p_level
+ ** @return
+ ** @details
+ **
+ */
+ostream& operator<<(ostream& p_buff, level p_level) {
+  return p_buff << to_string(p_level);
+}
+
 
 }}

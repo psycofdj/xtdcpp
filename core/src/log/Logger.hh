@@ -3,8 +3,11 @@
 # include "log/logtypes.hh"
 # include <mutex>
 # include <thread>
+# include <memory>
 # include "log/Appender.hh"
 # include "mixins/shared.hh"
+
+class TestLogger;
 
 namespace xtd {
 namespace log {
@@ -88,8 +91,10 @@ namespace log {
  ** However record forwarding to each appender it not lock. The Appender object
  ** is responsible of its own thread safeness.
  */
-class Logger
+class Logger : public std::enable_shared_from_this<Logger>
 {
+  friend class ::TestLogger;
+
 protected:
   /**
    ** @brief Type for child Appender list
@@ -391,6 +396,8 @@ private:
  */
 class RootLogger : public Logger
 {
+  friend class ::TestLogger;
+
 private:
   typedef map<string, sptr<Logger>> t_loggers;
   typedef map<string, level>        t_levels;
@@ -460,9 +467,13 @@ public:
 
 public:
   /**
-   ** @brief Shorthand for get(p_module).getLevel()
+   ** @brief Returns level applicable to module.
    ** @param p_module module name
    ** @return active current level of given module
+   ** @details
+   ** This method is @b not equivalent to get(p_module).getLevel() when logger for
+   ** module does not exist. In that case, the method returns the level of closest
+   ** parent in hierarchy.
    */
   level getLevelTo(const string& p_module) const;
 
@@ -523,7 +534,7 @@ public:
   void debugTo(const string& p_module, const string& p_format, Args... p_args);
 
 private:
-  t_loggers::iterator getClosestParent(const string& p_module);
+  t_loggers::const_iterator getClosestParent(const string& p_module) const;
 
 private:
   t_loggers          m_loggers;

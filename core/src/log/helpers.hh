@@ -20,6 +20,15 @@ std::uint32_t to_value(level p_level);
  */
 std::string to_string(level p_level);
 
+
+/**
+ ** @brief Stream operator for @ref level
+ ** @param p_buff output stream
+ ** @param p_level log serverity level
+ */
+std::ostream& operator<<(std::ostream& p_buff, level p_level);
+
+
 /**
  ** @brief Tells if given string is a valid @ref level label
  ** @param p_level @ref level label string

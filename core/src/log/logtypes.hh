@@ -49,6 +49,8 @@ enum class level : int32_t {
   debug   = LOG_DEBUG    ///< debug-level message
  };
 
+
+
 /**
  ** @brief Holds data of a log record
  */
@@ -60,6 +62,8 @@ struct Record
   string                   m_format;   ///< Message format
   boost::posix_time::ptime m_time;     ///< Timestamp of record
   size_t                   m_threadID; ///< Thread identifier that emitted the record
+  pid_t                    m_pid;      ///< Process id
+  pid_t                    m_ppid;     ///< Parent process id
 };
 
 
@@ -78,6 +82,13 @@ public:
     m_hasLoc(false)
   { }
 
+  /**
+   ** @brief Construction from Parent class
+   */
+  FormattedRecord(void) :
+    FormattedRecord(Record())
+  { }
+
 public:
   bool   m_hasLoc;   ///< True if record was emitted with location informations, See @ref HERE
   string m_fulllog;  ///< Final formatted log message string
@@ -85,8 +96,6 @@ public:
   string m_function; ///< Function name
   string m_filename; ///< File name
   size_t m_line;     ///< File line
-  pid_t  m_pid;      ///< Process id
-  pid_t  m_ppid;     ///< Parent process id
 };
 
 

@@ -94,6 +94,9 @@ RootLogger::initialize(const string& p_name, level p_level)
 Logger&
 RootLogger::get(const string& p_module)
 {
+  if (p_module.empty())
+    return *this;
+
   std::lock_guard<std::mutex> l_lock(m_mutex);
   Logger*                     l_model = this;
   auto                        c_log   = m_loggers.find(p_module);
@@ -101,8 +104,9 @@ RootLogger::get(const string& p_module)
   if (c_log != m_loggers.end())
     return *(c_log->second);
 
-  if (m_loggers.end() != (c_log = getClosestParent(p_module)))
-    l_model = c_log->second.get();
+  auto c_target = getClosestParent(p_module);
+  if (m_loggers.end() != c_target)
+    l_model = c_target->second.get();
 
   m_loggers[p_module] = std::make_shared<Logger>(*l_model, p_module);
   return *(m_loggers[p_module]);
@@ -111,12 +115,19 @@ RootLogger::get(const string& p_module)
 level
 RootLogger::getLevelTo(const string& p_module) const
 {
-  std::lock_guard<std::mutex> l_lock(m_mutex);
-  auto c_log     = m_loggers.find(p_module);
+  if (p_module.empty())
+    return getLevel();
 
-  if (c_log == m_loggers.end())
-    return Logger::getLevel();
-  return c_log->second->getLevel();
+  std::lock_guard<std::mutex> l_lock(m_mutex);
+  auto                        c_log   = m_loggers.find(p_module);
+
+  if (c_log != m_loggers.end())
+    return c_log->second->getLevel();
+
+  if (m_loggers.end() != (c_log = getClosestParent(p_module)))
+    return c_log->second->getLevel();
+
+  return getLevel();
 }
 
 const RootLogger::t_levels
@@ -127,6 +138,7 @@ RootLogger::getLevels(void) const
 
   for (auto c_log : m_loggers)
     l_result.insert(std::make_pair(c_log.first, c_log.second->getLevel()));
+  l_result.insert(std::make_pair("", getLevel()));
   return l_result;
 }
 
@@ -167,17 +179,16 @@ RootLogger::updateLevels(const string& p_regexp, level p_level)
     if (true == boost::regex_match(c_item.first, l_matcher))
       c_item.second->setLevel(p_level);
   }
-  setLevelTo(p_regexp, p_level);
+
+  if (true == boost::regex_match(string(), l_matcher))
+    setLevel(p_level);
   return *this;
 }
 
-RootLogger::t_loggers::iterator
-RootLogger::getClosestParent(const string& p_module)
+RootLogger::t_loggers::const_iterator
+RootLogger::getClosestParent(const string& p_module) const
 {
-  auto c_res = m_loggers.find(p_module);
-  if (c_res != m_loggers.end())
-    return c_res;
-
+  auto                     c_res = m_loggers.end();
   vector<string>           l_parts;
   vector<string>::iterator c_part;
 

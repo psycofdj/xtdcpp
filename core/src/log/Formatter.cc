@@ -38,6 +38,15 @@ Formatter::Formatter(void)
     });
 }
 
+Formatter::Formatter(const Formatter& p_obj) :
+  m_fmt(p_obj.m_fmt),
+  m_locFmt(p_obj.m_locFmt),
+  m_timeFmt(p_obj.m_timeFmt),
+  m_fieldFormats(p_obj.m_fieldFormats),
+  m_formatModifiers(p_obj.m_formatModifiers)
+{
+}
+
 Formatter::~Formatter(void)
 {
 }

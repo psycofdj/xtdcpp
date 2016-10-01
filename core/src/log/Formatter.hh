@@ -190,6 +190,11 @@ public:
   Formatter(void);
 
   /**
+   ** @brief Deleted copy constructor
+   */
+  Formatter(const Formatter& p_parent);
+
+  /**
    ** @brief Destructor
    */
   virtual ~Formatter(void);

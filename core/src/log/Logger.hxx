@@ -102,6 +102,8 @@ Logger::log(level p_level, const string& p_format, Args... p_args) const
     l_rec.m_level    = p_level;
     l_rec.m_module   = m_module;
     l_rec.m_name     = m_name;
+    l_rec.m_pid      = getpid();
+    l_rec.m_ppid     = getppid();
 
     for (auto c_appender : getAppenders())
       c_appender->log(l_rec, p_args...);

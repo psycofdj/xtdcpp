@@ -46,7 +46,6 @@ ColoredFormatter::ColoredFormatter(const Formatter& p_base) :
       { "pid",      style(color::lblue)               },
       { "ppid",     style(color::lblue, attrs::bold)  }
     });
-
 }
 
 ColoredFormatter::~ColoredFormatter(void)
