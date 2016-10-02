@@ -26,7 +26,7 @@ TestFixture::getFileContent(const string& p_path, const char* p_file, int p_line
   l_buffer[l_end] = '\0';
   l_result.assign(l_buffer, l_end);
   l_file.close();
-  delete l_buffer;
+  delete[] l_buffer;
   return l_result;
 }
 

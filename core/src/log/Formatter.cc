@@ -130,6 +130,7 @@ Formatter::createFields(const FormattedRecord& p_rec, t_formats& p_args) const
 
   p_args.m_name     = str(format(l_formats.m_name)     % p_rec.m_name);
   p_args.m_threadid = str(format(l_formats.m_threadid) % p_rec.m_threadID);
+  p_args.m_threadid = str(format(l_formats.m_threadid) % 789465);
   p_args.m_module   = str(format(l_formats.m_module)   % p_rec.m_module);
   p_args.m_slevel   = str(format(l_formats.m_slevel)   % to_string(p_rec.m_level));
   p_args.m_ilevel   = str(format(l_formats.m_ilevel)   % to_value(p_rec.m_level));

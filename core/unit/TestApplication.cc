@@ -369,7 +369,7 @@ TestApplication::bindValueIfGiven(void)
 void
 TestApplication::bindCallback(void)
 {
-  bool              l_called;
+  bool              l_called = false;
   auto              l_function = [&l_called](void) {
     l_called = true;
   };

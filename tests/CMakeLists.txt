@@ -14,3 +14,15 @@ add_shared_static_library(xtd-cwrap
   src/CWrap.cc
 )
 
+
+add_doc(tests)
+add_doc_coverage(tests)
+add_cloc(tests)
+add_cppcheck(tests)
+add_check(tests
+  ARGS     -p -o compiler
+  INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
+  LINKS    xtd-core_s xtd-tests_s ${Boost_LIBRARIES})
+add_cov(tests)
+add_memcheck(tests)
+

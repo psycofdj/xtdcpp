@@ -36,3 +36,4 @@ add_check(servers
   INCLUDES ${core_INCLUDE_DIRS} ${servers_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
   LINKS    xtd-core_s xtd-tests_s xtd-counters_s xtd-servers_s xtd-network_s ${Boost_LIBRARIES})
 add_cov(servers)
+add_memcheck(servers)

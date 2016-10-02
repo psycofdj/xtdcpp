@@ -20,3 +20,4 @@ add_check(serializer
   INCLUDES ${core_INCLUDE_DIRS} ${serializer_INCLUDE_DIRS}${tests_INCLUDE_DIRS}
   LINKS    xtd-core_s xtd-tests_s xtd-serializer_s ${Boost_LIBRARIES})
 add_cov(serializer)
+add_memcheck(serializer)

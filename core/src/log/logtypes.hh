@@ -56,6 +56,18 @@ enum class level : int32_t {
  */
 struct Record
 {
+  Record(void):
+    m_name(),
+    m_module(),
+    m_level(level::crit),
+    m_format(),
+    m_time(boost::posix_time::microsec_clock::local_time()),
+    m_threadID(0),
+    m_pid(0),
+    m_ppid(0)
+  { }
+
+public:
   string                   m_name;     ///< Logger name that emitted the record
   string                   m_module;   ///< Module name
   level                    m_level;    ///< Log severity

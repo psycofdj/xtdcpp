@@ -117,8 +117,14 @@ MainTestApplication::process(void)
   l_runner.setOutputter(l_outputter);
   if (m_disableCatch)
     l_runner.eventManager().popProtector();
-  if (m_progress)
-    l_runner.eventManager().addListener(new ProgressListener(std::cerr));
+
+  sptr<ProgressListener> l_obj;
+
+  if (m_progress) {
+    l_obj.reset(new ProgressListener(std::cerr));
+    l_runner.eventManager().addListener(l_obj.get());
+  }
+
   return !l_runner.run("", false, true, false);
 }
 

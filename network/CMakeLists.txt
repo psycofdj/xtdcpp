@@ -37,3 +37,4 @@ add_check(network
   INCLUDES ${core_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
   LINKS    xtd-core_s xtd-tests_s xtd-network_s ${Boost_LIBRARIES})
 add_cov(network)
+add_memcheck(network)
