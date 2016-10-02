@@ -4,6 +4,7 @@
 namespace xtd {
 namespace mixins {
 
+
 template<class Base, class Derived>
 class Cloneable : public Base
 {
@@ -14,8 +15,7 @@ public:
   template<typename... Args>
   Cloneable(Args&&... p_args) :
     Base(p_args...)
-  {
-  }
+  {  }
 
   virtual ~Cloneable(void) { }
 
@@ -26,6 +26,7 @@ public:
   }
 };
 
+/* ------------------------------------------------------------------------------ */
 
 template<class Base>
 class PureCloneableBase
@@ -36,6 +37,8 @@ public:
 public:
   virtual Base* clone(void) const = 0;
 };
+
+/* ------------------------------------------------------------------------------ */
 
 template<class Base>
 class CloneableBase
@@ -49,6 +52,8 @@ public:
     return new Base(dynamic_cast<const Base&>(*this));
   }
 };
+
+/* ------------------------------------------------------------------------------ */
 
 }}
 

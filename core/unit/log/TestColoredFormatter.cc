@@ -141,6 +141,9 @@ TestColoredFormatter::create(void)
     CPPUNIT_ASSERT_THROW(ColoredFormatter::create("f1", l_props), log_error);
   }
 
+
+  char* l_ptr = new char[100];
+  l_ptr = 0;
 }
 
 XTD_TEST_MAIN();

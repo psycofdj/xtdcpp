@@ -4,12 +4,11 @@
 # include <mutex>
 # include <thread>
 # include <memory>
-# include "log/Appender.hh"
-# include "mixins/shared.hh"
 
 class TestLogger;
 
 namespace xtd {
+namespace log { class Appender; }
 namespace log {
 
 

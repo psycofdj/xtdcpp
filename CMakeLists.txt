@@ -31,6 +31,7 @@ find_package(Tracking ${REQUIRED})
 find_package(Cppunit ${REQUIRED})
 find_package(CheckRule ${REQUIRED})
 find_package(CovRule ${REQUIRED})
+find_package(MemcheckRule ${REQUIRED})
 find_package(Reports ${REQUIRED})
 
 # configure test default parameters

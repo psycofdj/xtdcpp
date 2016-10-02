@@ -39,5 +39,5 @@ add_cppcheck(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
   LINKS    xtd-cwrap xtd-core_s xtd-tests_s )
-
 add_cov(core)
+add_memcheck(core)
