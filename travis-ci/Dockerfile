@@ -1,8 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Xavier MARCELET <xavier@marcelet.com>
 
-RUN apt-get update
-RUN apt-get install -y --force-yes \
+RUN apt-get update && apt-get install -y --force-yes \
     cmake \
     doxygen \
     lcov \
@@ -14,8 +13,10 @@ RUN apt-get install -y --force-yes \
     python3-pip \
     libcppunit-dev \
     texlive-font-utils \
-    plantuml
+    plantuml \
+    valgrind \
+    git \
+    zlib1g-dev
 RUN pip3 install coverxygen
-RUN apt-get install -y git zlib1g-dev
 RUN pip3 install lxml
 RUN pip3 install requests
