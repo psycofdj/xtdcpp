@@ -29,6 +29,7 @@ xenial:compile:release:
     - make -C ${CI_BUILDDIR} all -j
 
 xenial:compile:debug:
+  image: xtdcpp/builder/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug

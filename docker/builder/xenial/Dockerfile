@@ -6,3 +6,4 @@ RUN apt-get update && \
 RUN apt-get install -y python3-pip rsync
 RUN pip3 install pip --upgrade
 RUN pip3 install coverxygen
+RUN apt-get install -y cmake
