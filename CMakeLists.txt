@@ -35,6 +35,9 @@ find_package(MemcheckRule ${REQUIRED})
 find_package(Reports ${REQUIRED})
 
 
+add_definitions(-DBOOST_MAJOR_VERSION=${Boost_MAJOR_VERSION})
+add_definitions(-DBOOST_MINOR_VERSION=${Boost_MINOR_VERSION})
+
 # configure test default parameters
 if (CheckRule_FOUND)
   list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")

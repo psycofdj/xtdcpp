@@ -21,12 +21,17 @@ Parser::get(const string& p_name, T& p_val) const
 
   if (status::ok != (l_ret = get(p_name, l_value)))
     return l_ret;
-
   try {
     p_val = boost::lexical_cast<T>(l_value);
   } catch (boost::bad_lexical_cast&) {
+    string l_name = "unknown type";
+#if DBOOST_MINOR_VERSION
+# if DBOOST_MINOR_VERSION > 56
+    l_name = boost::typeindex::type_id<T>().pretty_name();
+# endif
+#endif
     log::info("core.config", "key '%s' found but '%s' is lexically castable to %s",
-              p_name,  l_value, boost::typeindex::type_id<T>().pretty_name(), HERE);
+              p_name,  l_value, l_name, HERE);
     return status::error;
   }
   return status::ok;

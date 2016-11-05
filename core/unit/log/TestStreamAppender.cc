@@ -1,3 +1,4 @@
+#include <iostream>
 #include <MainTestApplication.hh> //libtests
 #include <TestFixture.hh>         //libtests
 #include "log/StreamAppender.hh"  //libtests
@@ -41,10 +42,9 @@ TestStreamAppender::rec(const std::string& p_content) const
 void
 TestStreamAppender::constructor(void)
 {
-  CPPUNIT_ASSERT_NO_THROW(StreamAppender(std::cout));
-
+  CPPUNIT_ASSERT_NO_THROW(StreamAppender l_a1(std::cout));
   sptr<Stream> l_stream(new Stream(std::cout));
-  CPPUNIT_ASSERT_NO_THROW(StreamAppender(l_stream));
+  CPPUNIT_ASSERT_NO_THROW(StreamAppender l_a2(l_stream));
 }
 
 

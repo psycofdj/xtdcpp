@@ -2,11 +2,8 @@
 # define  XTD_CORE_CONFIG_GRAMMAR_HH_
 # include <string>
 # include <vector>
-# include <boost/spirit/include/phoenix_fusion.hpp>
-# include <boost/spirit/include/phoenix_stl.hpp>
-# include <boost/spirit/include/phoenix_object.hpp>
+
 # include <boost/spirit/include/classic.hpp>
-# include <boost/fusion/include/adapt_struct.hpp>
 # include <boost/spirit/include/qi_core.hpp>
 # include <boost/spirit/include/qi.hpp>
 # include <boost/spirit/include/qi_eol.hpp>
@@ -15,26 +12,38 @@
 # include <boost/spirit/include/phoenix_fusion.hpp>
 # include <boost/spirit/include/phoenix_stl.hpp>
 # include <boost/spirit/include/phoenix_object.hpp>
-# include <boost/phoenix/bind/bind_member_function.hpp>
 # include <boost/spirit/include/support_line_pos_iterator.hpp>
+# include <boost/spirit/include/phoenix_core.hpp>
+# include <boost/spirit/include/phoenix_fusion.hpp>
+# include <boost/spirit/include/phoenix_algorithm.hpp>
+# include <boost/spirit/include/phoenix_bind.hpp>
+# include <boost/spirit/include/phoenix_container.hpp>
+# include <boost/spirit/include/phoenix_function.hpp>
+# include <boost/spirit/include/phoenix_limits.hpp>
+# include <boost/spirit/include/phoenix_object.hpp>
+# include <boost/spirit/include/phoenix_operator.hpp>
+# include <boost/spirit/include/phoenix_scope.hpp>
+# include <boost/spirit/include/phoenix_statement.hpp>
+# include <boost/spirit/include/phoenix_stl.hpp>
+# include <boost/fusion/include/adapt_struct.hpp>
 # include <types.hh>        // libcore
 # include "config/types.hh" // libcore
 
 
 BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::property,
-                          (std::string,              m_name)
-                          (std::string,              m_value),
-                          (std::vector<std::string>, m_vars),
-                          (std::vector<std::string>, m_envs),
+                          (std::string, m_name)
+                          (std::string, m_value)
+                          (std::vector<std::string>, m_vars)
+                          (std::vector<std::string>, m_envs)
                           (std::vector<std::string>, m_params));
 
 BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::subsection,
-                          (std::string,                        m_name)
+                          (std::string, m_name)
                           (std::vector<xtd::config::impl::property>, m_properties));
 
 BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::section,
-                          (std::string,                          m_name)
-                          (std::vector<xtd::config::impl::property>,   m_properties)
+                          (std::string, m_name)
+                          (std::vector<xtd::config::impl::property>, m_properties)
                           (std::vector<xtd::config::impl::subsection>, m_subsections));
 
 namespace xtd {

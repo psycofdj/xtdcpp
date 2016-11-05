@@ -1,5 +1,6 @@
 #ifndef XTD_COMMON_CONFIG_GRAMMAR_HXX_
 # define XTD_COMMON_CONFIG_GRAMMAR_HXX_
+# include <boost/phoenix/bind/bind_member_variable.hpp>
 
 namespace xtd {
 namespace config {
