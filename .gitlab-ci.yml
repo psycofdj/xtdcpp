@@ -27,95 +27,86 @@ xenial:compile:release:
     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
     - make -C ${CI_BUILDDIR} all -j
 
-# xenial:compile:debug:
-#   image: xtdcpp/builder/xenial
-#   variables:
-#     CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-#     CI_LSB_RELEASE: xenial
-#     CI_BUILD_TYPE: debug
-#     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-#     CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
-#   dependencies:
-#     - xenial:builder
-#   stage: compile
-#   script:
-#     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
-#     - make -C ${CI_BUILDDIR} all -j
+xenial:compile:debug:
+  image: xtdcpp/builder/xenial
+  variables:
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+  dependencies:
+    - xenial:builder
+  stage: compile
+  script:
+    - sed -i 's%git@github.com:%https://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules ${CI_PROJECT_DIR}/.git/config
+    - cd ${CI_PROJECT_DIR} && git submodule init
+    - cd ${CI_PROJECT_DIR} && git submodule update
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
+    - make -C ${CI_BUILDDIR} all -j
 
-# xenial:kpi:doc:
-#   variables:
-#     CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-#     CI_LSB_RELEASE: xenial
-#     CI_BUILD_TYPE: release
-#     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-#     CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
-#   dependencies:
-#     - xenial:compile:release
-#   stage: kpi
-#   script:
-#     - make -C ${CI_BUILDDIR} doc
-#     - make -C ${CI_BUILDDIR} doc-coverage -j
+xenial:kpi:doc:
+  variables:
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: release
+  dependencies:
+    - xenial:compile:release
+  stage: kpi
+  script:
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - make -C ${CI_BUILDDIR} doc
+    - make -C ${CI_BUILDDIR} doc-coverage -j
 
-# xenial:kpi:unittest:
-#   variables:
-#     CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-#     CI_LSB_RELEASE: xenial
-#     CI_BUILD_TYPE: release
-#     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-#     CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
-#   dependencies:
-#     - xenial:compile:release
-#   stage: kpi
-#   script:
-#     - make -C ${CI_BUILDDIR} check -j
-#     - make -C ${CI_BUILDDIR} memcheck -j
+xenial:kpi:unittest:
+  variables:
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: release
+  dependencies:
+    - xenial:compile:release
+  stage: kpi
+  script:
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - make -C ${CI_BUILDDIR} check -j
+    - make -C ${CI_BUILDDIR} memcheck -j
 
-# xenial:kpi:coverage:
-#   variables:
-#     CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-#     CI_LSB_RELEASE: xenial
-#     CI_BUILD_TYPE: debug
-#     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-#     CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
-#   dependencies:
-#     - xenial:compile:debug
-#   stage: kpi
-#   script:
-#     - make -C ${CI_BUILDDIR} cov -j
+xenial:kpi:coverage:
+  variables:
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+  dependencies:
+    - xenial:compile:debug
+  stage: kpi
+  script:
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - make -C ${CI_BUILDDIR} cov -j
 
-# xenial:kpi:cloc:
-#   variables:
-#     CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-#     CI_LSB_RELEASE: xenial
-#     CI_BUILD_TYPE: debug
-#     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-#     CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
-#   dependencies:
-#     - xenial:compile:debug
-#   stage: kpi
-#   script:
-#     - make -C ${CI_BUILDDIR} cloc -j
+xenial:kpi:cloc:
+  variables:
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+  dependencies:
+    - xenial:compile:debug
+  stage: kpi
+  script:
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - make -C ${CI_BUILDDIR} cloc -j
 
-# xenial:kpi:cppcheck:
-#   variables:
-#     CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-#     CI_LSB_RELEASE: xenial
-#     CI_BUILD_TYPE: debug
-#     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-#     CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
-#   dependencies:
-#     - xenial:compile:debug
-#   stage: kpi
-#   script:
-#     - make -C ${CI_BUILDDIR} cppcheck -j
+xenial:kpi:cppcheck:
+  variables:
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+  dependencies:
+    - xenial:compile:debug
+  stage: kpi
+  script:
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - make -C ${CI_BUILDDIR} cppcheck -j
 
-# xenial:publish:
-#   stage: publish
-#   dependencies:
-#     - xenial:kpi:cppcheck
-#     - xenial:kpi:cloc
-#     - xenial:kpi:coverage
-#     - xenial:kpi:unittest
-#     - xenial:kpi:doc
-#   script:
-#     - echo xenial:publish
+xenial:publish:
+  stage: publish
+  dependencies:
+    - xenial:kpi:cppcheck
+    - xenial:kpi:cloc
+    - xenial:kpi:coverage
+    - xenial:kpi:unittest
+    - xenial:kpi:doc
+  script:
+    - echo xenial:publish
