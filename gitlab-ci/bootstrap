@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -x
 
 mkdir -p ${CI_SRCDIR} ${CI_BUILDDIR}
 rsync -tr --delete ${CI_PROJECT_DIR}/ ${CI_SRCDIR}

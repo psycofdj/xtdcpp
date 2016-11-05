@@ -1,8 +1,5 @@
 image: ubuntu:16.04
 
-variables:
-  CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
-
 stages:
   - builder
   - compile
@@ -16,6 +13,7 @@ xenial:builder:
 
 xenial:compile:release:
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
@@ -31,6 +29,7 @@ xenial:compile:release:
 xenial:compile:debug:
   image: xtdcpp/builder/xenial
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
@@ -44,6 +43,7 @@ xenial:compile:debug:
 
 xenial:kpi:doc:
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
@@ -57,6 +57,7 @@ xenial:kpi:doc:
 
 xenial:kpi:unittest:
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
@@ -70,6 +71,7 @@ xenial:kpi:unittest:
 
 xenial:kpi:coverage:
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
@@ -82,6 +84,7 @@ xenial:kpi:coverage:
 
 xenial:kpi:cloc:
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
@@ -94,6 +97,7 @@ xenial:kpi:cloc:
 
 xenial:kpi:cppcheck:
   variables:
+    CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
     CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
