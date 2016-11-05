@@ -23,7 +23,9 @@ xenial:compile:release:
     - sed -i 's%git@github.com:%https://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules
     - cat ${CI_PROJECT_DIR}/.gitmodules
     - cd ${CI_PROJECT_DIR} && git submodule init
+    - cat ${CI_PROJECT_DIR}/.gitmodules
     - cd ${CI_PROJECT_DIR} && git submodule update
+    - cat ${CI_PROJECT_DIR}/.gitmodules
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
     - make -C ${CI_BUILDDIR} all -j
