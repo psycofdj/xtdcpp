@@ -20,8 +20,8 @@ xenial:compile:release:
   - xenial:builder
   stage: compile
   script:
-    - cd ${CI_PROJECT_DIR} && git submudule init
-    - cd ${CI_PROJECT_DIR} && git submudule update
+    - cd ${CI_PROJECT_DIR} && git submodule init
+    - cd ${CI_PROJECT_DIR} && git submodule update
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
     - make -C ${CI_BUILDDIR} all -j
