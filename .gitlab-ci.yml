@@ -1,0 +1,67 @@
+image: ubuntu:16.04
+
+stages:
+  - builder
+  - compile
+  - kpi
+  - publish
+
+builder:
+  - stage: builder
+  - script:
+    - echo builder
+
+compile:release:
+  dependencies: builder
+  stage: compile
+  script:
+    - echo compile:release
+
+compile:debug:
+  dependencies: builder
+  stage: compile
+  script:
+    - echo compile:release
+
+kpi:doc:
+  dependencies: compile:debug
+  stage: kpi
+  script:
+    - echo kpi:doc
+    - echo kpi:doc-coverage
+
+kpi:unittest:
+  dependencies: compile:release
+  stage: kpi
+  script:
+    - echo kpi:unittest
+    - echo kpi:memcheck
+
+kpi:coverage:
+  dependencies: compile:debug
+  stage: kpi
+  script:
+    - echo kpi:coverage
+
+kpi:cloc:
+  dependencies: compile:debug
+  stage: kpi
+  script:
+    - echo kpi:cloc
+
+kpi:cppcheck:
+  dependencies: compile:debug
+  stage: kpi
+  script:
+    - echo kpi:cppcheck
+
+publish:
+  stage: publish
+  dependencies:
+    - kpi:cppcheck
+    - kpi:cloc
+    - kpi:coverage
+    - kpi:unittest
+    - kpi:doc
+  script:
+    - echo publish
