@@ -44,6 +44,7 @@ xenial:compile:debug:
     - make -C ${CI_BUILDDIR} all -j
 
 xenial:kpi:doc:
+  image: xtdcpp/builder/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
@@ -56,6 +57,7 @@ xenial:kpi:doc:
     - make -C ${CI_BUILDDIR} doc-coverage -j
 
 xenial:kpi:unittest:
+  image: xtdcpp/builder/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
@@ -68,6 +70,7 @@ xenial:kpi:unittest:
     - make -C ${CI_BUILDDIR} memcheck -j
 
 xenial:kpi:coverage:
+  image: xtdcpp/builder/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -79,6 +82,7 @@ xenial:kpi:coverage:
     - make -C ${CI_BUILDDIR} cov -j
 
 xenial:kpi:cloc:
+  image: xtdcpp/builder/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -90,6 +94,7 @@ xenial:kpi:cloc:
     - make -C ${CI_BUILDDIR} cloc -j
 
 xenial:kpi:cppcheck:
+  image: xtdcpp/builder/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -101,6 +106,7 @@ xenial:kpi:cppcheck:
     - make -C ${CI_BUILDDIR} cppcheck -j
 
 xenial:publish:
+  image: xtdcpp/builder/xenial
   stage: publish
   dependencies:
     - xenial:kpi:cppcheck
