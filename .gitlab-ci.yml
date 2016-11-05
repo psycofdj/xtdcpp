@@ -13,18 +13,16 @@ xenial:builder:
 
 xenial:compile:release:
   variables:
-    CI_WORK_DIR: /cache/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_BUILD_REF_NAME/
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
-    CI_SRCDIR: $CI_WORK_DIR/$CI_LSB_RELEASE/src
-    CI_BUILDDIR: $CI_WORK_DIR/$CI_LSB_RELEASE/$CI_BUILD_TYPE/build
   image: xtdcpp/builder/xenial
   dependencies:
   - xenial:builder
   stage: compile
   script:
-    - $CI_PROJECT_DIR/gitlab-ci/bootstrap
-    - make -C $CI_BUILDDIR all -j
+    - . CI_PROJECT_DIR/gitlab-ci/env
+    - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
+    - make -C ${CI_BUILDDIR} all -j
 
 # xenial:compile:debug:
 #   image: xtdcpp/builder/xenial
