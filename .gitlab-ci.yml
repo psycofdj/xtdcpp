@@ -20,7 +20,7 @@ xenial:compile:release:
   - xenial:builder
   stage: compile
   script:
-    - . CI_PROJECT_DIR/gitlab-ci/env
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
     - make -C ${CI_BUILDDIR} all -j
 
