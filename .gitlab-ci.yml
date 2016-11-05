@@ -1,5 +1,8 @@
 image: ubuntu:16.04
 
+variables:
+  CI_WORK_DIR: /cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/
+
 stages:
   - builder
   - compile
@@ -11,68 +14,94 @@ xenial:builder:
   script:
     - echo builder:xenial
 
-trusty:builder:
-  stage: builder
-  script:
-    - echo builder:trusty
-
-precise:builder:
-  stage: builder
-  script:
-    - echo builder:trusty
-
-# xenial
-
 xenial:compile:release:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=release
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+  image: xtdcpp/builder/xenial
   dependencies:
   - xenial:builder
   stage: compile
   script:
-    - echo xenial:compile:release
+    - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
+    - make -C ${CI_BUILDDIR} all -j
 
 xenial:compile:debug:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=debug
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
-  - xenial:builder
+    - xenial:builder
   stage: compile
   script:
-    - echo xenial:compile:release
+    - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
+    - make -C ${CI_BUILDDIR} all -j
 
 xenial:kpi:doc:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=release
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
-  - xenial:compile:debug
+    - xenial:compile:release
   stage: kpi
   script:
-    - echo xenial:kpi:doc
-    - echo xenial:kpi:doc-coverage
+    - make -C ${CI_BUILDDIR} doc
+    - make -C ${CI_BUILDDIR} doc-coverage -j
 
 xenial:kpi:unittest:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=release
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
-  - xenial:compile:release
+    - xenial:compile:release
   stage: kpi
   script:
-    - echo xenial:kpi:unittest
-    - echo xenial:kpi:memcheck
+    - make -C ${CI_BUILDDIR} check -j
+    - make -C ${CI_BUILDDIR} memcheck -j
 
 xenial:kpi:coverage:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=debug
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
-  - xenial:compile:debug
+    - xenial:compile:debug
   stage: kpi
   script:
-    - echo xenial:kpi:coverage
+    - make -C ${CI_BUILDDIR} cov -j
 
 xenial:kpi:cloc:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=debug
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
-  - xenial:compile:debug
+    - xenial:compile:debug
   stage: kpi
   script:
-    - echo xenial:kpi:cloc
+    - make -C ${CI_BUILDDIR} cloc -j
 
 xenial:kpi:cppcheck:
+  variables:
+    CI_LSB_RELEASE=xenial
+    CI_BUILD_TYPE=debug
+    CI_SRCDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR=${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
-  - xenial:compile:debug
+    - xenial:compile:debug
   stage: kpi
   script:
-    - echo xenial:kpi:cppcheck
+    - make -C ${CI_BUILDDIR} cppcheck -j
 
 xenial:publish:
   stage: publish
@@ -84,132 +113,3 @@ xenial:publish:
     - xenial:kpi:doc
   script:
     - echo xenial:publish
-
-# trusty
-
-trusty:compile:release:
-  dependencies:
-  - trusty:builder
-  stage: compile
-  script:
-    - echo trusty:compile:release
-
-trusty:compile:debug:
-  dependencies:
-  - trusty:builder
-  stage: compile
-  script:
-    - echo trusty:compile:release
-
-trusty:kpi:doc:
-  dependencies:
-  - trusty:compile:debug
-  stage: kpi
-  script:
-    - echo trusty:kpi:doc
-    - echo trusty:kpi:doc-coverage
-
-trusty:kpi:unittest:
-  dependencies:
-  - trusty:compile:release
-  stage: kpi
-  script:
-    - echo trusty:kpi:unittest
-    - echo trusty:kpi:memcheck
-
-trusty:kpi:coverage:
-  dependencies:
-  - trusty:compile:debug
-  stage: kpi
-  script:
-    - echo trusty:kpi:coverage
-
-trusty:kpi:cloc:
-  dependencies:
-  - trusty:compile:debug
-  stage: kpi
-  script:
-    - echo trusty:kpi:cloc
-
-trusty:kpi:cppcheck:
-  dependencies:
-  - trusty:compile:debug
-  stage: kpi
-  script:
-    - echo trusty:kpi:cppcheck
-
-trusty:publish:
-  stage: publish
-  dependencies:
-    - trusty:kpi:cppcheck
-    - trusty:kpi:cloc
-    - trusty:kpi:coverage
-    - trusty:kpi:unittest
-    - trusty:kpi:doc
-  script:
-    - echo trusty:publish
-
-
-# trusty
-
-precise:compile:release:
-  dependencies:
-  - precise:builder
-  stage: compile
-  script:
-    - echo precise:compile:release
-
-precise:compile:debug:
-  dependencies:
-  - precise:builder
-  stage: compile
-  script:
-    - echo precise:compile:release
-
-precise:kpi:doc:
-  dependencies:
-  - precise:compile:debug
-  stage: kpi
-  script:
-    - echo precise:kpi:doc
-    - echo precise:kpi:doc-coverage
-
-precise:kpi:unittest:
-  dependencies:
-  - precise:compile:release
-  stage: kpi
-  script:
-    - echo precise:kpi:unittest
-    - echo precise:kpi:memcheck
-
-precise:kpi:coverage:
-  dependencies:
-  - precise:compile:debug
-  stage: kpi
-  script:
-    - echo precise:kpi:coverage
-
-precise:kpi:cloc:
-  dependencies:
-  - precise:compile:debug
-  stage: kpi
-  script:
-    - echo precise:kpi:cloc
-
-precise:kpi:cppcheck:
-  dependencies:
-  - precise:compile:debug
-  stage: kpi
-  script:
-    - echo precise:kpi:cppcheck
-
-precise:publish:
-  stage: publish
-  dependencies:
-    - precise:kpi:cppcheck
-    - precise:kpi:cloc
-    - precise:kpi:coverage
-    - precise:kpi:unittest
-    - precise:kpi:doc
-  script:
-    - echo precise:publish
