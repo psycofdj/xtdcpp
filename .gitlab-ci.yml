@@ -6,12 +6,12 @@ stages:
   - kpi
   - publish
 
-builder:xenial:
+xenial:builder:
   stage: builder
   script:
     - echo builder:xenial
 
-builder:trusty:
+trusty:builder:
   stage: builder
   script:
     - echo builder:trusty
