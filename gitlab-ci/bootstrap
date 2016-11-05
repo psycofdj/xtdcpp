@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir-p ${CI_SRCDIR} ${CI_BUILDDIR}
+mkdir -p ${CI_SRCDIR} ${CI_BUILDDIR}
 rsync -tr --delete ${CI_PROJECT_DIR}/ ${CI_SRCDIR}
 
 if [ ! -f ${CI_BUILDDIR}/Makefile ]; then
