@@ -18,14 +18,14 @@ builder:trusty:
 
 xenial:compile:release:
   dependencies:
-  - builder
+  - xenial:builder
   stage: compile
   script:
     - echo xenial:compile:release
 
 xenial:compile:debug:
   dependencies:
-  - builder
+  - xenial:builder
   stage: compile
   script:
     - echo xenial:compile:release
