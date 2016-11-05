@@ -16,6 +16,13 @@ trusty:builder:
   script:
     - echo builder:trusty
 
+precise:builder:
+  stage: builder
+  script:
+    - echo builder:trusty
+
+# xenial
+
 xenial:compile:release:
   dependencies:
   - xenial:builder
@@ -77,3 +84,132 @@ xenial:publish:
     - xenial:kpi:doc
   script:
     - echo xenial:publish
+
+# trusty
+
+trusty:compile:release:
+  dependencies:
+  - trusty:builder
+  stage: compile
+  script:
+    - echo trusty:compile:release
+
+trusty:compile:debug:
+  dependencies:
+  - trusty:builder
+  stage: compile
+  script:
+    - echo trusty:compile:release
+
+trusty:kpi:doc:
+  dependencies:
+  - trusty:compile:debug
+  stage: kpi
+  script:
+    - echo trusty:kpi:doc
+    - echo trusty:kpi:doc-coverage
+
+trusty:kpi:unittest:
+  dependencies:
+  - trusty:compile:release
+  stage: kpi
+  script:
+    - echo trusty:kpi:unittest
+    - echo trusty:kpi:memcheck
+
+trusty:kpi:coverage:
+  dependencies:
+  - trusty:compile:debug
+  stage: kpi
+  script:
+    - echo trusty:kpi:coverage
+
+trusty:kpi:cloc:
+  dependencies:
+  - trusty:compile:debug
+  stage: kpi
+  script:
+    - echo trusty:kpi:cloc
+
+trusty:kpi:cppcheck:
+  dependencies:
+  - trusty:compile:debug
+  stage: kpi
+  script:
+    - echo trusty:kpi:cppcheck
+
+trusty:publish:
+  stage: publish
+  dependencies:
+    - trusty:kpi:cppcheck
+    - trusty:kpi:cloc
+    - trusty:kpi:coverage
+    - trusty:kpi:unittest
+    - trusty:kpi:doc
+  script:
+    - echo trusty:publish
+
+
+# trusty
+
+precise:compile:release:
+  dependencies:
+  - precise:builder
+  stage: compile
+  script:
+    - echo precise:compile:release
+
+precise:compile:debug:
+  dependencies:
+  - precise:builder
+  stage: compile
+  script:
+    - echo precise:compile:release
+
+precise:kpi:doc:
+  dependencies:
+  - precise:compile:debug
+  stage: kpi
+  script:
+    - echo precise:kpi:doc
+    - echo precise:kpi:doc-coverage
+
+precise:kpi:unittest:
+  dependencies:
+  - precise:compile:release
+  stage: kpi
+  script:
+    - echo precise:kpi:unittest
+    - echo precise:kpi:memcheck
+
+precise:kpi:coverage:
+  dependencies:
+  - precise:compile:debug
+  stage: kpi
+  script:
+    - echo precise:kpi:coverage
+
+precise:kpi:cloc:
+  dependencies:
+  - precise:compile:debug
+  stage: kpi
+  script:
+    - echo precise:kpi:cloc
+
+precise:kpi:cppcheck:
+  dependencies:
+  - precise:compile:debug
+  stage: kpi
+  script:
+    - echo precise:kpi:cppcheck
+
+precise:publish:
+  stage: publish
+  dependencies:
+    - precise:kpi:cppcheck
+    - precise:kpi:cloc
+    - precise:kpi:coverage
+    - precise:kpi:unittest
+    - precise:kpi:doc
+  script:
+    - echo precise:publish
