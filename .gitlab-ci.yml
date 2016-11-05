@@ -20,6 +20,7 @@ xenial:compile:release:
   - xenial:builder
   stage: compile
   script:
+    - sed -i 's%git@github.com:%https://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules
     - cd ${CI_PROJECT_DIR} && git submodule init
     - cd ${CI_PROJECT_DIR} && git submodule update
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
