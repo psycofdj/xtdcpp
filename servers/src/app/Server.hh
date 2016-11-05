@@ -3,7 +3,6 @@
 
 # include <unistd.h>
 # include <map>
-# include <zlib.h>
 # include <bip/Server.hh> // libnetwork
 # include <counters.hh> // libcounters
 # include "app/HttpServer.hh"
@@ -33,9 +32,9 @@ protected:
 private:
   enum class stopper_status : uint32_t {
     disabled = 1,
-      waitting = 2,
-      enabled  = 3
-      };
+    waitting = 2,
+    enabled  = 3
+  };
 
 public:
   static const uint32_t mcs_defaultProbeDelay = 30;

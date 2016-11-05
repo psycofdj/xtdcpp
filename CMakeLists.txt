@@ -34,6 +34,7 @@ find_package(CovRule ${REQUIRED})
 find_package(MemcheckRule ${REQUIRED})
 find_package(Reports ${REQUIRED})
 
+
 # configure test default parameters
 if (CheckRule_FOUND)
   list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")

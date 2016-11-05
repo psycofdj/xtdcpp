@@ -15,7 +15,7 @@
  */
 #define XTD_CORE_LOG_REGISTER_APPENDER(p_appender)                \
   namespace {                                                     \
-  bool BOOST_PP_CAT(l_, p_appender) =                             \
+  bool BOOST_PP_CAT(l_, p_appender) __attribute__((unused))  =    \
     ConfLoader::get().registerAppender<p_appender>(#p_appender);  \
   }
 
@@ -24,10 +24,10 @@
  **        @ref xtd::log::ConfLoader "ConfLoader" instance
  ** @param p_formatter @ref xtd::log::Formatter "Formatter" class name
  */
-#define XTD_CORE_LOG_REGISTER_FORMATTER(p_formatter)                \
-  namespace {                                                       \
-  static bool BOOST_PP_CAT(l_, p_formatter) =                       \
-    ConfLoader::get().registerFormatter<p_formatter>(#p_formatter); \
+#define XTD_CORE_LOG_REGISTER_FORMATTER(p_formatter)                  \
+  namespace {                                                         \
+  static bool BOOST_PP_CAT(l_, p_formatter) __attribute__((unused)) = \
+    ConfLoader::get().registerFormatter<p_formatter>(#p_formatter);   \
   }
 
 
