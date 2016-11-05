@@ -11,6 +11,11 @@ xenial:builder:
   script:
     - echo builder:xenial
 
+trusty:builder:
+  stage: builder
+  script:
+    - echo builder:trusty
+
 # ---------------------------------------------------------------------------- #
 
 xenial:compile:release:
