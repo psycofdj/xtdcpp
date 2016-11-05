@@ -16,10 +16,10 @@ xenial:builder:
 
 xenial:compile:release:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:release
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: release
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   image: xtdcpp/builder/xenial
   dependencies:
   - xenial:builder
@@ -30,10 +30,10 @@ xenial:compile:release:
 
 xenial:compile:debug:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:debug
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
     - xenial:builder
   stage: compile
@@ -43,10 +43,10 @@ xenial:compile:debug:
 
 xenial:kpi:doc:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:release
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: release
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
     - xenial:compile:release
   stage: kpi
@@ -56,10 +56,10 @@ xenial:kpi:doc:
 
 xenial:kpi:unittest:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:release
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: release
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
     - xenial:compile:release
   stage: kpi
@@ -69,10 +69,10 @@ xenial:kpi:unittest:
 
 xenial:kpi:coverage:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:debug
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
     - xenial:compile:debug
   stage: kpi
@@ -81,10 +81,10 @@ xenial:kpi:coverage:
 
 xenial:kpi:cloc:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:debug
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
     - xenial:compile:debug
   stage: kpi
@@ -93,10 +93,10 @@ xenial:kpi:cloc:
 
 xenial:kpi:cppcheck:
   variables:
-    CI_LSB_RELEASE:xenial
-    CI_BUILD_TYPE:debug
-    CI_SRCDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
-    CI_BUILDDIR:${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
+    CI_LSB_RELEASE: xenial
+    CI_BUILD_TYPE: debug
+    CI_SRCDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/src
+    CI_BUILDDIR: ${CI_WORK_DIR}/${CI_LSB_RELEASE}/${CI_BUILD_TYPE}/build
   dependencies:
     - xenial:compile:debug
   stage: kpi
