@@ -6,69 +6,74 @@ stages:
   - kpi
   - publish
 
-builder:
+builder:xenial:
   stage: builder
   script:
-    - echo builder
+    - echo builder:xenial
 
-compile:release:
+builder:trusty:
+  stage: builder
+  script:
+    - echo builder:trusty
+
+xenial:compile:release:
   dependencies:
   - builder
   stage: compile
   script:
-    - echo compile:release
+    - echo xenial:compile:release
 
-compile:debug:
+xenial:compile:debug:
   dependencies:
   - builder
   stage: compile
   script:
-    - echo compile:release
+    - echo xenial:compile:release
 
-kpi:doc:
+xenial:kpi:doc:
   dependencies:
-  - compile:debug
+  - xenial:compile:debug
   stage: kpi
   script:
-    - echo kpi:doc
-    - echo kpi:doc-coverage
+    - echo xenial:kpi:doc
+    - echo xenial:kpi:doc-coverage
 
-kpi:unittest:
+xenial:kpi:unittest:
   dependencies:
-  - compile:release
+  - xenial:compile:release
   stage: kpi
   script:
-    - echo kpi:unittest
-    - echo kpi:memcheck
+    - echo xenial:kpi:unittest
+    - echo xenial:kpi:memcheck
 
-kpi:coverage:
+xenial:kpi:coverage:
   dependencies:
-  - compile:debug
+  - xenial:compile:debug
   stage: kpi
   script:
-    - echo kpi:coverage
+    - echo xenial:kpi:coverage
 
-kpi:cloc:
+xenial:kpi:cloc:
   dependencies:
-  - compile:debug
+  - xenial:compile:debug
   stage: kpi
   script:
-    - echo kpi:cloc
+    - echo xenial:kpi:cloc
 
-kpi:cppcheck:
+xenial:kpi:cppcheck:
   dependencies:
-  - compile:debug
+  - xenial:compile:debug
   stage: kpi
   script:
-    - echo kpi:cppcheck
+    - echo xenial:kpi:cppcheck
 
-publish:
+xenial:publish:
   stage: publish
   dependencies:
-    - kpi:cppcheck
-    - kpi:cloc
-    - kpi:coverage
-    - kpi:unittest
-    - kpi:doc
+    - xenial:kpi:cppcheck
+    - xenial:kpi:cloc
+    - xenial:kpi:coverage
+    - xenial:kpi:unittest
+    - xenial:kpi:doc
   script:
-    - echo publish
+    - echo xenial:publish
