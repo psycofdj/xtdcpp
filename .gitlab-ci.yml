@@ -20,7 +20,7 @@ xenial:compile:release:
   - xenial:builder
   stage: compile
   script:
-    - sed -i 's%git@github.com:%https://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules
+    - sed -i 's%git@github.com:%http://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules
     - cat ${CI_PROJECT_DIR}/.gitmodules
     - cd ${CI_PROJECT_DIR} && git submodule init
     - cat ${CI_PROJECT_DIR}/.gitmodules
