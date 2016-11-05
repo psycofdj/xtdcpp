@@ -181,7 +181,7 @@ closelog(void)
 
 
 void
-vsyslog (int priority, const char *msg_format, va_list ap)
+vsyslog(int priority, const char *msg_format, va_list ap)
 {
   typedef std::tuple<int, const char*> t_args;
   typedef void (*orig_t)(int, const char *, va_list);
