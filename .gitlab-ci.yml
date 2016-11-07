@@ -6,15 +6,23 @@ stages:
   - kpi
   - publish
 
+# ---------------------------------------------------------------------------- #
+
 xenial:builder:
+  variables:
+    CI_LSB_RELEASE: xenial
   stage: builder
   script:
-    - echo builder:xenial
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
 trusty:builder:
+  variables:
+    CI_LSB_RELEASE: trusty
   stage: builder
   script:
-    - echo builder:trusty
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
 # ---------------------------------------------------------------------------- #
 
@@ -231,114 +239,3 @@ trusty:publish:
     - trusty:kpi:doc
   script:
     - echo trusty:publish
-
-# # ---------------------------------------------------------------------------- #
-
-# precise:compile:release:
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: release
-#   image: xtdcpp/builder/precise
-#   dependencies:
-#   - precise:builder
-#   stage: compile
-#   script:
-#     - sed -i 's%git@github.com:%https://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules ${CI_PROJECT_DIR}/.git/config
-#     - cd ${CI_PROJECT_DIR} && git submodule init
-#     - cd ${CI_PROJECT_DIR} && git submodule update
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
-#     - make -C ${CI_BUILDDIR} all -j
-
-# precise:compile:debug:
-#   image: xtdcpp/builder/precise
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: debug
-#   dependencies:
-#     - precise:builder
-#   stage: compile
-#   script:
-#     - sed -i 's%git@github.com:%https://github.com/%g' ${CI_PROJECT_DIR}/.gitmodules ${CI_PROJECT_DIR}/.git/config
-#     - cd ${CI_PROJECT_DIR} && git submodule init
-#     - cd ${CI_PROJECT_DIR} && git submodule update
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - ${CI_PROJECT_DIR}/gitlab-ci/bootstrap
-#     - make -C ${CI_BUILDDIR} all -j
-
-# precise:kpi:doc:
-#   image: xtdcpp/builder/precise
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: release
-#   dependencies:
-#     - precise:compile:release
-#   stage: kpi
-#   script:
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - make -C ${CI_BUILDDIR} doc
-#     - make -C ${CI_BUILDDIR} doc-coverage -j
-
-# precise:kpi:unittest:
-#   image: xtdcpp/builder/precise
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: release
-#   dependencies:
-#     - precise:compile:release
-#   stage: kpi
-#   script:
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - make -C ${CI_BUILDDIR} check -j
-#     - make -C ${CI_BUILDDIR} memcheck -j
-
-# precise:kpi:coverage:
-#   image: xtdcpp/builder/precise
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: debug
-#   dependencies:
-#     - precise:compile:debug
-#   stage: kpi
-#   script:
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - make -C ${CI_BUILDDIR} cov -j
-
-# precise:kpi:cloc:
-#   image: xtdcpp/builder/precise
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: debug
-#   dependencies:
-#     - precise:compile:debug
-#   stage: kpi
-#   script:
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - make -C ${CI_BUILDDIR} cloc -j
-
-# precise:kpi:cppcheck:
-#   image: xtdcpp/builder/precise
-#   variables:
-#     CI_LSB_RELEASE: precise
-#     CI_BUILD_TYPE: debug
-#   dependencies:
-#     - precise:compile:debug
-#   stage: kpi
-#   script:
-#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
-#     - make -C ${CI_BUILDDIR} cppcheck -j
-
-# precise:publish:
-#   image: xtdcpp/builder/precise
-#   stage: publish
-#   dependencies:
-#     - precise:kpi:cppcheck
-#     - precise:kpi:cloc
-#     - precise:kpi:coverage
-#     - precise:kpi:unittest
-#     - precise:kpi:doc
-#   script:
-#     - echo precise:publish
-
-# # ---------------------------------------------------------------------------- #
-
