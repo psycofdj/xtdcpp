@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 l_dir=docker/builder/${CI_LSB_RELEASE}/
 l_file=${l_dir}/Dockerfile
