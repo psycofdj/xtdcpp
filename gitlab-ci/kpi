@@ -47,7 +47,7 @@ cd ci-reports
 git config user.name "CI-Bot for ${GITLAB_USER_EMAIL}"
 git config user.email "${GITLAB_USER_EMAIL}"
 git add ${CI_BUILD_REF_NAME}/*
-git commit -m "Deploy to ci-reports for ${l_sha}"
+git commit -m "Deploy to ci-reports for ${l_sha}" || true
 
 echo "Pushing ci-reports branch..."
 git branch ci-reports-clean $(echo "Deploy to ci-reports for ${l_sha}" | git commit-tree HEAD^{tree})
