@@ -20,6 +20,7 @@ cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports ${CI_WORK_DIR}/${CI
 
 echo "Uncrypting ci-bot ssh key..."
 openssl aes-256-cbc -d -a -in ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa.enc -out ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa -k ${CI_BOT_PASSWORD}
+chmod 600 ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa
 eval `ssh-agent -s`
 ssh-add ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa
 
@@ -30,21 +31,21 @@ rm -rf ci-reports
 git clone -q -b ci-reports ${l_repo} ci-reports
 
 echo "Copying files..."
-mkdir -p ci-reports/${l_branch}/
-rm -rf ci-reports/${l_branch}/*
-cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/reports/* ci-reports/${l_branch}/
-find ci-reports/${l_branch}/ -name latex -type d | xargs rm -rf
-find ci-reports/${l_branch}/ -name xml   -type d | xargs rm -rf
+mkdir -p ci-reports/${CI_BUILD_REF_NAME}/
+rm -rf ci-reports/${CI_BUILD_REF_NAME}/*
+cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/reports/* ci-reports/${CI_BUILD_REF_NAME}/
+find ci-reports/${CI_BUILD_REF_NAME}/ -name latex -type d | xargs rm -rf
+find ci-reports/${CI_BUILD_REF_NAME}/ -name xml   -type d | xargs rm -rf
 
 echo "Commiting..."
 git config user.name "CI-Bot for ${GITLAB_USER_EMAIL}"
 git config user.email "${GITLAB_USER_EMAIL}"
-git add ci-reports/${l_branch}/*
+git add ci-reports/${CI_BUILD_REF_NAME}/*
 git commit -m "Deploy to ci-reports for ${l_sha}"
 
 echo "Pushing ci-reports branch..."
-git branch ${l_branch}-clean $(echo "Deploy to ci-reports for ${l_sha}" | git commit-tree HEAD^{tree})
-git checkout ${l_branch}-clean
-git push -f -q $l_repo ${l_branch}-clean:${l_branch}
+git branch ci-reports-clean $(echo "Deploy to ci-reports for ${l_sha}" | git commit-tree HEAD^{tree})
+git checkout ci-reports-clean
+git push -f -q $l_repo ci-reports-clean:ci-reports
 
 rm -rf ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa

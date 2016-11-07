@@ -233,19 +233,19 @@ trusty:kpi:cppcheck:
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - make -C ${CI_BUILDDIR} cppcheck -j
 
-trusty:publish:
-  variables:
-    CI_LSB_RELEASE: trusty
-  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
-  stage: publish
-  dependencies:
-    - trusty:kpi:cppcheck
-    - trusty:kpi:cloc
-    - trusty:kpi:coverage
-    - trusty:kpi:unittest
-    - trusty:kpi:doc
-  script:
-    - . ${CI_PROJECT_DIR}/gitlab-ci/env
-    - ${CI_PROJECT_DIR}/gitlab-ci/kpi
+# trusty:publish:
+#   variables:
+#     CI_LSB_RELEASE: trusty
+#   image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
+#   stage: publish
+#   dependencies:
+#     - trusty:kpi:cppcheck
+#     - trusty:kpi:cloc
+#     - trusty:kpi:coverage
+#     - trusty:kpi:unittest
+#     - trusty:kpi:doc
+#   script:
+#     - . ${CI_PROJECT_DIR}/gitlab-ci/env
+#     - ${CI_PROJECT_DIR}/gitlab-ci/kpi
 
 # ---------------------------------------------------------------------------- #
