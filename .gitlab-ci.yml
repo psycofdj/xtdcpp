@@ -9,18 +9,26 @@ stages:
 # ---------------------------------------------------------------------------- #
 
 xenial:builder:
+  image: docker:latest
+  services:
+    - docker:dind
   variables:
     CI_LSB_RELEASE: xenial
   stage: builder
   script:
+    - apt-get install -y jq
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
 trusty:builder:
+  image: docker:latest
+  services:
+    - docker:dind
   variables:
     CI_LSB_RELEASE: trusty
   stage: builder
   script:
+    - apt-get install -y jq
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
@@ -30,7 +38,7 @@ xenial:compile:release:
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   dependencies:
   - xenial:builder
   stage: compile
@@ -43,7 +51,7 @@ xenial:compile:release:
     - make -C ${CI_BUILDDIR} all -j
 
 xenial:compile:debug:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -59,7 +67,7 @@ xenial:compile:debug:
     - make -C ${CI_BUILDDIR} all -j
 
 xenial:kpi:doc:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
@@ -72,7 +80,7 @@ xenial:kpi:doc:
     - make -C ${CI_BUILDDIR} doc-coverage -j
 
 xenial:kpi:unittest:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: release
@@ -85,7 +93,7 @@ xenial:kpi:unittest:
     - make -C ${CI_BUILDDIR} memcheck -j
 
 xenial:kpi:coverage:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -97,7 +105,7 @@ xenial:kpi:coverage:
     - make -C ${CI_BUILDDIR} cov -j
 
 xenial:kpi:cloc:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -109,7 +117,7 @@ xenial:kpi:cloc:
     - make -C ${CI_BUILDDIR} cloc -j
 
 xenial:kpi:cppcheck:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   variables:
     CI_LSB_RELEASE: xenial
     CI_BUILD_TYPE: debug
@@ -121,7 +129,7 @@ xenial:kpi:cppcheck:
     - make -C ${CI_BUILDDIR} cppcheck -j
 
 xenial:publish:
-  image: xtdcpp/builder/xenial
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   stage: publish
   dependencies:
     - xenial:kpi:cppcheck
@@ -138,7 +146,7 @@ trusty:compile:release:
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: release
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   dependencies:
   - trusty:builder
   stage: compile
@@ -151,7 +159,7 @@ trusty:compile:release:
     - make -C ${CI_BUILDDIR} all -j
 
 trusty:compile:debug:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: debug
@@ -167,7 +175,7 @@ trusty:compile:debug:
     - make -C ${CI_BUILDDIR} all -j
 
 trusty:kpi:doc:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: release
@@ -180,7 +188,7 @@ trusty:kpi:doc:
     - make -C ${CI_BUILDDIR} doc-coverage -j
 
 trusty:kpi:unittest:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: release
@@ -193,7 +201,7 @@ trusty:kpi:unittest:
     - make -C ${CI_BUILDDIR} memcheck -j
 
 trusty:kpi:coverage:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: debug
@@ -205,7 +213,7 @@ trusty:kpi:coverage:
     - make -C ${CI_BUILDDIR} cov -j
 
 trusty:kpi:cloc:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: debug
@@ -217,7 +225,7 @@ trusty:kpi:cloc:
     - make -C ${CI_BUILDDIR} cloc -j
 
 trusty:kpi:cppcheck:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   variables:
     CI_LSB_RELEASE: trusty
     CI_BUILD_TYPE: debug
@@ -229,7 +237,7 @@ trusty:kpi:cppcheck:
     - make -C ${CI_BUILDDIR} cppcheck -j
 
 trusty:publish:
-  image: xtdcpp/builder/trusty
+  image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   stage: publish
   dependencies:
     - trusty:kpi:cppcheck
