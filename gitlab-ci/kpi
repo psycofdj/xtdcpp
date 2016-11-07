@@ -5,8 +5,11 @@ set -e
 # copying debug reports in release reports
 for c_dir in $(find ${CI_WORK_DIR}/${CI_LSB_RELEASE}/debug/build/reports  -mindepth 1 -maxdepth 1 -type d); do
   l_name=$(basename ${c_dir})
-  rm -rf ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports/${l_name}
-  cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/debug/build/reports/${l_name} ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports/${l_name}
+  for c_report in $(find ${CI_WORK_DIR}/${CI_LSB_RELEASE}/debug/build/reports/${l_name}  -mindepth 1 -maxdepth 1 -type d); do
+    l_report=$(basename ${c_report})
+    rm -rf ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports/${l_name}/${l_report}
+    cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/debug/build/reports/${l_name}/${l_report} ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports/${l_name}/${l_report}
+  done
 done
 
 # updating release report interface
