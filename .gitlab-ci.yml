@@ -132,7 +132,8 @@ xenial:publish:
     - xenial:kpi:unittest
     - xenial:kpi:doc
   script:
-    - echo xenial:publish
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - ${CI_PROJECT_DIR}/gitlab-ci/kpi
 
 # ---------------------------------------------------------------------------- #
 
@@ -241,3 +242,6 @@ trusty:publish:
     - trusty:kpi:doc
   script:
     - echo trusty:publish
+
+# ---------------------------------------------------------------------------- #
+
