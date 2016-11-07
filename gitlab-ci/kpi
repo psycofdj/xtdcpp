@@ -10,7 +10,7 @@ for c_dir in $(find ${CI_WORK_DIR}/${CI_LSB_RELEASE}/debug/build/reports  -minde
 done
 
 # updating release report interface
-make -C ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release reports-update
+make -C ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build reports-update
 
 # copying reports into branch
 rm -rf ${CI_WORK_DIR}/${CI_LSB_RELEASE}/reports
