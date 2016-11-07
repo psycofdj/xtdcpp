@@ -4,7 +4,7 @@ set -x
 
 mkdir -p ${CI_SRCDIR} ${CI_BUILDDIR}
 l_dir=$(mktemp -d)
-rsync --temp-dir ${l_dir} -tr --delete ${CI_PROJECT_DIR}/ ${CI_SRCDIR}
+rsync --temp-dir ${l_dir} --exclude '.git' -tr --delete ${CI_PROJECT_DIR}/ ${CI_SRCDIR}
 
 if [ ! -f ${CI_BUILDDIR}/Makefile ]; then
     cd ${CI_BUILDDIR}/
