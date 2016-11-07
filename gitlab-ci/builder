@@ -5,11 +5,11 @@ l_file=${l_dir}/Dockerfile
 l_hash=$(md5sum ${l_file} | cut -d' ' -f1)
 l_image=${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/${CI_LSB_RELEASE}
 l_tmp=$(mktemp)
-docker inspect ${l_image} > ${l_tmp} 2> /dev/null
+docker inspect -f "{{ index .Config.Labels \"ci.gitlab.hash\"}}" ${l_image} > ${l_tmp} 2> /dev/null
 
 l_got=""
 if [ $? -eq 0 ]; then
-    l_got=$(cat ${l_tmp} | jq -r '.[0].ContainerConfig.Labels | .["ci.gitlab.hash"]')
+    l_got=$(cat ${l_tmp})
 fi
 
 if [ "${l_got}" != "${l_hash}" ]; then

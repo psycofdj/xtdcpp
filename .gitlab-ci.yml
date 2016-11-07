@@ -10,25 +10,19 @@ stages:
 
 xenial:builder:
   image: docker:latest
-  services:
-    - docker:dind
   variables:
     CI_LSB_RELEASE: xenial
   stage: builder
   script:
-    - apt-get install -y jq
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
 trusty:builder:
   image: docker:latest
-  services:
-    - docker:dind
   variables:
     CI_LSB_RELEASE: trusty
   stage: builder
   script:
-    - apt-get install -y jq
     - . ${CI_PROJECT_DIR}/gitlab-ci/env
     - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
