@@ -123,6 +123,8 @@ xenial:kpi:cppcheck:
     - make -C ${CI_BUILDDIR} cppcheck -j
 
 xenial:publish:
+  variables:
+    CI_LSB_RELEASE: xenial
   image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/xenial
   stage: publish
   dependencies:
@@ -232,6 +234,8 @@ trusty:kpi:cppcheck:
     - make -C ${CI_BUILDDIR} cppcheck -j
 
 trusty:publish:
+  variables:
+    CI_LSB_RELEASE: trusty
   image: ${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/${CI_BUILD_REF_NAME}/trusty
   stage: publish
   dependencies:
@@ -241,7 +245,7 @@ trusty:publish:
     - trusty:kpi:unittest
     - trusty:kpi:doc
   script:
-    - echo trusty:publish
+    - . ${CI_PROJECT_DIR}/gitlab-ci/env
+    - ${CI_PROJECT_DIR}/gitlab-ci/kpi
 
 # ---------------------------------------------------------------------------- #
-
