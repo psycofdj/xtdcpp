@@ -9,7 +9,7 @@ stages:
 # ---------------------------------------------------------------------------- #
 
 xenial:builder:
-  image: docker:latest
+  image: docker:1.11.2
   variables:
     CI_LSB_RELEASE: xenial
   stage: builder
@@ -18,7 +18,7 @@ xenial:builder:
     - ${CI_PROJECT_DIR}/gitlab-ci/builder
 
 trusty:builder:
-  image: docker:latest
+  image: docker:1.11.2
   variables:
     CI_LSB_RELEASE: trusty
   stage: builder
