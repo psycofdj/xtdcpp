@@ -16,8 +16,8 @@ done
 make -C ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build reports-update
 
 # copying reports into branch
-rm -rf ${CI_WORK_DIR}/${CI_LSB_RELEASE}/reports
-cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports ${CI_WORK_DIR}/${CI_LSB_RELEASE}/reports
+rm -rf ${CI_WORK_DIR}/reports
+cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/release/build/reports ${CI_WORK_DIR}/reports
 
 echo "Uncrypting ci-bot ssh key..."
 openssl aes-256-cbc -d -a -in ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa.enc -out ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa -k ${CI_BOT_PASSWORD}
@@ -38,7 +38,7 @@ git clone -q -b ci-reports ${l_repo} ci-reports
 echo "Copying files..."
 mkdir -p ci-reports/${CI_BUILD_REF_NAME}/
 rm -rf ci-reports/${CI_BUILD_REF_NAME}/*
-cp -r ${CI_WORK_DIR}/${CI_LSB_RELEASE}/reports/* ci-reports/${CI_BUILD_REF_NAME}/
+cp -r ${CI_WORK_DIR}/reports/* ci-reports/${CI_BUILD_REF_NAME}/
 find ci-reports/${CI_BUILD_REF_NAME}/ -name latex -type d | xargs rm -rf
 find ci-reports/${CI_BUILD_REF_NAME}/ -name xml   -type d | xargs rm -rf
 
