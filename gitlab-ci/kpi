@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -x
 
 # copying debug reports in release reports
 for c_dir in $(find ${CI_WORK_DIR}/${CI_LSB_RELEASE}/debug/build/reports  -mindepth 1 -maxdepth 1 -type d); do
@@ -25,6 +26,7 @@ eval `ssh-agent -s`
 ssh-add ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa
 
 echo "Cloning ci-reports branch..."
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 l_sha=`git rev-parse --verify HEAD`
 l_repo=`git config remote.origin.url`
 l_repo=$(echo -n ${l_repo} | sed -r 's%http://(.*@)?([^:]+)(:[0-9]+)/%git@\2:%g')
