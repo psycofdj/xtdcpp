@@ -26,7 +26,9 @@ eval `ssh-agent -s`
 ssh-add ${CI_PROJECT_DIR}/gitlab-ci/ci-bot.rsa
 
 echo "Cloning ci-reports branch..."
-GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+mkdir -p ~/.ssh/
+echo "StrictHostKeyChecking no" > ~/.ssh/config
+echo "UserKnownHostsFile /dev/null"  >> ~/.ssh/config
 l_sha=`git rev-parse --verify HEAD`
 l_repo=`git config remote.origin.url`
 l_repo=$(echo -n ${l_repo} | sed -r 's%http://(.*@)?([^:]+)(:[0-9]+)/%git@\2:%g')
