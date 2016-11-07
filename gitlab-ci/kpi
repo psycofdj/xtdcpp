@@ -43,6 +43,7 @@ find ci-reports/${CI_BUILD_REF_NAME}/ -name latex -type d | xargs rm -rf
 find ci-reports/${CI_BUILD_REF_NAME}/ -name xml   -type d | xargs rm -rf
 
 echo "Commiting..."
+cd ci-reports
 git config user.name "CI-Bot for ${GITLAB_USER_EMAIL}"
 git config user.email "${GITLAB_USER_EMAIL}"
 git add ci-reports/${CI_BUILD_REF_NAME}/*
