@@ -1,0 +1,15 @@
+concurrent = 16
+check_interval = 0
+
+[[runners]]
+  name = "runner1"
+  url = "http://localhost:8080/ci"
+  token = "7461386b2861af363ab18342eb8520"
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "ruby:2.1"
+    privileged = true
+    disable_cache = false
+    volumes = ["/home/cache:/cache", "/var/run/docker.sock:/var/run/docker.sock"]
+  [runners.cache]
