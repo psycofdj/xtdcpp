@@ -1,6 +1,6 @@
 #include "log.hh"                 //libcore
 #include "Application.hh"         //libcore
-#include "MainTestApplication.hh" //libtests
+#include <MainTestApplication.hh> //libtests
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 #include <stdexcept>
@@ -149,8 +149,8 @@ TestApplication::getVersion(void)
   CPPUNIT_ASSERT(string::npos != l_version.find("$user:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$host:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$pwd:"));
-  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libcore_s]"));
-  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libtests_s]"));
+  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libxtd-core_s]"));
+  CPPUNIT_ASSERT(string::npos != l_version.find("$archive: [libxtd-tests_s]"));
 #endif
 }
 
@@ -369,7 +369,7 @@ TestApplication::bindValueIfGiven(void)
 void
 TestApplication::bindCallback(void)
 {
-  bool              l_called;
+  bool              l_called = false;
   auto              l_function = [&l_called](void) {
     l_called = true;
   };

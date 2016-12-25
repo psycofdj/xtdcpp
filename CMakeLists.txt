@@ -14,10 +14,28 @@ if (NOT CMAKE_BUILD_TYPE)
     FORCE)
 endif()
 
+# --------------------
+# compiler options
+# --------------------
+
+xtdmake_find_program(Gxx
+  NAMES g++
+  DOC "Gnu C++ compiler"
+  URL "https://gcc.gnu.org"
+  VERSION_OPT "-dumpversion"
+  VERSION_POS "0"
+  REQUIRED 1)
+
+if (Gxx_VERSION VERSION_LESS 4.7)
+  message(FATAL_ERROR "xtdcpp requires g++ version >= 4.7 for -std=c++11 option")
+endif()
+
 set(CMAKE_CXX_COMPILER         "g++")
-set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=c++11 -W -Wall -Wextra")
+set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=gnu++11 -W -Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG      "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS_RELEASE    "${CMAKE_CXX_FLAGS_RELEASE} -Werror")
+
+
 
 
 find_package(StaticShared REQUIRED)
@@ -31,7 +49,12 @@ find_package(Tracking ${REQUIRED})
 find_package(Cppunit ${REQUIRED})
 find_package(CheckRule ${REQUIRED})
 find_package(CovRule ${REQUIRED})
+find_package(MemcheckRule ${REQUIRED})
 find_package(Reports ${REQUIRED})
+
+
+add_definitions(-DBOOST_MAJOR_VERSION=${Boost_MAJOR_VERSION})
+add_definitions(-DBOOST_MINOR_VERSION=${Boost_MINOR_VERSION})
 
 # configure test default parameters
 if (CheckRule_FOUND)
@@ -39,7 +62,7 @@ if (CheckRule_FOUND)
   list(APPEND CheckRule_DEFAULT_ARGS     "--top-srcdir=\${PROJECT_SOURCE_DIR}")
   list(APPEND CheckRule_DEFAULT_ARGS     "--top-builddir=\${PROJECT_BINARY_DIR}")
   list(APPEND CheckRule_DEFAULT_ARGS     "--testdir=\${CheckRule_DIRECTORY}")
-  list(APPEND CheckRule_DEFAULT_ARGS     "-o compiler")
+  list(APPEND CheckRule_DEFAULT_ARGS     "--outputter=compiler")
   list(APPEND CheckRule_DEFAULT_ARGS     "-p")
   list(APPEND CheckRule_DEFAULT_ARGS     "-e")
   list(APPEND CheckRule_DEFAULT_ARGS     "7")

@@ -6,64 +6,72 @@ namespace log {
 
 template<typename T>
 Fields<T>::Fields(void) :
-  mc_functors({
-      { "name",     [this](void) -> T& { return m_name;     } },
-      { "module",   [this](void) -> T& { return m_module;   } },
-      { "threadid", [this](void) -> T& { return m_threadid; } },
-      { "slevel",   [this](void) -> T& { return m_slevel;   } },
-      { "ilevel",   [this](void) -> T& { return m_ilevel;   } },
-      { "message",  [this](void) -> T& { return m_message;  } },
-      { "filename", [this](void) -> T& { return m_filename; } },
-      { "line",     [this](void) -> T& { return m_line;     } },
-      { "function", [this](void) -> T& { return m_function; } },
-      { "time",     [this](void) -> T& { return m_time;     } },
-      { "location", [this](void) -> T& { return m_location; } },
-      { "fulllog",  [this](void) -> T& { return m_fulllog;  } },
-      { "pid",      [this](void) -> T& { return m_pid;      } },
-      { "ppid",     [this](void) -> T& { return m_ppid;     } }
+  m_functors({
+      { "name",     [](this_type& p_obj) -> T& { return p_obj.m_name;     } },
+      { "module",   [](this_type& p_obj) -> T& { return p_obj.m_module;   } },
+      { "threadid", [](this_type& p_obj) -> T& { return p_obj.m_threadid; } },
+      { "slevel",   [](this_type& p_obj) -> T& { return p_obj.m_slevel;   } },
+      { "ilevel",   [](this_type& p_obj) -> T& { return p_obj.m_ilevel;   } },
+      { "message",  [](this_type& p_obj) -> T& { return p_obj.m_message;  } },
+      { "filename", [](this_type& p_obj) -> T& { return p_obj.m_filename; } },
+      { "line",     [](this_type& p_obj) -> T& { return p_obj.m_line;     } },
+      { "function", [](this_type& p_obj) -> T& { return p_obj.m_function; } },
+      { "time",     [](this_type& p_obj) -> T& { return p_obj.m_time;     } },
+      { "location", [](this_type& p_obj) -> T& { return p_obj.m_location; } },
+      { "fulllog",  [](this_type& p_obj) -> T& { return p_obj.m_fulllog;  } },
+      { "pid",      [](this_type& p_obj) -> T& { return p_obj.m_pid;      } },
+      { "ppid",     [](this_type& p_obj) -> T& { return p_obj.m_ppid;     } }
     })
 {
+}
+
+
+template<typename T>
+bool
+Fields<T>::exists(const string& p_field) const
+{
+  auto c_func = m_functors.find(p_field);
+  return (m_functors.end() != c_func);
+}
+
+template<typename T>
+T&
+Fields<T>::get(const string& p_field)
+{
+  auto c_func = m_functors.find(p_field);
+  return c_func->second(*this);
 }
 
 template<typename T>
 bool
 Fields<T>::set(const string& p_field, const T& p_val)
 {
-  auto c_func = mc_functors.find(p_field);
-  if (mc_functors.end() == c_func)
+  if (false == exists(p_field))
     return false;
-  T& l_val = c_func->second();
-  l_val = p_val;
+  get(p_field) = p_val;
   return true;
 }
 
+/**
+ ** @details
+ ** 1. We allow const_cast since member reference is copied to result value
+ **    and therefore not modified.
+ */
 template<typename T>
 bool
 Fields<T>::get(const string& p_field, T& p_val) const
 {
-  auto c_func = mc_functors.find(p_field);
-  if (mc_functors.end() == c_func)
+  auto c_func = m_functors.find(p_field);
+  if (m_functors.end() == c_func)
     return false;
-  p_val = c_func->second();
+  p_val = c_func->second(const_cast<this_type&>(*this));
   return true;
-}
-
-template<typename T>
-bool
-Fields<T>::exists(const string& p_field) const
-{
-  auto c_func = mc_functors.find(p_field);
-  return (mc_functors.end() != c_func);
-}
-
-template<typename T>
-T&
-Fields<T>::get(const string& p_field) const
-{
-  auto c_func = mc_functors.find(p_field);
-  return c_func->second();
 }
 
 }}
 
 #endif // !XTD_CORE_LOG_FIELDS_HXX_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

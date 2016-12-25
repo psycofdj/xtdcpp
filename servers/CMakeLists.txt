@@ -17,7 +17,7 @@ include_directories(
   ${servers_INCLUDE_DIRS}
   )
 
-add_shared_static_library(servers
+add_shared_static_library(xtd-servers
   src/app/HtmlOArchive.cc
   src/app/HttpServer.cc
   src/app/Server.cc
@@ -34,5 +34,6 @@ add_cppcheck(servers)
 add_check(servers
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${servers_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    core_s tests_s counters_s servers_s network_s ${Boost_LIBRARIES})
+  LINKS    xtd-core_s xtd-tests_s xtd-counters_s xtd-servers_s xtd-network_s ${Boost_LIBRARIES})
 add_cov(servers)
+add_memcheck(servers)

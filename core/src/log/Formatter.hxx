@@ -14,15 +14,16 @@ FormattedRecord
 Formatter::format(const Record& p_rec, Arguments&&... p_args) const
 {
   FormattedRecord l_rec(p_rec);
-  boost::format   l_format(l_rec.m_format);
-  size_t          l_fmtArgsCount = l_format.expected_args();
-  size_t          l_argsCount    = sizeof...(Arguments);
-
 
   try
   {
-    if (l_fmtArgsCount == l_argsCount)
+    boost::format   l_format(l_rec.m_format);
+    size_t          l_fmtArgsCount = l_format.expected_args();
+    size_t          l_argsCount    = sizeof...(Arguments);
+
+    if (l_fmtArgsCount == l_argsCount) {
       l_rec.m_message = format::vargs(l_format, p_args...);
+    }
     else if (l_fmtArgsCount + 3 == l_argsCount)
     {
       vector<string> l_parts;
@@ -34,8 +35,8 @@ Formatter::format(const Record& p_rec, Arguments&&... p_args) const
       l_rec.m_filename = l_parts[2];
       l_rec.m_line     = boost::lexical_cast<size_t>(l_parts[3]);
       l_rec.m_hasLoc   = true;
-      l_rec.m_pid      = getpid();
-      l_rec.m_ppid     = getppid();
+    } else {
+      l_rec.m_message = "unable to render format : " + p_rec.m_format + " : wrong number of arguments";
     }
   } catch (std::exception& l_error) {
     l_rec.m_message = "unable to render format : " + p_rec.m_format + " : " + l_error.what();
@@ -59,3 +60,7 @@ Formatter::addFormatModifier(Handler p_functor)
 }}
 
 #endif // !CORE_LOG_FORMATTER_HXX_
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

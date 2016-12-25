@@ -3,10 +3,12 @@
 # include "log/logtypes.hh"
 # include <mutex>
 # include <thread>
-# include "log/Appender.hh"
-# include "mixins/shared.hh"
+# include <memory>
+
+class TestLogger;
 
 namespace xtd {
+namespace log { class Appender; }
 namespace log {
 
 
@@ -17,7 +19,7 @@ namespace log {
  ** The Logger handles user logs by filtering those under configured @ref level
  ** and propagating the others to its registered @ref Appender objects.
  **
- ** #### Object methods
+ ** ### Object methods
  **
  ** - @ref Logger::getLevel "getLevel()"
  **   - @copybrief Logger::getLevel
@@ -30,7 +32,7 @@ namespace log {
  ** - @ref Logger::log "log(format, args...)"
  **   - @copybrief Logger::log
  **
- ** #### Variadic arguments format
+ ** ### Variadic arguments format
  **
  ** @ref Logger::log and all following logging shorthands allow to provide a format
  ** message with variadic template argument. Functionally, its equivalent to plain
@@ -46,7 +48,7 @@ namespace log {
  ** @endcode
  **
  **
- ** #### Logging shorthands
+ ** ### Logging shorthands
  **
  ** - @ref Logger::emerg "emerg(format, args...)"
  **   - @copybrief Logger::emerg
@@ -78,10 +80,24 @@ namespace log {
  ** l_obj.debug("debug message");
  ** @endcode
  **
+ ** ### Thread Safety
+ **
+ ** - Concurrent calls to multiple objects : **YES**
+ ** - Concurrent calls to single object    : **YES**
+ **
+ ** The class uses a mutex-based locking that provides thread safeness for all
+ ** read and write operations on internal Appender list.
+ ** However record forwarding to each appender it not lock. The Appender object
+ ** is responsible of its own thread safeness.
  */
-class Logger
+class Logger : public std::enable_shared_from_this<Logger>
 {
+  friend class ::TestLogger;
+
 protected:
+  /**
+   ** @brief Type for child Appender list
+   */
   typedef vector<sptr<Appender>> t_appenders;
 
   /**
@@ -365,9 +381,22 @@ private:
  ** give you already enough flexibility. If you really need to, be aware that
  ** all helper free functions defined in the namespace uses a single static
  ** RootLogger instance.
+ **
+ ** ### Thread Safety
+ **
+ ** - Concurrent calls to multiple objects : **YES**
+ ** - Concurrent calls to single object    : **YES**
+ **
+ ** The class uses a mutex-based locking that provides thread safeness for all
+ ** read and write operations on internal child Logger list.
+ **
+ ** Calls to child logger methods are not protected, Logger object is
+ ** responsible of its own thread safeness.
  */
 class RootLogger : public Logger
 {
+  friend class ::TestLogger;
+
 private:
   typedef map<string, sptr<Logger>> t_loggers;
   typedef map<string, level>        t_levels;
@@ -437,9 +466,13 @@ public:
 
 public:
   /**
-   ** @brief Shorthand for get(p_module).getLevel()
+   ** @brief Returns level applicable to module.
    ** @param p_module module name
    ** @return active current level of given module
+   ** @details
+   ** This method is @b not equivalent to get(p_module).getLevel() when logger for
+   ** module does not exist. In that case, the method returns the level of closest
+   ** parent in hierarchy.
    */
   level getLevelTo(const string& p_module) const;
 
@@ -500,12 +533,11 @@ public:
   void debugTo(const string& p_module, const string& p_format, Args... p_args);
 
 private:
-  t_loggers::iterator getClosestParent(const string& p_module);
+  t_loggers::const_iterator getClosestParent(const string& p_module) const;
 
 private:
   t_loggers          m_loggers;
   mutable std::mutex m_mutex;
-
 };
 
 }}

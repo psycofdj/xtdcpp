@@ -1,4 +1,5 @@
 # include <log/ConfLoader.hh>
+# include <boost/regex.hpp>
 # include <boost/algorithm/string/split.hpp>
 # include <boost/algorithm/string/classification.hpp>
 # include <boost/algorithm/string/case_conv.hpp>
@@ -16,10 +17,11 @@
 namespace xtd {
 namespace log {
 
-bool
-ConfLoader::configure(const map<string, string>& p_lines)
+void
+ConfLoader::configure(const map<string, string>& p_properties,
+                      RootLogger&                p_root)
 {
-  for (auto c_line : p_lines)
+  for (auto c_line : p_properties)
   {
     boost::smatch l_matches;
     boost::regex  l_re("^log\\.logger\\.(.*)$");
@@ -27,17 +29,9 @@ ConfLoader::configure(const map<string, string>& p_lines)
     if (true == boost::regex_match(c_line.first, l_matches, l_re))
     {
       if (l_matches.size() == 2)
-      {
-        try {
-          createLogger(l_matches[1], c_line.second, p_lines);
-        } catch (const error& l_error) {
-          std::cout << "unable to initialize loggers : " << l_error.what() << std::endl;
-          return false;
-        }
-      }
+        createLogger(l_matches[1], c_line.second, p_properties, p_root);
     }
   }
-  return true;
 }
 
 std::shared_ptr<Formatter>
@@ -50,11 +44,11 @@ ConfLoader::getFormatter(const string&              p_name,
 
   auto c_value = p_properties.find("log.formatter." + p_name + ".class");
   if (c_value == p_properties.end())
-    log::raise<log_error>("could not find formatter class key '%s'", "log.formatter." + p_name + ".class", HERE);
+    log::raise<log_error>("core.log", "could not find formatter class key '%s'", "log.formatter." + p_name + ".class", HERE);
 
   auto c_constructor = m_formatterConstructors.find(c_value->second);
   if (c_constructor == m_formatterConstructors.end())
-    log::raise<log_error>("unknown formatter class '%s' in key '%s'", c_value->second, c_value->first, HERE);
+    log::raise<log_error>("core.log", "unknown formatter class '%s' in key '%s'", c_value->second, c_value->first, HERE);
 
   std::shared_ptr<Formatter> l_result = c_constructor->second(p_name, p_properties);
   m_formatters.insert(std::make_pair(p_name, l_result));
@@ -71,11 +65,11 @@ ConfLoader::getAppender(const string&              p_name,
 
   auto c_value = p_properties.find("log.appender." + p_name + ".class");
   if (c_value == p_properties.end())
-    log::raise<log_error>("could not find appender class key '%s'", "log.appender." + p_name + ".class", HERE);
+    log::raise<log_error>("core.log", "could not find appender class key '%s'", "log.appender." + p_name + ".class", HERE);
 
   auto c_constructor = m_appenderConstructors.find(c_value->second);
   if (c_constructor == m_appenderConstructors.end())
-    log::raise<log_error>("unknown appender class '%s' in key '%s'", c_value->second, c_value->first, HERE);
+    log::raise<log_error>("core.log", "unknown appender class '%s' in key '%s'", c_value->second, c_value->first, HERE);
 
   sptr<Appender> l_result = c_constructor->second(p_name, p_properties);
 
@@ -94,7 +88,8 @@ ConfLoader::getAppender(const string&              p_name,
 void
 ConfLoader::createLogger(const string&              p_name,
                          const string&              p_value,
-                         const map<string, string>& p_properties)
+                         const map<string, string>& p_properties,
+                         RootLogger&                p_root)
 {
   vector<string> l_parts;
   vector<string> l_appenders;
@@ -102,19 +97,18 @@ ConfLoader::createLogger(const string&              p_name,
 
   boost::split(l_parts, p_value, boost::is_any_of(", "), boost::token_compress_on);
   if (l_parts.size() < 2)
-    log::raise<log_error>("ill format logger declaration : '%s'", p_value, HERE);
+    log::raise<log_error>("core.log", "ill format logger declaration : '%s'", p_value, HERE);
 
   if (false == is_valid(boost::to_lower_copy(l_parts[0])))
-    log::raise<log_error>("invalid log level value '%s'", l_parts[0], HERE);
+    log::raise<log_error>("core.log", "invalid log level value '%s'", l_parts[0], HERE);
 
   l_level = from(l_parts[0]);
   std::copy(l_parts.begin() + 1, l_parts.end(), std::back_inserter(l_appenders));
 
-  RootLogger& l_root   = getRoot();
-  Logger*     l_logger = &l_root;
+  Logger* l_logger = &p_root;
 
   if (p_name != "root")
-    l_logger = &(l_root.get(p_name));
+    l_logger = &(p_root.get(p_name));
 
   l_logger->setLevel(l_level);
   l_logger->clearAppenders();
@@ -125,10 +119,16 @@ ConfLoader::createLogger(const string&              p_name,
   }
 }
 
-XTD_CORE_LOG_REGISTER_APPENDER(MemoryAppender);
-XTD_CORE_LOG_REGISTER_APPENDER(SyslogAppender);
-XTD_CORE_LOG_REGISTER_APPENDER(StreamAppender);
-XTD_CORE_LOG_REGISTER_FORMATTER(Formatter);
-XTD_CORE_LOG_REGISTER_FORMATTER(ColoredFormatter);
+#ifndef DOXYGEN_SKIP
+XTD_CORE_LOG_REGISTER_APPENDER(MemoryAppender);    ///< registers MemoryAppender class
+XTD_CORE_LOG_REGISTER_APPENDER(SyslogAppender);    ///< registers SyslogAppender class
+XTD_CORE_LOG_REGISTER_APPENDER(StreamAppender);    ///< registers StreamAppender class
+XTD_CORE_LOG_REGISTER_FORMATTER(Formatter);        ///< registers Formatter class
+XTD_CORE_LOG_REGISTER_FORMATTER(ColoredFormatter); ///< registers ColoredFormatter class
+#endif
 
 }}
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

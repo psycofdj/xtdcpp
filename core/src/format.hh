@@ -40,7 +40,7 @@ struct format
    */
   template<typename... Arguments>
   static string
-  vargs(string const& p_fmt, Arguments&&... p_args)
+  vargs(const string& p_fmt, Arguments&&... p_args)
   {
     boost::format l_format(p_fmt);
     return vargs(l_format, p_args...);

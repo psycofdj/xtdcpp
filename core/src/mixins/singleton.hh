@@ -56,7 +56,7 @@ public:
     return *ms_instance;
   }
 
-private:
+protected:
   static std::shared_ptr<TClass> ms_instance;
 };
 

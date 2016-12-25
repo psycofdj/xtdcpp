@@ -4,11 +4,6 @@
 namespace xtd {
 namespace log {
 
-Appender::Appender(void) :
-  Appender(std::make_shared<Formatter>())
-{
-}
-
 Appender::Appender(const sptr<Formatter>& p_formatter) :
   m_formatter(p_formatter)
 {

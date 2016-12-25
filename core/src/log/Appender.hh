@@ -47,11 +47,6 @@ private:
 
 public:
   /**
-   ** @brief Default constructor
-   */
-  Appender(void);
-
-  /**
    ** @brief Constructor with associated formatter
    ** @param p_formatter associated Formatter
    */
@@ -99,7 +94,7 @@ public:
    ** @param p_args message format parameters
    */
   template<typename... Arguments>
-  void log(Record& p_record, Arguments&&... p_args) const;
+  void log(const Record& p_record, Arguments&&... p_args) const;
 
 private:
   sptr<Formatter> m_formatter;
@@ -109,13 +104,16 @@ private:
 
 template<typename... Arguments>
 void
-Appender::log(Record& p_record, Arguments&&... p_args) const
+Appender::log(const Record& p_record, Arguments&&... p_args) const
 {
   FormattedRecord l_rec = m_formatter->format(p_record, p_args...);
 
   bool l_accepted = true;
   for (auto c_filter : m_filters)
+  {
+    std::cout << "filtering" << std::endl;
     l_accepted = l_accepted && c_filter(l_rec);
+  }
 
   if (true == l_accepted)
     print(l_rec);

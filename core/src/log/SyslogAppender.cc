@@ -8,12 +8,19 @@
 namespace xtd {
 namespace log {
 
-uint32_t SyslogAppender::ms_instances = 0;
+std::mutex SyslogAppender::ms_mutex;
+uint32_t   SyslogAppender::ms_instances = 0;
 
-SyslogAppender::SyslogAppender(const string& p_identity, int32_t p_opts, int32_t p_facility) :
+SyslogAppender::SyslogAppender(const string&          p_identity,
+                               int32_t                p_opts,
+                               int32_t                p_facility,
+                               const sptr<Formatter>& p_formatter) :
+  Appender(p_formatter),
   m_opts(p_opts),
   m_facility(p_facility)
 {
+  std::lock_guard<std::mutex> l_lock(ms_mutex);
+
   if (0 == ms_instances)
   {
     if (p_identity == "%(binname)")
@@ -26,6 +33,8 @@ SyslogAppender::SyslogAppender(const string& p_identity, int32_t p_opts, int32_t
 
 SyslogAppender::~SyslogAppender(void)
 {
+  std::lock_guard<std::mutex> l_lock(ms_mutex);
+
   ms_instances--;
   if (0 == ms_instances)
     closelog();
@@ -111,10 +120,13 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
     l_identity = c_identity->second;
 
   if (p_properties.end() == c_options)
-    log::raise<log_error>("unable to find key 'log.appender.%s.options'", p_name, HERE);
+    log::raise<log_error>("core.log", "unable to find key 'log.appender.%s.options'", p_name, HERE);
+
+  if (p_properties.end() == c_facility)
+    log::raise<log_error>("core.log", "unable to find key 'log.appender.%s.facility'", p_name, HERE);
 
   if (false == to_facility(c_facility->second, l_facility))
-    log::raise<log_error>("unable to convert '%s' as syslog facility", c_facility->second, HERE);
+    log::raise<log_error>("core.log", "unable to convert '%s' as syslog facility", c_facility->second, HERE);
 
   if (p_properties.end() != c_options)
   {
@@ -124,7 +136,7 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
     {
       uint32_t l_value;
       if (false == to_option(c_opt, l_value))
-        log::raise<log_error>("unable to convert '%s' as syslog options", c_opt, HERE);
+        log::raise<log_error>("core.log", "unable to convert '%s' as syslog options", c_opt, HERE);
       l_options |= l_value;
     }
   }
@@ -133,3 +145,7 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
 }
 
 }}
+
+// Local Variables:
+// ispell-local-dictionary: "american"
+// End:

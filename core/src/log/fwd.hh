@@ -13,6 +13,8 @@ class StreamAppender;
 class Formatter;
 class ColoredFormatter;
 class ConfLoader;
+class Logger;
+class RootLogger;
 
 template<typename T> class Fields;
 

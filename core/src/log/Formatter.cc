@@ -10,6 +10,8 @@
 namespace xtd {
 namespace log {
 
+
+
 Formatter::Formatter(void)
 {
   setLayouts({
@@ -34,6 +36,15 @@ Formatter::Formatter(void)
       { "location", "%s"   },
       { "fulllog",  "%s"   }
     });
+}
+
+Formatter::Formatter(const Formatter& p_obj) :
+  m_fmt(p_obj.m_fmt),
+  m_locFmt(p_obj.m_locFmt),
+  m_timeFmt(p_obj.m_timeFmt),
+  m_fieldFormats(p_obj.m_fieldFormats),
+  m_formatModifiers(p_obj.m_formatModifiers)
+{
 }
 
 Formatter::~Formatter(void)
@@ -108,7 +119,7 @@ Formatter::resolveLayout(const string& p_layout, const Fields<string>& p_args) c
 }
 
 void
-Formatter::createFields(const FormattedRecord& p_rec, Fields<string>& p_args) const
+Formatter::createFields(const FormattedRecord& p_rec, t_formats& p_args) const
 {
   using boost::str;
   using boost::format;
@@ -119,6 +130,7 @@ Formatter::createFields(const FormattedRecord& p_rec, Fields<string>& p_args) co
 
   p_args.m_name     = str(format(l_formats.m_name)     % p_rec.m_name);
   p_args.m_threadid = str(format(l_formats.m_threadid) % p_rec.m_threadID);
+  p_args.m_threadid = str(format(l_formats.m_threadid) % 789465);
   p_args.m_module   = str(format(l_formats.m_module)   % p_rec.m_module);
   p_args.m_slevel   = str(format(l_formats.m_slevel)   % to_string(p_rec.m_level));
   p_args.m_ilevel   = str(format(l_formats.m_ilevel)   % to_value(p_rec.m_level));
@@ -159,14 +171,14 @@ Formatter::create(const string& p_name, const map<string,string>& p_properties)
 
   for (const auto& c_format : ls_formats)
   {
-    auto c_item = p_properties.find("log.formatter." + p_name + ".format." + c_format);
+    auto c_item = p_properties.find("log.formatter." + p_name + ".layout." + c_format);
     if (c_item != p_properties.end())
       l_result->setLayout(c_format, c_item->second);
   }
 
   for (const auto& c_field : ls_fields)
   {
-    auto c_item = p_properties.find("log.formatter." + p_name + ".field." + c_field + ".format");
+    auto c_item = p_properties.find("log.formatter." + p_name + ".format." + c_field);
     if (c_item != p_properties.end())
       l_result->setFieldFormat(c_field, c_item->second);
   }

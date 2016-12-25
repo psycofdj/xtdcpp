@@ -6,6 +6,7 @@
 # include <sstream>
 # include <fstream>
 # include <memory>
+# include <type_traits>
 
 using std::string;
 using std::map;
@@ -49,6 +50,19 @@ template<typename T>
 typename std::underlying_type<T>::type valueof(T p_item)
 {
   return static_cast<typename std::underlying_type<T>::type>(p_item);
+}
+
+
+/**
+ ** @brief Converts underlying type to its corresponding class enum
+ ** @brief
+ ** @param value underlying enum value
+ */
+template<typename E, typename T>
+constexpr typename std::enable_if<std::is_enum<E>::value && std::is_integral<T>::value, E>::type
+  to_enum(T value) noexcept
+{
+  return static_cast<E>(value);
 }
 
 /**

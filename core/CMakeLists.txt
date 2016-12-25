@@ -3,7 +3,7 @@ include_directories(
   ${core_INCLUDE_DIRS}
   )
 
-add_shared_static_library(core
+add_shared_static_library(xtd-core
   src/types.cc
   src/log/Appender.cc
   src/log/ColoredFormatter.cc
@@ -15,6 +15,7 @@ add_shared_static_library(core
   src/log/StreamAppender.cc
   src/log/Stream.cc
   src/log/SyslogAppender.cc
+  src/log/FormatModifiers.cc
   src/tty.cc
   src/text.cc
   src/Application.cc
@@ -22,12 +23,21 @@ add_shared_static_library(core
   src/config/Grammar.cc)
 
 add_doc(core
-  EXCLUDE  src/json_parser.hpp src/json_parser_write.hpp
-  WERROR)
+  EXCLUDE
+  src/json_parser.hpp
+  src/json_parser_write.hpp
+  PREDEFINED
+  "XTD_CORE_LOG_REGISTER_FORMATTER"
+  "XTD_CORE_LOG_REGISTER_APPENDER"
+  "DOXYGEN_SKIP"
+  EXPAND_AS_DEFINED
+  "xtd_error_class(p_name,p_base)")
+
 add_doc_coverage(core)
 add_cloc(core)
 add_cppcheck(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    core_s tests_s cwrap)
+  LINKS    xtd-cwrap xtd-core_s xtd-tests_s )
 add_cov(core)
+add_memcheck(core)

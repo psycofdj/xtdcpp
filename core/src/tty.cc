@@ -1,6 +1,7 @@
 #include "tty.hh"
 #include <boost/assign/std/vector.hpp>
 #include <boost/lexical_cast.hpp>
+#include <iostream>
 
 namespace xtd {
 namespace tty {
@@ -58,6 +59,32 @@ attrs::from_string(const string& p_value, attrs& p_attrs)
   return true;
 }
 
+string
+attrs::to_string(const attrs& p_attrs)
+{
+  const static map<typename std::underlying_type<s>::type, string> l_values = {
+    { valueof(s::dim),        "dim"        },
+    { valueof(s::bold),       "bold"       },
+    { valueof(s::underlined), "underlined" },
+    { valueof(s::blink),      "blink"      },
+    { valueof(s::reverse),    "reverse"    },
+    { valueof(s::hidden),     "hidden"     }
+  };
+
+  if (0 == p_attrs.m_attrs.size())
+    return "unset";
+
+  vector<string> l_parts;
+  for (auto c_attr : p_attrs.m_attrs) {
+    auto c_item = l_values.find(c_attr);
+    if (l_values.end() != c_item)
+      l_parts.push_back(c_item->second);
+  }
+  return boost::join(l_parts, " | ");
+}
+
+
+
 attrs::attrs(void) :
   m_attrs()
 {
@@ -69,13 +96,44 @@ attrs::attrs(s p_attr) :
 }
 
 attrs
-attrs::operator|(const attrs& p_attrs) const
+attrs::operator|(const attrs& p_o1) const
 {
   attrs l_res;
   std::copy(m_attrs.begin(), m_attrs.end(), std::back_inserter(l_res.m_attrs));
-  std::copy(p_attrs.m_attrs.begin(), p_attrs.m_attrs.end(), std::back_inserter(l_res.m_attrs));
+  std::copy(p_o1.m_attrs.begin(), p_o1.m_attrs.end(), std::back_inserter(l_res.m_attrs));
+  std::sort(l_res.m_attrs.begin(), l_res.m_attrs.end());
+
+  auto c_iter = std::unique(l_res.m_attrs.begin(), l_res.m_attrs.end());
+  auto l_size = std::distance(l_res.m_attrs.begin(), c_iter);
+  l_res.m_attrs.resize(l_size);
   return l_res;
 }
+
+attrs&
+attrs::operator|=(const attrs& p_o1)
+{
+  std::copy(p_o1.m_attrs.begin(), p_o1.m_attrs.end(), std::back_inserter(m_attrs));
+  std::sort(m_attrs.begin(), m_attrs.end());
+
+  auto c_iter = std::unique(m_attrs.begin(), m_attrs.end());
+  auto l_size = std::distance(m_attrs.begin(), c_iter);
+  m_attrs.resize(l_size);
+  return *this;
+}
+
+bool
+attrs::operator==(const attrs& p_obj) const
+{
+  vector<uint32_t> l_this(m_attrs);
+  vector<uint32_t> l_foreign(p_obj.m_attrs);
+  std::sort(l_this.begin(), l_this.end());
+  std::sort(l_foreign.begin(), l_foreign.end());
+  l_this   .resize(std::distance(l_this.begin(),    std::unique(l_this.begin(),    l_this.end())));
+  l_foreign.resize(std::distance(l_foreign.begin(), std::unique(l_foreign.begin(), l_foreign.end())));
+  return ((l_this.size() == l_foreign.size()) &&
+          std::equal(l_this.begin(), l_this.end(), l_foreign.begin()));
+}
+
 
 const vector<uint32_t>&
 attrs::getValues(void) const
@@ -88,6 +146,12 @@ attrs::isSet(void) const
 {
   return (false == m_attrs.empty());
 }
+
+ostream& operator<<(ostream& p_buf, const attrs& p_attrs)
+{
+  return p_buf << attrs::to_string(p_attrs);
+}
+
 
 /* -------------------------------------------------------------------------- */
 
@@ -102,6 +166,13 @@ color::color(uint32_t p_value) :
   m_extended(true)
 {
 }
+
+bool
+color::operator==(const color& p_obj) const
+{
+  return m_value == p_obj.getValue();
+}
+
 
 bool
 color::isSet(void) const
@@ -161,6 +232,44 @@ color::from_string(const string& p_value, color& p_color)
     return false;
   }
 }
+
+
+string
+color::to_string(const color& p_color)
+{
+  const static map<typename std::underlying_type<c>::type, string> l_values = {
+    { valueof(c::unset),    "unset"    },
+    { valueof(c::normal),   "normal"   },
+    { valueof(c::black),    "black"    },
+    { valueof(c::red),      "red"      },
+    { valueof(c::green),    "green"    },
+    { valueof(c::yellow),   "yellow"   },
+    { valueof(c::blue),     "blue"     },
+    { valueof(c::magenta),  "magenta"  },
+    { valueof(c::cyan),     "cyan"     },
+    { valueof(c::gray),     "gray"     },
+    { valueof(c::lblack),   "lblack"   },
+    { valueof(c::lred),     "lred"     },
+    { valueof(c::lgreen),   "lgreen"   },
+    { valueof(c::lyellow),  "lyellow"  },
+    { valueof(c::lblue),    "lblue"    },
+    { valueof(c::lmagenta), "lmagenta" },
+    { valueof(c::lcyan),    "lcyan"    },
+    { valueof(c::lgray),    "lgray"    },
+    { valueof(c::white),    "white"    }
+  };
+
+  auto c_item = l_values.find(p_color.getValue());
+  if (l_values.end() != c_item)
+    return c_item->second;
+  return "color<" + to_string(p_color.getValue()) + ">";
+}
+
+ostream& operator<<(ostream& p_buf, const color& p_color)
+{
+  return p_buf << color::to_string(p_color);
+}
+
 
 /* -------------------------------------------------------------------------- */
 
