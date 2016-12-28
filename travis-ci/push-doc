@@ -22,6 +22,7 @@ git clone -q -b ${TARGET_BRANCH} $REPO out
 echo "Copying generated documentation..."
 mkdir -p out/${DEST_DIR}/
 rm -rf out/${DEST_DIR}/*
+ls -l ./reports/*
 cp -r ./reports/* out/${DEST_DIR}/
 find out/${DEST_DIR}/ -name latex -type d | xargs rm -rf
 find out/${DEST_DIR}/ -name xml   -type d | xargs rm -rf
