@@ -19,7 +19,6 @@ add_definitions(-DBOOST_MINOR_VERSION=${Boost_MINOR_VERSION})
 # xtdmake init
 # ------------
 
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/xtdmake/src")
 set(REQUIRED "REQUIRED")
 if (NOT CI)
   set(REQUIRED "")
@@ -31,7 +30,8 @@ if (NOT CMAKE_BUILD_TYPE)
     FORCE)
 endif()
 
-find_package(XTDMake REQUIRED)
+find_package(XTDMake REQUIRED
+  HINTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
 
 list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")
 list(APPEND CheckRule_DEFAULT_ARGS     "--top-srcdir=\${PROJECT_SOURCE_DIR}")

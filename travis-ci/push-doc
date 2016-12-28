@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# debug
-env | grep TRAVIS
-
 DEST_DIR="pr/${TRAVIS_PULL_REQUEST}";
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     DEST_DIR="${TRAVIS_BRANCH}";

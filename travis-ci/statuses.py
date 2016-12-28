@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 #------------------------------------------------------------------#
 
 __author__    = "Xavier MARCELET <xavier@marcelet.com>"
@@ -70,8 +70,8 @@ class StatusHelper:
     else:
       l_color = "brightgreen"
     l_url = "https://img.shields.io/badge/%(label)s-%(value)s-%(color)s.svg" % {
-      "label" : urllib.parse.quote(p_label),
-      "value" : urllib.parse.quote(p_value),
+      "label" : urllib.quote(p_label),
+      "value" : urllib.quote(p_value),
       "color" : l_color
     }
 
@@ -168,7 +168,7 @@ class StatusHelper:
         l_badge_descr = "failed (%d/%d) " % (l_failed, l_total)
         l_description = "Tests : %d failed, %d passed" % (l_failed, l_passed)
       print("%s : %s" % (l_status, l_description))
-    except:
+    except BaseException as l_error:
       print("caught exception : %s" % str(l_error))
       l_status      = "failure"
       l_badge_descr = "error while collect tests"

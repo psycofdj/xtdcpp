@@ -11,7 +11,7 @@ RUN apt-get update -y && \
     cloc \
     cppcheck \
     valgrind \
-    python3-pip \
+    python-pip \
     rsync \
     cmake \
     git \
@@ -22,5 +22,5 @@ RUN apt-get update -y && \
     plantuml \
     doxygen
 
-RUN pip3 install pip --upgrade
-RUN pip3 install  coverxygen requests
+RUN pip install pip --upgrade
+RUN pip install coverxygen requests lxml
