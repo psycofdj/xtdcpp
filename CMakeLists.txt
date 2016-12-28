@@ -1,8 +1,25 @@
+# ----------
+# cmake init
+# ----------
+
 cmake_minimum_required (VERSION 2.6)
 project (xtdcpp)
+enable_testing()
 
-include(xtdmake/loader.cmake)
+# ---------
+# libraries
+# ---------
 
+find_package(Boost REQUIRED thread filesystem system regex)
+find_package(Threads REQUIRED)
+add_definitions(-DBOOST_MAJOR_VERSION=${Boost_MAJOR_VERSION})
+add_definitions(-DBOOST_MINOR_VERSION=${Boost_MINOR_VERSION})
+
+# ------------
+# xtdmake init
+# ------------
+
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/xtdmake/src")
 set(REQUIRED "REQUIRED")
 if (NOT CI)
   set(REQUIRED "")
@@ -13,6 +30,32 @@ if (NOT CMAKE_BUILD_TYPE)
     "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel."
     FORCE)
 endif()
+
+find_package(XTDMake REQUIRED)
+
+list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")
+list(APPEND CheckRule_DEFAULT_ARGS     "--top-srcdir=\${PROJECT_SOURCE_DIR}")
+list(APPEND CheckRule_DEFAULT_ARGS     "--top-builddir=\${PROJECT_BINARY_DIR}")
+list(APPEND CheckRule_DEFAULT_ARGS     "--testdir=\${CheckRule_DIRECTORY}")
+list(APPEND CheckRule_DEFAULT_ARGS     "--outputter=compiler")
+list(APPEND CheckRule_DEFAULT_ARGS     "-p")
+list(APPEND CheckRule_DEFAULT_ARGS     "-e")
+list(APPEND CheckRule_DEFAULT_ARGS     "7")
+list(APPEND CheckRule_DEFAULT_INCLUDES "${Boost_INCLUDE_DIRS}")
+list(APPEND CheckRule_DEFAULT_LINKS    "${Boost_LIBRARIES}")
+
+xtdmake_init(
+  StaticShared    REQUIRED
+  DocRule         ${REQUIRED}
+  DocCoverageRule ${REQUIRED}
+  CppcheckRule    ${REQUIRED}
+  CheckRule       ${REQUIRED}
+  ClocRule        ${REQUIRED}
+  Tracking        ${REQUIRED}
+  Cppunit         ${REQUIRED}
+  CovRule         ${REQUIRED}
+  MemcheckRule    ${REQUIRED}
+  Reports         ${REQUIRED})
 
 # --------------------
 # compiler options
@@ -36,39 +79,9 @@ set(CMAKE_CXX_FLAGS_DEBUG      "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fprofile-arcs -fte
 set(CMAKE_CXX_FLAGS_RELEASE    "${CMAKE_CXX_FLAGS_RELEASE} -Werror")
 
 
-
-
-find_package(StaticShared REQUIRED)
-find_package(Boost REQUIRED thread filesystem system regex)
-find_package(Threads REQUIRED)
-find_package(DocRule ${REQUIRED})
-find_package(DocCoverageRule ${REQUIRED})
-find_package(CppcheckRule ${REQUIRED})
-find_package(ClocRule ${REQUIRED})
-find_package(Tracking ${REQUIRED})
-find_package(Cppunit ${REQUIRED})
-find_package(CheckRule ${REQUIRED})
-find_package(CovRule ${REQUIRED})
-find_package(MemcheckRule ${REQUIRED})
-find_package(Reports ${REQUIRED})
-
-
-add_definitions(-DBOOST_MAJOR_VERSION=${Boost_MAJOR_VERSION})
-add_definitions(-DBOOST_MINOR_VERSION=${Boost_MINOR_VERSION})
-
-# configure test default parameters
-if (CheckRule_FOUND)
-  list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")
-  list(APPEND CheckRule_DEFAULT_ARGS     "--top-srcdir=\${PROJECT_SOURCE_DIR}")
-  list(APPEND CheckRule_DEFAULT_ARGS     "--top-builddir=\${PROJECT_BINARY_DIR}")
-  list(APPEND CheckRule_DEFAULT_ARGS     "--testdir=\${CheckRule_DIRECTORY}")
-  list(APPEND CheckRule_DEFAULT_ARGS     "--outputter=compiler")
-  list(APPEND CheckRule_DEFAULT_ARGS     "-p")
-  list(APPEND CheckRule_DEFAULT_ARGS     "-e")
-  list(APPEND CheckRule_DEFAULT_ARGS     "7")
-  list(APPEND CheckRule_DEFAULT_INCLUDES "${Boost_INCLUDE_DIRS}")
-  list(APPEND CheckRule_DEFAULT_LINKS    "${Boost_LIBRARIES}")
-endif()
+# ------------
+# local config
+# ------------
 
 set(core_INCLUDE_DIRS       ${PROJECT_SOURCE_DIR}/core/src)
 set(counters_INCLUDE_DIRS   ${PROJECT_SOURCE_DIR}/counters/src)
