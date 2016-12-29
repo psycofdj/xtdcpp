@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+# -*- mode: makefile-mode; -*-
+
+export DH_VERBOSE = 1
+
+%:
+	dh $@ --buildsystem=cmake --parallel
+
+.PHONY: override_dh_strip
+override_dh_strip:
+	dh_strip --dbg-package=libxtd0-dbg
+
+.PHONY: override_dh_auto_test
+override_dh_auto_test:
+
+.PHONY: override_dh_auto_install
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/libxtd0

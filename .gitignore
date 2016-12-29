@@ -37,3 +37,14 @@ configure
 counters/Makefile.in
 network/Makefile.in
 servers/Makefile.in
+obj-x86_64-linux-gnu/
+debian/files
+debian/libxtd0-dbg.debhelper.log
+debian/libxtd0-dbg.substvars
+debian/libxtd0-dbg/
+debian/libxtd0.debhelper.log
+debian/libxtd0.substvars
+debian/libxtd0/
+debian/.debhelper/
+debian/debhelper-build-stamp
+xtdmake_*.*

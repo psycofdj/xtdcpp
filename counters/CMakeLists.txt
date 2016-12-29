@@ -5,7 +5,7 @@ include_directories(
   )
 
 
-add_shared_static_library(xtd-counters
+add_shared_static_library(counters
   src/Base.cc
   src/Value.cc
   src/AvgValue.cc
@@ -28,6 +28,6 @@ add_cppcheck(counters)
 add_check(counters
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    xtd-core_s xtd-tests_s xtd-counters_s ${Boost_LIBRARIES})
+  LINKS    core_s tests_s counters_s ${Boost_LIBRARIES})
 add_cov(counters)
 add_memcheck(counters)

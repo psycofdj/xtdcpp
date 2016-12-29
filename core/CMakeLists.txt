@@ -3,7 +3,7 @@ include_directories(
   ${core_INCLUDE_DIRS}
   )
 
-add_shared_static_library(xtd-core
+add_shared_static_library(core
   src/types.cc
   src/log/Appender.cc
   src/log/ColoredFormatter.cc
@@ -20,7 +20,8 @@ add_shared_static_library(xtd-core
   src/text.cc
   src/Application.cc
   src/config/Parser.cc
-  src/config/Grammar.cc)
+  src/config/Grammar.cc
+  )
 
 add_doc(core
   EXCLUDE
@@ -38,7 +39,7 @@ add_cloc(core)
 add_cppcheck(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    xtd-cwrap xtd-core_s xtd-tests_s)
-
+  LINKS    cwrap core_s tests_s)
 add_cov(core)
 add_memcheck(core)
+
