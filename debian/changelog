@@ -1,10 +1,10 @@
-xtdcpp (1.0.0ppa4~xenial) xenial; urgency=medium
+xtdcpp (1.0.0ppa5~xenial) xenial; urgency=medium
 
   * Fix boost builddep
 
  -- Xavier MARCELET <xavier@marcelet.com>  Wed, 28 Dec 2016 14:49:17 +0100
 
-xtdcpp (1.0.0ppa4~trusty) trusty; urgency=medium
+xtdcpp (1.0.0ppa5~trusty) trusty; urgency=medium
 
   * Fix boost builddep
 
