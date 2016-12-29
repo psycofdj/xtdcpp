@@ -33,8 +33,11 @@ if (NOT CMAKE_BUILD_TYPE)
     FORCE)
 endif()
 
-find_package(XTDMake REQUIRED
-  HINTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
+if (EXISTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
+  find_package(XTDMake REQUIRED HINTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
+else()
+  find_package(XTDMake REQUIRED)
+endif()
 
 list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")
 list(APPEND CheckRule_DEFAULT_ARGS     "--top-srcdir=\${PROJECT_SOURCE_DIR}")

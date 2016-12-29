@@ -1,10 +1,10 @@
-xtdcpp (1.0.0ppa2~xenial) xenial; urgency=medium
+xtdcpp (1.0.0ppa1~xenial) xenial; urgency=medium
 
   * Initial package
 
  -- Xavier MARCELET <xavier@marcelet.com>  Wed, 28 Dec 2016 13:49:17 +0100
 
-xtdcpp (1.0.0ppa2~trusty) trusty; urgency=medium
+xtdcpp (1.0.0ppa1~trusty) trusty; urgency=medium
 
   * Initial package
 
