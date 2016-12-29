@@ -3,8 +3,11 @@
 # ----------
 
 cmake_minimum_required (VERSION 2.6)
-project (xtdcpp)
+project(xtd)
 enable_testing()
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 1)
+set(PROJECT_VERSION_PATCH 1)
 
 # ---------
 # libraries
@@ -30,8 +33,11 @@ if (NOT CMAKE_BUILD_TYPE)
     FORCE)
 endif()
 
-find_package(XTDMake REQUIRED
-  HINTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
+if (EXISTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
+  find_package(XTDMake REQUIRED HINTS "${PROJECT_SOURCE_DIR}/xtdmake/src")
+else()
+  find_package(XTDMake REQUIRED)
+endif()
 
 list(APPEND CheckRule_DEFAULT_ARGS     "--srcdir=\${CMAKE_CURRENT_SOURCE_DIR}")
 list(APPEND CheckRule_DEFAULT_ARGS     "--top-srcdir=\${PROJECT_SOURCE_DIR}")
@@ -77,7 +83,6 @@ set(CMAKE_CXX_COMPILER         "g++")
 set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=gnu++11 -W -Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG      "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS_RELEASE    "${CMAKE_CXX_FLAGS_RELEASE} -Werror")
-
 
 # ------------
 # local config

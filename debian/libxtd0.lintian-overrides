@@ -1,0 +1,2 @@
+libxtd0 binary: non-dev-pkg-with-shlib-symlink
+libxtd0 binary: package-name-doesnt-match-sonames
