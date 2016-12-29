@@ -16,3 +16,7 @@ override_dh_auto_test:
 .PHONY: override_dh_auto_install
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/libxtd0
+	dh_auto_install --destdir=debian/libxtd-dev
+	find debian/libxtd-dev         -name "*.so*"  -exec rm -f {} \;
+	find debian/libxtd0    -type f -name "*.a"    -exec rm -f {} \;
+	rm -rf debian/libxtd0/usr/include/

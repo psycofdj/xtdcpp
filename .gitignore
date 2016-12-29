@@ -48,3 +48,6 @@ debian/libxtd0/
 debian/.debhelper/
 debian/debhelper-build-stamp
 xtdmake_*.*
+debian/libxtd-dev.debhelper.log
+debian/libxtd-dev.substvars
+debian/libxtd-dev/

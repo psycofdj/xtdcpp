@@ -1,3 +1,17 @@
+xtdcpp (1.0.1ppa1~xenial) xenial; urgency=medium
+
+  * catch up xtdmake new release 1.0.3
+  * generate libxtd0 libxtd0-dbg and libxtd-dev packages
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Thu, 29 Dec 2016 16:31:45 +0100
+
+xtdcpp (1.0.1ppa1~trusty) trusty; urgency=medium
+
+  * catch up xtdmake new release 1.0.3
+  * generate libxtd0 libxtd0-dbg and libxtd-dev packages
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Thu, 29 Dec 2016 16:31:45 +0100
+
 xtdcpp (1.0.0ppa5~xenial) xenial; urgency=medium
 
   * Fix boost builddep
