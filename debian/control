@@ -3,8 +3,15 @@ Section: utils
 Priority: optional
 Maintainer: Xavier MARCELET <xavier@marcelet.com>
 Standards-Version: 3.9.7
-Build-Depends: debhelper (>= 9), cmake (>= 2.8.7), xtdmake (>= 1.0.2)
-
+Build-Depends:
+  debhelper (>= 9),
+  cmake (>= 2.8.7),
+  xtdmake (>= 1.0.2),
+  libboost-boost-dev(>= 1.54),
+  libboost-thread-dev(>= 1.54),
+  libboost-filesystem-dev(>= 1.54),
+  libboost-system-dev(>= 1.54),
+  libboost-regex-dev(>= 1.54)
 Package: libxtd0
 Architecture: amd64
 Depends: cmake (>= 2.6), ${misc:Depends}, ${shlibs:Depends}
