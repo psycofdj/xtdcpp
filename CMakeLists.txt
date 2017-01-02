@@ -2,7 +2,7 @@
 # cmake init
 # ----------
 
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required(VERSION 2.6)
 project(xtd)
 enable_testing()
 set(PROJECT_VERSION_MAJOR 0)
@@ -78,6 +78,8 @@ xtdmake_find_program(Gxx
 if (Gxx_VERSION VERSION_LESS 4.7)
   message(FATAL_ERROR "xtdcpp requires g++ version >= 4.7 for -std=c++11 option")
 endif()
+
+enable_tracking()
 
 set(CMAKE_CXX_COMPILER         "g++")
 set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=gnu++11 -W -Wall -Wextra")
