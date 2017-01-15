@@ -29,10 +29,10 @@ namespace servers {
 namespace app {
 
 using namespace network;
-using namespace boost;
+
 namespace       bfs = boost::filesystem;
 namespace       ba  = boost::algorithm;
-namespace       bpt = boost::property_tree;
+namespace       bpt = boost::posix_time;
 
 const char HttpServer::mcs_defaultListenInterface[] = "0.0.0.0";
 
@@ -64,8 +64,8 @@ HttpServer::HttpServer(bool p_isDebug) :
   addOption('t', "timeout",     argument::mandatory, requirement::optional,  "server timeout in ms",                           bindNumber(m_timeoutMs));
 
   m_httpConfig.setReuseAddr(true);
-  addSignalHandler(SIGUSR2, boost::bind(&HttpServer::handleUSR2, this));
-  addSignalHandler(SIGTERM, boost::bind(&HttpServer::handleTERM, this));
+  addSignalHandler(SIGUSR2, std::bind(&HttpServer::handleUSR2, this));
+  addSignalHandler(SIGTERM, std::bind(&HttpServer::handleTERM, this));
 }
 
 HttpServer::~HttpServer(void)
@@ -113,8 +113,8 @@ HttpServer::parseConfig(void)
       error_nohelp(1, "option --config-file is mandatory");
     }
 
-    if ((false == boost::filesystem::is_regular_file(m_configPath)) &&
-        (false == boost::filesystem::is_symlink(m_configPath)))
+    if ((false == bfs::is_regular_file(m_configPath)) &&
+        (false == bfs::is_symlink(m_configPath)))
     {
       error_nohelp(1, "invalid --config-file='%s' option, file unreadable", m_configPath);
     }
@@ -185,7 +185,7 @@ HttpServer::parseConfig(void)
 void
 HttpServer::parseHttpPort(void)
 {
-  string l_key = boost::str(boost::format("%s:server:http:port") % getSpecificConfKey());
+  string l_key = format::vargs("%s:server:http:port", getSpecificConfKey());
   readConf(l_key, m_httpPort);
 }
 
@@ -247,13 +247,13 @@ HttpServer::initialize(void)
   m_params.reset(new param::Handler(m_adminDir));
 
   // Link admin console contexts
-  bind_public("/admin",    h(&HttpServer::h_admin,      this), "administration");
+  bind_public("/admin",    h(&HttpServer::h_admin, this),      "administration");
   bind_public("/action",   h(&HttpServer::h_actionList, this), "actions");
-  bind_public("/counter*", h(&HttpServer::h_counter,    this), "counters");
-  bind_public("/conf",     h(&HttpServer::h_conf,       this), "configuration");
-  bind_public("/ident",    h(&HttpServer::h_ident,      this), "identity");
-  bind_public("/log",      h(&HttpServer::h_log,        this), "logs");
-  bind_public("/index",    h(&HttpServer::h_index,      this), "index");
+  bind_public("/counter*", h(&HttpServer::h_counter, this),    "counters");
+  bind_public("/conf",     h(&HttpServer::h_conf, this),       "configuration");
+  bind_public("/ident",    h(&HttpServer::h_ident, this),      "identity");
+  bind_public("/log",      h(&HttpServer::h_log, this),        "logs");
+  bind_public("/index",    h(&HttpServer::h_index, this),      "index");
 
 
   bind_dir("/css/images/*", m_httpConfigPath + "/css/images", "images/png",      true);
@@ -318,7 +318,7 @@ void HttpServer::modeProbeActivation(void)
 void
 HttpServer::bind_action(const string& p_name,
                         const string& p_description,
-                        h             p_action)
+                        handler       p_action)
 {
   t_action l_action(new Action(p_name, p_description));
 
@@ -328,7 +328,7 @@ HttpServer::bind_action(const string& p_name,
 
 status
 HttpServer::h_runAction(const string&        p_name,
-                        h                    p_action,
+                        handler              p_action,
                         const uint32_t       p_requestID,
                         const http::Request& p_req,
                         http::Response&      p_res)
@@ -357,7 +357,7 @@ HttpServer::h_runAction(const string&        p_name,
     {
       l_status = "DONE";
       p_res.setStatus(http::code::ok);
-      c_action->second->m_timestamp = boost::posix_time::microsec_clock::local_time();
+      c_action->second->m_timestamp = bpt::microsec_clock::local_time();
       c_action->second->m_log       = l_log;
     }
     log::crit("servers.app.http", "action '%s' - execution status : %s", p_name, l_status, HERE);
@@ -392,7 +392,7 @@ HttpServer::h_actionList(const uint32_t       p_requestID,
     tm     l_tm = to_tm(cc_value.second->m_timestamp);
     time_t l_date = mktime(&l_tm);
 
-    l_tmpl.add(cc_value.first, "timestamp", lexical_cast<uint32_t>(l_date));
+    l_tmpl.add(cc_value.first, "timestamp", boost::lexical_cast<uint32_t>(l_date));
   }
 
   return h_gen(l_tmpl, p_requestID, p_req, p_res);
@@ -403,16 +403,16 @@ HttpServer::h_probe(const uint32_t                /*p_requestID*/,
                     const http::Request& p_req,
                     http::Response&      p_res)
 {
-  p_res.setVersion(p_req.getVersionStr());
+  p_res.setVersion(p_req.getVersion());
   if (true == m_isModeProbe)
   {
     p_res.setStatus(http::code::service_unavailable);
-    p_res.setData(http::Response::statusToMessage(http::code::service_unavailable));
+    p_res.setData(http::str(http::code::service_unavailable));
   }
   else
   {
     p_res.setStatus(http::code::ok);
-    p_res.setData(http::Response::statusToMessage(http::code::ok));
+    p_res.setData(http::str(http::code::ok));
   }
   return status::ok;
 }
@@ -456,16 +456,16 @@ HttpServer::h_index(const uint32_t       p_requestID,
 
   std::sort(l_list.begin(),
             l_list.end(),
-            boost::bind(std::less<string>(),
-                        boost::bind(&Handler::m_descr, _2),
-                        boost::bind(&Handler::m_descr, _1)));
+            std::bind(std::less<string>(),
+                      std::bind(&Handler::m_descr, std::placeholders::_2),
+                      std::bind(&Handler::m_descr, std::placeholders::_1)));
 
-  BOOST_FOREACH(const Handler& c_handler, l_list)
+  for(const Handler& c_handler : l_list)
   {
     string          l_url = c_handler.m_path;
     Template::t_map l_link;
 
-    trim_right_if(l_url, is_any_of("*"));
+    trim_right_if(l_url, boost::is_any_of("*"));
     l_link["link"] = Template::val(l_url);
     l_link["text"] = Template::val(c_handler.m_descr);
     l_links.push_back(Template::val(l_link));
@@ -535,6 +535,8 @@ HttpServer::h_counter(const uint32_t       /* p_requestID */,
                       const http::Request&    p_req,
                       http::Response&         p_res)
 {
+  using namespace boost::property_tree;
+
   uint32_t     l_vmUsage;
   uint32_t     l_residentSet;
   stringstream l_responseData;
@@ -544,13 +546,13 @@ HttpServer::h_counter(const uint32_t       /* p_requestID */,
   (*m_ramCounter) = l_residentSet;
 
   // 2.
-  bpt::ptree l_elements;
-  bpt::ptree l_root;
-  string     l_subPath = p_req.getPath();
+  ptree  l_elements;
+  ptree  l_root;
+  string l_subPath = p_req.getPath();
 
   ba::replace_all(l_subPath, "/", "!");
   ba::trim_if(l_subPath, ba::is_any_of("!"));
-  bpt::ptree::path_type l_subPathType(l_subPath, '!');
+  ptree::path_type l_subPathType(l_subPath, '!');
 
   // Gets json tree representation of counters from prober
   m_prober->toJson(l_elements);
@@ -558,17 +560,17 @@ HttpServer::h_counter(const uint32_t       /* p_requestID */,
   try
   {
     l_root.put_child("counter", l_elements);
-    bpt::ptree l_child = l_root.get_child(l_subPathType);
+    ptree l_child = l_root.get_child(l_subPathType);
     write_json(l_responseData, l_child);
     p_res.setData(l_responseData.str());
     p_res.addHeader("Content-Type", "application/json");
     p_res.setStatus(http::code::ok);
   }
-  catch (bpt::file_parser_error&)
+  catch (file_parser_error&)
   {
     string           l_name = l_subPath.substr(l_subPath.find_last_of("!")+1);
-    bpt::ptree::path_type l_namePathType(l_name, '!');
-    bpt::ptree            l_node;
+    ptree::path_type l_namePathType(l_name, '!');
+    ptree            l_node;
 
     l_node.put<string>(l_namePathType, l_root.get<string>(l_subPathType));
     write_json(l_responseData, l_node);
@@ -576,7 +578,7 @@ HttpServer::h_counter(const uint32_t       /* p_requestID */,
     p_res.addHeader("Content-Type", "application/json");
     p_res.setStatus(http::code::ok);
   }
-  catch (bpt::ptree_bad_path&)
+  catch (ptree_bad_path&)
   {
     l_responseData << p_req.getPath() << " not found" << endl;
     p_res.setData(l_responseData.str());

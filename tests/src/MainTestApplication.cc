@@ -12,7 +12,7 @@
 #include <cppunit/ui/text/TestRunner.h>  // libcppunit
 #include <cppunit/TestResultCollector.h>
 #include <boost/regex.hpp>
-
+#include <log/ConfLoader.hh>
 
 namespace xtd {
 namespace tests {
@@ -72,6 +72,20 @@ MainTestApplication::createOutputter(CppUnit::TestResultCollector& p_result, std
   if (m_ouputter == "text")
     return new CppUnit::XmlOutputter(&p_result, p_stream, "UTF-8");
   return new CppUnit::TextOutputter(&p_result, p_stream);
+}
+
+
+void
+MainTestApplication::initialize(void)
+{
+  auto& l_logger = log::ConfLoader::get();
+
+  l_logger.configure({
+      { "log.logger.root",             "DEBUG, A1"       },
+      { "log.appender.A1.class",       "SyslogAppender"  },
+      { "log.appender.syslog.options", "LOG_PID"         },
+      { "log.appender.A1.facility",    "LOG_LOCAL0"      }
+    });
 }
 
 /**

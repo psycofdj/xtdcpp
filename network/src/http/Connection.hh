@@ -41,10 +41,10 @@ private:
   static const uint32_t mcs_maxReadLength = 128;
 
 public:
-  explicit Connection(const utils::Config& p_configuration,
-                      boost::asio::io_service&                p_ioService,
-                      const string                       p_hostname,
-                      const uint32_t                     p_port);
+  explicit Connection(const utils::Config&     p_configuration,
+                      boost::asio::io_service& p_ioService,
+                      const string             p_hostname,
+                      const uint32_t           p_port);
   virtual ~Connection(void);
 
 private:
@@ -57,27 +57,27 @@ public:
   bool getClosedByServer(void) const;
 
 private:
-  void onSent(const boost::system::error_code           p_error,
-              size_t                               /* p_bytesTransferred */,
-              utils::handler_t                          p_onSent);
+  void onSent(const boost::system::error_code    p_error,
+              size_t                          /* p_bytesTransferred */,
+              utils::handler_t                   p_onSent);
 
-  void onHeaderReceived(const boost::system::error_code           p_error,
+  void onHeaderReceived(const boost::system::error_code         p_error,
                         size_t                               /* p_bytesTransferred */,
-                        utils::sharedBuf_t                        p_inData,
+                        utils::sharedBuf_t                      p_inData,
                         std::shared_ptr<boost::asio::streambuf> p_header,
-                        utils::handler_t                          p_onReceived);
+                        utils::handler_t                        p_onReceived);
 
-  void onDataReceived(const boost::system::error_code           p_error,
+  void onDataReceived(const boost::system::error_code         p_error,
                       size_t                               /* p_bytesTransferred */,
-                      utils::sharedBuf_t                        p_inData,
-                      utils::sharedBuf_t                        p_data,
-                      utils::handler_t                          p_onReceived);
+                      utils::sharedBuf_t                      p_inData,
+                      utils::sharedBuf_t                      p_data,
+                      utils::handler_t                        p_onReceived);
 
-  void receive_data(size_t        p_dataSize,
+  void receive_data(size_t             p_dataSize,
                     utils::sharedBuf_t p_inData,
                     utils::handler_t   p_onReceived);
 
-  void do_receive_data(size_t        p_dataSize,
+  void do_receive_data(size_t             p_dataSize,
                        utils::sharedBuf_t p_inData,
                        utils::handler_t   p_onReceived);
 

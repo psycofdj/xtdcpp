@@ -30,4 +30,13 @@ TestFixture::getFileContent(const string& p_path, const char* p_file, int p_line
   return l_result;
 }
 
+void
+TestFixture::exec(const std::string& p_cmd, int p_status, const char* p_file, int p_line) const
+{
+  int l_status = system(p_cmd.c_str());
+  CPPUNIT_ASSERT_AT(WIFEXITED(l_status), p_file, p_line);
+  CPPUNIT_ASSERT_EQUAL_AT(p_status,  WEXITSTATUS(l_status), p_file, p_line);
+}
+
+
 }}

@@ -54,8 +54,7 @@ namespace base {
  **     effective de la socket)
  */
 template <typename Domain>
-class Connection : public boost::enable_shared_from_this<Connection<Domain> >,
-                   public boost::noncopyable
+class Connection : public std::enable_shared_from_this<Connection<Domain> >
 {
 public:
   /** @brief shared_ptr sur this */
@@ -63,17 +62,19 @@ public:
 
 protected:
   // 1.
-  explicit Connection(const utils::Config& p_configuration,
-                      boost::asio::io_service&                p_ioService,
-                      const string                            p_hostname,
-                      const uint32_t                          p_port);
+  explicit Connection(const utils::Config&     p_configuration,
+                      boost::asio::io_service& p_ioService,
+                      const string             p_hostname,
+                      const uint32_t           p_port);
+
+  Connection(const Connection&) = delete;
 
 public:
   /** @brief descruteur */
   virtual ~Connection(void);
 
 public:
-  inline void         setProcessID(uint32_t p_procesID);
+  inline void     setProcessID(uint32_t p_procesID);
   inline uint32_t getProcessID(void) const;
 
 public:
@@ -87,7 +88,7 @@ public:
    ** enregistré l'évenement.
    */
   void accept(std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
-              utils::handler_t                                               p_onAccepted);
+              utils::handler_t                                             p_onAccepted);
 
   /**
    ** @brief connexion aynchrone de socket (client only)
@@ -135,16 +136,16 @@ public:
 
 private:
   void do_accept(std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
-                 utils::handler_t                                               p_onAccepted);
+                 utils::handler_t                                             p_onAccepted);
   /**
    ** @details
    ** L'acceptor est gardé jusqu'à l'exécution de la callback pour
    ** garantir sa durée de vie dans le cas où un utilisateur peu clairvoyant
    ** ait décidé d'instancier un acceptor pour chaque connection...)
    */
-  void onAccepted(boost::system::error_code                                      p_error,
+  void onAccepted(boost::system::error_code                                    p_error,
                   std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
-                  utils::handler_t                                               p_onAccepted);
+                  utils::handler_t                                             p_onAccepted);
 
 
   /* connextion  */
@@ -157,27 +158,27 @@ private:
   void do_connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
                   utils::handler_t                            p_onConnected);
   void connectTimeout(const boost::system::error_code p_error);
-  void onConnected(const boost::system::error_code           p_error,
+  void onConnected(const boost::system::error_code         p_error,
                    std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                   utils::handler_t                          p_onConnected);
+                   utils::handler_t                        p_onConnected);
 
   /* envoi */
   void do_send(utils::sharedBuf_t p_outData,
                utils::handler_t   p_onSent);
   void sendTimeout(const boost::system::error_code p_error);
-  void onSent(const boost::system::error_code           p_error,
-              utils::sharedBuf_t                        p_outData,
+  void onSent(const boost::system::error_code         p_error,
+              utils::sharedBuf_t                      p_outData,
               std::shared_ptr<utils::deadLineTimer_t> p_timer,
-              utils::handler_t                          p_onSent);
+              utils::handler_t                        p_onSent);
 
 
   /* reception */
   void do_receive(utils::sharedBuf_t p_inData,
                   utils::handler_t   p_onReceived);
   void receiveTimeout(const boost::system::error_code p_error);
-  void onReceived(const boost::system::error_code           p_error,
+  void onReceived(const boost::system::error_code         p_error,
                   std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                  utils::handler_t                          p_onReceived);
+                  utils::handler_t                        p_onReceived);
 
   /**
    ** @details

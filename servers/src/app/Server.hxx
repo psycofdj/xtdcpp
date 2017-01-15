@@ -302,12 +302,13 @@ Server<TReq, TRes, Domain>::initialize(void)
   bip_app::m_perfCounter.reset(new counters::AvgTimedValue("", m_nbThread, 60000, m_thresholdMs));
 
   bind("/query_data",
-       h(&bip_app::h_query,      this),
+       h(&bip_app::h_query, this),
        f(&bip_app::f_post_exist, this, "xml"));
 
   bind_public("/query",
               h(&bip_app::h_ihm_query, this),
               "[IHM] génération de requête");
+
   //! Parameters
   m_params->add("assertRTT", m_assertRTT, true)
     ->listen<bool>(boost::bind(&bip_app::setAssertRTT, this, _2));

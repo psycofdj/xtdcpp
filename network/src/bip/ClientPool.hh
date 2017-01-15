@@ -97,11 +97,11 @@ public:
   void release(t_client_sptr& p_client);
 
 private:
-  boost::mutex       m_mutex;
-  t_pool             m_available;
-  const string  m_hostname;
-  const uint32_t m_port;
-  const uint32_t m_ttlMs;
+  std::mutex          m_mutex;
+  t_pool              m_available;
+  const string        m_hostname;
+  const uint32_t      m_port;
+  const uint32_t      m_ttlMs;
   const utils::Config m_conf;
 
 private:

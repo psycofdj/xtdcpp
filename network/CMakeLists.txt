@@ -19,11 +19,14 @@ add_shared_static_library(network
   src/bip/Connection.cc
   src/http/Server.cc
   src/http/Connection.cc
+  src/http/Message.cc
   src/http/Request.cc
   src/http/Response.cc
   src/http/Template.cc
   src/http/Server.cc
+  src/http/Client.cc
   src/http/cpptempl.cc
+  src/http/types.cc
 )
 
 
@@ -35,6 +38,6 @@ add_cppcheck(network)
 add_check(network
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    core_s tests_s network_s ${Boost_LIBRARIES})
+  LINKS      network_s tests_s core_s ${Boost_LIBRARIES})
 add_cov(network)
 add_memcheck(network)

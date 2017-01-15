@@ -1,4 +1,5 @@
 #include "utils/CacheDns.hh"
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 
 namespace xtd {
@@ -79,7 +80,7 @@ CacheDns::pushElem(const string& p_url,
 void
 CacheDns::createTimeStamp(std::time_t& p_timeStamp)
 {
-  const boost::posix_time::ptime l_time(boost::posix_time::second_clock::universal_time());
+  const bpt::ptime l_time(bpt::second_clock::universal_time());
   p_timeStamp = ptime_to_time_t(l_time);
 }
 

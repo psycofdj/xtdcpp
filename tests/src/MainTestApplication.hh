@@ -19,11 +19,12 @@ class MainTestApplication : public Application
 public:
   MainTestApplication(void);
 
-private:
-  int process(void);
 
-  CppUnit::Outputter*
-  createOutputter(CppUnit::TestResultCollector& p_result, std::ostream& p_stream) const;
+private:
+  int  process(void);
+  void initialize(void);
+
+  CppUnit::Outputter* createOutputter(CppUnit::TestResultCollector& p_result, std::ostream& p_stream) const;
 
 protected:
   string m_filter;

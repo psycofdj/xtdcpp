@@ -3,17 +3,11 @@
 #include <fstream>
 #include <iterator>
 #include <boost/assign/std/vector.hpp>
-#include <boost/range/algorithm/for_each.hpp>
-#include <boost/lambda/lambda.hpp>
-#include <boost/lambda/bind.hpp>
-#include <boost/format.hpp>
 #include <json_parser.hpp> // libcore
 #include <text.hh>         // libcore
 #include <log.hh>          // libcore
 
-using namespace boost::assign;
-using namespace boost;
-
+using boost::assign::operator+=;
 
 namespace xtd {
 namespace network {

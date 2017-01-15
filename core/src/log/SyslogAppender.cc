@@ -119,9 +119,6 @@ SyslogAppender::create(const string& p_name, const map<string,string>& p_propert
   if (p_properties.end() != c_identity)
     l_identity = c_identity->second;
 
-  if (p_properties.end() == c_options)
-    log::raise<log_error>("core.log", "unable to find key 'log.appender.%s.options'", p_name, HERE);
-
   if (p_properties.end() == c_facility)
     log::raise<log_error>("core.log", "unable to find key 'log.appender.%s.facility'", p_name, HERE);
 

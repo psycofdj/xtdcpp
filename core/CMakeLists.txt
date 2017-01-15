@@ -39,7 +39,7 @@ add_cloc(core)
 add_cppcheck(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    cwrap core_s tests_s)
+  LINKS    cwrap tests_s core_s)
 add_cov(core)
 add_memcheck(core)
 

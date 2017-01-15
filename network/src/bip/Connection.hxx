@@ -12,15 +12,15 @@ namespace network {
 namespace bip {
 
 
-using namespace boost;
-namespace ba = asio;
-namespace bs = system;
+
+namespace ba = boost::asio;
+namespace bs = boost::system;
 
 template <typename Domain>
 Connection<Domain>::Connection(const utils::Config& p_configuration,
-                               ba::io_service&                         p_ioService,
-                               const string                       p_hostname,
-                               const uint32_t                     p_port) :
+                               ba::io_service&      p_ioService,
+                               const string         p_hostname,
+                               const uint32_t       p_port) :
   TBase(p_configuration, p_ioService, p_hostname, p_port),
   m_header(mcs_headerSize),
   m_inboundData(),
@@ -96,13 +96,13 @@ Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p
   // send it through the socket
   ba::async_write(this->m_socket,
                   l_buffers,
-                  boost::bind(&Connection::onSent,
-                              this,
-                              _1,
-                              _2,
-                              l_headerBuff,
-                              l_outBuff,
-                              p_onSent));
+                  std::bind(&Connection::onSent,
+                            this,
+                            std::placeholders::_1,
+                            std::placeholders::_2,
+                            l_headerBuff,
+                            l_outBuff,
+                            p_onSent));
 }
 
 
@@ -129,12 +129,12 @@ Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_o
   // async read makes sure to receive all the data
   ba::async_read(this->m_socket,
                  ba::buffer(m_header),
-                 boost::bind(&Connection::onHeaderReceived,
-                             this,
-                             _1,
-                             _2,
-                             p_inData,
-                             p_onReceived));
+                 std::bind(&Connection::onHeaderReceived,
+                           this,
+                           std::placeholders::_1,
+                           std::placeholders::_2,
+                           p_inData,
+                           p_onReceived));
 
   log::debug("network.bip.cnx", "bip cnx async_read (%s) : leaving (%d)", TBase::info(), m_counter, HERE);
 }
@@ -175,10 +175,10 @@ void
 Connection<Domain>::receive_data(utils::sharedBuf_t p_inData,
                                  utils::handler_t   p_onReceived)
 {
-  TBase::m_strand.post(boost::bind(&Connection::do_receive_data,
-                                   this,
-                                   p_inData,
-                                   p_onReceived));
+  TBase::m_strand.post(std::bind(&Connection::do_receive_data,
+                                 this,
+                                 p_inData,
+                                 p_onReceived));
 }
 
 
@@ -189,12 +189,12 @@ Connection<Domain>::do_receive_data(utils::sharedBuf_t p_inData,
 {
   ba::async_read(TBase::m_socket,
                  ba::buffer(m_inboundData),
-                 boost::bind(&Connection::onDataReceived,
-                             this,
-                             _1,
-                             _2,
-                             p_inData,
-                             p_onReceived));
+                 std::bind(&Connection::onDataReceived,
+                           this,
+                           std::placeholders::_1,
+                           std::placeholders::_2,
+                           p_inData,
+                           p_onReceived));
 }
 
 

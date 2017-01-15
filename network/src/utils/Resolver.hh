@@ -80,7 +80,7 @@ public:
 
 private:
   boost::asio::io_service& m_ioService;
-  uint32_t             m_port;
+  uint32_t                 m_port;
 };
 
 }}} // end namespaces

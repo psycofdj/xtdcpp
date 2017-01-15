@@ -99,10 +99,10 @@ protected:
 
   void bind_action(const string& p_name,
                    const string& p_description,
-                   h                  p_action);
+                   handler       p_action);
 
   status h_runAction(const string&                 p_name,
-                     h                             p_action,
+                     handler                       p_action,
                      const uint32_t                p_requestId,
                      const network::http::Request& p_req,
                      network::http::Response&      p_res);

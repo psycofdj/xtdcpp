@@ -1,6 +1,6 @@
 #include "cpptempl.hh"
-#include <boost/format.hpp>
 #include <boost/algorithm/string/replace.hpp>
+#include <format.hh> // libcore
 
 namespace xtd {
 namespace network {
@@ -67,12 +67,12 @@ data_ptr parse_val(string key, data_map &data)
   if (index == string::npos)
   {
     if (data.end() == (cc_value = data.find(key)))
-      throw TemplateException(boost::str(boost::format("unresolved key : %s") % key));
+      throw TemplateException(format::vargs("unresolved key : %s", key));
     return cc_value->second;
   }
 
   if (data.end() == (cc_value = data.find(key.substr(0, index))))
-    throw TemplateException(boost::str(boost::format("unresolved key : %s") % key.substr(0, index)));
+    throw TemplateException(format::vargs("unresolved key : %s", key.substr(0, index)));
 
   data_ptr item = cc_value->second;
   return parse_val(key.substr(index+1), item->getmap());
