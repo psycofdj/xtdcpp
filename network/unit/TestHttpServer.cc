@@ -55,6 +55,7 @@ CPPUNIT_TEST_SUITE_REGISTRATION(TestHttpServer);
 void
 TestHttpServer::setUp(void)
 {
+  xtd::network::base::ThreadManager::get();
   m_server.reset(new TestServer());
   m_server->initialize("127.0.0.1", 0, xtd::network::utils::Config(), 10);
   m_server->start();
@@ -66,6 +67,7 @@ TestHttpServer::tearDown(void)
 {
   m_server->stop();
   m_server->join();
+  xtd::network::base::ThreadManager::destroy();
 }
 
 void
@@ -195,7 +197,7 @@ TestHttpServer::expiredConnection(void)
 
   l_res = Response();
   // delay is expired, server should have closed the cnx
-  boost::this_thread::sleep(boost::posix_time::milliseconds(2000));
+  boost::this_thread::sleep(boost::posix_time::milliseconds(3000));
   CPPUNIT_ASSERT_EQUAL(xtd::status::ok,    l_client.send(l_req));
   CPPUNIT_ASSERT_EQUAL(xtd::status::error, l_client.receive(l_res));
 }

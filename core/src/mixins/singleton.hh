@@ -1,6 +1,7 @@
 #pragma once
 # include <memory>
 # include <mutex>
+# include <iostream>
 
 namespace xtd {
 
@@ -53,9 +54,16 @@ public:
   static TClass& get(Args... p_args)
   {
     std::lock_guard<std::mutex> l_lock(ms_mutex);
-    if (nullptr == ms_instance.get())
+    if (nullptr == ms_instance.get()) {
       ms_instance.reset(new TClass(p_args...));
+    }
     return *ms_instance;
+  }
+
+  static void destroy(void)
+  {
+    std::lock_guard<std::mutex> l_lock(ms_mutex);
+    ms_instance.reset();
   }
 
 protected:
