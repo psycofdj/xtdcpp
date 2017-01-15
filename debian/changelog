@@ -1,3 +1,35 @@
+xtdcpp (1.0.2ppa1~xenial) xenial; urgency=medium
+
+  * [network/http] fixes #19 : boost and std shared_pointer are no longer mixed
+  * [network/http] fixes #20 : server replies with correct keepalive heaver
+  * [network/http] implements http client
+  * [network/http] get rid of ugly filter and handler structures replaced by c++11 variadic template args
+  * [network] replace many boost call to c++11 std
+  * [core] log config loader parses log_level case insensitively
+  * [core] log syslogappender no longer require options config property
+  * [core] moved url decode function to core text::url
+  * [tests] enable debug syslog logs in main test application
+  * [tests] adds handy "exec" function to default test fixture class
+  * xtdmake : bump version
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Sun, 15 Jan 2017 03:30:00 +0100
+
+xtdcpp (1.0.2ppa1~trusty) trusty; urgency=medium
+
+  * [network/http] fixes #19 : boost and std shared_pointer are no longer mixed
+  * [network/http] fixes #20 : server replies with correct keepalive heaver
+  * [network/http] implements http client
+  * [network/http] get rid of ugly filter and handler structures replaced by c++11 variadic template args
+  * [network] replace many boost call to c++11 std
+  * [core] log config loader parses log_level case insensitively
+  * [core] log syslogappender no longer require options config property
+  * [core] moved url decode function to core text::url
+  * [tests] enable debug syslog logs in main test application
+  * [tests] adds handy "exec" function to default test fixture class
+  * xtdmake : bump version
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Sun, 15 Jan 2017 03:30:00 +0100
+
 xtdcpp (1.0.1ppa1~xenial) xenial; urgency=medium
 
   * catch up xtdmake new release 1.0.3

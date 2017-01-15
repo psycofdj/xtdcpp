@@ -7,7 +7,7 @@ project(xtd)
 enable_testing()
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 1)
-set(PROJECT_VERSION_PATCH 1)
+set(PROJECT_VERSION_PATCH 2)
 
 # ---------
 # libraries
@@ -82,7 +82,7 @@ endif()
 enable_tracking()
 
 set(CMAKE_CXX_COMPILER         "g++")
-set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=gnu++11 -W -Wall -Wextra")
+set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=gnu++11 -W -Wall -Wextra -Werror")
 set(CMAKE_CXX_FLAGS_DEBUG      "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS_RELEASE    "${CMAKE_CXX_FLAGS_RELEASE} -Werror")
 

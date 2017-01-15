@@ -14,7 +14,7 @@ ThreadManager::ThreadManager(void)
 {
   m_ioService = new boost::asio::io_service;
   m_workPtr.reset(new boost::asio::io_service::work(*m_ioService));
-  m_threadPtr.reset(new std::thread([m_ioService](void) { m_ioService->run(); }));
+  m_threadPtr.reset(new std::thread([this](void) { m_ioService->run(); }));
 }
 
 
@@ -35,7 +35,7 @@ ThreadManager::createThread(const size_t p_threadId)
   threadMap_t::iterator l_threadMapIt = m_threadMap.find(p_threadId);
   if (l_threadMapIt == m_threadMap.end())
   {
-    m_threadMap[p_threadId] = std::make_shared<std::thread>([m_ioService](void) {
+    m_threadMap[p_threadId] = std::make_shared<std::thread>([this](void) {
         m_ioService->run();
       });
   }
