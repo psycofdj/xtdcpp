@@ -8,7 +8,7 @@
 #include <http/Request.hh>
 #include <http/Response.hh>
 #include <http/Client.hh>
-
+#include <base/ClientThreadManager.hh>
 using namespace xtd::network::http;
 
 

@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y --force-yes \
     plantuml \
     valgrind \
     git \
-    zlib1g-dev
+    zlib1g-dev \
+    wget
 RUN pip3 install coverxygen
 RUN pip3 install lxml
 RUN pip3 install requests

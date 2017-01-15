@@ -26,7 +26,7 @@ namespace bs = boost::system;
 
 template <typename Domain>
 Client<Domain>::Client(const utils::Config& p_conf) :
-  m_threadManager(ThreadManager::getInstance()),
+  m_threadManager(ThreadManager::get()),
   m_resolver(),
   m_hostname(),
   m_port(),

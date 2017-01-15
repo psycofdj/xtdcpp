@@ -1,5 +1,6 @@
 #pragma once
-#include <memory>
+# include <memory>
+# include <mutex>
 
 namespace xtd {
 
@@ -51,13 +52,16 @@ public:
   template<typename ... Args>
   static TClass& get(Args... p_args)
   {
+    std::lock_guard<std::mutex> l_lock(ms_mutex);
     if (nullptr == ms_instance.get())
       ms_instance.reset(new TClass(p_args...));
     return *ms_instance;
   }
 
 protected:
+public:
   static std::shared_ptr<TClass> ms_instance;
+  static std::mutex              ms_mutex;
 };
 
 /**
@@ -65,6 +69,12 @@ protected:
  */
 template<class TClass>
 std::shared_ptr<TClass> Singleton<TClass>::ms_instance;
+
+/**
+ ** @brief Mutex static instance
+ */
+template<class TClass>
+std::mutex Singleton<TClass>::ms_mutex;
 
 }}
 

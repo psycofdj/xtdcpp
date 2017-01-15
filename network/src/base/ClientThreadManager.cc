@@ -1,38 +1,40 @@
 #include "base/ClientThreadManager.hh"
 #include <functional>
-
+#include <iostream>
 namespace xtd {
 namespace network {
 namespace base {
 
-std::mutex                ThreadManager::m_mutex;
-boost::asio::io_service*  ThreadManager::m_ioService     = 0;
-ThreadManager*            ThreadManager::m_threadManager = 0;
 
-
-ThreadManager::ThreadManager(void)
+ThreadManager::ThreadManager(void) :
+  m_ioService(),
+  m_work(),
+  m_thread(),
+  m_threadMap()
 {
-  m_ioService = new boost::asio::io_service;
-  m_workPtr.reset(new boost::asio::io_service::work(*m_ioService));
-  m_threadPtr.reset(new std::thread([this](void) { m_ioService->run(); }));
+  m_ioService.reset(new boost::asio::io_service());
+  m_work.reset(new boost::asio::io_service::work(*m_ioService));
+  m_thread.reset(new std::thread([this](void) { m_ioService->run(); }));
 }
 
 
 ThreadManager::~ThreadManager(void)
 {
-  m_workPtr.reset();
-  threadMap_t::iterator l_threadMapIt = m_threadMap.begin();
-  while (l_threadMapIt != m_threadMap.end())
-  {
-    (l_threadMapIt->second)->join();
+  m_work.reset();
+  for (auto& c_thread : m_threadMap) {
+    c_thread.second->join();
   }
+  m_threadMap.clear();
+  m_thread->join();
+  m_thread.reset();
+  m_ioService.reset();
 }
 
 
 void
 ThreadManager::createThread(const size_t p_threadId)
 {
-  threadMap_t::iterator l_threadMapIt = m_threadMap.find(p_threadId);
+  t_map::iterator l_threadMapIt = m_threadMap.find(p_threadId);
   if (l_threadMapIt == m_threadMap.end())
   {
     m_threadMap[p_threadId] = std::make_shared<std::thread>([this](void) {
@@ -41,23 +43,11 @@ ThreadManager::createThread(const size_t p_threadId)
   }
 }
 
-
 boost::asio::io_service&
 ThreadManager::getIoService(void)
 {
   return *m_ioService;
 }
 
-
-ThreadManager&
-ThreadManager::getInstance(void)
-{
-  std::lock_guard<std::mutex> l_lock(m_mutex);
-  if (!m_threadManager)
-  {
-    m_threadManager = new ThreadManager();
-  }
-  return *m_threadManager;
-}
 
 }}} // end namespace
