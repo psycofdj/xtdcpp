@@ -172,7 +172,7 @@ TestHttpServer::expiredConnection(void)
   l_req.setVersion(version::v1_0);
 
   // simple 1.0 request, no server keep alive
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.connect("localhost", m_port));
+  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.connect("127.0.0.1", m_port));
   CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.send(l_req));
   CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.receive(l_res));
   CPPUNIT_ASSERT_EQUAL(false,           l_res.getHeader("Keep-Alive", l_value));
@@ -180,7 +180,7 @@ TestHttpServer::expiredConnection(void)
 
   l_res = Response();
   l_req.setVersion(version::v1_1);
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.connect("localhost", m_port));
+  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.connect("127.0.0.1", m_port));
   CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.send(l_req));
   CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.receive(l_res));
   // this time server let the cnx open
