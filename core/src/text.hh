@@ -3,7 +3,6 @@
 # include <boost/tuple/tuple.hpp>
 # include "types.hh"
 
-
 namespace xtd {
 
 /**
@@ -49,6 +48,21 @@ private:
 private:
   static t_data ms_entityList;
 };
+
+
+class url
+{
+private:
+  struct hex_to_string
+  {
+    template<typename T>
+    string operator()(const T& p_match) const;
+  };
+
+public:
+  static string decode_copy(const string& p_value);
+};
+
 
 }}
 

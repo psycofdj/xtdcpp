@@ -3,13 +3,10 @@
 
 # include "Server.hh"
 # include <fnmatch.h>
-# include <boost/assign/std/vector.hpp>
-# include <boost/format.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
 # include <boost/iostreams/device/back_inserter.hpp>
 # include <boost/range/algorithm/copy.hpp>
 # include <boost/asio/error.hpp>
-# include <boost/foreach.hpp>
 # include <boost/regex.hpp>
 # include <log.hh> //libcore
 # include "http/Connection.hh"
@@ -29,21 +26,52 @@ namespace http {
 template<typename Domain>
 Server<Domain>::Handler::Handler(void) :
   m_path(),
-  m_handler(),
+  m_process(),
   m_filter(),
   m_matchAny(false)
 {}
 
+template<typename Domain>
+bool
+Server<Domain>::Handler::less(const Handler& p_obj1, const Handler& p_obj2)
+{
+  if (p_obj1.m_matchAny == p_obj2.m_matchAny)
+    return std::less<string>()(p_obj2.m_path, p_obj1.m_path);
+  return std::less<bool>()(p_obj1.m_matchAny, p_obj2.m_matchAny);
+}
+
+
+
+template<typename Domain>
+template<typename T, typename... Arguments>
+typename Server<Domain>::handler
+Server<Domain>::h(T p_fn, Arguments&&... p_args)
+{
+  return
+    std::bind(p_fn, p_args...,
+              std::placeholders::_1,
+              std::placeholders::_2,
+              std::placeholders::_3);
+}
+
+template<typename Domain>
+template<typename T, typename... Arguments>
+typename Server<Domain>::filter
+Server<Domain>::f(T p_fn, Arguments&&... p_args)
+{
+  return
+    std::bind(p_fn, p_args...,
+              std::placeholders::_1);
+}
 
 
 template<typename Domain>
 Server<Domain>::Server(void) :
   TBase()
 {
-  handler l_handler(&Server::h_error_html,
-                    this,
-                    "unhandled request, you must bind handler and "
-                    "filter to manage this request");
+  handler l_handler = h(&Server::h_error_html, this,
+                        "unhandled request, you must bind handler and "
+                        "filter to manage this request");
 
   bind_default(l_handler);
 }
@@ -117,7 +145,7 @@ Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn
 {
   std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
-  if(!l_conn->getClosedByServer())
+  if (!l_conn->getClosedByServer())
   {
     log::info("network.http.server", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
   }
@@ -137,7 +165,7 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
                              utils::sharedBuf_t p_inBuffer)
 {
   boost::iostreams::filtering_istream l_in;
-  Request                             l_req(false);
+  Request                             l_req;
   Response                            l_res;
   utils::vectorBytes_t                l_outBuff;
   string                              l_value;
@@ -147,7 +175,7 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   processRequest(p_conn->getProcessID(), l_in, l_req, l_res);
 
-  if (Request::VERSION_1_0 == l_req.getVersion())
+  if (version::v1_0 == l_req.getVersion())
     l_closeByServer = true;
   else if ((true == l_req.getHeader("Connection", l_value)) && ("close" == l_value))
     l_closeByServer = true;
@@ -158,6 +186,10 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
       std::static_pointer_cast<Connection<Domain> >(p_conn);
     l_conn->setClosedByServer(true);
     l_res.addHeader("Connection", "close");
+  } else {
+    float    l_rcvTimeout = TBase::m_conf.getReceiveTimeoutMs();
+    uint32_t l_to = std::floor(l_rcvTimeout / 1000);
+    l_res.addHeader("Keep-Alive", format::vargs("timeout=%d, max=100", l_to));
   }
 
   {
@@ -193,17 +225,15 @@ Server<Domain>::processRequest(uint32_t       p_processID,
   if (status::ok != p_req.read(p_request))
   {
     log::err("network.http.server", "invalid http request", HERE);
-    p_res.setVersion("1.0");
+    p_res.setVersion(version::v1_0);
     p_res.setData("request parsing error...");
     p_res.setStatus(code::internal_error);
-    p_res.finalize();
     return;
   }
 
   findHandler(p_req)(p_processID, p_req, p_res);
 
-  p_res.setVersion(p_req.getVersionStr());
-  p_res.finalize();
+  p_res.setVersion(p_req.getVersion());
 }
 
 
@@ -211,19 +241,19 @@ template<typename Domain>
 typename Server<Domain>::handler&
 Server<Domain>::findHandler(const Request& p_req)
 {
-  BOOST_FOREACH(Handler& c_handler, m_handlerList)
+  for (auto& c_handler : m_handlerList)
   {
     if ((false == c_handler.m_matchAny) &&
         (0 == fnmatch(c_handler.m_path.c_str(), p_req.getPath().c_str(), 0)) &&
         (true == c_handler.m_filter(p_req)))
-      return c_handler.m_handler;
+      return c_handler.m_process;
   }
 
-  BOOST_FOREACH(Handler& c_handler, m_handlerList)
+  for (auto& c_handler : m_handlerList)
   {
     if ((true == c_handler.m_matchAny) &&
         (true == c_handler.m_filter(p_req)))
-      return c_handler.m_handler;
+      return c_handler.m_process;
   }
 
   return m_defaultHandler;
@@ -388,20 +418,18 @@ Server<Domain>::f_header_match(const string&  p_headerName,
 
 template<typename Domain>
 status
-Server<Domain>::h_error_text(const string&  p_msg,
-                             const uint32_t   /*p_requestId*/,
-                             const Request& p_request,
-                             Response&      p_response)
+Server<Domain>::h_error_text(const string&     p_msg,
+                             const uint32_t /* p_requestId */,
+                             const Request&    p_request,
+                             Response&         p_response)
 {
   std::stringstream l_requestText;
   string            l_message;
 
   l_requestText << p_request;
-  l_message = boost::str(boost::format("http error : %s\n"
-                                       "dumping request ...\n"
-                                       "%s\n")
-                         % p_msg
-                         % l_requestText.str());
+  l_message = format::vargs("http error : %s\n"
+                            "dumping request ...\n"
+                            "%s\n", p_msg, l_requestText.str());
   p_response.setStatus(code::internal_error);
   p_response.addHeader("Content-Type", "text/plain");
   p_response.setData(l_message);
@@ -412,7 +440,7 @@ Server<Domain>::h_error_text(const string&  p_msg,
 template<typename Domain>
 status
 Server<Domain>::h_error_html(const string&  p_msg,
-                             const uint32_t   p_requestId,
+                             const uint32_t p_requestId,
                              const Request& p_req,
                              Response&      p_res)
 {
@@ -443,11 +471,11 @@ Server<Domain>::h_error_html(const string&  p_msg,
 
 template<typename Domain>
 status
-Server<Domain>::h_template_file(Template&          p_tmpl,
-                                const string& p_filePath,
-                                const uint32_t       p_requestID,
-                                const Request&     p_req,
-                                Response&          p_res)
+Server<Domain>::h_template_file(Template&      p_tmpl,
+                                const string&  p_filePath,
+                                const uint32_t p_requestID,
+                                const Request& p_req,
+                                Response&      p_res)
 {
   if (status::ok != p_tmpl.loadTemplate(p_filePath))
     return h_error_text("unable to find tpl file " + p_filePath, p_requestID, p_req, p_res);
@@ -475,7 +503,7 @@ Server<Domain>::h_gen(Generator&      p_tmpl,
 template<typename Domain>
 status
 Server<Domain>::h_redirect(const string&     p_dst,
-                           const uint32_t   /* p_requestId*/,
+                           const uint32_t /* p_requestId*/,
                            const Request& /* p_request */,
                            Response&         p_response)
 {
@@ -489,7 +517,7 @@ template<typename Domain>
 status
 Server<Domain>::h_raw(const string&      p_data,
                       const string&      p_contentType,
-                      const uint32_t   /*  p_requestId*/,
+                      const uint32_t /*  p_requestId*/,
                       const Request& /*  p_request */,
                       Response&          p_response)
 {
@@ -513,8 +541,7 @@ Server<Domain>::h_file(const string&  p_filePath,
   stringstream l_content;
 
   if (false == l_file.is_open())
-    return h_error_text(boost::str(boost::format("unable to open requested file '%s'")
-                                   % p_filePath),
+    return h_error_text(format::vargs("unable to open requested file '%s'", p_filePath),
                         p_requestId,
                         p_request,
                         p_response);
@@ -539,7 +566,7 @@ status
 Server<Domain>::h_dir(const string&  p_dirPath,
                       const string&  p_contentType,
                       bool           p_cachable,
-                      const uint32_t   p_requestId,
+                      const uint32_t p_requestId,
                       const Request& p_req,
                       Response&      p_res)
 {
@@ -613,12 +640,12 @@ Server<Domain>::bind(const string&      p_path,
 {
   Handler l_handler;
   l_handler.m_path    = p_path;
-  l_handler.m_handler = p_handler;
+  l_handler.m_process = p_handler;
   l_handler.m_filter  = p_filter;
   l_handler.m_descr   = p_descr;
   m_handlerList.push_back(l_handler);
 
-  sort(m_handlerList.begin(), m_handlerList.end(), boost::bind(&Handler::less, _1, _2));
+  sort(m_handlerList.begin(), m_handlerList.end(), &Handler::less);
 }
 
 
@@ -628,7 +655,7 @@ Server<Domain>::bind_public(const string&      p_path,
                             handler            p_handler,
                             const string& p_descr)
 {
-  bind(p_path, p_handler, f(&Server::f_none), p_descr);
+  bind(p_path, p_handler, &Server::f_none, p_descr);
 }
 
 
@@ -638,12 +665,12 @@ Server<Domain>::bind_any(handler p_handler,
                          filter  p_filter)
 {
   Handler l_handler;
-  l_handler.m_handler  = p_handler;
+  l_handler.m_process  = p_handler;
   l_handler.m_filter   = p_filter;
   l_handler.m_matchAny = true;
   m_handlerList.push_back(l_handler);
 
-  sort(m_handlerList.begin(), m_handlerList.end(), boost::bind(&Handler::less, _1, _2));
+  sort(m_handlerList.begin(), m_handlerList.end(), &Handler::less);
 }
 
 template<typename Domain>
@@ -657,9 +684,11 @@ template<typename Domain>
 bool
 Server<Domain>::isUrlBinded(const string& p_urlPath) const
 {
-  return 0 != count_if(m_handlerList.begin(),
-                       m_handlerList.end(),
-                       boost::bind(&Handler::m_path, _1) == p_urlPath);
+  auto l_cmp = [&p_urlPath](const Handler& p_handler) {
+    return p_handler.m_path == p_urlPath;
+  };
+
+  return 0 != count_if(m_handlerList.begin(), m_handlerList.end(), l_cmp);
 }
 
 
@@ -668,7 +697,7 @@ void
 Server<Domain>::getMatchingHandlers(const Request&              p_req,
                                     typename Handler::t_listof& p_list) const
 {
-  BOOST_FOREACH(const Handler& c_handler, m_handlerList)
+  for (const auto& c_handler : m_handlerList)
   {
     if ((0 != c_handler.m_descr.size()) && (true == c_handler.m_filter(p_req)))
       p_list.push_back(c_handler);

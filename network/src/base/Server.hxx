@@ -101,7 +101,12 @@ Server<Domain>::initialize(const string&        p_host,
   m_acceptor.reset(new ba::basic_socket_acceptor<Domain>(*m_ioService, l_endpoint, p_conf.getReuseAddr()));
 }
 
-
+template<typename Domain>
+const typename Domain::endpoint
+Server<Domain>::getEndPoint(void) const
+{
+  return m_acceptor->local_endpoint();
+}
 
 
 /**
@@ -118,7 +123,9 @@ Server<Domain>::start(void)
 
   //!\ WARNING /!\\ : +1 is needed to have a free slot to refuse a request
   for (size_t i = 0; i < m_threadNb+1; ++i)
-    m_threadGroup.create_thread(bind(&ba::io_service::run, m_ioService.get()));
+    m_threadGroup.create_thread([this](void) {
+        m_ioService->run();
+      });
 
   for (size_t i = 0; i < m_threadNb; ++i)
     m_dequeId.push_back(i);
@@ -179,7 +186,7 @@ Server<Domain>::accept(void)
 
 /**
  ** @details
- ** 1. On utilise ici un objet qui copie le fonctionnement des boost::mutex::scoped_lock
+ ** 1. On utilise ici un objet qui copie le fonctionnement des std::mutex::scoped_lock
  **    Au constructeur, on lui donne une fonction. Lorsque l'objet sera detruit,
  **    il executera cette fonction.
  **    Ici, on veut garantir que la methode accept doit appelée, quelque soit

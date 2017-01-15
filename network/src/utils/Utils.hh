@@ -5,13 +5,11 @@
 # include <deque>
 # include <streambuf>
 # include <string>
-# include <boost/date_time/posix_time/posix_time.hpp>
-# include <boost/thread/mutex.hpp>
-# include <boost/enable_shared_from_this.hpp>
-# include <boost/interprocess/sync/interprocess_semaphore.hpp>
-# include <boost/function.hpp>
-# include <boost/noncopyable.hpp>
+# include <mutex>
+# include <functional>
 # include <ctime>
+# include <boost/date_time/posix_time/posix_time.hpp>
+# include <boost/interprocess/sync/interprocess_semaphore.hpp>
 # include "utils/CommTypeDefs.hh"
 
 namespace xtd {
@@ -23,13 +21,14 @@ namespace utils {
 void do_sem_wait(boost::interprocess::interprocess_semaphore& p_sem);
 
 
-class scoped_method : boost::noncopyable
+class scoped_method
 {
 private:
-  typedef boost::function<void(void)> handler_t;
+  typedef std::function<void(void)> handler_t;
 
 public:
   explicit scoped_method(handler_t p_handler) : m_handler(p_handler) { }
+  scoped_method(const scoped_method&) = delete;
   ~scoped_method(void) { m_handler(); }
 
 private:
@@ -40,14 +39,14 @@ template<typename T>
 class deque_id
 {
 public:
-  void        push(const T& p_param);
-  void        push_back(const T& p_param);
-  bool        pop(T& p_param);
-  bool        find(const T& p_param);
+  void   push(const T& p_param);
+  void   push_back(const T& p_param);
+  bool   pop(T& p_param);
+  bool   find(const T& p_param);
   size_t size(void);
 
 private:
-  boost::mutex m_mutex;
+  std::mutex    m_mutex;
   std::deque<T> m_deque;
 };
 

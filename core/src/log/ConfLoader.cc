@@ -102,7 +102,7 @@ ConfLoader::createLogger(const string&              p_name,
   if (false == is_valid(boost::to_lower_copy(l_parts[0])))
     log::raise<log_error>("core.log", "invalid log level value '%s'", l_parts[0], HERE);
 
-  l_level = from(l_parts[0]);
+  l_level = from(boost::to_lower_copy(l_parts[0]));
   std::copy(l_parts.begin() + 1, l_parts.end(), std::back_inserter(l_appenders));
 
   Logger* l_logger = &p_root;

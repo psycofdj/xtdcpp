@@ -6,10 +6,7 @@ namespace xtd {
 namespace network {
 namespace utils {
 
-/**
- * @param p_ioService : boost::asio::io_service
- * @param p_ttl : cache entry time to live in seconds
- */
+
 Resolver<af_inet>::Resolver(boost::asio::io_service& p_ioService,uint32_t p_ttl) :
   m_ioService(p_ioService)
 {

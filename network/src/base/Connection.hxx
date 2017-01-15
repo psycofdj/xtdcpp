@@ -17,19 +17,18 @@ namespace base {
  ** Header privé (utilisé uniquement par base/Connection.cc), on se permet de
  ** jouer avec les namespaces.
  */
-using namespace boost;
 using namespace xtd;
 
-namespace       ba = boost::asio;
-namespace       bs = boost::system;
-
+namespace ba  = boost::asio;
+namespace bs  = boost::system;
+namespace bpt = boost::posix_time;
 
 
 template <typename Domain>
 Connection<Domain>::Connection(const utils::Config& p_conf,
-                               ba::io_service&                         p_ioService,
-                               const string                       p_hostname,
-                               const uint32_t                     p_port) :
+                               ba::io_service&      p_ioService,
+                               const string         p_hostname,
+                               const uint32_t       p_port) :
   m_conf(p_conf),
   m_ioService(p_ioService),
   m_strand(p_ioService),
@@ -64,10 +63,10 @@ Connection<Domain>::accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> > p
 {
   log::debug("network.base.cnx", "cnx accept : entering", HERE);
 
-  m_strand.post(bind(&Connection::do_accept,
-                     this->shared_from_this(),
-                     p_acceptor,
-                     p_onAccepted));
+  m_strand.post(std::bind(&Connection::do_accept,
+                          this->shared_from_this(),
+                          p_acceptor,
+                          p_onAccepted));
 
   log::debug("network.base.cnx", "cnx accept : leaving", HERE);
 }
@@ -89,11 +88,11 @@ Connection<Domain>::do_accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> 
   m_localPort = m_port;
 
   p_acceptor->async_accept(m_socket,
-                           bind(&Connection::onAccepted,
-                                this->shared_from_this(),
-                                _1,
-                                p_acceptor,
-                                p_onAccepted));
+                           std::bind(&Connection::onAccepted,
+                                     this->shared_from_this(),
+                                     std::placeholders::_1,
+                                     p_acceptor,
+                                     p_onAccepted));
 
   log::debug("network.base.cnx", "cnx do_accept : leaving", HERE);
 }
@@ -118,11 +117,11 @@ Connection<Domain>::onAccepted(bs::error_code                                   
   // 2. Post handler on strand
 
   if (p_error)
-    m_strand.post(bind(p_onAccepted, p_error));
+    m_strand.post(std::bind(p_onAccepted, p_error));
   else if (status::ok != l_ret)
-    m_strand.post(bind(p_onAccepted, ba::error::bad_descriptor));
+    m_strand.post(std::bind(p_onAccepted, ba::error::bad_descriptor));
   else
-    m_strand.post(bind(p_onAccepted, p_error));
+    m_strand.post(std::bind(p_onAccepted, p_error));
 
   log::debug("network.base.cnx", "cnx onAccepted (%s) : leaving", info(), HERE);
 }
@@ -139,10 +138,10 @@ Connection<Domain>::connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver
 {
   log::debug("network.base.cnx", "cnx connect (%s:%d): entering", m_hostname, m_port, HERE);
 
-  m_strand.post(bind(&Connection::do_connect,
-                     this->shared_from_this(),
-                     p_resolver,
-                     p_onConnected));
+  m_strand.post(std::bind(&Connection::do_connect,
+                          this->shared_from_this(),
+                          p_resolver,
+                          p_onConnected));
 
   log::debug("network.base.cnx", "cnx connect (%s:%d): leaving", m_hostname, m_port, HERE);
 }
@@ -162,21 +161,21 @@ Connection<Domain>::do_connect(std::shared_ptr<utils::Resolver<Domain> > p_resol
   m_remoteAddr = m_hostname;
   m_remotePort = m_port;
 
-  typename Domain::endpoint                 l_endpoint = p_resolver->resolve(m_hostname, boost::lexical_cast<string>(m_port));
+  typename Domain::endpoint               l_endpoint = p_resolver->resolve(m_hostname, boost::lexical_cast<string>(m_port));
   std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
 
 
-  l_timer->expires_from_now(posix_time::milliseconds(m_conf.getConnectTimeoutMs()));
-  l_timer->async_wait(m_strand.wrap(bind(&Connection::connectTimeout,
-                                         this->shared_from_this(),
-                                         _1)));
+  l_timer->expires_from_now(bpt::milliseconds(m_conf.getConnectTimeoutMs()));
+  l_timer->async_wait(m_strand.wrap(std::bind(&Connection::connectTimeout,
+                                              this->shared_from_this(),
+                                              std::placeholders::_1)));
 
   m_socket.async_connect(l_endpoint,
-                         m_strand.wrap(bind(&Connection::onConnected,
-                                            this->shared_from_this(),
-                                            _1,
-                                            l_timer,
-                                            p_onConnected)));
+                         m_strand.wrap(std::bind(&Connection::onConnected,
+                                                 this->shared_from_this(),
+                                                 std::placeholders::_1,
+                                                 l_timer,
+                                                 p_onConnected)));
 
   log::debug("network.base.cnx", "cnx do_connect (%s:%d): leaving", m_hostname, m_port, HERE);
 }
@@ -244,11 +243,11 @@ Connection<Domain>::onConnected(const bs::error_code                      p_erro
 
   // 3. Post handler on strand
   if (p_error)
-    m_strand.post(bind(p_onConnected, p_error));
+    m_strand.post(std::bind(p_onConnected, p_error));
   else if (status::ok != l_ret)
-    m_strand.post(bind(p_onConnected, ba::error::bad_descriptor));
+    m_strand.post(std::bind(p_onConnected, ba::error::bad_descriptor));
   else
-    m_strand.post(bind(p_onConnected, p_error));
+    m_strand.post(std::bind(p_onConnected, p_error));
 
   log::debug("network.base.cnx", "cnx onConnected (%s) : leaving", HERE);
 }
@@ -273,10 +272,10 @@ Connection<Domain>::send(const utils::vectorBytes_t& p_outData,
 
   l_outBuff->assign(p_outData.begin(), p_outData.end());
 
-  m_strand.post(bind(&Connection::do_send,
-                     this->shared_from_this(),
-                     l_outBuff,
-                     p_onSent));
+  m_strand.post(std::bind(&Connection::do_send,
+                          this->shared_from_this(),
+                          l_outBuff,
+                          p_onSent));
 
   log::debug("network.base.cnx", "cnx send (%s) : leaving", info(), HERE);
 }
@@ -295,18 +294,18 @@ Connection<Domain>::do_send(utils::sharedBuf_t p_outData,
 
   std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
 
-  l_timer->expires_from_now(posix_time::milliseconds(m_conf.getSendTimeoutMs()));
-  l_timer->async_wait(m_strand.wrap(bind(&Connection::sendTimeout,
-                                         this->shared_from_this(),
-                                         _1)));
+  l_timer->expires_from_now(bpt::milliseconds(m_conf.getSendTimeoutMs()));
+  l_timer->async_wait(m_strand.wrap(std::bind(&Connection::sendTimeout,
+                                              this->shared_from_this(),
+                                              std::placeholders::_1)));
 
   utils::handler_t l_handler =
-    bind(&Connection::onSent,
-         this->shared_from_this(),
-         _1,
-         p_outData,
-         l_timer,
-         p_onSent);
+    std::bind(&Connection::onSent,
+              this->shared_from_this(),
+              std::placeholders::_1,
+              p_outData,
+              l_timer,
+              p_onSent);
 
   async_write(p_outData, l_handler);
 
@@ -345,7 +344,7 @@ Connection<Domain>::onSent(const bs::error_code                      p_error,
     p_timer->cancel();
   }
 
-  m_strand.post(bind(p_onSent, p_error));
+  m_strand.post(std::bind(p_onSent, p_error));
   p_outData.reset();
   log::debug("network.base.cnx", "cnx onSent (%s) : leaving", info(), HERE);
 }
@@ -360,10 +359,10 @@ Connection<Domain>::receive(utils::sharedBuf_t p_inData,
 {
   log::debug("network.base.cnx", "cnx receive (%s) : entering", info(), HERE);
 
-  m_strand.post(bind(&Connection::do_receive,
-                     this->shared_from_this(),
-                     p_inData,
-                     p_onReceived));
+  m_strand.post(std::bind(&Connection::do_receive,
+                          this->shared_from_this(),
+                          p_inData,
+                          p_onReceived));
 
   log::debug("network.base.cnx", "cnx receive (%s) : leaving", info(), HERE);
 }
@@ -380,17 +379,17 @@ Connection<Domain>::do_receive(utils::sharedBuf_t p_inData,
 
   std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
 
-  l_timer->expires_from_now(posix_time::milliseconds(m_conf.getReceiveTimeoutMs()));
-  l_timer->async_wait(m_strand.wrap(bind(&Connection::receiveTimeout,
-                                         this->shared_from_this(),
-                                         _1)));
+  l_timer->expires_from_now(bpt::milliseconds(m_conf.getReceiveTimeoutMs()));
+  l_timer->async_wait(m_strand.wrap(std::bind(&Connection::receiveTimeout,
+                                              this->shared_from_this(),
+                                              std::placeholders::_1)));
 
   utils::handler_t l_handler
-    = m_strand.wrap(bind(&Connection::onReceived,
-                         this->shared_from_this(),
-                         _1,
-                         l_timer,
-                         p_onReceived));
+    = m_strand.wrap(std::bind(&Connection::onReceived,
+                              this->shared_from_this(),
+                              std::placeholders::_1,
+                              l_timer,
+                              p_onReceived));
 
   async_read(p_inData, l_handler);
 
@@ -432,7 +431,7 @@ Connection<Domain>::onReceived(const bs::error_code                      p_error
     p_timer->cancel();
   }
 
-  m_strand.post(bind(p_onReceived, p_error));
+  m_strand.post(std::bind(p_onReceived, p_error));
   log::debug("network.base.cnx", "cnx onReceived (%s) : leaving", info(), HERE);
 }
 

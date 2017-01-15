@@ -14,6 +14,16 @@ template <typename Domain> class Connection;
 class Template;
 
 
+std::function<bool(const Request& p_req)>
+operator&&(std::function<bool(const Request& p_req)> p_fn1,
+           std::function<bool(const Request& p_req)> p_fn2);
+
+
+std::function<bool(const Request& p_req)>
+operator||(std::function<bool(const Request& p_req)> p_fn1,
+           std::function<bool(const Request& p_req)> p_fn2);
+
+
 /**
  ** @param Domain mode de connexion, utils::af_inet ou utils::af_unix
  ** @details
@@ -238,92 +248,34 @@ protected:
   class Handler
   {
   public:
-    typedef vector<Handler> t_listof;
+    typedef vector<Handler>                                                  t_listof;
+    typedef std::function<status(const uint32_t, const Request&, Response&)> t_process;
+    typedef std::function<bool(const Request&)>                              t_filter;
 
-    struct filter : boost::function<bool (const Request&)>
-    {
-    public:
-      typedef boost::function<bool (const Request&)> t_func;
-
-      filter(void) :
-        t_func(){ }
-      template<class A>
-      filter(A p_method) :
-        t_func(p_method) { }
-      template<class A, typename Base>
-      filter(A p_method, Base p_instance) :
-        t_func(boost::bind(p_method, p_instance, _1)) { }
-      template<class A, typename Base, typename B>
-      filter(A p_method, Base p_instance, B p_arg1) :
-        t_func(boost::bind(p_method, p_instance, p_arg1, _1)) { }
-      template<class A, typename Base, typename B, typename C>
-      filter(A p_method, Base p_instance, B p_arg1, C p_arg2) :
-        t_func(boost::bind(p_method, p_instance, p_arg1, p_arg2, _1)) { }
-      template<class A, typename Base, typename B, typename C, typename D>
-      filter(A p_method, Base p_instance, B p_arg1, C p_arg2, D p_arg3) :
-        t_func(boost::bind(p_method, p_instance, p_arg1, p_arg2, p_arg3, _1)) { }
-
-      filter operator||(filter p_filter2)
-      {
-        return filter(boost::bind(*this,     _1) ||
-                      boost::bind(p_filter2, _1));
-      }
-      filter operator&&(filter p_filter2)
-      {
-        return filter(boost::bind(*this,     _1) &&
-                      boost::bind(p_filter2, _1));
-      }
-      filter operator!(void)
-      {
-        return filter(!boost::bind(*this, _1));
-      }
-    };
-
-    struct handler : boost::function<status (const uint32_t p_requestId, const Request&, Response&)>
-    {
-    public:
-      typedef boost::function<status (const uint32_t p_requestId, const Request&, Response&)> t_func;
-
-      handler(void) :
-        t_func() { }
-      template<class A, typename Base>
-      handler(A p_method, Base p_instance) :
-        t_func(boost::bind(p_method, p_instance, _1, _2, _3)) { }
-      template<class A, typename Base, typename B>
-      handler(A p_method, Base p_instance, B p_arg1) :
-        t_func(boost::bind(p_method, p_instance, p_arg1, _1, _2, _3)) { }
-      template<class A, typename Base, typename B, typename C>
-      handler(A p_method, Base p_instance, B p_arg1, C p_arg2) :
-        t_func(boost::bind(p_method, p_instance, p_arg1, p_arg2, _1, _2, _3)) { }
-      template<class A, typename Base, typename B, typename C, typename D>
-      handler(A p_method, Base p_instance, B p_arg1, C p_arg2, D p_arg3) :
-        t_func(boost::bind(p_method, p_instance, p_arg1, p_arg2, p_arg3, _1, _2, _3)) { }
-    };
-
-    static bool less(const Handler& p_obj1, const Handler& p_obj2)
-    {
-      if (p_obj1.m_matchAny == p_obj2.m_matchAny)
-        return std::less<string>()(p_obj2.m_path, p_obj1.m_path);
-      return std::less<bool>()(p_obj1.m_matchAny, p_obj2.m_matchAny);
-    }
+  public:
+    static bool less(const Handler& p_obj1, const Handler& p_obj2);
 
   public:
     Handler(void);
 
-    string m_path;
-    handler     m_handler;
-    filter      m_filter;
-    bool        m_matchAny;
-    string m_descr;
+  public:
+    string    m_path;
+    t_process m_process;
+    t_filter  m_filter;
+    bool      m_matchAny;
+    string    m_descr;
   };
 
-  typedef typename Handler::handler h;
-  typedef typename Handler::filter  f;
+protected:
+  typedef typename Handler::t_process handler;
+  typedef typename Handler::t_filter  filter;
 
+protected:
+  template<typename T, typename... Arguments>
+  handler h(T p_fn, Arguments&&... p_args);
 
-private:
-  typedef typename Handler::handler handler;
-  typedef typename Handler::filter  filter;
+  template<typename T, typename... Arguments>
+  filter f(T p_fn, Arguments&&... p_args);
 
 protected:
   // filters
@@ -335,8 +287,8 @@ protected:
   /**
    ** @brief Vrai si la requête contient un paramètre GET nommé p_cgiName
    */
-  bool f_cgi_exist(const string& p_cgiName,
-                   const Request&     p_request);
+  bool f_cgi_exist(const string&  p_cgiName,
+                   const Request& p_request);
 
 
   /**
@@ -344,47 +296,47 @@ protected:
    ** Vrai si la requête contient un paramètre GET dont le nom
    ** correspond à l'un des éléments du tableau p_cgiName
    */
-  bool f_one_cgi_exist(const vector <string > & p_cgiName,
-                       const Request& p_req);
+  bool f_one_cgi_exist(const vector<string>& p_cgiName,
+                       const Request&        p_req);
 
   /**
    ** @details
    ** Vrai si la requête contient un paramètre GET nommé p_cgiName
    ** et dont la valeur est égale à p_value
    */
-  bool f_cgi_equal(const string& p_cgiName,
-                   const string& p_value,
-                   const Request&     p_request);
+  bool f_cgi_equal(const string&  p_cgiName,
+                   const string&  p_value,
+                   const Request& p_request);
 
   /**
    ** @details
    ** Vrai si la requête contient un paramètre GET nommé p_cgiName
    ** et dont la valeur match la regexp p_regex
    */
-  bool f_cgi_match(const string& p_cgiName,
-                   const string& p_regex,
-                   const Request&     p_request);
+  bool f_cgi_match(const string&  p_cgiName,
+                   const string&  p_regex,
+                   const Request& p_request);
 
   /**
    ** @brief Vrai si la requête contient un paramètre POST nommé p_cgiName
    */
-  bool f_post_exist(const string& p_cgiName,
-                    const Request&     p_request);
+  bool f_post_exist(const string&  p_cgiName,
+                    const Request& p_request);
 
   /**
    ** @brief Vrai si la requête contient un paramètre POST ou GET nommé p_cgiName
    */
-  bool f_param_exist(const string& p_cgiName,
-                     const Request&     p_request);
+  bool f_param_exist(const string&  p_cgiName,
+                     const Request& p_request);
 
   /**
    ** @details
    ** Vrai si la requête contient un paramètre POST nommé p_cgiName
    ** et dont la valeur est égale à p_value
    */
-  bool f_post_equal(const string& p_cgiName,
-                    const string& p_value,
-                    const Request&     p_request);
+  bool f_post_equal(const string&  p_cgiName,
+                    const string&  p_value,
+                    const Request& p_request);
 
 
   /**
@@ -392,36 +344,35 @@ protected:
    ** Vrai si la requête contient un paramètre POST nommé p_cgiName
    ** et dont la valeur match la regexp p_regex
    */
-  bool f_post_match(const string& p_cgiName,
-                    const string& p_regex,
-                    const Request&     p_request);
+  bool f_post_match(const string&  p_cgiName,
+                    const string&  p_regex,
+                    const Request& p_request);
 
   /**
    ** @brief Vrai si p_request contient le header p_headerName
    */
-  bool f_header_exist(const string& p_headerName,
-                      const Request&     p_request);
+  bool f_header_exist(const string&  p_headerName,
+                      const Request& p_request);
 
   /**
    ** @details
    ** Vrai si p_request contient le header p_headerName dont la valeur est egale
    ** a p_value
    */
-  bool f_header_equal(const string& p_headerName,
-                      const string& p_value,
-                      const Request&     p_request);
+  bool f_header_equal(const string&  p_headerName,
+                      const string&  p_value,
+                      const Request& p_request);
 
   /**
    ** @details
    ** Vrai si p_request contient le header p_headerName dont la valeur match la
    ** regexp p_value
    */
-  bool f_header_match(const string& p_headerName,
-                      const string& p_value,
-                      const Request&     p_request);
+  bool f_header_match(const string&  p_headerName,
+                      const string&  p_value,
+                      const Request& p_request);
 
   // handlers
-
   /**
    ** @brief Handler de redirection
    ** @param p_dst destination de la redirection HTTP
@@ -464,12 +415,12 @@ protected:
    ** contenu du fichier pointé par p_filePath et le header @b Content-Type p_contentType.
    ** Si p_filePath n'éxiste pas, la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
    */
-  status h_file(const string& p_filePath,
-                const string& p_contentType,
-                bool               p_cachable,
+  status h_file(const string&  p_filePath,
+                const string&  p_contentType,
+                bool           p_cachable,
                 const uint32_t p_requestId,
-                const Request&     p_request,
-                Response&          p_response);
+                const Request& p_request,
+                Response&      p_response);
 
   /**
    ** @brief Handler de répertoire
@@ -480,8 +431,8 @@ protected:
    ** @param p_request @ref xtd::network::http::Request "requête"
    ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Comme @ref xtd::network::http::Server::h_file mais trouve automatiquement quel fichier de p_dirPath à servir en fonction de la
-   ** ressource demandé dans p_request.
+   ** Comme @ref xtd::network::http::Server::h_file mais trouve automatiquement quel
+   ** fichier de p_dirPath à servir en fonction de la ressource demandé dans p_request.
    */
   status h_dir(const string&  p_dirPath,
                const string&  p_contentType,
@@ -502,7 +453,8 @@ protected:
    ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl Response::STATUS_200.
    ** Le header @b Content-Type est également donné par p_tmpl.
    ** Si la lecture du fichier p_filePath ou si la résolution des variable
-   ** du template échouent, alors la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
+   ** du template échouent, alors la réponse sera générée par
+   ** @ref xtd::network::http::Server::h_error_text.
    */
   status h_template_file(Template&      p_tmpl,
                          const string&  p_filePath,
@@ -520,7 +472,8 @@ protected:
    ** @details
    ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl Response::STATUS_200.
    ** Le header @b Content-Type est également donné par p_tmpl.
-   ** Si la résolution des variable du template échoue, alors la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
+   ** Si la résolution des variable du template échoue, alors la réponse sera générée
+   ** par @ref xtd::network::http::Server::h_error_text.
    */
   status h_gen(Generator&     p_gen,
                const uint32_t p_requestId,
@@ -538,10 +491,10 @@ protected:
    ** Génère une réponse HTTP d'erreur Response::STATUS_500 de type
    ** @b Content-Type "text/plain" contenant le message p_message.
    */
-  status h_error_text(const string& p_message,
+  status h_error_text(const string&  p_message,
                       const uint32_t p_requestId,
-                      const Request&     p_request,
-                      Response&          p_response);
+                      const Request& p_request,
+                      Response&      p_response);
 
 
   /**
@@ -551,12 +504,13 @@ protected:
    ** @param p_request @ref xtd::network::http::Request "requête"
    ** @param p_response @ref xtd::network::http::Response "réponse"
    ** @details
-   ** Même chose que @ref xtd::network::http::Server::h_error_text mais le méssage généré est de type "text/html".
+   ** Même chose que @ref xtd::network::http::Server::h_error_text mais le message
+   ** généré est de type "text/html".
    */
-  status h_error_html(const string& p_message,
+  status h_error_html(const string&  p_message,
                       const uint32_t p_requestId,
-                      const Request&     p_request,
-                      Response&          p_response);
+                      const Request& p_request,
+                      Response&      p_response);
 
 
 
@@ -566,17 +520,18 @@ protected:
    ** @param p_dst destination de la redirection
    ** @param p_filter filter "filtre" optionnel
    ** @details
-   ** Enregistrement d'un handler de redirection. Créer une réponse http qui contient le header
-   ** "Location : p_dst" et le code HTTP Response::STATUS_302.
+   ** Enregistrement d'un handler de redirection. Créer une réponse http qui contient
+   ** le header "Location : p_dst" et le code HTTP Response::STATUS_302.
    */
   void bind_redirect(const string& p_src,
                      const string& p_dst,
-                     filter             p_filter = f(&Server::f_none));
+                     filter        p_filter = &Server::f_none);
+
 
   void bind_xml(const string& p_url,
                 const string& p_xmlPath,
                 const string& p_xsltPath,
-                filter             p_filter = f(&Server::f_none));
+                filter        p_filter = &Server::f_none);
 
   /**
    ** @details
@@ -585,8 +540,8 @@ protected:
   void bind_file(const string& p_path,
                  const string& p_filePath,
                  const string& p_contentType,
-                 bool               p_cachable,
-                 filter             p_filter = f(&Server::f_none));
+                 bool          p_cachable,
+                 filter        p_filter = &Server::f_none);
 
   /**
    ** @details
@@ -595,8 +550,8 @@ protected:
   void bind_dir(const string& p_url,
                 const string& p_filePath,
                 const string& p_contentType,
-                bool               p_cachable,
-                filter             p_filter = f(&Server::f_none));
+                bool          p_cachable,
+                filter        p_filter = &Server::f_none);
 
   /**
    ** @param p_url ressource à enregistrer
@@ -609,7 +564,7 @@ protected:
    */
   void bind(const string& p_url,
             handler       p_handler,
-            filter        p_filter = f(&Server::f_none),
+            filter        p_filter = &Server::f_none,
             const string& p_descr  = string());
 
 
@@ -631,10 +586,11 @@ protected:
    ** @param p_handler handler à enregistrer
    ** @param p_filter filter "filtre" optionnel
    ** @details
-   ** Comme @ref xtd::network::http::Server::bind mais se déclenche quelque soit la ressource demandée.
+   ** Comme @ref xtd::network::http::Server::bind mais se déclenche quelque soit la
+   ** ressource demandée.
    */
   void bind_any(handler p_handler,
-                filter p_filter = f(&Server::f_none));
+                filter  p_filter = &Server::f_none);
 
   /**
    ** @param p_handler handler à enregistrer

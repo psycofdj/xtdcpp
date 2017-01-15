@@ -1,7 +1,6 @@
 #ifndef NETWORK_BASE_SERVER_HH_
 # define NETWORK_BASE_SERVER_HH_
 
-# include <boost/noncopyable.hpp>
 # include "utils/Config.hh"
 # include "utils/CommTypeDefs.hh"
 # include "utils/Utils.hh"
@@ -27,13 +26,14 @@ template<typename D> class Connection;
  **    ce qui garantie la duree de vie de l'objet
  */
 template <typename Domain>
-class Server : private boost::noncopyable
+class Server
 {
 protected:
   typedef typename std::shared_ptr<Connection<Domain> > cnx_sptr_t;
 
 public:
   Server(void);
+  Server(const Server&) = delete;
   virtual ~Server(void);
 
 
@@ -69,6 +69,14 @@ public:
    ** @brief Annule tout les operations en cours et coupe les threads
    */
   virtual void stop(void);
+
+  /**
+   ** @brief Returns the associated port
+   ** @details
+   ** When initializing with port 0, system automatically find an available port.
+   ** This method returns which port was actually used.
+   */
+  const typename Domain::endpoint getEndPoint(void) const;
 
 
 
@@ -127,16 +135,16 @@ protected:
   inline uint32_t& getCnxRejected(void);
 
 protected:
-  utils::Config                               m_conf;
-  utils::deque_id<uint32_t>                                  m_dequeId;
-  utils::ioServicePtr_t                                          m_ioService;
-  utils::workPtr_t                                               m_work;
+  utils::Config                                                m_conf;
+  utils::deque_id<uint32_t>                                    m_dequeId;
+  utils::ioServicePtr_t                                        m_ioService;
+  utils::workPtr_t                                             m_work;
   std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > m_acceptor;
 
 private:
   std::shared_ptr<utils::Resolver<Domain> > m_resolver;
-  size_t                                 m_threadNb;
-  boost::thread_group                         m_threadGroup;
+  size_t                                    m_threadNb;
+  boost::thread_group                       m_threadGroup;
   // counters
   uint32_t m_nbCurrentThread;
   uint32_t m_cnxTotal;

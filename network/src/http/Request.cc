@@ -18,8 +18,8 @@
 #include <boost/assign/std/vector.hpp>
 #include <boost/foreach.hpp>
 #include <boost/algorithm/string/join.hpp>
-#include <log.hh> // libcore
-
+#include <log.hh>  // libcore
+#include <text.hh> //libcore
 
 using boost::assign::operator+=;
 
@@ -28,29 +28,26 @@ namespace xtd {
 namespace network {
 namespace http {
 
-Request::Request(bool p_cgiToLower) :
+Request::Request(void) :
+  Message(),
   m_rawUrl(),
-  m_method(METHOD_GET),
+  m_method(method::get),
   m_path(),
   m_cgi(),
   m_post(),
-  m_headers(),
-  m_versionStr("1.0"),
-  m_version(Request::VERSION_1_0),
-  m_cgiToLower(p_cgiToLower),
   m_regex_tooManyStartingSlash("\\/{2,}"),
   m_regex_tooManyEndingSlash("[^\\/](\\/+)$")
 {
 }
 
-status
-Request::readQS(const string& p_qs)
+void
+Request::setPath(const string& p_path)
 {
-  return readUrl(p_qs);
+  m_path = p_path;
 }
 
 void
-Request::setMethod(t_method p_method)
+Request::setMethod(method p_method)
 {
   m_method = p_method;
 }
@@ -66,7 +63,7 @@ Request::normalizePath(const string& p_path)
   boost::smatch l_match;
 
 
-  m_path = paramValueDecode(p_path);
+  m_path = text::url::decode_copy(p_path);
   m_path = boost::regex_replace(m_path, boost::regex("^/+"), "/");
   m_path = boost::regex_replace(m_path, boost::regex("/+$"), "/");
 
@@ -87,25 +84,6 @@ Request::addPost(const string& p_key,
   m_post.insert(make_pair(p_key, p_value));
 }
 
-
-void
-Request::addHeader(const string& p_name,
-                   const string& p_value)
-{
-  m_headers[p_name] = p_value;
-}
-
-void
-Request::setVersion(const string& p_version)
-{
-  m_versionStr = p_version;
-}
-
-void
-Request::setVersion(t_version p_version)
-{
-  m_version = p_version;
-}
 
 
 void
@@ -130,7 +108,7 @@ Request::removeData(const string& p_key)
 }
 
 
-Request::t_method
+method
 Request::getMethod(void) const
 {
   return m_method;
@@ -142,7 +120,7 @@ Request::getQS(void) const
 {
   vector<string> l_parts;
 
-  BOOST_FOREACH(const t_param_map::value_type& c_param, m_cgi)
+  for (const t_param_map::value_type& c_param : m_cgi)
     l_parts += c_param.first + "=" + c_param.second;
   return boost::join(l_parts, "&");
 }
@@ -199,77 +177,14 @@ Request::existsParam(const string& p_key) const
   return existsData(m_cgi, p_key) || existsData(m_post, p_key);
 }
 
-bool
-Request::existsHeader(const string& p_name) const
+void
+Request::writeInitial(std::ostream& p_stream) const
 {
-  return m_headers.count(p_name) != 0;
-}
-
-
-bool
-Request::getHeader(const string& p_name, string& p_value) const
-{
-  t_header_map::const_iterator c_header = m_headers.find(p_name);
-
-  if (c_header == m_headers.end())
-    return false;
-  p_value = c_header->second;
-  return true;
-}
-
-const Request::t_header_map&
-Request::getHeaders(void) const
-{
-  return m_headers;
-}
-
-
-const string&
-Request::getVersionStr(void) const
-{
-  return m_versionStr;
-}
-
-Request::t_version
-Request::getVersion(void) const
-{
-  return m_version;
-}
-
-status
-Request::read(std::istream& p_request)
-{
-  if (status::ok != readHead(p_request))
-  {
-    log::err("network.http.request", "protocol error : bad initial line", HERE);
-    return status::error;
-  }
-
-  if (status::ok != readData(p_request))
-  {
-    log::err("network.http.request", "protocol error : invalid data", HERE);
-    return status::error;
-  }
-
-  return status::ok;
-}
-
-status
-Request::readHead(std::istream& p_request)
-{
-  if (status::ok != readInitial(p_request))
-  {
-    log::err("network.http.request", "protocol error : bad initial line", HERE);
-    return status::error;
-  }
-
-  if (status::ok != readHeaders(p_request))
-  {
-    log::err("network.http.request", "protocol error : bad headers lines", HERE);
-    return status::error;
-  }
-
-  return status::ok;
+  p_stream <<
+    format::vargs("%s %s HTTP/%s\r\n",
+                  str(m_method),
+                  m_path,
+                  str(m_version));
 }
 
 status
@@ -322,11 +237,17 @@ Request::readMethod(const string& p_method)
   string l_value = boost::to_lower_copy(p_method);
 
   if (l_value == "get")
-    setMethod(Request::METHOD_GET);
+    setMethod(method::get);
   else if (l_value == "post")
-    setMethod(Request::METHOD_POST);
+    setMethod(method::post);
   else if (l_value == "head")
-    setMethod(Request::METHOD_HEAD);
+    setMethod(method::head);
+  else if (l_value == "patch")
+    setMethod(method::patch);
+  else if (l_value == "put")
+    setMethod(method::put);
+  else if (l_value == "delete")
+    setMethod(method::del);
   else
   {
     log::err("network.http.request", "initial line error : unknown method '%s'", l_value, HERE);
@@ -335,57 +256,7 @@ Request::readMethod(const string& p_method)
   return status::ok;
 }
 
-// Assume url is encoded with iso-latin-1 characters
-// will convert to ascii
-// -> same process as in ke_texttools.cc ISO8859_Normalizer
-struct hex_to_string
-{
-  template<typename T>
-  string operator()(const T& p_match) const
-  {
-    stringstream  l_value;
-    int           l_intVal;
-    unsigned char l_result;
-    l_value << std::hex << p_match.match_results().str(1);
-    l_value >> l_intVal;
-    l_result = l_intVal;
-    return boost::str(boost::format("%c") % l_result);
-  }
-};
 
-
-
-string
-Request::paramValueDecode(const string& p_value)
-{
-  string       l_value(p_value);
-  boost::regex l_hexRegex("%([0-9a-fA-F]{2})");
-  boost::regex l_spaceRegex("[ \t]{2,}");
-
-  // replace all + by space
-  boost::replace_all(l_value, "+", " ");
-
-  // replace hex value by corresponding character
-  boost::smatch l_match;
-  //CDE while used for %252520
-  //maybe a future feature
-  //while (boost::regex_search(l_value, l_match, l_hexRegex))
-  boost::algorithm::find_format_all(l_value,
-                                    boost::algorithm::regex_finder(l_hexRegex),
-                                    hex_to_string());
-
-  // remove duplicate spaces
-  boost::algorithm::find_format_all(l_value,
-                                    boost::algorithm::regex_finder(l_spaceRegex),
-                                    boost::algorithm::const_formatter(" "));
-  boost::trim(l_value);
-
-  if (m_cgiToLower) {
-    boost::to_lower(l_value);
-  }
-
-  return l_value;
-}
 
 
 status
@@ -431,7 +302,7 @@ Request::readUrl(const string& p_url)
         }
         l_value += l_cgi[l_cgi.size() - 1];
       }
-      addCgi(l_key, paramValueDecode(l_value));
+      addCgi(l_key, text::url::decode_copy(l_value));
     }
   }
 
@@ -447,112 +318,16 @@ Request::getRawUrl(void) const
   return m_rawUrl;
 }
 
-status
-Request::readVersion(const string& p_version)
-{
-  size_t l_pos = p_version.find_last_of("/");
 
-  if (p_version.substr(0, l_pos) != "HTTP")
-  {
-    log::err("network.http.request", "version error : invalid", HERE);
-    return status::error;
-  }
-
-  string l_version = p_version.substr(l_pos + 1);
-  setVersion(l_version);
-
-  if (l_version == "1.0")
-    setVersion(Request::VERSION_1_0);
-  else if (l_version == "1.1")
-    setVersion(Request::VERSION_1_1);
-  else
-  {
-    log::err("network.http.request", "initial line error : unknown version '%s'", l_version, HERE);
-    return status::error;
-  }
-
-  return status::ok;
-}
-
-
-status
-Request::readHeaders(istream& p_request)
-{
-  while (false == p_request.eof())
-  {
-    vector<string> l_parts;
-    string         l_line;
-
-    getline(p_request, l_line);
-    boost::trim_if(l_line, boost::is_any_of("\t\r\n "));
-    if (0 == l_line.size())
-      break;
-
-    l_parts.push_back(l_line.substr(0, l_line.find_first_of(":")));
-    l_parts.push_back(l_line.substr(l_line.find_first_of(":") + 1));
-    boost::trim(l_parts[0]);
-    boost::trim(l_parts[1]);
-    addHeader(l_parts[0], l_parts[1]);
-    log::info("network.http.request", "received header %s: %s", l_parts[0], l_parts[1], HERE);
-  }
-
-  return status::ok;
-}
-
-
-status
-Request::getDataSize(size_t& p_length) const
-{
-  string l_strVal;
-
-  if (false == getHeader("Content-Length", l_strVal))
-  {
-    p_length = 0;
-    return status::ok;
-  }
-
-  try {
-    p_length = boost::lexical_cast<size_t>(l_strVal);
-  }
-  catch (boost::bad_lexical_cast)
-  {
-
-    log::err("network.http.request", "read data : unable to interpret content-length '%s' as int", l_strVal, HERE);
-    return status::error;
-  }
-
-  return status::ok;
-}
-
-/**
- ** @details
- ** on lit jusqu'a eof et on append dans m_data chaque chunk
- */
 status
 Request::readData(istream& p_request)
 {
-  string l_data;
   string l_contentType;
-  string l_contentLength = "0";
-  size_t l_length;
 
-  copy(std::istreambuf_iterator<char>(p_request.rdbuf()),
-       std::istreambuf_iterator<char>(),
-       back_inserter(l_data));
-
-  if (status::error == getDataSize(l_length))
-  {
-    log::err("network.http.request", "read data : error while gettin data length", HERE);
+  if (status::ok != Message::readData(p_request))
     return status::error;
-  }
 
-  if (l_length < l_data.size())
-  {
-    log::err("network.http.request", "read data : read more data than expected", HERE);
-    return status::error;
-  }
-
-  if (l_length == 0)
+  if (m_data.size() == 0)
     return status::ok;
 
   if (false == getHeader("Content-Type", l_contentType))
@@ -563,14 +338,13 @@ Request::readData(istream& p_request)
 
   if (boost::starts_with(l_contentType, "application/x-www-form-urlencoded"))
   {
-    return readDataFormEncoded(l_data);
+    return readDataFormEncoded(m_data);
   }
   else
   {
     log::err("network.http.request", "read data : unknown content type '%s'", l_contentType, HERE);
     return status::error;
   }
-  return status::ok;
 }
 
 
@@ -599,7 +373,7 @@ Request::readDataFormEncoded(const string& p_data)
       return status::error;
     }
 
-    addPost(l_key, paramValueDecode(l_value));
+    addPost(l_key, text::url::decode_copy(l_value));
   }
   return status::ok;
 }
@@ -657,21 +431,9 @@ ostream& operator<<(ostream& p_buf, const Request& p_obj)
   Request::t_param_map::const_iterator  cc_post;
   Request::t_header_map::const_iterator cc_header;
 
-  switch (p_obj.getMethod())
-  {
-  case Request::METHOD_GET:
-    p_buf << "method : GET" << endl;
-    break;
-  case Request::METHOD_POST:
-    p_buf << "method : POST" << endl;
-    break;
-  case Request::METHOD_HEAD:
-    p_buf << "method : HEAD" << endl;
-    break;
-  }
-
+  p_buf << "method : " << str(p_obj.getMethod()) << endl;
   p_buf << "path : " << p_obj.getPath() << endl;
-  p_buf << "version : " << p_obj.getVersionStr() << endl;
+  p_buf << "version : " << str(p_obj.getVersion()) << endl;
   p_buf << "headers :" << endl;
   for (cc_header = p_obj.getHeaders().begin();
        cc_header != p_obj.getHeaders().end();

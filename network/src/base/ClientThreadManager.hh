@@ -2,24 +2,23 @@
 # define NETWORK_BASE_CLIENTTHREADMANAGER_HH_
 
 # include <boost/asio.hpp>
-# include <boost/thread.hpp>
-# include <boost/thread/mutex.hpp>
-# include <boost/noncopyable.hpp>
+# include <mutex>
+# include <thread>
 # include <memory>
-# include <boost/make_shared.hpp>
 # include <types.hh> //libcore
 
 namespace xtd {
 namespace network {
 namespace base {
 
-class ThreadManager : boost::noncopyable
+class ThreadManager
 {
 public:
-  typedef map<size_t, std::shared_ptr<boost::thread> > threadMap_t;
+  typedef map<size_t, std::shared_ptr<std::thread> > threadMap_t;
 
 private:
   ThreadManager(void);
+  ThreadManager(const ThreadManager&) = delete;
   ~ThreadManager(void);
 
 public:
@@ -30,12 +29,12 @@ public:
 private:
   // Attention à l'initialisation d'un pointeur static lors des tests unitaires qui cachent un fork
   // pour garantir l'ordre d'initialisation, création du pointeur au constructeur
-  static boost::asio::io_service*                  m_ioService;
-  static boost::mutex                              m_mutex;
-  static ThreadManager*                            m_threadManager;
+  static boost::asio::io_service*                m_ioService;
+  static std::mutex                              m_mutex;
+  static ThreadManager*                          m_threadManager;
   std::shared_ptr<boost::asio::io_service::work> m_workPtr;
-  threadMap_t                                      m_threadMap;
-  std::shared_ptr<boost::thread>                 m_threadPtr;
+  threadMap_t                                    m_threadMap;
+  std::shared_ptr<std::thread>                   m_threadPtr;
 };
 
 }}} // end namespaces

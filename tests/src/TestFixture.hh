@@ -16,6 +16,7 @@ protected:
 
 protected:
   string getFileContent(const string& p_path, const char* p_file, int p_line) const;
+  void   exec(const std::string& p_cmd, int p_status, const char* p_file, int p_line) const;
 };
 
 }}

@@ -3,7 +3,7 @@
 # include <boost/regex.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
 # include <log.hh> // libcore
-# include "http/Request.hh"
+# include "http/Message.hh"
 
 
 
@@ -11,17 +11,15 @@ namespace xtd {
 namespace network {
 namespace http {
 
-
-using namespace boost;
 namespace ba = boost::asio;
 namespace bs = boost::system;
 
 
 template <typename Domain>
 Connection<Domain>::Connection(const utils::Config& p_configuration,
-                               ba::io_service&                         p_ioService,
-                               const string                       p_hostname,
-                               const uint32_t                      p_port) :
+                               ba::io_service&      p_ioService,
+                               const string         p_hostname,
+                               const uint32_t       p_port) :
   base::Connection<Domain>(p_configuration, p_ioService, p_hostname, p_port),
   m_isClosedByServer(false)
 {
@@ -83,11 +81,11 @@ Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_o
  */
 template <typename Domain>
 void
-Connection<Domain>::onHeaderReceived(const bs::error_code             p_error,
-                                     size_t                           p_bytesTransferred,
-                                     utils::sharedBuf_t               p_inData,
+Connection<Domain>::onHeaderReceived(const bs::error_code           p_error,
+                                     size_t                         p_bytesTransferred,
+                                     utils::sharedBuf_t             p_inData,
                                      std::shared_ptr<ba::streambuf> p_header,
-                                     utils::handler_t                 p_onReceived)
+                                     utils::handler_t               p_onReceived)
 {
   if (p_error)
   {
@@ -102,11 +100,11 @@ Connection<Domain>::onHeaderReceived(const bs::error_code             p_error,
        back_inserter(*p_inData));
 
   // 1.
-  iostreams::filtering_istream l_fis;
-  l_fis.push(make_iterator_range(*p_inData));
+  boost::iostreams::filtering_istream l_fis;
+  l_fis.push(boost::make_iterator_range(*p_inData));
 
-  Request      l_req;
-  size_t       l_dataSize;
+  Message l_req;
+  size_t  l_dataSize;
 
   if ((status::error == l_req.readHead(l_fis)) ||
       (status::error == l_req.getDataSize(l_dataSize)))
@@ -120,7 +118,7 @@ Connection<Domain>::onHeaderReceived(const bs::error_code             p_error,
 
   size_t l_suppBytes = ba::buffer_size(l_buffs) - p_bytesTransferred;
 
-  if (l_dataSize - l_suppBytes == 0)
+  if (l_suppBytes >= l_dataSize)
     p_onReceived(p_error);
   else
     receive_data(l_dataSize - l_suppBytes, p_inData, p_onReceived);

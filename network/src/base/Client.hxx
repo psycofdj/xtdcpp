@@ -19,8 +19,6 @@ namespace base {
  ** ce header prive et l'instanciation explicite par Client.cc
  */
 
-using namespace boost;
-
 namespace ba = boost::asio;
 namespace bs = boost::system;
 
@@ -80,7 +78,7 @@ Client<Domain>::async_connect(const string&  p_hostname,
 
   m_connection = createCnx(m_hostname, m_port);
   m_connection->connect(m_resolver,
-                        boost::bind(&Client::onConnected, this, _1));
+                        std::bind(&Client::onConnected, this, std::placeholders::_1));
 
   log::debug("network.base.client", "async_connect (%s:%d) : leaving", p_hostname, p_port, HERE);
 }
@@ -115,7 +113,7 @@ void
 Client<Domain>::onConnected(const bs::error_code p_error)
 {
   // On libere la semaphore juste a la sortie de la fonction pour garantir l'exitence de la connection
-  utils::scoped_method l_semPos(boost::bind(&boost::interprocess::interprocess_semaphore::post, boost::ref(m_semaphoreConnect)));
+  utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_semaphoreConnect)));
 
   log::info("network.base.client", "onConnected (%s) : entering", m_connection->info(), HERE);
 

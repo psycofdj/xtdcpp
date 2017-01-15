@@ -24,17 +24,8 @@ template<class TReq, class TRes, typename TDomain>
 Client<TReq, TRes, TDomain>::Client(const utils::Config& p_conf) :
   TBase(p_conf),
   m_userSemaphore(0),
-  m_status(cnxstatus::available),
-  m_response(),
-  m_sendTotal(0),
-  m_sendError(0),
-  m_sendSuccess(0),
-  m_sendTimeout(0),
-  m_receiveTotal(0),
-  m_receiveError(0),
-  m_receiveTimeout(0),
-  m_receiveSuccess(0),
-  m_lastRTTMs(0)
+  m_status(TBase::cnxstatus::available),
+  m_response()
 {
 }
 
@@ -57,45 +48,43 @@ status
 Client<TReq, TRes, TDomain>::send(const TReq& p_request,
                                   bool        p_debug)
 {
-  atom::atomic_inc32(&m_sendTotal);
+  atom::atomic_inc32(&(this->m_sendTotal));
 
-  utils::vectorBytes_t l_buff;
 
   if (m_status != cnxstatus::available)
   {
     log::err("network.bip.client", "bip client send (%s) : can't send multiple request without receive", TBase::m_connection->info(), HERE);
-    atom::atomic_inc32(&m_sendError);
+    atom::atomic_inc32(&(this->m_sendError));
     return status::error;
   }
 
+  utils::vectorBytes_t l_buff;
 
   if (status::ok != saveCompress<serializer::mode::bin>(TBase::m_conf, p_request, p_debug, l_buff))
   {
     log::crit("network.bip.client", "Error while serializing request (%s)", TBase::m_connection->info(), HERE);
     m_status = cnxstatus::error;
-    atom::atomic_inc32(&m_sendError);
+    atom::atomic_inc32(&(this->m_sendError));
     return status::error;
   }
 
   m_lastSend = boost::posix_time::microsec_clock::local_time();
   m_status   = cnxstatus::reserved;
 
-  bool l_shouldReceive = shouldReceive(p_request, p_debug);
-
+  bool                                  l_shouldReceive = shouldReceive(p_request, p_debug);
   std::shared_ptr<Connection<TDomain> > l_conn =
     std::static_pointer_cast<Connection<TDomain> >(TBase::m_connection);
 
   l_conn->incCounter();
-
-  TBase::m_connection->send(l_buff,
-                            boost::bind(&Client::onSent,
-                                        this,
-                                        _1,
-                                        l_shouldReceive));
+  l_conn->send(l_buff,
+               std::bind(&Client::onSent,
+                         this,
+                         std::placeholders::_1,
+                         l_shouldReceive));
 
   if (true == l_shouldReceive)
   {
-    atom::atomic_inc32(&m_sendSuccess);
+    atom::atomic_inc32(&(this->m_sendSuccess));
     return status::ok;
   }
 
@@ -105,7 +94,7 @@ Client<TReq, TRes, TDomain>::send(const TReq& p_request,
   if (m_status == cnxstatus::sent)
   {
     m_status = cnxstatus::available;
-    atom::atomic_inc32(&m_sendSuccess);
+    atom::atomic_inc32(&(this->m_sendSuccess));
     return status::ok;
   }
 
@@ -113,13 +102,13 @@ Client<TReq, TRes, TDomain>::send(const TReq& p_request,
   {
     log::err("network.bip.client", "bip client send : timeout error", HERE);
     m_status = cnxstatus::available;
-    atom::atomic_inc32(&m_sendTotal);
+    atom::atomic_inc32(&(this->m_sendTotal));
     return status::timeout;
   }
 
   log::err("network.bip.client", "bip client send : send error", HERE);
   m_status = cnxstatus::available;
-  atom::atomic_inc32(&m_sendError);
+  atom::atomic_inc32(&(this->m_sendError));
   return status::error;
 }
 
@@ -135,10 +124,10 @@ Client<TReq, TRes, TDomain>::do_receive(void)
   utils::sharedBuf_t l_res = std::make_shared<utils::vectorBytes_t>();
 
   TBase::m_connection->receive(l_res,
-                               boost::bind(&Client::onReceived,
-                                           this,
-                                           _1,
-                                           l_res));
+                               std::bind(&Client::onReceived,
+                                         this,
+                                         std::placeholders::_1,
+                                         l_res));
 
   log::debug("network.bip.client", "bip client do_receive (%s) : leaving", TBase::m_connection->info(), HERE);
 }
@@ -189,7 +178,7 @@ void
 Client<TReq, TRes, TDomain>::onReceived(const boost::system::error_code p_error,
                                         utils::sharedBuf_t              p_response)
 {
-  utils::scoped_method l_semPos(boost::bind(&boost::interprocess::interprocess_semaphore::post, boost::ref(m_userSemaphore)));
+  utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
 
   log::debug("network.bip.client", "bip client onReceived (%s) : entering", TBase::m_connection->info(), HERE);
 
@@ -220,7 +209,7 @@ Client<TReq, TRes, TDomain>::onReceived(const boost::system::error_code p_error,
   boost::posix_time::time_duration l_diff =
     boost::posix_time::microsec_clock::local_time() - m_lastSend;
 
-  m_lastRTTMs = l_diff.total_milliseconds();
+  this->m_lastRTTMs = l_diff.total_milliseconds();
   log::debug("network.bip.client", "bip onReceived (%s) : client received finished", TBase::m_connection->info(), HERE);
 }
 
@@ -231,12 +220,12 @@ Client<TReq, TRes, TDomain>::receive(TRes& p_response,
                                      bool& p_debug)
 {
   log::debug("network.bip.client", "bip client receive (%s) : entering", TBase::m_connection->info(), HERE);
-  atom::atomic_inc32(&m_receiveTotal);
+  atom::atomic_inc32(&(this->m_receiveTotal));
 
   if (m_status == cnxstatus::available)
   {
     log::err("network.bip.client", "bip client receive : unsent request", HERE);
-    atom::atomic_inc32(&m_receiveError);
+    atom::atomic_inc32(&(this->m_receiveError));
     return status::error;
   }
 
@@ -246,7 +235,7 @@ Client<TReq, TRes, TDomain>::receive(TRes& p_response,
   {
     log::err("network.bip.client", "bip client receive : timeout error", HERE);
     m_status = cnxstatus::available;
-    atom::atomic_inc32(&m_receiveTimeout);
+    atom::atomic_inc32(&(this->m_receiveTimeout));
     return status::timeout;
   }
 
@@ -254,7 +243,7 @@ Client<TReq, TRes, TDomain>::receive(TRes& p_response,
   {
     log::err("network.bip.client", "bip client receive : receive error (status '%d')", HERE);
     m_status = cnxstatus::available;
-    atom::atomic_inc32(&m_receiveError);
+    atom::atomic_inc32(&(this->m_receiveError));
     return status::error;
   }
 
@@ -263,11 +252,11 @@ Client<TReq, TRes, TDomain>::receive(TRes& p_response,
   {
     log::crit("network.bip.client", "bip client receive (%s) : can't deserialize structure", TBase::m_connection->info(), HERE);
     m_status = cnxstatus::available;
-    atom::atomic_inc32(&m_receiveError);
+    atom::atomic_inc32(&(this->m_receiveError));
     return status::error;
   }
 
-  atom::atomic_inc32(&m_receiveSuccess);
+  atom::atomic_inc32(&(this->m_receiveSuccess));
   m_status = cnxstatus::available;
   log::debug("network.bip.client", "bip client receive (%s) : leaving", TBase::m_connection->info(), HERE);
   return status::ok;
@@ -275,8 +264,8 @@ Client<TReq, TRes, TDomain>::receive(TRes& p_response,
 
 template<typename TRequest, typename TResponse, typename TDomain>
 bool
-Client<TRequest, TResponse, TDomain>::shouldReceive(const TRequest&  /*p_request*/,
-                                                    const bool   /*p_requestDebug*/)
+Client<TRequest, TResponse, TDomain>::shouldReceive(const TRequest&  /* p_request */,
+                                                    const bool       /* p_requestDebug */)
 {
   return true;
 }

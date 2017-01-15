@@ -1,11 +1,11 @@
 #include "base/ClientThreadManager.hh"
-
+#include <functional>
 
 namespace xtd {
 namespace network {
 namespace base {
 
-boost::mutex              ThreadManager::m_mutex;
+std::mutex                ThreadManager::m_mutex;
 boost::asio::io_service*  ThreadManager::m_ioService     = 0;
 ThreadManager*            ThreadManager::m_threadManager = 0;
 
@@ -14,7 +14,7 @@ ThreadManager::ThreadManager(void)
 {
   m_ioService = new boost::asio::io_service;
   m_workPtr.reset(new boost::asio::io_service::work(*m_ioService));
-  m_threadPtr.reset(new boost::thread(boost::bind(&boost::asio::io_service::run, m_ioService)));
+  m_threadPtr.reset(new std::thread([m_ioService](void) { m_ioService->run(); }));
 }
 
 
@@ -35,7 +35,9 @@ ThreadManager::createThread(const size_t p_threadId)
   threadMap_t::iterator l_threadMapIt = m_threadMap.find(p_threadId);
   if (l_threadMapIt == m_threadMap.end())
   {
-    m_threadMap[p_threadId] = std::make_shared<boost::thread>(boost::bind(&boost::asio::io_service::run, m_ioService));
+    m_threadMap[p_threadId] = std::make_shared<std::thread>([m_ioService](void) {
+        m_ioService->run();
+      });
   }
 }
 
@@ -50,7 +52,7 @@ ThreadManager::getIoService(void)
 ThreadManager&
 ThreadManager::getInstance(void)
 {
-  boost::mutex::scoped_lock l_lock(m_mutex);
+  std::lock_guard<std::mutex> l_lock(m_mutex);
   if (!m_threadManager)
   {
     m_threadManager = new ThreadManager();

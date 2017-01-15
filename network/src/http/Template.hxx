@@ -2,9 +2,9 @@
 # define NETWORK_HTTP_TEMPLATE_HXX_
 
 # include <boost/algorithm/string/replace.hpp>
-# include <boost/format.hpp>
 # include <json_parser.hpp> // libcore
 # include <log.hh>          // libcore
+# include <format.hh>       // libcore
 
 namespace xtd {
 namespace network {
@@ -49,7 +49,7 @@ Json::add(const string& p_path,
   try {
     m_root.put<T>(l_path, p_val, json_parser::translator<T>());
   } catch (const ptree_bad_data& l_error) {
-    addError(boost::str(boost::format("json add value error : %s") % l_error.what()));
+    addError(format::vargs("json add value error : %s", l_error.what()));
   }
 }
 

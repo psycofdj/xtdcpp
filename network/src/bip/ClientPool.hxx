@@ -167,11 +167,11 @@ template<class TRequest, class TResponse, typename TDomain>
 typename ClientPool<TRequest, TResponse, TDomain>::t_client_sptr
 ClientPool<TRequest, TResponse, TDomain>::acquire(void)
 {
-  boost::mutex::scoped_lock l_lock(m_mutex);
-  t_client_sptr             l_obj;
+  std::lock_guard<std::mutex> l_lock(m_mutex);
+  t_client_sptr               l_obj;
 
   // 1.
-  m_available.erase(std::remove_if(m_available.begin(), m_available.end(), boost::bind(&PersistentClient::isObsolete, _1, m_ttlMs)), m_available.end());
+  m_available.erase(std::remove_if(m_available.begin(), m_available.end(), std::bind(&PersistentClient::isObsolete, std::placeholders::_1, m_ttlMs)), m_available.end());
 
   if (false == m_available.empty())
     m_recycleHit++;
@@ -196,7 +196,7 @@ template<class TRequest, class TResponse, typename TDomain>
 void
 ClientPool<TRequest, TResponse, TDomain>::release(t_client_sptr& p_client)
 {
-  boost::mutex::scoped_lock l_lock(m_mutex);
+  std::lock_guard<std::mutex> l_lock(m_mutex);
 
   m_available.push_front(p_client);
   m_acquiredClients  -= 1;
