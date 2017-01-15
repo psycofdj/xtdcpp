@@ -403,16 +403,16 @@ HttpServer::h_probe(const uint32_t                /*p_requestID*/,
                     const http::Request& p_req,
                     http::Response&      p_res)
 {
-  p_res.setVersion(p_req.getVersionStr());
+  p_res.setVersion(p_req.getVersion());
   if (true == m_isModeProbe)
   {
     p_res.setStatus(http::code::service_unavailable);
-    p_res.setData(http::Response::statusToMessage(http::code::service_unavailable));
+    p_res.setData(http::str(http::code::service_unavailable));
   }
   else
   {
     p_res.setStatus(http::code::ok);
-    p_res.setData(http::Response::statusToMessage(http::code::ok));
+    p_res.setData(http::str(http::code::ok));
   }
   return status::ok;
 }
