@@ -227,7 +227,7 @@ Server<Domain>::processRequest(uint32_t       p_processID,
     log::err("network.http.server", "invalid http request", HERE);
     p_res.setVersion(version::v1_0);
     p_res.setData("request parsing error...");
-    p_res.setStatus(code::internal_error);
+    p_res.setStatus(code::internal_server_error);
     return;
   }
 
@@ -430,7 +430,7 @@ Server<Domain>::h_error_text(const string&     p_msg,
   l_message = format::vargs("http error : %s\n"
                             "dumping request ...\n"
                             "%s\n", p_msg, l_requestText.str());
-  p_response.setStatus(code::internal_error);
+  p_response.setStatus(code::internal_server_error);
   p_response.addHeader("Content-Type", "text/plain");
   p_response.setData(l_message);
   return status::error;
@@ -461,7 +461,7 @@ Server<Domain>::h_error_html(const string&  p_msg,
   if (status::ok != l_tmpl.resolve(l_text))
     return h_error_text(l_tmpl.getError(), p_requestId, p_req, p_res);
 
-  p_res.setStatus(code::internal_error);
+  p_res.setStatus(code::internal_server_error);
   p_res.addHeader("Content-Type", "text/html");
   p_res.setData(l_text);
   return status::error;
