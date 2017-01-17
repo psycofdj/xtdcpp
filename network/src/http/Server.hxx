@@ -129,7 +129,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveError(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn =
+  sptr<Connection<Domain> > l_conn =
     std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if ((p_error == ba::error::eof) && (false == l_conn->getClosedByServer()))
@@ -143,7 +143,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
+  sptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (!l_conn->getClosedByServer())
   {
@@ -162,12 +162,12 @@ Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn
 template<typename Domain>
 void
 Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
-                             utils::sharedBuf_t p_inBuffer)
+                             sptr<vector<char>> p_inBuffer)
 {
   boost::iostreams::filtering_istream l_in;
   Request                             l_req;
   Response                            l_res;
-  utils::vectorBytes_t                l_outBuff;
+  vector<char>                        l_outBuff;
   string                              l_value;
   bool                                l_closeByServer = false;
 
@@ -182,7 +182,7 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (true == l_closeByServer)
   {
-    std::shared_ptr<Connection<Domain> > l_conn =
+    sptr<Connection<Domain> > l_conn =
       std::static_pointer_cast<Connection<Domain> >(p_conn);
     l_conn->setClosedByServer(true);
     l_res.addHeader("Connection", "close");
@@ -207,7 +207,7 @@ template<typename Domain>
 void
 Server<Domain>::afterSend(cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn =
+  sptr<Connection<Domain> > l_conn =
     std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (false == l_conn->getClosedByServer())

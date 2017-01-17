@@ -26,7 +26,7 @@ add_shared_static_library(network
   src/http/Server.cc
   src/http/Client.cc
   src/http/cpptempl.cc
-  src/http/http.cc
+  src/http/http_types.cc
   src/http/codes.cc
   )
 

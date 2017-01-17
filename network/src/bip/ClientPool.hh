@@ -50,8 +50,8 @@ public:
     boost::posix_time::ptime m_lastUsed;
   };
 
-  typedef std::shared_ptr<PersistentClient> t_client_sptr;
-  typedef std::deque<t_client_sptr>           t_pool;
+  typedef sptr<PersistentClient>     t_client_sptr;
+  typedef std::deque<t_client_sptr>  t_pool;
 
 public:
   /**

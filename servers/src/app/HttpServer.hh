@@ -11,6 +11,7 @@
 
 # include <Application.hh>   // libcore
 # include <network_fwd.hh>   // libnetwork
+# include <network_types.hh> // libnetwork
 # include <http/Server.hh>   // libnetwork
 # include <utils/Config.hh>  // libnetwork
 # include <counters.hh>      // libcounters
@@ -46,7 +47,7 @@ public:
 
 class HttpServer :
     public Application,
-    public network::http::Server<network::utils::af_inet>
+    public network::http::Server<network::af_inet>
 {
 
 private:
@@ -61,13 +62,13 @@ private:
   };
 
 protected:
-  typedef HttpServer                                               http_app;
-  typedef network::http::Server<network::utils::af_inet>           http_net;
-  typedef std::shared_ptr<servers::param::Handler>               t_param_handler;
-  typedef counters::CounterManager::t_sptr                         t_prober;
-  typedef std::shared_ptr<Action>                                t_action;
-  typedef map<string, t_action>                                    t_actions;
-  typedef std::shared_ptr<counters::Base>                        t_counter;
+  typedef HttpServer                                    http_app;
+  typedef network::http::Server<network::af_inet>       http_net;
+  typedef sptr<servers::param::Handler>                 t_param_handler;
+  typedef counters::CounterManager::t_sptr              t_prober;
+  typedef sptr<Action>                                  t_action;
+  typedef map<string, t_action>                         t_actions;
+  typedef sptr<counters::Base>                          t_counter;
 
 public:
   static const uint32_t mcs_defaultProbeDelay        = 30;

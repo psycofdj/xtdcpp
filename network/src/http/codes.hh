@@ -1,7 +1,7 @@
 #ifndef NETWORK_CODES_HH_
 # define NETWORK_CODES_HH_
 # include <types.hh> // libcore
-# include "http/http.hh"
+# include "http/http_types.hh"
 
 namespace xtd {
 namespace network {

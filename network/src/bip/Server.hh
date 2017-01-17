@@ -20,7 +20,7 @@ namespace bip {
  ** pure Server::processObjectRequest pour calculer la réponse à envoyer à partir
  ** de la requête reçue
  */
-template<typename TReq, typename TRes, typename Domain = utils::af_inet>
+template<typename TReq, typename TRes, typename Domain>
 class Server : public base::Server<Domain>
 {
 private:
@@ -85,7 +85,7 @@ private:
   cnx_sptr_t createCnx(string p_hostname, uint32_t p_port);
   void       afterAccept(cnx_sptr_t p_conn);
   void       afterSend(cnx_sptr_t   p_conn);
-  void       afterReceive(cnx_sptr_t p_conn, utils::sharedBuf_t p_inBuffer);
+  void       afterReceive(cnx_sptr_t p_conn, sptr<vector<char>> p_inBuffer);
   void       onReceiveError(const boost::system::error_code p_error, cnx_sptr_t p_conn);
   void       onReceiveTimeout(const boost::system::error_code p_error, cnx_sptr_t p_conn);
 

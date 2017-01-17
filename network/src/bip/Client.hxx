@@ -58,7 +58,7 @@ Client<TReq, TRes, TDomain>::send(const TReq& p_request,
     return status::error;
   }
 
-  utils::vectorBytes_t l_buff;
+  vector<char> l_buff;
 
   if (status::ok != saveCompress<serializer::mode::bin>(TBase::m_conf, p_request, p_debug, l_buff))
   {
@@ -71,8 +71,8 @@ Client<TReq, TRes, TDomain>::send(const TReq& p_request,
   m_lastSend = boost::posix_time::microsec_clock::local_time();
   m_status   = cnxstatus::reserved;
 
-  bool                                  l_shouldReceive = shouldReceive(p_request, p_debug);
-  std::shared_ptr<Connection<TDomain> > l_conn =
+  bool                       l_shouldReceive = shouldReceive(p_request, p_debug);
+  sptr<Connection<TDomain> > l_conn          =
     std::static_pointer_cast<Connection<TDomain> >(TBase::m_connection);
 
   l_conn->incCounter();
@@ -121,7 +121,7 @@ Client<TReq, TRes, TDomain>::do_receive(void)
 {
   log::debug("network.bip.client", "bip client do_receive (%s) : entering", TBase::m_connection->info(), HERE);
 
-  utils::sharedBuf_t l_res = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_res = std::make_shared<vector<char>>();
 
   TBase::m_connection->receive(l_res,
                                std::bind(&Client::onReceived,
@@ -176,7 +176,7 @@ Client<TReq, TRes, TDomain>::onSent(const boost::system::error_code p_error, boo
 template<class TReq, class TRes, typename TDomain>
 void
 Client<TReq, TRes, TDomain>::onReceived(const boost::system::error_code p_error,
-                                        utils::sharedBuf_t              p_response)
+                                        sptr<vector<char>>              p_response)
 {
   utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
 

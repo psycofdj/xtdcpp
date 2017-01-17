@@ -9,19 +9,21 @@
 #include <http/Response.hh>
 #include <http/Client.hh>
 #include <base/ClientThreadManager.hh>
+
+using namespace xtd;
 using namespace xtd::network::http;
 
 
 class TestHttpServer;
 
-class TestServer : public Server<xtd::network::utils::af_inet>
+class TestServer : public Server<xtd::network::af_inet>
 {
   friend class TestHttpServer;
 public:
   virtual ~TestServer(void) {}
 };
 
-class TestHttpServer : public xtd::tests::TestFixture
+class TestHttpServer : public tests::TestFixture
 {
   CPPUNIT_TEST_SUITE(TestHttpServer);
   CPPUNIT_TEST(unhandledRequest);
@@ -55,9 +57,9 @@ CPPUNIT_TEST_SUITE_REGISTRATION(TestHttpServer);
 void
 TestHttpServer::setUp(void)
 {
-  xtd::network::base::ThreadManager::get();
+  network::base::ThreadManager::get();
   m_server.reset(new TestServer());
-  m_server->initialize("127.0.0.1", 0, xtd::network::utils::Config(), 10);
+  m_server->initialize("127.0.0.1", 0, network::utils::Config(), 10);
   m_server->start();
   m_port = m_server->getEndPoint().port();
 }
@@ -67,20 +69,20 @@ TestHttpServer::tearDown(void)
 {
   m_server->stop();
   m_server->join();
-  xtd::network::base::ThreadManager::destroy();
+  network::base::ThreadManager::destroy();
 }
 
 void
 TestHttpServer::unhandledRequest(void)
 {
-  string l_cmd    = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d >/dev/null 2>&1", m_port);
+  string l_cmd    = format::vargs("wget -q -O/dev/null http://localhost:%d >/dev/null 2>&1", m_port);
   exec(l_cmd, 8, __FILE__, __LINE__);
 }
 
 void
 TestHttpServer::malformedRequest(void)
 {
-  string l_cmd = xtd::format::vargs("echo 'GET / HTTP/1.0\r\nContent-Length:1\r\nContent-type:test\r\n\r\na' | nc localhost %d >/dev/null", m_port);
+  string l_cmd = format::vargs("echo 'GET / HTTP/1.0\r\nContent-Length:1\r\nContent-type:test\r\n\r\na' | nc localhost %d >/dev/null", m_port);
   exec(l_cmd, 0, __FILE__, __LINE__);
 }
 
@@ -90,11 +92,11 @@ TestHttpServer::simpleHandler(void)
 {
   TestServer::handler l_handler = [](uint32_t, const Request&, Response& p_res)  {
     p_res.setStatus(code::ok);
-    return xtd::status::ok;
+    return status::ok;
   };
 
   m_server->bind("/test", l_handler);
-  string l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/test", m_port);
+  string l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/test", m_port);
   exec(l_cmd, 0, __FILE__, __LINE__);
 }
 
@@ -104,11 +106,11 @@ TestHttpServer::filteredHandler(void)
 {
   TestServer::handler l_200 = [](uint32_t, const Request&, Response& p_res)  {
     p_res.setStatus(code::ok);
-    return xtd::status::ok;
+    return status::ok;
   };
   TestServer::handler l_404 = [](uint32_t, const Request&, Response& p_res)  {
     p_res.setStatus(code::not_found);
-    return xtd::status::ok;
+    return status::ok;
   };
 
   m_server->bind("/test", l_200, [](const Request& p_req) {
@@ -117,9 +119,9 @@ TestHttpServer::filteredHandler(void)
     });
   m_server->bind("/test", l_404);
 
-  string l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/test?200=1", m_port);
+  string l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/test?200=1", m_port);
   exec(l_cmd, 0, __FILE__, __LINE__);
-  l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/test", m_port);
+  l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/test", m_port);
   exec(l_cmd, 8, __FILE__, __LINE__);
 }
 
@@ -128,34 +130,34 @@ TestHttpServer::anyHandler(void)
 {
   TestServer::handler l_200 = [](uint32_t, const Request&, Response& p_res)  {
     p_res.setStatus(code::ok);
-    return xtd::status::ok;
+    return status::ok;
   };
   TestServer::handler l_404 = [](uint32_t, const Request&, Response& p_res)  {
     p_res.setStatus(code::not_found);
-    return xtd::status::ok;
+    return status::ok;
   };
 
   m_server->bind_any(l_200);
   m_server->bind("/test", l_404);
 
   {
-    string l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/", m_port);
+    string l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/", m_port);
     exec(l_cmd, 0, __FILE__, __LINE__);
   }
 
   {
-    string l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/foo", m_port);
+    string l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/foo", m_port);
     exec(l_cmd, 0, __FILE__, __LINE__);
   }
 
   {
-    string l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/bar", m_port);
+    string l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/bar", m_port);
     exec(l_cmd, 0, __FILE__, __LINE__);
   }
 
   {
     // specific handlers have precedence on wildcar handlers
-    string l_cmd = xtd::format::vargs("wget -q -O/dev/null http://localhost:%d/test", m_port);
+    string l_cmd = format::vargs("wget -q -O/dev/null http://localhost:%d/test", m_port);
     exec(l_cmd, 8, __FILE__, __LINE__);
   }
 }
@@ -163,8 +165,8 @@ TestHttpServer::anyHandler(void)
 void
 TestHttpServer::expiredConnection(void)
 {
-  xtd::network::utils::Config          l_conf;
-  Client<xtd::network::utils::af_inet> l_client(l_conf);
+  network::utils::Config   l_conf;
+  Client<network::af_inet> l_client(l_conf);
   string   l_value;
 
   Request  l_req;
@@ -174,32 +176,32 @@ TestHttpServer::expiredConnection(void)
   l_req.setVersion(version::v1_0);
 
   // simple 1.0 request, no server keep alive
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.connect("127.0.0.1", m_port));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.send(l_req));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.receive(l_res));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.connect("127.0.0.1", m_port));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.send(l_req));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.receive(l_res));
   CPPUNIT_ASSERT_EQUAL(false,           l_res.getHeader("Keep-Alive", l_value));
   l_client.close();
 
   l_res = Response();
   l_req.setVersion(version::v1_1);
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.connect("127.0.0.1", m_port));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.send(l_req));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.receive(l_res));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.connect("127.0.0.1", m_port));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.send(l_req));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.receive(l_res));
   // this time server let the cnx open
   CPPUNIT_ASSERT_EQUAL(true,            l_res.getHeader("Keep-Alive", l_value));
   CPPUNIT_ASSERT_EQUAL(string("timeout=1, max=100"), l_value);
 
   l_res = Response();
   // we can resend a request on same cnx
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.send(l_req));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok, l_client.receive(l_res));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.send(l_req));
+  CPPUNIT_ASSERT_EQUAL(status::ok, l_client.receive(l_res));
   CPPUNIT_ASSERT_EQUAL(string("timeout=1, max=100"), l_value);
 
   l_res = Response();
   // delay is expired, server should have closed the cnx
   boost::this_thread::sleep(boost::posix_time::milliseconds(3000));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::ok,    l_client.send(l_req));
-  CPPUNIT_ASSERT_EQUAL(xtd::status::error, l_client.receive(l_res));
+  CPPUNIT_ASSERT_EQUAL(status::ok,    l_client.send(l_req));
+  CPPUNIT_ASSERT_EQUAL(status::error, l_client.receive(l_res));
 }
 
 XTD_TEST_MAIN();

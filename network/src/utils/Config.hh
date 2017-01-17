@@ -5,7 +5,6 @@
 # include <cstdint>
 # include <boost/asio.hpp>
 # include <boost/lexical_cast.hpp>
-# include "utils/CommTypeDefs.hh"
 
 namespace xtd {
 namespace network {

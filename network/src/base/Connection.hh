@@ -5,7 +5,6 @@
 # include <boost/asio.hpp>
 # include <types.hh> // libcore
 # include "utils/Config.hh"
-# include "utils/CommTypeDefs.hh"
 # include "utils/Resolver.hh"
 
 namespace xtd {
@@ -58,7 +57,7 @@ class Connection : public std::enable_shared_from_this<Connection<Domain> >
 {
 public:
   /** @brief shared_ptr sur this */
-  typedef std::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef sptr<Connection<Domain> > cnx_sptr_t;
 
 protected:
   // 1.
@@ -87,8 +86,8 @@ public:
    ** L'acceptor est passe en parametre car c'est chez lui qu'il faut
    ** enregistré l'évenement.
    */
-  void accept(std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
-              utils::handler_t                                             p_onAccepted);
+  void accept(sptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
+              t_handler                                         p_onAccepted);
 
   /**
    ** @brief connexion aynchrone de socket (client only)
@@ -96,8 +95,8 @@ public:
    ** Appel a p_onConnected lorsque l'appel aura ete execute (qu'il y ait erreur
    ** ou non)
    */
-  void connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
-               utils::handler_t                            p_onConnected);
+  void connect(sptr<utils::Resolver<Domain> > p_resolver,
+               t_handler                      p_onConnected);
 
   /**
    ** @brief envoi asynchrone d'un message sur la socket
@@ -105,8 +104,8 @@ public:
    ** Appel a p_onSent lorsque l'appel aura ete execute (qu'il y ait erreur
    ** ou non)
    */
-  void send(const utils::vectorBytes_t& p_outData,
-            utils::handler_t            p_onSent);
+  void send(const vector<char>& p_outData,
+            t_handler           p_onSent);
 
   /**
    ** @brief reception asynchrone d'un message de la socket
@@ -114,8 +113,8 @@ public:
    ** Appel a p_onReceived lorsque l'appel aura ete execute (qu'il y ait erreur
    ** ou non)
    */
-  void receive(utils::sharedBuf_t p_inData,
-               utils::handler_t   p_onReceived);
+  void receive(sptr<vector<char>> p_inData,
+               t_handler          p_onReceived);
 
   /**
    ** @brief fermeture de la socket et annule ses operations de lecture ecriture
@@ -135,17 +134,18 @@ public:
 
 
 private:
-  void do_accept(std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
-                 utils::handler_t                                             p_onAccepted);
+  void do_accept(sptr<boost::asio::basic_socket_acceptor<Domain> >  p_acceptor,
+                 t_handler                                          p_onAccepted);
+
   /**
    ** @details
    ** L'acceptor est gardé jusqu'à l'exécution de la callback pour
    ** garantir sa durée de vie dans le cas où un utilisateur peu clairvoyant
    ** ait décidé d'instancier un acceptor pour chaque connection...)
    */
-  void onAccepted(boost::system::error_code                                    p_error,
-                  std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
-                  utils::handler_t                                             p_onAccepted);
+  void onAccepted(boost::system::error_code                         p_error,
+                  sptr<boost::asio::basic_socket_acceptor<Domain> > p_acceptor,
+                  t_handler                                         p_onAccepted);
 
 
   /* connextion  */
@@ -155,30 +155,36 @@ private:
    ** 1. parametres p_host et p_port en copie pour garantir la duree
    **    de vie des donnees et eviter les dangling references
    */
-  void do_connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
-                  utils::handler_t                            p_onConnected);
+  void do_connect(sptr<utils::Resolver<Domain> > p_resolver,
+                  t_handler                      p_onConnected);
+
   void connectTimeout(const boost::system::error_code p_error);
-  void onConnected(const boost::system::error_code         p_error,
-                   std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                   utils::handler_t                        p_onConnected);
+
+  void onConnected(const boost::system::error_code   p_error,
+                   sptr<boost::asio::deadline_timer> p_timer,
+                   t_handler                         p_onConnected);
 
   /* envoi */
-  void do_send(utils::sharedBuf_t p_outData,
-               utils::handler_t   p_onSent);
+  void do_send(sptr<vector<char>> p_outData,
+               t_handler          p_onSent);
+
   void sendTimeout(const boost::system::error_code p_error);
-  void onSent(const boost::system::error_code         p_error,
-              utils::sharedBuf_t                      p_outData,
-              std::shared_ptr<utils::deadLineTimer_t> p_timer,
-              utils::handler_t                        p_onSent);
+
+  void onSent(const boost::system::error_code   p_error,
+              sptr<vector<char>>                p_outData,
+              sptr<boost::asio::deadline_timer> p_timer,
+              t_handler                         p_onSent);
 
 
   /* reception */
-  void do_receive(utils::sharedBuf_t p_inData,
-                  utils::handler_t   p_onReceived);
+  void do_receive(sptr<vector<char>> p_inData,
+                  t_handler          p_onReceived);
+
   void receiveTimeout(const boost::system::error_code p_error);
-  void onReceived(const boost::system::error_code         p_error,
-                  std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                  utils::handler_t                        p_onReceived);
+
+  void onReceived(const boost::system::error_code   p_error,
+                  sptr<boost::asio::deadline_timer> p_timer,
+                  t_handler                         p_onReceived);
 
   /**
    ** @details
@@ -194,8 +200,8 @@ private:
   void readEndpoint(void);
 
 protected:
-  virtual void async_write(utils::sharedBuf_t p_outData,    utils::handler_t p_onSent)     = 0;
-  virtual void async_read(utils::sharedBuf_t  p_inDataData, utils::handler_t p_onReceived) = 0;
+  virtual void async_write(sptr<vector<char>> p_outData,    t_handler p_onSent)     = 0;
+  virtual void async_read(sptr<vector<char>>  p_inDataData, t_handler p_onReceived) = 0;
 
 protected:
   utils::Config         m_conf;

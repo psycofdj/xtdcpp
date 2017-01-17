@@ -1,13 +1,14 @@
 #include "base/Server.hh"
 #include "base/Server.hxx"
-#include "utils/CommTypeDefs.hh"
+#include "network_types.hh"
+
 
 
 namespace xtd {
 namespace network {
 namespace base {
 
-template class Server<utils::af_inet>;
-template class Server<utils::af_unix>;
+template class Server<af_inet>;
+template class Server<af_unix>;
 
 }}} //end namespaces

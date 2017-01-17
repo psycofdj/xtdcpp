@@ -23,8 +23,7 @@ Resolver<af_inet>::resolve(const string&  p_host,
                            const string&  p_port)
 {
   string l_ipAddress;
-
-  bool l_isCached = m_cacheDns_ptr->popElem(p_host, l_ipAddress);
+  bool   l_isCached = m_cacheDns_ptr->popElem(p_host, l_ipAddress);
 
   if (l_isCached)
   {

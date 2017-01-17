@@ -10,7 +10,7 @@
 # include <ctime>
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <boost/interprocess/sync/interprocess_semaphore.hpp>
-# include "utils/CommTypeDefs.hh"
+# include "types.hh" // libcore
 
 namespace xtd {
 namespace network {

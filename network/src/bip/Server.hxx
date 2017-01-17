@@ -96,7 +96,7 @@ template <typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::onReceiveError(const boost::system::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn =
+  sptr<Connection<Domain> > l_conn =
     std::static_pointer_cast<Connection<Domain> >(p_conn);
   if (p_error == boost::asio::error::eof){
     boost::interprocess::ipcdetail::atomic_inc32(&m_receiveEof);
@@ -112,7 +112,7 @@ template <typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::onReceiveTimeout(const boost::system::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
+  sptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (m_isPersistent)
     log::info("network.base.client", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
@@ -131,13 +131,13 @@ Server<TReq, TRes, Domain>::onReceiveTimeout(const boost::system::error_code p_e
 template<typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::afterReceive(cnx_sptr_t         p_conn,
-                                         utils::sharedBuf_t p_inBuffer)
+                                         sptr<vector<char>> p_inBuffer)
 {
-  utils::vectorBytes_t l_resBuff;
-  TReq                 l_req;
-  TRes                 l_res;
-  bool                 l_reqDebug = false;
-  bool                 l_resDebug = false;
+  vector<char> l_resBuff;
+  TReq         l_req;
+  TRes         l_res;
+  bool         l_reqDebug = false;
+  bool         l_resDebug = false;
 
 
   if (status::ok != loadCompress<serializer::mode::bin>(TBase::m_conf, *p_inBuffer, l_req, l_reqDebug))

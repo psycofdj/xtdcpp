@@ -1,5 +1,6 @@
 #ifndef NETWORK_FWD_HH_
 # define NETWORK_FWD_HH_
+# include "network_types.hh"
 
 namespace xtd {
 namespace network {

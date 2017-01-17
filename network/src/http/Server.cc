@@ -1,6 +1,6 @@
 #include "http/Server.hh"
 #include "http/Server.hxx"
-#include "utils/CommTypeDefs.hh"
+#include "network_types.hh"
 
 namespace xtd {
 namespace network {
@@ -25,7 +25,7 @@ operator||(std::function<bool(const Request& p_req)> p_fn1,
   };
 }
 
-template class Server<utils::af_unix>;
-template class Server<utils::af_inet>;
+template class Server<af_unix>;
+template class Server<af_inet>;
 
 }}}

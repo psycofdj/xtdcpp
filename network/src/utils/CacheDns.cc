@@ -8,6 +8,14 @@ namespace utils {
 
 namespace bpt = boost::posix_time;
 
+CacheEntry::CacheEntry(const string& p_ipAddress,
+                       uint32_t      p_timeStamp) :
+  m_value(p_ipAddress),
+  m_stamp(p_timeStamp)
+{
+}
+
+
 CacheDns::CacheDns(uint32_t p_capacity, uint32_t p_ttl) :
   m_entries(0),
   m_maxEntries(p_capacity),
@@ -26,10 +34,10 @@ CacheDns::popElem(const string& p_url,
   if (it != m_cacheMap.end())
   {
     //found it
-    std::shared_ptr<EntryPair> ep (*(*it).second);
+    sptr<EntryPair> ep (*(*it).second);
     if (ep)
     {
-      std::shared_ptr<CacheEntry> cacheEntry(ep->second);
+      sptr<CacheEntry> cacheEntry(ep->second);
       if (cacheEntry)
       {
         //check and update stamp before returning value
@@ -61,9 +69,8 @@ CacheDns::pushElem(const string& p_url,
   std::time_t l_timestamp;
   createTimeStamp(l_timestamp);
 
-  std::shared_ptr<CacheEntry> l_entry = std::make_shared<CacheEntry>(p_ipAddr, l_timestamp);
-
-  std::shared_ptr<EntryPair> l_ep =
+  sptr<CacheEntry> l_entry = std::make_shared<CacheEntry>(p_ipAddr, l_timestamp);
+  sptr<EntryPair> l_ep =
     std::make_shared<EntryPair>(std::make_pair(p_url, l_entry));
 
   // push it to the front;
@@ -103,7 +110,7 @@ CacheDns::checkUpdateStamp(std::time_t& p_stamp, uint32_t p_dnsTimeoutSeconds)
 }
 
 void
-CacheDns::moveElementFrontLst(const std::shared_ptr<EntryPair> p_elem)
+CacheDns::moveElementFrontLst(const sptr<EntryPair> p_elem)
 {
   //finds the element
   CacheList::iterator c_ite = std::find(m_cacheList.begin(),m_cacheList.end(), p_elem);

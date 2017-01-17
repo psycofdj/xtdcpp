@@ -50,7 +50,7 @@ template<typename TDomain>
 status
 Client<TDomain>::send(const Request& p_request)
 {
-  utils::vectorBytes_t l_buff;
+  vector<char> l_buff;
   auto&                l_conn = TBase::m_connection;
 
   atom::atomic_inc32(&(this->m_sendTotal));
@@ -122,7 +122,7 @@ Client<TDomain>::do_receive(void)
   log::debug("network.http.client", "http client do_receive (%s) : entering", TBase::m_connection->info(), HERE);
   auto& l_conn = TBase::m_connection;
 
-  utils::sharedBuf_t l_res = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_res = std::make_shared<vector<char>>();
   l_conn->receive(l_res,
                   std::bind(&Client::onReceived,
                             this,
@@ -136,7 +136,7 @@ Client<TDomain>::do_receive(void)
 template<typename TDomain>
 void
 Client<TDomain>::onReceived(const boost::system::error_code p_error,
-                            utils::sharedBuf_t              p_response)
+                            sptr<vector<char>>              p_response)
 {
   utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
 

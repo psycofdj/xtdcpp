@@ -33,22 +33,22 @@ Connection<Domain>::~Connection(void)
 
 template <typename Domain>
 void
-Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p_onSent)
+Connection<Domain>::async_write(sptr<vector<char>> p_outData, t_handler p_onSent)
 {
   ba::async_write(this->m_socket,
                   ba::buffer(*p_outData),
-                  bind(&Connection::onSent,
-                       this,
-                       _1,
-                       _2,
-                       p_onSent));
+                  std::bind(&Connection::onSent,
+                            this,
+                            std::placeholders::_1,
+                            std::placeholders::_2,
+                            p_onSent));
 }
 
 template <typename Domain>
 void
-Connection<Domain>::onSent(const bs::error_code p_error,
+Connection<Domain>::onSent(const bs::error_code    p_error,
                            size_t               /* p_bytesTransferred */,
-                           utils::handler_t     p_onSent)
+                           t_handler               p_onSent)
 {
   p_onSent(p_error);
 }
@@ -58,20 +58,20 @@ Connection<Domain>::onSent(const bs::error_code p_error,
 
 template <typename Domain>
 void
-Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_onReceived)
+Connection<Domain>::async_read(sptr<vector<char>> p_inData, t_handler p_onReceived)
 {
-  std::shared_ptr<ba::streambuf> l_header = std::make_shared<ba::streambuf>();
+  sptr<ba::streambuf> l_header = std::make_shared<ba::streambuf>();
 
   ba::async_read_until(this->m_socket,
                        *l_header,
                        "\r\n\r\n",
-                       bind(&Connection::onHeaderReceived,
-                            this,
-                            _1,
-                            _2,
-                            p_inData,
-                            l_header,
-                            p_onReceived));
+                       std::bind(&Connection::onHeaderReceived,
+                                 this,
+                                 std::placeholders::_1,
+                                 std::placeholders::_2,
+                                 p_inData,
+                                 l_header,
+                                 p_onReceived));
 }
 
 
@@ -81,11 +81,11 @@ Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_o
  */
 template <typename Domain>
 void
-Connection<Domain>::onHeaderReceived(const bs::error_code           p_error,
-                                     size_t                         p_bytesTransferred,
-                                     utils::sharedBuf_t             p_inData,
-                                     std::shared_ptr<ba::streambuf> p_header,
-                                     utils::handler_t               p_onReceived)
+Connection<Domain>::onHeaderReceived(const bs::error_code p_error,
+                                     size_t               p_bytesTransferred,
+                                     sptr<vector<char>>   p_inData,
+                                     sptr<ba::streambuf>  p_header,
+                                     t_handler            p_onReceived)
 {
   if (p_error)
   {
@@ -129,35 +129,35 @@ Connection<Domain>::onHeaderReceived(const bs::error_code           p_error,
 template <typename Domain>
 void
 Connection<Domain>::receive_data(size_t             p_dataSize,
-                                 utils::sharedBuf_t p_inData,
-                                 utils::handler_t   p_onReceived)
+                                 sptr<vector<char>> p_inData,
+                                 t_handler          p_onReceived)
 {
-  this->m_strand.post(bind(&Connection::do_receive_data,
-                           this,
-                           p_dataSize,
-                           p_inData,
-                           p_onReceived));
+  this->m_strand.post(std::bind(&Connection::do_receive_data,
+                                this,
+                                p_dataSize,
+                                p_inData,
+                                p_onReceived));
 }
 
 
 template <typename Domain>
 void
 Connection<Domain>::do_receive_data(size_t             p_dataSize,
-                                    utils::sharedBuf_t p_inData,
-                                    utils::handler_t   p_onReceived)
+                                    sptr<vector<char>> p_inData,
+                                    t_handler          p_onReceived)
 {
-  utils::sharedBuf_t l_data = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_data = std::make_shared<vector<char>>();
 
   l_data->resize(p_dataSize, 0);
   ba::async_read(this->m_socket,
                  ba::buffer(*l_data),
-                 bind(&Connection::onDataReceived,
-                      this,
-                      _1,
-                      _2,
-                      p_inData,
-                      l_data,
-                      p_onReceived));
+                 std::bind(&Connection::onDataReceived,
+                           this,
+                           std::placeholders::_1,
+                           std::placeholders::_2,
+                           p_inData,
+                           l_data,
+                           p_onReceived));
 
 }
 
@@ -165,9 +165,9 @@ template <typename Domain>
 void
 Connection<Domain>::onDataReceived(const bs::error_code    p_error,
                                    size_t               /* p_bytesTransferred */,
-                                   utils::sharedBuf_t      p_inData,
-                                   utils::sharedBuf_t      p_data,
-                                   utils::handler_t        p_onReceived)
+                                   sptr<vector<char>>      p_inData,
+                                   sptr<vector<char>>      p_data,
+                                   t_handler               p_onReceived)
 {
   if (p_error)
   {

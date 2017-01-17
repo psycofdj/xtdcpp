@@ -19,7 +19,7 @@ struct Address
 };
 
 
-template<typename TReq, typename TRes, typename Domain = network::utils::af_inet>
+template<typename TReq, typename TRes, typename Domain = network::af_inet>
 class Server :
     public network::bip::Server<TReq, TRes, Domain>,
     public servers::app::HttpServer

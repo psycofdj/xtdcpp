@@ -32,10 +32,10 @@ namespace bip {
 
 
 template<typename Mode, typename T>
-status loadCompress(const utils::Config&        p_conf,
-                    const utils::vectorBytes_t& p_data,
-                    T&                          p_obj,
-                    bool&                       p_debug)
+status loadCompress(const utils::Config& p_conf,
+                    const vector<char>&  p_data,
+                    T&                   p_obj,
+                    bool&                p_debug)
 {
   boost::iostreams::filtering_istream l_fis;
 
@@ -78,10 +78,10 @@ status loadCompress(const utils::Config&        p_conf,
 
 
 template<typename Mode, typename T>
-status saveCompress(const utils::Config&  p_conf,
-                    const T               p_obj,
-                    const bool            p_debug,
-                    utils::vectorBytes_t& p_data)
+status saveCompress(const utils::Config& p_conf,
+                    const T              p_obj,
+                    const bool           p_debug,
+                    vector<char>&        p_data)
 {
   boost::iostreams::filtering_ostream l_fos;
 

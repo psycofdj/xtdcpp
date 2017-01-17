@@ -6,7 +6,6 @@
 # include <boost/interprocess/sync/interprocess_semaphore.hpp>
 # include <types.hh> // libcore
 # include "utils/Config.hh"
-# include "utils/CommTypeDefs.hh"
 # include "utils/Utils.hh"
 # include "utils/Resolver.hh"
 
@@ -25,7 +24,7 @@ template <typename Domain>
 class Client
 {
 protected:
-  typedef std::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef sptr<Connection<Domain> > cnx_sptr_t;
 
   /**
    ** @brief Code pour l'état du client
@@ -77,7 +76,7 @@ protected:
 
 private:
   ThreadManager&                              m_threadManager;
-  std::shared_ptr<utils::Resolver<Domain> >   m_resolver;
+  sptr<utils::Resolver<Domain> >              m_resolver;
   string                                      m_hostname;
   uint32_t                                    m_port;
   boost::interprocess::interprocess_semaphore m_semaphoreConnect;

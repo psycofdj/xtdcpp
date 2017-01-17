@@ -38,28 +38,26 @@
 */
 #ifndef NETWORK_HTTP_CPPTEMPL_HH_
 # define NETWORK_HTTP_CPPTEMPL_HH_
-
-#include <exception>
-#include <memory>
-#include <boost/algorithm/string.hpp>
-#include <boost/lexical_cast.hpp>
-#include <types.hh> //libcore
+# include <exception>
+# include <memory>
+# include <boost/algorithm/string.hpp>
+# include <boost/lexical_cast.hpp>
+# include <types.hh> //libcore
 
 namespace xtd {
 namespace network {
-
 namespace http {
 namespace cpptempl {
 
 // various typedefs
 class Data;
-typedef std::shared_ptr<Data>   data_ptr;
-typedef vector<data_ptr>          data_list;
-typedef map<string, data_ptr>     data_map;
+typedef sptr<Data>            data_ptr;
+typedef vector<data_ptr>      data_list;
+typedef map<string, data_ptr> data_map;
 
 class Token;
-typedef std::shared_ptr<Token>  token_ptr;
-typedef vector<token_ptr>         token_vector;
+typedef sptr<Token>       token_ptr;
+typedef vector<token_ptr> token_vector;
 
 
 // Custom exception class for library errors

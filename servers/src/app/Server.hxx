@@ -37,9 +37,9 @@ using namespace network;
 template <typename T>
 const char Address<T>::mcs_value[] = "";
 template <>
-const char Address<network::utils::af_inet>::mcs_value[] = "0.0.0.0";
+const char Address<network::af_inet>::mcs_value[] = "0.0.0.0";
 template <>
-const char Address<network::utils::af_unix>::mcs_value[] = "@localhost";
+const char Address<network::af_unix>::mcs_value[] = "@localhost";
 
 template<typename TReq, typename TRes, typename Domain>
 const char Server<TReq, TRes, Domain>::mcs_defaultListenInterface[] = "0.0.0.0";

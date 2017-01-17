@@ -1,4 +1,3 @@
-#include <utils/CommTypeDefs.hh> // libnetwork
 #include <objects/Doc.hh>        // libserializer
 #include "app/Server.hh"
 #include "app/Server.hxx"
@@ -12,7 +11,7 @@ namespace xtd {
 namespace servers {
 namespace app {
 
-template class Server<serializer::Doc, serializer::Doc, network::utils::af_unix>;
-template class Server<serializer::Doc, serializer::Doc, network::utils::af_inet>;
+template class Server<serializer::Doc, serializer::Doc, network::af_unix>;
+template class Server<serializer::Doc, serializer::Doc, network::af_inet>;
 
 }}} //end namespaces

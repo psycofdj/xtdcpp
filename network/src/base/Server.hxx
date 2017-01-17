@@ -237,7 +237,7 @@ Server<Domain>::do_receive(cnx_sptr_t p_conn)
 {
   log::debug("network.base.server", "do_receive (%s) : entering",  p_conn->info(), HERE);
 
-  utils::sharedBuf_t l_inBuffer = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_inBuffer = std::make_shared<vector<char>>();
 
   p_conn->receive(l_inBuffer,
                   bind(&Server::onReceived,
@@ -290,7 +290,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceived(const bs::error_code p_error,
                            cnx_sptr_t           p_conn,
-                           utils::sharedBuf_t   p_inBuffer)
+                           sptr<vector<char>>   p_inBuffer)
 {
 
   bt::ptime         l_beginTime = bt::microsec_clock::local_time();
@@ -340,8 +340,8 @@ Server<Domain>::onReceived(const bs::error_code p_error,
 
 template<typename Domain>
 void
-Server<Domain>::do_send(cnx_sptr_t                  p_conn,
-                        const utils::vectorBytes_t& p_outData)
+Server<Domain>::do_send(cnx_sptr_t          p_conn,
+                        const vector<char>& p_outData)
 {
   log::debug("network.base.server", "do_send (%s) : entering",  p_conn->info(), HERE);
 

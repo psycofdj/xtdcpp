@@ -58,8 +58,8 @@ Connection<Domain>::~Connection(void)
  */
 template <typename Domain>
 void
-Connection<Domain>::accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
-                           utils::handler_t                                      p_onAccepted)
+Connection<Domain>::accept(sptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
+                           t_handler                                p_onAccepted)
 {
   log::debug("network.base.cnx", "cnx accept : entering", HERE);
 
@@ -79,8 +79,8 @@ Connection<Domain>::accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> > p
  */
 template <typename Domain>
 void
-Connection<Domain>::do_accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
-                              utils::handler_t                                      p_onAccepted)
+Connection<Domain>::do_accept(sptr<ba::basic_socket_acceptor<Domain> > p_acceptor,
+                              t_handler                                p_onAccepted)
 {
   log::debug("network.base.cnx", "cnx do_accept : entering", HERE);
 
@@ -105,9 +105,9 @@ Connection<Domain>::do_accept(std::shared_ptr<ba::basic_socket_acceptor<Domain> 
  */
 template <typename Domain>
 void
-Connection<Domain>::onAccepted(bs::error_code                                           p_error,
-                               std::shared_ptr<ba::basic_socket_acceptor<Domain> > /* p_acceptor */,
-                               utils::handler_t                                         p_onAccepted)
+Connection<Domain>::onAccepted(bs::error_code                              p_error,
+                               sptr<ba::basic_socket_acceptor<Domain> > /* p_acceptor */,
+                               t_handler                                   p_onAccepted)
 {
   log::debug("network.base.cnx", "cnx onAccepted : entering", HERE);
 
@@ -133,8 +133,8 @@ Connection<Domain>::onAccepted(bs::error_code                                   
  */
 template <typename Domain>
 void
-Connection<Domain>::connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
-                            utils::handler_t                            p_onConnected)
+Connection<Domain>::connect(sptr<utils::Resolver<Domain> > p_resolver,
+                            t_handler                      p_onConnected)
 {
   log::debug("network.base.cnx", "cnx connect (%s:%d): entering", m_hostname, m_port, HERE);
 
@@ -153,16 +153,16 @@ Connection<Domain>::connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver
  */
 template <typename Domain>
 void
-Connection<Domain>::do_connect(std::shared_ptr<utils::Resolver<Domain> > p_resolver,
-                               utils::handler_t                            p_onConnected)
+Connection<Domain>::do_connect(sptr<utils::Resolver<Domain> > p_resolver,
+                               t_handler                      p_onConnected)
 {
   log::debug("network.base.cnx", "cnx do_connect (%s:%d): entering", m_hostname, m_port, HERE);
 
   m_remoteAddr = m_hostname;
   m_remotePort = m_port;
 
-  typename Domain::endpoint               l_endpoint = p_resolver->resolve(m_hostname, boost::lexical_cast<string>(m_port));
-  std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
+  typename Domain::endpoint l_endpoint = p_resolver->resolve(m_hostname, boost::lexical_cast<string>(m_port));
+  sptr<ba::deadline_timer>  l_timer(new ba::deadline_timer(m_ioService));
 
 
   l_timer->expires_from_now(bpt::milliseconds(m_conf.getConnectTimeoutMs()));
@@ -225,9 +225,9 @@ Connection<Domain>::connectTimeout(const bs::error_code p_error)
  */
 template <typename Domain>
 void
-Connection<Domain>::onConnected(const bs::error_code                      p_error,
-                                std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                                utils::handler_t                          p_onConnected)
+Connection<Domain>::onConnected(const bs::error_code     p_error,
+                                sptr<ba::deadline_timer> p_timer,
+                                t_handler         p_onConnected)
 {
   log::debug("network.base.cnx", "cnx onConnected : entering", HERE);
 
@@ -262,13 +262,13 @@ Connection<Domain>::onConnected(const bs::error_code                      p_erro
  */
 template <typename Domain>
 void
-Connection<Domain>::send(const utils::vectorBytes_t& p_outData,
-                         utils::handler_t            p_onSent)
+Connection<Domain>::send(const vector<char>& p_outData,
+                         t_handler           p_onSent)
 {
   log::debug("network.base.cnx", "cnx send (%s) : entering", info(), HERE);
 
   // 1.
-  utils::sharedBuf_t l_outBuff = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_outBuff = std::make_shared<vector<char>>();
 
   l_outBuff->assign(p_outData.begin(), p_outData.end());
 
@@ -287,19 +287,19 @@ Connection<Domain>::send(const utils::vectorBytes_t& p_outData,
  */
 template <typename Domain>
 void
-Connection<Domain>::do_send(utils::sharedBuf_t p_outData,
-                            utils::handler_t   p_onSent)
+Connection<Domain>::do_send(sptr<vector<char>> p_outData,
+                            t_handler   p_onSent)
 {
   log::debug("network.base.cnx", "cnx do_send (%s) : entering", info(), HERE);
 
-  std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
+  sptr<ba::deadline_timer> l_timer(new ba::deadline_timer(m_ioService));
 
   l_timer->expires_from_now(bpt::milliseconds(m_conf.getSendTimeoutMs()));
   l_timer->async_wait(m_strand.wrap(std::bind(&Connection::sendTimeout,
                                               this->shared_from_this(),
                                               std::placeholders::_1)));
 
-  utils::handler_t l_handler =
+  t_handler l_handler =
     std::bind(&Connection::onSent,
               this->shared_from_this(),
               std::placeholders::_1,
@@ -331,10 +331,10 @@ Connection<Domain>::sendTimeout(const bs::error_code  p_error)
 
 template <typename Domain>
 void
-Connection<Domain>::onSent(const bs::error_code                      p_error,
-                           utils::sharedBuf_t                        p_outData,
-                           std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                           utils::handler_t                          p_onSent)
+Connection<Domain>::onSent(const bs::error_code     p_error,
+                           sptr<vector<char>>       p_outData,
+                           sptr<ba::deadline_timer> p_timer,
+                           t_handler         p_onSent)
 {
   log::debug("network.base.cnx", "cnx onSent (%s) : entering", info(), HERE);
 
@@ -354,8 +354,8 @@ Connection<Domain>::onSent(const bs::error_code                      p_error,
 
 template <typename Domain>
 void
-Connection<Domain>::receive(utils::sharedBuf_t p_inData,
-                            utils::handler_t   p_onReceived)
+Connection<Domain>::receive(sptr<vector<char>> p_inData,
+                            t_handler   p_onReceived)
 {
   log::debug("network.base.cnx", "cnx receive (%s) : entering", info(), HERE);
 
@@ -371,20 +371,20 @@ Connection<Domain>::receive(utils::sharedBuf_t p_inData,
 
 template <typename Domain>
 void
-Connection<Domain>::do_receive(utils::sharedBuf_t p_inData,
-                               utils::handler_t   p_onReceived)
+Connection<Domain>::do_receive(sptr<vector<char>> p_inData,
+                               t_handler   p_onReceived)
 {
   log::debug("network.base.cnx", "cnx do_receive (%s) : entering", info(), HERE);
 
 
-  std::shared_ptr<utils::deadLineTimer_t> l_timer(new utils::deadLineTimer_t(m_ioService));
+  sptr<ba::deadline_timer> l_timer(new ba::deadline_timer(m_ioService));
 
   l_timer->expires_from_now(bpt::milliseconds(m_conf.getReceiveTimeoutMs()));
   l_timer->async_wait(m_strand.wrap(std::bind(&Connection::receiveTimeout,
                                               this->shared_from_this(),
                                               std::placeholders::_1)));
 
-  utils::handler_t l_handler
+  t_handler l_handler
     = m_strand.wrap(std::bind(&Connection::onReceived,
                               this->shared_from_this(),
                               std::placeholders::_1,
@@ -419,9 +419,9 @@ Connection<Domain>::receiveTimeout(const bs::error_code p_error)
 
 template <typename Domain>
 void
-Connection<Domain>::onReceived(const bs::error_code                      p_error,
-                               std::shared_ptr<utils::deadLineTimer_t> p_timer,
-                               utils::handler_t                          p_onReceived)
+Connection<Domain>::onReceived(const bs::error_code     p_error,
+                               sptr<ba::deadline_timer> p_timer,
+                               t_handler         p_onReceived)
 {
   log::debug("network.base.cnx", "cnx onReceived (%s) : entering", info(), HERE);
 

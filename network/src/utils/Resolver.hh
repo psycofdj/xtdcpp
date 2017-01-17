@@ -2,7 +2,7 @@
 # define NETWORK_UTILS_RESOLVER_HH_
 
 # include <memory>
-# include "utils/CommTypeDefs.hh"
+# include "network_types.hh"
 # include "utils/CacheDns.hh"
 
 namespace xtd {
@@ -59,8 +59,8 @@ public:
   string  getAddr(const af_inet::endpoint& p_endpoint);
 
 private:
-  boost::asio::io_service&      m_ioService;
-  std::shared_ptr<CacheDns> m_cacheDns_ptr;
+  boost::asio::io_service& m_ioService;
+  sptr<CacheDns>           m_cacheDns_ptr;
 };
 
 

@@ -12,7 +12,6 @@
 # pragma GCC diagnostic ignored "-Wsequence-point"
 # include <boost/unordered_map.hpp>
 # pragma GCC diagnostic pop
-# include "utils/CommTypeDefs.hh"
 # include "utils/Utils.hh"
 
 namespace xtd {
@@ -24,20 +23,19 @@ const uint32_t CACHE_TTL_MAX      = 1800; // 30 minutes
 
 struct CacheEntry
 {
+public:
   explicit CacheEntry(const string& p_ipAddress,
-                      uint32_t      p_timeStamp) :
-    m_value(p_ipAddress),
-    m_stamp(p_timeStamp)
-  {
-  }
+                      uint32_t      p_timeStamp);
+
+public:
   string      m_value; //IP address
   std::time_t m_stamp; //time stamp
 };
 
 /// typedef for URL/Entry(IP address) pair
-typedef std::pair< string, std::shared_ptr<CacheEntry> > EntryPair;
+typedef std::pair< string, sptr<CacheEntry> > EntryPair;
 /// typedef for Cache list
-typedef std::list< std::shared_ptr<EntryPair> > CacheList;
+typedef std::list< sptr<EntryPair> > CacheList;
 /// typedef for URL-indexed map (aka hash map) into the CacheList
 typedef boost::unordered_map< string, CacheList::iterator > CacheMap;
 
@@ -104,7 +102,7 @@ private:
    * @brief moves element to the front of the cache (most recent)
    * @param p_elem cache entry to move to the front of the cache
    */
-  void moveElementFrontLst(const std::shared_ptr<EntryPair> p_elem);
+  void moveElementFrontLst(const sptr<EntryPair> p_elem);
 
   /**
    * @brief checks if the cache is full(maximum capacity reached) and evicts the oldest element from the cache
