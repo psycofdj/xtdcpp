@@ -2,8 +2,9 @@
 # define NETWORK_UTILS_RESOLVER_HH_
 
 # include <memory>
+# include <types.hh> // libcore
+# include <utils/CacheLRU.hh> // libcore
 # include "network_types.hh"
-# include "utils/CacheDns.hh"
 
 namespace xtd {
 namespace network {
@@ -19,7 +20,7 @@ namespace utils {
  ** et @ref af_inet (socket tcp ipv4), il est intégralement spécialisé.
  ** Dans le cas de @ref af_inet, on vent de résoudre un nom
  ** de domaine en IP en interrogeant les serveurs DNS. Pour ne pas les surcharger
- ** on embarque un cache, @ref CacheDns, qui garde en local les résolutions
+ ** on embarque un cache qui garde en local les résolutions
  ** effectuée.
  */
 template <typename Domain>
@@ -59,8 +60,8 @@ public:
   string  getAddr(const af_inet::endpoint& p_endpoint);
 
 private:
-  boost::asio::io_service& m_ioService;
-  sptr<CacheDns>           m_cacheDns_ptr;
+  boost::asio::io_service&                  m_ioService;
+  sptr<xtd::utils::CacheLRU<string,string>> m_cacheDns;
 };
 
 

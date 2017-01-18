@@ -2,6 +2,7 @@
 # define NETWORK_BIP_SERVER_HH_
 
 #include "base/Server.hh"
+#include "network_types.hh"
 
 namespace xtd {
 namespace network {
@@ -32,8 +33,18 @@ public:
    ** @brief Constructeur
    */
   Server(void);
+
+  /**
+   ** @brief Constructeur (noncopyable)
+   */
+  Server(const Server&) = delete;
+
+  /**
+   ** @brief Destructor
+   */
   virtual ~Server(void);
 
+public:
   /**
    ** @brief invoke base start method and print log
    */
@@ -48,13 +59,15 @@ public:
    ** @brief Initialize server with params
    ** @param p_host : string hostname
    ** @param p_port : uint32_t port
-   ** @param p_configuration : low level network configuration params
    ** @param p_nbThread : number of threads
    */
   virtual void initialize(const string&        p_host,
                           const uint32_t       p_port,
-                          const utils::Config& p_configuration,
                           const size_t         p_nbThread);
+
+  void compressCodec(compress_codec p_codec);
+
+  compress_codec compressCodec(void) const;
 
 protected:
   /**
@@ -77,9 +90,6 @@ protected:
 
   inline uint32_t& getReceiveEof(void);
 
-protected:
-  bool m_isPersistent;
-
 
 private:
   cnx_sptr_t createCnx(string p_hostname, uint32_t p_port);
@@ -89,9 +99,13 @@ private:
   void       onReceiveError(const boost::system::error_code p_error, cnx_sptr_t p_conn);
   void       onReceiveTimeout(const boost::system::error_code p_error, cnx_sptr_t p_conn);
 
+protected:
+  bool m_isPersistent;
+
 private:
   //counter to monitor fake on receive error
-  uint32_t m_receiveEof;
+  uint32_t       m_receiveEof;
+  compress_codec m_codec;
 };
 
 template<typename TReq, typename TRes, typename Domain>

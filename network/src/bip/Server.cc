@@ -1,6 +1,6 @@
 #include "bip/Server.hh"
 #include "bip/Server.hxx"
-#include <objects/Doc.hh> // lib serializer
+#include <objects/Doc.hh> // libserializer
 #include "network_types.hh"
 
 /**

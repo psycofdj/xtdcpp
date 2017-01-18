@@ -2,8 +2,10 @@
 # define NETWORK_BASE_SERVER_HH_
 
 # include <boost/thread.hpp>
-# include "utils/Config.hh"
-# include "utils/Utils.hh"
+# include <boost/asio.hpp>
+# include <utils/safe_deque.hh> // libcore
+# include "base/Config.hh"
+
 
 
 namespace xtd {
@@ -27,7 +29,7 @@ template<typename D> class Connection;
  **    ce qui garantie la duree de vie de l'objet
  */
 template <typename Domain>
-class Server
+class Server : public Config
 {
 protected:
   typedef sptr<Connection<Domain> > cnx_sptr_t;
@@ -43,13 +45,11 @@ public:
    ** @brief Initialize server with params
    ** @param p_host : string hostname
    ** @param p_port : uint32_t port
-   ** @param p_configuration : low level network configuration params
    ** @param p_nbThread : number of threads
    */
-  virtual void initialize(const string&        p_host,
-                          const uint32_t       p_port,
-                          const utils::Config& p_configuration,
-                          const size_t         p_nbThread);
+  virtual void initialize(const string&  p_host,
+                          const uint32_t p_port,
+                          const size_t   p_nbThread);
 
   /**
    ** @brief Equivalent a start + join
@@ -136,8 +136,7 @@ protected:
   inline uint32_t& getCnxRejected(void);
 
 protected:
-  utils::Config                                    m_conf;
-  utils::deque_id<uint32_t>                        m_dequeId;
+  xtd::utils::safe_deque<uint32_t>                 m_dequeId;
   sptr<boost::asio::io_service>                    m_ioService;
   sptr<boost::asio::io_service::work>              m_work;
   sptr<boost::asio::basic_socket_acceptor<Domain>> m_acceptor;

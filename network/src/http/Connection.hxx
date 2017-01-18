@@ -16,10 +16,10 @@ namespace bs = boost::system;
 
 
 template <typename Domain>
-Connection<Domain>::Connection(const utils::Config& p_configuration,
-                               ba::io_service&      p_ioService,
-                               const string         p_hostname,
-                               const uint32_t       p_port) :
+Connection<Domain>::Connection(const base::Config& p_configuration,
+                               ba::io_service&     p_ioService,
+                               const string        p_hostname,
+                               const uint32_t      p_port) :
   base::Connection<Domain>(p_configuration, p_ioService, p_hostname, p_port),
   m_isClosedByServer(false)
 {

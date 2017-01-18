@@ -104,7 +104,7 @@ template<typename Domain>
 typename Server<Domain>::cnx_sptr_t
 Server<Domain>::createCnx(string p_hostname, uint32_t p_port)
 {
-  return cnx_sptr_t(new Connection<Domain>(TBase::m_conf, *TBase::m_ioService, p_hostname, p_port));
+  return cnx_sptr_t(new Connection<Domain>(*this, *TBase::m_ioService, p_hostname, p_port));
 }
 
 
@@ -187,8 +187,8 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
     l_conn->setClosedByServer(true);
     l_res.addHeader("Connection", "close");
   } else {
-    float    l_rcvTimeout = TBase::m_conf.getReceiveTimeoutMs();
-    uint32_t l_to = std::floor(l_rcvTimeout / 1000);
+    float    l_rcvTimeout = this->getReceiveTimeoutMs();
+    uint32_t l_to         = std::floor(l_rcvTimeout / 1000);
     l_res.addHeader("Keep-Alive", format::vargs("timeout=%d, max=100", l_to));
   }
 

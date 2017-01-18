@@ -42,7 +42,8 @@ private:
   typedef typename TBase::cnxstatus  cnxstatus;
 
 public:
-  Client(const utils::Config& p_conf);
+  Client(void);
+  Client(const Client&) = delete;
   virtual ~Client(void);
 
 public:
@@ -69,6 +70,11 @@ public:
    */
   status receive(TResponse& p_response,  bool& p_debug);
 
+  void compressCodec(compress_codec p_codec);
+
+  compress_codec compressCodec(void) const;
+
+
   virtual bool shouldReceive(const TRequest&  p_request,
                              const bool       p_requestDebug);
 
@@ -84,6 +90,7 @@ private:
   cnxstatus                                   m_status;
   vector<char>                                m_response;
   boost::posix_time::ptime                    m_lastSend;
+  compress_codec                              m_codec;
 };
 
 }}} //end namespaces

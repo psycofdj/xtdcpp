@@ -10,11 +10,11 @@
 # include <boost/iostreams/filter/gzip.hpp>
 # include <boost/iostreams/filter/bzip2.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
+# include <utils/scoped_fn.hh> // libcore
 # include <log.hh> // libcore
 # include "http/Connection.hh"
 # include "http/Request.hh"
 # include "http/Response.hh"
-
 
 namespace atom = boost::interprocess::ipcdetail;
 
@@ -24,8 +24,8 @@ namespace http {
 
 
 template<typename TDomain>
-Client<TDomain>::Client(const utils::Config& p_conf) :
-  TBase(p_conf),
+Client<TDomain>::Client(void) :
+  TBase(),
   m_userSemaphore(0),
   m_status(cnxstatus::available),
   m_response()
@@ -41,7 +41,7 @@ template<typename TDomain>
 typename Client<TDomain>::cnx_sptr_t
 Client<TDomain>::createCnx(string p_hostname, uint32_t p_port)
 {
-  cnx_sptr_t l_result(new Connection<TDomain>(TBase::m_conf, TBase::m_ioService, p_hostname, p_port));
+  cnx_sptr_t l_result(new Connection<TDomain>(*this, TBase::m_ioService, p_hostname, p_port));
   return l_result;
 }
 
@@ -138,7 +138,7 @@ void
 Client<TDomain>::onReceived(const boost::system::error_code p_error,
                             sptr<vector<char>>              p_response)
 {
-  utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
+  xtd::utils::scoped_fn l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
 
   log::debug("network.http.client", "http client onReceived (%s) : entering", TBase::m_connection->info(), HERE);
 

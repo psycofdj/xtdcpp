@@ -3,9 +3,10 @@
 
 # include <types.hh> // libcore
 # include <log.hh>   // libcore
+# include "utils/scoped_fn.hh"
 # include <boost/interprocess/detail/atomic.hpp>
 # include "base/Connection.hh"
-# include "base/ClientThreadManager.hh"
+# include "base/ThreadManager.hh"
 
 
 namespace atom = boost::interprocess::ipcdetail;
@@ -25,13 +26,13 @@ namespace bs = boost::system;
 
 
 template <typename Domain>
-Client<Domain>::Client(const utils::Config& p_conf) :
+Client<Domain>::Client(void) :
+  Config(),
   m_threadManager(ThreadManager::get()),
   m_resolver(),
   m_hostname(),
   m_port(),
   m_semaphoreConnect(0),
-  m_conf(p_conf),
   m_ioService(m_threadManager.getIoService()),
   m_connection(),
   m_connectStatus(status::error),
@@ -40,7 +41,7 @@ Client<Domain>::Client(const utils::Config& p_conf) :
   m_cnxTimeout(0),
   m_cnxError(0)
 {
-  m_resolver.reset(new utils::Resolver<Domain>(m_ioService, m_conf.getDnsCacheTTL()));
+  m_resolver.reset(new utils::Resolver<Domain>(m_ioService, getDnsCacheTTL()));
 }
 
 template <typename Domain>
@@ -113,7 +114,7 @@ void
 Client<Domain>::onConnected(const bs::error_code p_error)
 {
   // On libere la semaphore juste a la sortie de la fonction pour garantir l'exitence de la connection
-  utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_semaphoreConnect)));
+  xtd::utils::scoped_fn l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_semaphoreConnect)));
 
   log::info("network.base.client", "onConnected (%s) : entering", m_connection->info(), HERE);
 

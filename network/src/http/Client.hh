@@ -18,7 +18,7 @@ private:
   typedef typename TBase::cnxstatus  cnxstatus;
 
 public:
-  Client(const utils::Config& p_conf);
+  Client(void);
   virtual ~Client(void);
 
 public:

@@ -13,7 +13,6 @@
 # include <network_fwd.hh>   // libnetwork
 # include <network_types.hh> // libnetwork
 # include <http/Server.hh>   // libnetwork
-# include <utils/Config.hh>  // libnetwork
 # include <counters.hh>      // libcounters
 
 using boost::format;
@@ -189,7 +188,6 @@ protected:
   // http
   string                 m_httpHost;
   uint32_t               m_httpPort;
-  network::utils::Config m_httpConfig;
   string                 m_httpConfigPath;
 
   // admin

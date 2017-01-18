@@ -8,7 +8,7 @@
 #include <http/Request.hh>
 #include <http/Response.hh>
 #include <http/Client.hh>
-#include <base/ClientThreadManager.hh>
+#include <base/ThreadManager.hh>
 
 using namespace xtd;
 using namespace xtd::network::http;
@@ -59,7 +59,7 @@ TestHttpServer::setUp(void)
 {
   network::base::ThreadManager::get();
   m_server.reset(new TestServer());
-  m_server->initialize("127.0.0.1", 0, network::utils::Config(), 10);
+  m_server->initialize("127.0.0.1", 0, 10);
   m_server->start();
   m_port = m_server->getEndPoint().port();
 }
@@ -165,8 +165,7 @@ TestHttpServer::anyHandler(void)
 void
 TestHttpServer::expiredConnection(void)
 {
-  network::utils::Config   l_conf;
-  Client<network::af_inet> l_client(l_conf);
+  Client<network::af_inet> l_client;
   string   l_value;
 
   Request  l_req;

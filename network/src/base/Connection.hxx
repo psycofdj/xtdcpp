@@ -25,10 +25,10 @@ namespace bpt = boost::posix_time;
 
 
 template <typename Domain>
-Connection<Domain>::Connection(const utils::Config& p_conf,
-                               ba::io_service&      p_ioService,
-                               const string         p_hostname,
-                               const uint32_t       p_port) :
+Connection<Domain>::Connection(const Config&   p_conf,
+                               ba::io_service& p_ioService,
+                               const string    p_hostname,
+                               const uint32_t  p_port) :
   m_conf(p_conf),
   m_ioService(p_ioService),
   m_strand(p_ioService),

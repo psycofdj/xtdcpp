@@ -49,10 +49,10 @@ private:
   static const uint32_t mcs_maxDataCrcSize = 5;
 
 public:
-  explicit Connection(const utils::Config& p_configuration,
-                      boost::asio::io_service&                p_ioService,
-                      const string                       p_hostname,
-                      const uint32_t                      p_port);
+  explicit Connection(const base::Config&      p_configuration,
+                      boost::asio::io_service& p_ioService,
+                      const string             p_hostname,
+                      const uint32_t           p_port);
 
 
 public:

@@ -4,7 +4,7 @@
 
 # include <boost/asio.hpp>
 # include <log.hh> // libcore
-# include "utils/Config.hh"
+# include "base/Config.hh"
 
 
 namespace xtd {
@@ -17,7 +17,7 @@ namespace ba = boost::asio;
 namespace bs = boost::system;
 
 template <typename Domain>
-Connection<Domain>::Connection(const utils::Config& p_configuration,
+Connection<Domain>::Connection(const base::Config&  p_configuration,
                                ba::io_service&      p_ioService,
                                const string         p_hostname,
                                const uint32_t       p_port) :

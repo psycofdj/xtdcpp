@@ -5,7 +5,7 @@
 # include <boost/asio.hpp>
 # include <boost/interprocess/sync/interprocess_semaphore.hpp>
 # include <types.hh> // libcore
-# include "utils/Config.hh"
+# include "base/Config.hh"
 # include "utils/Utils.hh"
 # include "utils/Resolver.hh"
 
@@ -21,7 +21,7 @@ template <typename Domain> class Connection;
  * TODO explain private + shared_ptr
  * */
 template <typename Domain>
-class Client
+class Client : public Config
 {
 protected:
   typedef sptr<Connection<Domain> > cnx_sptr_t;
@@ -40,7 +40,7 @@ protected:
   };
 
 protected:
-  Client(const utils::Config& p_conf);
+  Client(void);
   Client(const Client&) = delete;
 
 public:
@@ -82,7 +82,6 @@ private:
   boost::interprocess::interprocess_semaphore m_semaphoreConnect;
 
 protected:
-  utils::Config            m_conf;
   boost::asio::io_service& m_ioService;
   cnx_sptr_t               m_connection;
   status                   m_connectStatus;

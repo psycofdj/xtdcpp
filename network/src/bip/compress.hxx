@@ -24,7 +24,7 @@
 # include <boost/iostreams/filter/bzip2.hpp>
 # include <log.hh> // libcore
 # include <serializer.hh> // libserializer
-# include "utils/Config.hh"
+# include "base/Config.hh"
 
 namespace xtd {
 namespace network {
@@ -32,27 +32,26 @@ namespace bip {
 
 
 template<typename Mode, typename T>
-status loadCompress(const utils::Config& p_conf,
-                    const vector<char>&  p_data,
-                    T&                   p_obj,
-                    bool&                p_debug)
+status load(compress_codec       p_codec,
+            const vector<char>&  p_data,
+            T&                   p_obj,
+            bool&                p_debug)
 {
   boost::iostreams::filtering_istream l_fis;
 
-  if (p_conf.getCompress())
+  switch (p_codec)
   {
-    switch (p_conf.getCompressionCodec())
-    {
-    case utils::codec::zlib:
-      l_fis.push(boost::iostreams::zlib_decompressor());
-      break;
-    case utils::codec::gzip:
-      l_fis.push(boost::iostreams::gzip_decompressor());
-      break;
-    case utils::codec::bzip2:
-      l_fis.push(boost::iostreams::bzip2_decompressor());
-      break;
-    }
+  case compress_codec::none:
+    break;
+  case compress_codec::zlib:
+    l_fis.push(boost::iostreams::zlib_decompressor());
+    break;
+  case compress_codec::gzip:
+    l_fis.push(boost::iostreams::gzip_decompressor());
+    break;
+  case compress_codec::bzip2:
+    l_fis.push(boost::iostreams::bzip2_decompressor());
+    break;
   }
 
   l_fis.push(boost::make_iterator_range(p_data));
@@ -78,27 +77,26 @@ status loadCompress(const utils::Config& p_conf,
 
 
 template<typename Mode, typename T>
-status saveCompress(const utils::Config& p_conf,
-                    const T              p_obj,
-                    const bool           p_debug,
-                    vector<char>&        p_data)
+status save(compress_codec p_codec,
+            const T        p_obj,
+            const bool     p_debug,
+            vector<char>&  p_data)
 {
   boost::iostreams::filtering_ostream l_fos;
 
-  if (p_conf.getCompress())
+  switch (p_codec)
   {
-    switch (p_conf.getCompressionCodec())
-    {
-    case utils::codec::zlib:
-      l_fos.push(boost::iostreams::zlib_compressor());
-      break;
-    case utils::codec::gzip:
-      l_fos.push(boost::iostreams::gzip_compressor());
-      break;
-    case utils::codec::bzip2:
-      l_fos.push(boost::iostreams::bzip2_compressor());
-      break;
-    }
+  case compress_codec::none:
+    break;
+  case compress_codec::zlib:
+    l_fos.push(boost::iostreams::zlib_compressor());
+    break;
+  case compress_codec::gzip:
+    l_fos.push(boost::iostreams::gzip_compressor());
+    break;
+  case compress_codec::bzip2:
+    l_fos.push(boost::iostreams::bzip2_compressor());
+    break;
   }
 
   l_fos.push(boost::iostreams::back_inserter(p_data));

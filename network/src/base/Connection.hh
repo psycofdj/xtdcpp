@@ -4,13 +4,12 @@
 
 # include <boost/asio.hpp>
 # include <types.hh> // libcore
-# include "utils/Config.hh"
 # include "utils/Resolver.hh"
+# include "base/Config.hh"
 
 namespace xtd {
 namespace network {
 namespace base {
-
 
 /**
  ** @brief Base class from which all connections should derive
@@ -61,7 +60,7 @@ public:
 
 protected:
   // 1.
-  explicit Connection(const utils::Config&     p_configuration,
+  explicit Connection(const Config&            p_configuration,
                       boost::asio::io_service& p_ioService,
                       const string             p_hostname,
                       const uint32_t           p_port);
@@ -204,7 +203,7 @@ protected:
   virtual void async_read(sptr<vector<char>>  p_inDataData, t_handler p_onReceived) = 0;
 
 protected:
-  utils::Config         m_conf;
+  Config                                   m_conf;
   boost::asio::io_service&                 m_ioService;
   boost::asio::strand                      m_strand;
   boost::asio::basic_stream_socket<Domain> m_socket;
