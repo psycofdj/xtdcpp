@@ -59,7 +59,13 @@ ssh-add deploy_key
 
 # Now that we're all set up, we can push.
 echo "Pushing gh-pages branch..."
-git branch ${TARGET_BRANCH}-clean $(echo "Deploy to GitHub Pages: ${SHA}" | git commit-tree HEAD^{tree})
-git checkout ${TARGET_BRANCH}-clean
-git push -f -q $SSH_REPO ${TARGET_BRANCH}-clean:${TARGET_BRANCH}
+l_tries=3
+while [ ${l_tries} -gt 0 ]; do
+  sleep 5
+  l_tries=$((l_tries - 1))
+  git branch ${TARGET_BRANCH}-clean $(echo "Deploy to GitHub Pages: ${SHA}" | git commit-tree HEAD^{tree}) || continue
+  git checkout ${TARGET_BRANCH}-clean                                                                      || continue
+  git push -f -q $SSH_REPO ${TARGET_BRANCH}-clean:${TARGET_BRANCH}                                         || continue
+  break
+done
 rm -f deploy_key
