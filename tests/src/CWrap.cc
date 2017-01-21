@@ -110,14 +110,12 @@ void
 CWrap::runHooks(const string& p_name, const boost::any& p_args)
 {
   CWrap& l_this = get();
-  std::cout << "running hooks for " << p_name << std::endl;
 
   t_hooks::const_iterator c_begin = l_this.m_hooks.lower_bound(p_name);
   t_hooks::const_iterator c_end   = l_this.m_hooks.upper_bound(p_name);
 
   while (c_begin != c_end)
   {
-    std::cout << "running hook" << std::endl;
     c_begin->second(p_args);
     c_begin++;
   }
@@ -153,8 +151,7 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
 }
 
 
-void
-openlog(const char *ident, int option, int facility)
+void openlog(const char *ident, int option, int facility)
 {
   typedef std::tuple<const char*, int, int> t_args;
   typedef void (*orig_t)(const char*, int, int);
@@ -168,8 +165,7 @@ openlog(const char *ident, int option, int facility)
 }
 
 
-void
-closelog(void)
+void closelog(void)
 {
   typedef void (*orig_t)(void);
 
@@ -180,8 +176,7 @@ closelog(void)
 }
 
 
-void
-vsyslog(int priority, const char *msg_format, va_list ap)
+void vsyslog(int priority, const char *msg_format, va_list ap)
 {
   typedef std::tuple<int, const char*> t_args;
   typedef void (*orig_t)(int, const char *, va_list);
@@ -194,12 +189,35 @@ vsyslog(int priority, const char *msg_format, va_list ap)
   return l_orig(priority, msg_format, ap);
 }
 
-void
-syslog(int priority, const char *msg_format, ...)
+
+void __vsyslog_chk(int pri, int flag, const char *fmt, va_list ap)
+{
+  typedef std::tuple<int, const char*> t_args;
+  typedef void (*orig_t)(int, int, const char *, va_list);
+
+  t_args     l_args   = std::make_tuple(pri, fmt);
+  orig_t     l_orig   = (orig_t)dlsym(RTLD_NEXT, "__vsyslog_chk");
+  boost::any l_params = l_args;
+  xtd::tests::CWrap::runHooks("vsyslog", l_params);
+  return l_orig(pri, flag, fmt, ap);
+}
+
+
+void syslog(int priority, const char *msg_format, ...)
 {
   va_list ap;
 
   va_start (ap, msg_format);
   vsyslog(priority, msg_format, ap);
+  va_end (ap);
+}
+
+
+void __syslog_chk(int pri, int flag, const char *fmt, ...)
+{
+  va_list ap;
+
+  va_start (ap, fmt);
+  __vsyslog_chk(pri, flag, fmt, ap);
   va_end (ap);
 }

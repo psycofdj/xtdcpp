@@ -13,7 +13,7 @@ namespace base {
 
 /**
  ** @brief Base class from which all connections should derive
- ** @param Domain type de connexion @ref utils::af_inet ou utils::af_unix
+ ** @param Domain type de connexion @ref af_inet ou utils::af_unix
  ** @details
  **
  ** Le premier rôle de cet objet est de mutualiser le pilotage de la socket par
