@@ -1,5 +1,6 @@
 #include "base/Connection.hh"
 #include "base/Connection.hxx"
+#include "network_types.hh"
 
 namespace xtd {
 namespace network {
@@ -7,17 +8,17 @@ namespace base {
 
 template <>
 void
-Connection<utils::af_inet>::setSocketOptions(void)
+Connection<af_inet>::setSocketOptions(void)
 {
-    m_socket.set_option(ba::ip::tcp::no_delay(m_conf.getNoDelay()));
-    m_socket.set_option(ba::socket_base::reuse_address(m_conf.getReuseAddr()));
-    m_socket.set_option(ba::socket_base::linger(m_conf.getLinger(),
-                                                m_conf.getLingerTime()));
+  m_socket.set_option(ba::ip::tcp::no_delay(m_conf.getNoDelay()));
+  m_socket.set_option(ba::socket_base::reuse_address(m_conf.getReuseAddr()));
+  m_socket.set_option(ba::socket_base::linger(m_conf.getLinger(),
+                                              m_conf.getLingerTime()));
 }
 
 template <>
 void
-Connection<utils::af_inet>::readEndpoint(void)
+Connection<af_inet>::readEndpoint(void)
 {
   m_remoteAddr = m_socket.remote_endpoint().address().to_string();
   m_remotePort = m_socket.remote_endpoint().port();
@@ -27,11 +28,11 @@ Connection<utils::af_inet>::readEndpoint(void)
 
 template <>
 void
-Connection<utils::af_unix>::setSocketOptions(void)
+Connection<af_unix>::setSocketOptions(void)
 {
-    m_socket.set_option(ba::socket_base::reuse_address(m_conf.getReuseAddr()));
-    m_socket.set_option(ba::socket_base::linger(m_conf.getLinger(),
-                                                m_conf.getLingerTime()));
+  m_socket.set_option(ba::socket_base::reuse_address(m_conf.getReuseAddr()));
+  m_socket.set_option(ba::socket_base::linger(m_conf.getLinger(),
+                                              m_conf.getLingerTime()));
 }
 
 /**
@@ -40,7 +41,7 @@ Connection<utils::af_unix>::setSocketOptions(void)
  */
 template <>
 void
-Connection<utils::af_unix>::readEndpoint(void)
+Connection<af_unix>::readEndpoint(void)
 {
   m_remotePort = 0;
   m_localPort = 0;
@@ -48,13 +49,13 @@ Connection<utils::af_unix>::readEndpoint(void)
 
   //1.
   if (m_remoteAddr.size() > 1 && m_remoteAddr[0]=='\0')
-   m_remoteAddr[0]=' ';
+    m_remoteAddr[0]=' ';
   m_localAddr  = m_socket.local_endpoint().path();
   if (m_localAddr.size() > 1 && m_localAddr[0]=='\0')
-   m_localAddr[0]=' ';
+    m_localAddr[0]=' ';
 }
 
-template class Connection<utils::af_inet>;
-template class Connection<utils::af_unix>;
+template class Connection<af_inet>;
+template class Connection<af_unix>;
 
 }}}

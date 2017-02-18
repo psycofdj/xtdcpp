@@ -18,10 +18,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     git \
     zlib1g-dev \
     wget
+
 RUN apt-get update && apt-get install -y --force-yes python-pip netcat-openbsd
-RUN pip3 install coverxygen
-RUN pip3 install lxml
-RUN pip3 install requests
-RUN pip install coverxygen
-RUN pip install lxml
-RUN pip install requests
+RUN pip3 install coverxygen lxml requests
+RUN pip install coverxygen lxml requests

@@ -19,7 +19,7 @@ struct Address
 };
 
 
-template<typename TReq, typename TRes, typename Domain = network::utils::af_inet>
+template<typename TReq, typename TRes, typename Domain = network::af_inet>
 class Server :
     public network::bip::Server<TReq, TRes, Domain>,
     public servers::app::HttpServer
@@ -87,15 +87,14 @@ private:
 
 protected:
   // bip
-  string                 m_bipHost;
-  uint32_t               m_bipPort;
-  uint32_t               m_bipNbThread;
-  network::utils::Config m_bipConfig;
-  bool                   m_useCompression;
-  stopper_status         m_stopperStatus;
-  TRes                   m_stopperResponse;
-  boost::mutex           m_structgenMutex;
-  string                 m_structgenFilename;
+  string         m_bipHost;
+  uint32_t       m_bipPort;
+  uint32_t       m_bipNbThread;
+  bool           m_useCompression;
+  stopper_status m_stopperStatus;
+  TRes           m_stopperResponse;
+  boost::mutex   m_structgenMutex;
+  string         m_structgenFilename;
 
 private:
   std::shared_ptr<counters::AvgTimedValue> m_perfCounter;

@@ -10,11 +10,11 @@
 # include <boost/iostreams/filter/gzip.hpp>
 # include <boost/iostreams/filter/bzip2.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
+# include <utils/scoped_fn.hh> // libcore
 # include <log.hh> // libcore
 # include "http/Connection.hh"
 # include "http/Request.hh"
 # include "http/Response.hh"
-
 
 namespace atom = boost::interprocess::ipcdetail;
 
@@ -24,8 +24,8 @@ namespace http {
 
 
 template<typename TDomain>
-Client<TDomain>::Client(const utils::Config& p_conf) :
-  TBase(p_conf),
+Client<TDomain>::Client(void) :
+  TBase(),
   m_userSemaphore(0),
   m_status(cnxstatus::available),
   m_response()
@@ -41,7 +41,7 @@ template<typename TDomain>
 typename Client<TDomain>::cnx_sptr_t
 Client<TDomain>::createCnx(string p_hostname, uint32_t p_port)
 {
-  cnx_sptr_t l_result(new Connection<TDomain>(TBase::m_conf, TBase::m_ioService, p_hostname, p_port));
+  cnx_sptr_t l_result(new Connection<TDomain>(*this, TBase::m_ioService, p_hostname, p_port));
   return l_result;
 }
 
@@ -50,7 +50,7 @@ template<typename TDomain>
 status
 Client<TDomain>::send(const Request& p_request)
 {
-  utils::vectorBytes_t l_buff;
+  vector<char> l_buff;
   auto&                l_conn = TBase::m_connection;
 
   atom::atomic_inc32(&(this->m_sendTotal));
@@ -122,7 +122,7 @@ Client<TDomain>::do_receive(void)
   log::debug("network.http.client", "http client do_receive (%s) : entering", TBase::m_connection->info(), HERE);
   auto& l_conn = TBase::m_connection;
 
-  utils::sharedBuf_t l_res = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_res = std::make_shared<vector<char>>();
   l_conn->receive(l_res,
                   std::bind(&Client::onReceived,
                             this,
@@ -136,9 +136,9 @@ Client<TDomain>::do_receive(void)
 template<typename TDomain>
 void
 Client<TDomain>::onReceived(const boost::system::error_code p_error,
-                            utils::sharedBuf_t              p_response)
+                            sptr<vector<char>>              p_response)
 {
-  utils::scoped_method l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
+  xtd::utils::scoped_fn l_semPos(std::bind(&boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));
 
   log::debug("network.http.client", "http client onReceived (%s) : entering", TBase::m_connection->info(), HERE);
 

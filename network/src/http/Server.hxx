@@ -104,7 +104,7 @@ template<typename Domain>
 typename Server<Domain>::cnx_sptr_t
 Server<Domain>::createCnx(string p_hostname, uint32_t p_port)
 {
-  return cnx_sptr_t(new Connection<Domain>(TBase::m_conf, *TBase::m_ioService, p_hostname, p_port));
+  return cnx_sptr_t(new Connection<Domain>(*this, *TBase::m_ioService, p_hostname, p_port));
 }
 
 
@@ -129,7 +129,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveError(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn =
+  sptr<Connection<Domain> > l_conn =
     std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if ((p_error == ba::error::eof) && (false == l_conn->getClosedByServer()))
@@ -143,7 +143,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
+  sptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (!l_conn->getClosedByServer())
   {
@@ -162,12 +162,12 @@ Server<Domain>::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn
 template<typename Domain>
 void
 Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
-                             utils::sharedBuf_t p_inBuffer)
+                             sptr<vector<char>> p_inBuffer)
 {
   boost::iostreams::filtering_istream l_in;
   Request                             l_req;
   Response                            l_res;
-  utils::vectorBytes_t                l_outBuff;
+  vector<char>                        l_outBuff;
   string                              l_value;
   bool                                l_closeByServer = false;
 
@@ -182,13 +182,13 @@ Server<Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (true == l_closeByServer)
   {
-    std::shared_ptr<Connection<Domain> > l_conn =
+    sptr<Connection<Domain> > l_conn =
       std::static_pointer_cast<Connection<Domain> >(p_conn);
     l_conn->setClosedByServer(true);
     l_res.addHeader("Connection", "close");
   } else {
-    float    l_rcvTimeout = TBase::m_conf.getReceiveTimeoutMs();
-    uint32_t l_to = std::floor(l_rcvTimeout / 1000);
+    float    l_rcvTimeout = this->getReceiveTimeoutMs();
+    uint32_t l_to         = std::floor(l_rcvTimeout / 1000);
     l_res.addHeader("Keep-Alive", format::vargs("timeout=%d, max=100", l_to));
   }
 
@@ -207,7 +207,7 @@ template<typename Domain>
 void
 Server<Domain>::afterSend(cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn =
+  sptr<Connection<Domain> > l_conn =
     std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (false == l_conn->getClosedByServer())
@@ -227,7 +227,7 @@ Server<Domain>::processRequest(uint32_t       p_processID,
     log::err("network.http.server", "invalid http request", HERE);
     p_res.setVersion(version::v1_0);
     p_res.setData("request parsing error...");
-    p_res.setStatus(code::internal_error);
+    p_res.setStatus(code::internal_server_error);
     return;
   }
 
@@ -430,7 +430,7 @@ Server<Domain>::h_error_text(const string&     p_msg,
   l_message = format::vargs("http error : %s\n"
                             "dumping request ...\n"
                             "%s\n", p_msg, l_requestText.str());
-  p_response.setStatus(code::internal_error);
+  p_response.setStatus(code::internal_server_error);
   p_response.addHeader("Content-Type", "text/plain");
   p_response.setData(l_message);
   return status::error;
@@ -461,7 +461,7 @@ Server<Domain>::h_error_html(const string&  p_msg,
   if (status::ok != l_tmpl.resolve(l_text))
     return h_error_text(l_tmpl.getError(), p_requestId, p_req, p_res);
 
-  p_res.setStatus(code::internal_error);
+  p_res.setStatus(code::internal_server_error);
   p_res.addHeader("Content-Type", "text/html");
   p_res.setData(l_text);
   return status::error;

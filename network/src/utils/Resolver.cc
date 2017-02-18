@@ -7,10 +7,10 @@ namespace network {
 namespace utils {
 
 
-Resolver<af_inet>::Resolver(boost::asio::io_service& p_ioService,uint32_t p_ttl) :
+Resolver<af_inet>::Resolver(boost::asio::io_service& p_ioService, uint32_t p_ttlSec) :
   m_ioService(p_ioService)
 {
-  m_cacheDns_ptr = std::make_shared<CacheDns>(CACHE_CAPACITY_MAX,p_ttl);
+  m_cacheDns = std::make_shared<xtd::utils::CacheLRU<string,string>>(200, p_ttlSec);
 }
 
 Resolver<af_inet>::~Resolver(void)
@@ -23,8 +23,7 @@ Resolver<af_inet>::resolve(const string&  p_host,
                            const string&  p_port)
 {
   string l_ipAddress;
-
-  bool l_isCached = m_cacheDns_ptr->popElem(p_host, l_ipAddress);
+  bool   l_isCached = m_cacheDns->pop(p_host, l_ipAddress);
 
   if (l_isCached)
   {
@@ -47,7 +46,7 @@ Resolver<af_inet>::resolve(const string&  p_host,
     {
       l_endpoint = *l_resolver.resolve(l_query);
       // insertion in the cache;
-      m_cacheDns_ptr->pushElem(p_host,l_endpoint.address().to_string());
+      m_cacheDns->push(p_host, l_endpoint.address().to_string());
     }
     catch(const boost::system::system_error& ex)
     {

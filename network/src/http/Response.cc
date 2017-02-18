@@ -3,7 +3,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <format.hh> // libcore
-
+#include "http/codes.hh"
 
 
 
@@ -13,7 +13,7 @@ namespace http {
 
 
 Response::Response(void) :
-  m_status(code::bad_request),
+  m_status(valueof(code::bad_request)),
   m_cachable(false)
 {
 }
@@ -25,9 +25,16 @@ Response::setCachable(bool p_status)
 }
 
 void
-Response::setStatus(code p_status)
+Response::setStatus(uint32_t p_status)
 {
   m_status = p_status;
+}
+
+
+void
+Response::setStatus(code p_status)
+{
+  setStatus(valueof(p_status));
 }
 
 void
@@ -43,7 +50,7 @@ Response::appendData(const string& p_data)
   m_data += p_data;
 }
 
-code
+uint32_t
 Response::getStatus(void) const
 {
   return m_status;
@@ -77,15 +84,15 @@ Response::writeHeaders(std::ostream& p_stream) const
 void
 Response::writeInitial(std::ostream& p_stream) const
 {
-  string l_status = str(getStatus());
-  p_stream << format::vargs("HTTP/%s %s\r\n", str(getVersion()) , l_status);
+  const string& l_msg = codes::getMessage(getStatus());
+  p_stream << format::vargs("HTTP/%s %d %s\r\n", str(getVersion()) , getStatus(), l_msg);
 }
 
 
 
 ostream& operator<<(ostream& p_buf, const Response& p_obj)
 {
-  p_buf << "code : "    << str(p_obj.getStatus())  << endl;
+  p_buf << "code : "    << p_obj.getStatus() << codes::getMessage(p_obj.getStatus())  << endl;
   p_buf << "version : " << str(p_obj.getVersion()) << endl;
   p_buf << "headers :"  << endl;
   for (auto& cc_header : p_obj.getHeaders())

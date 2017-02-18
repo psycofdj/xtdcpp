@@ -41,15 +41,15 @@ private:
   static const uint32_t mcs_maxReadLength = 128;
 
 public:
-  explicit Connection(const utils::Config&     p_configuration,
+  explicit Connection(const base::Config&      p_configuration,
                       boost::asio::io_service& p_ioService,
                       const string             p_hostname,
                       const uint32_t           p_port);
   virtual ~Connection(void);
 
 private:
-  void async_write(utils::sharedBuf_t p_outData,    utils::handler_t p_onSent);
-  void async_read(utils::sharedBuf_t  p_inDataData, utils::handler_t p_onReceived);
+  void async_write(sptr<vector<char>> p_outData,    t_handler p_onSent);
+  void async_read(sptr<vector<char>>  p_inDataData, t_handler p_onReceived);
 
 public:
   void clear(void);
@@ -59,27 +59,27 @@ public:
 private:
   void onSent(const boost::system::error_code    p_error,
               size_t                          /* p_bytesTransferred */,
-              utils::handler_t                   p_onSent);
+              t_handler                          p_onSent);
 
   void onHeaderReceived(const boost::system::error_code         p_error,
                         size_t                               /* p_bytesTransferred */,
-                        utils::sharedBuf_t                      p_inData,
-                        std::shared_ptr<boost::asio::streambuf> p_header,
-                        utils::handler_t                        p_onReceived);
+                        sptr<vector<char>>                      p_inData,
+                        sptr<boost::asio::streambuf>            p_header,
+                        t_handler                               p_onReceived);
 
   void onDataReceived(const boost::system::error_code         p_error,
                       size_t                               /* p_bytesTransferred */,
-                      utils::sharedBuf_t                      p_inData,
-                      utils::sharedBuf_t                      p_data,
-                      utils::handler_t                        p_onReceived);
+                      sptr<vector<char>>                      p_inData,
+                      sptr<vector<char>>                      p_data,
+                      t_handler                               p_onReceived);
 
   void receive_data(size_t             p_dataSize,
-                    utils::sharedBuf_t p_inData,
-                    utils::handler_t   p_onReceived);
+                    sptr<vector<char>> p_inData,
+                    t_handler          p_onReceived);
 
   void do_receive_data(size_t             p_dataSize,
-                       utils::sharedBuf_t p_inData,
-                       utils::handler_t   p_onReceived);
+                       sptr<vector<char>> p_inData,
+                       t_handler          p_onReceived);
 
 private:
   bool m_isClosedByServer;

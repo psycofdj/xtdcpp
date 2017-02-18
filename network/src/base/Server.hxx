@@ -13,6 +13,7 @@
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <boost/interprocess/detail/atomic.hpp>
 # include <log.hh> // libcore
+# include <utils/scoped_fn.hh> // libcore
 
 # include "utils/Resolver.hh"
 # include "base/Connection.hh"
@@ -36,7 +37,7 @@ namespace atomic = boost::interprocess::ipcdetail;
 
 template<typename Domain>
 Server<Domain>::Server(void) :
-  m_conf(),
+  Config(),
   m_dequeId(),
   m_ioService(),
   m_work(),
@@ -84,21 +85,19 @@ template<typename Domain>
 void
 Server<Domain>::initialize(const string&        p_host,
                            const uint32_t       p_port,
-                           const utils::Config& p_conf,
                            const size_t         p_nbThread)
 {
-  m_conf     = p_conf;
   m_threadNb = p_nbThread;
 
   m_ioService.reset(new ba::io_service());
   // 1.
   m_work.reset(new ba::io_service::work(*m_ioService));
-  m_resolver.reset(new utils::Resolver<Domain>(*m_ioService, m_conf.getDnsCacheTTL()));
+  m_resolver.reset(new utils::Resolver<Domain>(*m_ioService, getDnsCacheTTL()));
 
   typename Domain::endpoint l_endpoint =
     m_resolver->resolve(p_host, lexical_cast<string>(p_port));
 
-  m_acceptor.reset(new ba::basic_socket_acceptor<Domain>(*m_ioService, l_endpoint, p_conf.getReuseAddr()));
+  m_acceptor.reset(new ba::basic_socket_acceptor<Domain>(*m_ioService, l_endpoint, getReuseAddr()));
 }
 
 template<typename Domain>
@@ -209,7 +208,7 @@ Server<Domain>::onAccepted(const bs::error_code p_error,
   log::debug("network.base.server", "onAccepted (%s) : entering",  p_conn->info(), HERE);
 
   // 1.
-  utils::scoped_method l_acceptOnExit(bind(&Server::accept, this));
+  xtd::utils::scoped_fn l_acceptOnExit(bind(&Server::accept, this));
 
 
   atomic::atomic_inc32(&m_cnxTotal);
@@ -237,7 +236,7 @@ Server<Domain>::do_receive(cnx_sptr_t p_conn)
 {
   log::debug("network.base.server", "do_receive (%s) : entering",  p_conn->info(), HERE);
 
-  utils::sharedBuf_t l_inBuffer = std::make_shared<utils::vectorBytes_t>();
+  sptr<vector<char>> l_inBuffer = std::make_shared<vector<char>>();
 
   p_conn->receive(l_inBuffer,
                   bind(&Server::onReceived,
@@ -290,7 +289,7 @@ template <typename Domain>
 void
 Server<Domain>::onReceived(const bs::error_code p_error,
                            cnx_sptr_t           p_conn,
-                           utils::sharedBuf_t   p_inBuffer)
+                           sptr<vector<char>>   p_inBuffer)
 {
 
   bt::ptime         l_beginTime = bt::microsec_clock::local_time();
@@ -327,7 +326,7 @@ Server<Domain>::onReceived(const bs::error_code p_error,
 
   afterReceive(p_conn, p_inBuffer);
 
-  m_dequeId.push(l_processID);
+  m_dequeId.push_front(l_processID);
 
   atomic::atomic_dec32(&m_nbCurrentThread);
 
@@ -340,8 +339,8 @@ Server<Domain>::onReceived(const bs::error_code p_error,
 
 template<typename Domain>
 void
-Server<Domain>::do_send(cnx_sptr_t                  p_conn,
-                        const utils::vectorBytes_t& p_outData)
+Server<Domain>::do_send(cnx_sptr_t          p_conn,
+                        const vector<char>& p_outData)
 {
   log::debug("network.base.server", "do_send (%s) : entering",  p_conn->info(), HERE);
 

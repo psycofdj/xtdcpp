@@ -214,7 +214,7 @@ operator||(std::function<bool(const Request& p_req)> p_fn1,
  **   @copydoc xtd::network::http::Server::f_header_match <br><br>
  **
  */
-template<typename Domain = utils::af_inet>
+template<typename Domain>
 class Server : public base::Server<Domain>
 {
 private:
@@ -239,7 +239,7 @@ private:
   cnx_sptr_t createCnx(string p_hostname, uint32_t p_port);
   void       afterAccept(cnx_sptr_t p_conn);
   void       afterSend(cnx_sptr_t   p_conn);
-  void       afterReceive(cnx_sptr_t p_conn, utils::sharedBuf_t p_inBuffer);
+  void       afterReceive(cnx_sptr_t p_conn, sptr<vector<char>> p_inBuffer);
   void       processRequest(uint32_t p_processID, std::istream& p_request, Request& p_req, Response& p_res);
   void       onReceiveError(const boost::system::error_code p_error, cnx_sptr_t p_conn);
   void       onReceiveTimeout(const boost::system::error_code p_error, cnx_sptr_t p_conn);

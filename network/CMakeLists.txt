@@ -6,14 +6,14 @@ include_directories(
 )
 
 add_shared_static_library(network
-  src/utils/Config.cc
   src/utils/Utils.cc
   src/utils/Resolver.cc
-  src/utils/CacheDns.cc
+  src/base/Config.cc
   src/base/Connection.cc
   src/base/Server.cc
   src/base/Client.cc
-  src/base/ClientThreadManager.cc
+  src/base/ThreadManager.cc
+  src/bip/ClientPool.cc
   src/bip/Server.cc
   src/bip/Client.cc
   src/bip/Connection.cc
@@ -26,8 +26,10 @@ add_shared_static_library(network
   src/http/Server.cc
   src/http/Client.cc
   src/http/cpptempl.cc
-  src/http/types.cc
-)
+  src/http/http_types.cc
+  src/http/codes.cc
+  src/http/ClientPool.cc
+  )
 
 
 

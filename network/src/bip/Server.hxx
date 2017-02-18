@@ -9,7 +9,7 @@
 # include <boost/iostreams/filter/bzip2.hpp>
 # include <log.hh> // libcore
 # include "bip/Connection.hh"
-# include "bip/tools.hh"
+# include "bip/compress.hh"
 
 namespace xtd {
 namespace network {
@@ -19,13 +19,29 @@ template<typename TReq, typename TRes, typename Domain>
 Server<TReq, TRes, Domain>::Server(void) :
   TBase(),
   m_isPersistent(false),
-  m_receiveEof(0)
+  m_receiveEof(0),
+  m_codec(compress_codec::none)
 {
 }
 
 template<typename TReq, typename TRes, typename Domain>
 Server<TReq, TRes, Domain>::~Server(void)
 {
+}
+
+
+template<typename TReq, typename TRes, typename Domain>
+void
+Server<TReq, TRes, Domain>::compressCodec(compress_codec p_codec)
+{
+  m_codec = p_codec;
+}
+
+template<typename TReq, typename TRes, typename Domain>
+compress_codec
+Server<TReq, TRes, Domain>::compressCodec(void) const
+{
+  return m_codec;
 }
 
 template<typename TReq, typename TRes, typename Domain>
@@ -48,12 +64,11 @@ Server<TReq, TRes, Domain>::stop(void)
 
 template<typename TReq, typename TRes, typename Domain>
 void
-Server<TReq, TRes, Domain>::initialize(const string&        p_host,
-                                       const uint32_t       p_port,
-                                       const utils::Config& p_conf,
-                                       const size_t         p_nbThread)
+Server<TReq, TRes, Domain>::initialize(const string&  p_host,
+                                       const uint32_t p_port,
+                                       const size_t   p_nbThread)
 {
-  TBase::initialize(p_host, p_port, p_conf, p_nbThread);
+  TBase::initialize(p_host, p_port, p_nbThread);
 }
 
 template<typename TReq, typename TRes, typename Domain>
@@ -71,7 +86,7 @@ template<typename TReq, typename TRes, typename Domain>
 typename Server<TReq, TRes, Domain>::cnx_sptr_t
 Server<TReq, TRes, Domain>::createCnx(string p_hostname, uint32_t p_port)
 {
-  return cnx_sptr_t(new Connection<Domain>(TBase::m_conf, *TBase::m_ioService, p_hostname, p_port));
+  return cnx_sptr_t(new Connection<Domain>(*this, *this->m_ioService, p_hostname, p_port));
 }
 
 
@@ -79,7 +94,7 @@ template<typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::afterAccept(cnx_sptr_t p_conn)
 {
-  TBase::do_receive(p_conn);
+  this->do_receive(p_conn);
 }
 
 
@@ -88,7 +103,7 @@ void
 Server<TReq, TRes, Domain>::afterSend(cnx_sptr_t p_conn)
 {
   if (true == m_isPersistent)
-    TBase::do_receive(p_conn);
+    this->do_receive(p_conn);
 }
 
 
@@ -96,7 +111,7 @@ template <typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::onReceiveError(const boost::system::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn =
+  sptr<Connection<Domain> > l_conn =
     std::static_pointer_cast<Connection<Domain> >(p_conn);
   if (p_error == boost::asio::error::eof){
     boost::interprocess::ipcdetail::atomic_inc32(&m_receiveEof);
@@ -112,7 +127,7 @@ template <typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::onReceiveTimeout(const boost::system::error_code p_error, cnx_sptr_t p_conn)
 {
-  std::shared_ptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
+  sptr<Connection<Domain> > l_conn = std::static_pointer_cast<Connection<Domain> >(p_conn);
 
   if (m_isPersistent)
     log::info("network.base.client", "onReceivedTimeout (%s) : client did not recycle cnx before server timeout", p_conn->info(), HERE);
@@ -131,16 +146,16 @@ Server<TReq, TRes, Domain>::onReceiveTimeout(const boost::system::error_code p_e
 template<typename TReq, typename TRes, typename Domain>
 void
 Server<TReq, TRes, Domain>::afterReceive(cnx_sptr_t         p_conn,
-                                         utils::sharedBuf_t p_inBuffer)
+                                         sptr<vector<char>> p_inBuffer)
 {
-  utils::vectorBytes_t l_resBuff;
-  TReq                 l_req;
-  TRes                 l_res;
-  bool                 l_reqDebug = false;
-  bool                 l_resDebug = false;
+  vector<char> l_resBuff;
+  TReq         l_req;
+  TRes         l_res;
+  bool         l_reqDebug = false;
+  bool         l_resDebug = false;
 
 
-  if (status::ok != loadCompress<serializer::mode::bin>(TBase::m_conf, *p_inBuffer, l_req, l_reqDebug))
+  if (status::ok != load<serializer::mode::bin>(m_codec, *p_inBuffer, l_req, l_reqDebug))
   {
     log::crit("network.base.client", "Error while unserializing request (%s)", p_conn->info(), HERE);
     return;
@@ -148,7 +163,7 @@ Server<TReq, TRes, Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   processObjectRequest(p_conn->getProcessID(), l_req, l_reqDebug, l_res, l_resDebug);
 
-  if (status::ok != saveCompress<serializer::mode::bin>(TBase::m_conf, l_res, l_resDebug, l_resBuff))
+  if (status::ok != save<serializer::mode::bin>(m_codec, l_res, l_resDebug, l_resBuff))
   {
     log::crit("network.base.client", "Error while serializing request (%s)", p_conn->info(), HERE);
     return;
@@ -156,7 +171,7 @@ Server<TReq, TRes, Domain>::afterReceive(cnx_sptr_t         p_conn,
 
   if (true == shouldReply(p_conn->getProcessID(), l_req, l_reqDebug, l_res, l_resDebug))
   {
-    TBase::do_send(p_conn, l_resBuff);
+    this->do_send(p_conn, l_resBuff);
   }
 }
 

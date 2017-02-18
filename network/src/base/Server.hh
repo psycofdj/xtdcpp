@@ -1,9 +1,12 @@
 #ifndef NETWORK_BASE_SERVER_HH_
 # define NETWORK_BASE_SERVER_HH_
 
-# include "utils/Config.hh"
-# include "utils/CommTypeDefs.hh"
-# include "utils/Utils.hh"
+# include <boost/thread.hpp>
+# include <boost/asio.hpp>
+# include <utils/safe_deque.hh> // libcore
+# include "base/Config.hh"
+
+
 
 namespace xtd {
 namespace network {
@@ -26,10 +29,10 @@ template<typename D> class Connection;
  **    ce qui garantie la duree de vie de l'objet
  */
 template <typename Domain>
-class Server
+class Server : public Config
 {
 protected:
-  typedef typename std::shared_ptr<Connection<Domain> > cnx_sptr_t;
+  typedef sptr<Connection<Domain> > cnx_sptr_t;
 
 public:
   Server(void);
@@ -42,13 +45,11 @@ public:
    ** @brief Initialize server with params
    ** @param p_host : string hostname
    ** @param p_port : uint32_t port
-   ** @param p_configuration : low level network configuration params
    ** @param p_nbThread : number of threads
    */
-  virtual void initialize(const string&        p_host,
-                          const uint32_t       p_port,
-                          const utils::Config& p_configuration,
-                          const size_t         p_nbThread);
+  virtual void initialize(const string&  p_host,
+                          const uint32_t p_port,
+                          const size_t   p_nbThread);
 
   /**
    ** @brief Equivalent a start + join
@@ -84,7 +85,7 @@ protected:
   virtual cnx_sptr_t createCnx(string p_hostname, uint32_t p_port)                  = 0;
   virtual void       afterAccept(cnx_sptr_t p_conn)                                 = 0;
   virtual void       afterSend(cnx_sptr_t   p_conn)                                 = 0;
-  virtual void       afterReceive(cnx_sptr_t p_conn, utils::sharedBuf_t p_inBuffer) = 0;
+  virtual void       afterReceive(cnx_sptr_t p_conn, sptr<vector<char>> p_inBuffer) = 0;
 
   /**
    ** @details
@@ -108,14 +109,14 @@ protected:
 
 protected:
   void do_receive(cnx_sptr_t p_conn);
-  void do_send(cnx_sptr_t p_conn, const utils::vectorBytes_t& p_outData);
+  void do_send(cnx_sptr_t p_conn, const vector<char>& p_outData);
 
 private:
   void accept(void);
   void onAccepted(const boost::system::error_code p_error, cnx_sptr_t p_conn);
   void onReceived(const boost::system::error_code p_error,
                   cnx_sptr_t                      p_conn,
-                  utils::sharedBuf_t              p_request);
+                  sptr<vector<char>>              p_request);
   void onSent(const boost::system::error_code p_error,
               cnx_sptr_t                      p_conn);
 
@@ -135,16 +136,16 @@ protected:
   inline uint32_t& getCnxRejected(void);
 
 protected:
-  utils::Config                                                m_conf;
-  utils::deque_id<uint32_t>                                    m_dequeId;
-  utils::ioServicePtr_t                                        m_ioService;
-  utils::workPtr_t                                             m_work;
-  std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > m_acceptor;
+  xtd::utils::safe_deque<uint32_t>                 m_dequeId;
+  sptr<boost::asio::io_service>                    m_ioService;
+  sptr<boost::asio::io_service::work>              m_work;
+  sptr<boost::asio::basic_socket_acceptor<Domain>> m_acceptor;
 
 private:
-  std::shared_ptr<utils::Resolver<Domain> > m_resolver;
-  size_t                                    m_threadNb;
-  boost::thread_group                       m_threadGroup;
+  sptr<utils::Resolver<Domain> > m_resolver;
+  size_t                         m_threadNb;
+  boost::thread_group            m_threadGroup;
+
   // counters
   uint32_t m_nbCurrentThread;
   uint32_t m_cnxTotal;

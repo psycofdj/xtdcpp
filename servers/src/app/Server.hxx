@@ -37,9 +37,9 @@ using namespace network;
 template <typename T>
 const char Address<T>::mcs_value[] = "";
 template <>
-const char Address<network::utils::af_inet>::mcs_value[] = "0.0.0.0";
+const char Address<network::af_inet>::mcs_value[] = "0.0.0.0";
 template <>
-const char Address<network::utils::af_unix>::mcs_value[] = "@localhost";
+const char Address<network::af_unix>::mcs_value[] = "@localhost";
 
 template<typename TReq, typename TRes, typename Domain>
 const char Server<TReq, TRes, Domain>::mcs_defaultListenInterface[] = "0.0.0.0";
@@ -56,7 +56,6 @@ Server<TReq, TRes, Domain>::Server(void) :
   m_bipHost(Address<Domain>::mcs_value),
   m_bipPort(0),
   m_bipNbThread(0),
-  m_bipConfig(),
   m_useCompression(false),
   m_stopperStatus(stopper_status::disabled),
   m_stopperResponse(),
@@ -77,7 +76,7 @@ Server<TReq, TRes, Domain>::Server(void) :
             "use structgen dump mode",
             bindString(m_structgenFilename));
 
-  m_bipConfig.setReuseAddr(true);
+  bip_net::setReuseAddr(true);
 }
 
 
@@ -123,7 +122,8 @@ Server<TReq, TRes, Domain>::parseConfig(void)
   // use compression
   l_key = format::vargs("%s:useCompression", l_common);
   readConf(l_key,  m_useCompression, false);
-  m_bipConfig.setCompress(m_useCompression);
+  if (m_useCompression)
+    bip_net::compressCodec(network::compress_codec::gzip);
 
 
 
@@ -336,8 +336,8 @@ Server<TReq, TRes, Domain>::process(void)
   try
   {
     // 1.
-    http_net::initialize(m_httpHost, m_httpPort, m_httpConfig, mcs_httpNbThread);
-    bip_net::initialize(m_bipHost, m_bipPort, m_bipConfig, m_bipNbThread);
+    http_net::initialize(m_httpHost, m_httpPort, mcs_httpNbThread);
+    bip_net::initialize(m_bipHost, m_bipPort, m_bipNbThread);
     // 2.
     http_net::start();
     bip_net::start();

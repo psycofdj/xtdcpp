@@ -1,7 +1,7 @@
 #ifndef NETWORK_HTTP_MESSAGE_HH_
 # define NETWORK_HTTP_MESSAGE_HH_
-# include "types.hh" //libhttp
 # include <types.hh> //libcore
+# include "http/http_types.hh"
 
 namespace xtd {
 namespace network {

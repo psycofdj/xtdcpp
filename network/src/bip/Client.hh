@@ -1,6 +1,5 @@
 #ifndef NETWORK_BIP_CLIENT_HH_
 # define NETWORK_BIP_CLIENT_HH_
-
 # include "base/Client.hh"
 
 namespace xtd {
@@ -30,7 +29,7 @@ namespace bip {
  ** - même instance : non
  ** - instances différentes : oui
  */
-template<class TRequest, class TResponse, typename TDomain = utils::af_inet>
+template<class TRequest, class TResponse, typename TDomain>
 class Client : public base::Client<TDomain>
 {
 public:
@@ -43,7 +42,8 @@ private:
   typedef typename TBase::cnxstatus  cnxstatus;
 
 public:
-  Client(const utils::Config& p_conf);
+  Client(void);
+  Client(const Client&) = delete;
   virtual ~Client(void);
 
 public:
@@ -70,6 +70,11 @@ public:
    */
   status receive(TResponse& p_response,  bool& p_debug);
 
+  void compressCodec(compress_codec p_codec);
+
+  compress_codec compressCodec(void) const;
+
+
   virtual bool shouldReceive(const TRequest&  p_request,
                              const bool       p_requestDebug);
 
@@ -78,13 +83,14 @@ private:
   void       do_receive(void);
   void       onSent(const boost::system::error_code p_error, bool p_shouldReceive);
   void       onReceived(const boost::system::error_code p_error,
-                        utils::sharedBuf_t              p_response);
+                        sptr<vector<char>>              p_response);
 private:
   /** Semaphore uitilise pour bloquer l'utilisateur soit dans le send (noget) soit dans le receive */
   boost::interprocess::interprocess_semaphore m_userSemaphore;
   cnxstatus                                   m_status;
-  utils::vectorBytes_t                        m_response;
+  vector<char>                                m_response;
   boost::posix_time::ptime                    m_lastSend;
+  compress_codec                              m_codec;
 };
 
 }}} //end namespaces

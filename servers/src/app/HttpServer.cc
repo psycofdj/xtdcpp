@@ -53,7 +53,6 @@ HttpServer::HttpServer(bool p_isDebug) :
   m_thresholdMs(mcs_defaultThresholdMs),
   m_httpHost(mcs_defaultListenInterface),
   m_httpPort(0),
-  m_httpConfig(),
   m_httpConfigPath("/usr/lib/xtd/www"),
   m_adminDir("/var/run/xtd/snmp/admin"),
   m_actions()
@@ -63,7 +62,7 @@ HttpServer::HttpServer(bool p_isDebug) :
   addOption('n', "nb-thread",   argument::mandatory, requirement::optional,  "allocates <nbr> threads for incomming requests", bindNumber(m_nbThread));
   addOption('t', "timeout",     argument::mandatory, requirement::optional,  "server timeout in ms",                           bindNumber(m_timeoutMs));
 
-  m_httpConfig.setReuseAddr(true);
+  http_net::setReuseAddr(true);
   addSignalHandler(SIGUSR2, std::bind(&HttpServer::handleUSR2, this));
   addSignalHandler(SIGTERM, std::bind(&HttpServer::handleTERM, this));
 }
@@ -173,13 +172,13 @@ HttpServer::parseConfig(void)
 
   // http receive timeout
   l_key = format::vargs("%s:server:http:rcv_timeout_ms", l_common);
-  readConf(l_key, l_timeoutMs, m_httpConfig.getReceiveTimeoutMs());
-  m_httpConfig.setReceiveTimeoutMs(l_timeoutMs);
+  readConf(l_key, l_timeoutMs, http_net::getReceiveTimeoutMs());
+  http_net::setReceiveTimeoutMs(l_timeoutMs);
 
   // http send timeout ms
   l_key = format::vargs("%s:server:http:send_timeout_ms", l_common);
-  readConf(l_key, l_timeoutMs, m_httpConfig.getSendTimeoutMs());
-  m_httpConfig.setSendTimeoutMs(l_timeoutMs);
+  readConf(l_key, l_timeoutMs, http_net::getSendTimeoutMs());
+  http_net::setSendTimeoutMs(l_timeoutMs);
 }
 
 void
@@ -280,7 +279,7 @@ HttpServer::process(void)
   try
   {
     // 1.
-    http_net::initialize(m_httpHost, m_httpPort, m_httpConfig, m_nbThread);
+    http_net::initialize(m_httpHost, m_httpPort, m_nbThread);
     // 2.
     start();
     // 3.

@@ -4,7 +4,7 @@
 
 # include <boost/asio.hpp>
 # include <log.hh> // libcore
-# include "utils/Config.hh"
+# include "base/Config.hh"
 
 
 namespace xtd {
@@ -17,7 +17,7 @@ namespace ba = boost::asio;
 namespace bs = boost::system;
 
 template <typename Domain>
-Connection<Domain>::Connection(const utils::Config& p_configuration,
+Connection<Domain>::Connection(const base::Config&  p_configuration,
                                ba::io_service&      p_ioService,
                                const string         p_hostname,
                                const uint32_t       p_port) :
@@ -40,7 +40,7 @@ Connection<Domain>::Connection(const utils::Config& p_configuration,
  */
 template <typename Domain>
 uint8_t
-Connection<Domain>::computeDataCrc(const utils::vectorBytes_t& p_data)
+Connection<Domain>::computeDataCrc(const vector<char>& p_data)
 {
 
   if (p_data.size() == 0)
@@ -60,11 +60,11 @@ Connection<Domain>::computeDataCrc(const utils::vectorBytes_t& p_data)
 
 template <typename Domain>
 void
-Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p_onSent)
+Connection<Domain>::async_write(sptr<vector<char>> p_outData, t_handler p_onSent)
 {
-  uint8_t                                l_crc8       = computeDataCrc(*p_outData);
-  std::shared_ptr<utils::vectorUint32_t> l_headerBuff = std::make_shared<utils::vectorUint32_t>();
-  utils::sharedBuf_t                     l_outBuff    = std::make_shared<utils::vectorBytes_t>();
+  uint8_t                l_crc8       = computeDataCrc(*p_outData);
+  sptr<vector<uint32_t>> l_headerBuff = std::make_shared<vector<uint32_t>>();
+  sptr<vector<char>>     l_outBuff    = std::make_shared<vector<char>>();
 
 
   //build buffer to send
@@ -108,11 +108,11 @@ Connection<Domain>::async_write(utils::sharedBuf_t p_outData, utils::handler_t p
 
 template <typename Domain>
 void
-Connection<Domain>::onSent(bs::error_code                           p_error,
-                           size_t                          /*       p_bytesTransferred */,
-                           std::shared_ptr<utils::vectorUint32_t> p_outHeader,
-                           utils::sharedBuf_t                       p_outData,
-                           utils::handler_t                         p_onSent)
+Connection<Domain>::onSent(bs::error_code                     p_error,
+                           size_t                          /* p_bytesTransferred */,
+                           sptr<vector<uint32_t>>             p_outHeader,
+                           sptr<vector<char>>                 p_outData,
+                           t_handler                          p_onSent)
 {
   p_onSent(p_error);
   p_outData.reset();
@@ -122,7 +122,7 @@ Connection<Domain>::onSent(bs::error_code                           p_error,
 
 template <typename Domain>
 void
-Connection<Domain>::async_read(utils::sharedBuf_t p_inData, utils::handler_t p_onReceived)
+Connection<Domain>::async_read(sptr<vector<char>> p_inData, t_handler p_onReceived)
 {
   log::debug("network.bip.cnx", "bip cnx async_read (%s) : enterring (%d)", TBase::info(), m_counter, HERE);
 
@@ -143,8 +143,8 @@ template <typename Domain>
 void
 Connection<Domain>::onHeaderReceived(const bs::error_code& p_error,
                                      size_t             /* p_bytesTransferred */,
-                                     utils::sharedBuf_t    p_inData,
-                                     utils::handler_t      p_onReceived)
+                                     sptr<vector<char>>    p_inData,
+                                     t_handler             p_onReceived)
 {
   if (p_error)
   {
@@ -172,8 +172,8 @@ Connection<Domain>::onHeaderReceived(const bs::error_code& p_error,
 
 template <typename Domain>
 void
-Connection<Domain>::receive_data(utils::sharedBuf_t p_inData,
-                                 utils::handler_t   p_onReceived)
+Connection<Domain>::receive_data(sptr<vector<char>> p_inData,
+                                 t_handler          p_onReceived)
 {
   TBase::m_strand.post(std::bind(&Connection::do_receive_data,
                                  this,
@@ -184,8 +184,8 @@ Connection<Domain>::receive_data(utils::sharedBuf_t p_inData,
 
 template <typename Domain>
 void
-Connection<Domain>::do_receive_data(utils::sharedBuf_t p_inData,
-                                    utils::handler_t   p_onReceived)
+Connection<Domain>::do_receive_data(sptr<vector<char>> p_inData,
+                                    t_handler          p_onReceived)
 {
   ba::async_read(TBase::m_socket,
                  ba::buffer(m_inboundData),
@@ -203,8 +203,8 @@ template <typename Domain>
 void
 Connection<Domain>::onDataReceived(const bs::error_code&    p_error,
                                    size_t                /* p_bytesTransferred */,
-                                   utils::sharedBuf_t       p_inData,
-                                   utils::handler_t         p_onReceived)
+                                   sptr<vector<char>>       p_inData,
+                                   t_handler                p_onReceived)
 {
   if (p_error)
   {

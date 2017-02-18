@@ -30,29 +30,9 @@ class StatusHelper:
     self.m_parser.add_argument("--build-id", help="Travis build-id",                         dest="m_buildID",   required=True)
     self.m_parser.add_argument("--branch",   help="Target branch",                           dest="m_branch",    required=True)
     self.m_parser.add_argument("--commit",   help="Current git commit hash",                 dest="m_commit",    required=True)
-    self.m_parser.add_argument("--pull-id",  help="Current pull request, false if not a PR", dest="m_prid",      required=True)
     self.m_parser.add_argument("--dry-run",  help="Do not push statuses to github",          dest="m_dryrun",    action="store_true")
     self.m_parser.parse_args(sys.argv[1:], self)
     self.m_comment = ""
-
-  def get_pr_commit(self):
-    if self.m_dryrun:
-      return {}
-
-    l_params  = { "access_token" : self.m_token }
-    l_headers = { "Content-Type" : "application/json" }
-    l_url     = "https://api.github.com/repos/psycofdj/xtdcpp/pulls/%(prid)s" % {
-      "prid"   : self.m_prid
-    }
-
-    try:
-      l_req = requests.get(l_url, params=l_params, headers=l_headers)
-      l_data = l_req.json()
-      return l_data["head"]["sha"]
-    except BaseException as l_error:
-      print("error while sending comment to github : %s" % str(l_error))
-      sys.exit(1)
-
 
   def getTargetUrl(self):
     l_url = "https://travis-ci.org/psycofdj/xtdcpp/builds/%(buildID)s"
@@ -80,26 +60,6 @@ class StatusHelper:
       "url"   : l_url,
       "link"  : p_link
     }
-
-  def comment_pr(self, p_body):
-    if self.m_dryrun:
-      return {}
-
-    l_params  = { "access_token" : self.m_token }
-    l_headers = { "Content-Type" : "application/json" }
-    l_url     = "https://api.github.com/repos/psycofdj/xtdcpp/issues/%(prid)s/comments" % {
-      "prid"   : self.m_prid
-    }
-    l_data = {
-      "body" : p_body
-    }
-
-    try:
-      l_req = requests.post(l_url, params=l_params, headers=l_headers, data=json.dumps(l_data))
-    except BaseException as l_error:
-      print("error while sending comment to github : %s" % str(l_error))
-      sys.exit(1)
-    return l_req.json()
 
   def comment_commit(self, p_body):
     if self.m_dryrun:
@@ -330,13 +290,6 @@ class StatusHelper:
     print("")
 
   def run(self):
-    self.m_pr_commit       = "false"
-    self.m_doCommentCommit = True
-    if self.m_prid != "false" :
-      l_commit = self.get_pr_commit()
-      self.m_doCommentCommit = (l_commit != self.m_commit)
-      self.m_commit = l_commit
-
     self.send_status("pending", "kpi/unittests",    "collecting unittests")
     self.send_status("pending", "kpi/coverage",     "collecting coverage")
     self.send_status("pending", "kpi/cppcheck",     "collecting cppcheck")
@@ -351,21 +304,7 @@ class StatusHelper:
     self.collect_doc()
     self.collect_doc_coverage()
 
-    if self.m_prid != "false" :
-      self.comment_pr("""
-Build report #%(buildid)s for PR %(prid)s.
-
-%(results)s
-
-[Reports](https://psycofdj.github.io/xtdcpp/pr/%(prid)s/)
-      """ % {
-        "prid"    : self.m_prid,
-        "buildid" : self.m_buildID,
-        "results" : self.m_comment
-      })
-
-    if self.m_doCommentCommit:
-      self.comment_commit("""
+    self.comment_commit("""
 Build report #%(buildid)s for sha %(commit)s:
 
 %(results)s
