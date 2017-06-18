@@ -36,6 +36,7 @@ add_shared_static_library(network
 add_doc(network WERROR)
 add_doc_coverage(network)
 add_cloc(network)
+add_codedup(network)
 add_cppcheck(network)
 add_check(network
   ARGS     -p -o compiler

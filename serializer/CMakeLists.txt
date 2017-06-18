@@ -14,6 +14,7 @@ add_doc(serializer
   WERROR)
 add_doc_coverage(serializer)
 add_cloc(serializer)
+add_codedup(serializer)
 add_cppcheck(serializer)
 add_check(serializer
   ARGS     -p -o compiler

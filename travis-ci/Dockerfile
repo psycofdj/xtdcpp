@@ -22,3 +22,5 @@ RUN apt-get update && apt-get install -y --force-yes \
 RUN apt-get update && apt-get install -y --force-yes python-pip netcat-openbsd
 RUN pip3 install coverxygen lxml requests
 RUN pip install coverxygen lxml requests
+RUN wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip
+RUN unzip -d /usr/share pmd-bin-5.7.0.zip

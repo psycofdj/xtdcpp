@@ -37,6 +37,7 @@ add_doc(core
 add_doc_coverage(core)
 add_cloc(core)
 add_cppcheck(core)
+add_codedup(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
   LINKS    cwrap tests_s core_s)

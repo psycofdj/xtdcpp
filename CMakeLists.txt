@@ -61,7 +61,9 @@ xtdmake_init(
   Cppunit         ${REQUIRED}
   CovRule         ${REQUIRED}
   MemcheckRule    ${REQUIRED}
+  CodeDup         ${REQUIRED}
   Reports         ${REQUIRED})
+xtdmake_init_project(xtdcpp ${PROJECT_BINARY_DIR})
 
 # --------------------
 # compiler options

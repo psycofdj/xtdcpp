@@ -31,6 +31,7 @@ add_doc(servers WERROR)
 add_doc_coverage(servers)
 add_cloc(servers)
 add_cppcheck(servers)
+add_codedup(servers)
 add_check(servers
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${servers_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
