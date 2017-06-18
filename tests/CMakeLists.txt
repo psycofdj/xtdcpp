@@ -19,6 +19,7 @@ add_doc(tests)
 add_doc_coverage(tests)
 add_cloc(tests)
 add_cppcheck(tests)
+add_codedup(tests)
 add_check(tests
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}

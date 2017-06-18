@@ -25,6 +25,7 @@ add_doc(counters)
 add_doc_coverage(counters)
 add_cloc(counters)
 add_cppcheck(counters)
+add_codedup(counters)
 add_check(counters
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${counters_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
