@@ -4,8 +4,8 @@
 # include "error.hh" // libcore
 
 namespace xtd {
-namespace config { namespace impl { class section;   }}
-namespace config { namespace impl { class property;  }}
+namespace config { namespace impl { struct section;   }}
+namespace config { namespace impl { struct property;  }}
 
 
 

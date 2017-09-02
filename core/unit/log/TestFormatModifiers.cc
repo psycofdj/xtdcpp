@@ -104,7 +104,7 @@ TestFormatModifiers::styleMatch(void)
   {
     // format with full field spec
     ColoredFormatter l_f1;
-    StyleMatch       l_styler(boost::regex(".*tag.*"), style(color::red));
+    StyleMatch       l_styler(std::regex(".*tag.*"), style(color::red));
 
     l_f1.setLayout("fulllog", "%(message)");
     l_f1.setStyle("message",  style());

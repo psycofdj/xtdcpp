@@ -52,7 +52,7 @@ namespace impl {
 
 
 template<typename Iterator>
-struct Grammar : boost::spirit::qi::grammar<boost::spirit::line_pos_iterator<Iterator>, std::vector<section>(), types::skipper>
+class Grammar : public boost::spirit::qi::grammar<boost::spirit::line_pos_iterator<Iterator>, std::vector<section>(), types::skipper>
 {
 public:
   typedef boost::spirit::line_pos_iterator<Iterator> wrapped_iterator;

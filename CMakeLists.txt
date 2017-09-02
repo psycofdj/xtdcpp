@@ -49,6 +49,7 @@ list(APPEND CheckRule_DEFAULT_ARGS     "-e")
 list(APPEND CheckRule_DEFAULT_ARGS     "7")
 list(APPEND CheckRule_DEFAULT_INCLUDES "${Boost_INCLUDE_DIRS}")
 list(APPEND CheckRule_DEFAULT_LINKS    "${Boost_LIBRARIES}")
+set(CheckRule_DEFAULT_JOBS             "4")
 
 xtdmake_init(
   StaticShared    REQUIRED
@@ -69,24 +70,34 @@ xtdmake_init_project(xtdcpp ${PROJECT_BINARY_DIR})
 # compiler options
 # --------------------
 
-xtdmake_find_program(Gxx
-  NAMES g++
-  DOC "Gnu C++ compiler"
-  URL "https://gcc.gnu.org"
-  VERSION_OPT "-dumpversion"
-  VERSION_POS "0"
-  REQUIRED 1)
-
-if (Gxx_VERSION VERSION_LESS 4.7)
-  message(FATAL_ERROR "xtdcpp requires g++ version >= 4.7 for -std=c++11 option")
-endif()
-
 enable_tracking()
 
-set(CMAKE_CXX_COMPILER         "g++")
-set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=gnu++11 -W -Wall -Wextra -Werror")
+if (USE_CLANG)
+  xtdmake_find_program(Clang
+    NAMES        clang clang-4.0
+    DOC         "Clang C++ compiler"
+    URL         "http://www.llvm.org"
+    VERSION_OPT "--version | head -n1 | cut -d' ' -f3 | cut -d- -f1"
+    VERSION_POS 0
+    REQUIRED    1)
+  set(CMAKE_CXX_COMPILER         "${Clang_EXECUTABLE}")
+else()
+  xtdmake_find_program(Gxx
+    NAMES g++
+    DOC "Gnu C++ compiler"
+    URL "https://gcc.gnu.org"
+    VERSION_OPT "-dumpversion"
+    VERSION_POS "0"
+    REQUIRED 1)
+  if (Gxx_VERSION VERSION_LESS 4.7)
+    message(FATAL_ERROR "xtdcpp requires g++ version >= 4.7 for -std=c++11 option")
+  endif()
+  set(CMAKE_CXX_COMPILER "${Gxx_EXECUTABLE}")
+endif()
+
+set(CMAKE_CXX_FLAGS            "${CMAKE_CXX_FLAGS} -std=c++11 -W -Wall -Wextra -Werror")
 set(CMAKE_CXX_FLAGS_DEBUG      "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_FLAGS_RELEASE    "${CMAKE_CXX_FLAGS_RELEASE} -Werror")
+set(CMAKE_CXX_FLAGS_RELEASE    "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 # ------------
 # local config

@@ -44,7 +44,10 @@ TestLogger::get(void)
   {
     // OK empty name is self
     auto& l_log = l_root.get("");
-    CPPUNIT_ASSERT_NO_THROW(dynamic_cast<RootLogger&>(l_log));
+    CPPUNIT_ASSERT_NO_THROW({
+        RootLogger& l_cast = dynamic_cast<RootLogger&>(l_log);
+        CPPUNIT_ASSERT(&l_log == &l_cast);
+      });
   }
 
   {

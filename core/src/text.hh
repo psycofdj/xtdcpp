@@ -2,6 +2,7 @@
 # define COMMON_TEXT_HH_
 # include <boost/tuple/tuple.hpp>
 # include "types.hh"
+# include <regex>
 
 namespace xtd {
 
@@ -9,6 +10,16 @@ namespace xtd {
  ** @brief Various text manipulation routines
  */
 namespace text {
+
+
+struct algorithm
+{
+  struct regex
+  {
+    static vector<string> split_copy(const string& p_input, const std::regex& p_re);
+    static void           split(vector<string>& p_output, const string& p_input, const std::regex& p_re);
+  };
+};
 
 /**
  ** @brief Helps with XML manipulation

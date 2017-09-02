@@ -41,6 +41,6 @@ add_cppcheck(network)
 add_check(network
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${network_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS      network_s tests_s core_s ${Boost_LIBRARIES})
+  LINKS      network_s tests_s core_s ${Boost_LIBRARIES} stdc++ m)
 add_cov(network)
 add_memcheck(network)

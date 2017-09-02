@@ -13,7 +13,7 @@ namespace log {
  ** structure member or field name
  */
 template<typename T>
-struct Fields
+class Fields
 {
 private:
   typedef Fields<T> this_type;

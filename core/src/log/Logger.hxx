@@ -69,7 +69,7 @@ Logger::warning(const string& p_format, Args... p_args) const
 
 template<typename ... Args>
 void
-Logger::info(const string& p_format, Args... p_args...) const
+Logger::info(const string& p_format, Args... p_args) const
 {
   log(level::info, p_format, p_args...);
 }

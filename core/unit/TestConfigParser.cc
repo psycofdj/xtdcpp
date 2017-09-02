@@ -36,7 +36,7 @@ TestConfParser::Constructor(void)
 {
   {
     // OK empty construct
-    CPPUNIT_ASSERT_NO_THROW(xtd::config::Parser l_obj());
+    CPPUNIT_ASSERT_NO_THROW(xtd::config::Parser l_obj);
   }
 
   {

@@ -250,7 +250,7 @@ public:
    ** @param p_args arguments to apply to given p_format
    */
   template<typename ... Args>
-  void info(const string& p_format, Args... p_args...) const;
+  void info(const string& p_format, Args... p_args) const;
 
   /**
    ** @brief Trigger @ref level::debug log

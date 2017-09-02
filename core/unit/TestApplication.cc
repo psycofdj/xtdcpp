@@ -567,7 +567,7 @@ TestApplication::bindRegex(void)
     // KO invalid regex
     Application       l_app(true);
     std::string       l_regex;
-    const char* const l_args[] = { "binary", "--regex", "^/*[sS]*?*/|^//" };
+    const char* const l_args[] = { "binary", "--regex", "[a-z]{1" };
 
     CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "regex", Application::argument::mandatory, Application::requirement::mandatory, "", l_app.bindRegex(l_regex)));
     CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);
