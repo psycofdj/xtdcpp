@@ -1,11 +1,26 @@
 #ifndef XTD_CORE_LOG_CONFLOADER_HH_
 # define XTD_CORE_LOG_CONFLOADER_HH_
-# include "types.hh"
-# include "mixins/singleton.hh"
-# include <iostream>
-# include <boost/preprocessor/cat.hpp>
-# include "log/fwd.hh"
+# include <boost/preprocessor.hpp>
 # include "log/helpers.hh"
+# include "log/MemoryAppender.hh"   // IWYU pragma: keep
+# include "log/SyslogAppender.hh"   // IWYU pragma: keep
+# include "log/StreamAppender.hh"   // IWYU pragma: keep
+# include "log/ColoredFormatter.hh" // IWYU pragma: keep
+# include "mixins/singleton.hh"
+# include "types.hh"
+
+class TestConfLoader;
+
+namespace xtd {
+namespace log {
+
+class Appender;
+class ConfLoader;
+class Formatter;
+class RootLogger;
+
+}}
+
 
 
 /**
@@ -30,8 +45,6 @@
     ConfLoader::get().registerFormatter<p_formatter>(#p_formatter);   \
   }
 
-
-class TestConfLoader;
 
 namespace xtd {
 namespace log {

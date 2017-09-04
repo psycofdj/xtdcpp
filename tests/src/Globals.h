@@ -1,3 +1,4 @@
+#pragma once
 #include "types.hh" // libcore
 #include "mixins/singleton.hh"
 

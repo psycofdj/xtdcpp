@@ -1,13 +1,10 @@
 #pragma once
-#include "Application.hh" // libcore
-#include "cppunit/TestFixture.h"
-#include <cppunit/extensions/HelperMacros.h>
-#include "Globals.h"
-
-namespace CppUnit {
-class Outputter;
-class TestResultCollector;
-}
+#include <iosfwd>
+#include <string>
+#include "Application.hh"
+#include "types.hh"
+namespace CppUnit { class Outputter; }
+namespace CppUnit { class TestResultCollector; }
 
 namespace xtd {
 namespace tests {

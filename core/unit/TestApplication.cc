@@ -1,6 +1,8 @@
 #include "log.hh"                 //libcore
 #include "Application.hh"         //libcore
 #include <MainTestApplication.hh> //libtests
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 #include <stdexcept>
@@ -131,7 +133,7 @@ TestApplication::handleSignal()
   kill(getpid(), SIGUSR2);
   boost::this_thread::sleep(boost::posix_time::milliseconds(100));
   CPPUNIT_ASSERT_EQUAL(false, l_usr2Called);
-
+  CPPUNIT_ASSERT(false);
   l_app.stop();
   l_thread.join();
 }

@@ -43,4 +43,7 @@ add_check(core
   LINKS    cwrap tests_s core_s boost_regex stdc++ )
 add_cov(core)
 add_memcheck(core)
+add_iwyu(core
+  COMMENTS
+  DEPENDS core_s)
 

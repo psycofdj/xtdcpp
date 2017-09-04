@@ -1,3 +1,5 @@
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <boost/filesystem.hpp>
 #include <boost/any.hpp>
 #include <boost/algorithm/string/predicate.hpp>

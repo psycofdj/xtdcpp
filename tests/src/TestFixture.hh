@@ -1,8 +1,8 @@
 #ifndef XTD_TESTS_TESTFIXTURE_HH_
 # define XTD_TESTS_TESTFIXTURE_HH_
-# include "asserts.hh"
-# include "cppunit/TestFixture.h"
-# include <types.hh> // libcore
+# include <string>
+# include <types.hh>
+# include <cppunit/TestFixture.h>
 
 # define XTD_TESTS_LOC __FILE__,__LINE__
 

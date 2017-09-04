@@ -26,3 +26,5 @@ add_check(tests
   LINKS    core_s tests_s ${Boost_LIBRARIES})
 add_cov(tests)
 add_memcheck(tests)
+add_iwyu(tests
+  DEPENDS tests_s cwrap_s)

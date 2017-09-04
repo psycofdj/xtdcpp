@@ -1,8 +1,12 @@
 #ifndef XTD_CORE_LOG_STREAMAPPENDER_HH_
 # define XTD_CORE_LOG_STREAMAPPENDER_HH_
-# include "log/fwd.hh"
-# include "log/Appender.hh"
-# include "log/Stream.hh"
+
+#include <iostream>
+#include "log/Appender.hh"
+#include "log/Formatter.hh"
+#include "log/logtypes.hh"
+#include "log/Stream.hh" // IWYU pragma: export
+#include "types.hh"
 
 class TestStreamAppender;
 

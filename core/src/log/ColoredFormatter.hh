@@ -1,12 +1,13 @@
 #ifndef CORE_LOG_COLOREDFORMATTER_HH_
 # define CORE_LOG_COLOREDFORMATTER_HH_
-# include "log/fwd.hh"
-# include "log/logtypes.hh"
-# include "log/Formatter.hh"
-# include "tty.hh"
 # include "log/Fields.hh"
+# include "log/Formatter.hh"
+# include "log/logtypes.hh"
+# include "tty.hh"
+# include "types.hh"
 
 class TestColoredFormatter;
+
 
 namespace xtd {
 namespace log {

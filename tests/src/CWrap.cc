@@ -1,9 +1,12 @@
 #include "CWrap.hh"
 #include <dlfcn.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
-#include <syslog.h>
+#include <boost/any.hpp>
+#include <iostream>
+#include <tuple>
+#include <type_traits>
 
 namespace xtd {
 namespace tests {

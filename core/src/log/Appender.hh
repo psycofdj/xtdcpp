@@ -1,8 +1,9 @@
 #ifndef XTD_CORE_LOG_APPENDER_HH_
 # define XTD_CORE_LOG_APPENDER_HH_
+# include <iostream>
+# include "log/Formatter.hh" // IWYU pragma: keep
 # include "log/logtypes.hh"
-# include "log/fwd.hh"
-# include "log/Formatter.hh"
+# include "types.hh"
 
 namespace xtd {
 namespace log {

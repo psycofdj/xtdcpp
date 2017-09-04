@@ -22,3 +22,5 @@ add_check(serializer
   LINKS    core_s tests_s serializer_s ${Boost_LIBRARIES})
 add_cov(serializer)
 add_memcheck(serializer)
+add_iwyu(serializer
+  DEPENDS serializer_s)

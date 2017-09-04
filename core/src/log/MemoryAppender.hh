@@ -1,9 +1,11 @@
 #ifndef XTD_CORE_LOG_MEMORYAPPENDER_HH_
 # define XTD_CORE_LOG_MEMORYAPPENDER_HH_
-# include "log/fwd.hh"
-# include "log/Appender.hh"
-# include <mutex>
 # include <boost/circular_buffer.hpp>
+# include <mutex>
+# include "log/Appender.hh"
+# include "log/Formatter.hh"
+# include "log/logtypes.hh"
+# include "types.hh"
 
 class TestMemoryAppender;
 

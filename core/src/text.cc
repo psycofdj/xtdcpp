@@ -1,10 +1,10 @@
 #include "text.hh"
-#include <regex>
-#include <iterator>
-#include <boost/assign.hpp>
+#include <algorithm>
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/algorithm/string/regex_find_format.hpp>
-#include <boost/algorithm/string/trim.hpp>
+#include <boost/assign/list_of.hpp>
+#include <exception>
+#include <iterator>
+#include <regex>
 #include "format.hh"
 
 namespace xtd {

@@ -1,21 +1,21 @@
-# include <log/ConfLoader.hh>
-# include <regex>
-# include <boost/algorithm/string/split.hpp>
-# include <boost/algorithm/string/classification.hpp>
-# include <boost/algorithm/string/case_conv.hpp>
-# include "log/Appender.hh"
-# include "log/Formatter.hh"
-# include "log/Logger.hh"
-# include "log/helpers.hh"
-# include "log/MemoryAppender.hh"
-# include "log/SyslogAppender.hh"
-# include "log/StreamAppender.hh"
-# include "log/Formatter.hh"
-# include "log/ColoredFormatter.hh"
-# include "error.hh"
+#include <log/ConfLoader.hh>
+#include <ext/alloc_traits.h>
+#include <algorithm>
+#include <exception>
+#include <iterator>
+#include <regex>
+#include <boost/algorithm/string/case_conv.hpp>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/format.hpp>
+#include "log/Appender.hh"
+#include "log/Logger.hh"
+#include "log/helpers.hh"
+#include "log/logtypes.hh"
 
 namespace xtd {
 namespace log {
+
 
 void
 ConfLoader::configure(const map<string, string>& p_properties,

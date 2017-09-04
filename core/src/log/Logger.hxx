@@ -1,6 +1,15 @@
 #ifndef CORE_LOG_LOGGER_HXX_
 # define CORE_LOG_LOGGER_HXX_
-# include "log/Appender.hh"
+// IWYU pragma: private, include "log/Logger.hh"
+# include <unistd.h>
+# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include "types.hh"
+# include "log/logtypes.hh"
+# include "log/Appender.hh" // IWYU pragma: keep
+
+
+namespace xtd { namespace log { class Logger; } }
+
 
 namespace xtd {
 namespace log {

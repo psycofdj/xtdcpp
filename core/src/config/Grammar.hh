@@ -1,33 +1,14 @@
 #ifndef  XTD_CORE_CONFIG_GRAMMAR_HH_
 # define  XTD_CORE_CONFIG_GRAMMAR_HH_
-# include <string>
-# include <vector>
 
-# include <boost/spirit/include/classic.hpp>
-# include <boost/spirit/include/qi_core.hpp>
+# include <boost/preprocessor.hpp>
+# include <boost/fusion/adapted.hpp>
 # include <boost/spirit/include/qi.hpp>
-# include <boost/spirit/include/qi_eol.hpp>
-# include <boost/spirit/include/phoenix_core.hpp>
-# include <boost/spirit/include/phoenix_operator.hpp>
-# include <boost/spirit/include/phoenix_fusion.hpp>
-# include <boost/spirit/include/phoenix_stl.hpp>
-# include <boost/spirit/include/phoenix_object.hpp>
-# include <boost/spirit/include/support_line_pos_iterator.hpp>
-# include <boost/spirit/include/phoenix_core.hpp>
-# include <boost/spirit/include/phoenix_fusion.hpp>
-# include <boost/spirit/include/phoenix_algorithm.hpp>
-# include <boost/spirit/include/phoenix_bind.hpp>
-# include <boost/spirit/include/phoenix_container.hpp>
-# include <boost/spirit/include/phoenix_function.hpp>
-# include <boost/spirit/include/phoenix_limits.hpp>
-# include <boost/spirit/include/phoenix_object.hpp>
-# include <boost/spirit/include/phoenix_operator.hpp>
-# include <boost/spirit/include/phoenix_scope.hpp>
-# include <boost/spirit/include/phoenix_statement.hpp>
-# include <boost/spirit/include/phoenix_stl.hpp>
-# include <boost/fusion/include/adapt_struct.hpp>
-# include <types.hh>        // libcore
-# include "config/types.hh" // libcore
+# include <boost/spirit/include/support.hpp>
+# include <string>
+# include <types.hh>
+# include <vector>
+# include "config/types.hh"
 
 
 BOOST_FUSION_ADAPT_STRUCT(xtd::config::impl::property,

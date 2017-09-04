@@ -44,3 +44,5 @@ add_check(network
   LINKS      network_s tests_s core_s ${Boost_LIBRARIES} stdc++ m)
 add_cov(network)
 add_memcheck(network)
+add_iwyu(network
+  DEPENDS network_s)

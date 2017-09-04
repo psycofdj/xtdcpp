@@ -1,7 +1,11 @@
 #include "tty.hh"
 #include <boost/assign/std/vector.hpp>
 #include <boost/lexical_cast.hpp>
-#include <iostream>
+#include <algorithm>
+#include <boost/algorithm/string/join.hpp>
+#include <boost/format.hpp>
+#include <iterator>
+
 
 namespace xtd {
 namespace tty {

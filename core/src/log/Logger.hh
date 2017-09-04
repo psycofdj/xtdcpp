@@ -2,8 +2,7 @@
 # define CORE_LOG_LOGGER_HH_
 # include "log/logtypes.hh"
 # include <mutex>
-# include <thread>
-# include <memory>
+# include "types.hh"
 
 class TestLogger;
 
@@ -542,7 +541,7 @@ private:
 
 }}
 
-# include "log/Logger.hxx"
+# include "log/Logger.hxx" // IWYU pragma: export
 
 #endif // !CORE_LOG_LOGGER_HH_
 

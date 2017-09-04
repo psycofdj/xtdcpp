@@ -62,7 +62,8 @@ xtdmake_init(
   Cppunit         ${REQUIRED}
   CovRule         ${REQUIRED}
   MemcheckRule    ${REQUIRED}
-  CodeDup         ${REQUIRED}
+  CodeDupRule     ${REQUIRED}
+  IwyuRule        ${REQUIRED}
   Reports         ${REQUIRED})
 xtdmake_init_project(xtdcpp ${PROJECT_BINARY_DIR})
 
@@ -80,7 +81,7 @@ if (USE_CLANG)
     VERSION_OPT "--version | head -n1 | cut -d' ' -f3 | cut -d- -f1"
     VERSION_POS 0
     REQUIRED    1)
-  set(CMAKE_CXX_COMPILER         "${Clang_EXECUTABLE}")
+  set(CMAKE_CXX_COMPILER "${Clang_EXECUTABLE}")
 else()
   xtdmake_find_program(Gxx
     NAMES g++

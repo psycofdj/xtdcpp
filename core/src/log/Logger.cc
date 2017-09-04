@@ -1,10 +1,9 @@
 #include "log/Logger.hh"
-
-#include <regex>
-#include <boost/range/algorithm/for_each.hpp>
-#include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/join.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <regex>
+#include <thread>
 #include "log/helpers.hh"
 
 namespace xtd {

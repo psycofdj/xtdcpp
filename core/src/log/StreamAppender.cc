@@ -1,5 +1,5 @@
 #include "log/StreamAppender.hh"
-#include "log.hh"
+#include "log/helpers.hh"
 
 namespace xtd {
 namespace log {

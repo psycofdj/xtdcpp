@@ -1,16 +1,16 @@
 #include "log/Formatter.hh"
 
-#include <sstream>
-#include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include "log/helpers.hh"
-#include "log/ConfLoader.hh"
+#include <boost/format.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/iterator/iterator_traits.hpp>
+#include <iostream>
 #include "log/Fields.hh"
+#include "log/helpers.hh"
+
 
 namespace xtd {
 namespace log {
-
-
 
 Formatter::Formatter(void)
 {

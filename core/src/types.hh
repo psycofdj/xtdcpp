@@ -1,12 +1,39 @@
 #ifndef COMMON_TYPES_HH_
 # define COMMON_TYPES_HH_
-# include <string>
-# include <map>
-# include <vector>
-# include <sstream>
-# include <fstream>
-# include <memory>
-# include <type_traits>
+
+// IWYU pragma: begin_exports
+#include <cstddef>
+#include <cstdint>
+#include <fstream>
+#include <functional>
+#include <iosfwd>
+#include <map>
+#include <memory>
+#include <ostream>
+#include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
+// IWYU pragma: end_exports
+#include <stdint.h>
+#include <bits/c++config.h>
+#include <bits/shared_ptr.h>
+#include <bits/stl_map.h>
+#include <bits/stl_pair.h>
+#include <bits/stl_vector.h>
+#include <bits/stringfwd.h>
+
+// # include <cstddef>
+// # include <cstdint>
+// # include <string>
+// # include <map>
+// # include <vector>
+// # include <fstream>
+// # include <memory>
+// # include <type_traits>
+// # include <functional>
+// # include <utility>
+
 
 using std::string;
 using std::map;

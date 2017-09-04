@@ -1,6 +1,8 @@
 #include <boost/filesystem.hpp>
 #include <boost/any.hpp>
 #include <boost/algorithm/string/predicate.hpp>
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <MainTestApplication.hh>  //libtests
 #include <TestFixture.hh>          //libtests
 #include <CWrap.hh>                //libtests

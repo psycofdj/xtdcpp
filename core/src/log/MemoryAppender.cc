@@ -1,4 +1,8 @@
 #include "log/MemoryAppender.hh"
+#include <sys/types.h>
+#include <boost/circular_buffer.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/cstdint.hpp>
 #include "log/helpers.hh"
 
 namespace xtd {

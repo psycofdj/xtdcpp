@@ -1,14 +1,19 @@
 #ifndef CORE_LOG_FORMATTER_HXX_
 # define CORE_LOG_FORMATTER_HXX_
-
-# include <boost/algorithm/string/regex.hpp>
-# include <boost/algorithm/string/split.hpp>
+// IWYU pragma: private, include "log/Formatter.hh"
 # include <boost/format.hpp>
-# include "text.hh"
+# include <boost/lexical_cast.hpp>
+# include <exception>
+# include <regex>
 # include "format.hh"
+# include "log/logtypes.hh"
+# include "text.hh"
+# include "types.hh"
 
 namespace xtd {
 namespace log {
+
+class Formatter;
 
 template<typename... Arguments>
 FormattedRecord

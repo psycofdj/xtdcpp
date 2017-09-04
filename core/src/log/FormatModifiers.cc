@@ -1,4 +1,7 @@
 #include "log/FormatModifiers.hh"
+#include <algorithm>
+#include <boost/format.hpp>
+#include "log/Fields.hh"
 #include "log/helpers.hh"
 
 namespace xtd {

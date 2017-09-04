@@ -1,12 +1,9 @@
 #include "log/ColoredFormatter.hh"
 
-#include <sstream>
-#include <boost/lexical_cast.hpp>
-#include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <iostream>
 #include "log/helpers.hh"
-#include "ConfLoader.hh"
 
 
 namespace xtd {

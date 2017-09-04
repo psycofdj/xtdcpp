@@ -1,7 +1,11 @@
 #ifndef XTD_CORE_LOG_HELPERS_HXX_
 # define XTD_CORE_LOG_HELPERS_HXX_
+// IWYU pragma: private, include "log/helpers.hh"
+# include <boost/format.hpp>
+# include <exception>
+# include "format.hh"
 # include "log/Logger.hh"
-# include "error.hh"
+# include "types.hh"
 
 namespace xtd {
 namespace log {

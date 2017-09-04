@@ -4,11 +4,6 @@
 # include "error.hh" // libcore
 
 namespace xtd {
-namespace config { namespace impl { struct section;   }}
-namespace config { namespace impl { struct property;  }}
-
-
-
 /**
  ** @brief Parse and read configuration files
  */
@@ -202,7 +197,8 @@ private:
 
 }}
 
-# include "config/Parser.hxx"
+# include "config/Parser.hxx" // IWYU pragma: export
+
 
 #endif //!XTD_CORE_CONFIG_PARSER_HH_
 
