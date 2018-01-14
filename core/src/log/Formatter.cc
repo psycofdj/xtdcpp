@@ -2,8 +2,9 @@
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/format.hpp>
-#include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/iterator/iterator_traits.hpp>
+#include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 #include <iostream>
 #include "log/Fields.hh"
 #include "log/helpers.hh"

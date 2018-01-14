@@ -1,6 +1,6 @@
 #ifndef XTD_CORE_LOG_FORMATTER_HH_
 # define XTD_CORE_LOG_FORMATTER_HH_
-# include <boost/date_time/posix_time/posix_time.hpp>
+# include <boost/date_time/posix_time/ptime.hpp>
 # include "log/Fields.hh"
 # include "log/logtypes.hh"
 # include "types.hh"

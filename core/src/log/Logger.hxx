@@ -2,7 +2,8 @@
 # define CORE_LOG_LOGGER_HXX_
 // IWYU pragma: private, include "log/Logger.hh"
 # include <unistd.h>
-# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include <boost/date_time/posix_time/posix_time.hpp>
+# include <boost/date_time/posix_time/ptime.hpp>
 # include "types.hh"
 # include "log/logtypes.hh"
 # include "log/Appender.hh" // IWYU pragma: keep
