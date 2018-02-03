@@ -1,14 +1,9 @@
 #ifndef CORE_LOG_LOGGER_HH_
 # define CORE_LOG_LOGGER_HH_
-# include <stdint.h>
-# include <cstddef>
-# include <map>
-# include <memory>
 # include <mutex>
-# include <string>
-# include <vector>
-# include "log/logtypes.hh"
 # include "types.hh"
+# include "log/logtypes.hh"
+
 class TestLogger;
 
 namespace xtd { namespace log { class Appender; } }

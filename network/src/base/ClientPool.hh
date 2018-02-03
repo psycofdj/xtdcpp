@@ -2,6 +2,7 @@
 # define NETWORK_BASE_CLIENTPOOL_HH_
 
 # include <deque>
+# include <mutex>
 # include <memory>
 # include <boost/date_time/posix_time/posix_time.hpp>
 # include <types.hh> // libcore

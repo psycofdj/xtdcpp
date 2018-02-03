@@ -1,18 +1,16 @@
 #ifndef NETWORK_HTTP_SERVER_HH_
 # define NETWORK_HTTP_SERVER_HH_
-
 # include "base/Server.hh"
-# include "http/Template.hh"
+# include "types.hh"
 
+namespace boost { namespace system { class error_code; } }
+namespace xtd { namespace network { namespace http { class Generator; } } }
+namespace xtd { namespace network { namespace http { class Request; } } }
+namespace xtd { namespace network { namespace http { class Response; } } }
+namespace xtd { namespace network { namespace http { class Template; } } }
 namespace xtd {
 namespace network {
 namespace http {
-
-class Request;
-class Response;
-template <typename Domain> class Connection;
-class Template;
-
 
 std::function<bool(const Request& p_req)>
 operator&&(std::function<bool(const Request& p_req)> p_fn1,

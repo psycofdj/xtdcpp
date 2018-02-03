@@ -1,22 +1,23 @@
 #ifndef NETWORK_BASE_SERVER_HXX_
 # define NETWORK_BASE_SERVER_HXX_
-
-# include <iostream>
-# include <iterator>
-# include <string>
 # include <boost/asio.hpp>
-# include <boost/asio/ip/host_name.hpp>
-# include <boost/thread/thread.hpp>
-# include <boost/noncopyable.hpp>
-# include <memory>
-# include <boost/make_shared.hpp>
-# include <boost/date_time/posix_time/posix_time.hpp>
-# include <boost/interprocess/detail/atomic.hpp>
-# include <log.hh> // libcore
-# include <utils/scoped_fn.hh> // libcore
-
+# include <boost/bind.hpp>
+# include <boost/cstdint.hpp>
+# include <boost/date_time/posix_time/posix_time_config.hpp>
+# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include <boost/date_time/time.hpp>
+# include <boost/interprocess/sync/spin/condition.hpp>
+# include <boost/lexical_cast.hpp>
+# include <boost/system/error_code.hpp>
+# include <boost/thread.hpp>
+# include "utils/scoped_fn.hh"  // libcore
+# include "log/helpers.hh"      // libcore
+# include "log/logtypes.hh"     // libcore
+# include "types.hh"            // libcore
+# include "utils/safe_deque.hh" // libcore
+# include "base/Config.hh"
+# include "base/Server.hh"
 # include "utils/Resolver.hh"
-# include "base/Connection.hh"
 
 namespace xtd {
 namespace network {

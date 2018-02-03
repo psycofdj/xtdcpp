@@ -1,9 +1,10 @@
 #ifndef NETWORK_BIP_SERVER_HH_
 # define NETWORK_BIP_SERVER_HH_
-
 #include "base/Server.hh"
 #include "network_types.hh"
+#include "types.hh"
 
+namespace boost { namespace system { class error_code; } }
 namespace xtd {
 namespace network {
 namespace bip {

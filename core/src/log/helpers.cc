@@ -1,8 +1,5 @@
 #include "log/helpers.hh"
-#include <map>
-#include <memory>
-#include <type_traits>
-#include <utility>
+#include "types.hh"
 #include "log/Logger.hh"
 
 namespace xtd {

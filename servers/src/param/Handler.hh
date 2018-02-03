@@ -1,22 +1,22 @@
 #ifndef SERVERS_PARAM_HANDLER_HH_
 # define SERVERS_PARAM_HANDLER_HH_
+# include <boost/bind.hpp>
+# include <boost/core/ref.hpp>
+# include <error.hh>
+# include <map>
+# include <memory>
+# include <string>
+# include <types.hh>
+# include <utility>
+# include "param/Base.hh"
+# include "param/Pod.hh"
 
-#include <string>
-#include <map>
-#include <memory>
-#include <boost/any.hpp>
-#include <types.hh> // libcore
-#include <error.hh> // libcore
-#include "param/Base.hh"
-
-
+namespace xtd { namespace servers { namespace param { class Visitor; } } }
 namespace xtd {
 namespace servers {
 namespace param {
 
 xtd_error_class(param_error, error);
-
-class Visitor;
 
 /**
  * \class Handler

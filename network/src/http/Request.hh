@@ -1,13 +1,9 @@
 #ifndef NETWORK_HTTP_REQUEST_HH_
 # define NETWORK_HTTP_REQUEST_HH_
-
-# include <string>
-# include <vector>
-# include <map>
+# include "types.hh" // libcore
 # include <boost/regex.hpp>
-# include <boost/noncopyable.hpp>
-# include <types.hh> // libcore
 # include "http/Message.hh"
+# include "http/http_types.hh"
 
 namespace xtd {
 namespace network {
@@ -103,7 +99,7 @@ std::ostream& operator<<(std::ostream& p_buf, const Request& p_obj);
 
 }}} //end namespaces
 
-# include "Request.hxx"
+# include "http/Request.hxx" // IWYU pragma: export
 
 
 #endif // !NETWORK_HTTP_REQUEST_HH_

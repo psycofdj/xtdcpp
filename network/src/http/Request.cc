@@ -1,25 +1,21 @@
 #include "Request.hh"
-#include <string>
-#include <iomanip>
-#include <limits>
-#include <sstream>
-#include <istream>
-#include <iterator>
-#include <boost/format.hpp>
-#include <boost/algorithm/string/split.hpp>
-#include <boost/algorithm/string/trim.hpp>
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/algorithm/string/find_format.hpp>
-#include <boost/algorithm/string/regex_find_format.hpp>
+#include <ext/alloc_traits.h>
+#include <algorithm>
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/replace.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/assign/std/vector.hpp>
-#include <boost/foreach.hpp>
 #include <boost/algorithm/string/join.hpp>
-#include <log.hh>  // libcore
-#include <text.hh> //libcore
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/assign/list_inserter.hpp>
+#include <boost/assign/std/vector.hpp>
+#include <limits>
+#include "types.hh"        // libcore
+#include "text.hh"         // libcore
+#include "format.hh"       // libcore
+#include "log/helpers.hh"  // libcore
+#include "log/logtypes.hh" // libcore
+
 
 using boost::assign::operator+=;
 

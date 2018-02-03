@@ -1,4 +1,6 @@
 #include "http/codes.hh"
+#include <iterator>
+#include "types.hh" // libcore
 
 namespace xtd {
 namespace network {

@@ -1,7 +1,12 @@
 #ifndef NETWORK_BIP_CLIENT_HH_
 # define NETWORK_BIP_CLIENT_HH_
+# include <boost/date_time/posix_time/posix_time.hpp>
+# include <boost/interprocess/sync/interprocess_semaphore.hpp>
+# include "network_types.hh" // libcore
+# include "types.hh"         // libcore
 # include "base/Client.hh"
 
+namespace boost { namespace system { class error_code; } }
 namespace xtd {
 namespace network {
 namespace bip {

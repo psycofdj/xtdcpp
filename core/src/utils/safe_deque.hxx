@@ -1,3 +1,4 @@
+// IWYU pragma: private, include "utils/safe_deque.hh"
 #ifndef CORE_UTILS_SAFE_DEQUE_HXX_
 # define CORE_UTILS_SAFE_DEQUE_HXX_
 

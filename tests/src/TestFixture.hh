@@ -1,8 +1,8 @@
 #ifndef XTD_TESTS_TESTFIXTURE_HH_
 # define XTD_TESTS_TESTFIXTURE_HH_
-# include "asserts.hh"
+# include "asserts.hh" // IWYU pragma: export
 # include "cppunit/TestFixture.h"
-# include <types.hh> // libcore
+# include "types.hh"
 
 # define XTD_TESTS_LOC __FILE__,__LINE__
 

@@ -1,6 +1,6 @@
 #include "bip/Server.hh"
 #include "bip/Server.hxx"
-#include <objects/Doc.hh> // libserializer
+#include <objects/Doc.hh> // IWYU pragma: keep // libserializer
 #include "network_types.hh"
 
 /**

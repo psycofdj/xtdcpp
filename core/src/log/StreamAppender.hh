@@ -1,14 +1,13 @@
 #ifndef XTD_CORE_LOG_STREAMAPPENDER_HH_
 # define XTD_CORE_LOG_STREAMAPPENDER_HH_
 # include <iostream>
-# include <map>
-# include <memory>
-# include <string>
+# include "types.hh"
 # include "log/Appender.hh"
 # include "log/Formatter.hh"
 # include "log/logtypes.hh"
-# include "types.hh"
+
 class TestStreamAppender;
+
 namespace xtd { namespace log { class Stream; } }
 namespace xtd {
 namespace log {

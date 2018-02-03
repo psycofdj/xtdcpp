@@ -1,17 +1,17 @@
 #ifndef NETWORK_BIP_CONNECTION_HXX_
 # define NETWORK_BIP_CONNECTION_HXX_
-
-
 # include <boost/asio.hpp>
-# include <log.hh> // libcore
-# include "base/Config.hh"
+# include <boost/system/error_code.hpp>
+# include "log/helpers.hh"   // libcore
+# include "log/logtypes.hh"  // libcore
+# include "network_types.hh" // libcore
+# include "types.hh"         // libcore
+# include "bip/Connection.hh"
 
-
+namespace xtd { namespace network { namespace base { class Config; } } }
 namespace xtd {
 namespace network {
 namespace bip {
-
-
 
 namespace ba = boost::asio;
 namespace bs = boost::system;

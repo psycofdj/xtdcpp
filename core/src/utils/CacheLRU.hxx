@@ -1,3 +1,4 @@
+// IWYU pragma: private, include "utils/CacheLRU.hh"
 #include "utils/CacheLRU.hh"
 
 namespace xtd {

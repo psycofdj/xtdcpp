@@ -1,13 +1,12 @@
 #include "http/Message.hh"
-#include <boost/algorithm/string/split.hpp>
-#include <boost/algorithm/string/trim.hpp>
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/algorithm/string/find_format.hpp>
-#include <boost/algorithm/string/regex_find_format.hpp>
-#include <boost/algorithm/string/case_conv.hpp>
+#include <algorithm>
 #include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/replace.hpp>
-#include <log.hh>  // libcore
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/lexical_cast.hpp>
+#include <iterator>
+#include "format.hh"       // libcore
+#include "log/helpers.hh"  // libcore
+#include "log/logtypes.hh" // libcore
 
 namespace xtd {
 namespace network {

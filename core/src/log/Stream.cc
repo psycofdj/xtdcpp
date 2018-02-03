@@ -1,4 +1,5 @@
 #include "log/Stream.hh"
+#include "types.hh"
 
 namespace xtd {
 namespace log {

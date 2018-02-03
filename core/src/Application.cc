@@ -1,13 +1,14 @@
 #include "Application.hh"
-#include <getopt.h>                                  // IWYU pragma: keep
+#include <getopt.h>
 #include <libgen.h>
 #include <string.h>
 #include <unistd.h>
 #include <cstdlib>
 #include <memory>
-#include <boost/filesystem.hpp>                      // IWYU pragma: keep
-#include <boost/algorithm/string/classification.hpp> // IWYU pragma: keep
-#include <boost/algorithm/string/trim.hpp>           // IWYU pragma: keep
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/algorithm/string/split.hpp>
 
 namespace boost { namespace system { class error_code; } }
 

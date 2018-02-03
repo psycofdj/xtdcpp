@@ -1,21 +1,11 @@
 #ifndef NETWORK_UTILS_UTILS_HH_
 # define NETWORK_UTILS_UTILS_HH_
-
-# include <vector>
-# include <deque>
-# include <streambuf>
-# include <string>
-# include <mutex>
-# include <functional>
-# include <ctime>
 # include <boost/date_time/posix_time/posix_time.hpp>
-# include <boost/interprocess/sync/interprocess_semaphore.hpp>
-# include "types.hh" // libcore
+# include <ctime>
 
+namespace boost { namespace interprocess { class interprocess_semaphore; } }
 namespace xtd {
 namespace network {
-// fwd decl
-namespace configuration { class CommConfiguration; }
 namespace utils {
 
 void do_sem_wait(boost::interprocess::interprocess_semaphore& p_sem);

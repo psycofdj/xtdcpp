@@ -1,14 +1,9 @@
 #ifndef XTD_CORE_LOG_CONFLOADER_HH_
 # define XTD_CORE_LOG_CONFLOADER_HH_
 # include <boost/preprocessor.hpp>
-# include <functional>
-# include <map>
-# include <memory>
-# include <string>
-# include <utility>
+# include "types.hh"
 # include "log/helpers.hh"
 # include "mixins/singleton.hh"
-# include "types.hh"
 
 class TestConfLoader;
 

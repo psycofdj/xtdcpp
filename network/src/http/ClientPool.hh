@@ -1,7 +1,7 @@
 #ifndef NETWORK_HTTP_CLIENTPOOL_HHX_
 # define NETWORK_HTTP_CLIENTPOOL_HHX_
 # include "base/ClientPool.hh"
-# include "http/Client.hh"
+# include "http/Client.hh" // IWYU pragma: keep
 
 namespace xtd {
 namespace network {

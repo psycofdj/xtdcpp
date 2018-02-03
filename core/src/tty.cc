@@ -1,13 +1,11 @@
 #include "tty.hh"
+#include "types.hh"
 #include <algorithm>
 #include <boost/algorithm/string/join.hpp>
 #include <boost/assign/std/vector.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
 #include <iterator>
-#include <map>
-#include <type_traits>
-#include <utility>
 
 namespace xtd {
 namespace tty {

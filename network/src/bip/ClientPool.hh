@@ -1,7 +1,7 @@
 #ifndef NETWORK_BIP_CLIENTPOOL_HHX_
 # define NETWORK_BIP_CLIENTPOOL_HHX_
 # include "base/ClientPool.hh"
-# include "bip/Client.hh"
+# include "bip/Client.hh" // IWYU pragma: keep
 
 namespace xtd {
 namespace network {

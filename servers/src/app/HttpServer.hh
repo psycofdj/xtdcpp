@@ -198,6 +198,6 @@ protected:
 
 }}} //end namespaces
 
-#include "HttpServer.hxx"
+#include "HttpServer.hxx" // IWYU pragma: export
 
 #endif // !SERVERS_APP_HTTPSERVER_HH_

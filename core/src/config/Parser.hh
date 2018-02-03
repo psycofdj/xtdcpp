@@ -1,13 +1,8 @@
 #ifndef XTD_CORE_CONFIG_PARSER_HH_
 # define XTD_CORE_CONFIG_PARSER_HH_
-# include <iosfwd>
-# include <map>
-# include <string>
-# include <utility>
-# include <vector>
-# include "config/types.hh" // IWYU pragma: keep
-# include "error.hh"
 # include "types.hh"
+# include "config/types.hh"
+# include "error.hh"
 
 namespace xtd {
 

@@ -1,6 +1,13 @@
 #include "utils/Resolver.hh"
-#include <log.hh> // libcore
-#include <boost/make_shared.hpp>
+#include <boost/asio.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/system/system_error.hpp>
+#include "log/helpers.hh"    // libcore
+#include "log/logtypes.hh"   // libcore
+#include "types.hh"          // libcore
+#include "utils/CacheLRU.hh" // libcore
+
+
 
 namespace xtd {
 namespace network {

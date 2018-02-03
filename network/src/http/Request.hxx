@@ -1,7 +1,10 @@
+// IWYU pragma: private, include "http/Request.hh"
 #ifndef NETWORK_HTTP_REQUEST_HXX_
 # define NETWORK_HTTP_REQUEST_HXX_
 # include <boost/lexical_cast.hpp>
-# include <log.hh>
+# include "types.hh"                // libcore
+# include "log/helpers.hh"          // libcore
+# include "log/logtypes.hh"         // libcore
 
 namespace xtd {
 namespace network {

@@ -1,5 +1,5 @@
-#ifndef SERIALIZER_SERIALIZER_FWK_HH_
-# define SERIALIZER_SERIALIZER_FWK_HH_
+#ifndef SERIALIZER_SERIALIZER_FWD_HH_
+# define SERIALIZER_SERIALIZER_FWD_HH_
 
 namespace xtd {
 namespace serializer {
@@ -8,4 +8,4 @@ class Doc;
 
 }}
 
-#endif // !SERIALIZER_SERIALIZER_FWK_HH_
+#endif // !SERIALIZER_SERIALIZER_FWD_HH_

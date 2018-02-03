@@ -1,8 +1,8 @@
 #ifndef NETWORK_HTTP_RESPONSE_HH_
 # define NETWORK_HTTP_RESPONSE_HH_
-
-# include <types.hh> //libcore
+# include "types.hh" //libcore
 # include "http/Message.hh"
+# include "http/http_types.hh"
 
 namespace xtd {
 namespace network {

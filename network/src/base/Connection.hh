@@ -1,12 +1,12 @@
 #ifndef NETWORK_BASE_CONNECTION_HH_
 # define NETWORK_BASE_CONNECTION_HH_
-
-
 # include <boost/asio.hpp>
-# include <types.hh> // libcore
-# include "utils/Resolver.hh"
+# include "types.hh" // libcore
 # include "base/Config.hh"
+# include "network_types.hh"
 
+namespace boost { namespace system { class error_code; } }
+namespace xtd { namespace network { namespace utils { template <typename Domain> class Resolver; } } }
 namespace xtd {
 namespace network {
 namespace base {

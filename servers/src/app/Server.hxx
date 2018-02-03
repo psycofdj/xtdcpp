@@ -1,33 +1,36 @@
 #ifndef SERVERS_APP_SERVER_HXX_
 # define SERVERS_APP_SERVER_HXX_
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/bind.hpp>
+#include <boost/iostreams/categories.hpp>
+#include <boost/iostreams/copy.hpp>
+#include <boost/iostreams/filter/gzip.hpp>
+#include <boost/iostreams/filtering_streambuf.hpp>
+#include <boost/iostreams/traits.hpp>
+#include <boost/range/algorithm/copy.hpp>
+#include <boost/thread.hpp>
+#include <exception>
+#include <iterator>
+#include <limits>
+#include "format.hh"         // libcore
+#include "log/helpers.hh"    // libcore
+#include "types.hh"          // libcore
+#include "Application.hh"    // libcounters
+#include "AvgTimedValue.hh"  // libcounters
+#include "CounterManager.hh" // libcounters
+#include "bip/Server.hh"     // libnetwork
+#include "http/Request.hh"   // libnetwork
+#include "http/Template.hh"  // libnetwork
+#include "network_types.hh"  // libnetwork
+#include "serializer.hh"     // libserializer
+#include "objects/Doc.hh"    // libserializer
+#include "app/HtmlOArchive.hh"
+#include "app/HttpServer.hh"
+#include "app/Server.hh"
+#include "param/Handler.hh"
+#include "param/Pod.hh"
 
-# include <fstream>
-# include <iostream>
-# include <sstream>
-
-# include <boost/iostreams/filtering_streambuf.hpp>
-# include <boost/iostreams/copy.hpp>
-# include <boost/iostreams/filter/gzip.hpp>
-# include <boost/format.hpp>
-# include <boost/filesystem.hpp>
-# include <boost/checked_delete.hpp>
-# include <boost/range/algorithm.hpp>
-# include <boost/range/adaptor/map.hpp>
-# include <boost/range/algorithm/for_each.hpp>
-# include <boost/range/algorithm/copy.hpp>
-
-# include <log.hh>           // libcore
-# include <serializer.hh>    // libserializer
-# include <counters.hh>      // libcounters
-# include <http/Request.hh>  // libnetwork
-# include <http/Response.hh> // libnetwork
-
-# include "app/HtmlOArchive.hh"
-# include "param/Base.hh"
-# include "param/Handler.hh"
-
-
-
+namespace xtd { namespace network { namespace http { class Response; } } }
 namespace xtd {
 namespace servers {
 namespace app {

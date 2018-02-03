@@ -1,12 +1,9 @@
 #ifndef NETWORK_BASE_CLIENTTHREADMANAGER_HH_
 # define NETWORK_BASE_CLIENTTHREADMANAGER_HH_
-
 # include <boost/asio.hpp>
-# include <mutex>
 # include <thread>
-# include <memory>
-# include <types.hh> //libcore
-# include <mixins/singleton.hh> // libcore
+# include "types.hh"            // libcore
+# include "mixins/singleton.hh" // libcore
 
 namespace xtd {
 namespace network {

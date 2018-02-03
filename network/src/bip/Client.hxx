@@ -1,14 +1,22 @@
 #ifndef NETWORK_BIP_CLIENT_HXX_
 # define NETWORK_BIP_CLIENT_HXX_
-
-# include <boost/interprocess/sync/lock_options.hpp>
-# include <boost/interprocess/detail/atomic.hpp>
-# include <memory>
-# include <boost/make_shared.hpp>
-# include <log.hh>             // libcore
-# include <utils/scoped_fn.hh> // libcore
+# include <boost/asio.hpp>
+# include <boost/date_time/posix_time/posix_time_config.hpp>
+# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include <boost/interprocess/creation_tags.hpp>
+# include <boost/interprocess/sync/interprocess_semaphore.hpp>
+# include <boost/interprocess/sync/spin/condition.hpp>
+# include <boost/system/error_code.hpp>
+# include <utils/scoped_fn.hh>
+# include "types.hh"        // libcore
+# include "log/helpers.hh"  // libcore
+# include "log/logtypes.hh" // libcore
+# include "serializer.hh"   // libserializer
+# include "bip/Client.hh"
 # include "bip/Connection.hh"
-# include "bip/compress.hh"
+# include "bip/compress.hxx"
+# include "network_types.hh"
+# include "utils/Utils.hh"
 
 namespace atom = boost::interprocess::ipcdetail;
 

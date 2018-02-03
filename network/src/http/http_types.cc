@@ -1,5 +1,6 @@
 #include "http/http_types.hh"
 #include "http/codes.hh"
+#include "types.hh"
 
 namespace xtd {
 namespace network {

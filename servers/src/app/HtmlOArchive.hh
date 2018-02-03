@@ -1,16 +1,29 @@
 #ifndef SERVERS_APP_HTMLOARCHIVE_HH_
 # define SERVERS_APP_HTMLOARCHIVE_HH_
-
-# include <stack>
+# include <stddef.h>
+# include <boost/archive/detail/archive_serializer_map.hpp> // IWYU pragma: keep
+# include <boost/archive/impl/archive_serializer_map.ipp>   // IWYU pragma: keep
+# include <boost/archive/xml_oarchive.hpp>                  // IWYU pragma: keep
+# include <boost/serialization/pfto.hpp>
 # include <deque>
 # include <list>
-# include <boost/archive/xml_oarchive.hpp>
-# include <boost/archive/impl/xml_oarchive_impl.ipp>
-# include <boost/archive/xml_oarchive.hpp>
-# include <boost/archive/impl/basic_xml_oarchive.ipp>
-# include <boost/archive/detail/archive_serializer_map.hpp>
-# include <boost/archive/impl/archive_serializer_map.ipp>
-# include <types.hh> // libcore
+# include <stack>
+# include "types.hh"
+
+namespace boost { namespace archive { class class_id_optional_type; } }
+namespace boost { namespace archive { class class_id_reference_type; } }
+namespace boost { namespace archive { class class_id_type; } }
+namespace boost { namespace archive { class object_id_type; } }
+namespace boost { namespace archive { class object_reference_type; } }
+namespace boost { namespace archive { class save_access; } }
+namespace boost { namespace archive { class version_type; } }
+namespace boost { namespace archive { namespace detail { template <class Archive> class interface_oarchive; } } }
+namespace boost { namespace archive { struct class_name_type; } }
+namespace boost { namespace archive { struct tracking_type; } }
+namespace boost { namespace archive { template <class Archive> class basic_xml_oarchive; } }
+namespace boost { namespace serialization { class collection_size_type; } }
+namespace boost { namespace serialization { class item_version_type; } }
+namespace boost { namespace serialization { template <class T> struct nvp; } }
 
 namespace xtd {
 namespace servers {
@@ -189,14 +202,13 @@ private:
   bool          m_isVector;
 };
 
-
 template<typename T>
 std::ostream& to_javascript(std::ostream& p_stream);
 
 }}} //end namespaces
 
-BOOST_SERIALIZATION_REGISTER_ARCHIVE(xtd::servers::app::HtmlOArchive)
+# include "app/HtmlOArchive.hxx" // IWYU pragma: export
 
-# include "app/HtmlOArchive.hxx"
+BOOST_SERIALIZATION_REGISTER_ARCHIVE(xtd::servers::app::HtmlOArchive)
 
 #endif // !SERVERS_APP_HTMLOARCHIVE_HH_

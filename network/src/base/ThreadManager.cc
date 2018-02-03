@@ -1,6 +1,5 @@
 #include "base/ThreadManager.hh"
-#include <functional>
-#include <iostream>
+
 namespace xtd {
 namespace network {
 namespace base {

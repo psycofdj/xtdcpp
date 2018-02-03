@@ -1,11 +1,8 @@
 #ifndef SERVERS_PARAM_VISITOR_HH_
 # define SERVERS_PARAM_VISITOR_HH_
-
-# include <string>
-# include <json_parser.hpp>  // libcore
-# include <http/Template.hh> // libnetwork
-# include "param/Base.hh"
-
+# include "types.hh"         // libcore
+# include "param/Pod.hh"
+# include <http/Template.hh> // IWYU pragma: keep
 
 namespace xtd {
 namespace servers {
@@ -20,23 +17,23 @@ public:
   /**
    * @brief Type specific serialization operator (will call write on the right type cf. Visitor.cc) operator
    */
-  virtual void operator()(const POD<bool>&)          { }
+  virtual void operator()(const POD<bool>&)     { }
   /**
    * @brief Type specific serialization operator (will call write on the right type cf. Visitor.cc) operator
    */
-  virtual void operator()(const POD<int>&)           { }
+  virtual void operator()(const POD<int>&)      { }
   /**
    * @brief Type specific serialization operator (will call write on the right type cf. Visitor.cc) operator
    */
-  virtual void operator()(const POD<uint8_t>&)   { }
+  virtual void operator()(const POD<uint8_t>&)  { }
   /**
    * @brief Type specific serialization operator (will call write on the right type cf. Visitor.cc) operator
    */
-  virtual void operator()(const POD<uint32_t>&)  { }
+  virtual void operator()(const POD<uint32_t>&) { }
   /**
    * @brief Type specific serialization operator (will call write on the right type cf. Visitor.cc) operator
    */
-  virtual void operator()(const POD<uint64_t>&)  { }
+  virtual void operator()(const POD<uint64_t>&) { }
   /**
    * @brief Type specific serialization operator (will call write on the right type cf. Visitor.cc) operator
    */
@@ -98,6 +95,7 @@ public:
 private:
   template<typename T>
   void write(const POD<T>& p_val);
+
 private:
   network::http::Json& m_tmpl;
 };

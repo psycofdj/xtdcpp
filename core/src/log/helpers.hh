@@ -1,11 +1,7 @@
 #ifndef XTD_CORE_LOG_HELPERS_HH_
 # define XTD_CORE_LOG_HELPERS_HH_
-
-# include <stdint.h>
-# include <iosfwd>
-# include <string>
-# include "log/logtypes.hh"
 # include "types.hh"
+# include "log/logtypes.hh"
 
 namespace xtd { namespace log { class RootLogger; } }
 namespace xtd {

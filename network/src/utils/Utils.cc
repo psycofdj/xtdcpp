@@ -1,4 +1,11 @@
 #include "utils/Utils.hh"
+#include <errno.h>
+#include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time_config.hpp>
+#include <boost/date_time/time.hpp>
+#include <boost/date_time/time_system_counted.hpp>
+#include <boost/interprocess/exceptions.hpp>
+#include <boost/interprocess/sync/interprocess_semaphore.hpp>
 
 namespace xtd {
 namespace network {

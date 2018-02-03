@@ -1,5 +1,6 @@
 #ifndef SERIALIZER_OBJECTS_DOC_HXX_
 # define SERIALIZER_OBJECTS_DOC_HXX_
+# include <boost/serialization/nvp.hpp>
 
 namespace xtd {
 namespace serializer {

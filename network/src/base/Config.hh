@@ -1,7 +1,6 @@
 #ifndef NETWORK_BASE_CONFIG_HH_
 # define NETWORK_BASE_CONFIG_HH_
-
-# include <types.hh> // libcore
+# include "types.hh" // libcore
 
 namespace xtd {
 namespace network {
@@ -63,6 +62,6 @@ private:
 
 }}} // end namespaces
 
-# include "base/Config.hxx"
+# include "base/Config.hxx" // IWYU pragma: export
 
 #endif // !NETWORK_COMMCONFIGURATION_HXX_

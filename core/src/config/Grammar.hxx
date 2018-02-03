@@ -1,6 +1,15 @@
 #ifndef XTD_COMMON_CONFIG_GRAMMAR_HXX_
 # define XTD_COMMON_CONFIG_GRAMMAR_HXX_
-# include <boost/phoenix/bind/bind_member_variable.hpp>
+# include <algorithm>
+# include <boost/core/enable_if.hpp>
+# include <boost/phoenix/phoenix.hpp>
+# include <boost/proto/expr.hpp>
+# include <boost/proto/operators.hpp>
+# include <boost/spirit/include/qi.hpp>
+# include <boost/spirit/include/support.hpp>
+# include <iterator>
+# include "types.hh"
+# include "config/Grammar.hh"
 
 namespace xtd {
 namespace config {

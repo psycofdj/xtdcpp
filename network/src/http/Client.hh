@@ -1,13 +1,16 @@
 #ifndef NETWORK_HTTP_CLIENT_HH_
 # define NETWORK_HTTP_CLIENT_HH_
+# include <boost/date_time/posix_time/posix_time.hpp>
+# include <boost/interprocess/sync/interprocess_semaphore.hpp>
 # include "base/Client.hh"
+# include "types.hh"
 
+namespace boost { namespace system { class error_code; } }
+namespace xtd { namespace network { namespace http { class Request; } } }
+namespace xtd { namespace network { namespace http { class Response; } } }
 namespace xtd {
 namespace network {
 namespace http {
-
-class Request;
-class Response;
 
 template<typename TDomain>
 class Client : public base::Client<TDomain>

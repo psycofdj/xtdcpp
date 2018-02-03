@@ -1,11 +1,10 @@
 #ifndef NETWORK_UTILS_RESOLVER_HH_
 # define NETWORK_UTILS_RESOLVER_HH_
+#include "types.hh" //libcore
+#include "network_types.hh"
 
-# include <memory>
-# include <types.hh> // libcore
-# include <utils/CacheLRU.hh> // libcore
-# include "network_types.hh"
-
+namespace boost { namespace asio { class io_service; } }
+namespace xtd { namespace utils { template <typename TKey, typename TVal> class CacheLRU; } }
 namespace xtd {
 namespace network {
 namespace utils {

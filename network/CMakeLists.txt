@@ -44,4 +44,4 @@ add_check(network
   LINKS      network_s tests_s core_s ${Boost_LIBRARIES})
 add_cov(network)
 add_memcheck(network)
-add_iwyu(network)
+add_iwyu(network DEPENDS xtdnetwork_s)

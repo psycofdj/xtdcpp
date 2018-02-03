@@ -2,11 +2,11 @@
 # define SERIALIZER_SERIALIZER_HH_
 
 # include <iostream>
+# include <string>
+# include <vector>
 # include <types.hh> // libcore
 # include <boost/archive/basic_archive.hpp>
-# include "serializer_fwd.hh"  // IWYU pragma: export
 # include "archives/DebugArchive.hh"
-
 
 namespace xtd {
 namespace serializer {

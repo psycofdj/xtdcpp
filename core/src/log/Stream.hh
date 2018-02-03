@@ -1,7 +1,5 @@
 #ifndef XTD_CORE_LOG_STREAM_HH_
 # define XTD_CORE_LOG_STREAM_HH_
-# include <iostream>
-# include <memory>
 # include <mutex>
 # include "types.hh"
 

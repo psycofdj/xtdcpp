@@ -1,7 +1,6 @@
 #include "log/MemoryAppender.hh"
-#include <sys/types.h>
 #include <boost/lexical_cast.hpp>
-#include <utility>
+#include "types.hh"
 #include "log/helpers.hh"
 
 namespace xtd {

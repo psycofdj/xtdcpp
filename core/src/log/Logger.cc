@@ -4,8 +4,6 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/regex.hpp>
 #include <thread>
-#include <type_traits>
-#include <utility>
 #include "log/helpers.hh"
 
 namespace xtd {

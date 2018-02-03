@@ -5,7 +5,7 @@
 #include <boost/format.hpp>
 #include <boost/iterator/iterator_traits.hpp>
 #include <iostream>
-#include <utility>
+#include "types.hh"
 #include "log/Fields.hh"
 #include "log/helpers.hh"
 

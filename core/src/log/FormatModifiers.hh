@@ -1,14 +1,10 @@
 #ifndef XTD_CORE_LOG_FORMATMODIFIERS_HH_
 # define XTD_CORE_LOG_FORMATMODIFIERS_HH_
 # include <boost/regex.hpp>
-# include <cstddef>
-# include <map>
-# include <string>
-# include <vector>
+# include "types.hh"
 # include "log/Fields.hh"
 # include "log/logtypes.hh"
 # include "tty.hh"
-# include "types.hh"
 
 
 namespace xtd {

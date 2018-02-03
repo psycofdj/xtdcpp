@@ -1,6 +1,6 @@
 #include "bip/Client.hh"
 #include "bip/Client.hxx"
-#include <objects/Doc.hh> // lib serializer
+#include "objects/Doc.hh"// IWYU pragma: keep // lib serializer
 #include "network_types.hh"
 
 namespace xtd {

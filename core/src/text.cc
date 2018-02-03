@@ -7,7 +7,7 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/iterator/iterator_traits.hpp>
 #include <boost/regex.hpp>
-#include <istream>
+#include "types.hh"
 #include "format.hh"
 
 namespace xtd {

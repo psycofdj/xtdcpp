@@ -4,11 +4,11 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/range/algorithm/copy.hpp>
 #include <boost/range/algorithm/find_if.hpp>
-#include <fstream>
 #include <iterator>
+#include "types.hh"
 #include "config/Parser.hxx"
 #include "config/types.hh"
-#include "log/helpers.hxx"
+#include "log/helpers.hh"
 #include "log/logtypes.hh"
 
 namespace xtd {

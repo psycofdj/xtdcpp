@@ -1,20 +1,17 @@
 #ifndef NETWORK_BASE_SERVER_HH_
 # define NETWORK_BASE_SERVER_HH_
-
-# include <boost/thread.hpp>
 # include <boost/asio.hpp>
-# include <utils/safe_deque.hh> // libcore
+# include <boost/thread.hpp>
+# include "types.hh"            // libcore
+# include "utils/safe_deque.hh" // libcore
 # include "base/Config.hh"
 
-
-
+namespace boost { namespace system { class error_code; } }
+namespace xtd { namespace network { namespace base { template <typename D> class Connection; } } }
+namespace xtd { namespace network { namespace utils { template <typename D> class Resolver; } } }
 namespace xtd {
 namespace network {
-namespace utils { template<typename D> class Resolver; } // fwd decl
 namespace base {
-
-// fwd decl
-template<typename D> class Connection;
 
 /**
  ** @details

@@ -1,5 +1,5 @@
 #include "log/StreamAppender.hh"
-#include <utility>
+#include "types.hh"
 #include "log/Stream.hh"
 #include "log/helpers.hh"
 

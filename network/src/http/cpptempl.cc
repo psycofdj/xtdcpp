@@ -1,6 +1,14 @@
 #include "cpptempl.hh"
-#include <boost/algorithm/string/replace.hpp>
-#include <format.hh> // libcore
+#include <ext/alloc_traits.h>
+#include <algorithm>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/join.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim.hpp>
+#include <iterator>
+#include "types.hh"   // libcore
+#include "format.hh" // libcore
 
 namespace xtd {
 namespace network {

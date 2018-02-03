@@ -22,6 +22,7 @@ add_shared_static_library(servers
   src/app/HttpServer.cc
   src/app/Server.cc
   src/param/Handler.cc
+  src/param/Pod.cc
   src/param/Base.cc
   src/param/Visitor.cc
 )
@@ -38,4 +39,4 @@ add_check(servers
   LINKS    core_s tests_s counters_s servers_s network_s ${Boost_LIBRARIES})
 add_cov(servers)
 add_memcheck(servers)
-add_iwyu(servers)
+add_iwyu(servers DEPENDS xtdservers_s)

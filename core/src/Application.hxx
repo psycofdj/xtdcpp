@@ -1,3 +1,4 @@
+// IWYU pragma: private, include "Application.hh"
 #ifndef XTD_CORE_APPLICATION_HXX_
 # define XTD_CORE_APPLICATION_HXX_
 

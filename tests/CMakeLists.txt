@@ -26,4 +26,4 @@ add_check(tests
   LINKS    core_s tests_s ${Boost_LIBRARIES})
 add_cov(tests)
 add_memcheck(tests)
-add_iwyu(tests)
+add_iwyu(tests DEPENDS xtdtests_s)

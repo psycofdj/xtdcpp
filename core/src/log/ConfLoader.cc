@@ -8,8 +8,7 @@
 #include <boost/regex.hpp>
 #include <exception>
 #include <iterator>
-#include <type_traits>
-#include <vector>
+#include "types.hh"
 #include "log/Appender.hh"
 #include "log/Logger.hh"
 #include "log/helpers.hh"

@@ -1,15 +1,7 @@
-#include <memory>
-#include <string>
-#include <vector>
-#include <map>
-#include <algorithm>
-#include <iostream>
-#include "types.hh"            // /libcore
-#include "mixins/singleton.hh" // /libcore
-#include <boost/any.hpp>
-#include <tuple>
-#include <map>
+#include "mixins/singleton.hh"
+#include "types.hh"
 
+namespace boost { class any; }
 namespace xtd {
 namespace tests {
 

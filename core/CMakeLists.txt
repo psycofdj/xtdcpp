@@ -43,9 +43,4 @@ add_check(core
   LINKS    cwrap tests_s core_s)
 add_cov(core)
 add_memcheck(core)
-
-file(GLOB_RECURSE deps
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hh
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hxx)
-add_iwyu(core DEPENDS ${deps})
+add_iwyu(core DEPENDS xtdcore_s)
