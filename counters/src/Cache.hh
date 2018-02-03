@@ -1,13 +1,10 @@
 #ifndef COUNTERS_CACHE_HH_
 # define COUNTERS_CACHE_HH_
-
-# include <vector>
-
+# include "types.hh" // libcore
 # include "Composed.hh"
-# include "Value.hh"
 # include "Freq.hh"
 # include "InstantFreq.hh"
-
+# include "Value.hh"
 
 namespace xtd {
 namespace counters {

@@ -1,11 +1,9 @@
 #ifndef COUNTERS_COMPOSED_HH_
 # define COUNTERS_COMPOSED_HH_
-
-# include <vector>
 # include "Base.hh"
+# include "types.hh"
 
-
-
+namespace xtd { namespace counters { class Visitor; } }
 namespace xtd {
 namespace counters {
 

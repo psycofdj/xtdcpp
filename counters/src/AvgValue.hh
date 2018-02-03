@@ -1,11 +1,9 @@
 #ifndef COUNTERS_AVGVALUE_HH_
 # define COUNTERS_AVGVALUE_HH_
-
 # include <deque>
-# include <types.hh> // libommon
-# include "Value.hh"
+# include "types.hh" // libcore
 # include "Composed.hh"
-
+# include "Value.hh"
 
 namespace xtd {
 namespace counters {

@@ -1,15 +1,14 @@
 #include "Freq.hh"
-#include <boost/interprocess/detail/atomic.hpp>
-
-namespace bpt = boost::posix_time;
-namespace atom = boost::interprocess::ipcdetail;
-
-
-
-
+#include <boost/date_time/posix_time/posix_time_config.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/time.hpp>
+#include <boost/interprocess/sync/spin/condition.hpp>
 
 namespace xtd {
 namespace counters {
+
+namespace bpt = boost::posix_time;
+namespace atom = boost::interprocess::ipcdetail;
 
 Freq::Freq(const string& p_name) :
   Value(p_name),

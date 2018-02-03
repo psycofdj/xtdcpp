@@ -1,15 +1,12 @@
-
 #ifndef COUNTERS_AVGTIMEDVALUE_HH_
 # define COUNTERS_AVGTIMEDVALUE_HH_
-
+# include <boost/date_time/posix_time/posix_time.hpp>
 # include <deque>
-# include <memory>
-# include <types.hh> // libommon
-# include "Value.hh"
+# include "types.hh" // libcore
 # include "Composed.hh"
 # include "Freq.hh"
 # include "InstantFreq.hh"
-
+# include "Value.hh"
 
 
 namespace xtd {

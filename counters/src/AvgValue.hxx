@@ -1,13 +1,10 @@
 #ifndef COUNTERS_AVGVALUE_HXX_
 # define COUNTERS_AVGVALUE_HXX_
-
-#include <numeric>
-#include <algorithm>
-#include <boost/lexical_cast.hpp>
-
-
-
-
+# include <boost/thread.hpp>
+# include <numeric>
+# include "AvgValue.hh"
+# include "Composed.hh"
+# include "types.hh" // libcore
 
 namespace xtd {
 namespace counters {

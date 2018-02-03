@@ -1,6 +1,4 @@
 #include "Cache.hh"
-#include <boost/foreach.hpp>
-
 
 namespace xtd {
 namespace counters {

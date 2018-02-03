@@ -1,12 +1,9 @@
 #ifndef COUNTERS_COUNTERMANAGER_HH_
 # define COUNTERS_COUNTERMANAGER_HH_
-
-# include <boost/thread.hpp>
-# include <boost/thread/mutex.hpp>
 # include <boost/filesystem.hpp>
-# include <boost/property_tree/ptree.hpp>
-# include <types.hh> // libcore
-# include "counters_fwd.hh"
+# include <boost/property_tree/ptree_fwd.hpp>
+# include <boost/thread.hpp>
+# include "types.hh" // libcore
 # include "Base.hh"
 
 

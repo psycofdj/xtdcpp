@@ -1,14 +1,11 @@
 #ifndef COUNTERS_PERF_HH_
 # define COUNTERS_PERF_HH_
-
-
-# include <vector>
-# include "Composed.hh"
+# include <boost/date_time/posix_time/posix_time.hpp>
+# include "types.hh" // libcore
 # include "AvgValue.hh"
+# include "Composed.hh"
 # include "Freq.hh"
 # include "InstantFreq.hh"
-
-
 
 namespace xtd {
 namespace counters {

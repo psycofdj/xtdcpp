@@ -1,14 +1,15 @@
 #include "CounterManager.hh"
 
-#include <fstream>
-#include <iostream>
-#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/algorithm/string/replace.hpp>
 #include <boost/bind.hpp>
-#include <boost/algorithm/string.hpp>
-#include "JsonVisitor.hh"
+#include <boost/date_time/posix_time/posix_time_config.hpp>
+#include <boost/date_time/posix_time/posix_time_duration.hpp>
+#include <boost/iterator/iterator_traits.hpp>
+#include <boost/property_tree/ptree.hpp>
 #include "FileVisitor.hh"
-#include <log.hh> // libcore
-
+#include "JsonVisitor.hh"
+#include "log/helpers.hh"  // libcore
+#include "log/logtypes.hh" // libcore
 
 
 namespace bfs = boost::filesystem;

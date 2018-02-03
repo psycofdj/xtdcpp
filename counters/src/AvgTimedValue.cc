@@ -1,17 +1,23 @@
 #include "AvgTimedValue.hh"
-#include <numeric>
+#include <ext/alloc_traits.h>
+#include <stdlib.h>
 #include <algorithm>
 #include <boost/bind.hpp>
+#include <boost/date_time/posix_time/posix_time_config.hpp>
+#include <boost/date_time/posix_time/posix_time_duration.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/time.hpp>
 #include <boost/foreach.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <log.hh> // libcore
-
-
-
-namespace bpt = boost::posix_time;
+#include <boost/operators.hpp>
+#include <boost/thread.hpp>
+#include <limits>
+#include "log/helpers.hh" // libcore
+#include "log/logtypes.hh" // libcore
 
 namespace xtd {
 namespace counters {
+
+namespace bpt = boost::posix_time;
 
 AvgTimedValue::AvgTimedValue(const string& p_name,
                              uint32_t      p_nbThread,
