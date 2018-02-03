@@ -1,8 +1,10 @@
 #ifndef XTD_CORE_LOG_APPENDER_HH_
 # define XTD_CORE_LOG_APPENDER_HH_
+# include <functional>
+# include <memory>
+# include <vector>
 # include "log/logtypes.hh"
-# include "log/fwd.hh"
-# include "log/Formatter.hh"
+# include "log/Formatter.hh" // IWYU pragma: keep
 
 namespace xtd {
 namespace log {
@@ -110,10 +112,7 @@ Appender::log(const Record& p_record, Arguments&&... p_args) const
 
   bool l_accepted = true;
   for (auto c_filter : m_filters)
-  {
-    std::cout << "filtering" << std::endl;
     l_accepted = l_accepted && c_filter(l_rec);
-  }
 
   if (true == l_accepted)
     print(l_rec);

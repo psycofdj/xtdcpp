@@ -1,9 +1,15 @@
 #include "config/Parser.hh"
-#include <fstream>
-#include <boost/algorithm/string.hpp>
+#include <stdlib.h>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string/replace.hpp>
 #include <boost/range/algorithm/copy.hpp>
+#include <boost/range/algorithm/find_if.hpp>
+#include <fstream>
+#include <iterator>
+#include "config/Parser.hxx"
 #include "config/types.hh"
-#include "log.hh"
+#include "log/helpers.hxx"
+#include "log/logtypes.hh"
 
 namespace xtd {
 namespace config {

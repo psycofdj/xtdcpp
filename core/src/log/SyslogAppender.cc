@@ -1,9 +1,12 @@
 #include "log/SyslogAppender.hh"
-#include "log/helpers.hh"
-#include "log/ConfLoader.hh"
+#include <syslog.h>
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <utility>
+#include <vector>
+#include "log/helpers.hh"
+
 
 namespace xtd {
 namespace log {

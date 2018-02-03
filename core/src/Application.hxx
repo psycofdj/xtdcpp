@@ -1,9 +1,13 @@
 #ifndef XTD_CORE_APPLICATION_HXX_
 # define XTD_CORE_APPLICATION_HXX_
 
+# include <stdlib.h>
 # include <boost/lexical_cast.hpp>
+# include <stdexcept>
+# include <string>
 # include "format.hh"
-# include "log.hh"
+# include "types.hh"
+# include "log.hh" // IWYU pragma: keep
 
 namespace xtd {
 

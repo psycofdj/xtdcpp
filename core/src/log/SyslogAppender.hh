@@ -1,9 +1,14 @@
 #ifndef CORE_LOG_SYSLOGAPPENDER_HH_
 # define CORE_LOG_SYSLOGAPPENDER_HH_
+# include <stdint.h>
+# include <map>
+# include <memory>
 # include <mutex>
+# include <string>
 # include "log/Appender.hh"
-# include "mixins/cloneable.hh"
-
+# include "log/Formatter.hh"
+# include "log/logtypes.hh"
+# include "types.hh"
 class TestSyslogAppender;
 
 namespace xtd {

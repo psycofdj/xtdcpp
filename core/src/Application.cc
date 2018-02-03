@@ -1,15 +1,15 @@
 #include "Application.hh"
-#include <cstdlib>
+#include <getopt.h>                                  // IWYU pragma: keep
+#include <libgen.h>
 #include <string.h>
-#include <fstream>
-#include <sstream>
-#include <utility>
-#include <boost/filesystem.hpp>
-#include <boost/regex.hpp>
-#include <boost/algorithm/string/split.hpp>
-#include <boost/algorithm/string/trim.hpp>
-#include <boost/algorithm/string/classification.hpp>
 #include <unistd.h>
+#include <cstdlib>
+#include <memory>
+#include <boost/filesystem.hpp>                      // IWYU pragma: keep
+#include <boost/algorithm/string/classification.hpp> // IWYU pragma: keep
+#include <boost/algorithm/string/trim.hpp>           // IWYU pragma: keep
+
+namespace boost { namespace system { class error_code; } }
 
 #ifdef HAVE_DEPENDENCY_TRACKING
 ///! RSC keyword

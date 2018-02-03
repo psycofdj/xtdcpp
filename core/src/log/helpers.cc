@@ -1,4 +1,9 @@
 #include "log/helpers.hh"
+#include <map>
+#include <memory>
+#include <type_traits>
+#include <utility>
+#include "log/Logger.hh"
 
 namespace xtd {
 namespace log {

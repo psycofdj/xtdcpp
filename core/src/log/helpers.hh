@@ -1,8 +1,13 @@
 #ifndef XTD_CORE_LOG_HELPERS_HH_
 # define XTD_CORE_LOG_HELPERS_HH_
-# include "log/logtypes.hh"
-# include "log/fwd.hh"
 
+# include <stdint.h>
+# include <iosfwd>
+# include <string>
+# include "log/logtypes.hh"
+# include "types.hh"
+
+namespace xtd { namespace log { class RootLogger; } }
 namespace xtd {
 namespace log {
 
@@ -157,7 +162,7 @@ RootLogger& getRoot(void);
 
 }}
 
-# include "log/helpers.hxx"
+# include "log/helpers.hxx" // IWYU pragma: export
 
 #endif // !XTD_CORE_LOG_HELPERS_HH_
 

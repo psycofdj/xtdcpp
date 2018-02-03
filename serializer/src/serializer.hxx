@@ -2,9 +2,11 @@
 # define SERIALIZER_SERIALIZER_HXX_
 
 # include <sstream>
-# include <boost/range/iterator_range_core.hpp>
-# include <boost/iostreams/filtering_stream.hpp>
-# include <boost/iostreams/device/back_inserter.hpp>
+# include <string>
+# include <boost/serialization/nvp.hpp>
+# include <boost/range/iterator_range_core.hpp>      // IWYU pragma: keep
+# include <boost/iostreams/filtering_stream.hpp>     // IWYU pragma: keep
+# include <boost/iostreams/device/back_inserter.hpp> // IWYU pragma: keep
 
 namespace xtd {
 namespace serializer {

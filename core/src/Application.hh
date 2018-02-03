@@ -1,25 +1,20 @@
 #ifndef COMMON_APPLICATION_HH_
 # define COMMON_APPLICATION_HH_
 
-
+# include <stdint.h>
+# include <boost/asio.hpp>
+# include <boost/thread.hpp>
+# include <functional>
 # include <iostream>
-# include <iomanip>
 # include <limits>
 # include <map>
-# include <functional>
-# include <getopt.h>
-# include <libgen.h>
-# include <stdlib.h>
-# include <boost/system/error_code.hpp>
-# include <boost/thread.hpp>
-# include <boost/asio.hpp>
-# include <boost/asio/signal_set.hpp>
+# include <string>
+# include <vector>
 # include "types.hh"
-
-
 
 class TestApplication;
 
+namespace boost { namespace system { class error_code; } }
 namespace xtd {
 
 
@@ -385,7 +380,7 @@ private:
 
 }
 
-# include "Application.hxx"
+# include "Application.hxx" // IWYU pragma: export
 
 #endif // !COMMON_APPLICATION_HH_
 

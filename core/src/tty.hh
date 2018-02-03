@@ -1,8 +1,10 @@
 #ifndef XTD_CORE_TTY_HH_
 # define XTD_CORE_TTY_HH_
+# include <cstdint>
+# include <iosfwd>
+# include <string>
+# include <vector>
 # include "types.hh"
-# include <boost/format.hpp>
-# include <boost/algorithm/string/join.hpp>
 
 namespace xtd {
 

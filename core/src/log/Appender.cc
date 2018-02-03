@@ -1,5 +1,5 @@
 #include "log/Appender.hh"
-#include "log/helpers.hh"
+#include "log/Formatter.hh"
 
 namespace xtd {
 namespace log {

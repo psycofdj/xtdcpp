@@ -1,5 +1,7 @@
-#include "config/Grammar.hh"  // libcore
-#include "config/Grammar.hxx" // libcore
+#include "config/Grammar.hh"
+#include <iterator>
+#include "types.hh"
+#include "config/Grammar.hxx" // IWYU pragma: keep
 
 
 namespace xtd {

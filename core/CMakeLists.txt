@@ -44,3 +44,8 @@ add_check(core
 add_cov(core)
 add_memcheck(core)
 
+file(GLOB_RECURSE deps
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hxx)
+add_iwyu(core DEPENDS ${deps})

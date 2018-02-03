@@ -1,12 +1,15 @@
 #ifndef COMMON_TYPES_HH_
 # define COMMON_TYPES_HH_
-# include <string>
-# include <map>
-# include <vector>
-# include <sstream>
+
+# include <stdint.h>
 # include <fstream>
+# include <functional>
+# include <map>
 # include <memory>
+# include <string>
 # include <type_traits>
+# include <utility>
+# include <vector>
 
 using std::string;
 using std::map;

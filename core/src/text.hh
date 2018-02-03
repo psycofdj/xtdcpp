@@ -1,6 +1,8 @@
 #ifndef COMMON_TEXT_HH_
 # define COMMON_TEXT_HH_
 # include <boost/tuple/tuple.hpp>
+# include <string>
+# include <vector>
 # include "types.hh"
 
 namespace xtd {

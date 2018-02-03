@@ -76,7 +76,7 @@ private:
 
 }}
 
-# include "log/Fields.hxx"
+# include "log/Fields.hxx" // IWYU pragma: export
 
 #endif // !XTD_CORE_LOG_FIELDS_HH_
 

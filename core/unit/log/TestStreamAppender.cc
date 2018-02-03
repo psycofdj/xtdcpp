@@ -2,6 +2,7 @@
 #include <MainTestApplication.hh> //libtests
 #include <TestFixture.hh>         //libtests
 #include "log/StreamAppender.hh"  //libtests
+#include "log/Stream.hh"          //libtests
 #include <boost/filesystem.hpp>
 
 

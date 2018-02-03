@@ -1,9 +1,14 @@
 #ifndef XTD_CORE_LOG_FORMATTER_HH_
 # define XTD_CORE_LOG_FORMATTER_HH_
-# include "log/fwd.hh"
-# include "log/logtypes.hh"
+# include <boost/date_time/posix_time/posix_time.hpp>
+# include <functional>
+# include <map>
+# include <memory>
+# include <string>
+# include <vector>
 # include "log/Fields.hh"
-
+# include "log/logtypes.hh"
+# include "types.hh"
 class TestFormatter;
 
 namespace xtd {
@@ -313,7 +318,7 @@ protected:
 
 }}
 
-# include "log/Formatter.hxx"
+# include "log/Formatter.hxx" // IWYU pragma: export
 
 #endif // !XTD_CORE_LOG_FORMATTER_HH_
 

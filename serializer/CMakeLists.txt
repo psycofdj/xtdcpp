@@ -22,3 +22,9 @@ add_check(serializer
   LINKS    core_s tests_s serializer_s ${Boost_LIBRARIES})
 add_cov(serializer)
 add_memcheck(serializer)
+
+file(GLOB_RECURSE deps
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hxx)
+add_iwyu(serializer DEPENDS ${deps})

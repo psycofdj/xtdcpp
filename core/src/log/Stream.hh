@@ -1,8 +1,9 @@
 #ifndef XTD_CORE_LOG_STREAM_HH_
 # define XTD_CORE_LOG_STREAM_HH_
-# include "types.hh"
-# include <mutex>
 # include <iostream>
+# include <memory>
+# include <mutex>
+# include "types.hh"
 
 namespace xtd {
 namespace log {

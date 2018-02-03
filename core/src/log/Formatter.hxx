@@ -1,3 +1,4 @@
+// IWYU pragma: private, include "log/Formatter.hh"
 #ifndef CORE_LOG_FORMATTER_HXX_
 # define CORE_LOG_FORMATTER_HXX_
 

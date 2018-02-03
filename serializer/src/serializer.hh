@@ -3,8 +3,10 @@
 
 # include <iostream>
 # include <types.hh> // libcore
-# include "serializer_fwd.hh"
+# include <boost/archive/basic_archive.hpp>
+# include "serializer_fwd.hh"  // IWYU pragma: export
 # include "archives/DebugArchive.hh"
+
 
 namespace xtd {
 namespace serializer {
@@ -98,6 +100,6 @@ void from_text(const std::vector<char>& p_data, T& p_obj, bool& p_debug, option 
 
 }} // end of namespace serializer
 
-# include "serializer.hxx"
+# include "serializer.hxx"  // IWYU pragma: export
 
 #endif // !SERIALIZER_SERIALIZER_HH_
