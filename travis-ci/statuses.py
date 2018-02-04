@@ -105,20 +105,25 @@ class StatusHelper:
       sys.exit(1)
     return l_req.json()
 
+  def read_file(self, p_file):
+    l_file = open(p_file, "r")
+    return l_file.read()
+
   def collect_unittests(self):
     print("--------------------")
     print("Collecting unittests")
     print("--------------------")
     try:
-      l_tests  = glob.glob("%s/reports/*/check/tests.xml" % self.m_dir)
+      l_tests  = glob.glob("%s/reports/check/*/status.json" % self.m_dir)
       l_total  = 0
       l_failed = 0
       l_passed = 0
       for c_test in l_tests:
-        l_root = etree.parse(c_test)
-        l_total += len(l_root.xpath("/Site/Testing/Test"))
-        l_failed += len(l_root.xpath("/Site/Testing/Test[@Status!='passed']"))
-        l_passed += len(l_root.xpath("/Site/Testing/Test[@Status='passed']"))
+        l_content = self.read_file(c_test)
+        l_root    = json.loads(l_content)
+        l_failed += l_root["data"]["failures"]
+        l_passed += l_root["data"]["success"]
+        l_total  += l_failed + l_passed
       if l_failed == 0:
         l_status      = "success"
         l_badge_descr = "passed (%d/%d) " % (l_passed, l_total)
@@ -140,20 +145,52 @@ class StatusHelper:
     print("")
 
 
+
+  def collect_memchecks(self):
+    print("------------------------")
+    print("Collecting memory checks")
+    print("------------------------")
+    try:
+      l_tests  = glob.glob("%s/reports/memcheck/*/status.json" % self.m_dir)
+      l_failed = 0
+      for c_test in l_tests:
+        l_content = self.read_file(c_test)
+        l_root    = json.loads(l_content)
+        l_failed += l_root["data"]["total"]
+      if l_failed == 0:
+        l_status      = "success"
+        l_badge_descr = "no flaw detected"
+        l_description = "Memchecks : %d failed" % (l_failed)
+      else:
+        l_status      = "error"
+        l_badge_descr = "failed (%d) " % (l_failed)
+        l_description = "Memchecks : %d failed" % (l_failed)
+      print("%s : %s" % (l_status, l_description))
+    except BaseException as l_error:
+      print("caught exception : %s" % str(l_error))
+      l_status      = "failure"
+      l_badge_descr = "error while collect tests"
+      l_description = "error while collect tests"
+
+    l_badge = self.make_badge("MemChecks", "memchecks", l_badge_descr, l_status)
+    self.m_comment += "%s\n" % l_badge
+    self.send_status(l_status, "kpi/memchecks", l_description)
+    print("")
+
+
   def collect_coverage(self):
     print("-------------------")
     print("Collecting coverage")
     print("-------------------")
     try:
-      l_tests   = glob.glob("%s/reports/*/coverage/coverage.xml" % self.m_dir)
+      l_tests   = glob.glob("%s/reports/coverage/*/status.json" % self.m_dir)
       l_total   = 0
       l_covered = 0
       for c_test in l_tests:
-        l_root     = etree.parse(c_test)
-        l_coverage = l_root.xpath("/coverage")[0]
-        l_total   += int(l_coverage.get("lines-valid"))
-        l_covered += int(l_coverage.get("lines-covered"))
-
+        l_content = self.read_file(c_test)
+        l_root    = json.loads(l_content)
+        l_total   += l_root["data"]["total"]
+        l_covered += l_root["data"]["covered"]
       l_status = "success"
       l_percent = 0
       if l_total != 0:
@@ -179,11 +216,12 @@ class StatusHelper:
     print("Collecting cppcheck")
     print("-------------------")
     try:
-      l_tests   = glob.glob("%s/reports/*/cppcheck/cppcheck.xml" % self.m_dir)
+      l_tests   = glob.glob("%s/reports/cppcheck/*/status.json" % self.m_dir)
       l_total   = 0
       for c_test in l_tests:
-        l_root   = etree.parse(c_test)
-        l_total += len(l_root.xpath("/results/error"))
+        l_content = self.read_file(c_test)
+        l_root    = json.loads(l_content)
+        l_total  += l_root["data"]["total"]
       l_status       = "success"
       l_badge_status = "success"
       if l_total != 0:
@@ -207,14 +245,14 @@ class StatusHelper:
     print("Collecting cloc")
     print("---------------")
     try:
-      l_tests   = glob.glob("%s/reports/*/cloc/cloc.xml" % self.m_dir)
+      l_tests   = glob.glob("%s/reports/cloc/*/status.json" % self.m_dir)
       l_code    = 0
       l_comment = 0
       for c_test in l_tests:
-        l_root     = etree.parse(c_test)
-        l_elem     = l_root.xpath("/results/languages/total")[0]
-        l_code    += int(l_elem.get("code"))
-        l_comment += int(l_elem.get("comment"))
+        l_content = self.read_file(c_test)
+        l_root    = json.loads(l_content)
+        l_code    += l_root["data"]["code"]
+        l_comment += l_root["data"]["comment"]
 
       l_percent = 0
       if l_code != 0:
@@ -259,15 +297,14 @@ class StatusHelper:
     print("Collecting doc-coverage")
     print("-----------------------")
     try:
-      l_tests   = glob.glob("%s/reports/*/doc-coverage/doc-coverage.xml" % self.m_dir)
+      l_tests   = glob.glob("%s/reports/doc-coverage/*/status.json" % self.m_dir)
       l_total   = 0
       l_covered = 0
       for c_test in l_tests:
-        l_root     = etree.parse(c_test)
-        l_coverage = l_root.xpath("/coverage")[0]
-        l_total   += int(l_coverage.get("lines-valid"))
-        l_covered += int(l_coverage.get("lines-covered"))
-
+        l_content = self.read_file(c_test)
+        l_root    = json.loads(l_content)
+        l_total   += l_root["data"]["total"]
+        l_covered += l_root["data"]["documented"]
       l_status = "success"
       l_percent = 0
       if l_total != 0:
@@ -296,6 +333,7 @@ class StatusHelper:
     self.send_status("pending", "kpi/cloc",         "collecting cloc")
     self.send_status("pending", "kpi/doc",          "collecting documentation")
     self.send_status("pending", "kpi/doc-coverage", "collecting doc-coverage")
+    self.send_status("pending", "kpi/memchecks",    "collecting memchecks")
 
     self.collect_unittests()
     self.collect_coverage()
@@ -303,6 +341,7 @@ class StatusHelper:
     self.collect_cloc()
     self.collect_doc()
     self.collect_doc_coverage()
+    self.collect_memchecks()
 
     self.comment_commit("""
 Build report #%(buildid)s for sha %(commit)s:
