@@ -133,7 +133,7 @@ TestApplication::handleSignal()
   kill(getpid(), SIGUSR2);
   boost::this_thread::sleep(boost::posix_time::milliseconds(100));
   CPPUNIT_ASSERT_EQUAL(false, l_usr2Called);
-  CPPUNIT_ASSERT(false);
+
   l_app.stop();
   l_thread.join();
 }
@@ -145,7 +145,6 @@ TestApplication::getVersion(void)
   std::string l_version = l_app.getVersion();
 
 #ifdef HAVE_DEPENDENCY_TRACKING
-  std::cout << l_version << std::endl;
   CPPUNIT_ASSERT(string::npos != l_version.find("$date:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$time:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$name:"));

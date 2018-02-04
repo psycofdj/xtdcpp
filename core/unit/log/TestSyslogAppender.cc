@@ -60,21 +60,21 @@ TestSyslogAppender::constructor(void)
   {
     SyslogAppender l_i1("name", LOG_PID, LOG_LOCAL0);
     CPPUNIT_ASSERT_EQUAL(1u, SyslogAppender::ms_instances);
-    CPPUNIT_ASSERT_EQUAL(1u, l_open);
+    CPPUNIT_ASSERT_EQUAL(0u, l_open);
     CPPUNIT_ASSERT_EQUAL(0u, l_close);
     {
       SyslogAppender l_i2("name", LOG_PID, LOG_LOCAL0);
       CPPUNIT_ASSERT_EQUAL(2u, SyslogAppender::ms_instances);
-      CPPUNIT_ASSERT_EQUAL(1u, l_open);
+      CPPUNIT_ASSERT_EQUAL(0u, l_open);
       CPPUNIT_ASSERT_EQUAL(0u, l_close);
     }
     CPPUNIT_ASSERT_EQUAL(1u, SyslogAppender::ms_instances);
-    CPPUNIT_ASSERT_EQUAL(1u, l_open);
+    CPPUNIT_ASSERT_EQUAL(0u, l_open);
     CPPUNIT_ASSERT_EQUAL(0u, l_close);
   }
   CPPUNIT_ASSERT_EQUAL(0u, SyslogAppender::ms_instances);
-  CPPUNIT_ASSERT_EQUAL(1u, l_open);
-  CPPUNIT_ASSERT_EQUAL(1u, l_close);
+  CPPUNIT_ASSERT_EQUAL(0u, l_open);
+  CPPUNIT_ASSERT_EQUAL(0u, l_close);
 }
 
 
