@@ -7,17 +7,13 @@
 #include <cppunit/XmlOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
-#include <iostream>
 #include <log/ConfLoader.hh>
-#include <memory>
 #include <regex>
-#include <vector>
-#include "Application.hxx"
-#include "Globals.h"
 #include <iostream>
 #include "Globals.h"
 #include "ProgressListener.hh"
 #include "QuietOutputter.hh"
+
 namespace xtd {
 namespace tests {
 

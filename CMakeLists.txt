@@ -50,6 +50,8 @@ list(APPEND CheckRule_DEFAULT_ARGS     "7")
 list(APPEND CheckRule_DEFAULT_INCLUDES "${Boost_INCLUDE_DIRS}")
 list(APPEND CheckRule_DEFAULT_LINKS    "${Boost_LIBRARIES}")
 set(CheckRule_DEFAULT_JOBS             "4")
+set(ClocRule_DEFAULT_MIN_PERCENT   "15")
+
 
 xtdmake_init(
   StaticShared    REQUIRED

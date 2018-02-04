@@ -1,8 +1,6 @@
 #pragma once
 #include <cppunit/TestListener.h>
 #include <ostream>
-namespace CppUnit { class Test; }
-namespace CppUnit { class TestFailure; }
 
 namespace CppUnit { class Test; }
 namespace CppUnit { class TestFailure; }
