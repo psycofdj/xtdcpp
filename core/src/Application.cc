@@ -97,8 +97,8 @@ Application::bindRegex(string& p_target) const
 {
   return [&p_target, this](const string& p_value, const t_option& p_opt) {
     try {
-      boost::regex l_regex(p_value);
-    } catch (boost::bad_expression&) {
+      std::regex l_regex(p_value);
+    } catch (std::regex_error&) {
       error(1, "invalid option --%s=%s, must be a valid regex", p_value, p_opt.m_longOpt);
     }
     p_target = p_value;
@@ -156,7 +156,7 @@ Application::execute(int p_argc, const char* const p_argv[])
     parseConfig();
     checkOptions();
     log::getRoot().setAllLevels(log::from(m_logLevel));
-    initialize();
+    setUp();
   };
 
   auto l_process = [&](void) {

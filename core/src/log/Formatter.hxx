@@ -1,14 +1,14 @@
 // IWYU pragma: private, include "log/Formatter.hh"
 #ifndef CORE_LOG_FORMATTER_HXX_
 # define CORE_LOG_FORMATTER_HXX_
-# include <boost/algorithm/string/regex.hpp>
 # include <boost/format.hpp>
 # include <boost/lexical_cast.hpp>
-# include <boost/regex.hpp>
+# include <regex>
 # include <exception>
-# include "types.hh"
-# include "format.hh"
-# include "log/logtypes.hh"
+# include "types.hh"        // libcore
+# include "text.hh"         // libcore
+# include "format.hh"       // libcore
+# include "log/logtypes.hh" // libcore
 
 namespace xtd { namespace log { class Formatter; } }
 namespace xtd {
@@ -33,8 +33,8 @@ Formatter::format(const Record& p_rec, Arguments&&... p_args) const
     {
       vector<string> l_parts;
 
-      l_rec.m_message = format::vargs(p_rec.m_format + "//sep//%s//sep//%s//sep//%s", p_args...);
-      boost::split_regex(l_parts, l_rec.m_message, boost::regex("//sep//"));
+      l_rec.m_message  = format::vargs(p_rec.m_format + "//sep//%s//sep//%s//sep//%s", p_args...);
+      text::algorithm::regex::split(l_parts, l_rec.m_message, std::regex("//sep//"));
       l_rec.m_message  = l_parts[0];
       l_rec.m_function = l_parts[1];
       l_rec.m_filename = l_parts[2];

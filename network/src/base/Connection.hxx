@@ -161,8 +161,7 @@ Connection<Domain>::connect(sptr<utils::Resolver<Domain> > p_resolver,
  */
 template <typename Domain>
 void
-Connection<Domain>::do_connect(sptr<utils::Resolver<Domain> > p_resolver,
-                               t_handler                      p_onConnected)
+Connection<Domain>::do_connect(sptr<utils::Resolver<Domain> > p_resolver, t_handler p_onConnected)
 {
   log::debug("network.base.cnx", "cnx do_connect (%s:%d): entering", m_hostname, m_port, HERE);
 
@@ -295,8 +294,7 @@ Connection<Domain>::send(const vector<char>& p_outData,
  */
 template <typename Domain>
 void
-Connection<Domain>::do_send(sptr<vector<char>> p_outData,
-                            t_handler   p_onSent)
+Connection<Domain>::do_send(sptr<vector<char>> p_outData, t_handler p_onSent)
 {
   log::debug("network.base.cnx", "cnx do_send (%s) : entering", info(), HERE);
 
@@ -379,8 +377,7 @@ Connection<Domain>::receive(sptr<vector<char>> p_inData,
 
 template <typename Domain>
 void
-Connection<Domain>::do_receive(sptr<vector<char>> p_inData,
-                               t_handler   p_onReceived)
+Connection<Domain>::do_receive(sptr<vector<char>> p_inData, t_handler p_onReceived)
 {
   log::debug("network.base.cnx", "cnx do_receive (%s) : entering", info(), HERE);
 

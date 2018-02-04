@@ -113,7 +113,7 @@ template<typename T>
 Application::t_callback
 Application::bindValueIfGiven(T& p_target, const T& p_default) const
 {
-  return [&p_target, p_default, this](const string&, const t_option&) {
+  return [&p_target, p_default](const string&, const t_option&) {
     p_target = p_default;
   };
 

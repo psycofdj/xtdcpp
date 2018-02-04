@@ -1,3 +1,5 @@
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <MainTestApplication.hh> //libtests
 #include <TestFixture.hh>         //libtests
 #include <CWrap.hh>               //libtests
@@ -44,7 +46,10 @@ TestLogger::get(void)
   {
     // OK empty name is self
     auto& l_log = l_root.get("");
-    CPPUNIT_ASSERT_NO_THROW(dynamic_cast<RootLogger&>(l_log));
+    CPPUNIT_ASSERT_NO_THROW({
+        RootLogger& l_cast = dynamic_cast<RootLogger&>(l_log);
+        CPPUNIT_ASSERT(&l_log == &l_cast);
+      });
   }
 
   {

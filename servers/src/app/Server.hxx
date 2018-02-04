@@ -297,9 +297,9 @@ Server<TReq, TRes, Domain>::processObjectRequest(uint32_t     p_requestID,
 
 template<typename TReq, typename TRes, typename Domain>
 void
-Server<TReq, TRes, Domain>::initialize(void)
+Server<TReq, TRes, Domain>::setUp(void)
 {
-  http_app::initialize();
+  http_app::setUp();
 
   // 60000ms = 60s = 1min : timed window size
   bip_app::m_perfCounter.reset(new counters::AvgTimedValue("", m_nbThread, 60000, m_thresholdMs));
@@ -314,7 +314,7 @@ Server<TReq, TRes, Domain>::initialize(void)
 
   //! Parameters
   m_params->add("assertRTT", m_assertRTT, true)
-    ->listen<bool>(boost::bind(&bip_app::setAssertRTT, this, _2));
+    ->template listen<bool>(boost::bind(&bip_app::setAssertRTT, this, _2));
 }
 
 

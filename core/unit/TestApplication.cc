@@ -1,6 +1,8 @@
 #include "log.hh"                 //libcore
 #include "Application.hh"         //libcore
 #include <MainTestApplication.hh> //libtests
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 #include <stdexcept>
@@ -143,7 +145,6 @@ TestApplication::getVersion(void)
   std::string l_version = l_app.getVersion();
 
 #ifdef HAVE_DEPENDENCY_TRACKING
-  std::cout << l_version << std::endl;
   CPPUNIT_ASSERT(string::npos != l_version.find("$date:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$time:"));
   CPPUNIT_ASSERT(string::npos != l_version.find("$name:"));
@@ -568,7 +569,7 @@ TestApplication::bindRegex(void)
     // KO invalid regex
     Application       l_app(true);
     std::string       l_regex;
-    const char* const l_args[] = { "binary", "--regex", "^/*[sS]*?*/|^//" };
+    const char* const l_args[] = { "binary", "--regex", "[a-z]{1" };
 
     CPPUNIT_ASSERT_NO_THROW(l_app.addOption('s', "regex", Application::argument::mandatory, Application::requirement::mandatory, "", l_app.bindRegex(l_regex)));
     CPPUNIT_ASSERT_THROW(l_app.readArgs(3, l_args), std::runtime_error);

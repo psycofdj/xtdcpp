@@ -16,6 +16,13 @@
 # include <iosfwd>      // for ostream, ifstream, istream, ofstream, stringstream
 # include <ostream>     // for endl
 
+# include <bits/c++config.h>
+# include <bits/shared_ptr.h>
+# include <bits/stl_map.h>
+# include <bits/stl_pair.h>
+# include <bits/stl_vector.h>
+# include <bits/stringfwd.h>
+
 
 using std::string;
 using std::map;

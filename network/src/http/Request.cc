@@ -56,13 +56,11 @@ Request::setMethod(method p_method)
 void
 Request::normalizePath(const string& p_path)
 {
-  boost::smatch l_match;
-
+  std::smatch l_match;
 
   m_path = text::url::decode_copy(p_path);
-  m_path = boost::regex_replace(m_path, boost::regex("^/+"), "/");
-  m_path = boost::regex_replace(m_path, boost::regex("/+$"), "/");
-
+  m_path = std::regex_replace(m_path, std::regex("^/+"), "/");
+  m_path = std::regex_replace(m_path, std::regex("/+$"), "/");
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef NETWORK_HTTP_REQUEST_HH_
 # define NETWORK_HTTP_REQUEST_HH_
 # include "types.hh" // libcore
-# include <boost/regex.hpp>
+# include <regex>
 # include "http/Message.hh"
 # include "http/http_types.hh"
 
@@ -86,13 +86,13 @@ private:
   void getData(const t_param_map& p_src, const string& p_key, vector<T>& p_dst, const vector<T>& p_default) const;
 
 private:
-  string       m_rawUrl;
-  method       m_method;
-  string       m_path;
-  t_param_map  m_cgi;
-  t_param_map  m_post;
-  boost::regex m_regex_tooManyStartingSlash;
-  boost::regex m_regex_tooManyEndingSlash;
+  string      m_rawUrl;
+  method      m_method;
+  string      m_path;
+  t_param_map m_cgi;
+  t_param_map m_post;
+  std::regex  m_regex_tooManyStartingSlash;
+  std::regex  m_regex_tooManyEndingSlash;
 };
 
 std::ostream& operator<<(std::ostream& p_buf, const Request& p_obj);

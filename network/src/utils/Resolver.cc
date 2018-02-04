@@ -79,8 +79,7 @@ Resolver<af_inet>::getAddr(const af_inet::endpoint& p_endpoint)
 
 
 // remove warning p_dnsCacheTTL unused
-Resolver<af_unix>::Resolver(boost::asio::io_service& p_ioService, uint32_t /* p_dnsCacheTTL */) :
-  m_ioService(p_ioService)
+Resolver<af_unix>::Resolver(boost::asio::io_service&, uint32_t)
 {
 }
 

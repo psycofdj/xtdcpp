@@ -1,3 +1,5 @@
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include "log.hh"                 // libcore
 #include "Application.hh"         // libcore
 #include "MainTestApplication.hh" // libtests

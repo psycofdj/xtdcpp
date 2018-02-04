@@ -1,5 +1,6 @@
 #ifndef XTD_CORE_LOG_FIELDS_HXX_
 # define XTD_CORE_LOG_FIELDS_HXX_
+// IWYU pragma: private, include "log/Fields.hh"
 
 namespace xtd {
 namespace log {

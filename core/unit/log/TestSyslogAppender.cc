@@ -1,3 +1,5 @@
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <MainTestApplication.hh> //libtests
 #include <TestFixture.hh>         //libtests
 #include <CWrap.hh>               //libtests
@@ -54,23 +56,23 @@ TestSyslogAppender::constructor(void)
   CWrap::hook_state l_state1("openlog",  l_onOpen);
   CWrap::hook_state l_state2("closelog", l_onClose);
 
-  CPPUNIT_ASSERT_EQUAL(1u, SyslogAppender::ms_instances);
+  CPPUNIT_ASSERT_EQUAL(0u, SyslogAppender::ms_instances);
   {
     SyslogAppender l_i1("name", LOG_PID, LOG_LOCAL0);
-    CPPUNIT_ASSERT_EQUAL(2u, SyslogAppender::ms_instances);
+    CPPUNIT_ASSERT_EQUAL(1u, SyslogAppender::ms_instances);
     CPPUNIT_ASSERT_EQUAL(0u, l_open);
     CPPUNIT_ASSERT_EQUAL(0u, l_close);
     {
       SyslogAppender l_i2("name", LOG_PID, LOG_LOCAL0);
-      CPPUNIT_ASSERT_EQUAL(3u, SyslogAppender::ms_instances);
+      CPPUNIT_ASSERT_EQUAL(2u, SyslogAppender::ms_instances);
       CPPUNIT_ASSERT_EQUAL(0u, l_open);
       CPPUNIT_ASSERT_EQUAL(0u, l_close);
     }
-    CPPUNIT_ASSERT_EQUAL(2u, SyslogAppender::ms_instances);
+    CPPUNIT_ASSERT_EQUAL(1u, SyslogAppender::ms_instances);
     CPPUNIT_ASSERT_EQUAL(0u, l_open);
     CPPUNIT_ASSERT_EQUAL(0u, l_close);
   }
-  CPPUNIT_ASSERT_EQUAL(1u, SyslogAppender::ms_instances);
+  CPPUNIT_ASSERT_EQUAL(0u, SyslogAppender::ms_instances);
   CPPUNIT_ASSERT_EQUAL(0u, l_open);
   CPPUNIT_ASSERT_EQUAL(0u, l_close);
 }

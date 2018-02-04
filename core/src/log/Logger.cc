@@ -2,7 +2,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/join.hpp>
 #include <boost/algorithm/string/split.hpp>
-#include <boost/regex.hpp>
+#include <regex>
 #include <thread>
 #include "log/helpers.hh"
 
@@ -170,16 +170,16 @@ RootLogger::setAllValueLevels(uint32_t p_level)
 RootLogger&
 RootLogger::updateLevels(const string& p_regexp, level p_level)
 {
-  boost::regex l_matcher(p_regexp + ".*");
+  std::regex l_matcher(p_regexp + ".*");
   std::lock_guard<std::mutex> l_lock(m_mutex);
 
   for (auto c_item : m_loggers)
   {
-    if (true == boost::regex_match(c_item.first, l_matcher))
+    if (true == std::regex_match(c_item.first, l_matcher))
       c_item.second->setLevel(p_level);
   }
 
-  if (true == boost::regex_match(string(), l_matcher))
+  if (true == std::regex_match(string(), l_matcher))
     setLevel(p_level);
   return *this;
 }

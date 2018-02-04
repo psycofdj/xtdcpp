@@ -5,7 +5,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/format.hpp>
-#include <boost/regex.hpp>
+#include <regex>
 #include <exception>
 #include <iterator>
 #include "types.hh"
@@ -28,10 +28,10 @@ ConfLoader::configure(const map<string, string>& p_properties,
 {
   for (auto c_line : p_properties)
   {
-    boost::smatch l_matches;
-    boost::regex  l_re("^log\\.logger\\.(.*)$");
+    std::smatch l_matches;
+    std::regex  l_re("^log\\.logger\\.(.*)$");
 
-    if (true == boost::regex_match(c_line.first, l_matches, l_re))
+    if (true == std::regex_match(c_line.first, l_matches, l_re))
     {
       if (l_matches.size() == 2)
         createLogger(l_matches[1], c_line.second, p_properties, p_root);

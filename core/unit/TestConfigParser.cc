@@ -1,6 +1,9 @@
+#include <cppunit/TestFixture.h>
+#include <cppunit/extensions/HelperMacros.h>
 #include <boost/filesystem.hpp>
 #include "MainTestApplication.hh" // libtests
 #include "CWrap.hh"               // libtests
+#include "Globals.h"
 #include <config/Parser.hh>       // libcore
 
 
@@ -36,7 +39,7 @@ TestConfParser::Constructor(void)
 {
   {
     // OK empty construct
-    CPPUNIT_ASSERT_NO_THROW(xtd::config::Parser l_obj());
+    CPPUNIT_ASSERT_NO_THROW(xtd::config::Parser l_obj);
   }
 
   {

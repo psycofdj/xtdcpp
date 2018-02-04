@@ -29,6 +29,7 @@
 .build/
 .release/
 .ninja/
+.clang/
 Makefile.in
 autom4te.cache/
 common/Makefile.in

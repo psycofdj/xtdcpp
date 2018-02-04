@@ -237,7 +237,7 @@ HttpServer::defineProbes(void)
 
 
 void
-HttpServer::initialize(void)
+HttpServer::setUp(void)
 {
   m_ramCounter.reset(new counters::Value32("ram.usage"));
   // 60000ms = 60s = 1min : timed window size
