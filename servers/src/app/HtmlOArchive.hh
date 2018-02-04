@@ -1,6 +1,5 @@
 #ifndef SERVERS_APP_HTMLOARCHIVE_HH_
 # define SERVERS_APP_HTMLOARCHIVE_HH_
-# include <stddef.h>
 # include <boost/archive/detail/archive_serializer_map.hpp> // IWYU pragma: keep
 # include <boost/archive/impl/archive_serializer_map.ipp>   // IWYU pragma: keep
 # include <boost/archive/xml_oarchive.hpp>                  // IWYU pragma: keep
@@ -8,7 +7,7 @@
 # include <deque>
 # include <list>
 # include <stack>
-# include "types.hh"
+# include "types.hh" // libcore
 
 namespace boost { namespace archive { class class_id_optional_type; } }
 namespace boost { namespace archive { class class_id_reference_type; } }
