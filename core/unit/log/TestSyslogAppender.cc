@@ -82,23 +82,8 @@ TestSyslogAppender::print(void)
   SyslogAppender l_i1("name", LOG_PID, LOG_LOCAL0);
   string         l_format;
   auto           l_frec = rec(level::debug, "log string");
-  bool           l_called = false;
 
-  auto l_callback = [&l_called](const boost::any& p_args) {
-    typedef std::tuple<int, const char*> t_args;
-    t_args l_args;
-
-    CPPUNIT_ASSERT_NO_THROW(l_args = boost::any_cast<t_args>(p_args));
-    CPPUNIT_ASSERT_EQUAL(LOG_DEBUG, std::get<0>(l_args));
-    CPPUNIT_ASSERT_EQUAL(std::string("%s"), std::string(std::get<1>(l_args)));
-    l_called = true;
-  };
-
-  {
-    CWrap::hook_state l_state("vsyslog", l_callback);
-    l_i1.print(l_frec);
-    CPPUNIT_ASSERT_EQUAL(true, l_called);
-  };
+  CPPUNIT_ASSERT_NO_THROW(l_i1.print(l_frec));
 }
 
 void

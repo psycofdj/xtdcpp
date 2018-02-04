@@ -4,6 +4,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/serialization/item_version_type.hpp>
 #include <limits>
+#include "types.hh" // libcore
 
 namespace boost { namespace serialization { class collection_size_type; } }
 namespace xtd {
