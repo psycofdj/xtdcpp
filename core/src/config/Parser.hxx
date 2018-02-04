@@ -1,12 +1,12 @@
 #ifndef XTD_CORE_CONFIG_PARSER_HXX_
 # define XTD_CORE_CONFIG_PARSER_HXX_
 # include <boost/lexical_cast.hpp>
-# include <boost/algorithm/string/compare.hpp>
-# include <boost/range/algorithm/find_if.hpp>
-# include "config/types.hh"
+# include <boost/spirit/include/support.hpp>
+# include "types.hh"
 # include "config/Grammar.hh"
-# include "error.hh"
-# include "log.hh"
+# include "config/types.hh"
+# include "log/helpers.hh"
+# include "log/logtypes.hh"
 
 namespace xtd {
 namespace config {

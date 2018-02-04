@@ -1,11 +1,16 @@
 #ifndef XTD_CORE_LOG_CONFLOADER_HH_
 # define XTD_CORE_LOG_CONFLOADER_HH_
+# include <boost/preprocessor.hpp>
 # include "types.hh"
-# include "mixins/singleton.hh"
-# include <iostream>
-# include <boost/preprocessor/cat.hpp>
-# include "log/fwd.hh"
 # include "log/helpers.hh"
+# include "mixins/singleton.hh"
+
+class TestConfLoader;
+
+namespace xtd { namespace log { class Appender; } }
+namespace xtd { namespace log { class ConfLoader; } }
+namespace xtd { namespace log { class Formatter; } }
+namespace xtd { namespace log { class RootLogger; } }
 
 
 /**
@@ -30,8 +35,6 @@
     ConfLoader::get().registerFormatter<p_formatter>(#p_formatter);   \
   }
 
-
-class TestConfLoader;
 
 namespace xtd {
 namespace log {

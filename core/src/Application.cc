@@ -1,15 +1,16 @@
 #include "Application.hh"
-#include <cstdlib>
+#include <getopt.h>
+#include <libgen.h>
 #include <string.h>
-#include <fstream>
-#include <sstream>
-#include <utility>
-#include <boost/filesystem.hpp>
-#include <boost/regex.hpp>
-#include <boost/algorithm/string/split.hpp>
-#include <boost/algorithm/string/trim.hpp>
-#include <boost/algorithm/string/classification.hpp>
 #include <unistd.h>
+#include <cstdlib>
+#include <memory>
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/trim.hpp>
+#include <boost/algorithm/string/split.hpp>
+
+namespace boost { namespace system { class error_code; } }
 
 #ifdef HAVE_DEPENDENCY_TRACKING
 ///! RSC keyword

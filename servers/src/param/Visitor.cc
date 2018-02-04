@@ -1,5 +1,5 @@
 #include "param/Visitor.hh"
-
+#include <http/Template.hh>
 
 namespace xtd {
 namespace servers {

@@ -18,11 +18,12 @@ add_shared_static_library(cwrap
 add_doc(tests)
 add_doc_coverage(tests)
 add_cloc(tests)
-add_cppcheck(tests)
 add_codedup(tests)
+add_cppcheck(tests)
 add_check(tests
   ARGS     -p -o compiler
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
   LINKS    core_s tests_s ${Boost_LIBRARIES})
 add_cov(tests)
 add_memcheck(tests)
+add_iwyu(tests DEPENDS xtdtests_s)

@@ -32,3 +32,4 @@ add_check(counters
   LINKS    core_s tests_s counters_s ${Boost_LIBRARIES})
 add_cov(counters)
 add_memcheck(counters)
+add_iwyu(counters DEPENDS xtdcounters_s)

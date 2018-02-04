@@ -1,8 +1,10 @@
 #include "Composed.hh"
 #include <boost/bind.hpp>
+#include <boost/core/ref.hpp>
 #include <boost/range/algorithm/for_each.hpp>
+#include "types.hh" // libcore
 
-
+namespace xtd { namespace counters { class Visitor; } }
 namespace xtd {
 namespace counters {
 

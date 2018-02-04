@@ -1,10 +1,9 @@
 #ifndef COUNTERS_EXTVALUE_HXX_
 # define COUNTERS_EXTVALUE_HXX_
-
+# include "types.hh"   // libcore
+# include "Base.hh"
 # include "ExtValue.hh"
-
-
-
+# include "Visitor.hh" // IWYU pragma: keep
 
 namespace xtd {
 namespace counters {

@@ -1,24 +1,17 @@
 #include "param/Handler.hh"
-
-#include <fstream>
-#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/bind.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-#include <boost/filesystem.hpp>
-#include <error.hh> // libcore
-#include <log.hh>   // libcore
+#include "types.hh"
+#include "log/helpers.hh"
+#include "log/logtypes.hh"
 #include "param/Base.hh"
-#include "param/Visitor.hh"
-
 
 using boost::filesystem::create_directories;
 using boost::filesystem::is_directory;
 
-
-
 namespace bfs = boost::filesystem;
-
 
 namespace xtd {
 namespace servers {

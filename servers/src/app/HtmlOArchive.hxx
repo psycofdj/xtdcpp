@@ -1,5 +1,11 @@
+// IWYU pragma: private, include "app/HtmlOArchive.hh"
 #ifndef SERVERS_APP_HTMLOARCHIVE_HXX_
 # define SERVERS_APP_HTMLOARCHIVE_HXX_
+# include <boost/serialization/nvp.hpp>
+# include <boost/serialization/pfto.hpp>
+# include <deque>
+# include <list>
+# include "types.hh"
 
 namespace xtd {
 namespace servers {

@@ -1,14 +1,13 @@
 #ifndef CORE_LOG_LOGGER_HH_
 # define CORE_LOG_LOGGER_HH_
-# include "log/logtypes.hh"
 # include <mutex>
-# include <thread>
-# include <memory>
+# include "types.hh"
+# include "log/logtypes.hh"
 
 class TestLogger;
 
+namespace xtd { namespace log { class Appender; } }
 namespace xtd {
-namespace log { class Appender; }
 namespace log {
 
 
@@ -250,7 +249,7 @@ public:
    ** @param p_args arguments to apply to given p_format
    */
   template<typename ... Args>
-  void info(const string& p_format, Args... p_args...) const;
+  void info(const string& p_format, Args... p_args) const;
 
   /**
    ** @brief Trigger @ref level::debug log
@@ -542,7 +541,7 @@ private:
 
 }}
 
-# include "log/Logger.hxx"
+# include "log/Logger.hxx" // IWYU pragma: export
 
 #endif // !CORE_LOG_LOGGER_HH_
 

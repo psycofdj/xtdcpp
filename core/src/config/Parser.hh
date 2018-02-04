@@ -1,13 +1,10 @@
 #ifndef XTD_CORE_CONFIG_PARSER_HH_
 # define XTD_CORE_CONFIG_PARSER_HH_
-# include "types.hh" // libcore
-# include "error.hh" // libcore
+# include "types.hh"
+# include "config/types.hh"
+# include "error.hh"
 
 namespace xtd {
-namespace config { namespace impl { class section;   }}
-namespace config { namespace impl { class property;  }}
-
-
 
 /**
  ** @brief Parse and read configuration files
@@ -202,7 +199,7 @@ private:
 
 }}
 
-# include "config/Parser.hxx"
+# include "config/Parser.hxx"// IWYU pragma: export
 
 #endif //!XTD_CORE_CONFIG_PARSER_HH_
 

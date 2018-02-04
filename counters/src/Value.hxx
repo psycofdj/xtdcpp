@@ -1,17 +1,15 @@
 #ifndef COUNTERS_VALUE_HXX_
 # define COUNTERS_VALUE_HXX_
-
-#include "Value.hh"
-#include <boost/lexical_cast.hpp>
-#include <boost/interprocess/detail/atomic.hpp>
-
+# include <boost/interprocess/sync/spin/condition.hpp>
+# include <boost/thread.hpp>
+# include "types.hh" // libcore
+# include "Base.hh"
+# include "Value.hh"
+# include "Visitor.hh" // IWYU pragma: keep
 
 namespace atom = boost::interprocess::ipcdetail;
-
-
 namespace xtd {
 namespace counters {
-
 
 template<typename TType>
 void

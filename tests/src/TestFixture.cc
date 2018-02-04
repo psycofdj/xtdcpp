@@ -1,4 +1,7 @@
 #include "TestFixture.hh"
+#include <stdlib.h>
+#include "asserts.hh"
+#include "types.hh"
 
 namespace xtd {
 namespace tests {

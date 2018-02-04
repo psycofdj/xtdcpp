@@ -1,13 +1,16 @@
 #ifndef SERVERS_APP_SERVER_HH_
 # define SERVERS_APP_SERVER_HH_
-
-# include <unistd.h>
-# include <map>
-# include <bip/Server.hh> // libnetwork
-# include <counters.hh> // libcounters
+# include <bip/Server.hh>
+# include <boost/thread.hpp>
+# include "types.hh"
+# include "network_types.hh" // libnetwork
+# include "objects/Doc.hh"   // libserializer
 # include "app/HttpServer.hh"
 # include "param/Base.hh"
 
+namespace xtd { namespace counters { class AvgTimedValue; } }
+namespace xtd { namespace network { namespace http { class Request; } } }
+namespace xtd { namespace network { namespace http { class Response; } } }
 namespace xtd {
 namespace servers {
 namespace app {

@@ -1,20 +1,24 @@
 #ifndef NETWORK_HTTP_CLIENT_HXX_
 # define NETWORK_HTTP_CLIENT_HXX_
-
-# include <boost/interprocess/sync/lock_options.hpp>
-# include <boost/interprocess/detail/atomic.hpp>
-# include <memory>
-# include <boost/make_shared.hpp>
+# include <boost/asio.hpp>
+# include <boost/date_time/posix_time/posix_time_config.hpp>
+# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include <boost/interprocess/creation_tags.hpp>
+# include <boost/interprocess/sync/interprocess_semaphore.hpp>
+# include <boost/interprocess/sync/spin/condition.hpp>
+# include <boost/iostreams/device/back_inserter.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
-# include <boost/iostreams/filter/zlib.hpp>
-# include <boost/iostreams/filter/gzip.hpp>
-# include <boost/iostreams/filter/bzip2.hpp>
-# include <boost/iostreams/filtering_stream.hpp>
-# include <utils/scoped_fn.hh> // libcore
-# include <log.hh> // libcore
+# include <boost/range/iterator_range_core.hpp>
+# include <boost/system/error_code.hpp>
+# include <utils/scoped_fn.hh>
+# include "log/helpers.hh"  // libcore
+# include "log/logtypes.hh" // libcore
+# include "types.hh"        // libcore
+# include "http/Client.hh"
 # include "http/Connection.hh"
 # include "http/Request.hh"
 # include "http/Response.hh"
+# include "utils/Utils.hh"
 
 namespace atom = boost::interprocess::ipcdetail;
 

@@ -1,13 +1,9 @@
 #include "log/ColoredFormatter.hh"
-
-#include <sstream>
-#include <boost/lexical_cast.hpp>
-#include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <iostream>
+#include "types.hh"
 #include "log/helpers.hh"
-#include "ConfLoader.hh"
-
 
 namespace xtd {
 namespace log {
@@ -15,24 +11,22 @@ namespace log {
 ColoredFormatter::ColoredFormatter(void) :
   Formatter()
 {
-  using namespace tty;
-
-  setStyles({
-      { "name",     style(color::green)               },
-      { "threadid", style(color::yellow)              },
-      { "message",  style(color::white)               },
-      { "module",   style(color::lyellow)             },
-      { "time",     style(color::cyan)                },
-      { "slevel",   style(color::lred, attrs::bold)   },
-      { "location", style(color::lblack)              },
-      { "pid",      style(color::lblue)               },
-      { "ppid",     style(color::lblue, attrs::bold)  }
-    });
+  defaultStyles();
 }
 
 ColoredFormatter::ColoredFormatter(const Formatter& p_base) :
   Formatter(p_base)
 {
+  defaultStyles();
+}
+
+ColoredFormatter::~ColoredFormatter(void)
+{
+}
+
+void
+ColoredFormatter::defaultStyles(void)
+{
   using namespace tty;
 
   setStyles({
@@ -48,9 +42,6 @@ ColoredFormatter::ColoredFormatter(const Formatter& p_base) :
     });
 }
 
-ColoredFormatter::~ColoredFormatter(void)
-{
-}
 
 ColoredFormatter&
 ColoredFormatter::setAttrs(const string&     p_field,

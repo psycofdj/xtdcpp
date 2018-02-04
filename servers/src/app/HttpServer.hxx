@@ -1,3 +1,4 @@
+// IWYU pragma: private, include "app/HttpServer.hh"
 #ifndef SERVERS_APP_HTTPSERVER_HXX_
 # define SERVERS_APP_HTTPSERVER_HXX_
 # include <config/Parser.hh> // libcore

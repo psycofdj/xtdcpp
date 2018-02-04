@@ -1,18 +1,18 @@
 #include "MainTestApplication.hh"
+#include <cppunit/CompilerOutputter.h>
+#include <cppunit/Test.h>
+#include <cppunit/TestResult.h>
+#include <cppunit/TestSuite.h>
+#include <cppunit/TextOutputter.h>
+#include <cppunit/XmlOutputter.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/ui/text/TestRunner.h>
+#include <boost/regex.hpp>
+#include <iostream>
+#include <log/ConfLoader.hh>
+#include "Globals.h"
 #include "ProgressListener.hh"
 #include "QuietOutputter.hh"
-
-#include <cppunit/Outputter.h>           // libcppunit
-#include <cppunit/TestResult.h>          // libcppunit
-#include <cppunit/CompilerOutputter.h>   // libcppunit
-#include <cppunit/XmlOutputter.h>        // libcppunit
-#include <cppunit/TextOutputter.h>       // libcppunit
-#include <cppunit/extensions/TestFactoryRegistry.h> // libcppunit
-#include <cppunit/TestResultCollector.h> // libcppunit
-#include <cppunit/ui/text/TestRunner.h>  // libcppunit
-#include <cppunit/TestResultCollector.h>
-#include <boost/regex.hpp>
-#include <log/ConfLoader.hh>
 
 namespace xtd {
 namespace tests {

@@ -1,11 +1,16 @@
 #include "Template.hh"
-
-#include <fstream>
-#include <iterator>
+#include <algorithm>
 #include <boost/assign/std/vector.hpp>
-#include <json_parser.hpp> // libcore
-#include <text.hh>         // libcore
-#include <log.hh>          // libcore
+#include <boost/format.hpp>
+#include <boost/property_tree/exceptions.hpp>
+#include <iterator>
+#include <json_parser.hpp>
+#include "text.hh"          // libcore
+#include "format.hh"        // libcore
+#include "http/cpptempl.hh" // libcore
+#include "log/helpers.hh"   // libcore
+#include "log/logtypes.hh"  // libcore
+#include "types.hh"         // libcore
 
 using boost::assign::operator+=;
 

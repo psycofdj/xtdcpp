@@ -1,12 +1,15 @@
 #ifndef NETWORK_BIP_CONNECTION_HH_
 # define NETWORK_BIP_CONNECTION_HH_
-
 # include <boost/crc.hpp>
 # include "base/Connection.hh"
+# include "network_types.hh" // libcore
+# include "types.hh"         // libcore
 
+namespace boost { namespace asio { class io_service; } }
+namespace boost { namespace system { class error_code; } }
+namespace xtd { namespace network { namespace base { class Config; } } }
 namespace xtd {
 namespace network {
-namespace utils { class Config; }
 namespace bip {
 
 /**

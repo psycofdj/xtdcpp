@@ -1,12 +1,21 @@
 #ifndef COMMON_TYPES_HH_
 # define COMMON_TYPES_HH_
-# include <string>
-# include <map>
-# include <vector>
-# include <sstream>
-# include <fstream>
-# include <memory>
-# include <type_traits>
+
+# include <sys/types.h> // IWYU pragma: export
+# include <cstdint>     // IWYU pragma: export
+# include <cstddef>     // IWYU pragma: export
+# include <fstream>     // IWYU pragma: export
+# include <functional>  // IWYU pragma: export
+# include <map>         // IWYU pragma: export
+# include <memory>      // IWYU pragma: export
+# include <string>      // IWYU pragma: export
+# include <type_traits> // IWYU pragma: export
+# include <utility>     // IWYU pragma: export
+# include <vector>      // IWYU pragma: export
+# include <stdint.h>    // for uint16_t, uint32_t, uint64_t, uint8_t
+# include <iosfwd>      // for ostream, ifstream, istream, ofstream, stringstream
+# include <ostream>     // for endl
+
 
 using std::string;
 using std::map;

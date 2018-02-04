@@ -39,10 +39,8 @@
 #ifndef NETWORK_HTTP_CPPTEMPL_HH_
 # define NETWORK_HTTP_CPPTEMPL_HH_
 # include <exception>
-# include <memory>
-# include <boost/algorithm/string.hpp>
 # include <boost/lexical_cast.hpp>
-# include <types.hh> //libcore
+# include "types.hh" //libcore
 
 namespace xtd {
 namespace network {

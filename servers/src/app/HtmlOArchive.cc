@@ -1,16 +1,19 @@
 #include "app/HtmlOArchive.hh"
+#include <boost/archive/basic_archive.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/serialization/item_version_type.hpp>
+#include <limits>
+#include "types.hh" // libcore
 
+namespace boost { namespace serialization { class collection_size_type; } }
+namespace xtd {
+namespace servers {
+namespace app {
 
 using boost::format;
 using boost::str;
 using boost::lexical_cast;
-
-
-namespace xtd {
-namespace servers {
-namespace app {
 
 HtmlOArchive::Object::Object(const string& p_name, size_t p_depth) :
   m_name(p_name),
@@ -164,7 +167,7 @@ HtmlOArchive::VectorObject::VectorObject(const string& p_name,
                                          unsigned int  p_trackinglevel,
                                          unsigned int  p_itemVersion) :
   StructObject(p_name, p_depth, p_classID, p_objectID, p_version, p_trackinglevel),
-           m_itemVersion(p_itemVersion)
+  m_itemVersion(p_itemVersion)
 {
 }
 

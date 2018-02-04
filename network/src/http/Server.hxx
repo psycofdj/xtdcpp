@@ -1,19 +1,26 @@
+// IWYU pragma: private, include "http/Server.hh"
 #ifndef NETWORK_HTTP_SERVER_HXX_
 # define NETWORK_HTTP_SERVER_HXX_
-
-# include "Server.hh"
+# include "http/Server.hh"
 # include <fnmatch.h>
-# include <boost/iostreams/filtering_stream.hpp>
+# include <boost/asio.hpp>
 # include <boost/iostreams/device/back_inserter.hpp>
-# include <boost/range/algorithm/copy.hpp>
-# include <boost/asio/error.hpp>
+# include <boost/iostreams/filtering_stream.hpp>
+# include <boost/range/iterator.hpp>
+# include <boost/range/iterator_range_core.hpp>
 # include <boost/regex.hpp>
-# include <log.hh> //libcore
+# include <boost/system/error_code.hpp>
+# include <cmath>
+# include <sstream>
+# include "format.hh"       // libcore
+# include "log/helpers.hh"  // libcore
+# include "log/logtypes.hh" // libcore
+# include "types.hh"        // libcore
 # include "http/Connection.hh"
 # include "http/Request.hh"
 # include "http/Response.hh"
 # include "http/Template.hh"
-
+# include "http/http_types.hh"
 
 namespace ba = boost::asio;
 namespace bs = boost::system;

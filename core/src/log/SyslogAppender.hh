@@ -2,7 +2,9 @@
 # define CORE_LOG_SYSLOGAPPENDER_HH_
 # include <mutex>
 # include "log/Appender.hh"
-# include "mixins/cloneable.hh"
+# include "log/Formatter.hh"
+# include "log/logtypes.hh"
+# include "types.hh"
 
 class TestSyslogAppender;
 

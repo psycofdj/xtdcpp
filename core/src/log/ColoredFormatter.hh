@@ -1,10 +1,10 @@
 #ifndef CORE_LOG_COLOREDFORMATTER_HH_
 # define CORE_LOG_COLOREDFORMATTER_HH_
-# include "log/fwd.hh"
-# include "log/logtypes.hh"
-# include "log/Formatter.hh"
-# include "tty.hh"
+# include "types.hh"
 # include "log/Fields.hh"
+# include "log/Formatter.hh"
+# include "log/logtypes.hh"
+# include "tty.hh"
 
 class TestColoredFormatter;
 
@@ -194,6 +194,9 @@ protected:
    ** @brief Same as @ref Formatter::getFulllog but also applies styles
    */
   virtual string getFulllog(const FormattedRecord& p_rec) const override;
+
+private:
+  void defaultStyles(void);
 
 protected:
   t_styles                  m_fieldStyles;    ///< Fields style

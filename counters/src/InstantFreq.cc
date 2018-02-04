@@ -1,10 +1,11 @@
 #include "InstantFreq.hh"
-
-#include <boost/interprocess/detail/atomic.hpp>
-#include <boost/range/algorithm/find_if.hpp>
 #include <boost/bind.hpp>
-
-
+#include <boost/core/ref.hpp>
+#include <boost/date_time/posix_time/posix_time_config.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/time.hpp>
+#include <boost/range/algorithm/find_if.hpp>
+#include <boost/thread.hpp>
 
 namespace bpt = boost::posix_time;
 

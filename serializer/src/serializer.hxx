@@ -1,11 +1,14 @@
+// IWYU pragma: private, include "serializer.hh"
 #ifndef SERIALIZER_SERIALIZER_HXX_
 # define SERIALIZER_SERIALIZER_HXX_
-
-# include <sstream>
-# include <boost/range/iterator_range_core.hpp>
-# include <boost/iostreams/filtering_stream.hpp>
 # include <boost/iostreams/device/back_inserter.hpp>
+# include <boost/iostreams/filtering_stream.hpp>
+# include <boost/range/iterator_range_core.hpp>
+# include <boost/serialization/nvp.hpp>
+# include "types.hh" // libcore
 
+namespace boost { namespace iostreams { struct input; } }
+namespace boost { namespace iostreams { struct output; } }
 namespace xtd {
 namespace serializer {
 

@@ -1,9 +1,9 @@
 #ifndef COUNTERS_EXTVALUE_HH_
 # define COUNTERS_EXTVALUE_HH_
-# include <string>
 # include "Base.hh"
+# include "types.hh" // libcore
 
-
+namespace xtd { namespace counters { class Visitor; } }
 namespace xtd {
 namespace counters {
 

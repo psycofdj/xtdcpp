@@ -1,208 +1,144 @@
+// IWYU pragma: private, include "param/Base.hh"
 #ifndef SERVERS_PARAM_BASE_HXX_
 # define SERVERS_PARAM_BASE_HXX_
+# include <boost/any.hpp>
+# include <boost/bind.hpp>
+# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include <boost/foreach.hpp>
+# include <boost/function.hpp>
+# include <typeinfo>
+# include "log/helpers.hh"
+# include "log/logtypes.hh"
+# include "types.hh"
 
-# include <boost/algorithm/string/case_conv.hpp>
-# include "param/Visitor.hh"
-# include <boost/filesystem.hpp>
-
-
-using namespace boost;
-
+namespace xtd { namespace servers { namespace param { class Base; } } }
 namespace xtd {
 namespace servers {
 namespace param {
 
-Base&
-Base::constraint(t_constraint p_constraint)
+using namespace boost;
+
+template<typename T>
+T
+Base::cast(const boost::any& p_val)
 {
-  m_constraints.push_back(p_constraint);
+  return boost::any_cast<T>(p_val);
+}
+
+
+template<typename T>
+Base::Base(const T& p_value) :
+  m_value(p_value),
+  m_defaultValue(p_value),
+  m_constraints(),
+  m_listeners(),
+  m_name(),
+  m_sync(true),
+  m_actionPath(""),
+  m_timestamp(boost::posix_time::microsec_clock::local_time()),
+  m_log("no log")
+{
+}
+
+
+template<typename T>
+Base::Base(const T& p_value, const string& p_name) :
+  m_value(p_value),
+  m_defaultValue(p_value),
+  m_constraints(),
+  m_listeners(),
+  m_name(p_name),
+  m_sync(true),
+  m_actionPath(""),
+  m_timestamp(boost::posix_time::microsec_clock::local_time()),
+  m_log("no log")
+{
+}
+
+
+template<typename T>
+Base&
+Base::constraint(boost::function<bool(const T&)> p_constraint)
+{
+  m_constraints.push_back(boost::bind(p_constraint, boost::bind(cast<T>, _1)));
   return *this;
 }
 
-string
-Base::getName(void) const
-{
-  return m_name;
-}
-
-void
-Base::setName(const string& p_name)
-{
-  m_name = p_name;
-}
-
-bool
-Base::getSync(void) const
-{
-  return m_sync;
-}
-
-void
-Base::setSync(const bool& p_sync)
-{
-  m_sync = p_sync;
-}
-
-void
-Base::setActionPath(const string& p_actionPath)
-{
-  m_actionPath = p_actionPath;
-}
-
-string
-Base::getActionPath(void) const
-{
-  return m_actionPath;
-}
-
-void
-Base::sync(void)
-{
-  if(m_sync)
-  {
-    string             l_value;
-    string             l_path;
-
-    if(true == toStr(l_value))
-    {
-      l_path = m_actionPath + "/" + m_name;
-      ofstream l_file(l_path.c_str(), std::ios_base::out | std::ios_base::trunc);
-      l_file << l_value;
-      l_file.close();
-    }
-  }
-}
-
-uint32_t
-Base::date() const
-{
-  tm l_tm = to_tm(m_timestamp);
-  time_t l_date = mktime(&l_tm);
-  return boost::lexical_cast<uint32_t>(l_date);
-}
-
-string
-Base::log() const
-{
-  return m_log;
-}
-
-void
-Base::setLog(const string p_log)
-{
-  m_log = p_log;
-}
-
-Base&
-Base::listen(t_listener p_listener)
-{
-  m_listeners.push_back(p_listener);
-  return *this;
-}
-
-template<typename T>
-POD<T>::POD(const T& p_value) :
-  Base(p_value)
-{
-}
-
-
-template<typename T>
-POD<T>::POD(const T& p_value, const string& p_name) :
-  Base(p_value, p_name)
-{
-}
 
 
 template<typename T>
 bool
-POD<T>::toStr(string& p_dst) const
-{
-  T l_value = T();
-  return get(l_value) && as(l_value, p_dst);
-}
-
-
-template<typename T>
-bool
-POD<T>::fromStr(const string& p_src)
-{
-  T l_value = T();
-  return to(p_src, l_value) && set(l_value);
-}
-
-template<typename T>
-bool
-POD<T>::verify(const string& p_src)
-{
-  T l_value = T();
-  return to(p_src, l_value) && isAccepted(l_value);
-}
-
-
-template<typename T>
-void
-POD<T>::accept(Visitor& p_visitor) const
-{
-  p_visitor(*this);
-}
-
-
-template<typename T>
-bool
-POD<T>::as(const bool& p_src, string& p_dst) const
-{
-  if (p_src)
-    p_dst = "1";
-  else
-    p_dst = "0";
-  return true;
-}
-
-
-template<typename T>
-template<typename V>
-bool
-POD<T>::as(const V& p_src, string& p_dst) const
-{
-  p_dst = lexical_cast<string>(p_src);
-  return true;
-}
-
-
-template<typename T>
-bool
-POD<T>::to(const string& p_src, bool& p_dst) const
-{
-  string l_src = to_lower_copy(p_src);
-
-  if ((l_src == "0") || (l_src == "off") || (l_src == "no") || (l_src == "false"))
-  {
-    p_dst = false;
-    return true;
-  }
-  if ((l_src == "1") || (l_src == "on") || (l_src == "yes") || (l_src == "true"))
-  {
-    p_dst = true;
-    return true;
-  }
-  return false;
-}
-
-
-template<typename T>
-template<typename V>
-bool
-POD<T>::to(const string& p_src, V& p_dst) const
+Base::get(T& p_dst) const
 {
   try {
-    p_dst = lexical_cast<V>(p_src);
+    p_dst = boost::any_cast<T>(m_value);
     return true;
-  } catch (bad_lexical_cast) {
+  }
+  catch (boost::bad_any_cast l_error) {
+    log::crit("servers.param.base", "unable to cast param '%s' as destination type (%s)", m_name, l_error.what(), HERE);
     return false;
   }
 }
 
+
+template<typename T>
+bool
+Base::isAccepted(const T& p_src)
+{
+  // Verify type
+  if (typeid(T) != m_defaultValue.type())
+    return false;
+
+  // Verify constraints
+  BOOST_FOREACH(const t_constraint& c_cond, m_constraints)
+  {
+    if (false == c_cond(p_src))
+      return false;
+  }
+
+  return true;
+}
+
+template<typename T>
+bool
+Base::set(const T& p_src)
+{
+  T l_value;
+
+  if (false == isAccepted(p_src))
+    return false;
+
+  // Update timestamp last parameter access
+  m_timestamp = boost::posix_time::microsec_clock::local_time();
+
+  // If new value is different, update value and trace parameter change
+  if (true == get(l_value) && (l_value != p_src))
+  {
+    string l_oldStr, l_newStr;
+    boost::any  l_old = m_value;
+
+    toStr(l_oldStr);
+    m_value = p_src;
+    toStr(l_newStr);
+
+    log::crit("servers.param.base", "parameter '%s' has been changed from '%s' to '%s'", m_name, l_oldStr, l_newStr, HERE);
+
+    for (auto& c_callback : m_listeners)
+      c_callback(l_old, m_value);
+  }
+
+  return true;
+}
+
+template<typename T>
+Base&
+Base::listen(boost::function<void(const T&, const T&)> p_constraint)
+{
+  m_listeners.push_back(boost::bind(p_constraint,
+                                    boost::bind(cast<T>, _1),
+                                    boost::bind(cast<T>, _2)));
+  return *this;
+}
 
 }}}
 

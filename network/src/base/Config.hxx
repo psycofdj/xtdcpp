@@ -1,5 +1,7 @@
+// IWYU pragma: private, include "base/Config.hh"
 #ifndef NETWORK_BASE_CONFIG_HXX_
 # define NETWORK_BASE_CONFIG_HXX_
+# include "types.hh" // libcore
 
 namespace xtd {
 namespace network {

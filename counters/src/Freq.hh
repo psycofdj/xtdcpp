@@ -1,9 +1,8 @@
 #ifndef COUNTERS_FREQ_HH_
 # define COUNTERS_FREQ_HH_
-
-# include <string>
+# include <boost/date_time/posix_time/posix_time.hpp>
 # include "Value.hh"
-
+# include "types.hh" // libcore
 
 namespace xtd {
 namespace counters {

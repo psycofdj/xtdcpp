@@ -1,6 +1,6 @@
 #include "Base.hh"
 
-
+namespace xtd { namespace counters { class Visitor; } }
 namespace xtd {
 namespace counters {
 

@@ -1,18 +1,23 @@
-# include <log/ConfLoader.hh>
-# include <boost/regex.hpp>
-# include <boost/algorithm/string/split.hpp>
-# include <boost/algorithm/string/classification.hpp>
-# include <boost/algorithm/string/case_conv.hpp>
-# include "log/Appender.hh"
-# include "log/Formatter.hh"
-# include "log/Logger.hh"
-# include "log/helpers.hh"
-# include "log/MemoryAppender.hh"
-# include "log/SyslogAppender.hh"
-# include "log/StreamAppender.hh"
-# include "log/Formatter.hh"
-# include "log/ColoredFormatter.hh"
-# include "error.hh"
+#include <log/ConfLoader.hh>
+#include <ext/alloc_traits.h>
+#include <algorithm>
+#include <boost/algorithm/string/case_conv.hpp>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/format.hpp>
+#include <boost/regex.hpp>
+#include <exception>
+#include <iterator>
+#include "types.hh"
+#include "log/Appender.hh"
+#include "log/Logger.hh"
+#include "log/helpers.hh"
+#include "log/logtypes.hh"
+#include "log/ColoredFormatter.hh" // IWYU pragma: keep
+#include "log/Formatter.hh"        // IWYU pragma: keep
+#include "log/MemoryAppender.hh"   // IWYU pragma: keep
+#include "log/StreamAppender.hh"   // IWYU pragma: keep
+#include "log/SyslogAppender.hh"   // IWYU pragma: keep
 
 namespace xtd {
 namespace log {

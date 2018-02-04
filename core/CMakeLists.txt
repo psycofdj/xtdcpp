@@ -43,4 +43,4 @@ add_check(core
   LINKS    cwrap tests_s core_s)
 add_cov(core)
 add_memcheck(core)
-
+add_iwyu(core DEPENDS xtdcore_s)

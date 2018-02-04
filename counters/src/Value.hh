@@ -1,10 +1,10 @@
 #ifndef COUNTERS_VALUE_HH_
 # define COUNTERS_VALUE_HH_
-
-# include <string>
+# include <boost/thread.hpp>
+# include "types.hh" // libcore
 # include "Base.hh"
 
-
+namespace xtd { namespace counters { class Visitor; } }
 namespace xtd {
 namespace counters {
 

@@ -1,9 +1,11 @@
 #include "CWrap.hh"
 #include <dlfcn.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
-#include <syslog.h>
+#include <boost/any.hpp>
+#include <tuple>
+
 
 namespace xtd {
 namespace tests {
@@ -143,7 +145,6 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
 {
   typedef size_t (*orig_t)(void *ptr, size_t size, size_t nmemb, FILE *stream);
   orig_t l_orig = (orig_t)dlsym(RTLD_NEXT, "fread");
-
   const std::string& l_state = xtd::tests::CWrap::gen("fread");
   if ("success" == l_state)
     return l_orig(ptr, size, nmemb, stream);

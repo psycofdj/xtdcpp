@@ -1,11 +1,14 @@
 #include "log/Formatter.hh"
-
-#include <sstream>
-#include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string/replace.hpp>
-#include "log/helpers.hh"
-#include "log/ConfLoader.hh"
+#include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/format.hpp>
+#include <boost/iterator/iterator_traits.hpp>
+#include <iostream>
+#include "types.hh"
 #include "log/Fields.hh"
+#include "log/helpers.hh"
+
 
 namespace xtd {
 namespace log {

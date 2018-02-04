@@ -1,4 +1,6 @@
 #include "objects/Doc.hh"
+#include <limits>    // for numeric_limits
+#include "types.hh"  // for uint32_t
 
 namespace xtd {
 namespace serializer {

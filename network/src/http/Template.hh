@@ -1,9 +1,8 @@
 #ifndef NETWORK_HTTP_TEMPLATE_HH_
 # define NETWORK_HTTP_TEMPLATE_HH_
-
-# include <string>
 # include <boost/property_tree/ptree.hpp>
-# include <types.hh> // libcore
+# include <boost/property_tree/ptree_fwd.hpp>
+# include "types.hh" // libcore
 # include "cpptempl.hh"
 
 namespace xtd {
@@ -156,6 +155,6 @@ private:
 
 }}} //end namespaces
 
-# include "Template.hxx"
+# include "http/Template.hxx" // IWYU pragma: export
 
 #endif // !NETWORK_HTTP_TEMPLATE_HH_

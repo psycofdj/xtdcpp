@@ -28,6 +28,6 @@ private:
 
 }}
 
-#include "utils/safe_deque.hxx"
+#include "utils/safe_deque.hxx" // IWYU pragma: export
 
 #endif //! CORE_UTILS_SAFE_DEQUE_HH_

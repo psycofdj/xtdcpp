@@ -77,7 +77,7 @@ private:
 
 }} // end namespaces
 
-#include "utils/CacheLRU.hxx"
+#include "utils/CacheLRU.hxx" // IWYU pragma: export
 
 #endif // !NETWORK_CACHEDNS_HH_
 

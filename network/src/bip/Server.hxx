@@ -1,15 +1,16 @@
 #ifndef NETWORK_BIP_SERVER_HXX_
 # define NETWORK_BIP_SERVER_HXX_
-
-# include <boost/interprocess/streams/bufferstream.hpp>
-# include <boost/interprocess/detail/atomic.hpp>
-# include <boost/iostreams/filtering_stream.hpp>
-# include <boost/iostreams/filter/zlib.hpp>
-# include <boost/iostreams/filter/gzip.hpp>
-# include <boost/iostreams/filter/bzip2.hpp>
-# include <log.hh> // libcore
+# include <boost/asio.hpp>
+# include <boost/interprocess/sync/spin/condition.hpp>
+# include <boost/system/error_code.hpp>
+# include "types.hh"        // libcore
+# include "log/helpers.hh"  // libcore
+# include "log/logtypes.hh" // libcore
+# include "serializer.hh"   // libserializer
 # include "bip/Connection.hh"
-# include "bip/compress.hh"
+# include "bip/Server.hh"
+# include "bip/compress.hxx"
+# include "network_types.hh"
 
 namespace xtd {
 namespace network {

@@ -67,7 +67,7 @@ struct format
       l_result += p_fmt;
       l_result += " [error while resolving format : ";
       l_result += l_error.what();
-      l_result == "]";
+      l_result += "]";
       return l_result;
     }
   }

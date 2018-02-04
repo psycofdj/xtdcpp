@@ -1,7 +1,13 @@
+// IWYU pragma: private, include "log/Logger.hh"
 #ifndef CORE_LOG_LOGGER_HXX_
 # define CORE_LOG_LOGGER_HXX_
-# include "log/Appender.hh"
+# include "log/Appender.hh" // IWYU pragma: keep
+# include <unistd.h>
+# include <boost/date_time/posix_time/posix_time_types.hpp>
+# include "types.hh"
+# include "log/logtypes.hh"
 
+namespace xtd { namespace log { class Logger; } }
 namespace xtd {
 namespace log {
 
@@ -69,7 +75,7 @@ Logger::warning(const string& p_format, Args... p_args) const
 
 template<typename ... Args>
 void
-Logger::info(const string& p_format, Args... p_args...) const
+Logger::info(const string& p_format, Args... p_args) const
 {
   log(level::info, p_format, p_args...);
 }

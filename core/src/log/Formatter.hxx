@@ -1,11 +1,16 @@
+// IWYU pragma: private, include "log/Formatter.hh"
 #ifndef CORE_LOG_FORMATTER_HXX_
 # define CORE_LOG_FORMATTER_HXX_
-
 # include <boost/algorithm/string/regex.hpp>
-# include <boost/algorithm/string/split.hpp>
 # include <boost/format.hpp>
+# include <boost/lexical_cast.hpp>
+# include <boost/regex.hpp>
+# include <exception>
+# include "types.hh"
 # include "format.hh"
+# include "log/logtypes.hh"
 
+namespace xtd { namespace log { class Formatter; } }
 namespace xtd {
 namespace log {
 

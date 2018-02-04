@@ -1,9 +1,8 @@
 #ifndef COUNTERS_SUMEXT_HH_
 # define COUNTERS_SUMEXT_HH_
-
-# include <string>
-# include <vector>
+# include <boost/core/addressof.hpp>
 # include "Value.hh"
+# include "types.hh" // libcore
 
 
 namespace xtd {

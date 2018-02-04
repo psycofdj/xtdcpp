@@ -1,9 +1,11 @@
 #ifndef SERIALIZER_OBJECTS_DOC_HH_
 # define SERIALIZER_OBJECTS_DOC_HH_
+# include <stdint.h>
+# include <boost/serialization/version.hpp>
+# include <types.hh>
+# include <vector>
 
-# include <types.hh>   // libcore
-# include "serializer.hh"
-
+namespace boost { namespace serialization { class access; } }
 namespace xtd {
 namespace serializer {
 
@@ -31,6 +33,6 @@ public:
 
 BOOST_CLASS_VERSION(xtd::serializer::Doc, 0)
 
-# include "objects/Doc.hxx"
+# include "objects/Doc.hxx" // IWYU pragma: export
 
 #endif // !SERIALIZER_OBJECTS_DOC_HH_

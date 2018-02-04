@@ -1,5 +1,6 @@
 #include "bip/ClientPool.hh"
-#include <objects/Doc.hh> // libserializer
+#include "objects/Doc.hh" // IWYU pragma: keep // libserializer
+#include "network_types.hh"
 
 namespace xtd {
 namespace network {

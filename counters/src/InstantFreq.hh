@@ -1,8 +1,9 @@
 #ifndef COUNTERS_INSTANTFREQ_HH_
 # define COUNTERS_INSTANTFREQ_HH_
-
-# include <deque>
-# include "Value.hh"
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <deque>
+#include "Value.hh"
+#include "types.hh" // licore
 
 
 namespace xtd {

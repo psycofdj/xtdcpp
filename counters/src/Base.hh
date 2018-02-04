@@ -1,12 +1,10 @@
 #ifndef COUNTERS_BASE_HH_
 # define COUNTERS_BASE_HH_
+# include <boost/core/noncopyable.hpp>
+# include <boost/thread.hpp>
+# include "types.hh" // libcore
 
-# include <boost/thread/mutex.hpp>
-# include <boost/noncopyable.hpp>
-# include <types.hh> // libcore
-# include "Visitor.hh"
-
-
+namespace xtd { namespace counters { class Visitor; } }
 namespace xtd {
 namespace counters {
 

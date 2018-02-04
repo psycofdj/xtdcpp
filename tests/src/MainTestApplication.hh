@@ -1,8 +1,9 @@
 #pragma once
-#include "Application.hh" // libcore
-#include "cppunit/TestFixture.h"
-#include <cppunit/extensions/HelperMacros.h>
-#include "Globals.h"
+#include "Application.hh"                    // libcore
+#include "types.hh"
+#include "cppunit/TestFixture.h"             // IWYU pragma: keep
+#include <cppunit/extensions/HelperMacros.h> // IWYU pragma: keep
+#include "Globals.h"                         // IWYU pragma: keep
 
 namespace CppUnit {
 class Outputter;

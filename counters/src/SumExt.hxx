@@ -1,12 +1,9 @@
 #ifndef COUNTERS_SUMEXT_HXX_
 # define COUNTERS_SUMEXT_HXX_
-
-#include "SumExt.hh"
-#include <boost/foreach.hpp>
-
-
-
-
+# include <boost/foreach.hpp>
+# include "SumExt.hh"
+# include "Value.hh"
+# include "types.hh" // libcore
 
 namespace xtd {
 namespace counters {

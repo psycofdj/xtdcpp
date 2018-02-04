@@ -28,6 +28,7 @@
 *.app
 .build/
 .release/
+.ninja/
 Makefile.in
 autom4te.cache/
 common/Makefile.in

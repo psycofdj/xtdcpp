@@ -1,12 +1,20 @@
 #ifndef NETWORK_BASE_CONNECTION_HXX_
 # define NETWORK_BASE_CONNECTION_HXX_
+# include <boost/asio.hpp>
+# include <boost/date_time/posix_time/posix_time_duration.hpp>
+# include <boost/lexical_cast.hpp>
+# include <boost/system/error_code.hpp>
+# include <boost/system/system_error.hpp>
+# include "format.hh"       // libcore
+# include "log/helpers.hh"  // libcore
+# include "log/logtypes.hh" // libcore
+# include "types.hh"        // libcore
+# include "base/Config.hh"
+# include "base/Connection.hh"
+# include "network_types.hh"
+# include "utils/Resolver.hh" // IWYU pragma: keep
 
-# include <memory>
-# include <boost/date_time/posix_time/posix_time.hpp>
-# include <boost/algorithm/string/replace.hpp>
-# include <log.hh> //libcore
-# include <types.hh> // libcore
-
+namespace xtd { namespace network { namespace utils { template <typename Domain> class Resolver; } } }
 namespace xtd {
 namespace network {
 namespace base {
