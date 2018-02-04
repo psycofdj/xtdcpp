@@ -1,6 +1,5 @@
 #ifndef NETWORK_HTTP_CONNECTION_HXX_
 # define NETWORK_HTTP_CONNECTION_HXX_
-# include <boost/regex.hpp>
 # include <boost/iostreams/filtering_stream.hpp>
 # include <log.hh> // libcore
 # include "http/Message.hh"

@@ -8,7 +8,7 @@
 # include <boost/iostreams/filtering_stream.hpp>
 # include <boost/range/iterator.hpp>
 # include <boost/range/iterator_range_core.hpp>
-# include <boost/regex.hpp>
+# include <regex>
 # include <boost/system/error_code.hpp>
 # include <cmath>
 # include <sstream>
@@ -324,11 +324,11 @@ Server<Domain>::f_cgi_match(const string&  p_cgiName,
                             const string&  p_regex,
                             const Request& p_req)
 {
-  boost::regex l_regex(p_regex);
+  std::regex l_regex(p_regex);
   string       l_value;
 
   return ((true == p_req.getCgi(p_cgiName, l_value)) &&
-          (true == boost::regex_match(l_value, l_regex)));
+          (true == std::regex_match(l_value, l_regex)));
 }
 
 
@@ -375,11 +375,11 @@ Server<Domain>::f_post_match(const string&  p_postName,
                              const string&  p_regex,
                              const Request& p_req)
 {
-  boost::regex l_regex(p_regex);
-  string       l_value;
+  std::regex l_regex(p_regex);
+  string     l_value;
 
   return ((true == p_req.getPost(p_postName, l_value)) &&
-          (true == boost::regex_match(l_value, l_regex)));
+          (true == std::regex_match(l_value, l_regex)));
 }
 
 
@@ -415,11 +415,11 @@ Server<Domain>::f_header_match(const string&  p_headerName,
                                const string&  p_regex,
                                const Request& p_req)
 {
-  boost::regex l_regex(p_regex);
-  string  l_value;
+  std::regex l_regex(p_regex);
+  string     l_value;
 
   return ((true == p_req.getHeader(p_headerName, l_value)) &&
-          (true == boost::regex_match(l_value, l_regex)));
+          (true == std::regex_match(l_value, l_regex)));
 }
 
 

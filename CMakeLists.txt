@@ -75,13 +75,14 @@ enable_tracking()
 
 if (USE_CLANG)
   xtdmake_find_program(Clang
-    NAMES        clang clang-4.0
+    NAMES        clang++ clang++-5.0
     DOC         "Clang C++ compiler"
     URL         "http://www.llvm.org"
     VERSION_OPT "--version | head -n1 | cut -d' ' -f3 | cut -d- -f1"
     VERSION_POS 0
     REQUIRED    1)
   set(CMAKE_CXX_COMPILER "${Clang_EXECUTABLE}")
+  set(CMAKE_CXX_FLAGS    "${CMAKE_CXX_FLAGS} -stdlib=libstdc++")
 else()
   xtdmake_find_program(Gxx
     NAMES g++

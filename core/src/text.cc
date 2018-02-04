@@ -6,12 +6,28 @@
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/iterator/iterator_traits.hpp>
-#include <boost/regex.hpp>
-#include "types.hh"
+#include <regex>
 #include "format.hh"
 
 namespace xtd {
 namespace text {
+
+vector<string>
+algorithm::regex::split_copy(const string& p_input, const std::regex& p_re)
+{
+  vector<string> l_res;
+
+  split(l_res, p_input, p_re);
+  return l_res;
+}
+
+void
+algorithm::regex::split(vector<string>& p_output, const string& p_input, const std::regex& p_re)
+{
+  std::sregex_token_iterator c_start(p_input.begin(), p_input.end(), p_re, -1);
+  std::sregex_token_iterator c_end;
+  std::copy(c_start, c_end, std::back_inserter(p_output));
+}
 
 xml::t_data xml::ms_entityList = xml::initialize();
 

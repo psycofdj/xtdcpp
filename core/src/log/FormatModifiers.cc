@@ -72,7 +72,7 @@ StyleByLevel::operator()(const FormattedRecord& p_rec,
     p_styles.m_slevel = c_item->second;
 }
 
-StyleMatch::StyleMatch(const boost::regex& p_match, const tty::style& p_style) :
+StyleMatch::StyleMatch(const std::regex& p_match, const tty::style& p_style) :
   m_match(p_match),
   m_style(p_style)
 { }
@@ -81,7 +81,7 @@ void
 StyleMatch::operator()(const FormattedRecord& p_rec,
                        Fields<tty::style>&    p_styles) const
 {
-  if (true == boost::regex_match(p_rec.m_message, m_match))
+  if (true == std::regex_match(p_rec.m_message, m_match))
     p_styles.m_message = m_style;
 };
 
