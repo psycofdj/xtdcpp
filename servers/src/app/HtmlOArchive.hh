@@ -7,6 +7,7 @@
 # include <deque>
 # include <list>
 # include <stack>
+# include <sstream>
 # include "types.hh" // libcore
 
 namespace boost { namespace archive { class class_id_optional_type; } }
