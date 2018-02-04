@@ -90,7 +90,7 @@ protected:
   virtual void   parseConfig(void);
   virtual void   parseHttpPort(void);
   virtual void   checkOptions(void);
-  virtual void   initialize(void);
+  virtual void   setUp(void);
   virtual status defineProbes(void);
 
   void handleUSR2(void);

@@ -156,7 +156,7 @@ Application::execute(int p_argc, const char* const p_argv[])
     parseConfig();
     checkOptions();
     log::getRoot().setAllLevels(log::from(m_logLevel));
-    initialize();
+    setUp();
   };
 
   auto l_process = [&](void) {

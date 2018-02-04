@@ -1,5 +1,6 @@
 #pragma once
 #include <cppunit/TextOutputter.h>       // libcppunit
+#include <cppunit/SourceLine.h>
 
 namespace xtd {
 namespace tests {

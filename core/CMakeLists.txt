@@ -40,7 +40,7 @@ add_cppcheck(core)
 add_codedup(core)
 add_check(core
   INCLUDES ${core_INCLUDE_DIRS} ${tests_INCLUDE_DIRS}
-  LINKS    cwrap tests_s core_s)
+  LINKS    cwrap tests_s core_s boost_regex stdc++ )
 add_cov(core)
 add_memcheck(core)
 add_iwyu(core DEPENDS xtdcore_s)

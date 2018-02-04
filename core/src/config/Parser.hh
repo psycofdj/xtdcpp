@@ -5,7 +5,6 @@
 # include "error.hh"
 
 namespace xtd {
-
 /**
  ** @brief Parse and read configuration files
  */
@@ -199,7 +198,8 @@ private:
 
 }}
 
-# include "config/Parser.hxx"// IWYU pragma: export
+# include "config/Parser.hxx" // IWYU pragma: export
+
 
 #endif //!XTD_CORE_CONFIG_PARSER_HH_
 

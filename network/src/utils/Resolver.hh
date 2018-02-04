@@ -68,7 +68,7 @@ template <>
 class Resolver<af_unix>
 {
 public:
-  Resolver(boost::asio::io_service& p_ioService, uint32_t /* p_ttl */);
+  Resolver(boost::asio::io_service&, uint32_t);
   ~Resolver(void);
 
 public:
@@ -79,8 +79,7 @@ public:
   string  getAddr(const af_unix::endpoint& p_endpoint);
 
 private:
-  boost::asio::io_service& m_ioService;
-  uint32_t                 m_port;
+  uint32_t m_port;
 };
 
 }}} // end namespaces

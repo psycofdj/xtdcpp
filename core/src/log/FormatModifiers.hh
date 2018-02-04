@@ -1,6 +1,6 @@
 #ifndef XTD_CORE_LOG_FORMATMODIFIERS_HH_
 # define XTD_CORE_LOG_FORMATMODIFIERS_HH_
-# include <boost/regex.hpp>
+# include <regex>
 # include "types.hh"
 # include "log/Fields.hh"
 # include "log/logtypes.hh"
@@ -78,7 +78,7 @@ struct StyleMatch
    ** @param p_match Regexp matching log record message
    ** @param p_style Style to apply to field message if regexp matches
    */
-  StyleMatch(const boost::regex& p_match, const tty::style& p_style);
+  StyleMatch(const std::regex& p_match, const tty::style& p_style);
 
   /**
    ** @brief Call operator
@@ -91,8 +91,8 @@ struct StyleMatch
   void operator()(const FormattedRecord& p_rec, Fields<tty::style>& p_styles) const;
 
 private:
-  boost::regex m_match;
-  tty::style   m_style;
+  std::regex m_match;
+  tty::style m_style;
 };
 
 

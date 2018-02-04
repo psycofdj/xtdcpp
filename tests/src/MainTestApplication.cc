@@ -7,13 +7,17 @@
 #include <cppunit/XmlOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
-#include <boost/regex.hpp>
 #include <iostream>
 #include <log/ConfLoader.hh>
+#include <memory>
+#include <regex>
+#include <vector>
+#include "Application.hxx"
+#include "Globals.h"
+#include <iostream>
 #include "Globals.h"
 #include "ProgressListener.hh"
 #include "QuietOutputter.hh"
-
 namespace xtd {
 namespace tests {
 
@@ -110,7 +114,7 @@ MainTestApplication::process(void)
     // 1.
     CppUnit::TestSuite* l_baseSuite = dynamic_cast<CppUnit::TestSuite*>(l_registry.makeTest());
     CppUnit::TestSuite* l_suite     = new CppUnit::TestSuite(l_baseSuite->getName());
-    boost::regex        l_filter(".*" + m_filter);
+    std::regex        l_filter(".*" + m_filter);
 
     for (CppUnit::Test* c_suite : l_baseSuite->getTests())
     {
@@ -120,7 +124,7 @@ MainTestApplication::process(void)
         for (auto c_test : l_tests->getTests())
         {
           string l_name = c_test->getName();
-          if (boost::regex_match(l_name.c_str(), l_filter))
+          if (std::regex_match(l_name.c_str(), l_filter))
             l_suite->addTest(c_test);
         }
       }

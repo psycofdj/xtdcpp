@@ -1,6 +1,8 @@
 #include "ProgressListener.hh"
 #include <cppunit/Test.h>
 #include <string>
+namespace CppUnit { class TestFailure; }
+
 
 namespace CppUnit { class TestFailure; }
 namespace xtd {

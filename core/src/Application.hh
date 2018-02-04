@@ -56,7 +56,7 @@ namespace xtd {
  **     --> checkOptions()
  **     --> initialize logging with parsed level
  **         note right: User may redefine this function
- **     --> initialize()
+ **     --> setUp()
  **         note right: User may redefine this function
  **     --> ===B1===
  **         --> start signal thread
@@ -166,7 +166,7 @@ protected:
   /**
    ** @brief initialize application, (default nothing)
    */
-  virtual void initialize(void)   {};
+  virtual void setUp(void)   {};
 
   /**
    ** @brief Main application process function, (default nothing)

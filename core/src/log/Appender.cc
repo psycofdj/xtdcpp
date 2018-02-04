@@ -1,6 +1,7 @@
 #include "log/Appender.hh"
 #include "log/Formatter.hh"
 
+
 namespace xtd {
 namespace log {
 

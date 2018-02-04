@@ -63,24 +63,32 @@ url::hex_to_string::operator()(const T& p_match) const
 string
 url::decode_copy(const string& p_value)
 {
-  string       l_value(p_value);
-  boost::regex l_hexRegex("%([0-9a-fA-F]{2})");
-  boost::regex l_spaceRegex("[ \t]{2,}");
+  string l_value;
+  size_t l_pos = 0;
+  long   l_hex;
 
-  // replace all + by space
-  boost::replace_all(l_value, "+", " ");
+  while (l_pos < p_value.size())
+  {
+    char l_char = p_value[l_pos];
+    if ((l_char == '%') && ((l_pos + 2) < p_value.size()))
+    {
+      try {
+        string::const_iterator c_start = p_value.begin() + l_pos + 1;
+        string::const_iterator c_end   = c_start + 1;
+        l_hex    = std::stoul(string(c_start, c_end), 0, 16);
+        l_value += static_cast<char>(l_hex);
+        l_pos   += 3;
+        continue;
+      }
+      catch (std::exception&) { }
+    }
 
-  // replace hex value by corresponding character
-  boost::smatch l_match;
-  boost::algorithm::find_format_all(l_value,
-                                    boost::algorithm::regex_finder(l_hexRegex),
-                                    hex_to_string());
-
-  // remove duplicate spaces
-  boost::algorithm::find_format_all(l_value,
-                                    boost::algorithm::regex_finder(l_spaceRegex),
-                                    boost::algorithm::const_formatter(" "));
-  boost::trim(l_value);
+    if (l_char == '+')
+      l_value += ' ';
+    else
+      l_value += l_char;
+    l_pos++;
+  }
 
   return l_value;
 }
