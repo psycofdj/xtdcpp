@@ -1,3 +1,21 @@
+xtdcpp (1.0.3ppa1~xenial) xenial; urgency=medium
+
+  * [all] replace boost/regex by c++11 std::regexp
+  * [all] clang compatibility
+  * [all] improve header managment
+  * xtdmake : bump version
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 05 Feb 2018 08:16:20 +0100
+
+xtdcpp (1.0.3ppa1~trusty) trusty; urgency=medium
+
+  * [all] replace boost/regex by c++11 std::regexp
+  * [all] clang compatibility
+  * [all] improve header managment
+  * xtdmake : bump version
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 05 Feb 2018 08:16:20 +0100
+
 xtdcpp (1.0.2ppa3~xenial) xenial; urgency=medium
 
   * [network/http] fixes #19 : boost and std shared_pointer are no longer mixed

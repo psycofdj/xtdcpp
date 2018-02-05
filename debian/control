@@ -6,7 +6,7 @@ Standards-Version: 3.9.7
 Build-Depends:
   debhelper (>= 9),
   cmake (>= 2.8.7),
-  xtdmake (>= 1.0.3),
+  xtdmake (>= 1.3.1),
   libboost-dev(>= 1.54),
   libboost-thread-dev(>= 1.54),
   libboost-filesystem-dev(>= 1.54),
