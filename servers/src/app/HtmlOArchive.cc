@@ -433,46 +433,46 @@ HtmlOArchive::save(const boost::serialization::item_version_type& t)
 
 
 void
-HtmlOArchive::save_override(const boost::archive::object_id_type & t, int)
+HtmlOArchive::save_override(const boost::archive::object_id_type & t SAVE_OVERRIVE_PROTO)
 {
   m_info.top().m_objectID = t;
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::object_reference_type& /* t */, int)
+HtmlOArchive::save_override(const boost::archive::object_reference_type& /* t */ SAVE_OVERRIVE_PROTO)
 {
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::version_type & t, int)
+HtmlOArchive::save_override(const boost::archive::version_type & t SAVE_OVERRIVE_PROTO)
 {
   m_info.top().m_version = t;
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::class_id_type & t, int)
+HtmlOArchive::save_override(const boost::archive::class_id_type & t SAVE_OVERRIVE_PROTO)
 {
   m_info.top().m_classID = t;
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::class_id_reference_type& /* t */, int)
+HtmlOArchive::save_override(const boost::archive::class_id_reference_type& /* t */ SAVE_OVERRIVE_PROTO)
 {
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::class_id_optional_type & t, int)
+HtmlOArchive::save_override(const boost::archive::class_id_optional_type & t SAVE_OVERRIVE_PROTO)
 {
   m_info.top().m_classID = t;
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::class_name_type& /* t */, int)
+HtmlOArchive::save_override(const boost::archive::class_name_type& /* t */ SAVE_OVERRIVE_PROTO)
 {
 }
 
 void
-HtmlOArchive::save_override(const boost::archive::tracking_type & t, int)
+HtmlOArchive::save_override(const boost::archive::tracking_type & t SAVE_OVERRIVE_PROTO)
 {
   m_info.top().m_tracking = t;
 }

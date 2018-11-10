@@ -2,7 +2,7 @@
 #ifndef SERVERS_APP_HTMLOARCHIVE_HXX_
 # define SERVERS_APP_HTMLOARCHIVE_HXX_
 # include <boost/serialization/nvp.hpp>
-# include <boost/serialization/pfto.hpp>
+// # include <boost/serialization/pfto.hpp>
 # include <deque>
 # include <list>
 # include "types.hh"
@@ -13,15 +13,15 @@ namespace app {
 
 template<class T>
 void
-HtmlOArchive::save_override(T & t, BOOST_PFTO int)
+HtmlOArchive::save_override(T & t SAVE_OVERRIVE_PROTO)
 {
-  base::save_override(t, 0);
+  base::save_override(t SAVE_OVERRIVE_CALL);
 }
 
 
 template<class T>
 void
-HtmlOArchive::save_override(const boost::serialization::nvp<T>& t, int)
+HtmlOArchive::save_override(const boost::serialization::nvp<T>& t SAVE_OVERRIVE_PROTO)
 {
   if ((0 != t.name()) && (string(t.name()) == "count"))
     return;
@@ -31,39 +31,39 @@ HtmlOArchive::save_override(const boost::serialization::nvp<T>& t, int)
   else
     m_pass = false;
 
-  base::save_override(t, 0);
+  base::save_override(t SAVE_OVERRIVE_CALL);
 }
 
 template<class T>
 void
-HtmlOArchive::save_override(const boost::serialization::nvp<vector<T> >& t, int)
+HtmlOArchive::save_override(const boost::serialization::nvp<vector<T> >& t SAVE_OVERRIVE_PROTO)
 {
   vector<T> l_val;
   l_val.resize(1);
   m_isVector = true;
-  base::save_override(boost::serialization::make_nvp(t.name(), l_val), 0);
+  base::save_override(boost::serialization::make_nvp(t.name(), l_val) SAVE_OVERRIVE_CALL);
 }
 
 
 template<class T>
 void
-HtmlOArchive::save_override(const boost::serialization::nvp<std::deque<T> >& t, int)
+HtmlOArchive::save_override(const boost::serialization::nvp<std::deque<T> >& t SAVE_OVERRIVE_PROTO)
 {
   std::deque<T> l_val;
   l_val.resize(1);
   m_isVector = true;
-  base::save_override(boost::serialization::make_nvp(t.name(), l_val), 0);
+  base::save_override(boost::serialization::make_nvp(t.name(), l_val) SAVE_OVERRIVE_CALL);
 }
 
 
 template<class T>
 void
-HtmlOArchive::save_override(const boost::serialization::nvp<std::list<T> >& t, int)
+HtmlOArchive::save_override(const boost::serialization::nvp<std::list<T> >& t SAVE_OVERRIVE_PROTO)
 {
   std::list<T> l_val;
   l_val.resize(1);
   m_isVector = true;
-  base::save_override(boost::serialization::make_nvp(t.name(), l_val), 0);
+  base::save_override(boost::serialization::make_nvp(t.name(), l_val) SAVE_OVERRIVE_CALL);
 }
 
 

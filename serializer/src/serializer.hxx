@@ -5,7 +5,9 @@
 # include <boost/iostreams/filtering_stream.hpp>
 # include <boost/range/iterator_range_core.hpp>
 # include <boost/serialization/nvp.hpp>
+# include <sstream>
 # include "types.hh" // libcore
+
 
 namespace boost { namespace iostreams { struct input; } }
 namespace boost { namespace iostreams { struct output; } }

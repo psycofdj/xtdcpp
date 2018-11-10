@@ -1,0 +1,31 @@
+FROM ubuntu:18.04
+MAINTAINER Xavier MARCELET <xavier@marcelet.com>
+
+RUN apt-get update && apt-get install -y --force-yes \
+    cmake \
+    doxygen \
+    lcov \
+    xsltproc \
+    graphviz \
+    cppcheck \
+    cloc \
+    libboost-all-dev \
+    python3-pip \
+    libcppunit-dev \
+    texlive-font-utils \
+    plantuml \
+    valgrind \
+    git \
+    zlib1g-dev \
+    wget \
+    iwyu \
+    python-pip \
+    netcat-openbsd \
+    libncurses-dev \
+    python3-mako && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install coverxygen lxml requests
+RUN pip  install coverxygen lxml requests
+ADD https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip .
+RUN unzip -d /usr/share pmd-bin-5.7.0.zip && rm -f pmd-bin-5.7.0.zip
