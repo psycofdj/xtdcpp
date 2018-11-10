@@ -1,0 +1,370 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.18200408998" lines-covered="89" lines-valid="489" timestamp="1484519988" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.355555555556" name="......network.src.bip">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/bip/Client.hh" line-rate="0.375" name="......network.src.bip.Client.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="35"/>
+						<line branch="false" hits="-1" number="37"/>
+						<line branch="false" hits="-1" number="38"/>
+						<line branch="false" hits="-1" number="46"/>
+						<line branch="false" hits="-1" number="47"/>
+						<line branch="false" hits="1" number="60"/>
+						<line branch="false" hits="1" number="71"/>
+						<line branch="false" hits="-1" number="73"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/bip/ClientPool.hh" line-rate="0.333333333333" name="......network.src.bip.ClientPool.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="1" number="33"/>
+						<line branch="false" hits="-1" number="36"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/bip/Connection.hh" line-rate="0.333333333333" name="......network.src.bip.Connection.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="44"/>
+						<line branch="false" hits="-1" number="53"/>
+						<line branch="false" hits="-1" number="60"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/bip/Server.hh" line-rate="0.6" name="......network.src.bip.Server.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="25"/>
+						<line branch="false" hits="1" number="34"/>
+						<line branch="false" hits="-1" number="35"/>
+						<line branch="false" hits="1" number="40"/>
+						<line branch="false" hits="1" number="45"/>
+						<line branch="false" hits="1" number="54"/>
+						<line branch="false" hits="1" number="66"/>
+						<line branch="false" hits="-1" number="72"/>
+						<line branch="false" hits="-1" number="78"/>
+						<line branch="false" hits="-1" number="81"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/bip/tools.hh" line-rate="0.0" name="......network.src.bip.tools.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="17"/>
+						<line branch="false" hits="-1" number="24"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.140625" name="......network.src.http">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Message.hh" line-rate="0.04" name="......network.src.http.Message.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="11"/>
+						<line branch="false" hits="-1" number="13"/>
+						<line branch="false" hits="-1" number="16"/>
+						<line branch="false" hits="-1" number="17"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="21"/>
+						<line branch="false" hits="-1" number="22"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="-1" number="24"/>
+						<line branch="false" hits="-1" number="25"/>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="30"/>
+						<line branch="false" hits="-1" number="31"/>
+						<line branch="false" hits="-1" number="32"/>
+						<line branch="false" hits="-1" number="35"/>
+						<line branch="false" hits="-1" number="36"/>
+						<line branch="false" hits="-1" number="37"/>
+						<line branch="false" hits="1" number="38"/>
+						<line branch="false" hits="-1" number="39"/>
+						<line branch="false" hits="-1" number="40"/>
+						<line branch="false" hits="-1" number="41"/>
+						<line branch="false" hits="-1" number="45"/>
+						<line branch="false" hits="-1" number="46"/>
+						<line branch="false" hits="-1" number="47"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Server.cc" line-rate="0.0" name="......network.src.http.Server.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="10"/>
+						<line branch="false" hits="-1" number="20"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Connection.hh" line-rate="0.333333333333" name="......network.src.http.Connection.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="39"/>
+						<line branch="false" hits="-1" number="44"/>
+						<line branch="false" hits="1" number="48"/>
+						<line branch="false" hits="-1" number="55"/>
+						<line branch="false" hits="-1" number="56"/>
+						<line branch="false" hits="-1" number="57"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/types.cc" line-rate="0.0" name="......network.src.http.types.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="7"/>
+						<line branch="false" hits="-1" number="19"/>
+						<line branch="false" hits="-1" number="35"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Request.hh" line-rate="0.0" name="......network.src.http.Request.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="102"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Response.hh" line-rate="0.0" name="......network.src.http.Response.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="32"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/fwd.hh" line-rate="1.0" name="......network.src.http.fwd.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="10"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Response.cc" line-rate="0.0" name="......network.src.http.Response.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="86"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/cpptempl.hh" line-rate="0.0" name="......network.src.http.cpptempl.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="56"/>
+						<line branch="false" hits="-1" number="57"/>
+						<line branch="false" hits="-1" number="58"/>
+						<line branch="false" hits="-1" number="61"/>
+						<line branch="false" hits="-1" number="62"/>
+						<line branch="false" hits="-1" number="128"/>
+						<line branch="false" hits="-1" number="133"/>
+						<line branch="false" hits="-1" number="138"/>
+						<line branch="false" hits="-1" number="144"/>
+						<line branch="false" hits="-1" number="150"/>
+						<line branch="false" hits="-1" number="161"/>
+						<line branch="false" hits="-1" number="177"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Request.cc" line-rate="0.0" name="......network.src.http.Request.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="428"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Template.hh" line-rate="0.0" name="......network.src.http.Template.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="138"/>
+						<line branch="false" hits="-1" number="143"/>
+						<line branch="false" hits="-1" number="146"/>
+						<line branch="false" hits="-1" number="147"/>
+						<line branch="false" hits="-1" number="150"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Server.hh" line-rate="0.0" name="......network.src.http.Server.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="18"/>
+						<line branch="false" hits="-1" number="23"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/cpptempl.cc" line-rate="0.0" name="......network.src.http.cpptempl.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="56"/>
+						<line branch="false" hits="-1" number="245"/>
+						<line branch="false" hits="-1" number="273"/>
+						<line branch="false" hits="-1" number="341"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/types.hh" line-rate="0.0" name="......network.src.http.types.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="9"/>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="23"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/http/Client.hh" line-rate="0.4" name="......network.src.http.Client.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="15"/>
+						<line branch="false" hits="-1" number="22"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="1" number="35"/>
+						<line branch="false" hits="1" number="45"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.1875" name="......network.src.utils">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/utils/Config.hh" line-rate="0.0" name="......network.src.utils.Config.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="15"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/utils/Resolver.hh" line-rate="0.0" name="......network.src.utils.Resolver.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="69"/>
+						<line branch="false" hits="-1" number="71"/>
+						<line branch="false" hits="-1" number="72"/>
+						<line branch="false" hits="-1" number="75"/>
+						<line branch="false" hits="-1" number="78"/>
+						<line branch="false" hits="-1" number="79"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/utils/CacheDns.hh" line-rate="0.6" name="......network.src.utils.CacheDns.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="22"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="1" number="38"/>
+						<line branch="false" hits="1" number="40"/>
+						<line branch="false" hits="1" number="42"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/utils/Utils.cc" line-rate="0.0" name="......network.src.utils.Utils.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="9"/>
+						<line branch="false" hits="-1" number="26"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/utils/Utils.hh" line-rate="0.0" name="......network.src.utils.Utils.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="63"/>
+						<line branch="false" hits="-1" number="65"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/utils/CommTypeDefs.hh" line-rate="0.0" name="......network.src.utils.CommTypeDefs.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="15"/>
+						<line branch="false" hits="-1" number="16"/>
+						<line branch="false" hits="-1" number="17"/>
+						<line branch="false" hits="-1" number="18"/>
+						<line branch="false" hits="-1" number="19"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="-1" number="24"/>
+						<line branch="false" hits="-1" number="25"/>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="29"/>
+						<line branch="false" hits="-1" number="30"/>
+						<line branch="false" hits="-1" number="31"/>
+						<line branch="false" hits="-1" number="32"/>
+						<line branch="false" hits="-1" number="33"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.203703703704" name="......network.src.base">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/base/Client.hh" line-rate="1.0" name="......network.src.base.Client.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="19"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/base/Connection.hh" line-rate="0.473684210526" name="......network.src.base.Connection.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="61"/>
+						<line branch="false" hits="-1" number="65"/>
+						<line branch="false" hits="-1" number="70"/>
+						<line branch="false" hits="1" number="74"/>
+						<line branch="false" hits="-1" number="77"/>
+						<line branch="false" hits="-1" number="78"/>
+						<line branch="false" hits="1" number="90"/>
+						<line branch="false" hits="1" number="99"/>
+						<line branch="false" hits="1" number="108"/>
+						<line branch="false" hits="1" number="117"/>
+						<line branch="false" hits="1" number="123"/>
+						<line branch="false" hits="1" number="128"/>
+						<line branch="false" hits="1" number="133"/>
+						<line branch="false" hits="-1" number="197"/>
+						<line branch="false" hits="-1" number="198"/>
+						<line branch="false" hits="-1" number="201"/>
+						<line branch="false" hits="-1" number="202"/>
+						<line branch="false" hits="-1" number="203"/>
+						<line branch="false" hits="-1" number="204"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/base/Server.hh" line-rate="0.243243243243" name="......network.src.base.Server.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="30"/>
+						<line branch="false" hits="-1" number="32"/>
+						<line branch="false" hits="-1" number="35"/>
+						<line branch="false" hits="-1" number="36"/>
+						<line branch="false" hits="-1" number="37"/>
+						<line branch="false" hits="1" number="48"/>
+						<line branch="false" hits="1" number="56"/>
+						<line branch="false" hits="1" number="61"/>
+						<line branch="false" hits="1" number="66"/>
+						<line branch="false" hits="1" number="71"/>
+						<line branch="false" hits="1" number="79"/>
+						<line branch="false" hits="-1" number="84"/>
+						<line branch="false" hits="-1" number="85"/>
+						<line branch="false" hits="-1" number="86"/>
+						<line branch="false" hits="-1" number="87"/>
+						<line branch="false" hits="1" number="97"/>
+						<line branch="false" hits="1" number="107"/>
+						<line branch="false" hits="-1" number="110"/>
+						<line branch="false" hits="-1" number="111"/>
+						<line branch="false" hits="-1" number="123"/>
+						<line branch="false" hits="-1" number="124"/>
+						<line branch="false" hits="-1" number="125"/>
+						<line branch="false" hits="-1" number="126"/>
+						<line branch="false" hits="-1" number="127"/>
+						<line branch="false" hits="-1" number="128"/>
+						<line branch="false" hits="-1" number="129"/>
+						<line branch="false" hits="-1" number="130"/>
+						<line branch="false" hits="-1" number="131"/>
+						<line branch="false" hits="-1" number="132"/>
+						<line branch="false" hits="-1" number="133"/>
+						<line branch="false" hits="-1" number="134"/>
+						<line branch="false" hits="-1" number="135"/>
+						<line branch="false" hits="-1" number="138"/>
+						<line branch="false" hits="-1" number="139"/>
+						<line branch="false" hits="-1" number="140"/>
+						<line branch="false" hits="-1" number="141"/>
+						<line branch="false" hits="-1" number="142"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../network/src/base/ClientThreadManager.hh" line-rate="0.0" name="......network.src.base.ClientThreadManager.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="16"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="-1" number="24"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="30"/>
+						<line branch="false" hits="-1" number="31"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

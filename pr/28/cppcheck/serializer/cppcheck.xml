@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="1.82"/>
+    <errors>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
+            <location file0="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.cc" file="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hxx" line="18"/>
+        </error>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
+            <location file0="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh" file="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hxx" line="18"/>
+        </error>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
+            <location file="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hxx" line="18"/>
+        </error>
+    </errors>
+</results>

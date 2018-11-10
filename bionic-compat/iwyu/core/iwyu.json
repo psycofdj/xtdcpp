@@ -1,0 +1,542 @@
+{
+  "src/log/Formatter.hh": {
+    "rm": [
+      "namespace std { class TestFormatter; }  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/date_time/posix_time/posix_time.hpp>  // for ptime", 
+      "#include \"log/Fields.hh\"                              // for Fields", 
+      "#include \"log/Formatter.hxx\"", 
+      "#include \"log/logtypes.hh\"                            // for FormattedRecord, Record", 
+      "#include \"types.hh\"                                   // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/ColoredFormatter.hh": {
+    "rm": [
+      "namespace std { class TestColoredFormatter; }  // lines 9-9"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/Fields.hh\"     // for Fields", 
+      "#include \"log/Formatter.hh\"  // for Formatter", 
+      "#include \"log/logtypes.hh\"   // for FormattedRecord", 
+      "#include \"tty.hh\"            // for color, attrs, style", 
+      "#include \"types.hh\"          // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/tty.hh": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"types.hh\"             // for ostream, string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/log/MemoryAppender.hh": {
+    "rm": [
+      "#include <boost/circular_buffer.hpp>  // lines 3-3", 
+      "#include \"log/Formatter.hh\"  // lines 7-7", 
+      "namespace std { class TestMemoryAppender; }  // lines 10-10"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <mutex>            // for mutex", 
+      "#include \"log/Appender.hh\"  // for Appender", 
+      "#include \"log/logtypes.hh\"  // for FormattedRecord", 
+      "#include \"types.hh\"         // for size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/types.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Formatter.hxx": {
+    "rm": [
+      "#include <boost/lexical_cast.hpp>  // lines 5-5", 
+      "#include <exception>  // lines 7-7", 
+      "#include <regex>  // lines 6-6", 
+      "#include \"text.hh\"  // lines 9-9", 
+      "namespace std { namespace xtd { namespace log { class Formatter; } } }  // lines 13-13"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/format.hpp>  // for format", 
+      "#include \"format.hh\"         // for format", 
+      "#include \"log/logtypes.hh\"   // for FormattedRecord, Record", 
+      "#include \"types.hh\"          // for size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/Application.hxx": {
+    "rm": [
+      "#include <stdlib.h>  // lines 5-5", 
+      "#include <stdexcept>  // lines 7-7", 
+      "#include \"types.hh\"  // lines 10-10"
+    ], 
+    "add": [
+      "#include <cstdlib>                 // for exit"
+    ], 
+    "full": [
+      "#include <boost/lexical_cast.hpp>  // for bad_lexical_cast, lexical_cast", 
+      "#include <cstdlib>                 // for exit", 
+      "#include <string>                  // for string", 
+      "#include \"format.hh\"               // for format", 
+      "#include \"log.hh\""
+    ], 
+    "errors": false
+  }, 
+  "src/log/Stream.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/StreamAppender.hh": {
+    "rm": [
+      "#include <iostream>  // lines 3-3", 
+      "#include \"log/Formatter.hh\"  // lines 6-6", 
+      "namespace std { class TestStreamAppender; }  // lines 9-9", 
+      "namespace std { namespace xtd { namespace log { class Stream; } } }  // lines 11-11"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/Appender.hh\"  // for Appender", 
+      "#include \"log/logtypes.hh\"  // for FormattedRecord", 
+      "#include \"types.hh\"         // for ostream"
+    ], 
+    "errors": false
+  }, 
+  "src/Application.hh": {
+    "rm": [
+      "#include <stdint.h>  // lines 4-4", 
+      "#include <boost/asio.hpp>  // lines 5-5", 
+      "#include <functional>  // lines 7-7", 
+      "#include <limits>  // lines 9-9", 
+      "#include <map>  // lines 10-10", 
+      "#include <vector>  // lines 12-12", 
+      "namespace std { namespace std { class TestApplication; } }  // lines 15-15", 
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 17-17", 
+      "namespace std { namespace std { namespace xtd { struct Application::t_option; } } }  // lines 115-115"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/thread.hpp>     // for thread", 
+      "#include <iostream>             // for cerr", 
+      "#include <string>               // for string", 
+      "#include \"Application.hxx\"", 
+      "#include \"types.hh\"             // for uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/log/FormatModifiers.hh": {
+    "rm": [
+      "#include <regex>  // lines 3-3"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/Fields.hh\"    // for Fields", 
+      "#include \"log/logtypes.hh\"  // for FormattedRecord", 
+      "#include \"tty.hh\"           // for style", 
+      "#include \"types.hh\"         // for size_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/SyslogAppender.hh": {
+    "rm": [
+      "#include <mutex>  // lines 3-3", 
+      "#include \"log/Formatter.hh\"  // lines 5-5", 
+      "namespace std { class TestSyslogAppender; }  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-intn.h>   // for int32_t", 
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-intn.h>   // for int32_t", 
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"log/Appender.hh\"      // for Appender", 
+      "#include \"log/logtypes.hh\"      // for FormattedRecord", 
+      "#include \"types.hh\"             // for int32_t, string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/log/Logger.hh": {
+    "rm": [
+      "#include <mutex>  // lines 3-3", 
+      "namespace std { class TestLogger; }  // lines 7-7", 
+      "namespace std { namespace xtd { namespace log { class Appender; } } }  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-intn.h>   // for int32_t", 
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-intn.h>   // for int32_t", 
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"log/Logger.hxx\"", 
+      "#include \"log/logtypes.hh\"      // for level", 
+      "#include \"types.hh\"             // for string, size_t, int32_t, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/text.hh": {
+    "rm": [
+      "#include <boost/tuple/tuple.hpp>  // lines 3-3", 
+      "#include <regex>  // lines 5-5"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"types.hh\"  // for string"
+    ], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.cc:1:\nIn file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.hh:3:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/string:40:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/char_traits.h:40:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/postypes.h:40:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/cwchar:44:\n/usr/include/wchar.h:35:10: fatal error: 'stddef.h' file not found\n#include <stddef.h>\n         ^~~~~~~~~~\nCycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp>\n/build/iwyu-mhPUyW/iwyu-5.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/log/Logger.cc": {
+    "rm": [
+      "#include <boost/algorithm/string/classification.hpp>  // lines 2-2", 
+      "#include <boost/algorithm/string/join.hpp>  // lines 3-3", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 4-4", 
+      "#include <regex>  // lines 5-5", 
+      "#include \"log/helpers.hh\"  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/Logger.hh\"", 
+      "#include <thread>  // for get_id, hash, thread"
+    ], 
+    "errors": false
+  }, 
+  "src/log/Appender.cc": {
+    "rm": [
+      "#include \"log/Formatter.hh\"  // lines 2-2"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/Appender.hh\""
+    ], 
+    "errors": false
+  }, 
+  "src/log/MemoryAppender.cc": {
+    "rm": [
+      "#include \"log/helpers.hh\"  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-intn.h>      // for int64_t"
+    ], 
+    "full": [
+      "#include \"log/MemoryAppender.hh\"", 
+      "#include <bits/stdint-intn.h>      // for int64_t", 
+      "#include <boost/lexical_cast.hpp>  // for bad_lexical_cast", 
+      "#include \"types.hh\"                // for int64_t, size_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/StreamAppender.cc": {
+    "rm": [
+      "#include \"log/Stream.hh\"  // lines 3-3", 
+      "#include \"log/helpers.hh\"  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/StreamAppender.hh\"", 
+      "#include \"types.hh\"  // for ofstream, ostream, string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/helpers.hh": {
+    "rm": [
+      "namespace std { namespace xtd { namespace log { class RootLogger; } } }  // lines 6-6"
+    ], 
+    "add": [
+      "#include \"log/Logger.hh\"    // for RootLogger"
+    ], 
+    "full": [
+      "#include \"log/Logger.hh\"    // for RootLogger", 
+      "#include \"log/helpers.hxx\"", 
+      "#include \"log/logtypes.hh\"  // for level", 
+      "#include \"types.hh\"         // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/tty.cc": {
+    "rm": [
+      "#include <algorithm>  // lines 3-3", 
+      "#include <boost/algorithm/string/join.hpp>  // lines 4-4", 
+      "#include <boost/assign/std/vector.hpp>  // lines 5-5", 
+      "#include <iterator>  // lines 8-8"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"tty.hh\"", 
+      "#include <boost/format.hpp>        // for format, str", 
+      "#include <boost/lexical_cast.hpp>  // for bad_lexical_cast", 
+      "#include \"types.hh\"                // for ostream, string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/log/Formatter.cc": {
+    "rm": [
+      "#include <boost/algorithm/string/replace.hpp>  // lines 2-2", 
+      "#include <boost/date_time/gregorian/gregorian.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 4-4", 
+      "#include <boost/iterator/iterator_traits.hpp>  // lines 6-6", 
+      "#include <iostream>  // lines 7-7", 
+      "#include \"log/helpers.hh\"  // lines 10-10"
+    ], 
+    "add": [
+      "#include <bits/shared_ptr.h>  // for shared_ptr"
+    ], 
+    "full": [
+      "#include \"log/Formatter.hh\"", 
+      "#include <bits/shared_ptr.h>  // for shared_ptr", 
+      "#include <boost/format.hpp>   // for format, str", 
+      "#include \"log/Fields.hh\"      // for Fields", 
+      "#include \"types.hh\"           // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/helpers.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/helpers.hxx": {
+    "rm": [
+      "#include <exception>  // lines 5-5"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/format.hpp>  // for format", 
+      "#include \"format.hh\"         // for format", 
+      "#include \"log/Logger.hh\"     // for RootLogger", 
+      "#include \"types.hh\"          // for string, size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/log/ConfLoader.cc": {
+    "rm": [
+      "#include <ext/alloc_traits.h>  // lines 2-2", 
+      "#include <algorithm>  // lines 3-3", 
+      "#include <boost/algorithm/string/case_conv.hpp>  // lines 4-4", 
+      "#include <boost/algorithm/string/classification.hpp>  // lines 5-5", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 6-6", 
+      "#include <boost/format.hpp>  // lines 7-7", 
+      "#include <exception>  // lines 9-9", 
+      "#include <iterator>  // lines 10-10", 
+      "#include <regex>  // lines 8-8", 
+      "#include \"log/Appender.hh\"  // lines 12-12", 
+      "#include \"log/helpers.hh\"  // lines 14-14"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <log/ConfLoader.hh>", 
+      "#include \"log/ColoredFormatter.hh\"", 
+      "#include \"log/Formatter.hh\"", 
+      "#include \"log/Logger.hh\"    // for RootLogger, Logger", 
+      "#include \"log/MemoryAppender.hh\"", 
+      "#include \"log/StreamAppender.hh\"", 
+      "#include \"log/SyslogAppender.hh\"", 
+      "#include \"log/logtypes.hh\"  // for HERE, level", 
+      "#include \"types.hh\"         // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/Logger.hxx": {
+    "rm": [
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 6-6", 
+      "namespace std { namespace xtd { namespace log { class Logger; } } }  // lines 10-10"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <unistd.h>         // for getpid, getppid", 
+      "#include \"log/Appender.hh\"", 
+      "#include \"log/logtypes.hh\"  // for level, Record, level::alert, level::crit, level::debug, level::emerg, level::err, level::info, level::notice, level::warning", 
+      "#include \"types.hh\"         // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/types.hh": {
+    "rm": [
+      "#include <bits/shared_ptr.h>  // lines 20-20"
+    ], 
+    "add": [
+      "#include <bits/stdint-intn.h>   // for int16_t, int32_t, int64_t, int8_t", 
+      "#include <bits/stdint-uintn.h>  // for uint16_t, uint32_t, uint64_t, uint8_t"
+    ], 
+    "full": [
+      "#include <bits/c++config.h>     // for size_t", 
+      "#include <bits/stdint-intn.h>   // for int16_t, int32_t, int64_t, int8_t", 
+      "#include <bits/stdint-uintn.h>  // for uint16_t, uint32_t, uint64_t, uint8_t", 
+      "#include <bits/stl_map.h>", 
+      "#include <bits/stl_pair.h>      // for pair", 
+      "#include <bits/stl_vector.h>", 
+      "#include <bits/stringfwd.h>", 
+      "#include <stdint.h>", 
+      "#include <sys/types.h>", 
+      "#include <cstddef>", 
+      "#include <cstdint>", 
+      "#include <fstream>", 
+      "#include <functional>", 
+      "#include <iosfwd>               // for ostream, ifstream, istream, ofstream, stringstream", 
+      "#include <map>", 
+      "#include <memory>", 
+      "#include <ostream>              // for endl", 
+      "#include <string>", 
+      "#include <type_traits>          // for underlying_type, enable_if, is_enum, is_integral", 
+      "#include <utility>", 
+      "#include <vector>"
+    ], 
+    "errors": false
+  }, 
+  "src/log/SyslogAppender.cc": {
+    "rm": [
+      "#include <boost/algorithm/string/case_conv.hpp>  // lines 3-3", 
+      "#include <boost/algorithm/string/classification.hpp>  // lines 4-4", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 5-5", 
+      "#include \"log/helpers.hh\"  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/SyslogAppender.hh\"", 
+      "#include <syslog.h>  // for closelog, openlog, LOG_AUTH, LOG_AUTHPRIV, LOG_CONS, LOG_CRON, LOG_DAEMON, LOG_FTP, LOG_KERN, LOG_LOCAL0, LOG_LOCAL1, LOG_LOCAL2, LOG_LOCAL3, LOG_LOCAL4, LOG_LOCAL5, LOG_LOCAL6, LOG_LOCAL7, LOG_LPR, LOG_MAIL, LOG_NDELAY, LOG_NEWS, LOG_NOWAIT, LOG_ODELAY, LOG_PERROR", 
+      "#include \"types.hh\"  // for uint32_t, string, int32_t"
+    ], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.cc:1:\nIn file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.hh:3:\nIn file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/types.hh:3:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/string:40:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/char_traits.h:40:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/postypes.h:40:\nIn file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/cwchar:44:\n/usr/include/wchar.h:35:10: fatal error: 'stddef.h' file not found\n#include <stddef.h>\n         ^~~~~~~~~~\nCycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp>\n/build/iwyu-mhPUyW/iwyu-5.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/Application.cc": {
+    "rm": [
+      "#include <unistd.h>  // lines 5-5", 
+      "#include <boost/algorithm/string/classification.hpp>  // lines 9-9", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 11-11", 
+      "#include <boost/algorithm/string/trim.hpp>  // lines 10-10", 
+      "#include <boost/filesystem.hpp>  // lines 8-8", 
+      "#include <memory>  // lines 7-7", 
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 13-13"
+    ], 
+    "add": [
+      "#include <bits/getopt_core.h>  // for optind, opterr, optopt", 
+      "#include \"log/Logger.hh\"       // for RootLogger", 
+      "#include \"log/helpers.hh\"      // for getRoot, to_value", 
+      "#include \"log/logtypes.hh\"     // for level, level::crit, HERE"
+    ], 
+    "full": [
+      "#include \"Application.hh\"", 
+      "#include <bits/getopt_core.h>  // for optind, opterr, optopt", 
+      "#include <getopt.h>            // for option", 
+      "#include <libgen.h>            // for basename", 
+      "#include <string.h>            // for strdup", 
+      "#include <cstdlib>             // for free", 
+      "#include \"log/Logger.hh\"       // for RootLogger", 
+      "#include \"log/helpers.hh\"      // for getRoot, to_value", 
+      "#include \"log/logtypes.hh\"     // for level, level::crit, HERE"
+    ], 
+    "errors": false
+  }, 
+  "src/log/ConfLoader.hh": {
+    "rm": [
+      "#include \"mixins/singleton.hh\"  // lines 6-6", 
+      "namespace std { class TestConfLoader; }  // lines 8-8", 
+      "namespace std { namespace xtd { namespace log { class Appender; } } }  // lines 10-10", 
+      "namespace std { namespace xtd { namespace log { class ConfLoader; } } }  // lines 11-11", 
+      "namespace std { namespace xtd { namespace log { class Formatter; } } }  // lines 12-12", 
+      "namespace std { namespace xtd { namespace log { class RootLogger; } } }  // lines 13-13"
+    ], 
+    "add": [
+      "#include \"log/Logger.hh\"           // for RootLogger"
+    ], 
+    "full": [
+      "#include <boost/preprocessor.hpp>  // for BOOST_PP_CAT", 
+      "#include \"log/Logger.hh\"           // for RootLogger", 
+      "#include \"log/helpers.hh\"          // for getRoot", 
+      "#include \"types.hh\"                // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/text.cc": {
+    "rm": [
+      "#include <algorithm>  // lines 2-2", 
+      "#include <boost/algorithm/string/replace.hpp>  // lines 3-3", 
+      "#include <boost/assign/list_of.hpp>  // lines 4-4", 
+      "#include <exception>  // lines 5-5", 
+      "#include <iterator>  // lines 6-6", 
+      "#include <regex>  // lines 7-7", 
+      "#include \"format.hh\"  // lines 9-9"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"text.hh\"", 
+      "#include \"types.hh\"  // for string, size_t, stringstream"
+    ], 
+    "errors": false
+  }, 
+  "src/log/FormatModifiers.cc": {
+    "rm": [
+      "#include <algorithm>  // lines 2-2", 
+      "#include <boost/format.hpp>  // lines 3-3", 
+      "#include \"log/helpers.hh\"  // lines 5-5"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/FormatModifiers.hh\"", 
+      "#include \"types.hh\"  // for size_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/ColoredFormatter.cc": {
+    "rm": [
+      "#include <boost/algorithm/string/classification.hpp>  // lines 2-2", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 3-3", 
+      "#include <iostream>  // lines 4-4", 
+      "#include \"log/helpers.hh\"  // lines 6-6"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/ColoredFormatter.hh\"", 
+      "#include \"types.hh\"  // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/log/Appender.hh": {
+    "rm": [
+      "#include <functional>  // lines 3-3", 
+      "#include <memory>  // lines 4-4", 
+      "#include <vector>  // lines 5-5"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"log/Formatter.hh\"", 
+      "#include \"log/logtypes.hh\"  // for FormattedRecord, Record"
+    ], 
+    "errors": false
+  }, 
+  "src/log/Stream.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

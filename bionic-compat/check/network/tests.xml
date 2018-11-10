@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20181110-1919-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.10.2"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="badd68f28420"
+	OSRelease="4.4.0-101-generic"
+	OSVersion="#124~14.04.1-Ubuntu SMP Fri Nov 10 19:05:36 UTC 2017"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="45"
+	ProcessorCacheSize="20480"
+	NumberOfLogicalCPU="2"
+	NumberOfPhysicalCPU="1"
+	TotalVirtualMemory="0"
+	TotalPhysicalMemory="7479"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2600"
+	>
+	<Testing>
+		<StartDateTime>Nov 10 19:19 UTC</StartDateTime>
+		<StartTestTime>1541877568</StartTestTime>
+		<TestList>
+			<Test>./tHttpServer</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>tHttpServer</Name>
+			<Path>.</Path>
+			<FullName>./tHttpServer</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/network/tHttpServer "-p" "-o" "compiler" "--srcdir=/home/travis/build/psycofdj/xtdcpp/network" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/network/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>3.41315</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/network/tHttpServer "-p" "-o" "compiler" "--srcdir=/home/travis/build/psycofdj/xtdcpp/network" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/network/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyFzjEOwjAMheE9p8gIF2DIylKJoRL0AhF5FRGJExy3gttTIRZoo8z+9T0PKNKJ5At4Bhsz0c2SC3BnPKblpo0uYlnU0A5BTvf3VRltGBPHNrkRVsjiYw7oPg9w1fuvKtjog4DhWty6q4CWXi3rJ6kweGa/zB0TEa7iE1W1rfKLqv6kd4e9egMGCLI0====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Nov 10 19:19 UTC</EndDateTime>
+		<EndTestTime>1541877571</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

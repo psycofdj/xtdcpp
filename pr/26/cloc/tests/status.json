@@ -1,0 +1,86 @@
+{
+  "status": "failure", 
+  "index": "index.html", 
+  "module": "tests", 
+  "label": "2 %", 
+  "graphs": [
+    {
+      "data": {
+        "labels": [], 
+        "datasets": [
+          {
+            "borderColor": "rgba(51, 204, 51, 0.5)", 
+            "pointBorderColor": "rgba(31, 122, 31, 1)", 
+            "yAxisID": "absolute", 
+            "label": "cloc: # comment lines", 
+            "backgroundColor": "rgba(51, 204, 51, 0)", 
+            "pointBackgroundColor": "rgba(31, 122, 31, 1)", 
+            "data": "%(comment)d"
+          }, 
+          {
+            "borderColor": "rgba(179, 0, 0, 0.5)", 
+            "pointBorderColor": "rgba(102, 0, 0, 1)", 
+            "yAxisID": "absolute", 
+            "label": "cloc: # code lines", 
+            "backgroundColor": "rgba(179, 0, 0, 0)", 
+            "pointBackgroundColor": "rgba(102, 0, 0, 1)", 
+            "data": "%(code)d"
+          }, 
+          {
+            "borderColor": "rgba(102, 153, 255, 0.5)", 
+            "pointBorderColor": "rgba(0, 60, 179, 1)", 
+            "yAxisID": "percent", 
+            "label": "cloc: % comment", 
+            "backgroundColor": "rgba(102, 153, 255, 0)", 
+            "pointBackgroundColor": "rgba(0, 60, 179, 1)", 
+            "data": "int(float(%(comment)d) / (float(%(comment)d) + float(%(code)d)) * 100)"
+          }
+        ]
+      }, 
+      "type": "line", 
+      "options": {
+        "scales": {
+          "xAxes": [
+            {
+              "ticks": {
+                "fontSize": 12, 
+                "minRotation": 80
+              }
+            }
+          ], 
+          "yAxes": [
+            {
+              "position": "left", 
+              "ticks": {
+                "fontSize": 24, 
+                "beginAtZero": true
+              }, 
+              "type": "linear", 
+              "id": "absolute", 
+              "display": true
+            }, 
+            {
+              "position": "right", 
+              "ticks": {
+                "max": 100, 
+                "fontSize": 24, 
+                "beginAtZero": true
+              }, 
+              "type": "linear", 
+              "id": "percent"
+            }
+          ]
+        }, 
+        "title": {
+          "text": "%(module)s : cloc", 
+          "display": true
+        }
+      }
+    }
+  ], 
+  "kpi": "cloc", 
+  "data": {
+    "comment": 13, 
+    "code": 587
+  }
+}

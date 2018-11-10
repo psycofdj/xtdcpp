@@ -1,0 +1,1 @@
+var g_data = {"tests": [], "stats": {}};

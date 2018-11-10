@@ -1,0 +1,801 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Server.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Server.hxx<span style="font-size: 80%;"> (source / <a href="Server.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">129</td>
+            <td class="headerCovTableEntry">260</td>
+            <td class="headerCovTableEntryLo">49.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:16:21</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntry">98</td>
+            <td class="headerCovTableEntryLo">20.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // IWYU pragma: private, include &quot;http/Server.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #ifndef NETWORK_HTTP_SERVER_HXX_
+<span class="lineNum">       3 </span>            : # define NETWORK_HTTP_SERVER_HXX_
+<span class="lineNum">       4 </span>            : # include &quot;http/Server.hh&quot;
+<span class="lineNum">       5 </span>            : # include &lt;fnmatch.h&gt;
+<span class="lineNum">       6 </span>            : # include &lt;boost/asio.hpp&gt;
+<span class="lineNum">       7 </span>            : # include &lt;boost/iostreams/device/back_inserter.hpp&gt;
+<span class="lineNum">       8 </span>            : # include &lt;boost/iostreams/filtering_stream.hpp&gt;
+<span class="lineNum">       9 </span>            : # include &lt;boost/range/iterator.hpp&gt;
+<span class="lineNum">      10 </span>            : # include &lt;boost/range/iterator_range_core.hpp&gt;
+<span class="lineNum">      11 </span>            : # include &lt;regex&gt;
+<span class="lineNum">      12 </span>            : # include &lt;boost/system/error_code.hpp&gt;
+<span class="lineNum">      13 </span>            : # include &lt;cmath&gt;
+<span class="lineNum">      14 </span>            : # include &lt;sstream&gt;
+<span class="lineNum">      15 </span>            : # include &quot;format.hh&quot;       // libcore
+<span class="lineNum">      16 </span>            : # include &quot;log/helpers.hh&quot;  // libcore
+<span class="lineNum">      17 </span>            : # include &quot;log/logtypes.hh&quot; // libcore
+<span class="lineNum">      18 </span>            : # include &quot;types.hh&quot;        // libcore
+<span class="lineNum">      19 </span>            : # include &quot;http/Connection.hh&quot;
+<span class="lineNum">      20 </span>            : # include &quot;http/Request.hh&quot;
+<span class="lineNum">      21 </span>            : # include &quot;http/Response.hh&quot;
+<span class="lineNum">      22 </span>            : # include &quot;http/Template.hh&quot;
+<span class="lineNum">      23 </span>            : # include &quot;http/http_types.hh&quot;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : namespace ba = boost::asio;
+<span class="lineNum">      26 </span>            : namespace bs = boost::system;
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : namespace xtd {
+<span class="lineNum">      29 </span>            : namespace network {
+<span class="lineNum">      30 </span>            : namespace http {
+<span class="lineNum">      31 </span>            : 
+<a name="32"><span class="lineNum">      32 </span>            : </a>
+<span class="lineNum">      33 </span>            : template&lt;typename Domain&gt;
+<span class="lineNum">      34 </span><span class="lineCov">         10 : Server&lt;Domain&gt;::Handler::Handler(void) :</span>
+<span class="lineNum">      35 </span>            :   m_path(),
+<span class="lineNum">      36 </span>            :   m_process(),
+<span class="lineNum">      37 </span>            :   m_filter(),
+<span class="lineNum">      38 </span><span class="lineCov">         10 :   m_matchAny(false)</span>
+<span class="lineNum">      39 </span><span class="lineCov">         10 : {}</span>
+<span class="lineNum">      40 </span>            : 
+<a name="41"><span class="lineNum">      41 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">      42 </span>            : bool
+<span class="lineNum">      43 </span><span class="lineCov">          6 : Server&lt;Domain&gt;::Handler::less(const Handler&amp; p_obj1, const Handler&amp; p_obj2)</span>
+<span class="lineNum">      44 </span>            : {
+<span class="lineNum">      45 </span><span class="lineCov">          6 :   if (p_obj1.m_matchAny == p_obj2.m_matchAny)</span>
+<span class="lineNum">      46 </span><span class="lineCov">          4 :     return std::less&lt;string&gt;()(p_obj2.m_path, p_obj1.m_path);</span>
+<span class="lineNum">      47 </span><span class="lineCov">          2 :   return std::less&lt;bool&gt;()(p_obj1.m_matchAny, p_obj2.m_matchAny);</span>
+<span class="lineNum">      48 </span>            : }
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : template&lt;typename Domain&gt;
+<a name="53"><span class="lineNum">      53 </span>            : template&lt;typename T, typename... Arguments&gt;</a>
+<span class="lineNum">      54 </span>            : typename Server&lt;Domain&gt;::handler
+<span class="lineNum">      55 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::h(T p_fn, Arguments&amp;&amp;... p_args)</span>
+<span class="lineNum">      56 </span>            : {
+<span class="lineNum">      57 </span>            :   return
+<span class="lineNum">      58 </span>            :     std::bind(p_fn, p_args...,
+<span class="lineNum">      59 </span>            :               std::placeholders::_1,
+<span class="lineNum">      60 </span>            :               std::placeholders::_2,
+<span class="lineNum">      61 </span><span class="lineCov">         12 :               std::placeholders::_3);</span>
+<span class="lineNum">      62 </span>            : }
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : template&lt;typename Domain&gt;
+<span class="lineNum">      65 </span>            : template&lt;typename T, typename... Arguments&gt;
+<span class="lineNum">      66 </span>            : typename Server&lt;Domain&gt;::filter
+<span class="lineNum">      67 </span>            : Server&lt;Domain&gt;::f(T p_fn, Arguments&amp;&amp;... p_args)
+<span class="lineNum">      68 </span>            : {
+<span class="lineNum">      69 </span>            :   return
+<span class="lineNum">      70 </span>            :     std::bind(p_fn, p_args...,
+<span class="lineNum">      71 </span>            :               std::placeholders::_1);
+<span class="lineNum">      72 </span>            : }
+<span class="lineNum">      73 </span>            : 
+<a name="74"><span class="lineNum">      74 </span>            : </a>
+<span class="lineNum">      75 </span>            : template&lt;typename Domain&gt;
+<span class="lineNum">      76 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::Server(void) :</span>
+<span class="lineNum">      77 </span><span class="lineCov">         12 :   TBase()</span>
+<span class="lineNum">      78 </span>            : {
+<span class="lineNum">      79 </span><span class="lineCov">         24 :   handler l_handler = h(&amp;Server::h_error_html, this,</span>
+<span class="lineNum">      80 </span>            :                         &quot;unhandled request, you must bind handler and &quot;
+<span class="lineNum">      81 </span>            :                         &quot;filter to manage this request&quot;);
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span><span class="lineCov">         12 :   bind_default(l_handler);</span>
+<span class="lineNum">      84 </span><span class="lineCov">         12 : }</span>
+<span class="lineNum">      85 </span>            : 
+<a name="86"><span class="lineNum">      86 </span>            : </a>
+<span class="lineNum">      87 </span>            : template&lt;typename Domain&gt;
+<span class="lineNum">      88 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::~Server(void)</span>
+<span class="lineNum">      89 </span>            : {
+<span class="lineNum">      90 </span><span class="lineCov">         12 : }</span>
+<span class="lineNum">      91 </span>            : 
+<a name="92"><span class="lineNum">      92 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">      93 </span>            : void
+<span class="lineNum">      94 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::start(void)</span>
+<span class="lineNum">      95 </span>            : {
+<span class="lineNum">      96 </span><span class="lineCov">         12 :   log::info(&quot;network.http.server&quot;, &quot;starting network::http server...&quot;);</span>
+<span class="lineNum">      97 </span><span class="lineCov">         12 :   TBase::start();</span>
+<span class="lineNum">      98 </span><span class="lineCov">         12 :   log::info(&quot;network.http.server&quot;, &quot;starting network::http server...done&quot;);</span>
+<span class="lineNum">      99 </span><span class="lineCov">         12 : }</span>
+<span class="lineNum">     100 </span>            : 
+<a name="101"><span class="lineNum">     101 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     102 </span>            : void
+<span class="lineNum">     103 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::stop(void)</span>
+<span class="lineNum">     104 </span>            : {
+<span class="lineNum">     105 </span><span class="lineCov">         12 :   log::info(&quot;network.http.server&quot;, &quot;stopping network::http server...&quot;);</span>
+<span class="lineNum">     106 </span><span class="lineCov">         12 :   TBase::stop();</span>
+<span class="lineNum">     107 </span><span class="lineCov">         12 :   log::info(&quot;network.http.server&quot;, &quot;stopping network::http server...done&quot;);</span>
+<span class="lineNum">     108 </span><span class="lineCov">         12 : }</span>
+<span class="lineNum">     109 </span>            : 
+<a name="110"><span class="lineNum">     110 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     111 </span>            : typename Server&lt;Domain&gt;::cnx_sptr_t
+<span class="lineNum">     112 </span><span class="lineCov">         34 : Server&lt;Domain&gt;::createCnx(string p_hostname, uint32_t p_port)</span>
+<span class="lineNum">     113 </span>            : {
+<span class="lineNum">     114 </span><span class="lineCov">         34 :   return cnx_sptr_t(new Connection&lt;Domain&gt;(*this, *TBase::m_ioService, p_hostname, p_port));</span>
+<span class="lineNum">     115 </span>            : }
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            : 
+<a name="118"><span class="lineNum">     118 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     119 </span>            : void
+<span class="lineNum">     120 </span><span class="lineCov">         22 : Server&lt;Domain&gt;::afterAccept(cnx_sptr_t p_conn)</span>
+<span class="lineNum">     121 </span>            : {
+<span class="lineNum">     122 </span><span class="lineCov">         22 :   TBase::do_receive(p_conn);</span>
+<span class="lineNum">     123 </span><span class="lineCov">         22 : }</span>
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            : 
+<span class="lineNum">     126 </span>            : /**
+<span class="lineNum">     127 </span>            :  ** @details
+<span class="lineNum">     128 </span>            :  ** En http 1.1, sauf mention contraire, la connexion est
+<span class="lineNum">     129 </span>            :  ** persistante. Elle est donc non fermee par le client et
+<span class="lineNum">     130 </span>            :  ** le serveur se place en ecoute (do_receive).
+<span class="lineNum">     131 </span>            :  ** Le client peut legitimement fermer la connexion
+<span class="lineNum">     132 </span>            :  ** de son cote et le serveur recoit un &quot;eof&quot; qui dans ce cas precis,
+<span class="lineNum">     133 </span>            :  ** n'est pas une erreur.
+<span class="lineNum">     134 </span>            :  */
+<a name="135"><span class="lineNum">     135 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     136 </span>            : void
+<span class="lineNum">     137 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::onReceiveError(const bs::error_code p_error, cnx_sptr_t p_conn)</span>
+<span class="lineNum">     138 </span>            : {
+<span class="lineNum">     139 </span><span class="lineCov">         24 :   sptr&lt;Connection&lt;Domain&gt; &gt; l_conn =</span>
+<span class="lineNum">     140 </span>            :     std::static_pointer_cast&lt;Connection&lt;Domain&gt; &gt;(p_conn);
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span><span class="lineCov">         12 :   if ((p_error == ba::error::eof) &amp;&amp; (false == l_conn-&gt;getClosedByServer()))</span>
+<span class="lineNum">     143 </span><span class="lineCov">         12 :     log::info(&quot;network.http.server&quot;, &quot;onReceivedError (%s) : closed by client&quot;, p_conn-&gt;info(), HERE);</span>
+<span class="lineNum">     144 </span>            :   else
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 :     TBase::onReceiveError(p_error, p_conn);</span>
+<span class="lineNum">     146 </span><span class="lineCov">         12 : }</span>
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : 
+<a name="149"><span class="lineNum">     149 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     150 </span>            : void
+<span class="lineNum">     151 </span><span class="lineCov">          2 : Server&lt;Domain&gt;::onReceiveTimeout(const bs::error_code p_error, cnx_sptr_t p_conn)</span>
+<span class="lineNum">     152 </span>            : {
+<span class="lineNum">     153 </span><span class="lineCov">          4 :   sptr&lt;Connection&lt;Domain&gt; &gt; l_conn = std::static_pointer_cast&lt;Connection&lt;Domain&gt; &gt;(p_conn);</span>
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span><span class="lineCov">          2 :   if (!l_conn-&gt;getClosedByServer())</span>
+<span class="lineNum">     156 </span>            :   {
+<span class="lineNum">     157 </span><span class="lineCov">          2 :     log::info(&quot;network.http.server&quot;, &quot;onReceivedTimeout (%s) : client did not recycle cnx before server timeout&quot;, p_conn-&gt;info(), HERE);</span>
+<span class="lineNum">     158 </span>            :   }
+<span class="lineNum">     159 </span>            :   else
+<span class="lineNum">     160 </span>            :   {
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.server&quot;, &quot;onReceivedTimeout (%s) : receive aborted, no answer from client before timeout&quot;, p_conn-&gt;info(), HERE);</span>
+<span class="lineNum">     162 </span>            :   }
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span><span class="lineCov">          2 :   TBase::onReceiveTimeout(p_error, p_conn);</span>
+<span class="lineNum">     165 </span><span class="lineCov">          2 : }</span>
+<span class="lineNum">     166 </span>            : 
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span>            : 
+<a name="169"><span class="lineNum">     169 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     170 </span>            : void
+<span class="lineNum">     171 </span><span class="lineCov">         24 : Server&lt;Domain&gt;::afterReceive(cnx_sptr_t         p_conn,</span>
+<span class="lineNum">     172 </span>            :                              sptr&lt;vector&lt;char&gt;&gt; p_inBuffer)
+<span class="lineNum">     173 </span>            : {
+<span class="lineNum">     174 </span><span class="lineCov">         48 :   boost::iostreams::filtering_istream l_in;</span>
+<span class="lineNum">     175 </span><span class="lineCov">         48 :   Request                             l_req;</span>
+<span class="lineNum">     176 </span><span class="lineCov">         48 :   Response                            l_res;</span>
+<span class="lineNum">     177 </span><span class="lineCov">         48 :   vector&lt;char&gt;                        l_outBuff;</span>
+<span class="lineNum">     178 </span><span class="lineCov">         48 :   string                              l_value;</span>
+<span class="lineNum">     179 </span><span class="lineCov">         24 :   bool                                l_closeByServer = false;</span>
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span><span class="lineCov">         24 :   l_in.push(boost::make_iterator_range(*p_inBuffer));</span>
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span><span class="lineCov">         24 :   processRequest(p_conn-&gt;getProcessID(), l_in, l_req, l_res);</span>
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span><span class="lineCov">         24 :   if (version::v1_0 == l_req.getVersion())</span>
+<span class="lineNum">     186 </span><span class="lineCov">          4 :     l_closeByServer = true;</span>
+<span class="lineNum">     187 </span><span class="lineCov">         20 :   else if ((true == l_req.getHeader(&quot;Connection&quot;, l_value)) &amp;&amp; (&quot;close&quot; == l_value))</span>
+<span class="lineNum">     188 </span><span class="lineNoCov">          0 :     l_closeByServer = true;</span>
+<span class="lineNum">     189 </span>            : 
+<span class="lineNum">     190 </span><span class="lineCov">         24 :   if (true == l_closeByServer)</span>
+<span class="lineNum">     191 </span>            :   {
+<span class="lineNum">     192 </span><span class="lineCov">          8 :     sptr&lt;Connection&lt;Domain&gt; &gt; l_conn =</span>
+<span class="lineNum">     193 </span>            :       std::static_pointer_cast&lt;Connection&lt;Domain&gt; &gt;(p_conn);
+<span class="lineNum">     194 </span><span class="lineCov">          4 :     l_conn-&gt;setClosedByServer(true);</span>
+<span class="lineNum">     195 </span><span class="lineCov">          4 :     l_res.addHeader(&quot;Connection&quot;, &quot;close&quot;);</span>
+<span class="lineNum">     196 </span>            :   } else {
+<span class="lineNum">     197 </span><span class="lineCov">         20 :     float    l_rcvTimeout = this-&gt;getReceiveTimeoutMs();</span>
+<span class="lineNum">     198 </span><span class="lineCov">         20 :     uint32_t l_to         = std::floor(l_rcvTimeout / 1000);</span>
+<span class="lineNum">     199 </span><span class="lineCov">         20 :     l_res.addHeader(&quot;Keep-Alive&quot;, format::vargs(&quot;timeout=%d, max=100&quot;, l_to));</span>
+<span class="lineNum">     200 </span>            :   }
+<span class="lineNum">     201 </span>            : 
+<span class="lineNum">     202 </span>            :   {
+<span class="lineNum">     203 </span><span class="lineCov">         48 :     boost::iostreams::filtering_ostream l_out;</span>
+<span class="lineNum">     204 </span><span class="lineCov">         24 :     l_out.push(boost::iostreams::back_inserter(l_outBuff));</span>
+<span class="lineNum">     205 </span><span class="lineCov">         24 :     l_res.write(l_out);</span>
+<span class="lineNum">     206 </span><span class="lineCov">         24 :     l_out.flush();</span>
+<span class="lineNum">     207 </span>            :   }
+<span class="lineNum">     208 </span>            : 
+<span class="lineNum">     209 </span><span class="lineCov">         24 :   TBase::do_send(p_conn, l_outBuff);</span>
+<span class="lineNum">     210 </span><span class="lineCov">         24 : }</span>
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            : 
+<a name="213"><span class="lineNum">     213 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     214 </span>            : void
+<span class="lineNum">     215 </span><span class="lineCov">         20 : Server&lt;Domain&gt;::afterSend(cnx_sptr_t p_conn)</span>
+<span class="lineNum">     216 </span>            : {
+<span class="lineNum">     217 </span><span class="lineCov">         40 :   sptr&lt;Connection&lt;Domain&gt; &gt; l_conn =</span>
+<span class="lineNum">     218 </span>            :     std::static_pointer_cast&lt;Connection&lt;Domain&gt; &gt;(p_conn);
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span><span class="lineCov">         20 :   if (false == l_conn-&gt;getClosedByServer())</span>
+<span class="lineNum">     221 </span><span class="lineCov">         16 :     TBase::do_receive(p_conn);</span>
+<span class="lineNum">     222 </span><span class="lineCov">         20 : }</span>
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            : 
+<a name="225"><span class="lineNum">     225 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     226 </span>            : void
+<span class="lineNum">     227 </span><span class="lineCov">         24 : Server&lt;Domain&gt;::processRequest(uint32_t       p_processID,</span>
+<span class="lineNum">     228 </span>            :                                std::istream&amp;  p_request,
+<span class="lineNum">     229 </span>            :                                Request&amp;       p_req,
+<span class="lineNum">     230 </span>            :                                Response&amp;      p_res)
+<span class="lineNum">     231 </span>            : {
+<span class="lineNum">     232 </span><span class="lineCov">         24 :   if (status::ok != p_req.read(p_request))</span>
+<span class="lineNum">     233 </span>            :   {
+<span class="lineNum">     234 </span><span class="lineCov">          2 :     log::err(&quot;network.http.server&quot;, &quot;invalid http request&quot;, HERE);</span>
+<span class="lineNum">     235 </span><span class="lineCov">          2 :     p_res.setVersion(version::v1_0);</span>
+<span class="lineNum">     236 </span><span class="lineCov">          2 :     p_res.setData(&quot;request parsing error...&quot;);</span>
+<span class="lineNum">     237 </span><span class="lineCov">          2 :     p_res.setStatus(code::internal_server_error);</span>
+<span class="lineNum">     238 </span><span class="lineCov">          2 :     return;</span>
+<span class="lineNum">     239 </span>            :   }
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span><span class="lineCov">         22 :   findHandler(p_req)(p_processID, p_req, p_res);</span>
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span><span class="lineCov">         22 :   p_res.setVersion(p_req.getVersion());</span>
+<span class="lineNum">     244 </span>            : }
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span>            : 
+<a name="247"><span class="lineNum">     247 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     248 </span>            : typename Server&lt;Domain&gt;::handler&amp;
+<span class="lineNum">     249 </span><span class="lineCov">         22 : Server&lt;Domain&gt;::findHandler(const Request&amp; p_req)</span>
+<span class="lineNum">     250 </span>            : {
+<span class="lineNum">     251 </span><span class="lineCov">         36 :   for (auto&amp; c_handler : m_handlerList)</span>
+<span class="lineNum">     252 </span>            :   {
+<span class="lineNum">     253 </span><span class="lineCov">         60 :     if ((false == c_handler.m_matchAny) &amp;&amp;</span>
+<span class="lineNum">     254 </span><span class="lineCov">         32 :         (0 == fnmatch(c_handler.m_path.c_str(), p_req.getPath().c_str(), 0)) &amp;&amp;</span>
+<span class="lineNum">     255 </span><span class="lineCov">         10 :         (true == c_handler.m_filter(p_req)))</span>
+<span class="lineNum">     256 </span><span class="lineCov">          8 :       return c_handler.m_process;</span>
+<span class="lineNum">     257 </span>            :   }
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span><span class="lineCov">         20 :   for (auto&amp; c_handler : m_handlerList)</span>
+<span class="lineNum">     260 </span>            :   {
+<span class="lineNum">     261 </span><span class="lineCov">         18 :     if ((true == c_handler.m_matchAny) &amp;&amp;</span>
+<span class="lineNum">     262 </span><span class="lineCov">          6 :         (true == c_handler.m_filter(p_req)))</span>
+<span class="lineNum">     263 </span><span class="lineCov">          6 :       return c_handler.m_process;</span>
+<span class="lineNum">     264 </span>            :   }
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span><span class="lineCov">          8 :   return m_defaultHandler;</span>
+<span class="lineNum">     267 </span>            : }
+<span class="lineNum">     268 </span>            : 
+<a name="269"><span class="lineNum">     269 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     270 </span>            : bool
+<span class="lineNum">     271 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::f_none(const Request&amp; /* p_request */)</span>
+<span class="lineNum">     272 </span>            : {
+<span class="lineNum">     273 </span><span class="lineCov">         12 :   return true;</span>
+<span class="lineNum">     274 </span>            : }
+<span class="lineNum">     275 </span>            : 
+<a name="276"><span class="lineNum">     276 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     277 </span>            : bool
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_cgi_exist(const string&amp;  p_cgiName,</span>
+<span class="lineNum">     279 </span>            :                             const Request&amp; p_req)
+<span class="lineNum">     280 </span>            : {
+<span class="lineNum">     281 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     282 </span>            : 
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span><span class="lineNoCov">          0 :   return ((true == p_req.getCgi(p_cgiName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     285 </span><span class="lineNoCov">          0 :           (0    != l_value.size()));</span>
+<span class="lineNum">     286 </span>            : }
+<span class="lineNum">     287 </span>            : 
+<a name="288"><span class="lineNum">     288 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     289 </span>            : bool
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_one_cgi_exist(const vector&lt;string&gt;&amp; p_cgiName,</span>
+<span class="lineNum">     291 </span>            :                                 const Request&amp;        p_req)
+<span class="lineNum">     292 </span>            : {
+<span class="lineNum">     293 </span><span class="lineNoCov">          0 :   bool l_status = false;</span>
+<span class="lineNum">     294 </span>            : 
+<span class="lineNum">     295 </span><span class="lineNoCov">          0 :   for (uint32_t i = 0 ; i &lt; p_cgiName.size(); i++)</span>
+<span class="lineNum">     296 </span>            :   {
+<span class="lineNum">     297 </span><span class="lineNoCov">          0 :     if (f_cgi_exist(p_cgiName[i], p_req) == true)</span>
+<span class="lineNum">     298 </span>            :     {
+<span class="lineNum">     299 </span><span class="lineNoCov">          0 :       l_status = true;</span>
+<span class="lineNum">     300 </span><span class="lineNoCov">          0 :       break;</span>
+<span class="lineNum">     301 </span>            :     }
+<span class="lineNum">     302 </span>            :   }
+<span class="lineNum">     303 </span>            : 
+<span class="lineNum">     304 </span><span class="lineNoCov">          0 :   return l_status;</span>
+<span class="lineNum">     305 </span>            : }
+<span class="lineNum">     306 </span>            : 
+<span class="lineNum">     307 </span>            : 
+<a name="308"><span class="lineNum">     308 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     309 </span>            : bool
+<span class="lineNum">     310 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_cgi_equal(const string&amp;  p_cgiName,</span>
+<span class="lineNum">     311 </span>            :                             const string&amp;  p_value,
+<span class="lineNum">     312 </span>            :                             const Request&amp; p_req)
+<span class="lineNum">     313 </span>            : {
+<span class="lineNum">     314 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     315 </span>            : 
+<span class="lineNum">     316 </span><span class="lineNoCov">          0 :   return ((true == p_req.getCgi(p_cgiName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     317 </span><span class="lineNoCov">          0 :           (p_value == l_value));</span>
+<span class="lineNum">     318 </span>            : }
+<span class="lineNum">     319 </span>            : 
+<span class="lineNum">     320 </span>            : 
+<a name="321"><span class="lineNum">     321 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     322 </span>            : bool
+<span class="lineNum">     323 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_cgi_match(const string&amp;  p_cgiName,</span>
+<span class="lineNum">     324 </span>            :                             const string&amp;  p_regex,
+<span class="lineNum">     325 </span>            :                             const Request&amp; p_req)
+<span class="lineNum">     326 </span>            : {
+<span class="lineNum">     327 </span><span class="lineNoCov">          0 :   std::regex l_regex(p_regex);</span>
+<span class="lineNum">     328 </span><span class="lineNoCov">          0 :   string       l_value;</span>
+<span class="lineNum">     329 </span>            : 
+<span class="lineNum">     330 </span><span class="lineNoCov">          0 :   return ((true == p_req.getCgi(p_cgiName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     331 </span><span class="lineNoCov">          0 :           (true == std::regex_match(l_value, l_regex)));</span>
+<span class="lineNum">     332 </span>            : }
+<span class="lineNum">     333 </span>            : 
+<span class="lineNum">     334 </span>            : 
+<a name="335"><span class="lineNum">     335 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     336 </span>            : bool
+<span class="lineNum">     337 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_post_exist(const string&amp;  p_postName,</span>
+<span class="lineNum">     338 </span>            :                              const Request&amp; p_req)
+<span class="lineNum">     339 </span>            : {
+<span class="lineNum">     340 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     341 </span>            : 
+<span class="lineNum">     342 </span><span class="lineNoCov">          0 :   return ((true == p_req.getPost(p_postName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     343 </span><span class="lineNoCov">          0 :           (0    != l_value.size()));</span>
+<span class="lineNum">     344 </span>            : }
+<span class="lineNum">     345 </span>            : 
+<span class="lineNum">     346 </span>            : 
+<a name="347"><span class="lineNum">     347 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     348 </span>            : bool
+<span class="lineNum">     349 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_param_exist(const string&amp;  p_name,</span>
+<span class="lineNum">     350 </span>            :                               const Request&amp; p_req)
+<span class="lineNum">     351 </span>            : {
+<span class="lineNum">     352 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     353 </span>            : 
+<span class="lineNum">     354 </span><span class="lineNoCov">          0 :   return ((true == p_req.getParam(p_name, l_value)) &amp;&amp;</span>
+<span class="lineNum">     355 </span><span class="lineNoCov">          0 :           (0    != l_value.size()));</span>
+<span class="lineNum">     356 </span>            : }
+<span class="lineNum">     357 </span>            : 
+<span class="lineNum">     358 </span>            : 
+<a name="359"><span class="lineNum">     359 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     360 </span>            : bool
+<span class="lineNum">     361 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_post_equal(const string&amp;  p_postName,</span>
+<span class="lineNum">     362 </span>            :                              const string&amp;  p_value,
+<span class="lineNum">     363 </span>            :                              const Request&amp; p_req)
+<span class="lineNum">     364 </span>            : {
+<span class="lineNum">     365 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     366 </span>            : 
+<span class="lineNum">     367 </span><span class="lineNoCov">          0 :   return ((true == p_req.getPost(p_postName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     368 </span><span class="lineNoCov">          0 :           (p_value == l_value));</span>
+<span class="lineNum">     369 </span>            : }
+<span class="lineNum">     370 </span>            : 
+<span class="lineNum">     371 </span>            : 
+<a name="372"><span class="lineNum">     372 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     373 </span>            : bool
+<span class="lineNum">     374 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_post_match(const string&amp;  p_postName,</span>
+<span class="lineNum">     375 </span>            :                              const string&amp;  p_regex,
+<span class="lineNum">     376 </span>            :                              const Request&amp; p_req)
+<span class="lineNum">     377 </span>            : {
+<span class="lineNum">     378 </span><span class="lineNoCov">          0 :   std::regex l_regex(p_regex);</span>
+<span class="lineNum">     379 </span><span class="lineNoCov">          0 :   string     l_value;</span>
+<span class="lineNum">     380 </span>            : 
+<span class="lineNum">     381 </span><span class="lineNoCov">          0 :   return ((true == p_req.getPost(p_postName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     382 </span><span class="lineNoCov">          0 :           (true == std::regex_match(l_value, l_regex)));</span>
+<span class="lineNum">     383 </span>            : }
+<span class="lineNum">     384 </span>            : 
+<span class="lineNum">     385 </span>            : 
+<span class="lineNum">     386 </span>            : 
+<a name="387"><span class="lineNum">     387 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     388 </span>            : bool
+<span class="lineNum">     389 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_header_exist(const string&amp;  p_headerName,</span>
+<span class="lineNum">     390 </span>            :                                const Request&amp; p_req)
+<span class="lineNum">     391 </span>            : {
+<span class="lineNum">     392 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     393 </span>            : 
+<span class="lineNum">     394 </span><span class="lineNoCov">          0 :   return ((true == p_req.getHeader(p_headerName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     395 </span><span class="lineNoCov">          0 :           (0    != l_value.size()));</span>
+<span class="lineNum">     396 </span>            : }
+<span class="lineNum">     397 </span>            : 
+<span class="lineNum">     398 </span>            : 
+<a name="399"><span class="lineNum">     399 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     400 </span>            : bool
+<span class="lineNum">     401 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_header_equal(const string&amp;  p_headerName,</span>
+<span class="lineNum">     402 </span>            :                                const string&amp;  p_value,
+<span class="lineNum">     403 </span>            :                                const Request&amp; p_req)
+<span class="lineNum">     404 </span>            : {
+<span class="lineNum">     405 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     406 </span>            : 
+<span class="lineNum">     407 </span><span class="lineNoCov">          0 :   return ((true == p_req.getHeader(p_headerName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     408 </span><span class="lineNoCov">          0 :           (p_value == l_value));</span>
+<span class="lineNum">     409 </span>            : }
+<span class="lineNum">     410 </span>            : 
+<span class="lineNum">     411 </span>            : 
+<a name="412"><span class="lineNum">     412 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     413 </span>            : bool
+<span class="lineNum">     414 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::f_header_match(const string&amp;  p_headerName,</span>
+<span class="lineNum">     415 </span>            :                                const string&amp;  p_regex,
+<span class="lineNum">     416 </span>            :                                const Request&amp; p_req)
+<span class="lineNum">     417 </span>            : {
+<span class="lineNum">     418 </span><span class="lineNoCov">          0 :   std::regex l_regex(p_regex);</span>
+<span class="lineNum">     419 </span><span class="lineNoCov">          0 :   string     l_value;</span>
+<span class="lineNum">     420 </span>            : 
+<span class="lineNum">     421 </span><span class="lineNoCov">          0 :   return ((true == p_req.getHeader(p_headerName, l_value)) &amp;&amp;</span>
+<span class="lineNum">     422 </span><span class="lineNoCov">          0 :           (true == std::regex_match(l_value, l_regex)));</span>
+<span class="lineNum">     423 </span>            : }
+<span class="lineNum">     424 </span>            : 
+<span class="lineNum">     425 </span>            : 
+<a name="426"><span class="lineNum">     426 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     427 </span>            : status
+<span class="lineNum">     428 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_error_text(const string&amp;     p_msg,</span>
+<span class="lineNum">     429 </span>            :                              const uint32_t /* p_requestId */,
+<span class="lineNum">     430 </span>            :                              const Request&amp;    p_request,
+<span class="lineNum">     431 </span>            :                              Response&amp;         p_response)
+<span class="lineNum">     432 </span>            : {
+<span class="lineNum">     433 </span><span class="lineNoCov">          0 :   std::stringstream l_requestText;</span>
+<span class="lineNum">     434 </span><span class="lineNoCov">          0 :   string            l_message;</span>
+<span class="lineNum">     435 </span>            : 
+<span class="lineNum">     436 </span><span class="lineNoCov">          0 :   l_requestText &lt;&lt; p_request;</span>
+<span class="lineNum">     437 </span><span class="lineNoCov">          0 :   l_message = format::vargs(&quot;http error : %s\n&quot;</span>
+<span class="lineNum">     438 </span>            :                             &quot;dumping request ...\n&quot;
+<span class="lineNum">     439 </span>            :                             &quot;%s\n&quot;, p_msg, l_requestText.str());
+<span class="lineNum">     440 </span><span class="lineNoCov">          0 :   p_response.setStatus(code::internal_server_error);</span>
+<span class="lineNum">     441 </span><span class="lineNoCov">          0 :   p_response.addHeader(&quot;Content-Type&quot;, &quot;text/plain&quot;);</span>
+<span class="lineNum">     442 </span><span class="lineNoCov">          0 :   p_response.setData(l_message);</span>
+<span class="lineNum">     443 </span><span class="lineNoCov">          0 :   return status::error;</span>
+<span class="lineNum">     444 </span>            : }
+<span class="lineNum">     445 </span>            : 
+<span class="lineNum">     446 </span>            : 
+<a name="447"><span class="lineNum">     447 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     448 </span>            : status
+<span class="lineNum">     449 </span><span class="lineCov">          8 : Server&lt;Domain&gt;::h_error_html(const string&amp;  p_msg,</span>
+<span class="lineNum">     450 </span>            :                              const uint32_t p_requestId,
+<span class="lineNum">     451 </span>            :                              const Request&amp; p_req,
+<span class="lineNum">     452 </span>            :                              Response&amp;      p_res)
+<span class="lineNum">     453 </span>            : {
+<span class="lineNum">     454 </span><span class="lineCov">         16 :   HtmlTemplate      l_tmpl;</span>
+<span class="lineNum">     455 </span><span class="lineCov">         16 :   std::stringstream l_str;</span>
+<span class="lineNum">     456 </span><span class="lineCov">         16 :   string             l_text;</span>
+<span class="lineNum">     457 </span>            : 
+<span class="lineNum">     458 </span><span class="lineCov">          8 :   l_tmpl.setTitle(&quot;http::Server error&quot;);</span>
+<span class="lineNum">     459 </span><span class="lineCov">          8 :   l_tmpl.setTemplate(&quot;&lt;span style='color:red'&gt; error &lt;/span&gt; : {$message} &lt;br/&gt;&lt;br/&gt; &quot;</span>
+<span class="lineNum">     460 </span>            :                      &quot;dumping request... &lt;br/&gt;&quot;
+<span class="lineNum">     461 </span>            :                      &quot;&lt;pre&gt;{$requestText}&lt;/pre&gt;&quot;);
+<span class="lineNum">     462 </span><span class="lineCov">          8 :   l_str &lt;&lt; p_req;</span>
+<span class="lineNum">     463 </span>            : 
+<span class="lineNum">     464 </span><span class="lineCov">          8 :   l_tmpl</span>
+<span class="lineNum">     465 </span><span class="lineCov">         16 :     .add(&quot;requestText&quot;, l_str.str())</span>
+<span class="lineNum">     466 </span><span class="lineCov">         16 :     .add(&quot;message&quot;, p_msg);</span>
+<span class="lineNum">     467 </span>            : 
+<span class="lineNum">     468 </span><span class="lineCov">          8 :   if (status::ok != l_tmpl.resolve(l_text))</span>
+<span class="lineNum">     469 </span><span class="lineNoCov">          0 :     return h_error_text(l_tmpl.getError(), p_requestId, p_req, p_res);</span>
+<span class="lineNum">     470 </span>            : 
+<span class="lineNum">     471 </span><span class="lineCov">          8 :   p_res.setStatus(code::internal_server_error);</span>
+<span class="lineNum">     472 </span><span class="lineCov">          8 :   p_res.addHeader(&quot;Content-Type&quot;, &quot;text/html&quot;);</span>
+<span class="lineNum">     473 </span><span class="lineCov">          8 :   p_res.setData(l_text);</span>
+<span class="lineNum">     474 </span><span class="lineCov">          8 :   return status::error;</span>
+<span class="lineNum">     475 </span>            : }
+<span class="lineNum">     476 </span>            : 
+<span class="lineNum">     477 </span>            : 
+<span class="lineNum">     478 </span>            : 
+<a name="479"><span class="lineNum">     479 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     480 </span>            : status
+<span class="lineNum">     481 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_template_file(Template&amp;      p_tmpl,</span>
+<span class="lineNum">     482 </span>            :                                 const string&amp;  p_filePath,
+<span class="lineNum">     483 </span>            :                                 const uint32_t p_requestID,
+<span class="lineNum">     484 </span>            :                                 const Request&amp; p_req,
+<span class="lineNum">     485 </span>            :                                 Response&amp;      p_res)
+<span class="lineNum">     486 </span>            : {
+<span class="lineNum">     487 </span><span class="lineNoCov">          0 :   if (status::ok != p_tmpl.loadTemplate(p_filePath))</span>
+<span class="lineNum">     488 </span><span class="lineNoCov">          0 :     return h_error_text(&quot;unable to find tpl file &quot; + p_filePath, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     489 </span><span class="lineNoCov">          0 :   return h_gen(p_tmpl, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     490 </span>            : }
+<span class="lineNum">     491 </span>            : 
+<a name="492"><span class="lineNum">     492 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     493 </span>            : status
+<span class="lineNum">     494 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_gen(Generator&amp;      p_tmpl,</span>
+<span class="lineNum">     495 </span>            :                       const uint32_t   p_requestId,
+<span class="lineNum">     496 </span>            :                       const Request&amp; p_req,
+<span class="lineNum">     497 </span>            :                       Response&amp;      p_res)
+<span class="lineNum">     498 </span>            : {
+<span class="lineNum">     499 </span><span class="lineNoCov">          0 :   string l_text;</span>
+<span class="lineNum">     500 </span>            : 
+<span class="lineNum">     501 </span><span class="lineNoCov">          0 :   if (status::ok != p_tmpl.resolve(l_text))</span>
+<span class="lineNum">     502 </span><span class="lineNoCov">          0 :     return h_error_text(p_tmpl.getError(), p_requestId, p_req, p_res);</span>
+<span class="lineNum">     503 </span>            : 
+<span class="lineNum">     504 </span><span class="lineNoCov">          0 :   p_res.setStatus(code::ok);</span>
+<span class="lineNum">     505 </span><span class="lineNoCov">          0 :   p_res.addHeader(&quot;Content-Type&quot;, p_tmpl.getContentType());</span>
+<span class="lineNum">     506 </span><span class="lineNoCov">          0 :   p_res.setData(l_text);</span>
+<span class="lineNum">     507 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     508 </span>            : }
+<span class="lineNum">     509 </span>            : 
+<a name="510"><span class="lineNum">     510 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     511 </span>            : status
+<span class="lineNum">     512 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_redirect(const string&amp;     p_dst,</span>
+<span class="lineNum">     513 </span>            :                            const uint32_t /* p_requestId*/,
+<span class="lineNum">     514 </span>            :                            const Request&amp; /* p_request */,
+<span class="lineNum">     515 </span>            :                            Response&amp;         p_response)
+<span class="lineNum">     516 </span>            : {
+<span class="lineNum">     517 </span><span class="lineNoCov">          0 :   p_response.addHeader(&quot;Location&quot;, p_dst);</span>
+<span class="lineNum">     518 </span><span class="lineNoCov">          0 :   p_response.setStatus(code::moved_temporarily);</span>
+<span class="lineNum">     519 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     520 </span>            : }
+<span class="lineNum">     521 </span>            : 
+<span class="lineNum">     522 </span>            : 
+<a name="523"><span class="lineNum">     523 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     524 </span>            : status
+<span class="lineNum">     525 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_raw(const string&amp;      p_data,</span>
+<span class="lineNum">     526 </span>            :                       const string&amp;      p_contentType,
+<span class="lineNum">     527 </span>            :                       const uint32_t /*  p_requestId*/,
+<span class="lineNum">     528 </span>            :                       const Request&amp; /*  p_request */,
+<span class="lineNum">     529 </span>            :                       Response&amp;          p_response)
+<span class="lineNum">     530 </span>            : {
+<span class="lineNum">     531 </span><span class="lineNoCov">          0 :   p_response.setData(p_data);</span>
+<span class="lineNum">     532 </span><span class="lineNoCov">          0 :   p_response.addHeader(&quot;Content-Type&quot;, p_contentType);</span>
+<span class="lineNum">     533 </span><span class="lineNoCov">          0 :   p_response.setStatus(code::ok);</span>
+<span class="lineNum">     534 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     535 </span>            : }
+<span class="lineNum">     536 </span>            : 
+<span class="lineNum">     537 </span>            : 
+<a name="538"><span class="lineNum">     538 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     539 </span>            : status
+<span class="lineNum">     540 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_file(const string&amp;  p_filePath,</span>
+<span class="lineNum">     541 </span>            :                        const string&amp;  p_contentType,
+<span class="lineNum">     542 </span>            :                        bool           p_cachable,
+<span class="lineNum">     543 </span>            :                        const uint32_t   p_requestId,
+<span class="lineNum">     544 </span>            :                        const Request&amp; p_request,
+<span class="lineNum">     545 </span>            :                        Response&amp;      p_response)
+<span class="lineNum">     546 </span>            : {
+<span class="lineNum">     547 </span><span class="lineNoCov">          0 :   ifstream     l_file(p_filePath.c_str());</span>
+<span class="lineNum">     548 </span><span class="lineNoCov">          0 :   stringstream l_content;</span>
+<span class="lineNum">     549 </span>            : 
+<span class="lineNum">     550 </span><span class="lineNoCov">          0 :   if (false == l_file.is_open())</span>
+<span class="lineNum">     551 </span><span class="lineNoCov">          0 :     return h_error_text(format::vargs(&quot;unable to open requested file '%s'&quot;, p_filePath),</span>
+<span class="lineNum">     552 </span>            :                         p_requestId,
+<span class="lineNum">     553 </span>            :                         p_request,
+<span class="lineNum">     554 </span><span class="lineNoCov">          0 :                         p_response);</span>
+<span class="lineNum">     555 </span>            : 
+<span class="lineNum">     556 </span>            : 
+<span class="lineNum">     557 </span><span class="lineNoCov">          0 :   copy(std::istreambuf_iterator&lt;char&gt;(l_file.rdbuf()),</span>
+<span class="lineNum">     558 </span>            :        std::istreambuf_iterator&lt;char&gt;(),
+<span class="lineNum">     559 </span><span class="lineNoCov">          0 :        std::ostreambuf_iterator&lt;char&gt;(l_content.rdbuf()));</span>
+<span class="lineNum">     560 </span>            : 
+<span class="lineNum">     561 </span><span class="lineNoCov">          0 :   p_response.appendData(l_content.str());</span>
+<span class="lineNum">     562 </span><span class="lineNoCov">          0 :   p_response.setStatus(code::ok);</span>
+<span class="lineNum">     563 </span><span class="lineNoCov">          0 :   p_response.addHeader(&quot;Content-Type&quot;, p_contentType);</span>
+<span class="lineNum">     564 </span><span class="lineNoCov">          0 :   p_response.setCachable(p_cachable);</span>
+<span class="lineNum">     565 </span>            : 
+<span class="lineNum">     566 </span><span class="lineNoCov">          0 :   l_file.close();</span>
+<span class="lineNum">     567 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     568 </span>            : }
+<span class="lineNum">     569 </span>            : 
+<span class="lineNum">     570 </span>            : 
+<a name="571"><span class="lineNum">     571 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     572 </span>            : status
+<span class="lineNum">     573 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::h_dir(const string&amp;  p_dirPath,</span>
+<span class="lineNum">     574 </span>            :                       const string&amp;  p_contentType,
+<span class="lineNum">     575 </span>            :                       bool           p_cachable,
+<span class="lineNum">     576 </span>            :                       const uint32_t p_requestId,
+<span class="lineNum">     577 </span>            :                       const Request&amp; p_req,
+<span class="lineNum">     578 </span>            :                       Response&amp;      p_res)
+<span class="lineNum">     579 </span>            : {
+<span class="lineNum">     580 </span><span class="lineNoCov">          0 :   string   l_filePath = p_req.getPath();</span>
+<span class="lineNum">     581 </span><span class="lineNoCov">          0 :   ifstream l_file;</span>
+<span class="lineNum">     582 </span>            : 
+<span class="lineNum">     583 </span><span class="lineNoCov">          0 :   l_filePath = l_filePath.substr(l_filePath.find_last_of(&quot;/&quot;) + 1);</span>
+<span class="lineNum">     584 </span><span class="lineNoCov">          0 :   l_filePath = p_dirPath + &quot;/&quot; + l_filePath;</span>
+<span class="lineNum">     585 </span>            : 
+<span class="lineNum">     586 </span><span class="lineNoCov">          0 :   return h_file(l_filePath, p_contentType, p_cachable, p_requestId, p_req, p_res);</span>
+<span class="lineNum">     587 </span>            : }
+<span class="lineNum">     588 </span>            : 
+<span class="lineNum">     589 </span>            : 
+<a name="590"><span class="lineNum">     590 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     591 </span>            : void
+<span class="lineNum">     592 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::bind_redirect(const string&amp; p_src,</span>
+<span class="lineNum">     593 </span>            :                               const string&amp; p_dst,
+<span class="lineNum">     594 </span>            :                               filter        p_filter)
+<span class="lineNum">     595 </span>            : {
+<span class="lineNum">     596 </span><span class="lineNoCov">          0 :   bind(p_src,</span>
+<span class="lineNum">     597 </span>            :        h(&amp;Server::h_redirect, this, p_dst),
+<span class="lineNum">     598 </span>            :        p_filter);
+<span class="lineNum">     599 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     600 </span>            : 
+<a name="601"><span class="lineNum">     601 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     602 </span>            : void
+<span class="lineNum">     603 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::bind_xml(const string&amp; p_url,</span>
+<span class="lineNum">     604 </span>            :                          const string&amp; p_xmlPath,
+<span class="lineNum">     605 </span>            :                          const string&amp; p_xsltPath,
+<span class="lineNum">     606 </span>            :                          filter        p_filter)
+<span class="lineNum">     607 </span>            : {
+<span class="lineNum">     608 </span><span class="lineNoCov">          0 :   bind_file(p_url, p_xmlPath, &quot;text/xml&quot;, false, p_filter);</span>
+<span class="lineNum">     609 </span><span class="lineNoCov">          0 :   if (false == isUrlBinded(p_xmlPath))</span>
+<span class="lineNum">     610 </span><span class="lineNoCov">          0 :     bind_file(p_url, p_xsltPath, &quot;application/xslt+xml&quot;, false);</span>
+<span class="lineNum">     611 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     612 </span>            : 
+<span class="lineNum">     613 </span>            : 
+<span class="lineNum">     614 </span>            : 
+<a name="615"><span class="lineNum">     615 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     616 </span>            : void
+<span class="lineNum">     617 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::bind_file(const string&amp; p_path,</span>
+<span class="lineNum">     618 </span>            :                           const string&amp; p_filePath,
+<span class="lineNum">     619 </span>            :                           const string&amp; p_contentType,
+<span class="lineNum">     620 </span>            :                           bool          p_cachable,
+<span class="lineNum">     621 </span>            :                           filter        p_filter)
+<span class="lineNum">     622 </span>            : {
+<span class="lineNum">     623 </span><span class="lineNoCov">          0 :   bind(p_path,</span>
+<span class="lineNum">     624 </span>            :        h(&amp;Server::h_file, this, p_filePath, p_contentType, p_cachable),
+<span class="lineNum">     625 </span>            :        p_filter);
+<span class="lineNum">     626 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     627 </span>            : 
+<a name="628"><span class="lineNum">     628 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     629 </span>            : void
+<span class="lineNum">     630 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::bind_dir(const string&amp; p_url,</span>
+<span class="lineNum">     631 </span>            :                          const string&amp; p_dirPath,
+<span class="lineNum">     632 </span>            :                          const string&amp; p_contentType,
+<span class="lineNum">     633 </span>            :                          bool          p_cachable,
+<span class="lineNum">     634 </span>            :                          filter        p_filter)
+<span class="lineNum">     635 </span>            : {
+<span class="lineNum">     636 </span><span class="lineNoCov">          0 :   bind(p_url,</span>
+<span class="lineNum">     637 </span>            :        h(&amp;Server::h_dir, this, p_dirPath, p_contentType, p_cachable),
+<span class="lineNum">     638 </span>            :        p_filter);
+<span class="lineNum">     639 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     640 </span>            : 
+<a name="641"><span class="lineNum">     641 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     642 </span>            : void
+<span class="lineNum">     643 </span><span class="lineCov">          8 : Server&lt;Domain&gt;::bind(const string&amp;      p_path,</span>
+<span class="lineNum">     644 </span>            :                      handler            p_handler,
+<span class="lineNum">     645 </span>            :                      filter             p_filter,
+<span class="lineNum">     646 </span>            :                      const string&amp; p_descr)
+<span class="lineNum">     647 </span>            : {
+<span class="lineNum">     648 </span><span class="lineCov">         16 :   Handler l_handler;</span>
+<span class="lineNum">     649 </span><span class="lineCov">          8 :   l_handler.m_path    = p_path;</span>
+<span class="lineNum">     650 </span><span class="lineCov">          8 :   l_handler.m_process = p_handler;</span>
+<span class="lineNum">     651 </span><span class="lineCov">          8 :   l_handler.m_filter  = p_filter;</span>
+<span class="lineNum">     652 </span><span class="lineCov">          8 :   l_handler.m_descr   = p_descr;</span>
+<span class="lineNum">     653 </span><span class="lineCov">          8 :   m_handlerList.push_back(l_handler);</span>
+<span class="lineNum">     654 </span>            : 
+<span class="lineNum">     655 </span><span class="lineCov">          8 :   sort(m_handlerList.begin(), m_handlerList.end(), &amp;Handler::less);</span>
+<span class="lineNum">     656 </span><span class="lineCov">          8 : }</span>
+<span class="lineNum">     657 </span>            : 
+<span class="lineNum">     658 </span>            : 
+<a name="659"><span class="lineNum">     659 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     660 </span>            : void
+<span class="lineNum">     661 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::bind_public(const string&amp;      p_path,</span>
+<span class="lineNum">     662 </span>            :                             handler            p_handler,
+<span class="lineNum">     663 </span>            :                             const string&amp; p_descr)
+<span class="lineNum">     664 </span>            : {
+<span class="lineNum">     665 </span><span class="lineNoCov">          0 :   bind(p_path, p_handler, &amp;Server::f_none, p_descr);</span>
+<span class="lineNum">     666 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     667 </span>            : 
+<span class="lineNum">     668 </span>            : 
+<a name="669"><span class="lineNum">     669 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     670 </span>            : void
+<span class="lineNum">     671 </span><span class="lineCov">          2 : Server&lt;Domain&gt;::bind_any(handler p_handler,</span>
+<span class="lineNum">     672 </span>            :                          filter  p_filter)
+<span class="lineNum">     673 </span>            : {
+<span class="lineNum">     674 </span><span class="lineCov">          4 :   Handler l_handler;</span>
+<span class="lineNum">     675 </span><span class="lineCov">          2 :   l_handler.m_process  = p_handler;</span>
+<span class="lineNum">     676 </span><span class="lineCov">          2 :   l_handler.m_filter   = p_filter;</span>
+<span class="lineNum">     677 </span><span class="lineCov">          2 :   l_handler.m_matchAny = true;</span>
+<span class="lineNum">     678 </span><span class="lineCov">          2 :   m_handlerList.push_back(l_handler);</span>
+<span class="lineNum">     679 </span>            : 
+<span class="lineNum">     680 </span><span class="lineCov">          2 :   sort(m_handlerList.begin(), m_handlerList.end(), &amp;Handler::less);</span>
+<span class="lineNum">     681 </span><span class="lineCov">          2 : }</span>
+<span class="lineNum">     682 </span>            : 
+<a name="683"><span class="lineNum">     683 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     684 </span>            : void
+<span class="lineNum">     685 </span><span class="lineCov">         12 : Server&lt;Domain&gt;::bind_default(handler p_handler)</span>
+<span class="lineNum">     686 </span>            : {
+<span class="lineNum">     687 </span><span class="lineCov">         12 :   m_defaultHandler = p_handler;</span>
+<span class="lineNum">     688 </span><span class="lineCov">         12 : }</span>
+<span class="lineNum">     689 </span>            : 
+<a name="690"><span class="lineNum">     690 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     691 </span>            : bool
+<a name="692"><span class="lineNum">     692 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::isUrlBinded(const string&amp; p_urlPath) const</span></a>
+<span class="lineNum">     693 </span>            : {
+<span class="lineNum">     694 </span><span class="lineNoCov">          0 :   auto l_cmp = [&amp;p_urlPath](const Handler&amp; p_handler) {</span>
+<span class="lineNum">     695 </span><span class="lineNoCov">          0 :     return p_handler.m_path == p_urlPath;</span>
+<span class="lineNum">     696 </span><span class="lineNoCov">          0 :   };</span>
+<span class="lineNum">     697 </span>            : 
+<span class="lineNum">     698 </span><span class="lineNoCov">          0 :   return 0 != count_if(m_handlerList.begin(), m_handlerList.end(), l_cmp);</span>
+<span class="lineNum">     699 </span>            : }
+<span class="lineNum">     700 </span>            : 
+<span class="lineNum">     701 </span>            : 
+<a name="702"><span class="lineNum">     702 </span>            : template&lt;typename Domain&gt;</a>
+<span class="lineNum">     703 </span>            : void
+<span class="lineNum">     704 </span><span class="lineNoCov">          0 : Server&lt;Domain&gt;::getMatchingHandlers(const Request&amp;              p_req,</span>
+<span class="lineNum">     705 </span>            :                                     typename Handler::t_listof&amp; p_list) const
+<span class="lineNum">     706 </span>            : {
+<span class="lineNum">     707 </span><span class="lineNoCov">          0 :   for (const auto&amp; c_handler : m_handlerList)</span>
+<span class="lineNum">     708 </span>            :   {
+<span class="lineNum">     709 </span><span class="lineNoCov">          0 :     if ((0 != c_handler.m_descr.size()) &amp;&amp; (true == c_handler.m_filter(p_req)))</span>
+<span class="lineNum">     710 </span><span class="lineNoCov">          0 :       p_list.push_back(c_handler);</span>
+<span class="lineNum">     711 </span>            :   }
+<span class="lineNum">     712 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     713 </span>            : 
+<span class="lineNum">     714 </span>            : }}} //end namespaces
+<span class="lineNum">     715 </span>            : 
+<span class="lineNum">     716 </span>            : 
+<span class="lineNum">     717 </span>            : #endif // !NETWORK_HTTP_SERVER_HXX_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

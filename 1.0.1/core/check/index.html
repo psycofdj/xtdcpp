@@ -1,0 +1,460 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Unittest report</title>
+<link href="../../contribs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../contribs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<script src="../../contribs/jquery/jquery.min.js"></script><script src="../../contribs/bootstrap/js/bootstrap.min.js"></script><script type="text/javascript">
+         
+           $(document).ready(function() {
+             $("button").click(function() {
+               var l_tr        = $(this).parents("tr");
+               var l_id        = l_tr.attr("id");
+               var l_detailsID = l_id + "-details";
+               $("#" + l_detailsID).toggle();
+             });
+           });
+         
+        </script>
+</head>
+<body bgcolor="#ffffff" style="padding-top:50px;"><div class="container-fluid">
+<div class="row"><div class="col-lg-4 col-lg-offset-4"><div class="panel panel-default">
+<div class="panel-heading">Summary report</div>
+<div class="panel-body"><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<th>Total tests</th>
+<td>14</td>
+</tr>
+<tr>
+<th>Test passed</th>
+<td>14 (100%) </td>
+</tr>
+<tr>
+<th>Test failed</th>
+<td>0 (0%) </td>
+</tr>
+<tr>
+<th>Duration</th>
+<td>1 sec(s)</td>
+</tr>
+</tbody></table></div>
+</div></div></div>
+<div class="row"><div class="col-lg-10 col-lg-offset-1"><div class="panel panel-default">
+<div class="panel-heading">Full report</div>
+<div class="panel-body"><table class="table table-striped table-bordered table-condensed small">
+<thead><tr>
+<th style="width:50px;"></th>
+<th>Test Name</th>
+<th>Status</th>
+<th>Exit code</th>
+<th>Exit value</th>
+<th>Executime Time (sec)</th>
+</tr></thead>
+<tbody>
+<tr id="idm46428010988704" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tFields</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.01</td>
+</tr>
+<tr id="idm46428010988704-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tFields "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestFields::get : start
+TestFields::get : end Ok
+TestFields::set : start
+TestFields::set : end Ok
+TestFields::exists : start
+TestFields::exists : end Ok
+
+OK (3)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010980800" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tLogger</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010980800-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tLogger "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestLogger::get : start
+TestLogger::get : end Ok
+TestLogger::getLevels : start
+TestLogger::getLevels : end Ok
+TestLogger::updateLevels : start
+TestLogger::updateLevels : end Ok
+TestLogger::setAllLevels : start
+TestLogger::setAllLevels : end Ok
+TestLogger::getLevelTo : start
+TestLogger::getLevelTo : end Ok
+TestLogger::addAppender : start
+TestLogger::addAppender : end Ok
+
+OK (6)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010972288" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tFormatter</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010972288-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tFormatter "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestFormatter::addFormatModifier : start
+TestFormatter::addFormatModifier : end Ok
+TestFormatter::format : start
+TestFormatter::format : end Ok
+TestFormatter::create : start
+TestFormatter::create : end Ok
+
+OK (3)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010964336" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tStreamAppender</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.01</td>
+</tr>
+<tr id="idm46428010964336-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tStreamAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestStreamAppender::constructor : start
+TestStreamAppender::constructor : end Ok
+TestStreamAppender::print : start
+TestStreamAppender::print : end Ok
+TestStreamAppender::create : start
+TestStreamAppender::create : end Ok
+
+OK (3)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010956208" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tSyslogAppender</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010956208-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tSyslogAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestSyslogAppender::constructor : start
+running hooks for openlog
+running hook
+running hooks for closelog
+running hook
+TestSyslogAppender::constructor : end Ok
+TestSyslogAppender::print : start
+running hooks for openlog
+running hooks for vsyslog
+running hook
+running hooks for closelog
+TestSyslogAppender::print : end Ok
+TestSyslogAppender::create : start
+running hooks for openlog
+running hooks for closelog
+TestSyslogAppender::create : end Ok
+
+OK (3)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010947664" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tMemoryAppender</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010947664-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tMemoryAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestMemoryAppender::print : start
+TestMemoryAppender::print : end Ok
+TestMemoryAppender::create : start
+TestMemoryAppender::create : end Ok
+
+OK (2)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010939424" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tFormatModifiers</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010939424-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tFormatModifiers "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestFormatModifiers::autoWitdh : start
+TestFormatModifiers::autoWitdh : end Ok
+TestFormatModifiers::styleByLevel : start
+TestFormatModifiers::styleByLevel : end Ok
+TestFormatModifiers::styleMatch : start
+TestFormatModifiers::styleMatch : end Ok
+
+OK (3)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010931072" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tColoredFormatter</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010931072-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tColoredFormatter "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestColoredFormatter::format : start
+TestColoredFormatter::format : end Ok
+TestColoredFormatter::create : start
+args size : 2
+args size : 1
+TestColoredFormatter::create : end Ok
+
+OK (2)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010922784" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tConfLoader</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010922784-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tConfLoader "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestConfLoader::configure : start
+TestConfLoader::configure : end Ok
+
+OK (1)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010914704" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tAppender</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.02</td>
+</tr>
+<tr id="idm46428010914704-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestAppender::filter : start
+filtering
+filtering
+TestAppender::filter : end Ok
+
+OK (1)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010906528" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tHelpers</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.01</td>
+</tr>
+<tr id="idm46428010906528-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tHelpers "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestHelpers::from : start
+TestHelpers::from : end Ok
+TestHelpers::to_value : start
+TestHelpers::to_value : end Ok
+TestHelpers::to_string : start
+TestHelpers::to_string : end Ok
+TestHelpers::is_valid : start
+TestHelpers::is_valid : end Ok
+TestHelpers::raise : start
+message in void TestHelpers::raise():/home/travis/build/psycofdj/xtdcpp/core/unit/log/TestHelpers.cc:86 [error while resolving format : boost::too_many_args: format-string referred to less arguments than were passed
+TestHelpers::raise : end Ok
+
+OK (5)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010897920" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tConfigParser</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.03</td>
+</tr>
+<tr id="idm46428010897920-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tConfigParser "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestConfParser::Constructor : start
+TestConfParser::Constructor : end Ok
+TestConfParser::parse : start
+TestConfParser::parse : end Ok
+TestConfParser::get : start
+TestConfParser::get : end Ok
+TestConfParser::search : start
+TestConfParser::search : end Ok
+TestConfParser::setParams : start
+TestConfParser::setParams : end Ok
+TestConfParser::parseFile : start
+TestConfParser::parseFile : end Ok
+
+OK (6)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010889424" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tApplication2</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>0.01</td>
+</tr>
+<tr id="idm46428010889424-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tApplication2 "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestApplication2::fakeTest1 : start
+TestApplication2::fakeTest1 : end Ok
+TestApplication2::fakeTest2 : start
+TestApplication2::fakeTest2 : end Ok
+
+OK (2)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+<tr id="idm46428010881168" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tApplication</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>1.02</td>
+</tr>
+<tr id="idm46428010881168-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/core/tApplication "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestApplication::addOption : start
+TestApplication::addOption : end Ok
+TestApplication::readArgs : start
+TestApplication::readArgs : end Ok
+TestApplication::isOptionGiven : start
+TestApplication::isOptionGiven : end Ok
+TestApplication::usage : start
+TestApplication::usage : end Ok
+TestApplication::handleSignal : start
+TestApplication::handleSignal : end Ok
+TestApplication::bindFile : start
+TestApplication::bindFile : end Ok
+TestApplication::bindDir : start
+TestApplication::bindDir : end Ok
+TestApplication::bindString : start
+TestApplication::bindString : end Ok
+TestApplication::bindRegex : start
+TestApplication::bindRegex : end Ok
+TestApplication::bindValues : start
+TestApplication::bindValues : end Ok
+TestApplication::bindCallback : start
+TestApplication::bindCallback : end Ok
+TestApplication::bindNumber : start
+TestApplication::bindNumber : end Ok
+TestApplication::bindValueIfGiven : start
+TestApplication::bindValueIfGiven : end Ok
+TestApplication::bindAccumulator : start
+TestApplication::bindAccumulator : e...
+The rest of the test output was removed since it exceeds the threshold of 1024 bytes.
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+</tbody>
+</table></div>
+</div></div></div>
+</div></body>
+</html>

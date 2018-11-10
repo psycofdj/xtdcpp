@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/log/Logger.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - Logger.cc<span style="font-size: 80%;"> (source / <a href="Logger.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">100</td>
+            <td class="headerCovTableEntry">100</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2016-12-29 16:01:15</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryHi">95.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;log/Logger.hh&quot;</a>
+<span class="lineNum">       2 </span>            : 
+<span class="lineNum">       3 </span>            : #include &lt;regex&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/range/algorithm/for_each.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/algorithm/string/split.hpp&gt;
+<span class="lineNum">       6 </span>            : #include &lt;boost/algorithm/string/classification.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/algorithm/string/join.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &quot;log/helpers.hh&quot;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace xtd {
+<span class="lineNum">      11 </span>            : namespace log {
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /* ----------------------------------------------------------------------- */
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span><span class="lineCov">         14 : map&lt;size_t, uint32_t&gt; Logger::thread_counter::ms_ids;</span>
+<span class="lineNum">      16 </span>            : std::mutex            Logger::thread_counter::ms_mutex;
+<span class="lineNum">      17 </span><span class="lineCov">         14 : size_t                Logger::thread_counter::ms_mainID = thread_counter::get_id();</span>
+<a name="18"><span class="lineNum">      18 </span>            : </a>
+<span class="lineNum">      19 </span>            : int32_t
+<span class="lineNum">      20 </span><span class="lineCov">         74 : Logger::thread_counter::get_id(void)</span>
+<span class="lineNum">      21 </span>            : {
+<span class="lineNum">      22 </span>            :   std::hash&lt;std::thread::id&gt;  l_hasher;
+<span class="lineNum">      23 </span><span class="lineCov">         74 :   size_t                      l_hash = l_hasher(std::this_thread::get_id());</span>
+<span class="lineNum">      24 </span><span class="lineCov">        148 :   std::lock_guard&lt;std::mutex&gt; l_lock(ms_mutex);</span>
+<span class="lineNum">      25 </span><span class="lineCov">         74 :   auto                        c_item = ms_ids.find(l_hash);</span>
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span><span class="lineCov">         74 :   if (c_item != ms_ids.end())</span>
+<span class="lineNum">      28 </span><span class="lineCov">         59 :     return c_item-&gt;second;</span>
+<span class="lineNum">      29 </span><span class="lineCov">         15 :   auto l_result = ms_ids.insert(std::make_pair(l_hash, ms_ids.size()));</span>
+<span class="lineNum">      30 </span><span class="lineCov">         15 :   return l_result.first-&gt;second;</span>
+<span class="lineNum">      31 </span>            : }
+<span class="lineNum">      32 </span>            : 
+<a name="33"><span class="lineNum">      33 </span>            : /* ----------------------------------------------------------------------- */</a>
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span><span class="lineCov">         32 : Logger::Logger(void) :</span>
+<span class="lineNum">      36 </span>            :   m_module(),
+<span class="lineNum">      37 </span>            :   m_level(level::crit),
+<span class="lineNum">      38 </span>            :   m_appenders(),
+<span class="lineNum">      39 </span><span class="lineCov">         32 :   m_mutex()</span>
+<span class="lineNum">      40 </span>            : {
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">         32 : }</span></a>
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span><span class="lineCov">         37 : Logger::Logger(const Logger&amp; p_parent, const string&amp; p_module) :</span>
+<span class="lineNum">      44 </span>            :   m_module(p_module),
+<span class="lineNum">      45 </span>            :   m_name(p_parent.getName()),
+<span class="lineNum">      46 </span><span class="lineCov">         37 :   m_level(p_parent.getLevel()),</span>
+<span class="lineNum">      47 </span><span class="lineCov">         74 :   m_appenders(p_parent.m_appenders)</span>
+<span class="lineNum">      48 </span>            : {
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">         37 : }</span></a>
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span><span class="lineCov">         69 : Logger::~Logger(void)</span>
+<span class="lineNum">      52 </span>            : {
+<span class="lineNum">      53 </span><span class="lineCov">         69 : }</span>
+<a name="54"><span class="lineNum">      54 </span>            : </a>
+<span class="lineNum">      55 </span>            : Logger&amp;
+<span class="lineNum">      56 </span><span class="lineCov">          7 : Logger::addAppender(const sptr&lt;Appender&gt;&amp; p_appender)</span>
+<span class="lineNum">      57 </span>            : {
+<span class="lineNum">      58 </span><span class="lineCov">         14 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">      59 </span><span class="lineCov">          7 :   m_appenders.push_back(p_appender);</span>
+<span class="lineNum">      60 </span><span class="lineCov">         14 :   return *this;</span>
+<span class="lineNum">      61 </span>            : }
+<a name="62"><span class="lineNum">      62 </span>            : </a>
+<span class="lineNum">      63 </span>            : Logger&amp;
+<span class="lineNum">      64 </span><span class="lineCov">         11 : Logger::clearAppenders(void)</span>
+<span class="lineNum">      65 </span>            : {
+<span class="lineNum">      66 </span><span class="lineCov">         22 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">      67 </span><span class="lineCov">         11 :   m_appenders.clear();</span>
+<span class="lineNum">      68 </span><span class="lineCov">         22 :   return *this;</span>
+<span class="lineNum">      69 </span>            : }
+<a name="70"><span class="lineNum">      70 </span>            : </a>
+<span class="lineNum">      71 </span>            : const Logger::t_appenders
+<span class="lineNum">      72 </span><span class="lineCov">         60 : Logger::getAppenders(void) const</span>
+<span class="lineNum">      73 </span>            : {
+<span class="lineNum">      74 </span><span class="lineCov">        120 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">      75 </span><span class="lineCov">        120 :   return t_appenders(m_appenders.begin(), m_appenders.end());</span>
+<span class="lineNum">      76 </span>            : }
+<span class="lineNum">      77 </span>            : 
+<a name="78"><span class="lineNum">      78 </span>            : /* ----------------------------------------------------------------------- */</a>
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineCov">         32 : RootLogger::RootLogger(void) :</span>
+<span class="lineNum">      81 </span>            :   Logger(),
+<span class="lineNum">      82 </span><span class="lineCov">         32 :   m_loggers()</span>
+<span class="lineNum">      83 </span>            : {
+<span class="lineNum">      84 </span><span class="lineCov">         32 : }</span>
+<a name="85"><span class="lineNum">      85 </span>            : </a>
+<span class="lineNum">      86 </span>            : RootLogger&amp;
+<span class="lineNum">      87 </span><span class="lineCov">         18 : RootLogger::initialize(const string&amp; p_name, level p_level)</span>
+<span class="lineNum">      88 </span>            : {
+<span class="lineNum">      89 </span><span class="lineCov">         18 :   Logger::setName(p_name);</span>
+<span class="lineNum">      90 </span><span class="lineCov">         18 :   Logger::setLevel(p_level);</span>
+<span class="lineNum">      91 </span><span class="lineCov">         18 :   return *this;</span>
+<span class="lineNum">      92 </span>            : }
+<a name="93"><span class="lineNum">      93 </span>            : </a>
+<span class="lineNum">      94 </span>            : Logger&amp;
+<span class="lineNum">      95 </span><span class="lineCov">        113 : RootLogger::get(const string&amp; p_module)</span>
+<span class="lineNum">      96 </span>            : {
+<span class="lineNum">      97 </span><span class="lineCov">        113 :   if (p_module.empty())</span>
+<span class="lineNum">      98 </span><span class="lineCov">          2 :     return *this;</span>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span><span class="lineCov">        222 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">     101 </span><span class="lineCov">        111 :   Logger*                     l_model = this;</span>
+<span class="lineNum">     102 </span><span class="lineCov">        111 :   auto                        c_log   = m_loggers.find(p_module);</span>
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span><span class="lineCov">        111 :   if (c_log != m_loggers.end())</span>
+<span class="lineNum">     105 </span><span class="lineCov">         74 :     return *(c_log-&gt;second);</span>
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span><span class="lineCov">         37 :   auto c_target = getClosestParent(p_module);</span>
+<span class="lineNum">     108 </span><span class="lineCov">         37 :   if (m_loggers.end() != c_target)</span>
+<span class="lineNum">     109 </span><span class="lineCov">          8 :     l_model = c_target-&gt;second.get();</span>
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span><span class="lineCov">         37 :   m_loggers[p_module] = std::make_shared&lt;Logger&gt;(*l_model, p_module);</span>
+<span class="lineNum">     112 </span><span class="lineCov">         37 :   return *(m_loggers[p_module]);</span>
+<span class="lineNum">     113 </span>            : }
+<a name="114"><span class="lineNum">     114 </span>            : </a>
+<span class="lineNum">     115 </span>            : level
+<span class="lineNum">     116 </span><span class="lineCov">          8 : RootLogger::getLevelTo(const string&amp; p_module) const</span>
+<span class="lineNum">     117 </span>            : {
+<span class="lineNum">     118 </span><span class="lineCov">          8 :   if (p_module.empty())</span>
+<span class="lineNum">     119 </span><span class="lineCov">          1 :     return getLevel();</span>
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span><span class="lineCov">         14 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">     122 </span><span class="lineCov">          7 :   auto                        c_log   = m_loggers.find(p_module);</span>
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span><span class="lineCov">          7 :   if (c_log != m_loggers.end())</span>
+<span class="lineNum">     125 </span><span class="lineCov">          3 :     return c_log-&gt;second-&gt;getLevel();</span>
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span><span class="lineCov">          4 :   if (m_loggers.end() != (c_log = getClosestParent(p_module)))</span>
+<span class="lineNum">     128 </span><span class="lineCov">          2 :     return c_log-&gt;second-&gt;getLevel();</span>
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span><span class="lineCov">          2 :   return getLevel();</span>
+<span class="lineNum">     131 </span>            : }
+<a name="132"><span class="lineNum">     132 </span>            : </a>
+<span class="lineNum">     133 </span>            : const RootLogger::t_levels
+<span class="lineNum">     134 </span><span class="lineCov">          3 : RootLogger::getLevels(void) const</span>
+<span class="lineNum">     135 </span>            : {
+<span class="lineNum">     136 </span><span class="lineCov">          3 :   t_levels l_result;</span>
+<span class="lineNum">     137 </span><span class="lineCov">          6 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span><span class="lineCov">         15 :   for (auto c_log : m_loggers)</span>
+<span class="lineNum">     140 </span><span class="lineCov">         12 :     l_result.insert(std::make_pair(c_log.first, c_log.second-&gt;getLevel()));</span>
+<span class="lineNum">     141 </span><span class="lineCov">          3 :   l_result.insert(std::make_pair(&quot;&quot;, getLevel()));</span>
+<span class="lineNum">     142 </span><span class="lineCov">          6 :   return l_result;</span>
+<span class="lineNum">     143 </span>            : }
+<a name="144"><span class="lineNum">     144 </span>            : </a>
+<span class="lineNum">     145 </span>            : RootLogger&amp;
+<span class="lineNum">     146 </span><span class="lineCov">          6 : RootLogger::setLevelTo(const string&amp; p_module, level p_level)</span>
+<span class="lineNum">     147 </span>            : {
+<span class="lineNum">     148 </span><span class="lineCov">          6 :   get(p_module).setLevel(p_level);</span>
+<span class="lineNum">     149 </span><span class="lineCov">          6 :   return *this;</span>
+<span class="lineNum">     150 </span>            : }
+<span class="lineNum">     151 </span>            : 
+<a name="152"><span class="lineNum">     152 </span>            : </a>
+<span class="lineNum">     153 </span>            : RootLogger&amp;
+<span class="lineNum">     154 </span><span class="lineCov">         17 : RootLogger::setAllLevels(level p_level)</span>
+<span class="lineNum">     155 </span>            : {
+<span class="lineNum">     156 </span><span class="lineCov">         34 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span><span class="lineCov">         25 :   for (auto c_log : m_loggers)</span>
+<span class="lineNum">     159 </span><span class="lineCov">          8 :     c_log.second-&gt;setLevel(p_level);</span>
+<span class="lineNum">     160 </span><span class="lineCov">         17 :   Logger::setLevel(p_level);</span>
+<span class="lineNum">     161 </span><span class="lineCov">         34 :   return *this;</span>
+<span class="lineNum">     162 </span>            : }
+<a name="163"><span class="lineNum">     163 </span>            : </a>
+<span class="lineNum">     164 </span>            : RootLogger&amp;
+<span class="lineNum">     165 </span><span class="lineCov">          1 : RootLogger::setAllValueLevels(uint32_t p_level)</span>
+<span class="lineNum">     166 </span>            : {
+<span class="lineNum">     167 </span><span class="lineCov">          1 :   setAllLevels(from(p_level));</span>
+<span class="lineNum">     168 </span><span class="lineCov">          1 :   return *this;</span>
+<span class="lineNum">     169 </span>            : }
+<a name="170"><span class="lineNum">     170 </span>            : </a>
+<span class="lineNum">     171 </span>            : RootLogger&amp;
+<span class="lineNum">     172 </span><span class="lineCov">          2 : RootLogger::updateLevels(const string&amp; p_regexp, level p_level)</span>
+<span class="lineNum">     173 </span>            : {
+<span class="lineNum">     174 </span><span class="lineCov">          4 :   boost::regex l_matcher(p_regexp + &quot;.*&quot;);</span>
+<span class="lineNum">     175 </span><span class="lineCov">          4 :   std::lock_guard&lt;std::mutex&gt; l_lock(m_mutex);</span>
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span><span class="lineCov">         10 :   for (auto c_item : m_loggers)</span>
+<span class="lineNum">     178 </span>            :   {
+<span class="lineNum">     179 </span><span class="lineCov">          8 :     if (true == boost::regex_match(c_item.first, l_matcher))</span>
+<span class="lineNum">     180 </span><span class="lineCov">          6 :       c_item.second-&gt;setLevel(p_level);</span>
+<span class="lineNum">     181 </span>            :   }
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span><span class="lineCov">          2 :   if (true == boost::regex_match(string(), l_matcher))</span>
+<span class="lineNum">     184 </span><span class="lineCov">          1 :     setLevel(p_level);</span>
+<span class="lineNum">     185 </span><span class="lineCov">          4 :   return *this;</span>
+<span class="lineNum">     186 </span>            : }
+<a name="187"><span class="lineNum">     187 </span>            : </a>
+<span class="lineNum">     188 </span>            : RootLogger::t_loggers::const_iterator
+<span class="lineNum">     189 </span><span class="lineCov">         41 : RootLogger::getClosestParent(const string&amp; p_module) const</span>
+<span class="lineNum">     190 </span>            : {
+<span class="lineNum">     191 </span><span class="lineCov">         41 :   auto                     c_res = m_loggers.end();</span>
+<span class="lineNum">     192 </span><span class="lineCov">         82 :   vector&lt;string&gt;           l_parts;</span>
+<span class="lineNum">     193 </span><span class="lineCov">         41 :   vector&lt;string&gt;::iterator c_part;</span>
+<span class="lineNum">     194 </span>            : 
+<span class="lineNum">     195 </span><span class="lineCov">         41 :   boost::split(l_parts, p_module, boost::is_any_of(&quot;.&quot;), boost::token_compress_on);</span>
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span><span class="lineCov">         41 :   c_part = l_parts.end();</span>
+<span class="lineNum">     198 </span><span class="lineCov">        193 :   while ((c_res == m_loggers.end()) &amp;&amp; (c_part != l_parts.begin()))</span>
+<span class="lineNum">     199 </span>            :   {
+<span class="lineNum">     200 </span><span class="lineCov">         76 :     c_part--;</span>
+<span class="lineNum">     201 </span><span class="lineCov">        152 :     vector&lt;string&gt; l_tmp(l_parts.begin(), c_part);</span>
+<span class="lineNum">     202 </span><span class="lineCov">         76 :     c_res = m_loggers.find(boost::join(l_tmp, &quot;.&quot;));</span>
+<span class="lineNum">     203 </span>            :   }
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span><span class="lineCov">         82 :   return c_res;</span>
+<a name="206"><span class="lineNum">     206 </span>            : }</a>
+<span class="lineNum">     207 </span>            : 
+<span class="lineNum">     208 </span><span class="lineCov">         42 : }}</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

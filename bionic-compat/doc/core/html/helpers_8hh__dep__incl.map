@@ -1,0 +1,14 @@
+<map id="src/log/helpers.hh" name="src/log/helpers.hh">
+<area shape="rect" id="node2" href="$src_2log_8hh.html" title="src/log.hh" alt="" coords="5,80,84,107"/>
+<area shape="rect" id="node3" href="$Parser_8cc.html" title="src/config/Parser.cc" alt="" coords="109,80,247,107"/>
+<area shape="rect" id="node4" href="$ColoredFormatter_8cc.html" title="src/log/ColoredFormatter.cc" alt="" coords="271,80,455,107"/>
+<area shape="rect" id="node5" href="$ConfLoader_8cc.html" title="src/log/ConfLoader.cc" alt="" coords="473,155,624,181"/>
+<area shape="rect" id="node6" href="$ConfLoader_8hh.html" title="src/log/ConfLoader.hh" alt="" coords="531,80,681,107"/>
+<area shape="rect" id="node7" href="$FormatModifiers_8cc.html" title="src/log/FormatModifiers.cc" alt="" coords="705,80,883,107"/>
+<area shape="rect" id="node8" href="$Formatter_8cc.html" title="src/log/Formatter.cc" alt="" coords="907,80,1046,107"/>
+<area shape="rect" id="node9" href="$helpers_8cc.html" title="src/log/helpers.cc" alt="" coords="1070,80,1195,107"/>
+<area shape="rect" id="node10" href="$Logger_8cc.html" title="src/log/Logger.cc" alt="" coords="1219,80,1342,107"/>
+<area shape="rect" id="node11" href="$MemoryAppender_8cc.html" title="src/log/MemoryAppender.cc" alt="" coords="1367,80,1552,107"/>
+<area shape="rect" id="node12" href="$StreamAppender_8cc.html" title="src/log/StreamAppender.cc" alt="" coords="1576,80,1756,107"/>
+<area shape="rect" id="node13" href="$SyslogAppender_8cc.html" title="src/log/SyslogAppender.cc" alt="" coords="1781,80,1959,107"/>
+</map>

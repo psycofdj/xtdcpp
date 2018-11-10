@@ -1,0 +1,4 @@
+<map id="xtd::log::Logger::getLevel" name="xtd::log::Logger::getLevel">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1RootLogger.html#af5ea8db8e1e4f60c39a7d95e9073c227" title="Returns level applicable to module. " alt="" coords="223,5,363,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1RootLogger.html#ac7363a3260ed92c6806ce002a8737f39" title="Returns level for all child loggers. " alt="" coords="223,71,363,112"/>
+</map>

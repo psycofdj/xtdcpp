@@ -1,0 +1,18 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/counters/src/counters.hh" name="/home/travis/build/psycofdj/xtdcpp/counters/src/counters.hh">
+<area shape="rect" id="node2" href="$Base_8hh.html" title="Base.hh" alt="" coords="413,341,483,367"/>
+<area shape="rect" id="node7" href="$Value_8hh.html" title="Value.hh" alt="" coords="571,259,645,285"/>
+<area shape="rect" id="node9" href="$AvgValue_8hh.html" title="AvgValue.hh" alt="" coords="187,184,283,211"/>
+<area shape="rect" id="node13" href="$AvgTimedValue_8hh.html" title="AvgTimedValue.hh" alt="" coords="297,109,429,136"/>
+<area shape="rect" id="node15" href="$Freq_8hh.html" title="Freq.hh" alt="" coords="640,184,707,211"/>
+<area shape="rect" id="node16" href="$InstantFreq_8hh.html" title="InstantFreq.hh" alt="" coords="509,184,616,211"/>
+<area shape="rect" id="node17" href="$ExtValue_8hh.html" title="ExtValue.hh" alt="" coords="193,259,287,285"/>
+<area shape="rect" id="node18" href="$SumExt_8hh.html" title="SumExt.hh" alt="" coords="934,184,1021,211"/>
+<area shape="rect" id="node19" href="$Perf_8hh.html" title="Perf.hh" alt="" coords="467,109,531,136"/>
+<area shape="rect" id="node20" href="$Cache_8hh.html" title="Cache.hh" alt="" coords="705,109,783,136"/>
+<area shape="rect" id="node21" href="$JsonVisitor_8hh.html" title="JsonVisitor.hh" alt="" coords="901,259,1006,285"/>
+<area shape="rect" id="node24" href="$FileVisitor_8hh.html" title="FileVisitor.hh" alt="" coords="1055,259,1153,285"/>
+<area shape="rect" id="node27" href="$CounterManager_8hh.html" title="CounterManager.hh" alt="" coords="1228,259,1364,285"/>
+<area shape="rect" id="node6" href="$Visitor_8hh.html" title="Visitor.hh" alt="" coords="621,423,699,449"/>
+<area shape="rect" id="node11" href="$Composed_8hh.html" title="Composed.hh" alt="" coords="311,259,414,285"/>
+<area shape="rect" id="node29" href="$counters__fwd_8hh.html" title="counters_fwd.hh" alt="" coords="1381,341,1499,367"/>
+</map>

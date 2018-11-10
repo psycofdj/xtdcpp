@@ -1,0 +1,77 @@
+{
+  "index": "index.html",
+  "data": {
+    "success": 50,
+    "errors": 0,
+    "failures": 0
+  },
+  "graphs": [
+    {
+      "data": {
+        "datasets": [
+          {
+            "backgroundColor": "rgba(179, 0, 0, 0)",
+            "data": "%(failures)d",
+            "yAxisID": "failure",
+            "pointBackgroundColor": "rgba(102, 0, 0, 1)",
+            "pointBorderColor": "rgba(102, 0, 0, 1)",
+            "label": "iwyu: # failures",
+            "borderColor": "rgba(179, 0, 0, 0.5)"
+          },
+          {
+            "backgroundColor": "rgba(51, 204, 51, 0)",
+            "data": "%(success)d",
+            "yAxisID": "success",
+            "pointBackgroundColor": "rgba(31, 122, 31, 1)",
+            "pointBorderColor": "rgba(31, 122, 31, 1)",
+            "label": "iwyu: # success",
+            "borderColor": "rgba(51, 204, 51, 0.5)"
+          }
+        ],
+        "labels": []
+      },
+      "type": "line",
+      "options": {
+        "title": {
+          "display": true,
+          "text": "iwyu"
+        },
+        "scales": {
+          "xAxes": [
+            {
+              "ticks": {
+                "fontSize": 12,
+                "minRotation": 80
+              }
+            }
+          ],
+          "yAxes": [
+            {
+              "ticks": {
+                "fontSize": 24
+              },
+              "type": "linear",
+              "position": "left",
+              "display": true,
+              "id": "success"
+            },
+            {
+              "ticks": {
+                "fontSize": 24,
+                "beginAtZero": true
+              },
+              "type": "linear",
+              "position": "right",
+              "display": true,
+              "id": "failure"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": "success",
+  "kpi": "iwyu",
+  "label": "0",
+  "module": "network"
+}

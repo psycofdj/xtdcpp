@@ -1,0 +1,30 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0181560516357422</elapsed_seconds>
+  <n_files>10</n_files>
+  <n_lines>756</n_lines>
+  <files_per_second>550.780544174808</files_per_second>
+  <lines_per_second>41639.0091396155</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/tests/cloc/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc" blank="51" comment="0" code="172"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.cc" blank="28" comment="10" code="111"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh" blank="26" comment="0" code="87"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh" blank="9" comment="0" code="61"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh" blank="13" comment="0" code="36"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.cc" blank="9" comment="0" code="33"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/ProgressListener.cc" blank="5" comment="0" code="24"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh" blank="4" comment="0" code="23"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/ProgressListener.hh" blank="6" comment="0" code="20"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh" blank="7" comment="3" code="18"  language="C/C++ Header" />
+  <total blank="158" comment="13" code="585" />
+</files>
+<languages>
+  <language name="C++" files_count="4" blank="93" comment="10" code="340" />
+  <language name="C/C++ Header" files_count="6" blank="65" comment="3" code="245" />
+  <total sum_files="10" blank="158" comment="13" code="585" />
+</languages>
+</results>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.033674955368042</elapsed_seconds>
+  <n_files>14</n_files>
+  <n_lines>2731</n_lines>
+  <files_per_second>415.739229554739</files_per_second>
+  <lines_per_second>81098.845422428</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/cloc/servers/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc" blank="126" comment="79" code="542"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HtmlOArchive.cc" blank="79" comment="9" code="393"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HtmlOArchive.hh" blank="32" comment="0" code="181"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.hh" blank="40" comment="12" code="151"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Handler.cc" blank="21" comment="2" code="121"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Handler.hh" blank="44" comment="108" code="113"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.hh" blank="19" comment="1" code="89"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Base.cc" blank="16" comment="0" code="84"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Base.hh" blank="30" comment="124" code="70"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Visitor.hh" blank="13" comment="55" code="48"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Pod.hh" blank="13" comment="28" code="29"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Visitor.cc" blank="5" comment="0" code="22"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Pod.cc" blank="3" comment="0" code="13"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc" blank="3" comment="4" code="9"  language="C++" />
+  <total blank="444" comment="422" code="1865" />
+</files>
+<languages>
+  <language name="C++" files_count="7" blank="253" comment="94" code="1184" />
+  <language name="C/C++ Header" files_count="7" blank="191" comment="328" code="681" />
+  <total sum_files="14" blank="444" comment="422" code="1865" />
+</languages>
+</results>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - unit/log/TestAppender.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">unit/log</a> - TestAppender.cc<span style="font-size: 80%;"> (source / <a href="TestAppender.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">28</td>
+            <td class="headerCovTableEntry">28</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:20:08</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &lt;cppunit/TestFixture.h&gt;</a>
+<span class="lineNum">       2 </span>            : #include &lt;cppunit/extensions/HelperMacros.h&gt;
+<span class="lineNum">       3 </span>            : #include &lt;MainTestApplication.hh&gt; // libtests
+<span class="lineNum">       4 </span>            : #include &lt;TestFixture.hh&gt;         // libtests
+<span class="lineNum">       5 </span>            : #include &lt;CWrap.hh&gt;               // libtests
+<span class="lineNum">       6 </span>            : #include &quot;log/Appender.hh&quot;        // libcore
+<span class="lineNum">       7 </span>            : #include &quot;log/MemoryAppender.hh&quot;  // libcore
+<span class="lineNum">       8 </span>            : #include &lt;boost/filesystem.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;boost/any.hpp&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : using namespace xtd;
+<span class="lineNum">      13 </span>            : using namespace xtd::log;
+<a name="14"><span class="lineNum">      14 </span>            : using namespace xtd::tests;</a>
+<span class="lineNum">      15 </span>            : 
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">          3 : class TestAppender : public tests::TestFixture</span></a>
+<span class="lineNum">      17 </span>            : {
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          3 :   CPPUNIT_TEST_SUITE(TestAppender);</span></a>
+<span class="lineNum">      19 </span><span class="lineCov">          1 :   CPPUNIT_TEST(filter);</span>
+<span class="lineNum">      20 </span><span class="lineCov">          2 :   CPPUNIT_TEST_SUITE_END();</span>
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : private:
+<span class="lineNum">      23 </span>            :   void filter(void);
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : private:
+<span class="lineNum">      26 </span>            :   Record rec(level p_level, const std::string&amp; p_content) const;
+<span class="lineNum">      27 </span>            : };
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span><span class="lineCov">          1 : CPPUNIT_TEST_SUITE_REGISTRATION(TestAppender);</span>
+<span class="lineNum">      31 </span>            : 
+<a name="32"><span class="lineNum">      32 </span>            : </a>
+<span class="lineNum">      33 </span>            : Record
+<span class="lineNum">      34 </span><span class="lineCov">          4 : TestAppender::rec(level p_level, const std::string&amp; p_content) const</span>
+<span class="lineNum">      35 </span>            : {
+<span class="lineNum">      36 </span><span class="lineCov">          4 :   Record l_rec;</span>
+<span class="lineNum">      37 </span><span class="lineCov">          4 :   l_rec.m_format = p_content;</span>
+<span class="lineNum">      38 </span><span class="lineCov">          4 :   l_rec.m_level  = p_level;</span>
+<span class="lineNum">      39 </span><span class="lineCov">          4 :   return l_rec;</span>
+<span class="lineNum">      40 </span>            : }
+<span class="lineNum">      41 </span>            : 
+<a name="42"><span class="lineNum">      42 </span>            : </a>
+<span class="lineNum">      43 </span>            : void
+<span class="lineNum">      44 </span><span class="lineCov">          1 : TestAppender::filter(void)</span>
+<span class="lineNum">      45 </span>            : {
+<span class="lineNum">      46 </span><span class="lineCov">          2 :   MemoryAppender l_i1(10);</span>
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            :   {
+<span class="lineNum">      49 </span>            :     // record is not filtered
+<span class="lineNum">      50 </span><span class="lineCov">          1 :     l_i1.log(rec(level::debug, &quot;log string&quot;));</span>
+<span class="lineNum">      51 </span><span class="lineCov">          1 :     CPPUNIT_ASSERT_EQUAL(1ul, l_i1.copyRecords().size());</span>
+<span class="lineNum">      52 </span>            :   }
+<span class="lineNum">      53 </span>            : 
+<a name="54"><span class="lineNum">      54 </span>            :   {</a>
+<span class="lineNum">      55 </span>            :     // record is filtered
+<span class="lineNum">      56 </span><span class="lineCov">          3 :     l_i1.addFilter([](const FormattedRecord&amp; p_rec) {</span>
+<span class="lineNum">      57 </span><span class="lineCov">          2 :         return p_rec.m_level != level::debug;</span>
+<span class="lineNum">      58 </span><span class="lineCov">          2 :       });</span>
+<span class="lineNum">      59 </span><span class="lineCov">          1 :     l_i1.log(rec(level::debug, &quot;log string&quot;));</span>
+<span class="lineNum">      60 </span><span class="lineCov">          1 :     CPPUNIT_ASSERT_EQUAL(1ul, l_i1.copyRecords().size());</span>
+<span class="lineNum">      61 </span><span class="lineCov">          1 :     l_i1.log(rec(level::info, &quot;log string&quot;));</span>
+<span class="lineNum">      62 </span><span class="lineCov">          1 :     CPPUNIT_ASSERT_EQUAL(2ul, l_i1.copyRecords().size());</span>
+<span class="lineNum">      63 </span>            :   }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            :   {
+<span class="lineNum">      66 </span>            :     // clearing filters
+<span class="lineNum">      67 </span><span class="lineCov">          1 :     l_i1.clearFilters();</span>
+<span class="lineNum">      68 </span><span class="lineCov">          1 :     l_i1.log(rec(level::debug, &quot;log string&quot;));</span>
+<span class="lineNum">      69 </span><span class="lineCov">          1 :     CPPUNIT_ASSERT_EQUAL(3ul, l_i1.copyRecords().size());</span>
+<span class="lineNum">      70 </span>            :   }
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            :   // idiot coverage calls
+<span class="lineNum">      73 </span>            :   {
+<span class="lineNum">      74 </span><span class="lineCov">          1 :     l_i1.clearFormatter();</span>
+<span class="lineNum">      75 </span><span class="lineCov">          1 :     l_i1.setFormatter(std::make_shared&lt;Formatter&gt;());</span>
+<span class="lineNum">      76 </span>            :   }
+<span class="lineNum">      77 </span><span class="lineCov">          1 : }</span>
+<a name="78"><span class="lineNum">      78 </span>            : </a>
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineCov">          4 : XTD_TEST_MAIN();</span>
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            : // Local Variables:
+<span class="lineNum">      83 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">      84 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

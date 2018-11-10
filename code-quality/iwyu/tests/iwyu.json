@@ -1,0 +1,50 @@
+{
+  "src/CWrap.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/TestFixture.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/ProgressListener.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/TestFixture.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/MainTestApplication.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/MainTestApplication.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/ProgressListener.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/CWrap.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "src/CWrap.cc": {
+    "rm": [
+      "#include <stdio.h>  // lines 4-4", 
+      "#include <tuple>  // lines 7-7"
+    ], 
+    "add": [
+      "#include <stdarg.h>       // for va_list", 
+      "#include <cstdio>         // for FILE"
+    ], 
+    "full": [
+      "#include \"CWrap.hh\"", 
+      "#include <dlfcn.h>        // for dlsym, RTLD_NEXT", 
+      "#include <stdarg.h>       // for va_list", 
+      "#include <stdlib.h>       // for RAND_MAX", 
+      "#include <boost/any.hpp>  // for any", 
+      "#include <cstdio>         // for FILE"
+    ], 
+    "errors": false
+  }, 
+  "src/TestFixture.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/ProgressListener.cc": {
+    "rm": [
+      "#include <cppunit/Test.h>  // lines 2-2", 
+      "#include <string>  // lines 3-3"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"ProgressListener.hh\""
+    ], 
+    "errors": false
+  }, 
+  "src/TestFixture.hh": {
+    "rm": [
+      "#include \"cppunit/TestFixture.h\"  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"asserts.hh\"", 
+      "#include \"types.hh\"  // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/MainTestApplication.cc": {
+    "rm": [
+      "#include <cppunit/CompilerOutputter.h>  // lines 2-2", 
+      "#include <cppunit/TextOutputter.h>  // lines 6-6", 
+      "#include <cppunit/XmlOutputter.h>  // lines 7-7", 
+      "#include <iostream>  // lines 12-12", 
+      "#include <log/ConfLoader.hh>  // lines 10-10", 
+      "#include <regex>  // lines 11-11", 
+      "#include \"ProgressListener.hh\"  // lines 14-14", 
+      "#include \"QuietOutputter.hh\"  // lines 15-15"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"MainTestApplication.hh\"", 
+      "#include <cppunit/Test.h>                            // for Test", 
+      "#include <cppunit/TestResult.h>                      // for TestResult", 
+      "#include <cppunit/TestSuite.h>                       // for TestSuite", 
+      "#include <cppunit/extensions/TestFactoryRegistry.h>  // for TestFactoryRegistry", 
+      "#include <cppunit/ui/text/TestRunner.h>              // for TestRunner", 
+      "#include \"Globals.h\"                                 // for Globals"
+    ], 
+    "errors": false
+  }, 
+  "src/MainTestApplication.hh": {
+    "rm": [
+      "namespace std { namespace std { namespace CppUnit { class Outputter; } } }  // lines 9-9", 
+      "namespace std { namespace std { namespace CppUnit { class TestResultCollector; } } }  // lines 10-10"
+    ], 
+    "add": [
+      "#include <cppunit/Outputter.h>  // for Outputter"
+    ], 
+    "full": [
+      "#include <cppunit/Outputter.h>  // for Outputter", 
+      "#include <cppunit/extensions/HelperMacros.h>", 
+      "#include \"Application.hh\"       // for Application", 
+      "#include \"Globals.h\"", 
+      "#include \"cppunit/TestFixture.h\"", 
+      "#include \"types.hh\"             // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/ProgressListener.hh": {
+    "rm": [
+      "#include <cppunit/TestListener.h>  // lines 2-2", 
+      "#include <ostream>  // lines 3-3"
+    ], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/CWrap.hh": {
+    "rm": [
+      "#include \"mixins/singleton.hh\"  // lines 1-1", 
+      "namespace std { namespace boost { class any; } }  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/any.hpp>        // for any"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/any.hpp>        // for any", 
+      "#include \"types.hh\"             // for string, pair, uint32_t"
+    ], 
+    "errors": false
+  }
+}

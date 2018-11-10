@@ -1,0 +1,170 @@
+{
+  "src/Composed.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/ExtValue.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Cache.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Value.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/AvgValue.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Composed.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/ExtValue.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Perf.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/CounterManager.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Base.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/CounterManager.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/InstantFreq.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/AvgTimedValue.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Freq.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/InstantFreq.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/SumExt.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/AvgValue.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/SumExt.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Value.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Cache.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/SumExt.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Perf.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/AvgValue.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Freq.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Base.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Value.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/AvgTimedValue.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/ExtValue.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

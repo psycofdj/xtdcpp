@@ -1,0 +1,13 @@
+<map id="xtd::log::ColoredFormatter::create" name="xtd::log::ColoredFormatter::create">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1Formatter.html#a365477ddddf1d5f9400ca200a1c83039" title="Create a new Formatter instance from given configuration map. " alt="" coords="251,64,380,105"/>
+<area shape="rect" id="node9" href="$classxtd_1_1log_1_1ColoredFormatter.html#a85f584841680a65e909065fdb474fb6b" title="Constructor. " alt="" coords="228,129,403,171"/>
+<area shape="rect" id="node11" href="$classxtd_1_1tty_1_1color.html#a6cb6f66fda2247737c5e1930b7674f74" title="Construct color from string value. " alt="" coords="249,195,382,236"/>
+<area shape="rect" id="node12" href="$classxtd_1_1tty_1_1attrs.html#ae173052fd395fa7baed14def344b23c3" title="Constructs attrs from string. " alt="" coords="250,260,381,301"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1Formatter.html#af056dc33479e3a0b1dedbc501f8c0092" title="Constructor. " alt="" coords="473,64,603,105"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1Formatter.html#a42088b47363218fa2d9f7641651ca0cd" title="Set layout for all compound fields. " alt="" coords="673,5,803,47"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1Formatter.html#aeefc07bef8ef73b5d6be462ad3a03d3d" title="Set format for all fields. " alt="" coords="673,71,803,112"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1Formatter.html#a906770a330ec66756306d2e97245560a" title="Set layout for a particular compound field. " alt="" coords="851,5,980,47"/>
+<area shape="rect" id="node7" href="$classxtd_1_1log_1_1Formatter.html#a04f0e52d7d5d29d8fe0e56f593764f7e" title="Set format for a particular field. " alt="" coords="851,71,980,112"/>
+<area shape="rect" id="node8" href="$structxtd_1_1log_1_1Fields.html#ac0a58b7534140d7860657f92e02c0d05" title="Sets value for given field. " alt="" coords="1028,107,1163,134"/>
+<area shape="rect" id="node10" href="$classxtd_1_1log_1_1ColoredFormatter.html#ae62298e29ca0f7eb5ecd7e3d245baece" title="Sets styles for all given fields. " alt="" coords="451,129,625,171"/>
+</map>

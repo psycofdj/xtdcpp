@@ -1,0 +1,4 @@
+<map id="xtd::log::SyslogAppender::create" name="xtd::log::SyslogAppender::create">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1SyslogAppender.html#a90a195f73cdc8bd15a043c79fe83fda4" title="Converts facility string literals to their corresponding syslog value. " alt="" coords="221,5,389,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1SyslogAppender.html#a74d247b5818a7d888f50b9a11aa2b093" title="Converts option string literals to their corresponding syslog value. " alt="" coords="221,71,389,112"/>
+</map>

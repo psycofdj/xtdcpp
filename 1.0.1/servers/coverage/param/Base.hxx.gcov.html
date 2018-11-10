@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - servers unit test coverage - param/Base.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">param</a> - Base.hxx<span style="font-size: 80%;"> (source / <a href="Base.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">servers unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">80</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2016-12-29 16:00:38</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">70</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef SERVERS_PARAM_BASE_HXX_</a>
+<span class="lineNum">       2 </span>            : # define SERVERS_PARAM_BASE_HXX_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;boost/algorithm/string/case_conv.hpp&gt;
+<span class="lineNum">       5 </span>            : # include &quot;param/Visitor.hh&quot;
+<span class="lineNum">       6 </span>            : # include &lt;boost/filesystem.hpp&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : using namespace boost;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace xtd {
+<span class="lineNum">      12 </span>            : namespace servers {
+<span class="lineNum">      13 </span>            : namespace param {
+<a name="14"><span class="lineNum">      14 </span>            : </a>
+<span class="lineNum">      15 </span>            : Base&amp;
+<span class="lineNum">      16 </span><span class="lineNoCov">          0 : Base::constraint(t_constraint p_constraint)</span>
+<span class="lineNum">      17 </span>            : {
+<span class="lineNum">      18 </span><span class="lineNoCov">          0 :   m_constraints.push_back(p_constraint);</span>
+<span class="lineNum">      19 </span><span class="lineNoCov">          0 :   return *this;</span>
+<span class="lineNum">      20 </span>            : }
+<a name="21"><span class="lineNum">      21 </span>            : </a>
+<span class="lineNum">      22 </span>            : string
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 : Base::getName(void) const</span>
+<span class="lineNum">      24 </span>            : {
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :   return m_name;</span>
+<span class="lineNum">      26 </span>            : }
+<a name="27"><span class="lineNum">      27 </span>            : </a>
+<span class="lineNum">      28 </span>            : void
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 : Base::setName(const string&amp; p_name)</span>
+<span class="lineNum">      30 </span>            : {
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 :   m_name = p_name;</span>
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 : }</span>
+<a name="33"><span class="lineNum">      33 </span>            : </a>
+<span class="lineNum">      34 </span>            : bool
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 : Base::getSync(void) const</span>
+<span class="lineNum">      36 </span>            : {
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :   return m_sync;</span>
+<span class="lineNum">      38 </span>            : }
+<a name="39"><span class="lineNum">      39 </span>            : </a>
+<span class="lineNum">      40 </span>            : void
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 : Base::setSync(const bool&amp; p_sync)</span>
+<span class="lineNum">      42 </span>            : {
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   m_sync = p_sync;</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 : }</span>
+<a name="45"><span class="lineNum">      45 </span>            : </a>
+<span class="lineNum">      46 </span>            : void
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 : Base::setActionPath(const string&amp; p_actionPath)</span>
+<span class="lineNum">      48 </span>            : {
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :   m_actionPath = p_actionPath;</span>
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 : }</span>
+<a name="51"><span class="lineNum">      51 </span>            : </a>
+<span class="lineNum">      52 </span>            : string
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 : Base::getActionPath(void) const</span>
+<span class="lineNum">      54 </span>            : {
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   return m_actionPath;</span>
+<span class="lineNum">      56 </span>            : }
+<a name="57"><span class="lineNum">      57 </span>            : </a>
+<span class="lineNum">      58 </span>            : void
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 : Base::sync(void)</span>
+<span class="lineNum">      60 </span>            : {
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   if(m_sync)</span>
+<span class="lineNum">      62 </span>            :   {
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :     string             l_value;</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :     string             l_path;</span>
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :     if(true == toStr(l_value))</span>
+<span class="lineNum">      67 </span>            :     {
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :       l_path = m_actionPath + &quot;/&quot; + m_name;</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :       ofstream l_file(l_path.c_str(), std::ios_base::out | std::ios_base::trunc);</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :       l_file &lt;&lt; l_value;</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :       l_file.close();</span>
+<span class="lineNum">      72 </span>            :     }
+<span class="lineNum">      73 </span>            :   }
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 : }</span>
+<a name="75"><span class="lineNum">      75 </span>            : </a>
+<span class="lineNum">      76 </span>            : uint32_t
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 : Base::date() const</span>
+<span class="lineNum">      78 </span>            : {
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :   tm l_tm = to_tm(m_timestamp);</span>
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 :   time_t l_date = mktime(&amp;l_tm);</span>
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 :   return boost::lexical_cast&lt;uint32_t&gt;(l_date);</span>
+<span class="lineNum">      82 </span>            : }
+<a name="83"><span class="lineNum">      83 </span>            : </a>
+<span class="lineNum">      84 </span>            : string
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 : Base::log() const</span>
+<span class="lineNum">      86 </span>            : {
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   return m_log;</span>
+<span class="lineNum">      88 </span>            : }
+<a name="89"><span class="lineNum">      89 </span>            : </a>
+<span class="lineNum">      90 </span>            : void
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 : Base::setLog(const string p_log)</span>
+<span class="lineNum">      92 </span>            : {
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   m_log = p_log;</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 : }</span>
+<a name="95"><span class="lineNum">      95 </span>            : </a>
+<span class="lineNum">      96 </span>            : Base&amp;
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 : Base::listen(t_listener p_listener)</span>
+<span class="lineNum">      98 </span>            : {
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   m_listeners.push_back(p_listener);</span>
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :   return *this;</span>
+<span class="lineNum">     101 </span>            : }
+<a name="102"><span class="lineNum">     102 </span>            : </a>
+<span class="lineNum">     103 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::POD(const T&amp; p_value) :</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :   Base(p_value)</span>
+<span class="lineNum">     106 </span>            : {
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     108 </span>            : 
+<a name="109"><span class="lineNum">     109 </span>            : </a>
+<span class="lineNum">     110 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::POD(const T&amp; p_value, const string&amp; p_name) :</span>
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :   Base(p_value, p_name)</span>
+<span class="lineNum">     113 </span>            : {
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : 
+<a name="117"><span class="lineNum">     117 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     118 </span>            : bool
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::toStr(string&amp; p_dst) const</span>
+<span class="lineNum">     120 </span>            : {
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :   T l_value = T();</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   return get(l_value) &amp;&amp; as(l_value, p_dst);</span>
+<span class="lineNum">     123 </span>            : }
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            : 
+<a name="126"><span class="lineNum">     126 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     127 </span>            : bool
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::fromStr(const string&amp; p_src)</span>
+<span class="lineNum">     129 </span>            : {
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   T l_value = T();</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :   return to(p_src, l_value) &amp;&amp; set(l_value);</span>
+<span class="lineNum">     132 </span>            : }
+<span class="lineNum">     133 </span>            : 
+<a name="134"><span class="lineNum">     134 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     135 </span>            : bool
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::verify(const string&amp; p_src)</span>
+<span class="lineNum">     137 </span>            : {
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :   T l_value = T();</span>
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   return to(p_src, l_value) &amp;&amp; isAccepted(l_value);</span>
+<span class="lineNum">     140 </span>            : }
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            : 
+<a name="143"><span class="lineNum">     143 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     144 </span>            : void
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::accept(Visitor&amp; p_visitor) const</span>
+<span class="lineNum">     146 </span>            : {
+<span class="lineNum">     147 </span><span class="lineNoCov">          0 :   p_visitor(*this);</span>
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     149 </span>            : 
+<span class="lineNum">     150 </span>            : 
+<a name="151"><span class="lineNum">     151 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     152 </span>            : bool
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::as(const bool&amp; p_src, string&amp; p_dst) const</span>
+<span class="lineNum">     154 </span>            : {
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 :   if (p_src)</span>
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :     p_dst = &quot;1&quot;;</span>
+<span class="lineNum">     157 </span>            :   else
+<span class="lineNum">     158 </span><span class="lineNoCov">          0 :     p_dst = &quot;0&quot;;</span>
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">     160 </span>            : }
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : template&lt;typename T&gt;
+<a name="164"><span class="lineNum">     164 </span>            : template&lt;typename V&gt;</a>
+<span class="lineNum">     165 </span>            : bool
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::as(const V&amp; p_src, string&amp; p_dst) const</span>
+<span class="lineNum">     167 </span>            : {
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 :   p_dst = lexical_cast&lt;string&gt;(p_src);</span>
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">     170 </span>            : }
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : 
+<a name="173"><span class="lineNum">     173 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     174 </span>            : bool
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::to(const string&amp; p_src, bool&amp; p_dst) const</span>
+<span class="lineNum">     176 </span>            : {
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 :   string l_src = to_lower_copy(p_src);</span>
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 :   if ((l_src == &quot;0&quot;) || (l_src == &quot;off&quot;) || (l_src == &quot;no&quot;) || (l_src == &quot;false&quot;))</span>
+<span class="lineNum">     180 </span>            :   {
+<span class="lineNum">     181 </span><span class="lineNoCov">          0 :     p_dst = false;</span>
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     183 </span>            :   }
+<span class="lineNum">     184 </span><span class="lineNoCov">          0 :   if ((l_src == &quot;1&quot;) || (l_src == &quot;on&quot;) || (l_src == &quot;yes&quot;) || (l_src == &quot;true&quot;))</span>
+<span class="lineNum">     185 </span>            :   {
+<span class="lineNum">     186 </span><span class="lineNoCov">          0 :     p_dst = true;</span>
+<span class="lineNum">     187 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     188 </span>            :   }
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 :   return false;</span>
+<span class="lineNum">     190 </span>            : }
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            : template&lt;typename T&gt;
+<a name="194"><span class="lineNum">     194 </span>            : template&lt;typename V&gt;</a>
+<span class="lineNum">     195 </span>            : bool
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 : POD&lt;T&gt;::to(const string&amp; p_src, V&amp; p_dst) const</span>
+<span class="lineNum">     197 </span>            : {
+<span class="lineNum">     198 </span>            :   try {
+<span class="lineNum">     199 </span><span class="lineNoCov">          0 :     p_dst = lexical_cast&lt;V&gt;(p_src);</span>
+<span class="lineNum">     200 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     201 </span><span class="lineNoCov">          0 :   } catch (bad_lexical_cast) {</span>
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">     203 </span>            :   }
+<span class="lineNum">     204 </span>            : }
+<span class="lineNum">     205 </span>            : 
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            : }}}
+<span class="lineNum">     208 </span>            : 
+<span class="lineNum">     209 </span>            : #endif // !SERVERS_PARAMS_PARAM_HXX_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.196563005447388</elapsed_seconds>
+  <n_files>49</n_files>
+  <n_lines>5003</n_lines>
+  <files_per_second>249.283937679287</files_per_second>
+  <lines_per_second>25452.3987797852</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/network/cloc/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.cc" blank="86" comment="4" code="367"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.cc" blank="33" comment="22" code="302"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.cc" blank="57" comment="8" code="228"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Message.cc" blank="59" comment="4" code="204"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh" blank="44" comment="41" code="175"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh" blank="65" comment="388" code="168"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh" blank="41" comment="0" code="120"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/codes.cc" blank="9" comment="4" code="105"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/http_types.hh" blank="12" comment="5" code="104"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh" blank="29" comment="54" code="99"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh" blank="42" comment="101" code="97"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh" blank="17" comment="0" code="92"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh" blank="16" comment="7" code="85"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientPool.hh" blank="21" comment="15" code="84"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.cc" blank="20" comment="9" code="83"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.cc" blank="21" comment="0" code="82"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/Connection.hh" blank="33" comment="41" code="69"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh" blank="21" comment="41" code="54"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh" blank="15" comment="27" code="49"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.cc" blank="8" comment="5" code="48"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/ThreadManager.cc" blank="9" comment="0" code="44"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh" blank="17" comment="30" code="43"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh" blank="13" comment="43" code="42"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Message.hh" blank="11" comment="0" code="42"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Config.hh" blank="13" comment="15" code="40"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Client.hh" blank="9" comment="18" code="35"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/http_types.cc" blank="7" comment="0" code="35"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Config.cc" blank="6" comment="0" code="32"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/ThreadManager.hh" blank="10" comment="2" code="32"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh" blank="10" comment="0" code="28"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.cc" blank="6" comment="0" code="25"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.cc" blank="7" comment="0" code="25"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/network_types.hh" blank="9" comment="0" code="23"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/compress.hh" blank="9" comment="0" code="23"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh" blank="13" comment="2" code="20"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/network_fwd.hh" blank="6" comment="0" code="19"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/codes.hh" blank="6" comment="0" code="19"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh" blank="5" comment="0" code="12"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/ClientPool.hh" blank="5" comment="0" code="12"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/network.hh" blank="2" comment="0" code="11"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.cc" blank="3" comment="0" code="10"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.cc" blank="3" comment="4" code="10"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.cc" blank="5" comment="0" code="9"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Client.cc" blank="3" comment="0" code="9"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/Connection.cc" blank="4" comment="0" code="9"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.cc" blank="5" comment="0" code="9"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.cc" blank="4" comment="0" code="9"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/http/ClientPool.cc" blank="3" comment="0" code="8"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.cc" blank="3" comment="0" code="8"  language="C++" />
+  <total blank="855" comment="890" code="3258" />
+</files>
+<languages>
+  <language name="C++" files_count="22" blank="361" comment="60" code="1661" />
+  <language name="C/C++ Header" files_count="27" blank="494" comment="830" code="1597" />
+  <total sum_files="49" blank="855" comment="890" code="3258" />
+</languages>
+</results>

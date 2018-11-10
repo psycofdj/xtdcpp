@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Client.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Client.hxx<span style="font-size: 80%;"> (source / <a href="Client.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">68</td>
+            <td class="headerCovTableEntry">95</td>
+            <td class="headerCovTableEntryLo">71.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-02-18 10:07:18</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryLo">44.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef NETWORK_HTTP_CLIENT_HXX_</a>
+<span class="lineNum">       2 </span>            : # define NETWORK_HTTP_CLIENT_HXX_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;boost/interprocess/sync/lock_options.hpp&gt;
+<span class="lineNum">       5 </span>            : # include &lt;boost/interprocess/detail/atomic.hpp&gt;
+<span class="lineNum">       6 </span>            : # include &lt;memory&gt;
+<span class="lineNum">       7 </span>            : # include &lt;boost/make_shared.hpp&gt;
+<span class="lineNum">       8 </span>            : # include &lt;boost/iostreams/filtering_stream.hpp&gt;
+<span class="lineNum">       9 </span>            : # include &lt;boost/iostreams/filter/zlib.hpp&gt;
+<span class="lineNum">      10 </span>            : # include &lt;boost/iostreams/filter/gzip.hpp&gt;
+<span class="lineNum">      11 </span>            : # include &lt;boost/iostreams/filter/bzip2.hpp&gt;
+<span class="lineNum">      12 </span>            : # include &lt;boost/iostreams/filtering_stream.hpp&gt;
+<span class="lineNum">      13 </span>            : # include &lt;utils/scoped_fn.hh&gt; // libcore
+<span class="lineNum">      14 </span>            : # include &lt;log.hh&gt; // libcore
+<span class="lineNum">      15 </span>            : # include &quot;http/Connection.hh&quot;
+<span class="lineNum">      16 </span>            : # include &quot;http/Request.hh&quot;
+<span class="lineNum">      17 </span>            : # include &quot;http/Response.hh&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace atom = boost::interprocess::ipcdetail;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : namespace xtd {
+<span class="lineNum">      22 </span>            : namespace network {
+<span class="lineNum">      23 </span>            : namespace http {
+<span class="lineNum">      24 </span>            : 
+<a name="25"><span class="lineNum">      25 </span>            : </a>
+<span class="lineNum">      26 </span>            : template&lt;typename TDomain&gt;
+<span class="lineNum">      27 </span><span class="lineCov">          1 : Client&lt;TDomain&gt;::Client(void) :</span>
+<span class="lineNum">      28 </span>            :   TBase(),
+<span class="lineNum">      29 </span>            :   m_userSemaphore(0),
+<span class="lineNum">      30 </span>            :   m_status(cnxstatus::available),
+<span class="lineNum">      31 </span><span class="lineCov">          1 :   m_response()</span>
+<span class="lineNum">      32 </span>            : {
+<span class="lineNum">      33 </span><span class="lineCov">          1 : }</span>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<span class="lineNum">      35 </span>            : template&lt;typename TDomain&gt;
+<span class="lineNum">      36 </span><span class="lineCov">          1 : Client&lt;TDomain&gt;::~Client(void)</span>
+<span class="lineNum">      37 </span>            : {
+<span class="lineNum">      38 </span><span class="lineCov">          1 : }</span>
+<span class="lineNum">      39 </span>            : 
+<a name="40"><span class="lineNum">      40 </span>            : template&lt;typename TDomain&gt;</a>
+<span class="lineNum">      41 </span>            : typename Client&lt;TDomain&gt;::cnx_sptr_t
+<span class="lineNum">      42 </span><span class="lineCov">          2 : Client&lt;TDomain&gt;::createCnx(string p_hostname, uint32_t p_port)</span>
+<span class="lineNum">      43 </span>            : {
+<span class="lineNum">      44 </span><span class="lineCov">          2 :   cnx_sptr_t l_result(new Connection&lt;TDomain&gt;(*this, TBase::m_ioService, p_hostname, p_port));</span>
+<span class="lineNum">      45 </span><span class="lineCov">          2 :   return l_result;</span>
+<span class="lineNum">      46 </span>            : }
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            : 
+<a name="49"><span class="lineNum">      49 </span>            : template&lt;typename TDomain&gt;</a>
+<span class="lineNum">      50 </span>            : status
+<span class="lineNum">      51 </span><span class="lineCov">          4 : Client&lt;TDomain&gt;::send(const Request&amp; p_request)</span>
+<span class="lineNum">      52 </span>            : {
+<span class="lineNum">      53 </span><span class="lineCov">          8 :   vector&lt;char&gt; l_buff;</span>
+<span class="lineNum">      54 </span><span class="lineCov">          4 :   auto&amp;                l_conn = TBase::m_connection;</span>
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span><span class="lineCov">          4 :   atom::atomic_inc32(&amp;(this-&gt;m_sendTotal));</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span><span class="lineCov">          4 :   if (m_status != cnxstatus::available)</span>
+<span class="lineNum">      59 </span>            :   {
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client send (%s) : can't send multiple request without receive&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :     atom::atomic_inc32(&amp;(this-&gt;m_sendError));</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">      63 </span>            :   }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span><span class="lineCov">          4 :   m_lastSend = boost::posix_time::microsec_clock::local_time();</span>
+<span class="lineNum">      66 </span><span class="lineCov">          4 :   m_status   = cnxstatus::reserved;</span>
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            :   {
+<span class="lineNum">      69 </span><span class="lineCov">          8 :     boost::iostreams::filtering_ostream l_stream;</span>
+<span class="lineNum">      70 </span><span class="lineCov">          4 :     l_stream.push(boost::iostreams::back_inserter(l_buff));</span>
+<span class="lineNum">      71 </span><span class="lineCov">          4 :     p_request.write(l_stream);</span>
+<span class="lineNum">      72 </span><span class="lineCov">          4 :     l_stream.flush();</span>
+<span class="lineNum">      73 </span>            :   }
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span><span class="lineCov">          4 :   l_conn-&gt;send(l_buff,</span>
+<span class="lineNum">      76 </span>            :                std::bind(&amp;Client::onSent,
+<span class="lineNum">      77 </span>            :                          this,
+<span class="lineNum">      78 </span>            :                          std::placeholders::_1));
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineCov">          4 :   atom::atomic_inc32(&amp;(this-&gt;m_sendSuccess));</span>
+<span class="lineNum">      81 </span><span class="lineCov">          4 :   return status::ok;</span>
+<span class="lineNum">      82 </span>            : }
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            : 
+<a name="86"><span class="lineNum">      86 </span>            : template&lt;typename TDomain&gt;</a>
+<span class="lineNum">      87 </span>            : void
+<span class="lineNum">      88 </span><span class="lineCov">          4 : Client&lt;TDomain&gt;::onSent(const boost::system::error_code p_error)</span>
+<span class="lineNum">      89 </span>            : {
+<span class="lineNum">      90 </span><span class="lineCov">          4 :   log::debug(&quot;network.http.client&quot;, &quot;http client onSent (%s) : entering&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span><span class="lineCov">          4 :   if (p_error == boost::asio::error::operation_aborted)</span>
+<span class="lineNum">      93 </span>            :   {
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client onSent (%s) : timeout detected (error '%s')&quot;, TBase::m_connection-&gt;info(), p_error.message(), HERE);</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :     m_status = cnxstatus::timeout;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :     m_userSemaphore.post();</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">      98 </span>            :   }
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span><span class="lineCov">          4 :   if (p_error)</span>
+<span class="lineNum">     101 </span>            :   {
+<span class="lineNum">     102 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client onSent (%s) : send failed with error '%s'&quot;, TBase::m_connection-&gt;info(), p_error.message(), HERE);</span>
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :     m_status = cnxstatus::error;</span>
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :     m_userSemaphore.post();</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     106 </span>            :   }
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span><span class="lineCov">          4 :   m_status = cnxstatus::sent;</span>
+<span class="lineNum">     109 </span><span class="lineCov">          4 :   do_receive();</span>
+<span class="lineNum">     110 </span><span class="lineCov">          4 :   log::debug(&quot;network.http.client&quot;, &quot;http client onSent (%s) : leaving&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     111 </span>            : }
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            : 
+<a name="118"><span class="lineNum">     118 </span>            : template&lt;typename TDomain&gt;</a>
+<span class="lineNum">     119 </span>            : void
+<span class="lineNum">     120 </span><span class="lineCov">          4 : Client&lt;TDomain&gt;::do_receive(void)</span>
+<span class="lineNum">     121 </span>            : {
+<span class="lineNum">     122 </span><span class="lineCov">          4 :   log::debug(&quot;network.http.client&quot;, &quot;http client do_receive (%s) : entering&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     123 </span><span class="lineCov">          4 :   auto&amp; l_conn = TBase::m_connection;</span>
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span><span class="lineCov">          8 :   sptr&lt;vector&lt;char&gt;&gt; l_res = std::make_shared&lt;vector&lt;char&gt;&gt;();</span>
+<span class="lineNum">     126 </span><span class="lineCov">          4 :   l_conn-&gt;receive(l_res,</span>
+<span class="lineNum">     127 </span>            :                   std::bind(&amp;Client::onReceived,
+<span class="lineNum">     128 </span>            :                             this,
+<span class="lineNum">     129 </span>            :                             std::placeholders::_1,
+<span class="lineNum">     130 </span>            :                             l_res));
+<span class="lineNum">     131 </span><span class="lineCov">          4 :   log::debug(&quot;network.http.client&quot;, &quot;http client do_receive (%s) : leaving&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     132 </span><span class="lineCov">          4 : }</span>
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : 
+<a name="136"><span class="lineNum">     136 </span>            : template&lt;typename TDomain&gt;</a>
+<span class="lineNum">     137 </span>            : void
+<span class="lineNum">     138 </span><span class="lineCov">          4 : Client&lt;TDomain&gt;::onReceived(const boost::system::error_code p_error,</span>
+<span class="lineNum">     139 </span>            :                             sptr&lt;vector&lt;char&gt;&gt;              p_response)
+<span class="lineNum">     140 </span>            : {
+<span class="lineNum">     141 </span><span class="lineCov">          7 :   xtd::utils::scoped_fn l_semPos(std::bind(&amp;boost::interprocess::interprocess_semaphore::post, std::ref(m_userSemaphore)));</span>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span><span class="lineCov">          4 :   log::debug(&quot;network.http.client&quot;, &quot;http client onReceived (%s) : entering&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span><span class="lineCov">          4 :   if (p_error ==  boost::asio::error::operation_aborted)</span>
+<span class="lineNum">     146 </span>            :   {
+<span class="lineNum">     147 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client onReceived (%s) : timeout detected (error '%s')&quot;, TBase::m_connection-&gt;info(), p_error.message(), HERE);</span>
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :     m_status = cnxstatus::timeout;</span>
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     150 </span>            :   }
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span><span class="lineCov">          4 :   if (p_error)</span>
+<span class="lineNum">     153 </span>            :   {
+<span class="lineNum">     154 </span><span class="lineCov">          1 :     log::err(&quot;network.http.client&quot;, &quot;http client onReceived (%s) : error '%s'&quot;, TBase::m_connection-&gt;info(), p_error.message(), HERE);</span>
+<span class="lineNum">     155 </span><span class="lineCov">          1 :     m_status = cnxstatus::error;</span>
+<span class="lineNum">     156 </span><span class="lineCov">          1 :     return;</span>
+<span class="lineNum">     157 </span>            :   }
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span><span class="lineCov">          3 :   if (m_status != cnxstatus::sent)</span>
+<span class="lineNum">     160 </span>            :   {
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client onReceived (%s) : request has invalid status '%d'&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :     m_status = cnxstatus::error;</span>
+<span class="lineNum">     163 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span><span class="lineCov">          3 :   m_status = cnxstatus::received;</span>
+<span class="lineNum">     167 </span><span class="lineCov">          3 :   m_response.swap(*p_response);</span>
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span>            :   boost::posix_time::time_duration l_diff =
+<span class="lineNum">     170 </span><span class="lineCov">          3 :     boost::posix_time::microsec_clock::local_time() - m_lastSend;</span>
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span><span class="lineCov">          3 :   TBase::m_lastRTTMs = l_diff.total_milliseconds();</span>
+<span class="lineNum">     173 </span><span class="lineCov">          3 :   log::debug(&quot;network.http.client&quot;, &quot;http onReceived (%s) : client received finished&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     174 </span>            : }
+<span class="lineNum">     175 </span>            : 
+<a name="176"><span class="lineNum">     176 </span>            : template&lt;typename TDomain&gt;</a>
+<span class="lineNum">     177 </span>            : status
+<span class="lineNum">     178 </span><span class="lineCov">          4 : Client&lt;TDomain&gt;::receive(Response&amp; p_response)</span>
+<span class="lineNum">     179 </span>            : {
+<span class="lineNum">     180 </span><span class="lineCov">          4 :   log::debug(&quot;network.http.client&quot;, &quot;http client receive (%s) : entering&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     181 </span><span class="lineCov">          4 :   atom::atomic_inc32(&amp;(this-&gt;m_receiveTotal));</span>
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span><span class="lineCov">          4 :   if (m_status == cnxstatus::available)</span>
+<span class="lineNum">     184 </span>            :   {
+<span class="lineNum">     185 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client receive : unsent request&quot;, HERE);</span>
+<span class="lineNum">     186 </span><span class="lineNoCov">          0 :     atom::atomic_inc32(&amp;(this-&gt;m_receiveError));</span>
+<span class="lineNum">     187 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     188 </span>            :   }
+<span class="lineNum">     189 </span>            : 
+<span class="lineNum">     190 </span><span class="lineCov">          4 :   utils::do_sem_wait(m_userSemaphore);</span>
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span><span class="lineCov">          4 :   if (m_status == cnxstatus::timeout)</span>
+<span class="lineNum">     193 </span>            :   {
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.client&quot;, &quot;http client receive : timeout error&quot;, HERE);</span>
+<span class="lineNum">     195 </span><span class="lineNoCov">          0 :     m_status = cnxstatus::available;</span>
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :     atom::atomic_inc32(&amp;(this-&gt;m_receiveTimeout));</span>
+<span class="lineNum">     197 </span><span class="lineNoCov">          0 :     return status::timeout;</span>
+<span class="lineNum">     198 </span>            :   }
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span><span class="lineCov">          4 :   if (m_status != cnxstatus::received)</span>
+<span class="lineNum">     201 </span>            :   {
+<span class="lineNum">     202 </span><span class="lineCov">          1 :     log::err(&quot;network.http.client&quot;, &quot;http client receive : receive error (status '%d')&quot;, HERE);</span>
+<span class="lineNum">     203 </span><span class="lineCov">          1 :     m_status = cnxstatus::available;</span>
+<span class="lineNum">     204 </span><span class="lineCov">          1 :     atom::atomic_inc32(&amp;(this-&gt;m_receiveError));</span>
+<span class="lineNum">     205 </span><span class="lineCov">          1 :     return status::error;</span>
+<span class="lineNum">     206 </span>            :   }
+<span class="lineNum">     207 </span>            : 
+<span class="lineNum">     208 </span><span class="lineCov">          3 :   m_status = cnxstatus::available;</span>
+<span class="lineNum">     209 </span>            : 
+<span class="lineNum">     210 </span><span class="lineCov">          6 :   boost::iostreams::filtering_istream l_fis;</span>
+<span class="lineNum">     211 </span><span class="lineCov">          3 :   l_fis.push(boost::make_iterator_range(m_response));</span>
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span><span class="lineCov">          3 :   if (status::ok != p_response.read(l_fis))</span>
+<span class="lineNum">     214 </span>            :   {
+<span class="lineNum">     215 </span><span class="lineNoCov">          0 :     log::crit(&quot;network.http.client&quot;, &quot;http client receive (%s) : can't deserialize structure&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :     atom::atomic_inc32(&amp;(this-&gt;m_receiveError));</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     218 </span>            :   }
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span><span class="lineCov">          3 :   log::debug(&quot;network.http.client&quot;, &quot;http client receive (%s) : leaving&quot;, TBase::m_connection-&gt;info(), HERE);</span>
+<span class="lineNum">     221 </span><span class="lineCov">          3 :   atom::atomic_inc32(&amp;(this-&gt;m_receiveSuccess));</span>
+<span class="lineNum">     222 </span><span class="lineCov">          3 :   return status::ok;</span>
+<span class="lineNum">     223 </span>            : }
+<span class="lineNum">     224 </span>            : 
+<span class="lineNum">     225 </span>            : }}} //end namespaces
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span>            : #endif // !NETWORK_HTTP_CLIENT_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

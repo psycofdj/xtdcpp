@@ -1,0 +1,314 @@
+{
+  "src/http/cpptempl.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/utils/Resolver.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Connection.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Server.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/codes.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "include-what-you-use: /usr/lib/llvm-4.0/include/llvm/Support/Casting.h:236: typename llvm::cast_retty<X, Y*>::ret_type llvm::cast(Y*) [with X = clang::CXXConstructorDecl; Y = clang::NamedDecl; typename llvm::cast_retty<X, Y*>::ret_type = clang::CXXConstructorDecl*]: Assertion `isa<X>(Val) && \"cast<Ty>() argument of incompatible type!\"' failed.\n"
+  }, 
+  "src/bip/Client.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "include-what-you-use: /usr/lib/llvm-4.0/include/llvm/Support/Casting.h:236: typename llvm::cast_retty<X, Y*>::ret_type llvm::cast(Y*) [with X = clang::CXXConstructorDecl; Y = clang::NamedDecl; typename llvm::cast_retty<X, Y*>::ret_type = clang::CXXConstructorDecl*]: Assertion `isa<X>(Val) && \"cast<Ty>() argument of incompatible type!\"' failed.\n"
+  }, 
+  "src/http/ClientPool.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Connection.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/utils/Utils.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Request.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Connection.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Config.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Server.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Config.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/codes.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/ThreadManager.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Connection.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/http_types.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Client.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Response.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Message.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Template.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Server.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/cpptempl.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Request.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Client.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Client.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Client.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Server.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/http_types.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/ThreadManager.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Connection.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/ClientPool.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Template.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Response.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Message.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/ClientPool.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Template.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/utils/Resolver.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Config.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Server.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Client.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/utils/Utils.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/ClientPool.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Connection.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Request.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Server.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

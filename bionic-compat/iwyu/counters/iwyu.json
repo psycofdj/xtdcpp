@@ -1,0 +1,380 @@
+{
+  "src/Freq.hh": {
+    "rm": [
+      "#include \"Value.hh\"  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                        // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                        // for uint32_t", 
+      "#include <boost/date_time/posix_time/posix_time.hpp>  // for ptime", 
+      "#include \"types.hh\"                                   // for uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/ExtValue.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Cache.hh": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"Composed.hh\"          // for Composed", 
+      "#include \"Freq.hh\"              // for Freq", 
+      "#include \"InstantFreq.hh\"       // for InstantFreq", 
+      "#include \"Value.hh\"             // for Value32", 
+      "#include \"types.hh\"             // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/Value.hxx": {
+    "rm": [
+      "#include <boost/thread.hpp>  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/interprocess/sync/spin/condition.hpp>  // for ipcdetail", 
+      "#include \"Base.hh\"                                     // for Base", 
+      "#include \"Value.hh\"                                    // for Value, Atomic", 
+      "#include \"Visitor.hh\"                                  // for Visitor", 
+      "#include \"types.hh\"                                    // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/AvgValue.hxx": {
+    "rm": [
+      "#include <numeric>  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/thread.hpp>     // for mutex, mutex::scoped_lock", 
+      "#include \"AvgValue.hh\"          // for AvgValue", 
+      "#include \"Composed.hh\"          // for Composed", 
+      "#include \"types.hh\"             // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/Composed.hh": {
+    "rm": [
+      "namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 6-6"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Base.hh\"   // for Base, Visitor", 
+      "#include \"types.hh\"  // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/ExtValue.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Perf.cc": {
+    "rm": [
+      "#include <ext/alloc_traits.h>  // lines 2-2", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 4-4", 
+      "#include <boost/date_time/time.hpp>  // lines 5-5"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Perf.hh\"", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>  // for posix_time, time_duration"
+    ], 
+    "errors": false
+  }, 
+  "src/CounterManager.cc": {
+    "rm": [
+      "#include <boost/algorithm/string/replace.hpp>  // lines 3-3", 
+      "#include <boost/bind.hpp>  // lines 4-4", 
+      "#include <boost/date_time/posix_time/posix_time_duration.hpp>  // lines 6-6", 
+      "#include <boost/iterator/iterator_traits.hpp>  // lines 7-7", 
+      "#include <boost/property_tree/ptree.hpp>  // lines 8-8", 
+      "#include \"FileVisitor.hh\"  // lines 9-9", 
+      "#include \"JsonVisitor.hh\"  // lines 10-10", 
+      "#include \"log/helpers.hh\"  // lines 11-11"
+    ], 
+    "add": [
+      "#include <boost/filesystem.hpp>                              // for filesystem, path"
+    ], 
+    "full": [
+      "#include \"CounterManager.hh\"", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>  // for posix_time", 
+      "#include <boost/filesystem.hpp>                              // for filesystem, path", 
+      "#include \"log/logtypes.hh\"                                   // for HERE"
+    ], 
+    "errors": false
+  }, 
+  "src/Base.hh": {
+    "rm": [
+      "#include <boost/core/noncopyable.hpp>  // lines 3-3", 
+      "#include <boost/thread.hpp>  // lines 4-4", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"types.hh\"  // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/Cache.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/InstantFreq.hh": {
+    "rm": [
+      "#include <deque>  // lines 4-4", 
+      "#include \"Value.hh\"  // lines 5-5"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                        // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                        // for uint32_t", 
+      "#include <boost/date_time/posix_time/posix_time.hpp>  // for ptime", 
+      "#include \"types.hh\"                                   // for uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/AvgTimedValue.cc": {
+    "rm": [
+      "#include <ext/alloc_traits.h>  // lines 2-2", 
+      "#include <stdlib.h>  // lines 3-3", 
+      "#include <algorithm>  // lines 4-4", 
+      "#include <boost/bind.hpp>  // lines 5-5", 
+      "#include <boost/date_time/posix_time/posix_time_duration.hpp>  // lines 7-7", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 8-8", 
+      "#include <boost/date_time/time.hpp>  // lines 9-9", 
+      "#include <boost/operators.hpp>  // lines 11-11", 
+      "#include <limits>  // lines 13-13", 
+      "#include \"log/helpers.hh\"  // lines 14-14"
+    ], 
+    "add": [
+      "#include <cstdlib>                                           // for exit"
+    ], 
+    "full": [
+      "#include \"AvgTimedValue.hh\"", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>  // for posix_time, time_duration", 
+      "#include <boost/foreach.hpp>                                 // for auto_any_base, BOOST_FOREACH", 
+      "#include <boost/thread.hpp>                                  // for mutex, mutex::scoped_lock", 
+      "#include <cstdlib>                                           // for exit", 
+      "#include \"log/logtypes.hh\"                                   // for HERE"
+    ], 
+    "errors": false
+  }, 
+  "src/Composed.cc": {
+    "rm": [
+      "#include <boost/bind.hpp>  // lines 2-2", 
+      "#include <boost/core/ref.hpp>  // lines 3-3", 
+      "#include <boost/range/algorithm/for_each.hpp>  // lines 4-4", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Composed.hh\"", 
+      "#include \"types.hh\"  // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/InstantFreq.cc": {
+    "rm": [
+      "#include <boost/bind.hpp>  // lines 2-2", 
+      "#include <boost/core/ref.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 5-5", 
+      "#include <boost/date_time/time.hpp>  // lines 6-6", 
+      "#include <boost/range/algorithm/find_if.hpp>  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"InstantFreq.hh\"", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>  // for posix_time, time_duration", 
+      "#include <boost/thread.hpp>                                  // for mutex, mutex::scoped_lock"
+    ], 
+    "errors": false
+  }, 
+  "src/SumExt.hh": {
+    "rm": [
+      "#include <boost/core/addressof.hpp>  // lines 3-3", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class SumExt; } } } }  // lines 8-8", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class SumExt; } } } }  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t", 
+      "#include \"Value.hh\"             // for Value", 
+      "#include \"types.hh\"             // for string, uint32_t, uint64_t"
+    ], 
+    "errors": false
+  }, 
+  "src/AvgValue.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/SumExt.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Value.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/CounterManager.hh": {
+    "rm": [
+      "#include <boost/filesystem.hpp>  // lines 3-3", 
+      "#include \"Base.hh\"  // lines 7-7"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                // for uint32_t", 
+      "#include <boost/property_tree/ptree_fwd.hpp>  // for ptree", 
+      "#include <boost/thread.hpp>                   // for mutex, thread", 
+      "#include \"types.hh\"                           // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/SumExt.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/Perf.hh": {
+    "rm": [
+      "#include <boost/date_time/posix_time/posix_time.hpp>  // lines 3-3"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"AvgValue.hh\"          // for AvgValue", 
+      "#include \"Composed.hh\"          // for Composed", 
+      "#include \"Freq.hh\"              // for Freq", 
+      "#include \"InstantFreq.hh\"       // for InstantFreq", 
+      "#include \"types.hh\"             // for uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/AvgValue.hh": {
+    "rm": [
+      "#include <deque>  // lines 3-3", 
+      "namespace std { namespace xtd { namespace counters { class AvgValue; } } }  // lines 8-8", 
+      "namespace std { namespace xtd { namespace counters { class AvgValue; } } }  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t", 
+      "#include \"Composed.hh\"          // for Composed", 
+      "#include \"Value.hh\"             // for Value", 
+      "#include \"types.hh\"             // for uint32_t, string, uint64_t"
+    ], 
+    "errors": false
+  }, 
+  "src/Freq.cc": {
+    "rm": [
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 3-3", 
+      "#include <boost/date_time/time.hpp>  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Freq.hh\"", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>  // for posix_time, time_duration", 
+      "#include <boost/interprocess/sync/spin/condition.hpp>        // for ipcdetail"
+    ], 
+    "errors": false
+  }, 
+  "src/Base.cc": {
+    "rm": [
+      "namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 3-3"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Base.hh\""
+    ], 
+    "errors": false
+  }, 
+  "src/Value.hh": {
+    "rm": [
+      "#include <boost/thread.hpp>  // lines 3-3", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class Value; } } } }  // lines 32-32", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class Value; } } } }  // lines 33-33", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 7-7"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t", 
+      "#include \"Visitor.hh\"           // for Visitor"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t", 
+      "#include \"Base.hh\"              // for Base", 
+      "#include \"Visitor.hh\"           // for Visitor", 
+      "#include \"types.hh\"             // for uint32_t, string, uint64_t"
+    ], 
+    "errors": false
+  }, 
+  "src/AvgTimedValue.hh": {
+    "rm": [
+      "#include <deque>  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/shared_ptr.h>                          // for shared_ptr", 
+      "#include <bits/stdint-uintn.h>                        // for uint32_t", 
+      "#include <boost/container/detail/std_fwd.hpp>         // for pair"
+    ], 
+    "full": [
+      "#include <bits/shared_ptr.h>                          // for shared_ptr", 
+      "#include <bits/stdint-uintn.h>                        // for uint32_t", 
+      "#include <boost/container/detail/std_fwd.hpp>         // for pair", 
+      "#include <boost/date_time/posix_time/posix_time.hpp>  // for ptime", 
+      "#include \"Composed.hh\"                                // for Composed", 
+      "#include \"Freq.hh\"                                    // for Freq", 
+      "#include \"InstantFreq.hh\"                             // for InstantFreq", 
+      "#include \"Value.hh\"                                   // for Value32", 
+      "#include \"types.hh\"                                   // for uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/ExtValue.hh": {
+    "rm": [
+      "namespace std { namespace std { namespace xtd { namespace counters { class ExtValue; } } } }  // lines 8-8", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class ExtValue; } } } }  // lines 9-9", 
+      "namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 6-6"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t", 
+      "#include \"Visitor.hh\"           // for Visitor"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t", 
+      "#include \"Base.hh\"              // for Base", 
+      "#include \"Visitor.hh\"           // for Visitor", 
+      "#include \"types.hh\"             // for string, uint32_t, uint64_t"
+    ], 
+    "errors": false
+  }
+}

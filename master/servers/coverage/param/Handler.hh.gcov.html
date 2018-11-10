@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - servers unit test coverage - param/Handler.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">param</a> - Handler.hh<span style="font-size: 80%;"> (source / <a href="Handler.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">servers unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-02-18 10:05:39</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef SERVERS_PARAM_HANDLER_HH_</a>
+<span class="lineNum">       2 </span>            : # define SERVERS_PARAM_HANDLER_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &lt;string&gt;
+<span class="lineNum">       5 </span>            : #include &lt;map&gt;
+<span class="lineNum">       6 </span>            : #include &lt;memory&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/any.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;types.hh&gt; // libcore
+<span class="lineNum">       9 </span>            : #include &lt;error.hh&gt; // libcore
+<span class="lineNum">      10 </span>            : #include &quot;param/Base.hh&quot;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : namespace xtd {
+<span class="lineNum">      14 </span>            : namespace servers {
+<a name="15"><span class="lineNum">      15 </span>            : namespace param {</a>
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span><span class="lineNoCov">          0 : xtd_error_class(param_error, error);</span>
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : class Visitor;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /**
+<span class="lineNum">      22 </span>            :  * \class Handler
+<span class="lineNum">      23 </span>            :  * \brief Param handler class
+<span class="lineNum">      24 </span>            :  *
+<span class="lineNum">      25 </span>            :  * Store declared parameter in an internal map throw add method
+<a name="26"><span class="lineNum">      26 </span>            :  * Provide get and set methods to modify already declared parameters</a>
+<span class="lineNum">      27 </span>            :  */
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 : class Handler</span>
+<span class="lineNum">      29 </span>            : {
+<span class="lineNum">      30 </span>            : private:
+<span class="lineNum">      31 </span>            :   typedef Base::t_sptr               t_param_sptr;
+<span class="lineNum">      32 </span>            :   typedef map&lt;string, t_param_sptr&gt;  t_params;
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            : public:
+<span class="lineNum">      35 </span>            :   /**
+<span class="lineNum">      36 </span>            :    * @brief Constructor
+<span class="lineNum">      37 </span>            :    * @details N/A
+<span class="lineNum">      38 </span>            :    *
+<span class="lineNum">      39 </span>            :    * @param p_actionPath the action path where to store persistent parameters (i.e. files containing values)
+<span class="lineNum">      40 </span>            :    */
+<span class="lineNum">      41 </span>            :   Handler(const string&amp; p_actionPath);
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            : private:
+<span class="lineNum">      44 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">      45 </span>            :   struct setter {
+<span class="lineNum">      46 </span>            :     static void apply(T&amp; p_dst, const T&amp; p_src) {
+<span class="lineNum">      47 </span>            :       p_dst = p_src;
+<span class="lineNum">      48 </span>            :     }
+<span class="lineNum">      49 </span>            :   };
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            : public:
+<span class="lineNum">      52 </span>            :   /**
+<span class="lineNum">      53 </span>            :    * @brief Add a new parameter to the Handler
+<span class="lineNum">      54 </span>            :    * @details N/A
+<span class="lineNum">      55 </span>            :    *
+<span class="lineNum">      56 </span>            :    * @param p_name the key name for the parameter
+<span class="lineNum">      57 </span>            :    * @param p_val the the variable to register
+<span class="lineNum">      58 </span>            :    * @param p_syncDisk the persistence parameter
+<span class="lineNum">      59 </span>            :    * @return a shared ptr to the base param object
+<span class="lineNum">      60 </span>            :    */
+<span class="lineNum">      61 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">      62 </span>            :   t_param_sptr add(const string&amp; p_name, const T&amp; p_val, bool p_syncDisk = true);
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">      65 </span>            :   t_param_sptr bind(const string&amp; p_name, T&amp; p_val, bool p_syncDisk = true);
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :   /**
+<span class="lineNum">      68 </span>            :    * @brief Add a new parameter to the Handler
+<span class="lineNum">      69 </span>            :    * @details N/A
+<span class="lineNum">      70 </span>            :    *
+<span class="lineNum">      71 </span>            :    * @param p_name the key name for the parameter
+<span class="lineNum">      72 </span>            :    * @param p_param a shared ptr to an already existing parameter to register
+<span class="lineNum">      73 </span>            :    * @param p_syncDisk the persistence parameter
+<span class="lineNum">      74 </span>            :    * @return a shared ptr to the base param object
+<span class="lineNum">      75 </span>            :    */
+<span class="lineNum">      76 </span>            :   t_param_sptr add(const string&amp; p_name, t_param_sptr p_param, bool p_syncDisk = true);
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            :   /**
+<span class="lineNum">      79 </span>            :    * @brief Existency checking
+<span class="lineNum">      80 </span>            :    * @details N/A
+<span class="lineNum">      81 </span>            :    *
+<span class="lineNum">      82 </span>            :    * @param p_name the parameter to check
+<span class="lineNum">      83 </span>            :    * @return true if already declared
+<span class="lineNum">      84 </span>            :    */
+<span class="lineNum">      85 </span>            :   bool   exists(const string&amp; p_name);
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            :   /**
+<span class="lineNum">      88 </span>            :    * @brief Initialization
+<span class="lineNum">      89 </span>            :    * @details N/A
+<span class="lineNum">      90 </span>            :    */
+<span class="lineNum">      91 </span>            :   void   initialize(void);
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span>            :   /**
+<span class="lineNum">      94 </span>            :    * @brief Add parameters to the Json visitor
+<span class="lineNum">      95 </span>            :    * @details call accept on each parameter
+<span class="lineNum">      96 </span>            :    *
+<span class="lineNum">      97 </span>            :    * @param p_visitor the right visitor
+<span class="lineNum">      98 </span>            :    */
+<span class="lineNum">      99 </span>            :   void accept(Visitor&amp; p_visitor) const;
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            :   /**
+<span class="lineNum">     102 </span>            :    * @brief Function to verify if given string value can be setted on parameter
+<span class="lineNum">     103 </span>            :    * @param p_name parameter value
+<span class="lineNum">     104 </span>            :    * @param p_src the new value
+<span class="lineNum">     105 </span>            :    * @return true if value can be setted
+<span class="lineNum">     106 </span>            :    * @details N/A
+<span class="lineNum">     107 </span>            :    */
+<span class="lineNum">     108 </span>            :   bool verify(const string&amp; p_name, const string&amp; p_src);
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            :   /**
+<span class="lineNum">     111 </span>            :    * @brief Retreive parameter value from a string
+<span class="lineNum">     112 </span>            :    * @param p_name the parameter name
+<span class="lineNum">     113 </span>            :    * @param p_src the string value
+<span class="lineNum">     114 </span>            :    * @param p_log logging message
+<span class="lineNum">     115 </span>            :    * @return true if it succeeds
+<span class="lineNum">     116 </span>            :    * @details N/A
+<span class="lineNum">     117 </span>            :    */
+<span class="lineNum">     118 </span>            :   bool fromStr(const string&amp; p_name, const string&amp; p_src, const string&amp; p_log);
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            :   /**
+<span class="lineNum">     121 </span>            :    * @brief return an iterator on a find call on map
+<span class="lineNum">     122 </span>            :    * @details make a find with lowercase on given name
+<span class="lineNum">     123 </span>            :    *
+<span class="lineNum">     124 </span>            :    * @param p_name the parameter name to find in map
+<span class="lineNum">     125 </span>            :    *
+<span class="lineNum">     126 </span>            :    * @return iterator result of map search
+<span class="lineNum">     127 </span>            :    */
+<span class="lineNum">     128 </span>            :   t_params::iterator find(const string&amp; p_name);
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            :   /**
+<span class="lineNum">     131 </span>            :    * @brief Get the current value of a parameter
+<span class="lineNum">     132 </span>            :    * @details N/A
+<span class="lineNum">     133 </span>            :    *
+<span class="lineNum">     134 </span>            :    * @param p_name the parameter name
+<span class="lineNum">     135 </span>            :    * @param p_dst the variable to store the content of the current value
+<span class="lineNum">     136 </span>            :    * @return true if it succeeds
+<span class="lineNum">     137 </span>            :    */
+<span class="lineNum">     138 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     139 </span>            :   bool get(const string&amp; p_name, T&amp; p_dst);
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            :   /**
+<span class="lineNum">     142 </span>            :    * @brief Set a parameter value
+<span class="lineNum">     143 </span>            :    * @details N/A
+<span class="lineNum">     144 </span>            :    *
+<span class="lineNum">     145 </span>            :    * @param p_name the parameter name
+<span class="lineNum">     146 </span>            :    * @param p_src the new value
+<span class="lineNum">     147 </span>            :    * @return true if it succeeds
+<span class="lineNum">     148 </span>            :    */
+<span class="lineNum">     149 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     150 </span>            :   bool set(const string&amp; p_name, const T&amp; p_src);
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            :   /**
+<span class="lineNum">     153 </span>            :    * @brief Specify the setter to modify the parameter
+<span class="lineNum">     154 </span>            :    * @details N/A
+<span class="lineNum">     155 </span>            :    *
+<span class="lineNum">     156 </span>            :    * @param p_name the parameter name
+<span class="lineNum">     157 </span>            :    * @param p_handler the modification handler
+<span class="lineNum">     158 </span>            :    * @return true if it succeeds (i.e. parameter exists)
+<span class="lineNum">     159 </span>            :    */
+<span class="lineNum">     160 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     161 </span>            :   bool listen(const string&amp; p_name, T p_handler);
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            :   /**
+<span class="lineNum">     164 </span>            :    * @brief Add a specific constraint to match while trying to modify a parameter
+<span class="lineNum">     165 </span>            :    * @details Each time a modification is requested, the constraint will be checked
+<span class="lineNum">     166 </span>            :    * Many constraints can be added, they will be checked in declaration order
+<span class="lineNum">     167 </span>            :    * Opposite constraints must be avoided
+<span class="lineNum">     168 </span>            :    *
+<span class="lineNum">     169 </span>            :    * @param p_name the parameter name
+<span class="lineNum">     170 </span>            :    * @param p_handler the specific constraint
+<span class="lineNum">     171 </span>            :    * @return true if add succeeds
+<span class="lineNum">     172 </span>            :    */
+<span class="lineNum">     173 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     174 </span>            :   bool constraint(const string&amp; p_name, T p_handler);
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            : private:
+<span class="lineNum">     177 </span>            :   void sync(const string&amp; p_name);
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span>            : private:
+<span class="lineNum">     180 </span>            :   string m_actionPath;
+<span class="lineNum">     181 </span>            :   t_params    m_params;
+<span class="lineNum">     182 </span>            : };
+<span class="lineNum">     183 </span>            : 
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     186 </span>            : Handler::t_param_sptr
+<span class="lineNum">     187 </span>            : Handler::add(const string&amp; p_name, const T&amp; p_val, bool p_syncDisk)
+<span class="lineNum">     188 </span>            : {
+<span class="lineNum">     189 </span>            :   t_param_sptr l_param(new POD&lt;T&gt;(p_val, p_name));
+<span class="lineNum">     190 </span>            :   return add(p_name, l_param, p_syncDisk);
+<span class="lineNum">     191 </span>            : }
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span>            : 
+<span class="lineNum">     195 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     196 </span>            : Handler::t_param_sptr
+<span class="lineNum">     197 </span>            : Handler::bind(const string&amp; p_name, T&amp; p_val, bool p_syncDisk)
+<span class="lineNum">     198 </span>            : {
+<span class="lineNum">     199 </span>            :   Handler::t_param_sptr l_param;
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            :   l_param = add(p_name, p_val, p_syncDisk);
+<span class="lineNum">     202 </span>            :   l_param-&gt;listen&lt;T&gt;(boost::bind(&amp;Handler::setter&lt;T&gt;::apply, boost::ref(p_val), _2));
+<span class="lineNum">     203 </span>            : 
+<span class="lineNum">     204 </span>            :   return l_param;
+<span class="lineNum">     205 </span>            : }
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            : 
+<span class="lineNum">     208 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     209 </span>            : bool
+<span class="lineNum">     210 </span>            : Handler::get(const string&amp; p_name, T&amp; p_dst)
+<span class="lineNum">     211 </span>            : {
+<span class="lineNum">     212 </span>            :   t_params::iterator c_param = find(p_name);
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            :   if (c_param == m_params.end())
+<span class="lineNum">     215 </span>            :     return false;
+<span class="lineNum">     216 </span>            :   return c_param-&gt;second-&gt;get(p_dst);
+<span class="lineNum">     217 </span>            : }
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     221 </span>            : bool
+<span class="lineNum">     222 </span>            : Handler::set(const string&amp; p_name, const T&amp; p_src)
+<span class="lineNum">     223 </span>            : {
+<span class="lineNum">     224 </span>            :   t_params::iterator c_param = find(p_name);
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span>            :   if (c_param == m_params.end())
+<span class="lineNum">     227 </span>            :     return false;
+<span class="lineNum">     228 </span>            :   return c_param-&gt;second-&gt;set(p_src);
+<span class="lineNum">     229 </span>            : }
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     233 </span>            : bool
+<span class="lineNum">     234 </span>            : Handler::listen(const string&amp; p_name, T p_handler)
+<span class="lineNum">     235 </span>            : {
+<span class="lineNum">     236 </span>            :   t_params::iterator c_param = find(p_name);
+<span class="lineNum">     237 </span>            : 
+<span class="lineNum">     238 </span>            :   if (c_param == m_params.end())
+<span class="lineNum">     239 </span>            :     return false;
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            :   c_param-&gt;second-&gt;listen(p_handler);
+<span class="lineNum">     242 </span>            :   return true;
+<span class="lineNum">     243 </span>            : }
+<span class="lineNum">     244 </span>            : 
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     247 </span>            : bool
+<span class="lineNum">     248 </span>            : Handler::constraint(const string&amp; p_name, T p_handler)
+<span class="lineNum">     249 </span>            : {
+<span class="lineNum">     250 </span>            :   t_params::iterator c_param = find(p_name);
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span>            :   if (c_param == m_params.end())
+<span class="lineNum">     253 </span>            :     return false;
+<span class="lineNum">     254 </span>            : 
+<span class="lineNum">     255 </span>            :   c_param-&gt;second-&gt;constraint(p_handler);
+<span class="lineNum">     256 </span>            :   return true;
+<span class="lineNum">     257 </span>            : }
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span>            : }}}
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span>            : #endif // !SERVERS_APP_PARAMHANDLER_HH_
+<span class="lineNum">     262 </span>            : 
+<span class="lineNum">     263 </span>            : // Local Variables:
+<span class="lineNum">     264 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     265 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

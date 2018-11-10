@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0" lines-covered="0" lines-valid="69" timestamp="1541877193" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......tests.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/ProgressListener.hh" line-rate="0.0" name="......tests.src.ProgressListener.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="11"/>
+						<line branch="false" hits="0" number="13"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/CWrap.hh" line-rate="0.0" name="......tests.src.CWrap.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="11"/>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="13"/>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/CWrap.cc" line-rate="0.0" name="......tests.src.CWrap.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="144"/>
+						<line branch="false" hits="0" number="155"/>
+						<line branch="false" hits="0" number="169"/>
+						<line branch="false" hits="0" number="180"/>
+						<line branch="false" hits="0" number="194"/>
+						<line branch="false" hits="0" number="207"/>
+						<line branch="false" hits="0" number="217"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/asserts.hh" line-rate="0.0" name="......tests.src.asserts.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="5"/>
+						<line branch="false" hits="0" number="11"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="108"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/MainTestApplication.hh" line-rate="0.0" name="......tests.src.MainTestApplication.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="50"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/QuietOutputter.hh" line-rate="0.0" name="......tests.src.QuietOutputter.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="11"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/TestFixture.hh" line-rate="0.0" name="......tests.src.TestFixture.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="7"/>
+						<line branch="false" hits="0" number="13"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="19"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

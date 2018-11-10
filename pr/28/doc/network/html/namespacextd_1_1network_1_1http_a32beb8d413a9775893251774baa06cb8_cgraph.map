@@ -1,0 +1,7 @@
+<map id="xtd::network::http::operator&lt;&lt;" name="xtd::network::http::operator&lt;&lt;">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1http_1_1Response.html#a9cb3d6cdde84af37ffb4e7e80197af1f" title="xtd::network::http\l::Response::getStatus" alt="" coords="180,5,333,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1http_1_1codes.html#adbf717c1a58bd8a0d9fa3cff75c81824" title="xtd::network::http\l::codes::getMessage" alt="" coords="185,71,329,112"/>
+<area shape="rect" id="node4" href="$namespacextd_1_1network_1_1http.html#a82c3b4facf3c8d92550d1e73973d03af" title="xtd::network::http::str" alt="" coords="183,137,330,163"/>
+<area shape="rect" id="node5" href="$classxtd_1_1network_1_1http_1_1Message.html#a1bc684fd74e5b0805fa5a9e3eb2b93c6" title="xtd::network::http\l::Message::getVersion" alt="" coords="180,188,333,229"/>
+<area shape="rect" id="node6" href="$classxtd_1_1network_1_1http_1_1Message.html#a590bd511d6ea71218095a200c995c7ef" title="xtd::network::http\l::Message::getHeaders" alt="" coords="177,253,336,295"/>
+</map>

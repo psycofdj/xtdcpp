@@ -1,0 +1,8 @@
+<map id="xtd::counters::AvgTimedValue" name="xtd::counters::AvgTimedValue">
+<area shape="rect" id="node2" href="$classxtd_1_1counters_1_1Composed.html" title="xtd::counters::Composed" alt="" coords="599,191,768,217"/>
+<area shape="rect" id="node3" href="$classxtd_1_1counters_1_1Base.html" title="xtd::counters::Base" alt="" coords="195,175,331,201"/>
+<area shape="rect" id="node5" href="$classxtd_1_1counters_1_1Value.html" title="xtd::counters::Value\l\&lt; uint32_t \&gt;" alt="" coords="436,86,575,127"/>
+<area shape="rect" id="node7" href="$classxtd_1_1counters_1_1InstantFreq.html" title="xtd::counters::InstantFreq" alt="" coords="792,91,964,117"/>
+<area shape="rect" id="node8" href="$classxtd_1_1counters_1_1Freq.html" title="xtd::counters::Freq" alt="" coords="812,141,944,168"/>
+<area shape="rect" id="node6" href="$classxtd_1_1counters_1_1Atomic.html" title="xtd::counters::Atomic" alt="" coords="189,93,336,120"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="xtd::Application::bindCallback" name="xtd::Application::bindCallback">
+<area shape="rect" id="node2" href="$classxtd_1_1Application.html#a3da92b7f6543aa1dd26aee2d886d8135" title="Constructor. " alt="" coords="261,5,460,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1Application.html#ab8e835ba678494c42e12c4613958d18a" title="initialize application, (default nothing) " alt="" coords="271,56,450,83"/>
+<area shape="rect" id="node4" href="$classxtd_1_1Application.html#af6aafabf6c552d200f810f754f34e14c" title="main entry point, usually called with main(int,char**)&#39;s arguments " alt="" coords="508,56,687,83"/>
+</map>

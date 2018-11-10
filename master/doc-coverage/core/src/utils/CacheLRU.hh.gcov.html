@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/utils/CacheLRU.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/utils</a> - CacheLRU.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryMed">83.3 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:55:15</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef NETWORK_CACHEDNS_HH_
+<span class="lineNum">       2 </span>            : # define NETWORK_CACHEDNS_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;tuple&gt;
+<span class="lineNum">       5 </span>            : # include &lt;list&gt;
+<span class="lineNum">       6 </span>            : # include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+<span class="lineNum">       7 </span>            : # pragma GCC diagnostic push
+<span class="lineNum">       8 </span>            : # pragma GCC diagnostic ignored &quot;-Wsequence-point&quot;
+<span class="lineNum">       9 </span>            : #  include &lt;boost/unordered_map.hpp&gt;
+<span class="lineNum">      10 </span>            : # pragma GCC diagnostic pop
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : namespace xtd {
+<span class="lineNum">      13 </span>            : namespace utils {
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : template&lt;typename TKey, typename TVal&gt;
+<span class="lineNum">      17 </span>            : class CacheLRU
+<span class="lineNum">      18 </span><span class="lineNoCov">          0 : {</span>
+<span class="lineNum">      19 </span>            : private:
+<span class="lineNum">      20 </span>            :   /// typedef for URL/Entry(IP address) pair
+<span class="lineNum">      21 </span>            :   typedef std::tuple&lt;TKey, TVal, boost::posix_time::ptime&gt;       t_value;
+<span class="lineNum">      22 </span>            :   typedef std::list&lt;t_value&gt;                                     t_items;
+<span class="lineNum">      23 </span>            :   typedef boost::unordered_map&lt;TKey, typename t_items::iterator&gt; t_index;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : public:
+<span class="lineNum">      26 </span>            :   /**
+<span class="lineNum">      27 </span>            :    ** @brief specifying capacity and entry timetolive
+<span class="lineNum">      28 </span>            :    ** @param p_capacity max number of entries
+<span class="lineNum">      29 </span>            :    ** @param p_ttlSec maximum time to live of an entry in seconds
+<span class="lineNum">      30 </span>            :    ** @details
+<span class="lineNum">      31 </span>            :    ** TTL = 0 means no expire
+<span class="lineNum">      32 </span>            :    */
+<span class="lineNum">      33 </span><span class="lineCov">          1 :   explicit CacheLRU(uint32_t p_capacity = 200, uint32_t p_ttlSec = 1800);</span>
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            :   /**
+<span class="lineNum">      36 </span>            :    ** @brief Non copyable object
+<span class="lineNum">      37 </span>            :    */
+<span class="lineNum">      38 </span><span class="lineCov">          1 :   CacheLRU(const CacheLRU&amp;) = delete;</span>
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            :   /**
+<span class="lineNum">      41 </span>            :    ** @brief pop the element from the pool
+<span class="lineNum">      42 </span>            :    ** @param p_key element key
+<span class="lineNum">      43 </span>            :    ** @param[out] p_val popped element value
+<span class="lineNum">      44 </span>            :    ** @return true if key found
+<span class="lineNum">      45 </span>            :    */
+<span class="lineNum">      46 </span><span class="lineCov">          1 :   bool pop(const TKey&amp; p_key, TVal&amp; p_val);</span>
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            :   /**
+<span class="lineNum">      49 </span>            :    ** @brief push the element in the pool
+<span class="lineNum">      50 </span>            :    ** @param p_key element key
+<span class="lineNum">      51 </span>            :    ** @param p_val element value
+<span class="lineNum">      52 </span>            :    */
+<span class="lineNum">      53 </span><span class="lineCov">          1 :   void push(const TKey&amp; p_key, const TVal&amp; p_val);</span>
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : public:
+<span class="lineNum">      56 </span>            :   /**
+<span class="lineNum">      57 </span>            :    ** @brief Returns the number of elements present in container
+<span class="lineNum">      58 </span>            :    */
+<span class="lineNum">      59 </span><span class="lineCov">          1 :   inline size_t size(void) const;</span>
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : private:
+<span class="lineNum">      62 </span>            :   /**
+<span class="lineNum">      63 </span>            :    ** @brief checks if timestamp is good and updates if necessary
+<span class="lineNum">      64 </span>            :    ** @param[out] p_stamp timestamp checked/updated
+<span class="lineNum">      65 </span>            :    ** @return true if timestamp is valid and updated
+<span class="lineNum">      66 </span>            :    */
+<span class="lineNum">      67 </span>            :   bool checkUpdateStamp(boost::posix_time::ptime&amp; p_stamp);
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            : private:
+<span class="lineNum">      71 </span>            :   t_items   m_data;       /// Holds internal data
+<span class="lineNum">      72 </span>            :   t_index   m_index;      /// Holds intex to internal data
+<span class="lineNum">      73 </span>            :   uint32_t  m_maxEntries; /// Number maximum of entries
+<span class="lineNum">      74 </span>            :   uint32_t  m_ttlSec;     /// Time to live of the elements/entries in seconds
+<span class="lineNum">      75 </span>            : };
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : }} // end namespaces
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            : #include &quot;utils/CacheLRU.hxx&quot; // IWYU pragma: export
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            : #endif // !NETWORK_CACHEDNS_HH_
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            : // Local Variables:
+<span class="lineNum">      85 </span>            : // ispell-local-dictionary: &quot;en&quot;
+<span class="lineNum">      86 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

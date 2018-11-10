@@ -1,0 +1,17 @@
+<map id="src/log/ConfLoader.cc" name="src/log/ConfLoader.cc">
+<area shape="rect" id="node2" href="$ConfLoader_8hh.html" title="log/ConfLoader.hh" alt="" coords="93,87,221,114"/>
+<area shape="rect" id="node5" href="$helpers_8hh.html" title="log/helpers.hh" alt="" coords="426,169,529,196"/>
+<area shape="rect" id="node6" href="$logtypes_8hh.html" title="log/logtypes.hh" alt="" coords="1685,319,1795,345"/>
+<area shape="rect" id="node38" href="$Appender_8hh.html" title="log/Appender.hh" alt="" coords="1835,169,1951,196"/>
+<area shape="rect" id="node39" href="$Formatter_8hh.html" title="log/Formatter.hh" alt="" coords="1549,244,1667,271"/>
+<area shape="rect" id="node43" href="$Logger_8hh.html" title="log/Logger.hh" alt="" coords="707,169,807,196"/>
+<area shape="rect" id="node45" href="$ColoredFormatter_8hh.html" title="log/ColoredFormatter.hh" alt="" coords="1293,169,1456,196"/>
+<area shape="rect" id="node47" href="$MemoryAppender_8hh.html" title="log/MemoryAppender.hh" alt="" coords="1895,87,2057,114"/>
+<area shape="rect" id="node49" href="$StreamAppender_8hh.html" title="log/StreamAppender.hh" alt="" coords="1531,87,1690,114"/>
+<area shape="rect" id="node50" href="$SyslogAppender_8hh.html" title="log/SyslogAppender.hh" alt="" coords="1714,87,1870,114"/>
+<area shape="rect" id="node27" href="$singleton_8hh.html" title="mixins/singleton.hh" alt="" coords="982,169,1117,196"/>
+<area shape="rect" id="node7" href="$error_8hh.html" title="error.hh" alt="" coords="1929,401,1996,427"/>
+<area shape="rect" id="node8" href="$types_8hh.html" title="types.hh" alt="" coords="1929,557,2001,584"/>
+<area shape="rect" id="node22" href="$format_8hh.html" title="format.hh" alt="" coords="1991,483,2068,509"/>
+<area shape="rect" id="node40" href="$Fields_8hh.html" title="log/Fields.hh" alt="" coords="1364,319,1460,345"/>
+</map>

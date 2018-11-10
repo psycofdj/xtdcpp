@@ -1,0 +1,8 @@
+<map id="xtd::log::Formatter::createFields" name="xtd::log::Formatter::createFields">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1Formatter.html#abbcd2b8c6fd1996fec44e68d0ae5ea79" title="Execute formatting process. " alt="" coords="195,5,336,47"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#a1bf454914ef30636b604ead4f3c0ca7b" title="Converts given level to string label. " alt="" coords="199,71,332,98"/>
+<area shape="rect" id="node4" href="$namespacextd_1_1log.html#ad2efc26287edf8534ae7b46b22907c02" title="Converts given level to underlying value. " alt="" coords="200,122,331,149"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1Formatter.html#ab36202b08245b27bea582289de44ff46" title="Apply time layout to given boost::posix_time::ptime argument. " alt="" coords="195,173,336,215"/>
+<area shape="rect" id="node7" href="$classxtd_1_1log_1_1Formatter.html#ad5747c5e72bc157cd82ce964f075c159" title="Resolve given layout from given fields data. " alt="" coords="195,239,336,280"/>
+<area shape="rect" id="node5" href="$namespacextd.html#a518b0ddcbf87f6c21175d2760f4fbe21" title="Returns internal value of an enum class. " alt="" coords="384,122,480,149"/>
+</map>

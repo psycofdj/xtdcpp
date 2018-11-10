@@ -1,0 +1,10 @@
+<map id="xtd::tty::operator&lt;&lt;" name="xtd::tty::operator&lt;&lt;">
+<area shape="rect" id="node2" href="$classxtd_1_1tty_1_1Text.html#a3058d659a459213b2e5d8c7414359c1d" title="Generates terminal color codes. " alt="" coords="188,157,308,184"/>
+<area shape="rect" id="node3" href="$structxtd_1_1tty_1_1style.html#abf9106d442fb491bd41eb3a92609e8ac" title="Returns foreground color. " alt="" coords="357,5,527,32"/>
+<area shape="rect" id="node4" href="$classxtd_1_1tty_1_1color.html#a5d3144b13815c1c13335a5adece87da8" title="Tells is color is not color::unset. " alt="" coords="373,56,511,83"/>
+<area shape="rect" id="node5" href="$classxtd_1_1tty_1_1color.html#a821c09ce3bcbd784f529dedd02497e90" title="Tells if color is extended. " alt="" coords="356,107,528,133"/>
+<area shape="rect" id="node6" href="$classxtd_1_1tty_1_1color.html#a823fb8e1a7f8d3ca3823edc9a1a2268f" title="Get terminal color code. " alt="" coords="363,157,521,184"/>
+<area shape="rect" id="node7" href="$structxtd_1_1tty_1_1style.html#ab2d2c1af7e35c0ea91d0a233934a697a" title="Returns background color. " alt="" coords="356,208,528,235"/>
+<area shape="rect" id="node8" href="$structxtd_1_1tty_1_1style.html#a2e02801b271ecda8abbbbcefd91f52da" title="Returns effect attributes. " alt="" coords="365,259,519,285"/>
+<area shape="rect" id="node9" href="$classxtd_1_1tty_1_1attrs.html#a43e92976e4e2ef67cc3de690a6075f8d" title="Returns internal ANSI code values. " alt="" coords="361,309,523,336"/>
+</map>

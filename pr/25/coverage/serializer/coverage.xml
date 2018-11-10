@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0" lines-covered="0" lines-valid="5" timestamp="1517737563" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......serializer.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../serializer/src/serializer.cc" line-rate="0.0" name="......serializer.src.serializer.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="6"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_serializer.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="6"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="6"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......serializer.src.objects">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../serializer/src/objects/Doc.cc" line-rate="0.0" name="......serializer.src.objects.Doc.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::serializer::Doc::Doc()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="8"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="8"/>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="10"/>
+						<line branch="false" hits="0" number="12"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

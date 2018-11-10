@@ -1,0 +1,2559 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0" lines-covered="0" lines-valid="1018" timestamp="1541879731" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......servers.src.app">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/Server.cc" line-rate="0.0" name="......servers.src.app.Server.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Server.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="16"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/Server.hxx" line-rate="0.0" name="......servers.src.app.Server.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::start()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="144"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::setAssertRTT(bool)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="323"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::isStructgenMode() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="225"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::process()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="331"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::setUp()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="300"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::isStructgenMode() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="225"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::parseConfig()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="102"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::processObjectRequest(unsigned int, xtd::serializer::Doc const&amp;, bool, xtd::serializer::Doc&amp;, bool&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="259"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::stop()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="153"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::parseBipPort()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="162"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::Server()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="56"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::h_ihm_query(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="406"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::defineProbes()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="187"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::h_query(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="364"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::setAssertRTT(bool)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="323"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::checkOptions()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="170"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::h_query(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="364"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::~Server()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::~Server()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::h_ihm_query(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="406"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::start()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="144"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::defineProbes()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="187"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::~Server()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::processObjectRequest(unsigned int, xtd::serializer::Doc const&amp;, bool, xtd::serializer::Doc&amp;, bool&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="259"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::setUp()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="300"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::process()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="331"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::isResponseValid(xtd::serializer::Doc const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="218"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::stop()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="153"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::dumpRequest(xtd::serializer::Doc const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="232"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::~Server()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::isResponseValid(xtd::serializer::Doc const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="218"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::parseConfig()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="102"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::Server()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="56"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::parseBipPort()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="162"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::checkOptions()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="170"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::dumpRequest(xtd::serializer::Doc const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="232"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="70"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="82"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="90"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="106"/>
+						<line branch="false" hits="0" number="107"/>
+						<line branch="false" hits="0" number="108"/>
+						<line branch="false" hits="0" number="110"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="117"/>
+						<line branch="false" hits="0" number="122"/>
+						<line branch="false" hits="0" number="123"/>
+						<line branch="false" hits="0" number="126"/>
+						<line branch="false" hits="0" number="127"/>
+						<line branch="false" hits="0" number="128"/>
+						<line branch="false" hits="0" number="129"/>
+						<line branch="false" hits="0" number="134"/>
+						<line branch="false" hits="0" number="137"/>
+						<line branch="false" hits="0" number="138"/>
+						<line branch="false" hits="0" number="144"/>
+						<line branch="false" hits="0" number="146"/>
+						<line branch="false" hits="0" number="147"/>
+						<line branch="false" hits="0" number="148"/>
+						<line branch="false" hits="0" number="149"/>
+						<line branch="false" hits="0" number="153"/>
+						<line branch="false" hits="0" number="155"/>
+						<line branch="false" hits="0" number="156"/>
+						<line branch="false" hits="0" number="157"/>
+						<line branch="false" hits="0" number="158"/>
+						<line branch="false" hits="0" number="162"/>
+						<line branch="false" hits="0" number="164"/>
+						<line branch="false" hits="0" number="165"/>
+						<line branch="false" hits="0" number="166"/>
+						<line branch="false" hits="0" number="170"/>
+						<line branch="false" hits="0" number="172"/>
+						<line branch="false" hits="0" number="174"/>
+						<line branch="false" hits="0" number="175"/>
+						<line branch="false" hits="0" number="176"/>
+						<line branch="false" hits="0" number="177"/>
+						<line branch="false" hits="0" number="178"/>
+						<line branch="false" hits="0" number="187"/>
+						<line branch="false" hits="0" number="189"/>
+						<line branch="false" hits="0" number="190"/>
+						<line branch="false" hits="0" number="192"/>
+						<line branch="false" hits="0" number="193"/>
+						<line branch="false" hits="0" number="195"/>
+						<line branch="false" hits="0" number="196"/>
+						<line branch="false" hits="0" number="197"/>
+						<line branch="false" hits="0" number="198"/>
+						<line branch="false" hits="0" number="199"/>
+						<line branch="false" hits="0" number="200"/>
+						<line branch="false" hits="0" number="201"/>
+						<line branch="false" hits="0" number="202"/>
+						<line branch="false" hits="0" number="203"/>
+						<line branch="false" hits="0" number="204"/>
+						<line branch="false" hits="0" number="205"/>
+						<line branch="false" hits="0" number="206"/>
+						<line branch="false" hits="0" number="207"/>
+						<line branch="false" hits="0" number="208"/>
+						<line branch="false" hits="0" number="209"/>
+						<line branch="false" hits="0" number="210"/>
+						<line branch="false" hits="0" number="211"/>
+						<line branch="false" hits="0" number="212"/>
+						<line branch="false" hits="0" number="218"/>
+						<line branch="false" hits="0" number="220"/>
+						<line branch="false" hits="0" number="225"/>
+						<line branch="false" hits="0" number="227"/>
+						<line branch="false" hits="0" number="232"/>
+						<line branch="false" hits="0" number="236"/>
+						<line branch="false" hits="0" number="237"/>
+						<line branch="false" hits="0" number="238"/>
+						<line branch="false" hits="0" number="240"/>
+						<line branch="false" hits="0" number="241"/>
+						<line branch="false" hits="0" number="242"/>
+						<line branch="false" hits="0" number="244"/>
+						<line branch="false" hits="0" number="245"/>
+						<line branch="false" hits="0" number="248"/>
+						<line branch="false" hits="0" number="249"/>
+						<line branch="false" hits="0" number="252"/>
+						<line branch="false" hits="0" number="253"/>
+						<line branch="false" hits="0" number="254"/>
+						<line branch="false" hits="0" number="255"/>
+						<line branch="false" hits="0" number="259"/>
+						<line branch="false" hits="0" number="265"/>
+						<line branch="false" hits="0" number="267"/>
+						<line branch="false" hits="0" number="268"/>
+						<line branch="false" hits="0" number="270"/>
+						<line branch="false" hits="0" number="272"/>
+						<line branch="false" hits="0" number="273"/>
+						<line branch="false" hits="0" number="274"/>
+						<line branch="false" hits="0" number="275"/>
+						<line branch="false" hits="0" number="276"/>
+						<line branch="false" hits="0" number="280"/>
+						<line branch="false" hits="0" number="282"/>
+						<line branch="false" hits="0" number="283"/>
+						<line branch="false" hits="0" number="285"/>
+						<line branch="false" hits="0" number="286"/>
+						<line branch="false" hits="0" number="287"/>
+						<line branch="false" hits="0" number="291"/>
+						<line branch="false" hits="0" number="293"/>
+						<line branch="false" hits="0" number="294"/>
+						<line branch="false" hits="0" number="300"/>
+						<line branch="false" hits="0" number="302"/>
+						<line branch="false" hits="0" number="305"/>
+						<line branch="false" hits="0" number="307"/>
+						<line branch="false" hits="0" number="311"/>
+						<line branch="false" hits="0" number="316"/>
+						<line branch="false" hits="0" number="318"/>
+						<line branch="false" hits="0" number="323"/>
+						<line branch="false" hits="0" number="325"/>
+						<line branch="false" hits="0" number="326"/>
+						<line branch="false" hits="0" number="331"/>
+						<line branch="false" hits="0" number="333"/>
+						<line branch="false" hits="0" number="334"/>
+						<line branch="false" hits="0" number="336"/>
+						<line branch="false" hits="0" number="337"/>
+						<line branch="false" hits="0" number="342"/>
+						<line branch="false" hits="0" number="343"/>
+						<line branch="false" hits="0" number="345"/>
+						<line branch="false" hits="0" number="346"/>
+						<line branch="false" hits="0" number="348"/>
+						<line branch="false" hits="0" number="349"/>
+						<line branch="false" hits="0" number="351"/>
+						<line branch="false" hits="0" number="353"/>
+						<line branch="false" hits="0" number="354"/>
+						<line branch="false" hits="0" number="357"/>
+						<line branch="false" hits="0" number="359"/>
+						<line branch="false" hits="0" number="364"/>
+						<line branch="false" hits="0" number="368"/>
+						<line branch="false" hits="0" number="369"/>
+						<line branch="false" hits="0" number="370"/>
+						<line branch="false" hits="0" number="371"/>
+						<line branch="false" hits="0" number="372"/>
+						<line branch="false" hits="0" number="373"/>
+						<line branch="false" hits="0" number="374"/>
+						<line branch="false" hits="0" number="378"/>
+						<line branch="false" hits="0" number="379"/>
+						<line branch="false" hits="0" number="382"/>
+						<line branch="false" hits="0" number="384"/>
+						<line branch="false" hits="0" number="386"/>
+						<line branch="false" hits="0" number="387"/>
+						<line branch="false" hits="0" number="388"/>
+						<line branch="false" hits="0" number="392"/>
+						<line branch="false" hits="0" number="394"/>
+						<line branch="false" hits="0" number="395"/>
+						<line branch="false" hits="0" number="396"/>
+						<line branch="false" hits="0" number="398"/>
+						<line branch="false" hits="0" number="399"/>
+						<line branch="false" hits="0" number="400"/>
+						<line branch="false" hits="0" number="406"/>
+						<line branch="false" hits="0" number="410"/>
+						<line branch="false" hits="0" number="411"/>
+						<line branch="false" hits="0" number="413"/>
+						<line branch="false" hits="0" number="415"/>
+						<line branch="false" hits="0" number="416"/>
+						<line branch="false" hits="0" number="417"/>
+						<line branch="false" hits="0" number="418"/>
+						<line branch="false" hits="0" number="419"/>
+						<line branch="false" hits="0" number="420"/>
+						<line branch="false" hits="0" number="422"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HtmlOArchive.hh" line-rate="0.0" name="......servers.src.app.HtmlOArchive.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::~HtmlOArchive()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="40"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::~HtmlOArchive()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="40"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::VectorObject::~VectorObject()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::context::~context()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="125"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::PodObject::~PodObject()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::VectorObject::~VectorObject()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive&amp; xtd::servers::app::HtmlOArchive::operator*&lt;boost::serialization::nvp&lt;unsigned int&gt; const&gt;(boost::serialization::nvp&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="143"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive&amp; xtd::servers::app::HtmlOArchive::operator/&lt;boost::serialization::nvp&lt;unsigned int&gt; const&gt;(boost::serialization::nvp&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="149"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::context::context(xtd::servers::app::HtmlOArchive::context&amp;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="125"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::PodObject::~PodObject()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="125"/>
+						<line branch="false" hits="0" number="143"/>
+						<line branch="false" hits="0" number="145"/>
+						<line branch="false" hits="0" number="149"/>
+						<line branch="false" hits="0" number="151"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HtmlOArchive.hxx" line-rate="0.0" name="......servers.src.app.HtmlOArchive.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp; xtd::servers::app::to_javascript&lt;xtd::serializer::Doc&gt;(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::app::HtmlOArchive::save_override&lt;unsigned int&gt;(boost::serialization::nvp&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::app::HtmlOArchive::save_override&lt;xtd::serializer::Doc&gt;(boost::serialization::nvp&lt;xtd::serializer::Doc&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="73"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="79"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HtmlOArchive.cc" line-rate="0.0" name="......servers.src.app.HtmlOArchive.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::version_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="447"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::VectorObject::VectorObject(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="162"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::context::context()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="205"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::StructObject::write(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="112"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::Object::write_head(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="37"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::StructObject::~StructObject()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::StructObject::StructObject(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, unsigned int, unsigned int, unsigned int, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="90"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::class_id_reference_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="459"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::HtmlOArchive(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="219"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_binary(void*, unsigned long)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="229"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::object_id_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="436"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(char const*)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="314"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::Object::Object(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::tracking_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="475"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::StructObject::~StructObject()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="322"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="385"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_HtmlOArchive.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="481"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="481"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_start(char const*)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="235"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::Object::~Object()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::class_id_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="453"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(boost::serialization::collection_size_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="423"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::Object::write(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::VectorObject::display(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="176"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_end(char const*)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="254"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::object_reference_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="442"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::PodObject::PodObject(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="53"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::PodObject::display(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="64"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::class_id_optional_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="464"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(double const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="409"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(boost::serialization::item_version_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="429"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(unsigned long long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="357"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(long long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="392"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::Object::~Object()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(unsigned short const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="336"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(short const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="371"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::StructObject::display(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="122"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="350"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::Object::write_tail(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="343"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="378"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(unsigned char const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="329"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(float const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="416"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save_override(boost::archive::class_name_type const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="470"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(char const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="364"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HtmlOArchive::save(bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="399"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="48"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="59"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="73"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="81"/>
+						<line branch="false" hits="0" number="82"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="85"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="90"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="106"/>
+						<line branch="false" hits="0" number="107"/>
+						<line branch="false" hits="0" number="108"/>
+						<line branch="false" hits="0" number="109"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="114"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="117"/>
+						<line branch="false" hits="0" number="118"/>
+						<line branch="false" hits="0" number="119"/>
+						<line branch="false" hits="0" number="122"/>
+						<line branch="false" hits="0" number="124"/>
+						<line branch="false" hits="0" number="125"/>
+						<line branch="false" hits="0" number="127"/>
+						<line branch="false" hits="0" number="129"/>
+						<line branch="false" hits="0" number="130"/>
+						<line branch="false" hits="0" number="131"/>
+						<line branch="false" hits="0" number="132"/>
+						<line branch="false" hits="0" number="133"/>
+						<line branch="false" hits="0" number="134"/>
+						<line branch="false" hits="0" number="135"/>
+						<line branch="false" hits="0" number="136"/>
+						<line branch="false" hits="0" number="138"/>
+						<line branch="false" hits="0" number="139"/>
+						<line branch="false" hits="0" number="140"/>
+						<line branch="false" hits="0" number="142"/>
+						<line branch="false" hits="0" number="144"/>
+						<line branch="false" hits="0" number="146"/>
+						<line branch="false" hits="0" number="147"/>
+						<line branch="false" hits="0" number="148"/>
+						<line branch="false" hits="0" number="149"/>
+						<line branch="false" hits="0" number="150"/>
+						<line branch="false" hits="0" number="151"/>
+						<line branch="false" hits="0" number="153"/>
+						<line branch="false" hits="0" number="154"/>
+						<line branch="false" hits="0" number="155"/>
+						<line branch="false" hits="0" number="156"/>
+						<line branch="false" hits="0" number="162"/>
+						<line branch="false" hits="0" number="168"/>
+						<line branch="false" hits="0" number="170"/>
+						<line branch="false" hits="0" number="172"/>
+						<line branch="false" hits="0" number="176"/>
+						<line branch="false" hits="0" number="178"/>
+						<line branch="false" hits="0" number="179"/>
+						<line branch="false" hits="0" number="181"/>
+						<line branch="false" hits="0" number="183"/>
+						<line branch="false" hits="0" number="184"/>
+						<line branch="false" hits="0" number="185"/>
+						<line branch="false" hits="0" number="186"/>
+						<line branch="false" hits="0" number="187"/>
+						<line branch="false" hits="0" number="188"/>
+						<line branch="false" hits="0" number="189"/>
+						<line branch="false" hits="0" number="190"/>
+						<line branch="false" hits="0" number="191"/>
+						<line branch="false" hits="0" number="192"/>
+						<line branch="false" hits="0" number="194"/>
+						<line branch="false" hits="0" number="195"/>
+						<line branch="false" hits="0" number="196"/>
+						<line branch="false" hits="0" number="198"/>
+						<line branch="false" hits="0" number="199"/>
+						<line branch="false" hits="0" number="200"/>
+						<line branch="false" hits="0" number="201"/>
+						<line branch="false" hits="0" number="202"/>
+						<line branch="false" hits="0" number="205"/>
+						<line branch="false" hits="0" number="208"/>
+						<line branch="false" hits="0" number="209"/>
+						<line branch="false" hits="0" number="210"/>
+						<line branch="false" hits="0" number="211"/>
+						<line branch="false" hits="0" number="214"/>
+						<line branch="false" hits="0" number="216"/>
+						<line branch="false" hits="0" number="219"/>
+						<line branch="false" hits="0" number="224"/>
+						<line branch="false" hits="0" number="226"/>
+						<line branch="false" hits="0" number="229"/>
+						<line branch="false" hits="0" number="231"/>
+						<line branch="false" hits="0" number="232"/>
+						<line branch="false" hits="0" number="235"/>
+						<line branch="false" hits="0" number="237"/>
+						<line branch="false" hits="0" number="238"/>
+						<line branch="false" hits="0" number="239"/>
+						<line branch="false" hits="0" number="240"/>
+						<line branch="false" hits="0" number="242"/>
+						<line branch="false" hits="0" number="243"/>
+						<line branch="false" hits="0" number="244"/>
+						<line branch="false" hits="0" number="246"/>
+						<line branch="false" hits="0" number="248"/>
+						<line branch="false" hits="0" number="249"/>
+						<line branch="false" hits="0" number="254"/>
+						<line branch="false" hits="0" number="256"/>
+						<line branch="false" hits="0" number="257"/>
+						<line branch="false" hits="0" number="258"/>
+						<line branch="false" hits="0" number="259"/>
+						<line branch="false" hits="0" number="270"/>
+						<line branch="false" hits="0" number="272"/>
+						<line branch="false" hits="0" number="274"/>
+						<line branch="false" hits="0" number="278"/>
+						<line branch="false" hits="0" number="279"/>
+						<line branch="false" hits="0" number="281"/>
+						<line branch="false" hits="0" number="282"/>
+						<line branch="false" hits="0" number="283"/>
+						<line branch="false" hits="0" number="284"/>
+						<line branch="false" hits="0" number="285"/>
+						<line branch="false" hits="0" number="286"/>
+						<line branch="false" hits="0" number="287"/>
+						<line branch="false" hits="0" number="289"/>
+						<line branch="false" hits="0" number="290"/>
+						<line branch="false" hits="0" number="295"/>
+						<line branch="false" hits="0" number="296"/>
+						<line branch="false" hits="0" number="297"/>
+						<line branch="false" hits="0" number="298"/>
+						<line branch="false" hits="0" number="299"/>
+						<line branch="false" hits="0" number="300"/>
+						<line branch="false" hits="0" number="301"/>
+						<line branch="false" hits="0" number="302"/>
+						<line branch="false" hits="0" number="303"/>
+						<line branch="false" hits="0" number="304"/>
+						<line branch="false" hits="0" number="306"/>
+						<line branch="false" hits="0" number="309"/>
+						<line branch="false" hits="0" number="314"/>
+						<line branch="false" hits="0" number="316"/>
+						<line branch="false" hits="0" number="317"/>
+						<line branch="false" hits="0" number="318"/>
+						<line branch="false" hits="0" number="319"/>
+						<line branch="false" hits="0" number="322"/>
+						<line branch="false" hits="0" number="324"/>
+						<line branch="false" hits="0" number="325"/>
+						<line branch="false" hits="0" number="326"/>
+						<line branch="false" hits="0" number="329"/>
+						<line branch="false" hits="0" number="331"/>
+						<line branch="false" hits="0" number="332"/>
+						<line branch="false" hits="0" number="333"/>
+						<line branch="false" hits="0" number="336"/>
+						<line branch="false" hits="0" number="338"/>
+						<line branch="false" hits="0" number="339"/>
+						<line branch="false" hits="0" number="340"/>
+						<line branch="false" hits="0" number="343"/>
+						<line branch="false" hits="0" number="345"/>
+						<line branch="false" hits="0" number="346"/>
+						<line branch="false" hits="0" number="347"/>
+						<line branch="false" hits="0" number="350"/>
+						<line branch="false" hits="0" number="352"/>
+						<line branch="false" hits="0" number="353"/>
+						<line branch="false" hits="0" number="354"/>
+						<line branch="false" hits="0" number="357"/>
+						<line branch="false" hits="0" number="359"/>
+						<line branch="false" hits="0" number="360"/>
+						<line branch="false" hits="0" number="361"/>
+						<line branch="false" hits="0" number="364"/>
+						<line branch="false" hits="0" number="366"/>
+						<line branch="false" hits="0" number="367"/>
+						<line branch="false" hits="0" number="368"/>
+						<line branch="false" hits="0" number="371"/>
+						<line branch="false" hits="0" number="373"/>
+						<line branch="false" hits="0" number="374"/>
+						<line branch="false" hits="0" number="375"/>
+						<line branch="false" hits="0" number="378"/>
+						<line branch="false" hits="0" number="380"/>
+						<line branch="false" hits="0" number="381"/>
+						<line branch="false" hits="0" number="382"/>
+						<line branch="false" hits="0" number="385"/>
+						<line branch="false" hits="0" number="387"/>
+						<line branch="false" hits="0" number="388"/>
+						<line branch="false" hits="0" number="389"/>
+						<line branch="false" hits="0" number="392"/>
+						<line branch="false" hits="0" number="394"/>
+						<line branch="false" hits="0" number="395"/>
+						<line branch="false" hits="0" number="396"/>
+						<line branch="false" hits="0" number="399"/>
+						<line branch="false" hits="0" number="401"/>
+						<line branch="false" hits="0" number="402"/>
+						<line branch="false" hits="0" number="403"/>
+						<line branch="false" hits="0" number="405"/>
+						<line branch="false" hits="0" number="406"/>
+						<line branch="false" hits="0" number="409"/>
+						<line branch="false" hits="0" number="411"/>
+						<line branch="false" hits="0" number="412"/>
+						<line branch="false" hits="0" number="413"/>
+						<line branch="false" hits="0" number="416"/>
+						<line branch="false" hits="0" number="418"/>
+						<line branch="false" hits="0" number="419"/>
+						<line branch="false" hits="0" number="420"/>
+						<line branch="false" hits="0" number="423"/>
+						<line branch="false" hits="0" number="426"/>
+						<line branch="false" hits="0" number="429"/>
+						<line branch="false" hits="0" number="431"/>
+						<line branch="false" hits="0" number="432"/>
+						<line branch="false" hits="0" number="436"/>
+						<line branch="false" hits="0" number="438"/>
+						<line branch="false" hits="0" number="439"/>
+						<line branch="false" hits="0" number="442"/>
+						<line branch="false" hits="0" number="444"/>
+						<line branch="false" hits="0" number="447"/>
+						<line branch="false" hits="0" number="449"/>
+						<line branch="false" hits="0" number="450"/>
+						<line branch="false" hits="0" number="453"/>
+						<line branch="false" hits="0" number="455"/>
+						<line branch="false" hits="0" number="456"/>
+						<line branch="false" hits="0" number="459"/>
+						<line branch="false" hits="0" number="461"/>
+						<line branch="false" hits="0" number="464"/>
+						<line branch="false" hits="0" number="466"/>
+						<line branch="false" hits="0" number="467"/>
+						<line branch="false" hits="0" number="470"/>
+						<line branch="false" hits="0" number="472"/>
+						<line branch="false" hits="0" number="475"/>
+						<line branch="false" hits="0" number="477"/>
+						<line branch="false" hits="0" number="478"/>
+						<line branch="false" hits="0" number="481"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HttpServer.hxx" line-rate="0.0" name="......servers.src.app.HttpServer.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::status xtd::servers::app::HttpServer::readConf&lt;unsigned long&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::status xtd::servers::app::HttpServer::readConf&lt;unsigned int&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int&amp;, unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::status xtd::servers::app::HttpServer::addProbe&lt;unsigned int&gt;(unsigned int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="12"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::status xtd::servers::app::HttpServer::readConf&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::status xtd::servers::app::HttpServer::readConf&lt;bool&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;, bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::status xtd::servers::app::HttpServer::readConf&lt;unsigned int&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="45"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HttpServer.hh" line-rate="0.0" name="......servers.src.app.HttpServer.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Action::Action(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::Action::~Action()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="37"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="37"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HttpServer.cc" line-rate="0.0" name="......servers.src.app.HttpServer.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::handleTERM()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="75"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::checkOptions()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="193"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::~HttpServer()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="70"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::handleUSR2()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="306"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::process_mem_usage(unsigned int&amp;, unsigned int&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="713"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_ident(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="489"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::defineProbes()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="215"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::getCommonConfKey[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="423"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::getSpecificConfKey[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="429"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::bind_action(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;xtd::status (unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)&gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="318"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::process()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="273"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_HttpServer.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="747"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::getSnmpPath[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="435"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::addProbe(std::shared_ptr&lt;xtd::counters::Base&gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="206"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_runAction(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;xtd::status (unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)&gt;, unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="329"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::stop()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="91"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_counter(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="533"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_actionList(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="380"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::parseHttpPort()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="185"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::~HttpServer()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="70"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::start()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="82"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_index(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="442"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_admin(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="591"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_probe(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="401"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::parseConfig()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="99"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::HttpServer(bool)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="39"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="747"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::modeProbeActivation()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="312"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_conf(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="658"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::h_log(unsigned int, xtd::network::http::Request const&amp;, xtd::network::http::Response&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="677"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::app::HttpServer::setUp()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="240"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="70"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="82"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="85"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="87"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="91"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="101"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="103"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="105"/>
+						<line branch="false" hits="0" number="110"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="115"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="118"/>
+						<line branch="false" hits="0" number="121"/>
+						<line branch="false" hits="0" number="123"/>
+						<line branch="false" hits="0" number="125"/>
+						<line branch="false" hits="0" number="130"/>
+						<line branch="false" hits="0" number="132"/>
+						<line branch="false" hits="0" number="133"/>
+						<line branch="false" hits="0" number="137"/>
+						<line branch="false" hits="0" number="138"/>
+						<line branch="false" hits="0" number="139"/>
+						<line branch="false" hits="0" number="142"/>
+						<line branch="false" hits="0" number="143"/>
+						<line branch="false" hits="0" number="144"/>
+						<line branch="false" hits="0" number="148"/>
+						<line branch="false" hits="0" number="149"/>
+						<line branch="false" hits="0" number="152"/>
+						<line branch="false" hits="0" number="153"/>
+						<line branch="false" hits="0" number="156"/>
+						<line branch="false" hits="0" number="157"/>
+						<line branch="false" hits="0" number="160"/>
+						<line branch="false" hits="0" number="162"/>
+						<line branch="false" hits="0" number="163"/>
+						<line branch="false" hits="0" number="166"/>
+						<line branch="false" hits="0" number="167"/>
+						<line branch="false" hits="0" number="170"/>
+						<line branch="false" hits="0" number="171"/>
+						<line branch="false" hits="0" number="174"/>
+						<line branch="false" hits="0" number="175"/>
+						<line branch="false" hits="0" number="176"/>
+						<line branch="false" hits="0" number="179"/>
+						<line branch="false" hits="0" number="180"/>
+						<line branch="false" hits="0" number="181"/>
+						<line branch="false" hits="0" number="182"/>
+						<line branch="false" hits="0" number="185"/>
+						<line branch="false" hits="0" number="187"/>
+						<line branch="false" hits="0" number="188"/>
+						<line branch="false" hits="0" number="189"/>
+						<line branch="false" hits="0" number="193"/>
+						<line branch="false" hits="0" number="195"/>
+						<line branch="false" hits="0" number="196"/>
+						<line branch="false" hits="0" number="198"/>
+						<line branch="false" hits="0" number="199"/>
+						<line branch="false" hits="0" number="201"/>
+						<line branch="false" hits="0" number="202"/>
+						<line branch="false" hits="0" number="203"/>
+						<line branch="false" hits="0" number="206"/>
+						<line branch="false" hits="0" number="208"/>
+						<line branch="false" hits="0" number="209"/>
+						<line branch="false" hits="0" number="210"/>
+						<line branch="false" hits="0" number="215"/>
+						<line branch="false" hits="0" number="217"/>
+						<line branch="false" hits="0" number="219"/>
+						<line branch="false" hits="0" number="220"/>
+						<line branch="false" hits="0" number="221"/>
+						<line branch="false" hits="0" number="222"/>
+						<line branch="false" hits="0" number="223"/>
+						<line branch="false" hits="0" number="224"/>
+						<line branch="false" hits="0" number="225"/>
+						<line branch="false" hits="0" number="226"/>
+						<line branch="false" hits="0" number="227"/>
+						<line branch="false" hits="0" number="228"/>
+						<line branch="false" hits="0" number="229"/>
+						<line branch="false" hits="0" number="230"/>
+						<line branch="false" hits="0" number="231"/>
+						<line branch="false" hits="0" number="232"/>
+						<line branch="false" hits="0" number="233"/>
+						<line branch="false" hits="0" number="234"/>
+						<line branch="false" hits="0" number="235"/>
+						<line branch="false" hits="0" number="240"/>
+						<line branch="false" hits="0" number="242"/>
+						<line branch="false" hits="0" number="244"/>
+						<line branch="false" hits="0" number="245"/>
+						<line branch="false" hits="0" number="246"/>
+						<line branch="false" hits="0" number="249"/>
+						<line branch="false" hits="0" number="250"/>
+						<line branch="false" hits="0" number="251"/>
+						<line branch="false" hits="0" number="252"/>
+						<line branch="false" hits="0" number="253"/>
+						<line branch="false" hits="0" number="254"/>
+						<line branch="false" hits="0" number="255"/>
+						<line branch="false" hits="0" number="258"/>
+						<line branch="false" hits="0" number="259"/>
+						<line branch="false" hits="0" number="260"/>
+						<line branch="false" hits="0" number="261"/>
+						<line branch="false" hits="0" number="262"/>
+						<line branch="false" hits="0" number="264"/>
+						<line branch="false" hits="0" number="267"/>
+						<line branch="false" hits="0" number="268"/>
+						<line branch="false" hits="0" number="269"/>
+						<line branch="false" hits="0" number="270"/>
+						<line branch="false" hits="0" number="273"/>
+						<line branch="false" hits="0" number="275"/>
+						<line branch="false" hits="0" number="276"/>
+						<line branch="false" hits="0" number="282"/>
+						<line branch="false" hits="0" number="284"/>
+						<line branch="false" hits="0" number="286"/>
+						<line branch="false" hits="0" number="288"/>
+						<line branch="false" hits="0" number="290"/>
+						<line branch="false" hits="0" number="291"/>
+						<line branch="false" hits="0" number="294"/>
+						<line branch="false" hits="0" number="296"/>
+						<line branch="false" hits="0" number="306"/>
+						<line branch="false" hits="0" number="308"/>
+						<line branch="false" hits="0" number="309"/>
+						<line branch="false" hits="0" number="310"/>
+						<line branch="false" hits="0" number="312"/>
+						<line branch="false" hits="0" number="314"/>
+						<line branch="false" hits="0" number="315"/>
+						<line branch="false" hits="0" number="318"/>
+						<line branch="false" hits="0" number="322"/>
+						<line branch="false" hits="0" number="324"/>
+						<line branch="false" hits="0" number="325"/>
+						<line branch="false" hits="0" number="326"/>
+						<line branch="false" hits="0" number="329"/>
+						<line branch="false" hits="0" number="335"/>
+						<line branch="false" hits="0" number="336"/>
+						<line branch="false" hits="0" number="337"/>
+						<line branch="false" hits="0" number="338"/>
+						<line branch="false" hits="0" number="339"/>
+						<line branch="false" hits="0" number="340"/>
+						<line branch="false" hits="0" number="342"/>
+						<line branch="false" hits="0" number="344"/>
+						<line branch="false" hits="0" number="346"/>
+						<line branch="false" hits="0" number="347"/>
+						<line branch="false" hits="0" number="351"/>
+						<line branch="false" hits="0" number="352"/>
+						<line branch="false" hits="0" number="354"/>
+						<line branch="false" hits="0" number="355"/>
+						<line branch="false" hits="0" number="357"/>
+						<line branch="false" hits="0" number="358"/>
+						<line branch="false" hits="0" number="359"/>
+						<line branch="false" hits="0" number="360"/>
+						<line branch="false" hits="0" number="362"/>
+						<line branch="false" hits="0" number="366"/>
+						<line branch="false" hits="0" number="369"/>
+						<line branch="false" hits="0" number="370"/>
+						<line branch="false" hits="0" number="373"/>
+						<line branch="false" hits="0" number="374"/>
+						<line branch="false" hits="0" number="375"/>
+						<line branch="false" hits="0" number="380"/>
+						<line branch="false" hits="0" number="384"/>
+						<line branch="false" hits="0" number="386"/>
+						<line branch="false" hits="0" number="388"/>
+						<line branch="false" hits="0" number="389"/>
+						<line branch="false" hits="0" number="391"/>
+						<line branch="false" hits="0" number="392"/>
+						<line branch="false" hits="0" number="394"/>
+						<line branch="false" hits="0" number="397"/>
+						<line branch="false" hits="0" number="401"/>
+						<line branch="false" hits="0" number="405"/>
+						<line branch="false" hits="0" number="406"/>
+						<line branch="false" hits="0" number="408"/>
+						<line branch="false" hits="0" number="409"/>
+						<line branch="false" hits="0" number="413"/>
+						<line branch="false" hits="0" number="414"/>
+						<line branch="false" hits="0" number="416"/>
+						<line branch="false" hits="0" number="423"/>
+						<line branch="false" hits="0" number="425"/>
+						<line branch="false" hits="0" number="429"/>
+						<line branch="false" hits="0" number="431"/>
+						<line branch="false" hits="0" number="435"/>
+						<line branch="false" hits="0" number="437"/>
+						<line branch="false" hits="0" number="442"/>
+						<line branch="false" hits="0" number="449"/>
+						<line branch="false" hits="0" number="450"/>
+						<line branch="false" hits="0" number="451"/>
+						<line branch="false" hits="0" number="452"/>
+						<line branch="false" hits="0" number="454"/>
+						<line branch="false" hits="0" number="456"/>
+						<line branch="false" hits="0" number="458"/>
+						<line branch="false" hits="0" number="459"/>
+						<line branch="false" hits="0" number="460"/>
+						<line branch="false" hits="0" number="462"/>
+						<line branch="false" hits="0" number="464"/>
+						<line branch="false" hits="0" number="465"/>
+						<line branch="false" hits="0" number="467"/>
+						<line branch="false" hits="0" number="468"/>
+						<line branch="false" hits="0" number="469"/>
+						<line branch="false" hits="0" number="470"/>
+						<line branch="false" hits="0" number="474"/>
+						<line branch="false" hits="0" number="475"/>
+						<line branch="false" hits="0" number="476"/>
+						<line branch="false" hits="0" number="478"/>
+						<line branch="false" hits="0" number="489"/>
+						<line branch="false" hits="0" number="493"/>
+						<line branch="false" hits="0" number="494"/>
+						<line branch="false" hits="0" number="495"/>
+						<line branch="false" hits="0" number="498"/>
+						<line branch="false" hits="0" number="500"/>
+						<line branch="false" hits="0" number="502"/>
+						<line branch="false" hits="0" number="504"/>
+						<line branch="false" hits="0" number="505"/>
+						<line branch="false" hits="0" number="508"/>
+						<line branch="false" hits="0" number="509"/>
+						<line branch="false" hits="0" number="510"/>
+						<line branch="false" hits="0" number="511"/>
+						<line branch="false" hits="0" number="513"/>
+						<line branch="false" hits="0" number="516"/>
+						<line branch="false" hits="0" number="517"/>
+						<line branch="false" hits="0" number="518"/>
+						<line branch="false" hits="0" number="519"/>
+						<line branch="false" hits="0" number="520"/>
+						<line branch="false" hits="0" number="521"/>
+						<line branch="false" hits="0" number="523"/>
+						<line branch="false" hits="0" number="533"/>
+						<line branch="false" hits="0" number="541"/>
+						<line branch="false" hits="0" number="544"/>
+						<line branch="false" hits="0" number="545"/>
+						<line branch="false" hits="0" number="548"/>
+						<line branch="false" hits="0" number="549"/>
+						<line branch="false" hits="0" number="550"/>
+						<line branch="false" hits="0" number="552"/>
+						<line branch="false" hits="0" number="553"/>
+						<line branch="false" hits="0" number="554"/>
+						<line branch="false" hits="0" number="557"/>
+						<line branch="false" hits="0" number="561"/>
+						<line branch="false" hits="0" number="562"/>
+						<line branch="false" hits="0" number="563"/>
+						<line branch="false" hits="0" number="564"/>
+						<line branch="false" hits="0" number="565"/>
+						<line branch="false" hits="0" number="566"/>
+						<line branch="false" hits="0" number="568"/>
+						<line branch="false" hits="0" number="570"/>
+						<line branch="false" hits="0" number="571"/>
+						<line branch="false" hits="0" number="572"/>
+						<line branch="false" hits="0" number="574"/>
+						<line branch="false" hits="0" number="575"/>
+						<line branch="false" hits="0" number="576"/>
+						<line branch="false" hits="0" number="577"/>
+						<line branch="false" hits="0" number="578"/>
+						<line branch="false" hits="0" number="580"/>
+						<line branch="false" hits="0" number="582"/>
+						<line branch="false" hits="0" number="583"/>
+						<line branch="false" hits="0" number="584"/>
+						<line branch="false" hits="0" number="587"/>
+						<line branch="false" hits="0" number="591"/>
+						<line branch="false" hits="0" number="595"/>
+						<line branch="false" hits="0" number="596"/>
+						<line branch="false" hits="0" number="599"/>
+						<line branch="false" hits="0" number="601"/>
+						<line branch="false" hits="0" number="602"/>
+						<line branch="false" hits="0" number="605"/>
+						<line branch="false" hits="0" number="607"/>
+						<line branch="false" hits="0" number="608"/>
+						<line branch="false" hits="0" number="609"/>
+						<line branch="false" hits="0" number="615"/>
+						<line branch="false" hits="0" number="617"/>
+						<line branch="false" hits="0" number="618"/>
+						<line branch="false" hits="0" number="619"/>
+						<line branch="false" hits="0" number="623"/>
+						<line branch="false" hits="0" number="625"/>
+						<line branch="false" hits="0" number="627"/>
+						<line branch="false" hits="0" number="629"/>
+						<line branch="false" hits="0" number="631"/>
+						<line branch="false" hits="0" number="635"/>
+						<line branch="false" hits="0" number="636"/>
+						<line branch="false" hits="0" number="637"/>
+						<line branch="false" hits="0" number="640"/>
+						<line branch="false" hits="0" number="645"/>
+						<line branch="false" hits="0" number="648"/>
+						<line branch="false" hits="0" number="649"/>
+						<line branch="false" hits="0" number="651"/>
+						<line branch="false" hits="0" number="653"/>
+						<line branch="false" hits="0" number="654"/>
+						<line branch="false" hits="0" number="658"/>
+						<line branch="false" hits="0" number="662"/>
+						<line branch="false" hits="0" number="663"/>
+						<line branch="false" hits="0" number="665"/>
+						<line branch="false" hits="0" number="667"/>
+						<line branch="false" hits="0" number="668"/>
+						<line branch="false" hits="0" number="669"/>
+						<line branch="false" hits="0" number="672"/>
+						<line branch="false" hits="0" number="677"/>
+						<line branch="false" hits="0" number="681"/>
+						<line branch="false" hits="0" number="682"/>
+						<line branch="false" hits="0" number="683"/>
+						<line branch="false" hits="0" number="685"/>
+						<line branch="false" hits="0" number="687"/>
+						<line branch="false" hits="0" number="689"/>
+						<line branch="false" hits="0" number="690"/>
+						<line branch="false" hits="0" number="691"/>
+						<line branch="false" hits="0" number="692"/>
+						<line branch="false" hits="0" number="693"/>
+						<line branch="false" hits="0" number="694"/>
+						<line branch="false" hits="0" number="696"/>
+						<line branch="false" hits="0" number="698"/>
+						<line branch="false" hits="0" number="701"/>
+						<line branch="false" hits="0" number="703"/>
+						<line branch="false" hits="0" number="704"/>
+						<line branch="false" hits="0" number="706"/>
+						<line branch="false" hits="0" number="709"/>
+						<line branch="false" hits="0" number="713"/>
+						<line branch="false" hits="0" number="716"/>
+						<line branch="false" hits="0" number="717"/>
+						<line branch="false" hits="0" number="721"/>
+						<line branch="false" hits="0" number="725"/>
+						<line branch="false" hits="0" number="726"/>
+						<line branch="false" hits="0" number="727"/>
+						<line branch="false" hits="0" number="728"/>
+						<line branch="false" hits="0" number="738"/>
+						<line branch="false" hits="0" number="740"/>
+						<line branch="false" hits="0" number="742"/>
+						<line branch="false" hits="0" number="743"/>
+						<line branch="false" hits="0" number="744"/>
+						<line branch="false" hits="0" number="745"/>
+						<line branch="false" hits="0" number="747"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......servers.src.param">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Visitor.hh" line-rate="0.0" name="......servers.src.param.Visitor.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::param::JsonVisitor::write&lt;unsigned char&gt;(xtd::servers::param::POD&lt;unsigned char&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="105"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::Visitor()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="14"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::operator()(xtd::servers::param::POD&lt;unsigned long&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="36"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::operator()(xtd::servers::param::POD&lt;bool&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="20"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::param::JsonVisitor::write&lt;unsigned int&gt;(xtd::servers::param::POD&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="105"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::operator()(xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="40"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::operator()(xtd::servers::param::POD&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::param::JsonVisitor::write&lt;bool&gt;(xtd::servers::param::POD&lt;bool&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="105"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::param::JsonVisitor::write&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="105"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::param::JsonVisitor::write&lt;int&gt;(xtd::servers::param::POD&lt;int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="105"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::operator()(xtd::servers::param::POD&lt;int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::servers::param::JsonVisitor::write&lt;unsigned long&gt;(xtd::servers::param::POD&lt;unsigned long&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="105"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Visitor::operator()(xtd::servers::param::POD&lt;unsigned char&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="28"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="105"/>
+						<line branch="false" hits="0" number="107"/>
+						<line branch="false" hits="0" number="108"/>
+						<line branch="false" hits="0" number="109"/>
+						<line branch="false" hits="0" number="110"/>
+						<line branch="false" hits="0" number="111"/>
+						<line branch="false" hits="0" number="112"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Pod.hxx" line-rate="0.0" name="......servers.src.param.Pod.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::to(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::POD(unsigned char const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="49"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;unsigned int&gt;::as&lt;unsigned int&gt;(unsigned int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="79"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::to(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="49"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::to(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="49"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::toStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::as(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::toStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::POD(bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::POD(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::POD(int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::POD(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="49"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::as(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::POD(unsigned long const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::as(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::as(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;int&gt;::to&lt;int&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="109"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::POD(int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::to(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::toStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::toStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::as(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;unsigned char&gt;::as&lt;unsigned char&gt;(unsigned char const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="79"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::POD(unsigned char const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="49"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;unsigned long&gt;::as&lt;unsigned long&gt;(unsigned long const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="79"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="49"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::POD(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::as&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="79"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::POD(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;int&gt;::as&lt;int&gt;(int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="79"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::toStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;unsigned char&gt;::to&lt;unsigned char&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned char&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="109"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::POD(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;unsigned int&gt;::to&lt;unsigned int&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="109"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned char&gt;::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;unsigned long&gt;::to&lt;unsigned long&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="109"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::as(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::toStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;int&gt;::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::to(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::to&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="109"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;::to(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::POD(unsigned int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned long&gt;::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;unsigned int&gt;::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="49"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="81"/>
+						<line branch="false" hits="0" number="82"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="90"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="97"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="109"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="113"/>
+						<line branch="false" hits="0" number="114"/>
+						<line branch="false" hits="0" number="115"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Base.hxx" line-rate="0.0" name="......servers.src.param.Base.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;unsigned long&gt;(unsigned long const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::get&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::set&lt;int&gt;(int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;unsigned int&gt;(unsigned int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;int&gt;(int const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::isAccepted&lt;bool&gt;(bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="86"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::isAccepted&lt;unsigned long&gt;(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="86"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::isAccepted&lt;unsigned char&gt;(unsigned char const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="86"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::set&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;unsigned char&gt;(unsigned char const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::isAccepted&lt;int&gt;(int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="86"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::set&lt;unsigned long&gt;(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;unsigned int&gt;(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::set&lt;bool&gt;(bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::get&lt;unsigned int&gt;(unsigned int&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::isAccepted&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="86"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;int&gt;(int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::get&lt;unsigned long&gt;(unsigned long&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;bool&gt;(bool const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::get&lt;unsigned char&gt;(unsigned char&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::set&lt;unsigned char&gt;(unsigned char const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::set&lt;unsigned int&gt;(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="104"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::cast&lt;bool&gt;(boost::any const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::get&lt;bool&gt;(bool&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::get&lt;int&gt;(int&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="bool xtd::servers::param::Base::isAccepted&lt;unsigned int&gt;(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="86"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;unsigned long&gt;(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base&amp; xtd::servers::param::Base::listen&lt;bool&gt;(boost::function&lt;void (bool const&amp;, bool const&amp;)&gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="135"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;bool&gt;(bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::Base&lt;unsigned char&gt;(unsigned char const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="89"/>
+						<line branch="false" hits="0" number="90"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="106"/>
+						<line branch="false" hits="0" number="108"/>
+						<line branch="false" hits="0" number="109"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="115"/>
+						<line branch="false" hits="0" number="117"/>
+						<line branch="false" hits="0" number="118"/>
+						<line branch="false" hits="0" number="120"/>
+						<line branch="false" hits="0" number="121"/>
+						<line branch="false" hits="0" number="122"/>
+						<line branch="false" hits="0" number="124"/>
+						<line branch="false" hits="0" number="126"/>
+						<line branch="false" hits="0" number="127"/>
+						<line branch="false" hits="0" number="130"/>
+						<line branch="false" hits="0" number="135"/>
+						<line branch="false" hits="0" number="137"/>
+						<line branch="false" hits="0" number="140"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Handler.cc" line-rate="0.0" name="......servers.src.param.Handler.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::find(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="137"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::exists(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="83"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::Handler(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="20"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::add(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::shared_ptr&lt;xtd::servers::param::Base&gt;, bool)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="120"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Handler.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="144"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::accept(xtd::servers::param::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="113"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::initialize()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::sync(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="72"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::verify(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="89"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="144"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::fromStr(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="98"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="48"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="59"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="76"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="80"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="85"/>
+						<line branch="false" hits="0" number="89"/>
+						<line branch="false" hits="0" number="91"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="101"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="106"/>
+						<line branch="false" hits="0" number="109"/>
+						<line branch="false" hits="0" number="113"/>
+						<line branch="false" hits="0" number="115"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="117"/>
+						<line branch="false" hits="0" number="120"/>
+						<line branch="false" hits="0" number="122"/>
+						<line branch="false" hits="0" number="123"/>
+						<line branch="false" hits="0" number="125"/>
+						<line branch="false" hits="0" number="126"/>
+						<line branch="false" hits="0" number="127"/>
+						<line branch="false" hits="0" number="128"/>
+						<line branch="false" hits="0" number="130"/>
+						<line branch="false" hits="0" number="131"/>
+						<line branch="false" hits="0" number="133"/>
+						<line branch="false" hits="0" number="137"/>
+						<line branch="false" hits="0" number="139"/>
+						<line branch="false" hits="0" number="140"/>
+						<line branch="false" hits="0" number="141"/>
+						<line branch="false" hits="0" number="144"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Base.cc" line-rate="0.0" name="......servers.src.param.Base.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::date() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="74"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::log[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="82"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::getName[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="20"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Base.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="100"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::setSync(bool const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="38"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::getSync() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::setLog(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="88"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::listen(boost::function&lt;void (boost::any const&amp;, boost::any const&amp;)&gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="94"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::constraint(boost::function&lt;bool (boost::any const&amp;)&gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="13"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::setName(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="26"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="100"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::sync()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="56"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::setActionPath(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="44"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::getActionPath[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="50"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="13"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="76"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="82"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="90"/>
+						<line branch="false" hits="0" number="91"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="97"/>
+						<line branch="false" hits="0" number="100"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Handler.hh" line-rate="0.0" name="......servers.src.param.Handler.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::param_error::~param_error()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::param_error::param_error(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::param_error::~param_error()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Handler::~Handler()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="28"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="28"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Pod.cc" line-rate="0.0" name="......servers.src.param.Pod.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Pod.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="16"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Pod.hh" line-rate="0.0" name="......servers.src.param.Pod.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::POD&lt;bool&gt;::~POD()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="18"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Base.hh" line-rate="0.0" name="......servers.src.param.Base.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::Base::~Base()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="20"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="20"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Visitor.cc" line-rate="0.0" name="......servers.src.param.Visitor.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::writeExtraInfo(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::operator()(xtd::servers::param::POD&lt;unsigned char&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::operator()(xtd::servers::param::POD&lt;bool&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="14"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::operator()(xtd::servers::param::POD&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::operator()(xtd::servers::param::POD&lt;int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="15"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Visitor.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="27"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::JsonVisitor(xtd::network::http::Json&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="8"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::operator()(xtd::servers::param::POD&lt;unsigned long&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="27"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::servers::param::JsonVisitor::operator()(xtd::servers::param::POD&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="8"/>
+						<line branch="false" hits="0" number="10"/>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="27"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/types.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - types.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 21:16:28</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef COMMON_TYPES_HH_
+<span class="lineNum">       2 </span>            : # define COMMON_TYPES_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;sys/types.h&gt; // IWYU pragma: export
+<span class="lineNum">       5 </span>            : # include &lt;cstdint&gt;     // IWYU pragma: export
+<span class="lineNum">       6 </span>            : # include &lt;cstddef&gt;     // IWYU pragma: export
+<span class="lineNum">       7 </span>            : # include &lt;fstream&gt;     // IWYU pragma: export
+<span class="lineNum">       8 </span>            : # include &lt;functional&gt;  // IWYU pragma: export
+<span class="lineNum">       9 </span>            : # include &lt;map&gt;         // IWYU pragma: export
+<span class="lineNum">      10 </span>            : # include &lt;memory&gt;      // IWYU pragma: export
+<span class="lineNum">      11 </span>            : # include &lt;string&gt;      // IWYU pragma: export
+<span class="lineNum">      12 </span>            : # include &lt;type_traits&gt; // IWYU pragma: export
+<span class="lineNum">      13 </span>            : # include &lt;utility&gt;     // IWYU pragma: export
+<span class="lineNum">      14 </span>            : # include &lt;vector&gt;      // IWYU pragma: export
+<span class="lineNum">      15 </span>            : # include &lt;stdint.h&gt;    // for uint16_t, uint32_t, uint64_t, uint8_t
+<span class="lineNum">      16 </span>            : # include &lt;iosfwd&gt;      // for ostream, ifstream, istream, ofstream, stringstream
+<span class="lineNum">      17 </span>            : # include &lt;ostream&gt;     // for endl
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : # include &lt;bits/c++config.h&gt;
+<span class="lineNum">      20 </span>            : # include &lt;bits/shared_ptr.h&gt;
+<span class="lineNum">      21 </span>            : # include &lt;bits/stl_map.h&gt;
+<span class="lineNum">      22 </span>            : # include &lt;bits/stl_pair.h&gt;
+<span class="lineNum">      23 </span>            : # include &lt;bits/stl_vector.h&gt;
+<span class="lineNum">      24 </span>            : # include &lt;bits/stringfwd.h&gt;
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : using std::string;
+<span class="lineNum">      28 </span>            : using std::map;
+<span class="lineNum">      29 </span>            : using std::vector;
+<span class="lineNum">      30 </span>            : using std::uint8_t;
+<span class="lineNum">      31 </span>            : using std::uint16_t;
+<span class="lineNum">      32 </span>            : using std::uint32_t;
+<span class="lineNum">      33 </span>            : using std::uint64_t;
+<span class="lineNum">      34 </span>            : using std::int8_t;
+<span class="lineNum">      35 </span>            : using std::int16_t;
+<span class="lineNum">      36 </span>            : using std::int32_t;
+<span class="lineNum">      37 </span>            : using std::int64_t;
+<span class="lineNum">      38 </span>            : using std::size_t;
+<span class="lineNum">      39 </span>            : using std::stringstream;
+<span class="lineNum">      40 </span>            : using std::ifstream;
+<span class="lineNum">      41 </span>            : using std::ofstream;
+<span class="lineNum">      42 </span>            : using std::istream;
+<span class="lineNum">      43 </span>            : using std::ostream;
+<span class="lineNum">      44 </span>            : using std::endl;
+<span class="lineNum">      45 </span>            : using std::pair;
+<span class="lineNum">      46 </span>            : using std::shared_ptr;
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            : /**
+<span class="lineNum">      49 </span>            :  ** @brief Alias to std::shared_ptr&lt;T&gt;
+<span class="lineNum">      50 </span>            :  */
+<span class="lineNum">      51 </span><span class="lineCov">          1 : template&lt;class T&gt; using sptr = std::shared_ptr&lt;T&gt;;</span>
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span>            : /**
+<span class="lineNum">      54 </span>            :  ** @brief Alias to std::function&lt;T&gt;
+<span class="lineNum">      55 </span>            :  */
+<span class="lineNum">      56 </span><span class="lineCov">          1 : template&lt;class T&gt; using fn   = std::function&lt;T&gt;;</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            : namespace xtd {
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : /**
+<span class="lineNum">      61 </span>            :  ** @brief Returns internal value of an enum class
+<span class="lineNum">      62 </span>            :  ** @param p_item Enum class label
+<span class="lineNum">      63 </span>            :  ** @return Value of p_item
+<span class="lineNum">      64 </span>            :  */
+<span class="lineNum">      65 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      66 </span><span class="lineCov">          1 : typename std::underlying_type&lt;T&gt;::type valueof(T p_item)</span>
+<span class="lineNum">      67 </span>            : {
+<span class="lineNum">      68 </span>            :   return static_cast&lt;typename std::underlying_type&lt;T&gt;::type&gt;(p_item);
+<span class="lineNum">      69 </span>            : }
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : /**
+<span class="lineNum">      73 </span>            :  ** @brief Converts underlying type to its corresponding class enum
+<span class="lineNum">      74 </span>            :  ** @brief
+<span class="lineNum">      75 </span>            :  ** @param value underlying enum value
+<span class="lineNum">      76 </span>            :  */
+<span class="lineNum">      77 </span>            : template&lt;typename E, typename T&gt;
+<span class="lineNum">      78 </span>            : constexpr typename std::enable_if&lt;std::is_enum&lt;E&gt;::value &amp;&amp; std::is_integral&lt;T&gt;::value, E&gt;::type
+<span class="lineNum">      79 </span><span class="lineCov">          1 :   to_enum(T value) noexcept</span>
+<span class="lineNum">      80 </span>            : {
+<span class="lineNum">      81 </span>            :   return static_cast&lt;E&gt;(value);
+<span class="lineNum">      82 </span>            : }
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            : /**
+<span class="lineNum">      85 </span>            :  ** @brief Generic status object
+<span class="lineNum">      86 </span>            :  ** @details
+<span class="lineNum">      87 </span>            :  ** Meaning of labels may differ from a function to another, the following tag
+<span class="lineNum">      88 </span>            :  ** descriptions are a general guide line. Please refer to the functions documentation
+<span class="lineNum">      89 </span>            :  ** for a more precise meaning of different statuses.
+<span class="lineNum">      90 </span>            :  */
+<span class="lineNum">      91 </span>            : enum class status : uint32_t
+<span class="lineNum">      92 </span><span class="lineCov">          1 : {</span>
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            :   ok       = 0, ///&lt; everything went fine
+<span class="lineNum">      95 </span>            :   error    = 1, ///&lt; encountered unrecoverable error
+<span class="lineNum">      96 </span>            :   timeout  = 2, ///&lt; process timeout, may be retried
+<span class="lineNum">      97 </span>            :   notfound = 3, ///&lt; searched item not found
+<span class="lineNum">      98 </span>            :   next     = 4  ///&lt; everything wen't fine, more data is available
+<span class="lineNum">      99 </span>            :  };
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            : /**
+<span class="lineNum">     103 </span>            :  ** @brief Dumps @ref status value to ostream
+<span class="lineNum">     104 </span>            :  */
+<span class="lineNum">     105 </span>            : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const xtd::status&amp; p_status);
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span>            : }
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            : #endif // !COMMON_TYPES_HH_
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : // Local Variables:
+<span class="lineNum">     112 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     113 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

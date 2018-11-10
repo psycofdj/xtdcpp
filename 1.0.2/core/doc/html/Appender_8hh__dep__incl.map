@@ -1,0 +1,10 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/core/src/log/Appender.hh" name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Appender.hh">
+<area shape="rect" id="node2" href="$Appender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Appender.cc" alt="" coords="5,109,152,165"/>
+<area shape="rect" id="node3" href="$ConfLoader_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ConfLoader.cc" alt="" coords="325,213,480,269"/>
+<area shape="rect" id="node4" href="$MemoryAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/MemoryAppender.hh" alt="" coords="176,109,365,165"/>
+<area shape="rect" id="node6" href="$StreamAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/StreamAppender.hh" alt="" coords="440,109,624,165"/>
+<area shape="rect" id="node8" href="$SyslogAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/SyslogAppender.hh" alt="" coords="649,109,831,165"/>
+<area shape="rect" id="node5" href="$MemoryAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/MemoryAppender.cc" alt="" coords="112,213,301,269"/>
+<area shape="rect" id="node7" href="$StreamAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/StreamAppender.cc" alt="" coords="504,213,688,269"/>
+<area shape="rect" id="node9" href="$SyslogAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/SyslogAppender.cc" alt="" coords="713,213,895,269"/>
+</map>

@@ -1,0 +1,64 @@
+{
+  "status": "warning", 
+  "graphs": [
+    {
+      "data": {
+        "labels": [], 
+        "datasets": [
+          {
+            "borderColor": "rgba(51, 204, 51, 0.5)", 
+            "pointBorderColor": "rgba(31, 122, 31, 1)", 
+            "yAxisID": "absolute", 
+            "label": "success tests", 
+            "backgroundColor": "rgba(51, 204, 51, 0)", 
+            "pointBackgroundColor": "rgba(31, 122, 31, 1)", 
+            "data": "%(success)d"
+          }, 
+          {
+            "borderColor": "rgba(179, 0, 0, 0.5)", 
+            "pointBorderColor": "rgba(102, 0, 0, 1)", 
+            "yAxisID": "absolute", 
+            "label": "failure tests", 
+            "backgroundColor": "rgba(179, 0, 0, 0)", 
+            "pointBackgroundColor": "rgba(102, 0, 0, 1)", 
+            "data": "%(failures)d"
+          }
+        ]
+      }, 
+      "type": "line", 
+      "options": {
+        "scales": {
+          "xAxes": [
+            {
+              "ticks": {
+                "fontSize": 12, 
+                "minRotation": 80
+              }
+            }
+          ], 
+          "yAxes": [
+            {
+              "position": "left", 
+              "ticks": {
+                "fontSize": 24, 
+                "beginAtZero": true
+              }, 
+              "type": "linear", 
+              "id": "absolute", 
+              "display": true
+            }
+          ]
+        }, 
+        "title": {
+          "text": "%(module)s : unittests", 
+          "display": true
+        }
+      }
+    }
+  ], 
+  "data": {
+    "failures": 0, 
+    "success": 0
+  }, 
+  "label": "0 / 0"
+}

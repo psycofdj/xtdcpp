@@ -1,0 +1,8 @@
+<map id="xtd::counters::Composed" name="xtd::counters::Composed">
+<area shape="rect" id="node4" href="$classxtd_1_1counters_1_1AvgValue.html" title="xtd::counters::AvgValue\l\&lt; uint32_t \&gt;" alt="" coords="607,5,770,47"/>
+<area shape="rect" id="node5" href="$classxtd_1_1counters_1_1AvgTimedValue.html" title="xtd::counters::AvgTimedValue" alt="" coords="589,71,788,98"/>
+<area shape="rect" id="node6" href="$classxtd_1_1counters_1_1AvgValue.html" title="xtd::counters::AvgValue\l\&lt; TType \&gt;" alt="" coords="607,123,770,164"/>
+<area shape="rect" id="node7" href="$classxtd_1_1counters_1_1Cache.html" title="xtd::counters::Cache" alt="" coords="617,189,761,215"/>
+<area shape="rect" id="node8" href="$classxtd_1_1counters_1_1Perf.html" title="xtd::counters::Perf" alt="" coords="623,239,754,266"/>
+<area shape="rect" id="node2" href="$classxtd_1_1counters_1_1Base.html" title="xtd::counters::Base" alt="" coords="188,130,324,157"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="xtd::log::Formatter::getFulllog" name="xtd::log::Formatter::getFulllog">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1Formatter.html#a364c26192677bc4f748626aeb790b5bd" title="Apply formats and layouts to all fields but fulllog. " alt="" coords="195,144,336,185"/>
+<area shape="rect" id="node8" href="$classxtd_1_1log_1_1Formatter.html#ad5747c5e72bc157cd82ce964f075c159" title="Resolve given layout from given fields data. " alt="" coords="384,239,525,280"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1Formatter.html#abbcd2b8c6fd1996fec44e68d0ae5ea79" title="Execute formatting process. " alt="" coords="384,5,525,47"/>
+<area shape="rect" id="node4" href="$namespacextd_1_1log.html#a1bf454914ef30636b604ead4f3c0ca7b" title="Converts given level to string label. " alt="" coords="388,71,521,98"/>
+<area shape="rect" id="node5" href="$namespacextd_1_1log.html#ad2efc26287edf8534ae7b46b22907c02" title="Converts given level to underlying value. " alt="" coords="389,122,520,149"/>
+<area shape="rect" id="node7" href="$classxtd_1_1log_1_1Formatter.html#ab36202b08245b27bea582289de44ff46" title="Apply time layout to given boost::posix_time::ptime argument. " alt="" coords="384,173,525,215"/>
+<area shape="rect" id="node6" href="$namespacextd.html#a518b0ddcbf87f6c21175d2760f4fbe21" title="Returns internal value of an enum class. " alt="" coords="573,122,669,149"/>
+</map>

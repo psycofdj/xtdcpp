@@ -1,0 +1,31 @@
+<map id="xtd::Application::execute" name="xtd::Application::execute">
+<area shape="rect" id="node2" href="$classxtd_1_1Application.html#a810c6c1924f762fd453555cb91cb35f9" title="Prints error on standard error and exit. " alt="" coords="503,5,650,47"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#a77d7eeda9f5c08df15ef96dcc3591dda" title="Returns (or create) global RootLogger instance. " alt="" coords="261,903,379,930"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1RootLogger.html#a5855e74b37f083b902cec1d3fd398973" title="Shortand for Logger::setName and Logger::setLevel. " alt="" coords="250,955,390,996"/>
+<area shape="rect" id="node7" href="$classxtd_1_1Application.html#a8684d1d061027893f91580106a821d88" title="Parse application configuration, (default nothing) " alt="" coords="225,1086,415,1113"/>
+<area shape="rect" id="node8" href="$classxtd_1_1Application.html#a3c63f070ac7baaea43a32b3064d0030b" title="Check read options, (default nothing) " alt="" coords="220,1137,420,1163"/>
+<area shape="rect" id="node9" href="$classxtd_1_1log_1_1RootLogger.html#ae62752c15b444a84ccc4303da003b280" title="Set active log level for all child loggers. " alt="" coords="250,1020,390,1061"/>
+<area shape="rect" id="node10" href="$namespacextd_1_1log.html#ad62a7ffe75fe416cf648c34acf201324" title="Converts given underlying value to level. " alt="" coords="271,1187,369,1214"/>
+<area shape="rect" id="node12" href="$classxtd_1_1Application.html#ab8e835ba678494c42e12c4613958d18a" title="initialize application, (default nothing) " alt="" coords="237,518,403,545"/>
+<area shape="rect" id="node13" href="$classxtd_1_1Application.html#ac97ed38310d0543ff63a67e4f48860b6" title="Main application process function, (default nothing) " alt="" coords="493,71,660,98"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1Logger.html#ad2144be152776e562e05d42eb9d503fc" title="Set logger name. " alt="" coords="490,1031,663,1058"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1Logger.html#a97fca3b06b4cf02e23e268873799140a" title="Set logger active log level. " alt="" coords="492,1082,661,1109"/>
+<area shape="rect" id="node11" href="$namespacextd_1_1log.html#ac843dc7585be48789f5b3fa33dcf40d4" title="Tells if given string is a valid level label. " alt="" coords="518,1187,635,1214"/>
+<area shape="rect" id="node14" href="$classxtd_1_1Application.html#aad6cb9d52d7553ee1287e3222cb1e417" title="register a signal callback " alt="" coords="488,915,665,956"/>
+<area shape="rect" id="node15" href="$classxtd_1_1Application.html#ac4fda3519ac27c48509536f189d2b060" title="Get RCSID identity informations. " alt="" coords="485,981,668,1007"/>
+<area shape="rect" id="node16" href="$classxtd_1_1Application.html#a24fee41865f36ba29f20bfb075563b51" title="Register an option to parser. " alt="" coords="487,223,666,250"/>
+<area shape="rect" id="node17" href="$classxtd_1_1Application.html#adf84f52f1388bef1336d0fb5f6345563" title="Prints error and usage on standard error and exit. " alt="" coords="733,223,880,250"/>
+<area shape="rect" id="node18" href="$classxtd_1_1Application.html#af187eb955972b9101e411bfa724aa317" title="Tells if given option was given on command line. " alt="" coords="493,376,661,417"/>
+<area shape="rect" id="node19" href="$classxtd_1_1Application.html#af5c614abf5e5a9bfe39c978bb0703d2c" title="Add additional usage line to display on help or errors. " alt="" coords="480,442,673,469"/>
+<area shape="rect" id="node20" href="$classxtd_1_1Application.html#a6277c4956209f6a672fdcde25b6cad5a" title="Bind option&#39;s parameter to a directory. " alt="" coords="496,274,657,301"/>
+<area shape="rect" id="node21" href="$classxtd_1_1Application.html#a6505bf904c26aa16009cbb5ec3d7ed05" title="Bind option&#39;s parameter to a file name. " alt="" coords="494,325,659,351"/>
+<area shape="rect" id="node22" href="$classxtd_1_1Application.html#af6cfc525aa349dd9b261b692b505e7ea" title="Set targeted variable to true if option is given on command line. " alt="" coords="487,493,666,519"/>
+<area shape="rect" id="node23" href="$classxtd_1_1Application.html#a836bab561132a06f617577112905c27b" title="Set targeted variable to option&#39;s parameter. " alt="" coords="487,543,666,570"/>
+<area shape="rect" id="node24" href="$classxtd_1_1Application.html#ac9739b519e6000b0d783c6a79ca9f8c1" title="Set targeted variable to option&#39;s parameter regex. " alt="" coords="485,122,668,149"/>
+<area shape="rect" id="node25" href="$classxtd_1_1Application.html#a00f6aed6c376028a79492b04e8325968" title="Associate option to given generic callback. " alt="" coords="479,594,674,621"/>
+<area shape="rect" id="node26" href="$classxtd_1_1Application.html#a2415acb66badb368e726173fb884097c" title="Set given value to referenced variable if option is given. " alt="" coords="488,645,665,687"/>
+<area shape="rect" id="node27" href="$classxtd_1_1Application.html#ae5fd6c9b1d2ad5225f9d624f63df4173" title="Bind option&#39;s paramter as number to referenced variable. " alt="" coords="481,711,672,738"/>
+<area shape="rect" id="node28" href="$classxtd_1_1Application.html#aaa0388f1c96893a26cfe5522b0804dd9" title="Bind option&#39;s parameter to target variable and checks among authorized values. " alt="" coords="485,762,669,789"/>
+<area shape="rect" id="node29" href="$classxtd_1_1Application.html#a3d10e863bb0116e7da11c552efc6b953" title="Append option&#39;s parameter to target container for each command line hit. " alt="" coords="468,813,685,839"/>
+<area shape="rect" id="node30" href="$classxtd_1_1Application.html#a931877468f6b948909d596d91d60b7a2" title="Prints a warning on standard error. " alt="" coords="503,863,651,890"/>
+</map>

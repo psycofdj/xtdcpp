@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/tty.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - tty.cc</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 09:45:37</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #include &quot;tty.hh&quot;
+<span class="lineNum">       2 </span>            : #include &quot;types.hh&quot;
+<span class="lineNum">       3 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/algorithm/string/join.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/assign/std/vector.hpp&gt;
+<span class="lineNum">       6 </span>            : #include &lt;boost/format.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/lexical_cast.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;iterator&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace xtd {
+<span class="lineNum">      11 </span>            : namespace tty {
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : const color color::unset      = color(c::unset);
+<span class="lineNum">      14 </span>            : const color color::normal     = color(c::normal);
+<span class="lineNum">      15 </span>            : const color color::black      = color(c::black);
+<span class="lineNum">      16 </span>            : const color color::red        = color(c::red);
+<span class="lineNum">      17 </span>            : const color color::green      = color(c::green);
+<span class="lineNum">      18 </span>            : const color color::yellow     = color(c::yellow);
+<span class="lineNum">      19 </span>            : const color color::blue       = color(c::blue);
+<span class="lineNum">      20 </span>            : const color color::magenta    = color(c::magenta);
+<span class="lineNum">      21 </span>            : const color color::cyan       = color(c::cyan);
+<span class="lineNum">      22 </span>            : const color color::gray       = color(c::gray);
+<span class="lineNum">      23 </span>            : const color color::lblack     = color(c::lblack);
+<span class="lineNum">      24 </span>            : const color color::lred       = color(c::lred);
+<span class="lineNum">      25 </span>            : const color color::lgreen     = color(c::lgreen);
+<span class="lineNum">      26 </span>            : const color color::lyellow    = color(c::lyellow);
+<span class="lineNum">      27 </span>            : const color color::lblue      = color(c::lblue);
+<span class="lineNum">      28 </span>            : const color color::lmagenta   = color(c::lmagenta);
+<span class="lineNum">      29 </span>            : const color color::lcyan      = color(c::lcyan);
+<span class="lineNum">      30 </span>            : const color color::lgray      = color(c::lgray);
+<span class="lineNum">      31 </span>            : const color color::white      = color(c::white);
+<span class="lineNum">      32 </span>            : const attrs attrs::unset      = attrs();
+<span class="lineNum">      33 </span>            : const attrs attrs::reset      = attrs(s::reset);
+<span class="lineNum">      34 </span>            : const attrs attrs::dim        = attrs(s::dim);
+<span class="lineNum">      35 </span>            : const attrs attrs::bold       = attrs(s::bold);
+<span class="lineNum">      36 </span>            : const attrs attrs::underlined = attrs(s::underlined);
+<span class="lineNum">      37 </span>            : const attrs attrs::blink      = attrs(s::blink);
+<span class="lineNum">      38 </span>            : const attrs attrs::reverse    = attrs(s::reverse);
+<span class="lineNum">      39 </span>            : const attrs attrs::hidden     = attrs(s::hidden);
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : /* -------------------------------------------------------------------------- */
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            : bool
+<span class="lineNum">      44 </span>            : attrs::from_string(const string&amp; p_value, attrs&amp; p_attrs)
+<span class="lineNum">      45 </span>            : {
+<span class="lineNum">      46 </span>            :   const static map&lt;string, attrs&gt; l_values = {
+<span class="lineNum">      47 </span>            :     { &quot;&quot;,           unset      },
+<span class="lineNum">      48 </span>            :     { &quot;unset&quot;,      unset      },
+<span class="lineNum">      49 </span>            :     { &quot;reset&quot;,      reset      },
+<span class="lineNum">      50 </span>            :     { &quot;dim&quot;,        dim        },
+<span class="lineNum">      51 </span>            :     { &quot;bold&quot;,       bold       },
+<span class="lineNum">      52 </span>            :     { &quot;underlined&quot;, underlined },
+<span class="lineNum">      53 </span>            :     { &quot;blink&quot;,      blink      },
+<span class="lineNum">      54 </span>            :     { &quot;reverse&quot;,    reverse    },
+<span class="lineNum">      55 </span>            :     { &quot;hidden&quot;,     hidden     }
+<span class="lineNum">      56 </span>            :   };
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            :   auto c_item = l_values.find(p_value);
+<span class="lineNum">      59 </span>            :   if (l_values.end() == c_item)
+<span class="lineNum">      60 </span>            :     return false;
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :   p_attrs = c_item-&gt;second;
+<span class="lineNum">      63 </span>            :   return true;
+<span class="lineNum">      64 </span>            : }
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            : string
+<span class="lineNum">      67 </span>            : attrs::to_string(const attrs&amp; p_attrs)
+<span class="lineNum">      68 </span>            : {
+<span class="lineNum">      69 </span>            :   const static map&lt;typename std::underlying_type&lt;s&gt;::type, string&gt; l_values = {
+<span class="lineNum">      70 </span>            :     { valueof(s::dim),        &quot;dim&quot;        },
+<span class="lineNum">      71 </span>            :     { valueof(s::bold),       &quot;bold&quot;       },
+<span class="lineNum">      72 </span>            :     { valueof(s::underlined), &quot;underlined&quot; },
+<span class="lineNum">      73 </span>            :     { valueof(s::blink),      &quot;blink&quot;      },
+<span class="lineNum">      74 </span>            :     { valueof(s::reverse),    &quot;reverse&quot;    },
+<span class="lineNum">      75 </span>            :     { valueof(s::hidden),     &quot;hidden&quot;     }
+<span class="lineNum">      76 </span>            :   };
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            :   if (0 == p_attrs.m_attrs.size())
+<span class="lineNum">      79 </span>            :     return &quot;unset&quot;;
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   vector&lt;string&gt; l_parts;
+<span class="lineNum">      82 </span>            :   for (auto c_attr : p_attrs.m_attrs) {
+<span class="lineNum">      83 </span>            :     auto c_item = l_values.find(c_attr);
+<span class="lineNum">      84 </span>            :     if (l_values.end() != c_item)
+<span class="lineNum">      85 </span>            :       l_parts.push_back(c_item-&gt;second);
+<span class="lineNum">      86 </span>            :   }
+<span class="lineNum">      87 </span>            :   return boost::join(l_parts, &quot; | &quot;);
+<span class="lineNum">      88 </span>            : }
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : attrs::attrs(void) :
+<span class="lineNum">      93 </span>            :   m_attrs()
+<span class="lineNum">      94 </span>            : {
+<span class="lineNum">      95 </span>            : }
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            : attrs::attrs(s p_attr) :
+<span class="lineNum">      98 </span>            :   m_attrs(1, valueof(p_attr))
+<span class="lineNum">      99 </span>            : {
+<span class="lineNum">     100 </span>            : }
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            : attrs
+<span class="lineNum">     103 </span>            : attrs::operator|(const attrs&amp; p_o1) const
+<span class="lineNum">     104 </span>            : {
+<span class="lineNum">     105 </span>            :   attrs l_res;
+<span class="lineNum">     106 </span>            :   std::copy(m_attrs.begin(), m_attrs.end(), std::back_inserter(l_res.m_attrs));
+<span class="lineNum">     107 </span>            :   std::copy(p_o1.m_attrs.begin(), p_o1.m_attrs.end(), std::back_inserter(l_res.m_attrs));
+<span class="lineNum">     108 </span>            :   std::sort(l_res.m_attrs.begin(), l_res.m_attrs.end());
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            :   auto c_iter = std::unique(l_res.m_attrs.begin(), l_res.m_attrs.end());
+<span class="lineNum">     111 </span>            :   auto l_size = std::distance(l_res.m_attrs.begin(), c_iter);
+<span class="lineNum">     112 </span>            :   l_res.m_attrs.resize(l_size);
+<span class="lineNum">     113 </span>            :   return l_res;
+<span class="lineNum">     114 </span>            : }
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : attrs&amp;
+<span class="lineNum">     117 </span>            : attrs::operator|=(const attrs&amp; p_o1)
+<span class="lineNum">     118 </span>            : {
+<span class="lineNum">     119 </span>            :   std::copy(p_o1.m_attrs.begin(), p_o1.m_attrs.end(), std::back_inserter(m_attrs));
+<span class="lineNum">     120 </span>            :   std::sort(m_attrs.begin(), m_attrs.end());
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            :   auto c_iter = std::unique(m_attrs.begin(), m_attrs.end());
+<span class="lineNum">     123 </span>            :   auto l_size = std::distance(m_attrs.begin(), c_iter);
+<span class="lineNum">     124 </span>            :   m_attrs.resize(l_size);
+<span class="lineNum">     125 </span>            :   return *this;
+<span class="lineNum">     126 </span>            : }
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : bool
+<span class="lineNum">     129 </span>            : attrs::operator==(const attrs&amp; p_obj) const
+<span class="lineNum">     130 </span>            : {
+<span class="lineNum">     131 </span>            :   vector&lt;uint32_t&gt; l_this(m_attrs);
+<span class="lineNum">     132 </span>            :   vector&lt;uint32_t&gt; l_foreign(p_obj.m_attrs);
+<span class="lineNum">     133 </span>            :   std::sort(l_this.begin(), l_this.end());
+<span class="lineNum">     134 </span>            :   std::sort(l_foreign.begin(), l_foreign.end());
+<span class="lineNum">     135 </span>            :   l_this   .resize(std::distance(l_this.begin(),    std::unique(l_this.begin(),    l_this.end())));
+<span class="lineNum">     136 </span>            :   l_foreign.resize(std::distance(l_foreign.begin(), std::unique(l_foreign.begin(), l_foreign.end())));
+<span class="lineNum">     137 </span>            :   return ((l_this.size() == l_foreign.size()) &amp;&amp;
+<span class="lineNum">     138 </span>            :           std::equal(l_this.begin(), l_this.end(), l_foreign.begin()));
+<span class="lineNum">     139 </span>            : }
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            : const vector&lt;uint32_t&gt;&amp;
+<span class="lineNum">     143 </span>            : attrs::getValues(void) const
+<span class="lineNum">     144 </span>            : {
+<span class="lineNum">     145 </span>            :   return m_attrs;
+<span class="lineNum">     146 </span>            : }
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : bool
+<span class="lineNum">     149 </span>            : attrs::isSet(void) const
+<span class="lineNum">     150 </span>            : {
+<span class="lineNum">     151 </span>            :   return (false == m_attrs.empty());
+<span class="lineNum">     152 </span>            : }
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span><span class="lineCov">          1 : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const attrs&amp; p_attrs)</span>
+<span class="lineNum">     155 </span>            : {
+<span class="lineNum">     156 </span>            :   return p_buf &lt;&lt; attrs::to_string(p_attrs);
+<span class="lineNum">     157 </span>            : }
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span>            : /* -------------------------------------------------------------------------- */
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span>            : color::color(c p_color) :
+<span class="lineNum">     163 </span>            :   m_value(valueof(p_color)),
+<span class="lineNum">     164 </span>            :   m_extended(false)
+<span class="lineNum">     165 </span>            : {
+<span class="lineNum">     166 </span>            : }
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span>            : color::color(uint32_t p_value) :
+<span class="lineNum">     169 </span>            :   m_value(p_value),
+<span class="lineNum">     170 </span>            :   m_extended(true)
+<span class="lineNum">     171 </span>            : {
+<span class="lineNum">     172 </span>            : }
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span>            : bool
+<span class="lineNum">     175 </span>            : color::operator==(const color&amp; p_obj) const
+<span class="lineNum">     176 </span>            : {
+<span class="lineNum">     177 </span>            :   return m_value == p_obj.getValue();
+<span class="lineNum">     178 </span>            : }
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span>            : bool
+<span class="lineNum">     182 </span>            : color::isSet(void) const
+<span class="lineNum">     183 </span>            : {
+<span class="lineNum">     184 </span>            :   return m_value != 0;
+<span class="lineNum">     185 </span>            : }
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span>            : bool
+<span class="lineNum">     188 </span>            : color::isExtended(void) const
+<span class="lineNum">     189 </span>            : {
+<span class="lineNum">     190 </span>            :   return m_extended;
+<span class="lineNum">     191 </span>            : }
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            : uint32_t
+<span class="lineNum">     194 </span>            : color::getValue(void) const
+<span class="lineNum">     195 </span>            : {
+<span class="lineNum">     196 </span>            :   return m_value;
+<span class="lineNum">     197 </span>            : }
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : bool
+<span class="lineNum">     200 </span>            : color::from_string(const string&amp; p_value, color&amp; p_color)
+<span class="lineNum">     201 </span>            : {
+<span class="lineNum">     202 </span>            :   const static map&lt;string, color&gt; l_values = {
+<span class="lineNum">     203 </span>            :     { &quot;unset&quot;,    unset    },
+<span class="lineNum">     204 </span>            :     { &quot;normal&quot;,   normal   },
+<span class="lineNum">     205 </span>            :     { &quot;black&quot;,    black    },
+<span class="lineNum">     206 </span>            :     { &quot;red&quot;,      red      },
+<span class="lineNum">     207 </span>            :     { &quot;green&quot;,    green    },
+<span class="lineNum">     208 </span>            :     { &quot;yellow&quot;,   yellow   },
+<span class="lineNum">     209 </span>            :     { &quot;blue&quot;,     blue     },
+<span class="lineNum">     210 </span>            :     { &quot;magenta&quot;,  magenta  },
+<span class="lineNum">     211 </span>            :     { &quot;cyan&quot;,     cyan     },
+<span class="lineNum">     212 </span>            :     { &quot;gray&quot;,     gray     },
+<span class="lineNum">     213 </span>            :     { &quot;lblack&quot;,   lblack   },
+<span class="lineNum">     214 </span>            :     { &quot;lred&quot;,     lred     },
+<span class="lineNum">     215 </span>            :     { &quot;lgreen&quot;,   lgreen   },
+<span class="lineNum">     216 </span>            :     { &quot;lyellow&quot;,  lyellow  },
+<span class="lineNum">     217 </span>            :     { &quot;lblue&quot;,    lblue    },
+<span class="lineNum">     218 </span>            :     { &quot;lmagenta&quot;, lmagenta },
+<span class="lineNum">     219 </span>            :     { &quot;lcyan&quot;,    lcyan    },
+<span class="lineNum">     220 </span>            :     { &quot;lgray&quot;,    lgray    },
+<span class="lineNum">     221 </span>            :     { &quot;white&quot;,    white    }
+<span class="lineNum">     222 </span>            :   };
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            :   auto c_item = l_values.find(p_value);
+<span class="lineNum">     225 </span>            :   if (l_values.end() != c_item)
+<span class="lineNum">     226 </span>            :   {
+<span class="lineNum">     227 </span>            :     p_color = c_item-&gt;second;
+<span class="lineNum">     228 </span>            :     return true;
+<span class="lineNum">     229 </span>            :   }
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span>            :   try {
+<span class="lineNum">     232 </span>            :     uint32_t l_value = boost::lexical_cast&lt;uint32_t&gt;(p_value);
+<span class="lineNum">     233 </span>            :     p_color = color(l_value);
+<span class="lineNum">     234 </span>            :     return true;
+<span class="lineNum">     235 </span>            :   } catch (boost::bad_lexical_cast&amp;) {
+<span class="lineNum">     236 </span>            :     return false;
+<span class="lineNum">     237 </span>            :   }
+<span class="lineNum">     238 </span>            : }
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            : string
+<span class="lineNum">     242 </span>            : color::to_string(const color&amp; p_color)
+<span class="lineNum">     243 </span>            : {
+<span class="lineNum">     244 </span>            :   const static map&lt;typename std::underlying_type&lt;c&gt;::type, string&gt; l_values = {
+<span class="lineNum">     245 </span>            :     { valueof(c::unset),    &quot;unset&quot;    },
+<span class="lineNum">     246 </span>            :     { valueof(c::normal),   &quot;normal&quot;   },
+<span class="lineNum">     247 </span>            :     { valueof(c::black),    &quot;black&quot;    },
+<span class="lineNum">     248 </span>            :     { valueof(c::red),      &quot;red&quot;      },
+<span class="lineNum">     249 </span>            :     { valueof(c::green),    &quot;green&quot;    },
+<span class="lineNum">     250 </span>            :     { valueof(c::yellow),   &quot;yellow&quot;   },
+<span class="lineNum">     251 </span>            :     { valueof(c::blue),     &quot;blue&quot;     },
+<span class="lineNum">     252 </span>            :     { valueof(c::magenta),  &quot;magenta&quot;  },
+<span class="lineNum">     253 </span>            :     { valueof(c::cyan),     &quot;cyan&quot;     },
+<span class="lineNum">     254 </span>            :     { valueof(c::gray),     &quot;gray&quot;     },
+<span class="lineNum">     255 </span>            :     { valueof(c::lblack),   &quot;lblack&quot;   },
+<span class="lineNum">     256 </span>            :     { valueof(c::lred),     &quot;lred&quot;     },
+<span class="lineNum">     257 </span>            :     { valueof(c::lgreen),   &quot;lgreen&quot;   },
+<span class="lineNum">     258 </span>            :     { valueof(c::lyellow),  &quot;lyellow&quot;  },
+<span class="lineNum">     259 </span>            :     { valueof(c::lblue),    &quot;lblue&quot;    },
+<span class="lineNum">     260 </span>            :     { valueof(c::lmagenta), &quot;lmagenta&quot; },
+<span class="lineNum">     261 </span>            :     { valueof(c::lcyan),    &quot;lcyan&quot;    },
+<span class="lineNum">     262 </span>            :     { valueof(c::lgray),    &quot;lgray&quot;    },
+<span class="lineNum">     263 </span>            :     { valueof(c::white),    &quot;white&quot;    }
+<span class="lineNum">     264 </span>            :   };
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span>            :   auto c_item = l_values.find(p_color.getValue());
+<span class="lineNum">     267 </span>            :   if (l_values.end() != c_item)
+<span class="lineNum">     268 </span>            :     return c_item-&gt;second;
+<span class="lineNum">     269 </span>            :   return &quot;color&lt;&quot; + to_string(p_color.getValue()) + &quot;&gt;&quot;;
+<span class="lineNum">     270 </span>            : }
+<span class="lineNum">     271 </span>            : 
+<span class="lineNum">     272 </span><span class="lineCov">          1 : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const color&amp; p_color)</span>
+<span class="lineNum">     273 </span>            : {
+<span class="lineNum">     274 </span>            :   return p_buf &lt;&lt; color::to_string(p_color);
+<span class="lineNum">     275 </span>            : }
+<span class="lineNum">     276 </span>            : 
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span>            : /* -------------------------------------------------------------------------- */
+<span class="lineNum">     279 </span>            : 
+<span class="lineNum">     280 </span>            : style::style(const color&amp; p_fg, const color&amp; p_bg, const attrs&amp; p_attrs) :
+<span class="lineNum">     281 </span>            :   m_fg(p_fg),
+<span class="lineNum">     282 </span>            :   m_bg(p_bg),
+<span class="lineNum">     283 </span>            :   m_attrs(p_attrs)
+<span class="lineNum">     284 </span>            : {
+<span class="lineNum">     285 </span>            : }
+<span class="lineNum">     286 </span>            : 
+<span class="lineNum">     287 </span>            : style::style(const color&amp; p_fg, const attrs&amp; p_attrs) :
+<span class="lineNum">     288 </span>            :   m_fg(p_fg),
+<span class="lineNum">     289 </span>            :   m_bg(color::unset),
+<span class="lineNum">     290 </span>            :   m_attrs(p_attrs)
+<span class="lineNum">     291 </span>            : {
+<span class="lineNum">     292 </span>            : }
+<span class="lineNum">     293 </span>            : 
+<span class="lineNum">     294 </span>            : const color&amp;
+<span class="lineNum">     295 </span>            : style::getFgColor(void) const
+<span class="lineNum">     296 </span>            : {
+<span class="lineNum">     297 </span>            :   return m_fg;
+<span class="lineNum">     298 </span>            : }
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span>            : const color&amp;
+<span class="lineNum">     301 </span>            : style::getBgColor(void) const
+<span class="lineNum">     302 </span>            : {
+<span class="lineNum">     303 </span>            :   return m_bg;
+<span class="lineNum">     304 </span>            : }
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span>            : const attrs&amp;
+<span class="lineNum">     307 </span>            : style::getAttrs(void)   const
+<span class="lineNum">     308 </span>            : {
+<span class="lineNum">     309 </span>            :   return m_attrs;
+<span class="lineNum">     310 </span>            : }
+<span class="lineNum">     311 </span>            : 
+<span class="lineNum">     312 </span>            : void
+<span class="lineNum">     313 </span>            : style::setFgColor(const color&amp; p_fg)
+<span class="lineNum">     314 </span>            : {
+<span class="lineNum">     315 </span>            :   m_fg = p_fg;
+<span class="lineNum">     316 </span>            : }
+<span class="lineNum">     317 </span>            : 
+<span class="lineNum">     318 </span>            : void
+<span class="lineNum">     319 </span>            : style::setBgColor(const color&amp; p_bg)
+<span class="lineNum">     320 </span>            : {
+<span class="lineNum">     321 </span>            :   m_bg = p_bg;
+<span class="lineNum">     322 </span>            : }
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span>            : void
+<span class="lineNum">     325 </span>            : style::setAttrs(const attrs&amp; p_attrs)
+<span class="lineNum">     326 </span>            : {
+<span class="lineNum">     327 </span>            :   m_attrs = p_attrs;
+<span class="lineNum">     328 </span>            : }
+<span class="lineNum">     329 </span>            : 
+<span class="lineNum">     330 </span>            : 
+<span class="lineNum">     331 </span>            : /* -------------------------------------------------------------------------- */
+<span class="lineNum">     332 </span>            : 
+<span class="lineNum">     333 </span>            : Text::Text(const string&amp; p_str,
+<span class="lineNum">     334 </span>            :            const color&amp; p_fg,
+<span class="lineNum">     335 </span>            :            const color&amp; p_bg,
+<span class="lineNum">     336 </span>            :            const attrs&amp; p_attrs) :
+<span class="lineNum">     337 </span>            :   m_str(p_str),
+<span class="lineNum">     338 </span>            :   m_style(p_fg, p_bg, p_attrs)
+<span class="lineNum">     339 </span>            : {
+<span class="lineNum">     340 </span>            : }
+<span class="lineNum">     341 </span>            : 
+<span class="lineNum">     342 </span>            : Text::Text(const string&amp; p_str,
+<span class="lineNum">     343 </span>            :            const color&amp; p_fg,
+<span class="lineNum">     344 </span>            :            const attrs&amp; p_attrs) :
+<span class="lineNum">     345 </span>            :   m_str(p_str),
+<span class="lineNum">     346 </span>            :   m_style(p_fg, p_attrs)
+<span class="lineNum">     347 </span>            : {
+<span class="lineNum">     348 </span>            : }
+<span class="lineNum">     349 </span>            : 
+<span class="lineNum">     350 </span>            : 
+<span class="lineNum">     351 </span>            : Text::Text(const string&amp; p_str,
+<span class="lineNum">     352 </span>            :            const style&amp; p_style) :
+<span class="lineNum">     353 </span>            :   m_str(p_str),
+<span class="lineNum">     354 </span>            :   m_style(p_style)
+<span class="lineNum">     355 </span>            : {
+<span class="lineNum">     356 </span>            : }
+<span class="lineNum">     357 </span>            : 
+<span class="lineNum">     358 </span>            : Text::operator string() const
+<span class="lineNum">     359 </span>            : {
+<span class="lineNum">     360 </span>            :   return str();
+<span class="lineNum">     361 </span>            : }
+<span class="lineNum">     362 </span>            : 
+<span class="lineNum">     363 </span>            : string
+<span class="lineNum">     364 </span>            : Text::str(void) const
+<span class="lineNum">     365 </span>            : {
+<span class="lineNum">     366 </span>            :   using boost::assign::operator+=;
+<span class="lineNum">     367 </span>            :   using boost::str;
+<span class="lineNum">     368 </span>            :   using boost::format;
+<span class="lineNum">     369 </span>            : 
+<span class="lineNum">     370 </span>            :   vector&lt;string&gt; l_escapes;
+<span class="lineNum">     371 </span>            : 
+<span class="lineNum">     372 </span>            :   if (true == m_style.getFgColor().isSet())
+<span class="lineNum">     373 </span>            :   {
+<span class="lineNum">     374 </span>            :     if (false == m_style.getFgColor().isExtended())
+<span class="lineNum">     375 </span>            :       l_escapes += str(format(&quot;\e[%dm&quot;) % m_style.getFgColor().getValue());
+<span class="lineNum">     376 </span>            :     else
+<span class="lineNum">     377 </span>            :       l_escapes += str(format(&quot;\e[38;5;%dm&quot;) % m_style.getFgColor().getValue());
+<span class="lineNum">     378 </span>            :   }
+<span class="lineNum">     379 </span>            : 
+<span class="lineNum">     380 </span>            :   if (true == m_style.getBgColor().isSet())
+<span class="lineNum">     381 </span>            :   {
+<span class="lineNum">     382 </span>            :     if (false == m_style.getBgColor().isExtended())
+<span class="lineNum">     383 </span>            :       l_escapes += str(format(&quot;\e[%dm&quot;) % (m_style.getBgColor().getValue() + 10));
+<span class="lineNum">     384 </span>            :     else
+<span class="lineNum">     385 </span>            :       l_escapes += str(format(&quot;\e[48;5;%dm&quot;) % m_style.getBgColor().getValue());
+<span class="lineNum">     386 </span>            :   }
+<span class="lineNum">     387 </span>            : 
+<span class="lineNum">     388 </span>            :   for (auto c_attrs : m_style.getAttrs().getValues())
+<span class="lineNum">     389 </span>            :     l_escapes += str(format(&quot;\e[%dm&quot;) % c_attrs);
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span>            :   l_escapes += m_str;
+<span class="lineNum">     392 </span>            : 
+<span class="lineNum">     393 </span>            :   if (l_escapes.size() &gt; 1)
+<span class="lineNum">     394 </span>            :     l_escapes += &quot;\e[0m&quot;;
+<span class="lineNum">     395 </span>            : 
+<span class="lineNum">     396 </span>            :   return boost::join(l_escapes, &quot;&quot;);
+<span class="lineNum">     397 </span>            : }
+<span class="lineNum">     398 </span>            : 
+<span class="lineNum">     399 </span><span class="lineCov">          1 : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const Text&amp; p_text)</span>
+<span class="lineNum">     400 </span>            : {
+<span class="lineNum">     401 </span>            :   p_buf &lt;&lt; p_text.str();
+<span class="lineNum">     402 </span>            :   return p_buf;
+<span class="lineNum">     403 </span>            : }
+<span class="lineNum">     404 </span>            : 
+<span class="lineNum">     405 </span>            : }}
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

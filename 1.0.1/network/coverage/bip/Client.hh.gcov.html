@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - bip/Client.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">bip</a> - Client.hh<span style="font-size: 80%;"> (source / <a href="Client.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2016-12-29 16:00:50</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef NETWORK_BIP_CLIENT_HH_</a>
+<span class="lineNum">       2 </span>            : # define NETWORK_BIP_CLIENT_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &quot;base/Client.hh&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : namespace xtd {
+<span class="lineNum">       7 </span>            : namespace network {
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace bip {
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : /**
+<span class="lineNum">      12 </span>            :  ** @param TDomain : mode de connexion, utils::af_inet ou utils::af_unix
+<span class="lineNum">      13 </span>            :  ** @param TRequest Structure requète serialisable avec boost::serialization
+<span class="lineNum">      14 </span>            :  ** @param TResponse Structure réponse serialisable avec boost::serialization
+<span class="lineNum">      15 </span>            :  ** @details
+<span class="lineNum">      16 </span>            :  ** Client générique bip : gère l'envoi de structure TRequest et la réception de
+<span class="lineNum">      17 </span>            :  ** structure TResponse vers un serveur bip de même type.
+<span class="lineNum">      18 </span>            :  **
+<span class="lineNum">      19 </span>            :  ** Selon la configuration transmise au constructeur, les données pourront etre
+<span class="lineNum">      20 </span>            :  ** compressées avant l'envoi et décompressée à la réception.
+<span class="lineNum">      21 </span>            :  **
+<span class="lineNum">      22 </span>            :  ** La méthode send de cet objet est non bloquante et déclenche, en interne, la
+<span class="lineNum">      23 </span>            :  ** réception de la réponse du serveur. La méthode receive, elle, est bloquante
+<span class="lineNum">      24 </span>            :  ** jusqu'à la réception effective de la réponse. Cette approche permet à un
+<span class="lineNum">      25 </span>            :  ** utilisateur, qui aurait plusieurs client connectés vers plusieurs serveurs,
+<span class="lineNum">      26 </span>            :  ** d'envoyer ses requètes et de réceptionner en parallèle ses réponses pour au
+<span class="lineNum">      27 </span>            :  ** final aller au rythme du serveur le plus lent et pas subir la somme de tous
+<span class="lineNum">      28 </span>            :  ** les temps de réponse.
+<span class="lineNum">      29 </span>            :  **
+<span class="lineNum">      30 </span>            :  ** Thread safety :
+<span class="lineNum">      31 </span>            :  ** - même instance : non
+<span class="lineNum">      32 </span>            :  ** - instances différentes : oui
+<span class="lineNum">      33 </span>            :  */
+<span class="lineNum">      34 </span>            : template&lt;class TRequest, class TResponse, typename TDomain = utils::af_inet&gt;
+<span class="lineNum">      35 </span>            : class Client : public base::Client&lt;TDomain&gt;
+<span class="lineNum">      36 </span>            : {
+<span class="lineNum">      37 </span>            : public:
+<span class="lineNum">      38 </span>            :   typedef TRequest  TReq;
+<span class="lineNum">      39 </span>            :   typedef TResponse TRes;
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : private:
+<span class="lineNum">      42 </span>            :   typedef base::Client&lt;TDomain&gt;      TBase;
+<span class="lineNum">      43 </span>            :   typedef typename TBase::cnx_sptr_t cnx_sptr_t;
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   /**
+<span class="lineNum">      46 </span>            :    ** @brief Code pour l'état du client
+<span class="lineNum">      47 </span>            :    */
+<span class="lineNum">      48 </span>            :   enum class cnxstatus : int32_t
+<span class="lineNum">      49 </span>            :   {
+<span class="lineNum">      50 </span>            :     available = 0, /**&lt; pret à envoyer une nouvelle requête (nouveau send) */
+<span class="lineNum">      51 </span>            :       reserved  = 1, /**&lt; requête en cours d'envoi sur le réseau */
+<span class="lineNum">      52 </span>            :       sent      = 2, /**&lt; requête envoyé, en attente de réception réseau de la réponse */
+<span class="lineNum">      53 </span>            :       received  = 3, /**&lt; réponse réseau reçue, en attente de l'appel à client à receive */
+<span class="lineNum">      54 </span>            :       error     = 4, /**&lt; envoi ou reception réseau en timeout, en attente d'un appel client à receive */
+<span class="lineNum">      55 </span>            :       timeout   = 5  /**&lt; envoi ou reception réseau en erreur, en attente d'un appel client à receive */
+<span class="lineNum">      56 </span>            :       };
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            : public:
+<span class="lineNum">      59 </span>            :   Client(const utils::Config&amp; p_conf);
+<span class="lineNum">      60 </span>            :   virtual ~Client(void);
+<a name="61"><span class="lineNum">      61 </span>            : </a>
+<a name="62"><span class="lineNum">      62 </span>            : public:</a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendTotal(void) const       { return m_sendTotal; }</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendSuccess(void) const     { return m_sendSuccess; }</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendTimeout(void) const     { return m_sendTimeout; }</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendError(void) const       { return m_sendError; }</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getReceiveTotal(void) const    { return m_receiveTotal; }</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getReceiveSuccess(void) const  { return m_receiveSuccess; }</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getReceiveTimeout(void) const  { return m_receiveTimeout; }</span></a>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getReceiveError(void) const    { return m_receiveError; }</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getLastRTTMs(void) const       { return m_lastRTTMs; }</span>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            : public:
+<span class="lineNum">      74 </span>            :   /**
+<span class="lineNum">      75 </span>            :    ** @brief envoi d'une structure requête au server
+<span class="lineNum">      76 </span>            :    ** @param p_request la requête
+<span class="lineNum">      77 </span>            :    ** @param p_debug si vrai, envoyer aussi la partie débug de la structure
+<span class="lineNum">      78 </span>            :    ** @return status::ok si tout va bien, status::error sinon
+<span class="lineNum">      79 </span>            :    ** @details
+<span class="lineNum">      80 </span>            :    ** Non bloquant, status::ok ne veut pas dire que le message est bien arrivé,
+<span class="lineNum">      81 </span>            :    ** simplement que l'objet étaient en étant d'envoyer une requête (pas
+<span class="lineNum">      82 </span>            :    ** déjà en attente de réponse par exemple).
+<span class="lineNum">      83 </span>            :    */
+<span class="lineNum">      84 </span>            :   status send(const TRequest&amp; p_request, bool  p_debug);
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span>            :   /**
+<span class="lineNum">      87 </span>            :    ** @brief reception de la structure réponse
+<span class="lineNum">      88 </span>            :    ** @param p_response structure à remplir avec la réponse du server
+<span class="lineNum">      89 </span>            :    ** @param p_debug sortira à la valeur true si le serveur a envoyé la partie débug de la structure
+<span class="lineNum">      90 </span>            :    ** @return status::ok si tout va bien, status::timeout en cas de timeout et staus::error en cas d'erreur.
+<span class="lineNum">      91 </span>            :    ** @details
+<span class="lineNum">      92 </span>            :    ** Cette méthode est bloquante, elle attend la réception effective de la réponse
+<span class="lineNum">      93 </span>            :    ** du serveur ou la survenue d'une erreur/timeout.
+<span class="lineNum">      94 </span>            :    */
+<span class="lineNum">      95 </span>            :   status receive(TResponse&amp; p_response,  bool&amp; p_debug);
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            :   virtual bool shouldReceive(const TRequest&amp;  p_request,
+<span class="lineNum">      98 </span>            :                              const bool       p_requestDebug);
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            : private:
+<span class="lineNum">     101 </span>            :   cnx_sptr_t createCnx(string p_hostname, uint32_t p_port);
+<span class="lineNum">     102 </span>            :   void       do_receive(void);
+<span class="lineNum">     103 </span>            :   void       onSent(const boost::system::error_code p_error, bool p_shouldReceive);
+<span class="lineNum">     104 </span>            :   void       onReceived(const boost::system::error_code p_error,
+<span class="lineNum">     105 </span>            :                         utils::sharedBuf_t              p_response);
+<span class="lineNum">     106 </span>            : private:
+<span class="lineNum">     107 </span>            :   /** Semaphore uitilise pour bloquer l'utilisateur soit dans le send (noget) soit dans le receive */
+<span class="lineNum">     108 </span>            :   boost::interprocess::interprocess_semaphore m_userSemaphore;
+<span class="lineNum">     109 </span>            :   cnxstatus                                   m_status;
+<span class="lineNum">     110 </span>            :   utils::vectorBytes_t                        m_response;
+<span class="lineNum">     111 </span>            :   boost::posix_time::ptime                    m_lastSend;
+<span class="lineNum">     112 </span>            :   uint32_t                                    m_sendTotal;
+<span class="lineNum">     113 </span>            :   uint32_t                                    m_sendError;
+<span class="lineNum">     114 </span>            :   uint32_t                                    m_sendSuccess;
+<span class="lineNum">     115 </span>            :   uint32_t                                    m_sendTimeout;
+<span class="lineNum">     116 </span>            :   uint32_t                                    m_receiveTotal;
+<span class="lineNum">     117 </span>            :   uint32_t                                    m_receiveError;
+<span class="lineNum">     118 </span>            :   uint32_t                                    m_receiveTimeout;
+<span class="lineNum">     119 </span>            :   uint32_t                                    m_receiveSuccess;
+<span class="lineNum">     120 </span>            :   uint32_t                                    m_lastRTTMs;
+<span class="lineNum">     121 </span>            : };
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            : }}} //end namespaces
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            : #endif // !NETWORK_BIPCLIENT_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

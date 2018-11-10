@@ -1,0 +1,442 @@
+[
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh": [
+      {
+        "symbol": "typedef std::pair<string, uint32_t> xtd::tests::CWrap::t_state", 
+        "line": 19, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "typedef vector<t_state> xtd::tests::CWrap::t_config", 
+        "line": 20, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "typedef map<string, t_config> xtd::tests::CWrap::t_data", 
+        "line": 21, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "typedef std::function<void(const boost::any&)> xtd::tests::CWrap::t_hook", 
+        "line": 22, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "typedef std::multimap<string, t_hook> xtd::tests::CWrap::t_hooks", 
+        "line": 23, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "xtd::tests::CWrap::CWrap", 
+        "line": 26, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "std::string xtd::tests::CWrap::gen", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "void xtd::tests::CWrap::set", 
+        "line": 51, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "void xtd::tests::CWrap::reset", 
+        "line": 52, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "void xtd::tests::CWrap::runHooks", 
+        "line": 53, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "void xtd::tests::CWrap::addHook", 
+        "line": 54, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "void xtd::tests::CWrap::setHooks", 
+        "line": 55, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1CWrap", 
+        "line": 17, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh": [
+      {
+        "symbol": "xtd::tests::CWrap::hook_state::hook_state", 
+        "line": 42, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "xtd::tests::CWrap::hook_state::~hook_state", 
+        "line": 43, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1CWrap_1_1hook__state", 
+        "line": 40, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh": [
+      {
+        "symbol": "string xtd::tests::MainTestApplication::m_filter", 
+        "line": 29, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "bool xtd::tests::MainTestApplication::m_progress", 
+        "line": 30, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "string xtd::tests::MainTestApplication::m_ouputter", 
+        "line": 31, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "string xtd::tests::MainTestApplication::m_srcDir", 
+        "line": 32, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "string xtd::tests::MainTestApplication::m_topSrcDir", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "string xtd::tests::MainTestApplication::m_topBuildDir", 
+        "line": 34, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "string xtd::tests::MainTestApplication::m_testDir", 
+        "line": 35, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "xtd::tests::MainTestApplication::MainTestApplication", 
+        "line": 20, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1MainTestApplication", 
+        "line": 18, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/ProgressListener.hh": [
+      {
+        "symbol": "xtd::tests::ProgressListener::ProgressListener", 
+        "line": 14, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/ProgressListener.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1ProgressListener", 
+        "line": 12, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/ProgressListener.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh": [
+      {
+        "symbol": "xtd::tests::QuietOutputter::QuietOutputter", 
+        "line": 10, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "void xtd::tests::QuietOutputter::write", 
+        "line": 14, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailures", 
+        "line": 15, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printHeader", 
+        "line": 16, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailure", 
+        "line": 17, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailureListMark", 
+        "line": 18, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailureTestName", 
+        "line": 19, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailureType", 
+        "line": 20, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailureLocation", 
+        "line": 21, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailureDetail", 
+        "line": 22, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printFailureWarning", 
+        "line": 23, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::tests::QuietOutputter::printStatistics", 
+        "line": 24, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1QuietOutputter", 
+        "line": 8, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/QuietOutputter.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh": [
+      {
+        "symbol": "xtd::tests::CWrap::state::state", 
+        "line": 32, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "xtd::tests::CWrap::state::~state", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1CWrap_1_1state", 
+        "line": 30, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh": [
+      {
+        "symbol": "xtd::tests::TestFixture::~TestFixture", 
+        "line": 15, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh"
+      }, 
+      {
+        "symbol": "string xtd::tests::TestFixture::getFileContent", 
+        "line": 18, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1tests_1_1TestFixture", 
+        "line": 13, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh": [
+      {
+        "symbol": "CPPUNIT_ASSERT_AT", 
+        "line": 5, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_ASSERTION_FAIL_AT", 
+        "line": 11, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE_AT", 
+        "line": 17, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_DOUBLES_EQUAL_AT", 
+        "line": 24, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_EQUAL_AT", 
+        "line": 28, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_EQUAL_MESSAGE_AT", 
+        "line": 35, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_MESSAGE_AT", 
+        "line": 42, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_NO_THROW_MESSAGE_AT", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_NO_THROW_AT", 
+        "line": 69, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_THROW_MESSAGE_AT", 
+        "line": 75, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_ASSERT_THROW_AT", 
+        "line": 102, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }, 
+      {
+        "symbol": "CPPUNIT_FAIL_AT", 
+        "line": 108, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/asserts.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc": [
+      {
+        "symbol": "size_t fread", 
+        "line": 144, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc"
+      }, 
+      {
+        "symbol": "void openlog", 
+        "line": 157, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc"
+      }, 
+      {
+        "symbol": "void closelog", 
+        "line": 172, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc"
+      }, 
+      {
+        "symbol": "void vsyslog", 
+        "line": 184, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc"
+      }, 
+      {
+        "symbol": "void syslog", 
+        "line": 198, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/CWrap.cc"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh": [
+      {
+        "symbol": "XTD_TEST_MAIN_CLASS", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }, 
+      {
+        "symbol": "XTD_TEST_MAIN", 
+        "line": 48, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/MainTestApplication.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh": [
+      {
+        "symbol": "XTD_TESTS_LOC", 
+        "line": 7, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/tests/src/TestFixture.hh"
+      }
+    ]
+  }
+]

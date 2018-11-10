@@ -1,0 +1,6 @@
+<map id="xtd::log::is_valid" name="xtd::log::is_valid">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1ConfLoader.html#a7a63a5cade515540a0733d782722281e" title="Initialize logging facility from properties. " alt="" coords="331,5,471,47"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#ad62a7ffe75fe416cf648c34acf201324" title="Converts given underlying value to level. " alt="" coords="171,70,269,97"/>
+<area shape="rect" id="node4" href="$classxtd_1_1Application.html#af6aafabf6c552d200f810f754f34e14c" title="main entry point, usually called with main(int,char**)&#39;s arguments " alt="" coords="317,71,484,98"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1RootLogger.html#a83191f4ff079812194d8d3b344d86473" title="Same as RootLogger::setAllLevels with integer level value. " alt="" coords="331,123,471,164"/>
+</map>

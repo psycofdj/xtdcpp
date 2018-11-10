@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/log/Fields.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - Fields.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-02-18 10:05:18</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef XTD_CORE_LOG_FIELDS_HH_
+<span class="lineNum">       2 </span>            : # define XTD_CORE_LOG_FIELDS_HH_
+<span class="lineNum">       3 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : namespace xtd {
+<span class="lineNum">       6 </span>            : namespace log {
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : /**
+<span class="lineNum">      10 </span>            :  ** @brief Holds generic data for each log Record formattable field
+<span class="lineNum">      11 </span>            :  ** @details
+<span class="lineNum">      12 </span>            :  ** This object provides a convenient way to access fields data from either
+<span class="lineNum">      13 </span>            :  ** structure member or field name
+<span class="lineNum">      14 </span>            :  */
+<span class="lineNum">      15 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      16 </span>            : struct Fields
+<span class="lineNum">      17 </span><span class="lineCov">          1 : {</span>
+<span class="lineNum">      18 </span>            : private:
+<span class="lineNum">      19 </span>            :   typedef Fields&lt;T&gt; this_type;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : public:
+<span class="lineNum">      22 </span>            :   /**
+<span class="lineNum">      23 </span>            :    ** @brief Constructor
+<span class="lineNum">      24 </span>            :    */
+<span class="lineNum">      25 </span><span class="lineCov">          1 :   Fields(void);</span>
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : public:
+<span class="lineNum">      28 </span>            :   /**
+<span class="lineNum">      29 </span>            :    ** @brief Get field value from name
+<span class="lineNum">      30 </span>            :    ** @param p_field field name
+<span class="lineNum">      31 </span>            :    ** @param p_value output value reference
+<span class="lineNum">      32 </span>            :    ** @return true if name is valid
+<span class="lineNum">      33 </span>            :    */
+<span class="lineNum">      34 </span><span class="lineCov">          1 :   bool get(const string&amp; p_field, T&amp; p_value) const;</span>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            :   /**
+<span class="lineNum">      37 </span>            :    ** @brief Returns true when field name is valid
+<span class="lineNum">      38 </span>            :    ** @param p_field field name
+<span class="lineNum">      39 </span>            :    */
+<span class="lineNum">      40 </span><span class="lineCov">          1 :   bool exists(const string&amp; p_field) const;</span>
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            :   /**
+<span class="lineNum">      43 </span>            :    ** @brief Return field value, @b Undefined behavior is field is unknown
+<span class="lineNum">      44 </span>            :    ** @param p_field field name
+<span class="lineNum">      45 </span>            :    ** @return field value
+<span class="lineNum">      46 </span>            :    */
+<span class="lineNum">      47 </span><span class="lineCov">          1 :   T&amp; get(const string&amp; p_field);</span>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            :   /**
+<span class="lineNum">      50 </span>            :    ** @brief Sets value for given field
+<span class="lineNum">      51 </span>            :    ** @param p_field field name
+<span class="lineNum">      52 </span>            :    ** @param p_value new value to set
+<span class="lineNum">      53 </span>            :    ** @return true is given name is value
+<span class="lineNum">      54 </span>            :    */
+<span class="lineNum">      55 </span><span class="lineCov">          1 :   bool set(const string&amp; p_field, const T&amp; p_value);</span>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : public:
+<span class="lineNum">      58 </span><span class="lineCov">          1 :   T m_name;     ///&lt; log logger name</span>
+<span class="lineNum">      59 </span><span class="lineCov">          1 :   T m_module;   ///&lt; log module name</span>
+<span class="lineNum">      60 </span><span class="lineCov">          1 :   T m_threadid; ///&lt; log thread identifier</span>
+<span class="lineNum">      61 </span><span class="lineCov">          1 :   T m_slevel;   ///&lt; log level, string version</span>
+<span class="lineNum">      62 </span><span class="lineCov">          1 :   T m_ilevel;   ///&lt; log level, underlying type version</span>
+<span class="lineNum">      63 </span><span class="lineCov">          1 :   T m_message;  ///&lt; log message</span>
+<span class="lineNum">      64 </span><span class="lineCov">          1 :   T m_filename; ///&lt; log location filename</span>
+<span class="lineNum">      65 </span><span class="lineCov">          1 :   T m_line;     ///&lt; log location line</span>
+<span class="lineNum">      66 </span><span class="lineCov">          1 :   T m_function; ///&lt; log location function</span>
+<span class="lineNum">      67 </span><span class="lineCov">          1 :   T m_location; ///&lt; log location</span>
+<span class="lineNum">      68 </span><span class="lineCov">          1 :   T m_time;     ///&lt; log timestamp</span>
+<span class="lineNum">      69 </span><span class="lineCov">          1 :   T m_fulllog;  ///&lt; full log message</span>
+<span class="lineNum">      70 </span><span class="lineCov">          1 :   T m_pid;      ///&lt; log process id</span>
+<span class="lineNum">      71 </span><span class="lineCov">          1 :   T m_ppid;     ///&lt; log parent process id</span>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            : private:
+<span class="lineNum">      74 </span>            :   map&lt;string, fn&lt;T&amp;(this_type&amp;)&gt; &gt; m_functors;
+<span class="lineNum">      75 </span>            : };
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : }}
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            : # include &quot;log/Fields.hxx&quot;
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            : #endif // !XTD_CORE_LOG_FIELDS_HH_
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            : // Local Variables:
+<span class="lineNum">      84 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">      85 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

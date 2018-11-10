@@ -1,0 +1,206 @@
+{
+  "src/log/Formatter.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/ColoredFormatter.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/tty.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/MemoryAppender.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/types.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/tty.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Logger.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/SyslogAppender.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Stream.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/StreamAppender.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/SyslogAppender.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Logger.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/text.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/MemoryAppender.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Formatter.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Appender.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "Cycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp>\n/include-what-you-use-clang_4.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/log/StreamAppender.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Logger.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/Formatter.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/helpers.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/types.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/ConfLoader.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/helpers.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/helpers.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/FormatModifiers.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "Cycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp>\n/include-what-you-use-clang_4.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/log/Stream.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/ConfLoader.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/text.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/FormatModifiers.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/core/src/Application.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "include-what-you-use: /usr/lib/llvm-4.0/include/llvm/Support/Casting.h:236: typename llvm::cast_retty<X, Y*>::ret_type llvm::cast(Y*) [with X = clang::CXXConstructorDecl; Y = clang::NamedDecl; typename llvm::cast_retty<X, Y*>::ret_type = clang::CXXConstructorDecl*]: Assertion `isa<X>(Val) && \"cast<Ty>() argument of incompatible type!\"' failed.\n"
+  }, 
+  "src/log/Appender.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/log/ColoredFormatter.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

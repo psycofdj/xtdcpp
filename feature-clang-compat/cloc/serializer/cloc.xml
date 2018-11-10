@@ -1,0 +1,28 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.022226095199585</elapsed_seconds>
+  <n_files>8</n_files>
+  <n_lines>610</n_lines>
+  <files_per_second>359.937268699784</files_per_second>
+  <lines_per_second>27445.2167383586</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/cloc/serializer/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh" blank="50" comment="18" code="251"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh" blank="19" comment="0" code="86"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/unorderedmap.hh" blank="10" comment="11" code="52"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.cc" blank="6" comment="0" code="38"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh" blank="10" comment="1" code="27"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.cc" blank="3" comment="0" code="11"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer_fwd.hh" blank="4" comment="0" code="7"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.cc" blank="2" comment="0" code="4"  language="C++" />
+  <total blank="104" comment="30" code="476" />
+</files>
+<languages>
+  <language name="C/C++ Header" files_count="5" blank="93" comment="30" code="423" />
+  <language name="C++" files_count="3" blank="11" comment="0" code="53" />
+  <total sum_files="8" blank="104" comment="30" code="476" />
+</languages>
+</results>

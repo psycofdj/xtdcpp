@@ -1,0 +1,15 @@
+<map id="src/log/SyslogAppender.cc" name="src/log/SyslogAppender.cc">
+<area shape="rect" id="node2" href="$SyslogAppender_8hh.html" title="log/SyslogAppender.hh" alt="" coords="509,87,665,114"/>
+<area shape="rect" id="node26" href="$helpers_8hh.html" title="log/helpers.hh" alt="" coords="432,251,535,278"/>
+<area shape="rect" id="node28" href="$ConfLoader_8hh.html" title="log/ConfLoader.hh" alt="" coords="722,169,850,196"/>
+<area shape="rect" id="node4" href="$Appender_8hh.html" title="log/Appender.hh" alt="" coords="307,169,423,196"/>
+<area shape="rect" id="node25" href="$cloneable_8hh.html" title="mixins/cloneable.hh" alt="" coords="509,169,647,196"/>
+<area shape="rect" id="node5" href="$logtypes_8hh.html" title="log/logtypes.hh" alt="" coords="277,333,388,360"/>
+<area shape="rect" id="node20" href="$fwd_8hh.html" title="log/fwd.hh" alt="" coords="413,333,495,360"/>
+<area shape="rect" id="node21" href="$Formatter_8hh.html" title="log/Formatter.hh" alt="" coords="189,251,306,278"/>
+<area shape="rect" id="node7" href="$error_8hh.html" title="error.hh" alt="" coords="150,415,217,442"/>
+<area shape="rect" id="node8" href="$types_8hh.html" title="types.hh" alt="" coords="267,572,339,599"/>
+<area shape="rect" id="node16" href="$format_8hh.html" title="format.hh" alt="" coords="145,497,222,524"/>
+<area shape="rect" id="node22" href="$Fields_8hh.html" title="log/Fields.hh" alt="" coords="9,333,105,360"/>
+<area shape="rect" id="node29" href="$singleton_8hh.html" title="mixins/singleton.hh" alt="" coords="781,251,916,278"/>
+</map>

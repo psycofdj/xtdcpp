@@ -1,0 +1,5 @@
+<map id="xtd::network::http::Response::writeInitial" name="xtd::network::http::Response::writeInitial">
+<area shape="rect" id="node2" href="$namespacextd_1_1network_1_1http.html#a82c3b4facf3c8d92550d1e73973d03af" title="xtd::network::http::str" alt="" coords="213,5,359,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1http_1_1Response.html#a88aaaeda4df83751a5462746610033a1" title="xtd::network::http\l::Response::getStatus" alt="" coords="209,57,363,98"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Message.html#af9df8f0e8444d28e51a047fb7ea4f98b" title="xtd::network::http\l::Message::getVersion" alt="" coords="209,122,363,163"/>
+</map>

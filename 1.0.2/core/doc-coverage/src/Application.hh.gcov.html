@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/Application.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - Application.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">42</td>
+            <td class="headerCovTableEntry">42</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-01-15 22:39:34</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef COMMON_APPLICATION_HH_
+<span class="lineNum">       2 </span>            : # define COMMON_APPLICATION_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : # include &lt;iostream&gt;
+<span class="lineNum">       6 </span>            : # include &lt;iomanip&gt;
+<span class="lineNum">       7 </span>            : # include &lt;limits&gt;
+<span class="lineNum">       8 </span>            : # include &lt;map&gt;
+<span class="lineNum">       9 </span>            : # include &lt;functional&gt;
+<span class="lineNum">      10 </span>            : # include &lt;getopt.h&gt;
+<span class="lineNum">      11 </span>            : # include &lt;libgen.h&gt;
+<span class="lineNum">      12 </span>            : # include &lt;stdlib.h&gt;
+<span class="lineNum">      13 </span>            : # include &lt;boost/system/error_code.hpp&gt;
+<span class="lineNum">      14 </span>            : # include &lt;boost/thread.hpp&gt;
+<span class="lineNum">      15 </span>            : # include &lt;boost/asio.hpp&gt;
+<span class="lineNum">      16 </span>            : # include &lt;boost/asio/signal_set.hpp&gt;
+<span class="lineNum">      17 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : class TestApplication;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace xtd {
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : /**
+<span class="lineNum">      27 </span>            :  ** @brief Parses arguments from main(int,char**) function
+<span class="lineNum">      28 </span>            :  ** @details
+<span class="lineNum">      29 </span>            :  ** - @ref sec_intro
+<span class="lineNum">      30 </span>            :  ** - @ref sec_howto
+<span class="lineNum">      31 </span>            :  ** - @ref sec_execution_flow
+<span class="lineNum">      32 </span>            :  ** - @ref sec_binding_options
+<span class="lineNum">      33 </span>            :  **
+<span class="lineNum">      34 </span>            :  ** @section sec_intro Introcution
+<span class="lineNum">      35 </span>            :  ** This object provides a default application skeleton including :
+<span class="lineNum">      36 </span>            :  ** - user-friendly wrapping of argument parsing (on top of C's getopt_long)
+<span class="lineNum">      37 </span>            :  ** - usage generator for declared options
+<span class="lineNum">      38 </span>            :  ** - default options : --help and --log-level
+<span class="lineNum">      39 </span>            :  ** - default logging facility
+<span class="lineNum">      40 </span>            :  ** - signal handling on a separate thread
+<span class="lineNum">      41 </span>            :  ** - binary RCS identity tracking, usually generated by xtd compile-time
+<span class="lineNum">      42 </span>            :  **   dependency tracking system
+<span class="lineNum">      43 </span>            :  **
+<span class="lineNum">      44 </span>            :  ** @section sec_howto How to use
+<span class="lineNum">      45 </span>            :  ** -# Inherit your class from Application
+<span class="lineNum">      46 </span>            :  ** -# Define the mandatory method @ref Application::process
+<span class="lineNum">      47 </span>            :  ** -# Declare your program arguments in your constructor
+<span class="lineNum">      48 </span>            :  ** -# Optionaly parse your configuration, check your parameters and initialize
+<span class="lineNum">      49 </span>            :  **    your application in the dedicated methods
+<span class="lineNum">      50 </span>            :  ** -# Instantiate your class in main(int,char**) function and all Application::execute method
+<span class="lineNum">      51 </span>            :  **
+<span class="lineNum">      52 </span>            :  ** Typical example :
+<span class="lineNum">      53 </span>            :  ** @include Application.hh
+<span class="lineNum">      54 </span>            :  **
+<span class="lineNum">      55 </span>            :  ** @section sec_execution_flow Execution flow
+<span class="lineNum">      56 </span>            :  ** @startuml{Application.png}
+<span class="lineNum">      57 </span>            :  ** (*) --&gt; initialize default logging (level::crit)
+<span class="lineNum">      58 </span>            :  **     --&gt; read arguments from argc &amp; argv
+<span class="lineNum">      59 </span>            :  **     --&gt; parseConfig()
+<span class="lineNum">      60 </span>            :  **         note right: User may redefine this function
+<span class="lineNum">      61 </span>            :  **     --&gt; checkOptions()
+<span class="lineNum">      62 </span>            :  **     --&gt; initialize logging with parsed level
+<span class="lineNum">      63 </span>            :  **         note right: User may redefine this function
+<span class="lineNum">      64 </span>            :  **     --&gt; initialize()
+<span class="lineNum">      65 </span>            :  **         note right: User may redefine this function
+<span class="lineNum">      66 </span>            :  **     --&gt; ===B1===
+<span class="lineNum">      67 </span>            :  **         --&gt; start signal thread
+<span class="lineNum">      68 </span>            :  **         --&gt; stop &amp; join signal thread
+<span class="lineNum">      69 </span>            :  **         --&gt; ===B2===
+<span class="lineNum">      70 </span>            :  **    ===B1=== --&gt; process()
+<span class="lineNum">      71 </span>            :  **         note left: User &lt;b&gt;must&lt;/b&gt; re-define this function
+<span class="lineNum">      72 </span>            :  **         --&gt; ===B2===
+<span class="lineNum">      73 </span>            :  **     --&gt; (*)
+<span class="lineNum">      74 </span>            :  ** @enduml
+<span class="lineNum">      75 </span>            :  **
+<span class="lineNum">      76 </span>            :  ** @section sec_binding_options Bindind options
+<span class="lineNum">      77 </span>            :  ** - @ref bindDir          : @copybrief bindDir
+<span class="lineNum">      78 </span>            :  ** - @ref bindFile         : @copybrief bindFile
+<span class="lineNum">      79 </span>            :  ** - @ref bindGiven        : @copybrief bindGiven
+<span class="lineNum">      80 </span>            :  ** - @ref bindString       : @copybrief bindString
+<span class="lineNum">      81 </span>            :  ** - @ref bindCallback     : @copybrief bindCallback
+<span class="lineNum">      82 </span>            :  ** - @ref bindValueIfGiven : @copybrief bindValueIfGiven
+<span class="lineNum">      83 </span>            :  ** - @ref bindNumber       : @copybrief bindNumber
+<span class="lineNum">      84 </span>            :  ** - @ref bindValues       : @copybrief bindValues
+<span class="lineNum">      85 </span>            :  ** - @ref bindAccumulator  : @copybrief bindAccumulator
+<span class="lineNum">      86 </span>            :  */
+<span class="lineNum">      87 </span>            : class Application
+<span class="lineNum">      88 </span><span class="lineCov">          1 : {</span>
+<span class="lineNum">      89 </span>            :   friend class ::TestApplication;
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            : protected:
+<span class="lineNum">      92 </span>            :   /**
+<span class="lineNum">      93 </span>            :    ** @brief Signal handler functor prototype, @see addSignalHandler
+<span class="lineNum">      94 </span>            :    */
+<span class="lineNum">      95 </span><span class="lineCov">          1 :   typedef std::function&lt;void(void)&gt; t_sig_handler;</span>
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            :   /**
+<span class="lineNum">      99 </span>            :    ** @brief Behavior switch for the argument of an option
+<span class="lineNum">     100 </span>            :    */
+<span class="lineNum">     101 </span>            :   enum class argument : uint32_t
+<span class="lineNum">     102 </span><span class="lineCov">          1 :   {</span>
+<span class="lineNum">     103 </span>            :     mandatory = 1, ///&lt; mandatory argument for option
+<span class="lineNum">     104 </span>            :     none      = 2  ///&lt; forbidden argument for option
+<span class="lineNum">     105 </span>            :   };
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            :   /**
+<span class="lineNum">     109 </span>            :    ** @brief Behavior for the presence of the option itself
+<span class="lineNum">     110 </span>            :    */
+<span class="lineNum">     111 </span>            :   enum class requirement : uint32_t
+<span class="lineNum">     112 </span><span class="lineCov">          1 :   {</span>
+<span class="lineNum">     113 </span>            :     optional  = 0, ///&lt; option is optional on command line
+<span class="lineNum">     114 </span>            :     mandatory = 1  ///&lt; option must be given on command line
+<span class="lineNum">     115 </span>            :   };
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            : private:
+<span class="lineNum">     120 </span>            :   struct t_option;
+<span class="lineNum">     121 </span>            :   typedef std::function&lt;void(const string&amp;, const t_option&amp;)&gt; t_callback;
+<span class="lineNum">     122 </span>            :   struct t_option
+<span class="lineNum">     123 </span>            :   {
+<span class="lineNum">     124 </span><span class="lineCov">          1 :     char        m_shortOpt;     ///&lt; short form</span>
+<span class="lineNum">     125 </span><span class="lineCov">          1 :     string      m_longOpt;      ///&lt; long form</span>
+<span class="lineNum">     126 </span><span class="lineCov">          1 :     string      m_description;  ///&lt; usage description</span>
+<span class="lineNum">     127 </span><span class="lineCov">          1 :     argument    m_argumentType; ///&lt; need argument ?</span>
+<span class="lineNum">     128 </span><span class="lineCov">          1 :     t_callback  m_callback;     ///&lt; associated callback functor</span>
+<span class="lineNum">     129 </span><span class="lineCov">          1 :     requirement m_status;       ///&lt; is option required ?</span>
+<span class="lineNum">     130 </span><span class="lineCov">          1 :     bool        m_given;        ///&lt; is option encountered ?</span>
+<span class="lineNum">     131 </span>            :   };
+<span class="lineNum">     132 </span>            :   typedef vector&lt;t_option&gt; t_option_list;
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            : public:
+<span class="lineNum">     135 </span>            :   /**
+<span class="lineNum">     136 </span>            :    ** @brief Constructor
+<span class="lineNum">     137 </span>            :    ** @param p_disableExit   If true, throws exception instead of exiting on error
+<span class="lineNum">     138 </span>            :    ** @param p_disableCatch  If true, exception are not caught at top level
+<span class="lineNum">     139 </span>            :    ** @throw std::runtime_error
+<span class="lineNum">     140 </span>            :    */
+<span class="lineNum">     141 </span><span class="lineCov">          1 :   Application(bool p_disableExit = false, bool p_disableCatch = false);</span>
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span>            :   /**
+<span class="lineNum">     144 </span>            :    ** @brief Destructor
+<span class="lineNum">     145 </span>            :    */
+<span class="lineNum">     146 </span><span class="lineCov">          1 :   virtual ~Application(void);</span>
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : public:
+<span class="lineNum">     149 </span>            :   /**
+<span class="lineNum">     150 </span>            :    ** @brief main entry point, usually called with main(int,char**)'s arguments
+<span class="lineNum">     151 </span>            :    ** @param p_argc argument count
+<span class="lineNum">     152 </span>            :    ** @param p_argv argument list (first is binary name)
+<span class="lineNum">     153 </span>            :    ** @return depends on @ref Application::process implementation, usually 0 if process succeed
+<span class="lineNum">     154 </span>            :    */
+<span class="lineNum">     155 </span><span class="lineCov">          1 :   int execute(int p_argc, const char* const p_argv[]);</span>
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            : protected:
+<span class="lineNum">     158 </span>            :   ///////////////
+<span class="lineNum">     159 </span>            :   // interface //
+<span class="lineNum">     160 </span>            :   ///////////////
+<span class="lineNum">     161 </span>            :   /**
+<span class="lineNum">     162 </span>            :    ** @brief Parse application configuration, (default nothing)
+<span class="lineNum">     163 </span>            :    */
+<span class="lineNum">     164 </span><span class="lineCov">          1 :   virtual void parseConfig(void)  {};</span>
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            :   /**
+<span class="lineNum">     167 </span>            :    ** @brief Check read options, (default nothing)
+<span class="lineNum">     168 </span>            :    */
+<span class="lineNum">     169 </span><span class="lineCov">          1 :   virtual void checkOptions(void) {};</span>
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            :   /**
+<span class="lineNum">     172 </span>            :    ** @brief initialize application, (default nothing)
+<span class="lineNum">     173 </span>            :    */
+<span class="lineNum">     174 </span><span class="lineCov">          1 :   virtual void initialize(void)   {};</span>
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            :   /**
+<span class="lineNum">     177 </span>            :    ** @brief Main application process function, (default nothing)
+<span class="lineNum">     178 </span>            :    ** @return Up to the user, generally 0 in case of success
+<span class="lineNum">     179 </span>            :    */
+<span class="lineNum">     180 </span><span class="lineCov">          1 :   virtual int  process(void);</span>
+<span class="lineNum">     181 </span>            : 
+<span class="lineNum">     182 </span>            : protected:
+<span class="lineNum">     183 </span>            :   //////////////////
+<span class="lineNum">     184 </span>            :   // misc methods //
+<span class="lineNum">     185 </span>            :   //////////////////
+<span class="lineNum">     186 </span>            :   /**
+<span class="lineNum">     187 </span>            :    ** @brief register a signal callback
+<span class="lineNum">     188 </span>            :    ** @param p_signalNumber signal ID (man signal 7)
+<span class="lineNum">     189 </span>            :    ** @param p_handler handling callback
+<span class="lineNum">     190 </span>            :    ** @return True if signal registered correctly, false if signal was already registered
+<span class="lineNum">     191 </span>            :    */
+<span class="lineNum">     192 </span><span class="lineCov">          1 :   bool addSignalHandler(int p_signalNumber, t_sig_handler p_handler);</span>
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span>            :   /**
+<span class="lineNum">     195 </span>            :    ** @brief Get RCSID identity informations
+<span class="lineNum">     196 </span>            :    */
+<span class="lineNum">     197 </span><span class="lineCov">          1 :   const string&amp; getVersion(void) const;</span>
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :   /////////////////////
+<span class="lineNum">     200 </span>            :   // option handling //
+<span class="lineNum">     201 </span>            :   /////////////////////
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            : 
+<span class="lineNum">     204 </span>            :   /**
+<span class="lineNum">     205 </span>            :    ** @brief Register an option to parser
+<span class="lineNum">     206 </span>            :    ** @param p_shortOpt short form, single character
+<span class="lineNum">     207 </span>            :    ** @param p_longOpt long form, not starting with dash
+<span class="lineNum">     208 </span>            :    ** @param p_argType shall we expect an argument
+<span class="lineNum">     209 </span>            :    ** @param p_status  should the option be given by user
+<span class="lineNum">     210 </span>            :    ** @param p_description usage help description
+<span class="lineNum">     211 </span>            :    ** @param p_callback functor to call when option is encountered
+<span class="lineNum">     212 </span>            :    ** @details
+<span class="lineNum">     213 </span>            :    ** Option must :
+<span class="lineNum">     214 </span>            :    **  - a unique short form
+<span class="lineNum">     215 </span>            :    **  - a unique long form
+<span class="lineNum">     216 </span>            :    **  - short and long forms must not start by a dash (-)
+<span class="lineNum">     217 </span>            :    **
+<span class="lineNum">     218 </span>            :    ** Programs logs and exit in case of error.
+<span class="lineNum">     219 </span>            :    */
+<span class="lineNum">     220 </span><span class="lineCov">          1 :   void addOption(const char        p_shortOpt,</span>
+<span class="lineNum">     221 </span>            :                  const string&amp;     p_longOpt,
+<span class="lineNum">     222 </span>            :                  const argument    p_argType,
+<span class="lineNum">     223 </span>            :                  const requirement p_status,
+<span class="lineNum">     224 </span>            :                  const string&amp;     p_description,
+<span class="lineNum">     225 </span>            :                  t_callback        p_callback);
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span>            :   /**
+<span class="lineNum">     228 </span>            :    ** @brief Tells if given option was given on command line
+<span class="lineNum">     229 </span>            :    ** @param p_optionName long-form or short-form of the option
+<span class="lineNum">     230 </span>            :    ** @return true if option was given
+<span class="lineNum">     231 </span>            :    */
+<span class="lineNum">     232 </span><span class="lineCov">          1 :   bool isOptionGiven(const string&amp; p_optionName) const;</span>
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span>            :   /**
+<span class="lineNum">     235 </span>            :    ** @brief Add additional usage line to display on help or errors
+<span class="lineNum">     236 </span>            :    ** @param p_helpMessage Message line to add
+<span class="lineNum">     237 </span>            :    */
+<span class="lineNum">     238 </span><span class="lineCov">          1 :   void addHelpMsg(const string&amp; p_helpMessage);</span>
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span>            :   ////////////////////////
+<span class="lineNum">     241 </span>            :   // bindings callbacks //
+<span class="lineNum">     242 </span>            :   ////////////////////////
+<span class="lineNum">     243 </span>            :   /**
+<span class="lineNum">     244 </span>            :    ** @brief Bind option's parameter to a directory
+<span class="lineNum">     245 </span>            :    ** @param p_target Reference variable to store the option's value
+<span class="lineNum">     246 </span>            :    ** @return generated option callback
+<span class="lineNum">     247 </span>            :    */
+<span class="lineNum">     248 </span><span class="lineCov">          1 :   t_callback bindDir(string&amp; p_target) const;</span>
+<span class="lineNum">     249 </span>            : 
+<span class="lineNum">     250 </span>            :   /**
+<span class="lineNum">     251 </span>            :    ** @brief Bind option's parameter to a file name
+<span class="lineNum">     252 </span>            :    ** @param p_target Reference variable to store the option's value
+<span class="lineNum">     253 </span>            :    ** @param p_readable If true, check that given file name exists and is readable
+<span class="lineNum">     254 </span>            :    ** @return generated option callback
+<span class="lineNum">     255 </span>            :    */
+<span class="lineNum">     256 </span><span class="lineCov">          1 :   t_callback bindFile(string&amp; p_target, bool p_readable = true) const;</span>
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            :   /**
+<span class="lineNum">     259 </span>            :    ** @brief Set targeted variable to true if option is given on command line
+<span class="lineNum">     260 </span>            :    ** @param p_target Reference variable
+<span class="lineNum">     261 </span>            :    ** @return generated option callback
+<span class="lineNum">     262 </span>            :    */
+<span class="lineNum">     263 </span><span class="lineCov">          1 :   t_callback bindGiven(bool&amp; p_target) const;</span>
+<span class="lineNum">     264 </span>            : 
+<span class="lineNum">     265 </span>            :   /**
+<span class="lineNum">     266 </span>            :    ** @brief Set targeted variable to option's parameter
+<span class="lineNum">     267 </span>            :    ** @param p_target Reference variable
+<span class="lineNum">     268 </span>            :    ** @return generated option callback
+<span class="lineNum">     269 </span>            :    */
+<span class="lineNum">     270 </span><span class="lineCov">          1 :   t_callback bindString(string&amp; p_target) const;</span>
+<span class="lineNum">     271 </span>            : 
+<span class="lineNum">     272 </span>            :   /**
+<span class="lineNum">     273 </span>            :    ** @brief Set targeted variable to option's parameter regex
+<span class="lineNum">     274 </span>            :    ** @param p_target Reference variable
+<span class="lineNum">     275 </span>            :    ** @return generated option callback
+<span class="lineNum">     276 </span>            :    */
+<span class="lineNum">     277 </span><span class="lineCov">          1 :   t_callback bindRegex(string&amp; p_target) const;</span>
+<span class="lineNum">     278 </span>            : 
+<span class="lineNum">     279 </span>            :   /**
+<span class="lineNum">     280 </span>            :    ** @brief Associate option to given generic callback
+<span class="lineNum">     281 </span>            :    ** @param p_action function compatible with @code std::function&lt;void(void)&gt; @endcode signature
+<span class="lineNum">     282 </span>            :    ** @return generated option callback
+<span class="lineNum">     283 </span>            :    */
+<span class="lineNum">     284 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     285 </span><span class="lineCov">          1 :   t_callback bindCallback(T p_action) const;</span>
+<span class="lineNum">     286 </span>            : 
+<span class="lineNum">     287 </span>            :   /**
+<span class="lineNum">     288 </span>            :    ** @brief Set given value to referenced variable if option is given
+<span class="lineNum">     289 </span>            :    ** @param p_target Reference variable
+<span class="lineNum">     290 </span>            :    ** @param p_value Value to set to p_target
+<span class="lineNum">     291 </span>            :    ** @return generated option callback
+<span class="lineNum">     292 </span>            :    */
+<span class="lineNum">     293 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     294 </span><span class="lineCov">          1 :   t_callback bindValueIfGiven(T&amp; p_target, const T&amp; p_value) const;</span>
+<span class="lineNum">     295 </span>            : 
+<span class="lineNum">     296 </span>            :   /**
+<span class="lineNum">     297 </span>            :    ** @brief Bind option's paramter as number to referenced variable
+<span class="lineNum">     298 </span>            :    ** @param p_target Reference variable
+<span class="lineNum">     299 </span>            :    ** @param p_min Minimum parameter value [inclusive]
+<span class="lineNum">     300 </span>            :    ** @param p_max Maximum parameter value [inclusive]
+<span class="lineNum">     301 </span>            :    ** @return generated option callback
+<span class="lineNum">     302 </span>            :    ** @details
+<span class="lineNum">     303 </span>            :    ** Will led to an error if input parameter :
+<span class="lineNum">     304 </span>            :    ** - not lexically convertible to T
+<span class="lineNum">     305 </span>            :    ** - is lower than p_min
+<span class="lineNum">     306 </span>            :    ** - is greater than p_max
+<span class="lineNum">     307 </span>            :    */
+<span class="lineNum">     308 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     309 </span><span class="lineCov">          1 :   t_callback bindNumber(T&amp; p_target,</span>
+<span class="lineNum">     310 </span>            :                         T  p_min = std::numeric_limits&lt;T&gt;::min(),
+<span class="lineNum">     311 </span>            :                         T  p_max = std::numeric_limits&lt;T&gt;::max()) const;
+<span class="lineNum">     312 </span>            : 
+<span class="lineNum">     313 </span>            : 
+<span class="lineNum">     314 </span>            :   /**
+<span class="lineNum">     315 </span>            :    ** @brief Bind option's parameter to target variable and checks among authorized values
+<span class="lineNum">     316 </span>            :    ** @param p_target Reference variable
+<span class="lineNum">     317 </span>            :    ** @param p_values Iterable container of authorized option's values
+<span class="lineNum">     318 </span>            :    ** @return generated option callback
+<span class="lineNum">     319 </span>            :    */
+<span class="lineNum">     320 </span>            :   template&lt;typename T, class Iterable&gt;
+<span class="lineNum">     321 </span><span class="lineCov">          1 :   t_callback bindValues(T&amp; p_target, const Iterable&amp; p_values) const;</span>
+<span class="lineNum">     322 </span>            : 
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span>            :   /**
+<span class="lineNum">     325 </span>            :    ** @brief Append option's parameter to target container for each command line hit
+<span class="lineNum">     326 </span>            :    ** @param p_target Reference variable container
+<span class="lineNum">     327 </span>            :    ** @return generated option callback
+<span class="lineNum">     328 </span>            :    */
+<span class="lineNum">     329 </span>            :   template&lt;class TCollection&gt;
+<span class="lineNum">     330 </span><span class="lineCov">          1 :   t_callback bindAccumulator(TCollection&amp; p_target) const;</span>
+<span class="lineNum">     331 </span>            : 
+<span class="lineNum">     332 </span>            : 
+<span class="lineNum">     333 </span>            :   ////////////////////
+<span class="lineNum">     334 </span>            :   // error handling //
+<span class="lineNum">     335 </span>            :   ////////////////////
+<span class="lineNum">     336 </span>            :   /**
+<span class="lineNum">     337 </span>            :    ** @brief Prints error on standard error and exit
+<span class="lineNum">     338 </span>            :    ** @param p_code exit code
+<span class="lineNum">     339 </span>            :    ** @param p_format error message format (boost::format compatible)
+<span class="lineNum">     340 </span>            :    ** @param p_args Template variadic arguments to format
+<span class="lineNum">     341 </span>            :    */
+<span class="lineNum">     342 </span>            :   template&lt;typename... Arguments&gt;
+<span class="lineNum">     343 </span><span class="lineCov">          1 :   void error_nohelp(int p_code, const string&amp; p_format, Arguments&amp;&amp;... p_args) const;</span>
+<span class="lineNum">     344 </span>            : 
+<span class="lineNum">     345 </span>            :   /**
+<span class="lineNum">     346 </span>            :    ** @brief Prints error and usage on standard error and exit
+<span class="lineNum">     347 </span>            :    ** @param p_code exit code
+<span class="lineNum">     348 </span>            :    ** @param p_format error message format (boost::format compatible)
+<span class="lineNum">     349 </span>            :    ** @param p_args Template variadic arguments to format
+<span class="lineNum">     350 </span>            :    */
+<span class="lineNum">     351 </span>            :   template&lt;typename... Arguments&gt;
+<span class="lineNum">     352 </span><span class="lineCov">          1 :   void error(int p_code, const string&amp; p_format, Arguments&amp;&amp;... p_args) const;</span>
+<span class="lineNum">     353 </span>            : 
+<span class="lineNum">     354 </span>            :   /**
+<span class="lineNum">     355 </span>            :    ** @brief Prints a warning on standard error
+<span class="lineNum">     356 </span>            :    ** @param p_format error message format (boost::format compatible)
+<span class="lineNum">     357 </span>            :    ** @param p_args Template variadic arguments to format
+<span class="lineNum">     358 </span>            :    */
+<span class="lineNum">     359 </span>            :   template&lt;typename... Arguments&gt;
+<span class="lineNum">     360 </span><span class="lineCov">          1 :   void warn(const string&amp; p_format, Arguments&amp;&amp;... p_args) const;</span>
+<span class="lineNum">     361 </span>            : 
+<span class="lineNum">     362 </span>            : 
+<span class="lineNum">     363 </span>            : private:
+<span class="lineNum">     364 </span>            :   void readArgs(int p_argc, const char* const p_argv[]);
+<span class="lineNum">     365 </span>            :   void usage(std::ostream&amp; p_stream = std::cerr) const;
+<span class="lineNum">     366 </span>            :   void handleSignal(const boost::system::error_code&amp; p_error, int p_signalNumber);
+<span class="lineNum">     367 </span>            : 
+<span class="lineNum">     368 </span>            : protected:
+<span class="lineNum">     369 </span><span class="lineCov">          1 :   string         m_binName;       ///&lt; binary name (argv[0])</span>
+<span class="lineNum">     370 </span><span class="lineCov">          1 :   uint32_t       m_logLevel;      ///&lt; log level read from command line</span>
+<span class="lineNum">     371 </span><span class="lineCov">          1 :   vector&lt;string&gt; m_remainingArgs; ///&lt; positional command line arguments</span>
+<span class="lineNum">     372 </span><span class="lineCov">          1 :   string         m_rcsid;         ///&lt; binary identity information</span>
+<span class="lineNum">     373 </span><span class="lineCov">          1 :   bool           m_disableExit;   ///&lt; holds exit activation state</span>
+<span class="lineNum">     374 </span><span class="lineCov">          1 :   bool           m_disableCatch;  ///&lt; holds exception catching state</span>
+<span class="lineNum">     375 </span>            : 
+<span class="lineNum">     376 </span>            : private:
+<span class="lineNum">     377 </span>            :   t_option_list                 m_optionList;
+<span class="lineNum">     378 </span>            :   string                        m_helpText;
+<span class="lineNum">     379 </span>            :   boost::thread                 m_runThread;
+<span class="lineNum">     380 </span>            :   boost::asio::io_service       m_ioService;
+<span class="lineNum">     381 </span>            :   boost::asio::io_service::work m_work;
+<span class="lineNum">     382 </span>            :   boost::asio::signal_set       m_signals;
+<span class="lineNum">     383 </span>            :   map&lt;int, t_sig_handler&gt;       m_signalHandlerMap;
+<span class="lineNum">     384 </span>            : };
+<span class="lineNum">     385 </span>            : 
+<span class="lineNum">     386 </span>            : }
+<span class="lineNum">     387 </span>            : 
+<span class="lineNum">     388 </span>            : # include &quot;Application.hxx&quot;
+<span class="lineNum">     389 </span>            : 
+<span class="lineNum">     390 </span>            : #endif // !COMMON_APPLICATION_HH_
+<span class="lineNum">     391 </span>            : 
+<span class="lineNum">     392 </span>            : // Local Variables:
+<span class="lineNum">     393 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     394 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

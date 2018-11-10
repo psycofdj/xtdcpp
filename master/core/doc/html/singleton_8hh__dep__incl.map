@@ -1,0 +1,7 @@
+<map id="src/mixins/singleton.hh" name="src/mixins/singleton.hh">
+<area shape="rect" id="node2" href="$ConfLoader_8hh.html" title="src/log/ConfLoader.hh" alt="" coords="298,80,449,107"/>
+<area shape="rect" id="node3" href="$ColoredFormatter_8cc.html" title="src/log/ColoredFormatter.cc" alt="" coords="5,155,189,181"/>
+<area shape="rect" id="node4" href="$ConfLoader_8cc.html" title="src/log/ConfLoader.cc" alt="" coords="214,155,365,181"/>
+<area shape="rect" id="node5" href="$Formatter_8cc.html" title="src/log/Formatter.cc" alt="" coords="389,155,528,181"/>
+<area shape="rect" id="node6" href="$SyslogAppender_8cc.html" title="src/log/SyslogAppender.cc" alt="" coords="552,155,731,181"/>
+</map>

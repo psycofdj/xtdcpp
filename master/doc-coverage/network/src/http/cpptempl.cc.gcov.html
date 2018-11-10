@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network documentation coverage - src/http/cpptempl.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/http</a> - cpptempl.cc</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:55:23</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #include &quot;cpptempl.hh&quot;
+<span class="lineNum">       2 </span>            : #include &lt;ext/alloc_traits.h&gt;
+<span class="lineNum">       3 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/algorithm/string/classification.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/algorithm/string/join.hpp&gt;
+<span class="lineNum">       6 </span>            : #include &lt;boost/algorithm/string/predicate.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/algorithm/string/split.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;boost/algorithm/string/trim.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;iterator&gt;
+<span class="lineNum">      10 </span>            : #include &quot;types.hh&quot;   // libcore
+<span class="lineNum">      11 </span>            : #include &quot;format.hh&quot; // libcore
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : namespace xtd {
+<span class="lineNum">      14 </span>            : namespace network {
+<span class="lineNum">      15 </span>            : namespace http {
+<span class="lineNum">      16 </span>            : namespace cpptempl {
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      19 </span>            : // Data classes
+<span class="lineNum">      20 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      21 </span>            : string Data::getvalue()
+<span class="lineNum">      22 </span>            : {
+<span class="lineNum">      23 </span>            :   throw TemplateException(&quot;Data item is not a value&quot;);
+<span class="lineNum">      24 </span>            : }
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : data_list&amp; Data::getlist()
+<span class="lineNum">      27 </span>            : {
+<span class="lineNum">      28 </span>            :   throw TemplateException(&quot;Data item is not a list&quot;);
+<span class="lineNum">      29 </span>            : }
+<span class="lineNum">      30 </span>            : data_map&amp; Data::getmap()
+<span class="lineNum">      31 </span>            : {
+<span class="lineNum">      32 </span>            :   throw TemplateException(&quot;Data item is not a dictionary&quot;);
+<span class="lineNum">      33 </span>            : }
+<span class="lineNum">      34 </span>            : string DataValue::getvalue()
+<span class="lineNum">      35 </span>            : {
+<span class="lineNum">      36 </span>            :   return m_value;
+<span class="lineNum">      37 </span>            : }
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            : bool DataValue::empty()
+<span class="lineNum">      40 </span>            : {
+<span class="lineNum">      41 </span>            :   return m_value.empty();
+<span class="lineNum">      42 </span>            : }
+<span class="lineNum">      43 </span>            : data_list&amp; DataList::getlist()
+<span class="lineNum">      44 </span>            : {
+<span class="lineNum">      45 </span>            :   return m_items;
+<span class="lineNum">      46 </span>            : }
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            : bool DataList::empty()
+<span class="lineNum">      49 </span>            : {
+<span class="lineNum">      50 </span>            :   return m_items.empty();
+<span class="lineNum">      51 </span>            : }
+<span class="lineNum">      52 </span>            : data_map&amp; DataMap:: getmap()
+<span class="lineNum">      53 </span>            : {
+<span class="lineNum">      54 </span>            :   return m_items;
+<span class="lineNum">      55 </span>            : }
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : bool DataMap::empty()
+<span class="lineNum">      58 </span>            : {
+<span class="lineNum">      59 </span>            :   return m_items.empty();
+<span class="lineNum">      60 </span>            : }
+<span class="lineNum">      61 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      62 </span>            : // parse_val
+<span class="lineNum">      63 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 : data_ptr parse_val(string key, data_map &amp;data)</span>
+<span class="lineNum">      65 </span>            : {
+<span class="lineNum">      66 </span>            :   data_map::const_iterator cc_value;
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            :   // quoted string
+<span class="lineNum">      69 </span>            :   if (key[0] == L'\&quot;')
+<span class="lineNum">      70 </span>            :   {
+<span class="lineNum">      71 </span>            :     return make_data(boost::trim_copy_if(key, boost::is_any_of(&quot;\&quot;&quot;)));
+<span class="lineNum">      72 </span>            :   }
+<span class="lineNum">      73 </span>            :   // check for dotted notation, i.e [foo.bar]
+<span class="lineNum">      74 </span>            :   size_t index = key.find(&quot;.&quot;);
+<span class="lineNum">      75 </span>            :   if (index == string::npos)
+<span class="lineNum">      76 </span>            :   {
+<span class="lineNum">      77 </span>            :     if (data.end() == (cc_value = data.find(key)))
+<span class="lineNum">      78 </span>            :       throw TemplateException(format::vargs(&quot;unresolved key : %s&quot;, key));
+<span class="lineNum">      79 </span>            :     return cc_value-&gt;second;
+<span class="lineNum">      80 </span>            :   }
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            :   if (data.end() == (cc_value = data.find(key.substr(0, index))))
+<span class="lineNum">      83 </span>            :     throw TemplateException(format::vargs(&quot;unresolved key : %s&quot;, key.substr(0, index)));
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span>            :   data_ptr item = cc_value-&gt;second;
+<span class="lineNum">      86 </span>            :   return parse_val(key.substr(index+1), item-&gt;getmap());
+<span class="lineNum">      87 </span>            : }
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      90 </span>            : // Token classes
+<span class="lineNum">      91 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span>            : void
+<span class="lineNum">      94 </span>            : Token::set_children(token_vector&amp; /* children */)
+<span class="lineNum">      95 </span>            : {
+<span class="lineNum">      96 </span>            :   throw TemplateException(&quot;This token type cannot have children&quot;);
+<span class="lineNum">      97 </span>            : }
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            : token_vector&amp;
+<span class="lineNum">     100 </span>            : Token::get_children(void)
+<span class="lineNum">     101 </span>            : {
+<span class="lineNum">     102 </span>            :   throw TemplateException(&quot;This token type cannot have children&quot;);
+<span class="lineNum">     103 </span>            : }
+<span class="lineNum">     104 </span>            : TokenType TokenText::gettype()
+<span class="lineNum">     105 </span>            : {
+<span class="lineNum">     106 </span>            :   return TOKEN_TYPE_TEXT;
+<span class="lineNum">     107 </span>            : }
+<span class="lineNum">     108 </span>            : string TokenText::gettext(data_map &amp; )
+<span class="lineNum">     109 </span>            : {
+<span class="lineNum">     110 </span>            :   return m_text;
+<span class="lineNum">     111 </span>            : }
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            : TokenType TokenVar::gettype()
+<span class="lineNum">     114 </span>            : {
+<span class="lineNum">     115 </span>            :   return TOKEN_TYPE_VAR;
+<span class="lineNum">     116 </span>            : }
+<span class="lineNum">     117 </span>            : string TokenVar::gettext(data_map &amp;data )
+<span class="lineNum">     118 </span>            : {
+<span class="lineNum">     119 </span>            :   return parse_val(m_key, data)-&gt;getvalue();
+<span class="lineNum">     120 </span>            : }
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : TokenFor::TokenFor(string expr)
+<span class="lineNum">     123 </span>            : {
+<span class="lineNum">     124 </span>            :   vector&lt;string&gt; elements;
+<span class="lineNum">     125 </span>            :   boost::split(elements, expr, boost::is_space(), boost::token_compress_on);
+<span class="lineNum">     126 </span>            :   if (elements.size() != 4u)
+<span class="lineNum">     127 </span>            :   {
+<span class="lineNum">     128 </span>            :     throw TemplateException(&quot;Invalid syntax in for statement&quot;);
+<span class="lineNum">     129 </span>            :   }
+<span class="lineNum">     130 </span>            :   m_val = elements[1];
+<span class="lineNum">     131 </span>            :   m_key = elements[3];
+<span class="lineNum">     132 </span>            : }
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            : TokenType TokenFor::gettype()
+<span class="lineNum">     135 </span>            : {
+<span class="lineNum">     136 </span>            :   return TOKEN_TYPE_FOR;
+<span class="lineNum">     137 </span>            : }
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            : string TokenFor::gettext(data_map &amp;data )
+<span class="lineNum">     140 </span>            : {
+<span class="lineNum">     141 </span>            :   vector&lt;string&gt; elements;
+<span class="lineNum">     142 </span>            :   data_ptr value = parse_val(m_key, data);
+<span class="lineNum">     143 </span>            :   data_list &amp;items = value-&gt;getlist();
+<span class="lineNum">     144 </span>            :   for (size_t i = 0; i &lt; items.size(); ++i)
+<span class="lineNum">     145 </span>            :   {
+<span class="lineNum">     146 </span>            :     data[&quot;loop&quot;] = make_data(boost::lexical_cast&lt;string&gt;(i+1));
+<span class="lineNum">     147 </span>            :     data[&quot;loop0&quot;] = make_data(boost::lexical_cast&lt;string&gt;(i));
+<span class="lineNum">     148 </span>            :     data[m_val] = items[i];
+<span class="lineNum">     149 </span>            :     for(size_t j = 0; j &lt; m_children.size(); ++j)
+<span class="lineNum">     150 </span>            :     {
+<span class="lineNum">     151 </span>            :       elements.push_back(m_children[j]-&gt;gettext(data));
+<span class="lineNum">     152 </span>            :     }
+<span class="lineNum">     153 </span>            :   }
+<span class="lineNum">     154 </span>            :   return boost::join(elements, &quot;&quot;);
+<span class="lineNum">     155 </span>            : }
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            : void TokenFor::set_children( token_vector &amp;children )
+<span class="lineNum">     158 </span>            : {
+<span class="lineNum">     159 </span>            :   m_children.clear();
+<span class="lineNum">     160 </span>            :   std::copy(children.begin(), children.end(), std::back_inserter(m_children));
+<span class="lineNum">     161 </span>            : }
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : token_vector &amp; TokenFor::get_children()
+<span class="lineNum">     164 </span>            : {
+<span class="lineNum">     165 </span>            :   return m_children;
+<span class="lineNum">     166 </span>            : }
+<span class="lineNum">     167 </span>            : TokenType TokenIf::gettype()
+<span class="lineNum">     168 </span>            : {
+<span class="lineNum">     169 </span>            :   return TOKEN_TYPE_IF;
+<span class="lineNum">     170 </span>            : }
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : string TokenIf::gettext(data_map&amp; data)
+<span class="lineNum">     173 </span>            : {
+<span class="lineNum">     174 </span>            :   vector&lt;string&gt; elements;
+<span class="lineNum">     175 </span>            :   if (is_true(m_expr, data))
+<span class="lineNum">     176 </span>            :   {
+<span class="lineNum">     177 </span>            :     for(size_t j = 0; j &lt; m_children.size(); ++j)
+<span class="lineNum">     178 </span>            :     {
+<span class="lineNum">     179 </span>            :       elements.push_back(m_children[j]-&gt;gettext(data));
+<span class="lineNum">     180 </span>            :     }
+<span class="lineNum">     181 </span>            :   }
+<span class="lineNum">     182 </span>            :   return boost::join(elements, &quot;&quot;);
+<span class="lineNum">     183 </span>            : }
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            : bool TokenIf::is_true( string expr, data_map &amp;data )
+<span class="lineNum">     186 </span>            : {
+<span class="lineNum">     187 </span>            :   vector&lt;string&gt; elements;
+<span class="lineNum">     188 </span>            :   boost::split(elements, expr, boost::is_space(), boost::token_compress_on);
+<span class="lineNum">     189 </span>            : 
+<span class="lineNum">     190 </span>            :   if (elements[1] == &quot;def&quot;)
+<span class="lineNum">     191 </span>            :   {
+<span class="lineNum">     192 </span>            :     try {
+<span class="lineNum">     193 </span>            :       parse_val(elements[2], data);
+<span class="lineNum">     194 </span>            :     }
+<span class="lineNum">     195 </span>            :     catch (TemplateException&amp;) {
+<span class="lineNum">     196 </span>            :       return false;
+<span class="lineNum">     197 </span>            :     }
+<span class="lineNum">     198 </span>            :     return true;
+<span class="lineNum">     199 </span>            :   }
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            :   if (elements[1] == &quot;ndef&quot;)
+<span class="lineNum">     202 </span>            :   {
+<span class="lineNum">     203 </span>            :     try {
+<span class="lineNum">     204 </span>            :       parse_val(elements[2], data);
+<span class="lineNum">     205 </span>            :     }
+<span class="lineNum">     206 </span>            :     catch (TemplateException&amp;) {
+<span class="lineNum">     207 </span>            :       return true;
+<span class="lineNum">     208 </span>            :     }
+<span class="lineNum">     209 </span>            :     return false;
+<span class="lineNum">     210 </span>            :   }
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            :   if (elements[1] == &quot;not&quot;)
+<span class="lineNum">     213 </span>            :   {
+<span class="lineNum">     214 </span>            :     return parse_val(elements[2], data)-&gt;empty();
+<span class="lineNum">     215 </span>            :   }
+<span class="lineNum">     216 </span>            :   if (elements.size() == 2)
+<span class="lineNum">     217 </span>            :   {
+<span class="lineNum">     218 </span>            :     return !parse_val(elements[1], data)-&gt;empty();
+<span class="lineNum">     219 </span>            :   }
+<span class="lineNum">     220 </span>            :   data_ptr lhs = parse_val(elements[1], data);
+<span class="lineNum">     221 </span>            :   data_ptr rhs = parse_val(elements[3], data);
+<span class="lineNum">     222 </span>            :   if (elements[2] == &quot;==&quot;)
+<span class="lineNum">     223 </span>            :   {
+<span class="lineNum">     224 </span>            :     return lhs-&gt;getvalue() == rhs-&gt;getvalue();
+<span class="lineNum">     225 </span>            :   }
+<span class="lineNum">     226 </span>            :   return lhs-&gt;getvalue() != rhs-&gt;getvalue();
+<span class="lineNum">     227 </span>            : }
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            : void TokenIf::set_children(token_vector&amp; children)
+<span class="lineNum">     230 </span>            : {
+<span class="lineNum">     231 </span>            :   m_children.clear();
+<span class="lineNum">     232 </span>            :   std::copy(children.begin(), children.end(), std::back_inserter(m_children));
+<span class="lineNum">     233 </span>            : }
+<span class="lineNum">     234 </span>            : 
+<span class="lineNum">     235 </span>            : token_vector&amp; TokenIf::get_children()
+<span class="lineNum">     236 </span>            : {
+<span class="lineNum">     237 </span>            :   return m_children;
+<span class="lineNum">     238 </span>            : }
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span>            : TokenType TokenEnd::gettype()
+<span class="lineNum">     241 </span>            : {
+<span class="lineNum">     242 </span>            :   return m_type == &quot;endfor&quot; ? TOKEN_TYPE_ENDFOR : TOKEN_TYPE_ENDIF;
+<span class="lineNum">     243 </span>            : }
+<span class="lineNum">     244 </span>            : 
+<span class="lineNum">     245 </span>            : string TokenEnd::gettext(data_map&amp; /* data */ )
+<span class="lineNum">     246 </span>            : {
+<span class="lineNum">     247 </span>            :   return &quot;&quot;;
+<span class="lineNum">     248 </span>            : }
+<span class="lineNum">     249 </span>            : 
+<span class="lineNum">     250 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">     251 </span>            : // parse_tree
+<span class="lineNum">     252 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">     253 </span><span class="lineNoCov">          0 : void parse_tree(token_vector &amp;tokens, token_vector &amp;tree, TokenType until)</span>
+<span class="lineNum">     254 </span>            : {
+<span class="lineNum">     255 </span>            :   while(! tokens.empty())
+<span class="lineNum">     256 </span>            :   {
+<span class="lineNum">     257 </span>            :     token_ptr token = tokens[0];
+<span class="lineNum">     258 </span>            :     tokens.erase(tokens.begin());
+<span class="lineNum">     259 </span>            :     if (token-&gt;gettype() == TOKEN_TYPE_FOR)
+<span class="lineNum">     260 </span>            :     {
+<span class="lineNum">     261 </span>            :       token_vector children;
+<span class="lineNum">     262 </span>            :       parse_tree(tokens, children, TOKEN_TYPE_ENDFOR);
+<span class="lineNum">     263 </span>            :       token-&gt;set_children(children);
+<span class="lineNum">     264 </span>            :     }
+<span class="lineNum">     265 </span>            :     else if (token-&gt;gettype() == TOKEN_TYPE_IF)
+<span class="lineNum">     266 </span>            :     {
+<span class="lineNum">     267 </span>            :       token_vector children;
+<span class="lineNum">     268 </span>            :       parse_tree(tokens, children, TOKEN_TYPE_ENDIF);
+<span class="lineNum">     269 </span>            :       token-&gt;set_children(children);
+<span class="lineNum">     270 </span>            :     }
+<span class="lineNum">     271 </span>            :     else if (token-&gt;gettype() == until)
+<span class="lineNum">     272 </span>            :     {
+<span class="lineNum">     273 </span>            :       return;
+<span class="lineNum">     274 </span>            :     }
+<span class="lineNum">     275 </span>            :     tree.push_back(token);
+<span class="lineNum">     276 </span>            :   }
+<span class="lineNum">     277 </span>            : }
+<span class="lineNum">     278 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">     279 </span>            : // tokenize
+<span class="lineNum">     280 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">     281 </span><span class="lineNoCov">          0 : token_vector &amp; tokenize(string text, token_vector &amp;tokens)</span>
+<span class="lineNum">     282 </span>            : {
+<span class="lineNum">     283 </span>            :   while(true)
+<span class="lineNum">     284 </span>            :   {
+<span class="lineNum">     285 </span>            :     size_t pos = text.find(&quot;{&quot;);
+<span class="lineNum">     286 </span>            :     if (pos == string::npos)
+<span class="lineNum">     287 </span>            :     {
+<span class="lineNum">     288 </span>            :       if (! text.empty())
+<span class="lineNum">     289 </span>            :       {
+<span class="lineNum">     290 </span>            :         tokens.push_back(token_ptr(new TokenText(text)));
+<span class="lineNum">     291 </span>            :       }
+<span class="lineNum">     292 </span>            :       return tokens;
+<span class="lineNum">     293 </span>            :     }
+<span class="lineNum">     294 </span>            :     string pre_text = text.substr(0, pos);
+<span class="lineNum">     295 </span>            :     if (! pre_text.empty())
+<span class="lineNum">     296 </span>            :     {
+<span class="lineNum">     297 </span>            :       tokens.push_back(token_ptr(new TokenText(pre_text)));
+<span class="lineNum">     298 </span>            :     }
+<span class="lineNum">     299 </span>            :     text = text.substr(pos+1);
+<span class="lineNum">     300 </span>            :     if (text.empty())
+<span class="lineNum">     301 </span>            :     {
+<span class="lineNum">     302 </span>            :       tokens.push_back(token_ptr(new TokenText(&quot;{&quot;)));
+<span class="lineNum">     303 </span>            :       return tokens;
+<span class="lineNum">     304 </span>            :     }
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span>            :     // variable
+<span class="lineNum">     307 </span>            :     if (text[0] == L'$')
+<span class="lineNum">     308 </span>            :     {
+<span class="lineNum">     309 </span>            :       pos = text.find(&quot;}&quot;);
+<span class="lineNum">     310 </span>            :       if (pos != string::npos)
+<span class="lineNum">     311 </span>            :       {
+<span class="lineNum">     312 </span>            :         tokens.push_back(token_ptr (new TokenVar(text.substr(1, pos-1))));
+<span class="lineNum">     313 </span>            :         text = text.substr(pos+1);
+<span class="lineNum">     314 </span>            :       }
+<span class="lineNum">     315 </span>            :     }
+<span class="lineNum">     316 </span>            :     // control statement
+<span class="lineNum">     317 </span>            :     else if (text[0] == L'%')
+<span class="lineNum">     318 </span>            :     {
+<span class="lineNum">     319 </span>            :       pos = text.find(&quot;}&quot;);
+<span class="lineNum">     320 </span>            :       if (pos != string::npos)
+<span class="lineNum">     321 </span>            :       {
+<span class="lineNum">     322 </span>            :         string expression = boost::trim_copy(text.substr(1, pos-2));
+<span class="lineNum">     323 </span>            :         text = text.substr(pos+1);
+<span class="lineNum">     324 </span>            :         if (boost::starts_with(expression, &quot;for&quot;))
+<span class="lineNum">     325 </span>            :         {
+<span class="lineNum">     326 </span>            :           tokens.push_back(token_ptr (new TokenFor(expression)));
+<span class="lineNum">     327 </span>            :         }
+<span class="lineNum">     328 </span>            :         else if (boost::starts_with(expression, &quot;if&quot;))
+<span class="lineNum">     329 </span>            :         {
+<span class="lineNum">     330 </span>            :           tokens.push_back(token_ptr (new TokenIf(expression)));
+<span class="lineNum">     331 </span>            :         }
+<span class="lineNum">     332 </span>            :         else
+<span class="lineNum">     333 </span>            :         {
+<span class="lineNum">     334 </span>            :           tokens.push_back(token_ptr (new TokenEnd(boost::trim_copy(expression))));
+<span class="lineNum">     335 </span>            :         }
+<span class="lineNum">     336 </span>            :       }
+<span class="lineNum">     337 </span>            :     }
+<span class="lineNum">     338 </span>            :     else
+<span class="lineNum">     339 </span>            :     {
+<span class="lineNum">     340 </span>            :       tokens.push_back(token_ptr(new TokenText(&quot;{&quot;)));
+<span class="lineNum">     341 </span>            :     }
+<span class="lineNum">     342 </span>            :   }
+<span class="lineNum">     343 </span>            :   return tokens;
+<span class="lineNum">     344 </span>            : }
+<span class="lineNum">     345 </span>            : 
+<span class="lineNum">     346 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">     347 </span>            : // parse
+<span class="lineNum">     348 </span>            : //////////////////////////////////////////////////////////////////////////
+<span class="lineNum">     349 </span><span class="lineNoCov">          0 : string parse(string templ_text, data_map &amp;data)</span>
+<span class="lineNum">     350 </span>            : {
+<span class="lineNum">     351 </span>            :   token_vector tokens;
+<span class="lineNum">     352 </span>            :   tokenize(templ_text, tokens);
+<span class="lineNum">     353 </span>            :   token_vector tree;
+<span class="lineNum">     354 </span>            :   parse_tree(tokens, tree);
+<span class="lineNum">     355 </span>            :   vector&lt;string&gt; nodes;
+<span class="lineNum">     356 </span>            :   for (size_t i = 0; i &lt; tree.size(); ++i)
+<span class="lineNum">     357 </span>            :   {
+<span class="lineNum">     358 </span>            :     nodes.push_back(tree[i]-&gt;gettext(data));
+<span class="lineNum">     359 </span>            :   }
+<span class="lineNum">     360 </span>            : 
+<span class="lineNum">     361 </span>            :   return boost::join(nodes, &quot;&quot;);
+<span class="lineNum">     362 </span>            : }
+<span class="lineNum">     363 </span>            : 
+<span class="lineNum">     364 </span>            : 
+<span class="lineNum">     365 </span>            : }}}} //end namespaces
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

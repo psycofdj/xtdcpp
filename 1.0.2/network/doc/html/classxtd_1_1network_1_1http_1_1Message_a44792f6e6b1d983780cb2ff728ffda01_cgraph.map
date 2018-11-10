@@ -1,0 +1,5 @@
+<map id="xtd::network::http::Message::readHead" name="xtd::network::http::Message::readHead">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1http_1_1Message.html#a91b4f542cbb1f9e8b75a57749b6794c7" title="xtd::network::http\l::Message::readInitial" alt="" coords="209,5,356,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1http_1_1Message.html#a91511599dd377a9ba83af955efa04f07" title="xtd::network::http\l::Message::readHeaders" alt="" coords="200,71,365,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Message.html#a504f5bff116b3a22db62f051c9973ccf" title="xtd::network::http\l::Message::addHeader" alt="" coords="413,71,568,112"/>
+</map>

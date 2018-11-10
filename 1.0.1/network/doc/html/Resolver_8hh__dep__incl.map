@@ -1,0 +1,14 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh" name="/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh">
+<area shape="rect" id="node2" href="$base_2Client_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/base/Client.hh" alt="" coords="208,109,387,165"/>
+<area shape="rect" id="node7" href="$base_2Connection_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/base/Connection.hh" alt="" coords="512,109,691,165"/>
+<area shape="rect" id="node13" href="$Resolver_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/utils/Resolver.cc" alt="" coords="715,109,893,165"/>
+<area shape="rect" id="node3" href="$base_2Client_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/base/Client.cc" alt="" coords="5,213,184,269"/>
+<area shape="rect" id="node4" href="$bip_2Client_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/bip/Client.hh" alt="" coords="208,213,387,269"/>
+<area shape="rect" id="node5" href="$bip_2Client_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/bip/Client.cc" alt="" coords="107,317,285,373"/>
+<area shape="rect" id="node6" href="$network_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/network.hh" alt="" coords="309,317,488,373"/>
+<area shape="rect" id="node8" href="$base_2Connection_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/base/Connection.cc" alt="" coords="411,213,589,269"/>
+<area shape="rect" id="node9" href="$bip_2Connection_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/bip/Connection.hh" alt="" coords="613,213,792,269"/>
+<area shape="rect" id="node11" href="$http_2Connection_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/http/Connection.hh" alt="" coords="816,213,995,269"/>
+<area shape="rect" id="node10" href="$bip_2Connection_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/bip/Connection.cc" alt="" coords="613,317,792,373"/>
+<area shape="rect" id="node12" href="$http_2Connection_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/network\l/src/http/Connection.cc" alt="" coords="816,317,995,373"/>
+</map>

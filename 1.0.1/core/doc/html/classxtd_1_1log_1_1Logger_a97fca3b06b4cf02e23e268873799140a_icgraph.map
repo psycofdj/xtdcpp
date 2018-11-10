@@ -1,0 +1,10 @@
+<map id="xtd::log::Logger::setLevel" name="xtd::log::Logger::setLevel">
+<area shape="rect" id="node2" href="$exemple1_8cc.html#a2c3f6775325c30275d11c6abee2db6a0" title="main" alt="" coords="497,44,551,71"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1ConfLoader.html#a7a63a5cade515540a0733d782722281e" title="Initialize logging facility from properties. " alt="" coords="236,33,387,74"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1RootLogger.html#a5855e74b37f083b902cec1d3fd398973" title="Shortand for Logger::setName and Logger::setLevel. " alt="" coords="237,164,386,205"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1RootLogger.html#ae2102a57be10e62aefd95b5b0b822c04" title="Shorthand for get(p_module).setLevel(p_level) " alt="" coords="237,98,386,140"/>
+<area shape="rect" id="node7" href="$classxtd_1_1log_1_1RootLogger.html#ae62752c15b444a84ccc4303da003b280" title="Set active log level for all child loggers. " alt="" coords="237,229,386,270"/>
+<area shape="rect" id="node9" href="$classxtd_1_1log_1_1RootLogger.html#a8f76312c3c7cb7c9dadf721a9b45b9ba" title="Set active log level for all child loggers matchin given regexp prefix. " alt="" coords="237,294,386,336"/>
+<area shape="rect" id="node5" href="$classxtd_1_1Application.html#af6aafabf6c552d200f810f754f34e14c" title="main entry point, usually called with main(int,char**)&#39;s arguments " alt="" coords="435,174,613,200"/>
+<area shape="rect" id="node8" href="$classxtd_1_1log_1_1RootLogger.html#a83191f4ff079812194d8d3b344d86473" title="Same as RootLogger::setAllLevels with integer level value. " alt="" coords="449,229,599,270"/>
+</map>

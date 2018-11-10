@@ -1,0 +1,12 @@
+<map id="src/http/http_types.hh" name="src/http/http_types.hh">
+<area shape="rect" id="node2" href="$codes_8hh.html" title="src/http/codes.hh" alt="" coords="86,80,209,107"/>
+<area shape="rect" id="node4" href="$http__types_8cc.html" title="src/http/http_types.cc" alt="" coords="171,155,321,181"/>
+<area shape="rect" id="node6" href="$Message_8hh.html" title="src/http/Message.hh" alt="" coords="429,80,570,107"/>
+<area shape="rect" id="node10" href="$network_8hh.html" title="src/network.hh" alt="" coords="749,229,857,256"/>
+<area shape="rect" id="node3" href="$codes_8cc.html" title="src/http/codes.cc" alt="" coords="25,155,147,181"/>
+<area shape="rect" id="node5" href="$Response_8cc.html" title="src/http/Response.cc" alt="" coords="193,229,339,256"/>
+<area shape="rect" id="node7" href="$Message_8cc.html" title="src/http/Message.cc" alt="" coords="345,155,486,181"/>
+<area shape="rect" id="node8" href="$Request_8hh.html" title="src/http/Request.hh" alt="" coords="681,155,819,181"/>
+<area shape="rect" id="node11" href="$Response_8hh.html" title="src/http/Response.hh" alt="" coords="510,155,657,181"/>
+<area shape="rect" id="node9" href="$Request_8cc.html" title="src/http/Request.cc" alt="" coords="588,229,725,256"/>
+</map>

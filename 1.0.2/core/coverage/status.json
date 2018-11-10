@@ -1,0 +1,84 @@
+{
+  "status": "success", 
+  "graphs": [
+    {
+      "data": {
+        "labels": [], 
+        "datasets": [
+          {
+            "borderColor": "rgba(51, 204, 51, 0.5)", 
+            "pointBorderColor": "rgba(31, 122, 31, 1)", 
+            "yAxisID": "absolute", 
+            "label": "covered lines", 
+            "backgroundColor": "rgba(51, 204, 51, 0)", 
+            "pointBackgroundColor": "rgba(31, 122, 31, 1)", 
+            "data": "%(covered)d"
+          }, 
+          {
+            "borderColor": "rgba(179, 0, 0, 0.5)", 
+            "pointBorderColor": "rgba(102, 0, 0, 1)", 
+            "yAxisID": "absolute", 
+            "label": "total lines", 
+            "backgroundColor": "rgba(179, 0, 0, 0)", 
+            "pointBackgroundColor": "rgba(102, 0, 0, 1)", 
+            "data": "%(total)d"
+          }, 
+          {
+            "borderColor": "rgba(102, 153, 255, 0.5)", 
+            "pointBorderColor": "rgba(0, 60, 179, 1)", 
+            "yAxisID": "percent", 
+            "label": "% covered lines", 
+            "backgroundColor": "rgba(102, 153, 255, 0)", 
+            "pointBackgroundColor": "rgba(0, 60, 179, 1)", 
+            "data": "int((float(%(covered)d) / float(%(total)d)) * 100)"
+          }
+        ]
+      }, 
+      "type": "line", 
+      "options": {
+        "scales": {
+          "xAxes": [
+            {
+              "ticks": {
+                "fontSize": 12, 
+                "minRotation": 80
+              }
+            }
+          ], 
+          "yAxes": [
+            {
+              "position": "left", 
+              "ticks": {
+                "fontSize": 24, 
+                "beginAtZero": true
+              }, 
+              "type": "linear", 
+              "id": "absolute", 
+              "display": true
+            }, 
+            {
+              "position": "right", 
+              "ticks": {
+                "max": 100, 
+                "fontSize": 24, 
+                "beginAtZero": true
+              }, 
+              "type": "linear", 
+              "id": "percent"
+            }
+          ]
+        }, 
+        "title": {
+          "text": "%(module)s : coverage", 
+          "display": true
+        }
+      }
+    }
+  ], 
+  "data": {
+    "covered": 1401, 
+    "total": 1511, 
+    "percent": "int((float(%(covered)d) / float(%(total)d)) * 100)"
+  }, 
+  "label": "92 %"
+}

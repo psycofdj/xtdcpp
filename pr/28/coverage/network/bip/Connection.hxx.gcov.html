@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - bip/Connection.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">bip</a> - Connection.hxx<span style="font-size: 80%;"> (source / <a href="Connection.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">79</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:15:09</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef NETWORK_BIP_CONNECTION_HXX_</a>
+<span class="lineNum">       2 </span>            : # define NETWORK_BIP_CONNECTION_HXX_
+<span class="lineNum">       3 </span>            : # include &lt;boost/asio.hpp&gt;
+<span class="lineNum">       4 </span>            : # include &lt;boost/system/error_code.hpp&gt;
+<span class="lineNum">       5 </span>            : # include &quot;log/helpers.hh&quot;   // libcore
+<span class="lineNum">       6 </span>            : # include &quot;log/logtypes.hh&quot;  // libcore
+<span class="lineNum">       7 </span>            : # include &quot;network_types.hh&quot; // libcore
+<span class="lineNum">       8 </span>            : # include &quot;types.hh&quot;         // libcore
+<span class="lineNum">       9 </span>            : # include &quot;bip/Connection.hh&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace xtd { namespace network { namespace base { class Config; } } }
+<span class="lineNum">      12 </span>            : namespace xtd {
+<span class="lineNum">      13 </span>            : namespace network {
+<span class="lineNum">      14 </span>            : namespace bip {
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : namespace ba = boost::asio;
+<span class="lineNum">      17 </span>            : namespace bs = boost::system;
+<a name="18"><span class="lineNum">      18 </span>            : </a>
+<span class="lineNum">      19 </span>            : template &lt;typename Domain&gt;
+<span class="lineNum">      20 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::Connection(const base::Config&amp;  p_configuration,</span>
+<span class="lineNum">      21 </span>            :                                ba::io_service&amp;      p_ioService,
+<span class="lineNum">      22 </span>            :                                const string         p_hostname,
+<span class="lineNum">      23 </span>            :                                const uint32_t       p_port) :
+<span class="lineNum">      24 </span>            :   TBase(p_configuration, p_ioService, p_hostname, p_port),
+<span class="lineNum">      25 </span>            :   m_header(mcs_headerSize),
+<span class="lineNum">      26 </span>            :   m_inboundData(),
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 :   m_counter(0)</span>
+<span class="lineNum">      28 </span>            : {
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            : /**
+<span class="lineNum">      35 </span>            :  ** @details
+<span class="lineNum">      36 </span>            :  ** Le calcul du crc8 sur la donnee s'effectue sur les N derniers
+<span class="lineNum">      37 </span>            :  ** octects du message (N == mcs_maxDataCrcSize). On ne calcul
+<span class="lineNum">      38 </span>            :  ** pas le crc sur tout le message car ce calcul est assez gourmand.
+<span class="lineNum">      39 </span>            :  ** Dans le cas d'un message vide, le crc8 vaut 0xAA.
+<span class="lineNum">      40 </span>            :  */
+<a name="41"><span class="lineNum">      41 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">      42 </span>            : uint8_t
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::computeDataCrc(const vector&lt;char&gt;&amp; p_data)</span>
+<span class="lineNum">      44 </span>            : {
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   if (p_data.size() == 0)</span>
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :     return 0xAA;</span>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            :   size_t l_beginOffset;
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   const char* l_pData = &amp;p_data[0];</span>
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   if (p_data.size() &lt;= mcs_maxDataCrcSize)</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :     l_beginOffset = 0;</span>
+<span class="lineNum">      54 </span>            :   else
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :     l_beginOffset = p_data.size() - mcs_maxDataCrcSize;</span>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   return calcCRC8(l_pData + l_beginOffset, p_data.size() - l_beginOffset);</span>
+<span class="lineNum">      58 </span>            : }
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : 
+<a name="61"><span class="lineNum">      61 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">      62 </span>            : void
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::async_write(sptr&lt;vector&lt;char&gt;&gt; p_outData, t_handler p_onSent)</span>
+<span class="lineNum">      64 </span>            : {
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   uint8_t                l_crc8       = computeDataCrc(*p_outData);</span>
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   sptr&lt;vector&lt;uint32_t&gt;&gt; l_headerBuff = std::make_shared&lt;vector&lt;uint32_t&gt;&gt;();</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   sptr&lt;vector&lt;char&gt;&gt;     l_outBuff    = std::make_shared&lt;vector&lt;char&gt;&gt;();</span>
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            :   //build buffer to send
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   l_outBuff-&gt;assign(p_outData-&gt;begin(), p_outData-&gt;end());</span>
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :   l_outBuff-&gt;push_back(l_crc8);</span>
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            :   //get the size of the serialized data
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :   ba::const_buffer l_constBuf    = ba::buffer(*l_outBuff.get());</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   uint32_t    l_messageSize = ba::buffer_size(l_constBuf);</span>
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   l_headerBuff-&gt;resize(mcs_headerSize);</span>
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 :   (*l_headerBuff)[0] = l_messageSize;</span>
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 :   (*l_headerBuff)[1] = m_counter;</span>
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            :   // Calculate CRC32 for data
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   uint32_t l_crc = calcCRC(&amp;((*l_headerBuff)[0]), sizeof(uint32_t) * (mcs_headerSize - 1));</span>
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span><span class="lineNoCov">          0 :   (*l_headerBuff)[mcs_headerSize - 1] = l_crc;</span>
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 :   log::debug(&quot;network.bip.cnx&quot;, &quot;bip cnx async_write (%s) : Header created (%d)&quot;, TBase::info(), m_counter, HERE);</span>
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span>            :   // construct vector containing header (data size) and data
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   vector&lt;ba::const_buffer&gt; l_buffers;</span>
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   l_buffers.push_back(ba::buffer(*(l_headerBuff.get())));</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   l_buffers.push_back(l_constBuf);</span>
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span>            :   // send it through the socket
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :   ba::async_write(this-&gt;m_socket,</span>
+<span class="lineNum">      98 </span>            :                   l_buffers,
+<span class="lineNum">      99 </span>            :                   std::bind(&amp;Connection::onSent,
+<span class="lineNum">     100 </span>            :                             this,
+<span class="lineNum">     101 </span>            :                             std::placeholders::_1,
+<span class="lineNum">     102 </span>            :                             std::placeholders::_2,
+<span class="lineNum">     103 </span>            :                             l_headerBuff,
+<span class="lineNum">     104 </span>            :                             l_outBuff,
+<span class="lineNum">     105 </span>            :                             p_onSent));
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            : 
+<a name="109"><span class="lineNum">     109 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     110 </span>            : void
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::onSent(bs::error_code                     p_error,</span>
+<span class="lineNum">     112 </span>            :                            size_t                          /* p_bytesTransferred */,
+<span class="lineNum">     113 </span>            :                            sptr&lt;vector&lt;uint32_t&gt;&gt;             p_outHeader,
+<span class="lineNum">     114 </span>            :                            sptr&lt;vector&lt;char&gt;&gt;                 p_outData,
+<span class="lineNum">     115 </span>            :                            t_handler                          p_onSent)
+<span class="lineNum">     116 </span>            : {
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :   p_onSent(p_error);</span>
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   p_outData.reset();</span>
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 :   p_outHeader.reset();</span>
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : 
+<a name="123"><span class="lineNum">     123 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     124 </span>            : void
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::async_read(sptr&lt;vector&lt;char&gt;&gt; p_inData, t_handler p_onReceived)</span>
+<span class="lineNum">     126 </span>            : {
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :   log::debug(&quot;network.bip.cnx&quot;, &quot;bip cnx async_read (%s) : enterring (%d)&quot;, TBase::info(), m_counter, HERE);</span>
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            :   // async read makes sure to receive all the data
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   ba::async_read(this-&gt;m_socket,</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :                  ba::buffer(m_header),</span>
+<span class="lineNum">     132 </span>            :                  std::bind(&amp;Connection::onHeaderReceived,
+<span class="lineNum">     133 </span>            :                            this,
+<span class="lineNum">     134 </span>            :                            std::placeholders::_1,
+<span class="lineNum">     135 </span>            :                            std::placeholders::_2,
+<span class="lineNum">     136 </span>            :                            p_inData,
+<span class="lineNum">     137 </span>            :                            p_onReceived));
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   log::debug(&quot;network.bip.cnx&quot;, &quot;bip cnx async_read (%s) : leaving (%d)&quot;, TBase::info(), m_counter, HERE);</span>
+<span class="lineNum">     140 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     141 </span>            : 
+<a name="142"><span class="lineNum">     142 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     143 </span>            : void
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::onHeaderReceived(const bs::error_code&amp; p_error,</span>
+<span class="lineNum">     145 </span>            :                                      size_t             /* p_bytesTransferred */,
+<span class="lineNum">     146 </span>            :                                      sptr&lt;vector&lt;char&gt;&gt;    p_inData,
+<span class="lineNum">     147 </span>            :                                      t_handler             p_onReceived)
+<span class="lineNum">     148 </span>            : {
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   if (p_error)</span>
+<span class="lineNum">     150 </span>            :   {
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :     log::err(&quot;network.bip.cnx&quot;, &quot;bip cnx onHeaderReceived (%s) : header receive error %s&quot;, TBase::info(), p_error.message(), HERE);</span>
+<span class="lineNum">     152 </span><span class="lineNoCov">          0 :     p_onReceived(p_error);</span>
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     154 </span>            :   }
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   uint32_t l_crc = calcCRC(&amp;m_header[0], sizeof(uint32_t) * (mcs_headerSize - 1));</span>
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span><span class="lineNoCov">          0 :   if (l_crc  != m_header[mcs_headerSize - 1])</span>
+<span class="lineNum">     159 </span>            :   {
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :     log::err(&quot;network.bip.cnx&quot;, &quot;bip cnx onHeaderReceived (%s) : bad header CRC error (0x%hhX != 0x%hhX)&quot;, TBase::info(), m_header[mcs_headerSize - 1], l_crc, HERE);</span>
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :     p_onReceived(ba::error::invalid_argument);</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     163 </span>            :   }
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span><span class="lineNoCov">          0 :   m_counter = m_header[1];</span>
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 :   m_inboundData.resize(m_header[0]);</span>
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 :   log::debug(&quot;network.bip.cnx&quot;, &quot;bip cnx onHeaderReceived (%s) : header received (id : %d)&quot;, TBase::info(), m_counter, HERE);</span>
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 :   receive_data(p_inData, p_onReceived);</span>
+<span class="lineNum">     170 </span>            : }
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : 
+<a name="173"><span class="lineNum">     173 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     174 </span>            : void
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::receive_data(sptr&lt;vector&lt;char&gt;&gt; p_inData,</span>
+<span class="lineNum">     176 </span>            :                                  t_handler          p_onReceived)
+<span class="lineNum">     177 </span>            : {
+<span class="lineNum">     178 </span><span class="lineNoCov">          0 :   TBase::m_strand.post(std::bind(&amp;Connection::do_receive_data,</span>
+<span class="lineNum">     179 </span>            :                                  this,
+<span class="lineNum">     180 </span>            :                                  p_inData,
+<span class="lineNum">     181 </span>            :                                  p_onReceived));
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     183 </span>            : 
+<span class="lineNum">     184 </span>            : 
+<a name="185"><span class="lineNum">     185 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     186 </span>            : void
+<span class="lineNum">     187 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::do_receive_data(sptr&lt;vector&lt;char&gt;&gt; p_inData,</span>
+<span class="lineNum">     188 </span>            :                                     t_handler          p_onReceived)
+<span class="lineNum">     189 </span>            : {
+<span class="lineNum">     190 </span><span class="lineNoCov">          0 :   ba::async_read(TBase::m_socket,</span>
+<span class="lineNum">     191 </span><span class="lineNoCov">          0 :                  ba::buffer(m_inboundData),</span>
+<span class="lineNum">     192 </span>            :                  std::bind(&amp;Connection::onDataReceived,
+<span class="lineNum">     193 </span>            :                            this,
+<span class="lineNum">     194 </span>            :                            std::placeholders::_1,
+<span class="lineNum">     195 </span>            :                            std::placeholders::_2,
+<span class="lineNum">     196 </span>            :                            p_inData,
+<span class="lineNum">     197 </span>            :                            p_onReceived));
+<span class="lineNum">     198 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            : 
+<a name="202"><span class="lineNum">     202 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     203 </span>            : void
+<span class="lineNum">     204 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::onDataReceived(const bs::error_code&amp;    p_error,</span>
+<span class="lineNum">     205 </span>            :                                    size_t                /* p_bytesTransferred */,
+<span class="lineNum">     206 </span>            :                                    sptr&lt;vector&lt;char&gt;&gt;       p_inData,
+<span class="lineNum">     207 </span>            :                                    t_handler                p_onReceived)
+<span class="lineNum">     208 </span>            : {
+<span class="lineNum">     209 </span><span class="lineNoCov">          0 :   if (p_error)</span>
+<span class="lineNum">     210 </span>            :   {
+<span class="lineNum">     211 </span><span class="lineNoCov">          0 :     log::err(&quot;network.bip.cnx&quot;, &quot;bip cnx onDataReceived (%s) : data receive error %s (id: %d) &quot;, TBase::info(), p_error.message(), m_counter, HERE);</span>
+<span class="lineNum">     212 </span><span class="lineNoCov">          0 :     p_onReceived(p_error);</span>
+<span class="lineNum">     213 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     214 </span>            :   }
+<span class="lineNum">     215 </span>            : 
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :   uint8_t l_dataCrc = m_inboundData.back(); m_inboundData.pop_back();</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :   uint8_t l_crc8    = computeDataCrc(m_inboundData);</span>
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :   if (l_dataCrc != l_crc8)</span>
+<span class="lineNum">     220 </span>            :   {
+<span class="lineNum">     221 </span><span class="lineNoCov">          0 :     log::err(&quot;network.bip.cnx&quot;, &quot;bip cnx onDataReceived (%s) : bad data crc error (0x%hhX != 0x%hhX) (id : %d)&quot;, TBase::info(), l_dataCrc, l_crc8, m_counter, HERE);</span>
+<span class="lineNum">     222 </span><span class="lineNoCov">          0 :     p_onReceived(ba::error::invalid_argument);</span>
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 :     return;</span>
+<span class="lineNum">     224 </span>            :   }
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span><span class="lineNoCov">          0 :   log::debug(&quot;network.bip.cnx&quot;, &quot;bip cnx onDataReceived (%s) : Data received (id : %d)&quot;, TBase::info(), m_counter, HERE);</span>
+<span class="lineNum">     227 </span>            : 
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 :   p_inData-&gt;swap(m_inboundData);</span>
+<span class="lineNum">     229 </span><span class="lineNoCov">          0 :   p_onReceived(p_error);</span>
+<span class="lineNum">     230 </span>            : }
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span>            : 
+<a name="233"><span class="lineNum">     233 </span>            : template &lt;typename Domain&gt;</a>
+<span class="lineNum">     234 </span>            : void
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 : Connection&lt;Domain&gt;::incCounter(void)</span>
+<span class="lineNum">     236 </span>            : {
+<span class="lineNum">     237 </span><span class="lineNoCov">          0 :   m_counter++;</span>
+<span class="lineNum">     238 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            : }}} // end namespaces
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span>            : #endif // !NETWORK_BIP_CONNECTION_HXX_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

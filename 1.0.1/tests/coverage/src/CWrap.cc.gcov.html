@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - tests unit test coverage - src/CWrap.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - CWrap.cc<span style="font-size: 80%;"> (source / <a href="CWrap.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">tests unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">97</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2016-12-29 16:00:38</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;CWrap.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;dlfcn.h&gt;
+<span class="lineNum">       3 </span>            : #include &lt;stdio.h&gt;
+<span class="lineNum">       4 </span>            : #include &lt;stdlib.h&gt;
+<span class="lineNum">       5 </span>            : #include &lt;stdarg.h&gt;
+<span class="lineNum">       6 </span>            : #include &lt;syslog.h&gt;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : namespace xtd {
+<a name="9"><span class="lineNum">       9 </span>            : namespace tests {</a>
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span><span class="lineNoCov">          0 : CWrap::state::state(const string&amp; p_name, const t_config&amp; p_conf) :</span>
+<span class="lineNum">      12 </span>            :   m_name(p_name),
+<span class="lineNum">      13 </span><span class="lineNoCov">          0 :   m_base(CWrap::get().getConfig(m_name))</span>
+<span class="lineNum">      14 </span>            : {
+<span class="lineNum">      15 </span><span class="lineNoCov">          0 :   CWrap::set(m_name, p_conf);</span>
+<a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span><span class="lineNoCov">          0 : CWrap::state::~state(void)</span>
+<span class="lineNum">      19 </span>            : {
+<span class="lineNum">      20 </span><span class="lineNoCov">          0 :   CWrap::set(m_name, m_base);</span>
+<a name="21"><span class="lineNum">      21 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 : CWrap::hook_state::hook_state(const string&amp; p_name, const t_hook&amp; p_hook) :</span>
+<span class="lineNum">      24 </span>            :   m_name(p_name),
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :   m_base(CWrap::get().getHooks())</span>
+<span class="lineNum">      26 </span>            : {
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 :   CWrap::addHook(m_name, p_hook);</span>
+<a name="28"><span class="lineNum">      28 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 : CWrap::hook_state::~hook_state(void)</span>
+<span class="lineNum">      31 </span>            : {
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :   CWrap::setHooks(m_base);</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 : }</span>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 : CWrap::CWrap(void)</span>
+<span class="lineNum">      37 </span>            : {
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   m_data.insert(std::make_pair(&quot;fread&quot;, t_config({</span>
+<span class="lineNum">      39 </span>            :           { t_state({&quot;success&quot;, 1}) },
+<span class="lineNum">      40 </span>            :           { t_state({&quot;error&quot;,   0}) }
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :         })));</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :   for (const auto&amp; cc_item : m_data)</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :     m_origin.insert(cc_item);</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      45 </span>            : 
+<a name="46"><span class="lineNum">      46 </span>            : </a>
+<span class="lineNum">      47 </span>            : void
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 : CWrap::reset(void)</span>
+<span class="lineNum">      49 </span>            : {
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   CWrap&amp; l_obj = get();</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   l_obj.m_data.clear();</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   for (const auto&amp; cc_item : l_obj.m_origin)</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :     l_obj.m_data.insert(cc_item);</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 : }</span>
+<a name="55"><span class="lineNum">      55 </span>            : </a>
+<span class="lineNum">      56 </span>            : std::string
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 : CWrap::gen(const std::string&amp; p_funcName)</span>
+<span class="lineNum">      58 </span>            : {
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :   return get().generate(p_funcName);</span>
+<span class="lineNum">      60 </span>            : }
+<a name="61"><span class="lineNum">      61 </span>            : </a>
+<span class="lineNum">      62 </span>            : std::string
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 : CWrap::generate(const std::string&amp; p_funcName)</span>
+<span class="lineNum">      64 </span>            : {
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   t_data::const_iterator cc_func = m_data.find(p_funcName);</span>
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   if (m_data.end() == cc_func)</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :     return &quot;unknown&quot;;</span>
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   std::uint32_t l_sum   = 0;</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   for (const auto&amp; cc_state : cc_func-&gt;second)</span>
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :     l_sum += cc_state.second;</span>
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :   std::uint64_t l_rand  = random();</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :   std::uint32_t l_chunk = RAND_MAX / l_sum;</span>
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   for (const auto&amp; cc_state : cc_func-&gt;second)</span>
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :     if (l_rand &lt; (l_chunk * cc_state.second))</span>
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :       return cc_state.first;</span>
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 :   return &quot;unknown&quot;;</span>
+<span class="lineNum">      81 </span>            : }
+<span class="lineNum">      82 </span>            : 
+<a name="83"><span class="lineNum">      83 </span>            : </a>
+<span class="lineNum">      84 </span>            : void
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 : CWrap::set(const std::string&amp; p_name, const t_config&amp; p_config)</span>
+<span class="lineNum">      86 </span>            : {
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   get().add(p_name, p_config);</span>
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 : }</span>
+<a name="89"><span class="lineNum">      89 </span>            : </a>
+<span class="lineNum">      90 </span>            : CWrap::t_config
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 : CWrap::getConfig(const string&amp; p_name)</span>
+<span class="lineNum">      92 </span>            : {
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   return m_data[p_name];</span>
+<span class="lineNum">      94 </span>            : }
+<a name="95"><span class="lineNum">      95 </span>            : </a>
+<span class="lineNum">      96 </span>            : void
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 : CWrap::add(const std::string&amp; p_name, const t_config&amp; p_config)</span>
+<span class="lineNum">      98 </span>            : {
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   m_data[p_name] = p_config;</span>
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 : }</span>
+<a name="101"><span class="lineNum">     101 </span>            : </a>
+<span class="lineNum">     102 </span>            : CWrap::t_hooks
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 : CWrap::getHooks(void)</span>
+<span class="lineNum">     104 </span>            : {
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :   return m_hooks;</span>
+<span class="lineNum">     106 </span>            : }
+<span class="lineNum">     107 </span>            : 
+<a name="108"><span class="lineNum">     108 </span>            : </a>
+<span class="lineNum">     109 </span>            : void
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 : CWrap::runHooks(const string&amp; p_name, const boost::any&amp; p_args)</span>
+<span class="lineNum">     111 </span>            : {
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :   CWrap&amp; l_this = get();</span>
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :   std::cout &lt;&lt; &quot;running hooks for &quot; &lt;&lt; p_name &lt;&lt; std::endl;</span>
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :   t_hooks::const_iterator c_begin = l_this.m_hooks.lower_bound(p_name);</span>
+<span class="lineNum">     116 </span><span class="lineNoCov">          0 :   t_hooks::const_iterator c_end   = l_this.m_hooks.upper_bound(p_name);</span>
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   while (c_begin != c_end)</span>
+<span class="lineNum">     119 </span>            :   {
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :     std::cout &lt;&lt; &quot;running hook&quot; &lt;&lt; std::endl;</span>
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :     c_begin-&gt;second(p_args);</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :     c_begin++;</span>
+<span class="lineNum">     123 </span>            :   }
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 : }</span>
+<a name="125"><span class="lineNum">     125 </span>            : </a>
+<span class="lineNum">     126 </span>            : void
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 : CWrap::addHook(const string&amp; p_name, const t_hook&amp; p_hook)</span>
+<span class="lineNum">     128 </span>            : {
+<span class="lineNum">     129 </span><span class="lineNoCov">          0 :   CWrap&amp; l_this = get();</span>
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   l_this.m_hooks.insert(std::make_pair(p_name, p_hook));</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 : }</span>
+<a name="132"><span class="lineNum">     132 </span>            : </a>
+<span class="lineNum">     133 </span>            : void
+<span class="lineNum">     134 </span><span class="lineNoCov">          0 : CWrap::setHooks(const t_hooks&amp; p_hooks)</span>
+<span class="lineNum">     135 </span>            : {
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   CWrap&amp; l_this = get();</span>
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :   l_this.m_hooks = p_hooks;</span>
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     139 </span>            : 
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            : }}
+<a name="142"><span class="lineNum">     142 </span>            : </a>
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 : size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)</span>
+<span class="lineNum">     145 </span>            : {
+<span class="lineNum">     146 </span>            :   typedef size_t (*orig_t)(void *ptr, size_t size, size_t nmemb, FILE *stream);
+<span class="lineNum">     147 </span><span class="lineNoCov">          0 :   orig_t l_orig = (orig_t)dlsym(RTLD_NEXT, &quot;fread&quot;);</span>
+<span class="lineNum">     148 </span>            : 
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   const std::string&amp; l_state = xtd::tests::CWrap::gen(&quot;fread&quot;);</span>
+<span class="lineNum">     150 </span><span class="lineNoCov">          0 :   if (&quot;success&quot; == l_state)</span>
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :     return l_orig(ptr, size, nmemb, stream);</span>
+<span class="lineNum">     152 </span><span class="lineNoCov">          0 :   return 0;</span>
+<span class="lineNum">     153 </span>            : }
+<span class="lineNum">     154 </span>            : 
+<a name="155"><span class="lineNum">     155 </span>            : </a>
+<span class="lineNum">     156 </span>            : void
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 : openlog(const char *ident, int option, int facility)</span>
+<span class="lineNum">     158 </span>            : {
+<span class="lineNum">     159 </span>            :   typedef std::tuple&lt;const char*, int, int&gt; t_args;
+<span class="lineNum">     160 </span>            :   typedef void (*orig_t)(const char*, int, int);
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :   t_args     l_args   = std::make_tuple(ident, option, facility);</span>
+<span class="lineNum">     163 </span><span class="lineNoCov">          0 :   orig_t     l_orig   = (orig_t)dlsym(RTLD_NEXT, &quot;openlog&quot;);</span>
+<span class="lineNum">     164 </span><span class="lineNoCov">          0 :   boost::any l_params = l_args;</span>
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 :   xtd::tests::CWrap::runHooks(&quot;openlog&quot;, l_params);</span>
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   return l_orig(ident, option, facility);</span>
+<span class="lineNum">     168 </span>            : }
+<span class="lineNum">     169 </span>            : 
+<a name="170"><span class="lineNum">     170 </span>            : </a>
+<span class="lineNum">     171 </span>            : void
+<span class="lineNum">     172 </span><span class="lineNoCov">          0 : closelog(void)</span>
+<span class="lineNum">     173 </span>            : {
+<span class="lineNum">     174 </span>            :   typedef void (*orig_t)(void);
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 :   orig_t     l_orig   = (orig_t)dlsym(RTLD_NEXT, &quot;closelog&quot;);</span>
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 :   boost::any l_params;</span>
+<span class="lineNum">     178 </span><span class="lineNoCov">          0 :   xtd::tests::CWrap::runHooks(&quot;closelog&quot;, l_params);</span>
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 :   return l_orig();</span>
+<span class="lineNum">     180 </span>            : }
+<span class="lineNum">     181 </span>            : 
+<a name="182"><span class="lineNum">     182 </span>            : </a>
+<span class="lineNum">     183 </span>            : void
+<span class="lineNum">     184 </span><span class="lineNoCov">          0 : vsyslog(int priority, const char *msg_format, va_list ap)</span>
+<span class="lineNum">     185 </span>            : {
+<span class="lineNum">     186 </span>            :   typedef std::tuple&lt;int, const char*&gt; t_args;
+<span class="lineNum">     187 </span>            :   typedef void (*orig_t)(int, const char *, va_list);
+<span class="lineNum">     188 </span>            : 
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 :   t_args     l_args   = std::make_tuple(priority, msg_format);</span>
+<span class="lineNum">     190 </span><span class="lineNoCov">          0 :   orig_t     l_orig   = (orig_t)dlsym(RTLD_NEXT, &quot;vsyslog&quot;);</span>
+<span class="lineNum">     191 </span><span class="lineNoCov">          0 :   boost::any l_params = l_args;</span>
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span><span class="lineNoCov">          0 :   xtd::tests::CWrap::runHooks(&quot;vsyslog&quot;, l_params);</span>
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :   return l_orig(priority, msg_format, ap);</span>
+<span class="lineNum">     195 </span>            : }
+<a name="196"><span class="lineNum">     196 </span>            : </a>
+<span class="lineNum">     197 </span>            : void
+<span class="lineNum">     198 </span><span class="lineNoCov">          0 : syslog(int priority, const char *msg_format, ...)</span>
+<span class="lineNum">     199 </span>            : {
+<span class="lineNum">     200 </span>            :   va_list ap;
+<span class="lineNum">     201 </span>            : 
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :   va_start (ap, msg_format);</span>
+<a name="203"><span class="lineNum">     203 </span><span class="lineNoCov">          0 :   vsyslog(priority, msg_format, ap);</span></a>
+<span class="lineNum">     204 </span><span class="lineNoCov">          0 :   va_end (ap);</span>
+<span class="lineNum">     205 </span><span class="lineNoCov">          0 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

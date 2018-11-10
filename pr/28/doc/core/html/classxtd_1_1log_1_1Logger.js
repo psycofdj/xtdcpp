@@ -1,0 +1,25 @@
+var classxtd_1_1log_1_1Logger =
+[
+    [ "thread_counter", "structxtd_1_1log_1_1Logger_1_1thread__counter.html", "structxtd_1_1log_1_1Logger_1_1thread__counter" ],
+    [ "t_appenders", "classxtd_1_1log_1_1Logger.html#a30319e7ba0a6371dbbecf26bf34ab731", null ],
+    [ "Logger", "classxtd_1_1log_1_1Logger.html#ac4b4b7909aea31312158297f69e79894", null ],
+    [ "Logger", "classxtd_1_1log_1_1Logger.html#a133624f9af80b4a2a5520844e2f5a9af", null ],
+    [ "Logger", "classxtd_1_1log_1_1Logger.html#a2e3192ebfef35a88b45dd2042b3bc136", null ],
+    [ "~Logger", "classxtd_1_1log_1_1Logger.html#a14ba9192f1b6740327010f192b56c95c", null ],
+    [ "addAppender", "classxtd_1_1log_1_1Logger.html#a0527c0cdbbeb688e15267b7f3428c6be", null ],
+    [ "alert", "classxtd_1_1log_1_1Logger.html#a279ef5c7aab46d79e7070379ca1e7368", null ],
+    [ "clearAppenders", "classxtd_1_1log_1_1Logger.html#a335aea1ddce63493987a35668583d6f0", null ],
+    [ "crit", "classxtd_1_1log_1_1Logger.html#ab6b091bd9182977ab7dd09ef483f0f5d", null ],
+    [ "debug", "classxtd_1_1log_1_1Logger.html#a126c7d2916eed4548eaa2387e673bff8", null ],
+    [ "emerg", "classxtd_1_1log_1_1Logger.html#acff6fc6f5889d5c2a8b5d30454a2d56e", null ],
+    [ "err", "classxtd_1_1log_1_1Logger.html#ac2e27ccf47a3183f8966f392a39fb927", null ],
+    [ "getLevel", "classxtd_1_1log_1_1Logger.html#ab3a1148a5f282fb128d58453892c38ff", null ],
+    [ "getName", "classxtd_1_1log_1_1Logger.html#ab07e60afe99b8f960b667d258e31c2b4", null ],
+    [ "info", "classxtd_1_1log_1_1Logger.html#a6c0f379de9f4891ccadf1190b0eb941d", null ],
+    [ "log", "classxtd_1_1log_1_1Logger.html#aa6877bfe0bda97dbe03c95d9abb0d0b4", null ],
+    [ "notice", "classxtd_1_1log_1_1Logger.html#a9d4a8c0e93de2e9d00550df78ba69d5d", null ],
+    [ "setLevel", "classxtd_1_1log_1_1Logger.html#a97fca3b06b4cf02e23e268873799140a", null ],
+    [ "setName", "classxtd_1_1log_1_1Logger.html#ad2144be152776e562e05d42eb9d503fc", null ],
+    [ "warning", "classxtd_1_1log_1_1Logger.html#ac76c239cdbd12e0fddf9ef224716d67d", null ],
+    [ "::TestLogger", "classxtd_1_1log_1_1Logger.html#ae37f3ca373fc88722ea49a22f5446169", null ]
+];

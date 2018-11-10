@@ -1,0 +1,314 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0" lines-covered="0" lines-valid="121" timestamp="1487412338" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......tests.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/CWrap.cc" line-rate="0.0" name="......tests.src.CWrap.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::hook_state::hook_state(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void (boost::any const&amp;)&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::state::~state()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="fread" signature="">
+							<lines>
+								<line branch="false" hits="0" number="142"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::runHooks(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, boost::any const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="110"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::setHooks(std::multimap&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::function&lt;void (boost::any const&amp;)&gt;, std::less&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const, std::function&lt;void (boost::any const&amp;)&gt; &gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="132"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::CWrap()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="36"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="syslog" signature="">
+							<lines>
+								<line branch="false" hits="0" number="206"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::gen(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="57"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::getConfig(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="91"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::hook_state::~hook_state()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::set(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, unsigned int&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, unsigned int&gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="85"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="closelog" signature="">
+							<lines>
+								<line branch="false" hits="0" number="168"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::addHook(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::function&lt;void (boost::any const&amp;)&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="125"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__syslog_chk(int, int, char const*, ...)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="216"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_CWrap.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="223"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::reset()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="48"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="openlog" signature="">
+							<lines>
+								<line branch="false" hits="0" number="154"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::getHooks[abi:cxx11]()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="103"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::add(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, unsigned int&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, unsigned int&gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="97"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__vsyslog_chk(int, int, char const*, __va_list_tag*)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="193"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::state::state(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::vector&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, unsigned int&gt;, std::allocator&lt;std::pair&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, unsigned int&gt; &gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::generate(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="63"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="223"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="vsyslog" signature="">
+							<lines>
+								<line branch="false" hits="0" number="179"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="11"/>
+						<line branch="false" hits="0" number="13"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="48"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="57"/>
+						<line branch="false" hits="0" number="59"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="80"/>
+						<line branch="false" hits="0" number="85"/>
+						<line branch="false" hits="0" number="87"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="91"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="97"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="103"/>
+						<line branch="false" hits="0" number="105"/>
+						<line branch="false" hits="0" number="110"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="114"/>
+						<line branch="false" hits="0" number="115"/>
+						<line branch="false" hits="0" number="117"/>
+						<line branch="false" hits="0" number="119"/>
+						<line branch="false" hits="0" number="120"/>
+						<line branch="false" hits="0" number="122"/>
+						<line branch="false" hits="0" number="125"/>
+						<line branch="false" hits="0" number="127"/>
+						<line branch="false" hits="0" number="128"/>
+						<line branch="false" hits="0" number="129"/>
+						<line branch="false" hits="0" number="132"/>
+						<line branch="false" hits="0" number="134"/>
+						<line branch="false" hits="0" number="135"/>
+						<line branch="false" hits="0" number="136"/>
+						<line branch="false" hits="0" number="142"/>
+						<line branch="false" hits="0" number="145"/>
+						<line branch="false" hits="0" number="147"/>
+						<line branch="false" hits="0" number="148"/>
+						<line branch="false" hits="0" number="149"/>
+						<line branch="false" hits="0" number="150"/>
+						<line branch="false" hits="0" number="154"/>
+						<line branch="false" hits="0" number="159"/>
+						<line branch="false" hits="0" number="160"/>
+						<line branch="false" hits="0" number="161"/>
+						<line branch="false" hits="0" number="163"/>
+						<line branch="false" hits="0" number="164"/>
+						<line branch="false" hits="0" number="168"/>
+						<line branch="false" hits="0" number="172"/>
+						<line branch="false" hits="0" number="173"/>
+						<line branch="false" hits="0" number="174"/>
+						<line branch="false" hits="0" number="175"/>
+						<line branch="false" hits="0" number="179"/>
+						<line branch="false" hits="0" number="184"/>
+						<line branch="false" hits="0" number="185"/>
+						<line branch="false" hits="0" number="186"/>
+						<line branch="false" hits="0" number="188"/>
+						<line branch="false" hits="0" number="189"/>
+						<line branch="false" hits="0" number="193"/>
+						<line branch="false" hits="0" number="198"/>
+						<line branch="false" hits="0" number="199"/>
+						<line branch="false" hits="0" number="200"/>
+						<line branch="false" hits="0" number="201"/>
+						<line branch="false" hits="0" number="202"/>
+						<line branch="false" hits="0" number="206"/>
+						<line branch="false" hits="0" number="210"/>
+						<line branch="false" hits="0" number="211"/>
+						<line branch="false" hits="0" number="212"/>
+						<line branch="false" hits="0" number="213"/>
+						<line branch="false" hits="0" number="216"/>
+						<line branch="false" hits="0" number="220"/>
+						<line branch="false" hits="0" number="221"/>
+						<line branch="false" hits="0" number="222"/>
+						<line branch="false" hits="0" number="223"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/ProgressListener.cc" line-rate="0.0" name="......tests.src.ProgressListener.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::ProgressListener::ProgressListener(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="6"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::ProgressListener::endTest(CppUnit::Test*)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::ProgressListener::addFailure(CppUnit::TestFailure const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::ProgressListener::startTest(CppUnit::Test*)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="12"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="6"/>
+						<line branch="false" hits="0" number="8"/>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/ProgressListener.hh" line-rate="0.0" name="......tests.src.ProgressListener.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::ProgressListener::~ProgressListener()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::ProgressListener::~ProgressListener()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="11"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../tests/src/CWrap.hh" line-rate="0.0" name="......tests.src.CWrap.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::tests::CWrap::~CWrap()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="16"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

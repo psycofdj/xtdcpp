@@ -1,0 +1,92 @@
+{
+  "src/app/HtmlOArchive.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "Cycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp>\n/include-what-you-use-clang_4.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/param/Pod.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Base.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Pod.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Pod.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Handler.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Base.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Visitor.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/app/HtmlOArchive.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Base.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/app/HtmlOArchive.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/param/Handler.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "Cycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp> ->\n  <boost/phoenix/scope/detail/local_gen.hpp>\n/include-what-you-use-clang_4.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/param/Visitor.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

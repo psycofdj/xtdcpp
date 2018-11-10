@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network documentation coverage - src/base/ClientPool.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/base</a> - ClientPool.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryLo">25.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 21:15:02</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef NETWORK_BASE_CLIENTPOOL_HH_
+<span class="lineNum">       2 </span>            : # define NETWORK_BASE_CLIENTPOOL_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;deque&gt;
+<span class="lineNum">       5 </span>            : # include &lt;mutex&gt;
+<span class="lineNum">       6 </span>            : # include &lt;memory&gt;
+<span class="lineNum">       7 </span>            : # include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+<span class="lineNum">       8 </span>            : # include &lt;types.hh&gt; // libcore
+<span class="lineNum">       9 </span>            : # include &quot;base/Client.hh&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace xtd {
+<span class="lineNum">      12 </span>            : namespace network {
+<span class="lineNum">      13 </span>            : namespace base {
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : template&lt;typename TClient&gt;
+<span class="lineNum">      16 </span>            : class ClientPool
+<span class="lineNum">      17 </span><span class="lineNoCov">          0 : {</span>
+<span class="lineNum">      18 </span>            : private:
+<span class="lineNum">      19 </span>            :   class PersistentClient : protected TClient
+<span class="lineNum">      20 </span>            :   {
+<span class="lineNum">      21 </span>            :     friend class ClientPool&lt;TClient&gt;;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            :   public:
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 :     PersistentClient(const string&amp;  p_hostname,</span>
+<span class="lineNum">      25 </span>            :                      const uint32_t p_port);
+<span class="lineNum">      26 </span><span class="lineNoCov">          0 :     ~PersistentClient(void);</span>
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            :   private:
+<span class="lineNum">      29 </span>            :     void    async_connect(void);
+<span class="lineNum">      30 </span>            :     status  wait_async_connect(void);
+<span class="lineNum">      31 </span>            :     bool    isObsolete(uint32_t p_ttlMs) const;
+<span class="lineNum">      32 </span>            :     void    invalidate(void);
+<span class="lineNum">      33 </span>            : 
+<span class="lineNum">      34 </span>            :     template&lt;typename... Args&gt;
+<span class="lineNum">      35 </span>            :     status send(Args&amp;&amp;... p_args);
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            :     template&lt;typename... Args&gt;
+<span class="lineNum">      38 </span>            :     status receive(Args&amp;&amp;... p_args);
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            :   private:
+<span class="lineNum">      41 </span>            :     const string&amp;            m_hostname;
+<span class="lineNum">      42 </span>            :     const uint32_t           m_port;
+<span class="lineNum">      43 </span>            :     bool                     m_isConnected;
+<span class="lineNum">      44 </span>            :     boost::posix_time::ptime m_lastUsed;
+<span class="lineNum">      45 </span>            :   };
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : public:
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :   typedef sptr&lt;PersistentClient&gt; client_type;</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            : public:
+<span class="lineNum">      52 </span>            :   /**
+<span class="lineNum">      53 </span>            :    ** Constructor
+<span class="lineNum">      54 </span>            :    */
+<span class="lineNum">      55 </span><span class="lineCov">          1 :   ClientPool(const string&amp;  p_hostname,</span>
+<span class="lineNum">      56 </span>            :              const uint32_t p_port,
+<span class="lineNum">      57 </span>            :              const uint32_t p_ttlMs);
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            : public:
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendTotal(void)   const { return m_sendTotal;   }</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendSuccess(void) const { return m_sendSuccess; }</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendError(void)   const { return m_sendError;   }</span>
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getSendTimeout(void) const { return m_sendTimeout; }</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getRcvTotal(void)    const { return m_rcvTotal;    }</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getRcvSuccess(void)  const { return m_rcvSuccess;  }</span>
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getRcvError(void)    const { return m_rcvError;    }</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getRcvTimeout(void)  const { return m_rcvTimeout;  }</span>
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getCurNbClient(void) const { return m_curNbClient; }</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getRecycleHit(void)  const { return m_recycleHit;  }</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   inline const uint32_t&amp; getRecycleMiss(void) const { return m_recycleMiss; }</span>
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : public:
+<span class="lineNum">      73 </span>            :   /**
+<span class="lineNum">      74 </span>            :    ** @brief Réservation d'un client
+<span class="lineNum">      75 </span>            :    */
+<span class="lineNum">      76 </span><span class="lineCov">          1 :   client_type acquire(void);</span>
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            :   /**
+<span class="lineNum">      79 </span>            :    ** @brief Envoie d'une requete en utilisant l'identifiant de client réservé
+<span class="lineNum">      80 </span>            :    */
+<span class="lineNum">      81 </span>            :   template&lt;typename... Args&gt;
+<span class="lineNum">      82 </span><span class="lineCov">          1 :   status send(client_type&amp; p_client, Args&amp;&amp;... p_args);</span>
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            :   /**
+<span class="lineNum">      85 </span>            :    ** @brief reception d'une reponse en utilisant l'identifiant de client réservé
+<span class="lineNum">      86 </span>            :    */
+<span class="lineNum">      87 </span>            :   template&lt;typename... Args&gt;
+<span class="lineNum">      88 </span><span class="lineCov">          1 :   status receive(client_type&amp; p_client, Args&amp;&amp;... p_args);</span>
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span>            :   /**
+<span class="lineNum">      91 </span>            :    ** @brief libration d'un client réservé
+<span class="lineNum">      92 </span>            :    */
+<span class="lineNum">      93 </span><span class="lineCov">          1 :   void release(client_type&amp; p_client);</span>
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            : private:
+<span class="lineNum">      96 </span>            :   std::mutex              m_mutex;
+<span class="lineNum">      97 </span>            :   std::deque&lt;client_type&gt; m_available;
+<span class="lineNum">      98 </span>            :   const string            m_hostname;
+<span class="lineNum">      99 </span>            :   const uint32_t          m_port;
+<span class="lineNum">     100 </span>            :   const uint32_t          m_ttlMs;
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            : private:
+<span class="lineNum">     103 </span>            :   uint32_t m_sendTotal;
+<span class="lineNum">     104 </span>            :   uint32_t m_sendSuccess;
+<span class="lineNum">     105 </span>            :   uint32_t m_sendError;
+<span class="lineNum">     106 </span>            :   uint32_t m_sendTimeout;
+<span class="lineNum">     107 </span>            :   uint32_t m_rcvTotal;
+<span class="lineNum">     108 </span>            :   uint32_t m_rcvSuccess;
+<span class="lineNum">     109 </span>            :   uint32_t m_rcvError;
+<span class="lineNum">     110 </span>            :   uint32_t m_rcvTimeout;
+<span class="lineNum">     111 </span>            :   uint32_t m_curNbClient;
+<span class="lineNum">     112 </span>            :   uint32_t m_acquiredClients;
+<span class="lineNum">     113 </span>            :   uint32_t m_recycleHit;
+<span class="lineNum">     114 </span>            :   uint32_t m_recycleMiss;
+<span class="lineNum">     115 </span>            : };
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            : }}}
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            : #include &quot;base/ClientPool.hxx&quot;
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : #endif // !NETWORK_BIP_CLIENTPOOL_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

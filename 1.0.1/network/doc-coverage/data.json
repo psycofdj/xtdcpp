@@ -1,0 +1,2986 @@
+[
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh": [
+      {
+        "symbol": "xtd::network::utils::CacheDns::CacheDns", 
+        "line": 67, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::CacheDns::popElem", 
+        "line": 75, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::CacheDns::pushElem", 
+        "line": 82, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "size_t xtd::network::utils::CacheDns::size", 
+        "line": 85, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1CacheDns", 
+        "line": 60, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh": [
+      {
+        "symbol": "string xtd::network::utils::CacheEntry::m_value", 
+        "line": 40, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "std::time_t xtd::network::utils::CacheEntry::m_stamp", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "xtd::network::utils::CacheEntry::CacheEntry", 
+        "line": 34, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "structxtd_1_1network_1_1utils_1_1CacheEntry", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh": [
+      {
+        "symbol": "typedef std::shared_ptr<Connection<Domain> > xtd::network::base::Client< Domain >::cnx_sptr_t", 
+        "line": 32, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "utils::Config xtd::network::base::Client< Domain >::m_conf", 
+        "line": 67, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "boost::asio::io_service& xtd::network::base::Client< Domain >::m_ioService", 
+        "line": 68, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "cnx_sptr_t xtd::network::base::Client< Domain >::m_connection", 
+        "line": 69, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::base::Client< Domain >::m_connectStatus", 
+        "line": 70, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "xtd::network::base::Client< Domain >::Client", 
+        "line": 35, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "virtual cnx_sptr_t xtd::network::base::Client< Domain >::createCnx", 
+        "line": 56, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Client< Domain >::onConnected", 
+        "line": 57, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::base::Client< Domain >::~Client", 
+        "line": 38, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::base::Client< Domain >::connect", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Client< Domain >::async_connect", 
+        "line": 43, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::base::Client< Domain >::wait_async_connect", 
+        "line": 45, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::base::Client< Domain >::reconnect", 
+        "line": 46, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Client< Domain >::close", 
+        "line": 47, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::base::Client< Domain >::getCnxTotal", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::base::Client< Domain >::getCnxSuccess", 
+        "line": 51, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::base::Client< Domain >::getCnxTimeout", 
+        "line": 52, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::base::Client< Domain >::getCnxError", 
+        "line": 53, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1base_1_1Client", 
+        "line": 30, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh": [
+      {
+        "symbol": "typedef TRequest xtd::network::bip::Client< TRequest, TResponse, TDomain >::TReq", 
+        "line": 38, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "typedef TResponse xtd::network::bip::Client< TRequest, TResponse, TDomain >::TRes", 
+        "line": 39, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "xtd::network::bip::Client< TRequest, TResponse, TDomain >::Client", 
+        "line": 59, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::bip::Client< TRequest, TResponse, TDomain >::~Client", 
+        "line": 60, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getSendTotal", 
+        "line": 63, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getSendSuccess", 
+        "line": 64, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getSendTimeout", 
+        "line": 65, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getSendError", 
+        "line": 66, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getReceiveTotal", 
+        "line": 67, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getReceiveSuccess", 
+        "line": 68, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getReceiveTimeout", 
+        "line": 69, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getReceiveError", 
+        "line": 70, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::Client< TRequest, TResponse, TDomain >::getLastRTTMs", 
+        "line": 71, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::bip::Client< TRequest, TResponse, TDomain >::send", 
+        "line": 84, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::bip::Client< TRequest, TResponse, TDomain >::receive", 
+        "line": 95, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "virtual bool xtd::network::bip::Client< TRequest, TResponse, TDomain >::shouldReceive", 
+        "line": 97, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1bip_1_1Client", 
+        "line": 36, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Client.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh": [
+      {
+        "symbol": "typedef std::shared_ptr<PersistentClient> xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::t_client_sptr", 
+        "line": 53, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "typedef std::deque<t_client_sptr> xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::t_pool", 
+        "line": 54, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::ClientPool", 
+        "line": 60, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getSendTotal", 
+        "line": 66, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getSendSuccess", 
+        "line": 67, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getSendError", 
+        "line": 68, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getSendTimeout", 
+        "line": 69, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getRcvTotal", 
+        "line": 70, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getRcvSuccess", 
+        "line": 71, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getRcvError", 
+        "line": 72, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getRcvTimeout", 
+        "line": 73, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getCurNbClient", 
+        "line": 74, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getRecycleHit", 
+        "line": 75, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "const uint32_t& xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::getRecycleMiss", 
+        "line": 76, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "t_client_sptr xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::acquire", 
+        "line": 82, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::send", 
+        "line": 87, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::receive", 
+        "line": 92, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::release", 
+        "line": 97, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1bip_1_1ClientPool", 
+        "line": 23, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh": [
+      {
+        "symbol": "xtd::network::utils::Config::Config", 
+        "line": 23, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "xtd::network::utils::Config::Config", 
+        "line": 29, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::Config::getLinger", 
+        "line": 32, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Config::getLingerTime", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::Config::getNoDelay", 
+        "line": 34, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::Config::getReuseAddr", 
+        "line": 35, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::Config::getCompress", 
+        "line": 36, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "codec xtd::network::utils::Config::getCompressionCodec", 
+        "line": 37, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Config::getConnectTimeoutMs", 
+        "line": 38, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Config::getSendTimeoutMs", 
+        "line": 39, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Config::getReceiveTimeoutMs", 
+        "line": 40, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Config::getDnsCacheTTL", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setLinger", 
+        "line": 43, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setNoDelay", 
+        "line": 44, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setReuseAddr", 
+        "line": 45, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setCompress", 
+        "line": 46, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setCompressionCodec", 
+        "line": 47, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setConnectTimeoutMs", 
+        "line": 48, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setSendTimeoutMs", 
+        "line": 49, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setReceiveTimeoutMs", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::Config::setDnsCacheTTL", 
+        "line": 51, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1Config", 
+        "line": 18, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Connection.hh": [
+      {
+        "symbol": "xtd::network::bip::Connection< Domain >::Connection", 
+        "line": 53, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::bip::Connection< Domain >::incCounter", 
+        "line": 60, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Connection.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1bip_1_1Connection", 
+        "line": 44, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Connection.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh": [
+      {
+        "symbol": "classxtd_1_1network_1_1base_1_1Connection", 
+        "line": 23, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Client.hh"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh": [
+      {
+        "symbol": "typedef std::shared_ptr<Connection<Domain> > xtd::network::base::Connection< Domain >::cnx_sptr_t", 
+        "line": 62, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "utils::Config xtd::network::base::Connection< Domain >::m_conf", 
+        "line": 200, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "boost::asio::io_service& xtd::network::base::Connection< Domain >::m_ioService", 
+        "line": 201, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "boost::asio::strand xtd::network::base::Connection< Domain >::m_strand", 
+        "line": 202, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "boost::asio::basic_stream_socket<Domain> xtd::network::base::Connection< Domain >::m_socket", 
+        "line": 203, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "xtd::network::base::Connection< Domain >::Connection", 
+        "line": 66, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Connection< Domain >::async_write", 
+        "line": 196, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Connection< Domain >::async_read", 
+        "line": 197, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::base::Connection< Domain >::~Connection", 
+        "line": 73, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::setProcessID", 
+        "line": 76, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::base::Connection< Domain >::getProcessID", 
+        "line": 77, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::accept", 
+        "line": 89, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::connect", 
+        "line": 98, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::send", 
+        "line": 107, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::receive", 
+        "line": 116, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::close", 
+        "line": 122, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Connection< Domain >::cancel", 
+        "line": 127, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }, 
+      {
+        "symbol": "const string& xtd::network::base::Connection< Domain >::info", 
+        "line": 132, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Connection.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh": [
+      {
+        "symbol": "xtd::network::http::Connection< Domain >::Connection", 
+        "line": 44, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::http::Connection< Domain >::~Connection", 
+        "line": 48, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Connection< Domain >::clear", 
+        "line": 55, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Connection< Domain >::setClosedByServer", 
+        "line": 56, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Connection< Domain >::getClosedByServer", 
+        "line": 57, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Connection", 
+        "line": 39, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Connection.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "virtual xtd::network::http::cpptempl::Data::~Data", 
+        "line": 89, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "virtual bool xtd::network::http::cpptempl::Data::empty", 
+        "line": 90, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::Data::getvalue", 
+        "line": 91, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_list & xtd::network::http::cpptempl::Data::getlist", 
+        "line": 92, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_map & xtd::network::http::cpptempl::Data::getmap", 
+        "line": 93, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1Data", 
+        "line": 87, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::DataList::DataList", 
+        "line": 111, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_list & xtd::network::http::cpptempl::DataList::getlist", 
+        "line": 112, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::cpptempl::DataList::empty", 
+        "line": 113, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1DataList", 
+        "line": 108, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::DataMap::DataMap", 
+        "line": 121, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_map & xtd::network::http::cpptempl::DataMap::getmap", 
+        "line": 122, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::cpptempl::DataMap::empty", 
+        "line": 123, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1DataMap", 
+        "line": 118, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::DataValue::DataValue", 
+        "line": 101, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::DataValue::getvalue", 
+        "line": 102, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::cpptempl::DataValue::empty", 
+        "line": 103, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1DataValue", 
+        "line": 98, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh": [
+      {
+        "symbol": "void xtd::network::utils::deque_id< T >::push", 
+        "line": 43, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::utils::deque_id< T >::push_back", 
+        "line": 44, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::deque_id< T >::pop", 
+        "line": 45, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::utils::deque_id< T >::find", 
+        "line": 46, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "size_t xtd::network::utils::deque_id< T >::size", 
+        "line": 47, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1deque__id", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh": [
+      {
+        "symbol": "typedef boost::function<bool (const Request&)> xtd::network::http::Server< Domain >::Handler::filter::t_func", 
+        "line": 246, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::filter::filter", 
+        "line": 248, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::filter::filter", 
+        "line": 251, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::filter::filter", 
+        "line": 254, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::filter::filter", 
+        "line": 257, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::filter::filter", 
+        "line": 260, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::filter::filter", 
+        "line": 263, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "filter xtd::network::http::Server< Domain >::Handler::filter::operator||", 
+        "line": 266, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "filter xtd::network::http::Server< Domain >::Handler::filter::operator&&", 
+        "line": 271, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "filter xtd::network::http::Server< Domain >::Handler::filter::operator!", 
+        "line": 276, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "structxtd_1_1network_1_1http_1_1Server_1_1Handler_1_1filter", 
+        "line": 244, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh": [
+      {
+        "symbol": "const string xtd::network::http::Generator::mcs_defaultContentType", 
+        "line": 16, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Generator::Generator", 
+        "line": 19, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Generator::~Generator", 
+        "line": 20, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "const string& xtd::network::http::Generator::getContentType", 
+        "line": 23, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "const string& xtd::network::http::Generator::getError", 
+        "line": 24, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "virtual status xtd::network::http::Generator::resolve", 
+        "line": 30, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Generator::addError", 
+        "line": 27, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Generator", 
+        "line": 14, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh": [
+      {
+        "symbol": "typedef vector<Handler> xtd::network::http::Server< Domain >::Handler::t_listof", 
+        "line": 241, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::Server< Domain >::Handler::m_path", 
+        "line": 313, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "handler xtd::network::http::Server< Domain >::Handler::m_handler", 
+        "line": 314, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "filter xtd::network::http::Server< Domain >::Handler::m_filter", 
+        "line": 315, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::Handler::m_matchAny", 
+        "line": 316, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::Server< Domain >::Handler::m_descr", 
+        "line": 317, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "static bool xtd::network::http::Server< Domain >::Handler::less", 
+        "line": 303, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::Handler", 
+        "line": 311, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Server_1_1Handler", 
+        "line": 239, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh": [
+      {
+        "symbol": "typedef boost::function<status (const uint32_t p_requestId, const Request&, Response&)> xtd::network::http::Server< Domain >::Handler::handler::t_func", 
+        "line": 285, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::handler::handler", 
+        "line": 287, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::handler::handler", 
+        "line": 290, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::handler::handler", 
+        "line": 293, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::handler::handler", 
+        "line": 296, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Handler::handler::handler", 
+        "line": 299, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "structxtd_1_1network_1_1http_1_1Server_1_1Handler_1_1handler", 
+        "line": 283, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.cc": [
+      {
+        "symbol": "string xtd::network::http::hex_to_string::operator()", 
+        "line": 344, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.cc"
+      }, 
+      {
+        "symbol": "structxtd_1_1network_1_1http_1_1hex__to__string", 
+        "line": 342, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.cc"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh": [
+      {
+        "symbol": "xtd::network::http::HtmlTemplate::HtmlTemplate", 
+        "line": 107, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate & xtd::network::http::HtmlTemplate::setFavico", 
+        "line": 110, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::setTitle", 
+        "line": 111, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::addCss", 
+        "line": 112, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::addJs", 
+        "line": 113, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::setMetaKeywords", 
+        "line": 114, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::setCharset", 
+        "line": 115, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::setMetaDescription", 
+        "line": 116, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "HtmlTemplate& xtd::network::http::HtmlTemplate::setContentType", 
+        "line": 117, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::HtmlTemplate::resolve", 
+        "line": 121, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1HtmlTemplate", 
+        "line": 102, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh": [
+      {
+        "symbol": "xtd::network::http::Json::Json", 
+        "line": 43, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Json::~Json", 
+        "line": 44, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Json::resolve", 
+        "line": 47, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Json::add", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Json", 
+        "line": 39, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh": [
+      {
+        "symbol": "xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::PersistentClient::PersistentClient", 
+        "line": 33, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "xtd::network::bip::ClientPool< TRequest, TResponse, TDomain >::PersistentClient::~PersistentClient", 
+        "line": 36, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1bip_1_1ClientPool_1_1PersistentClient", 
+        "line": 26, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/ClientPool.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh": [
+      {
+        "symbol": "t_method", 
+        "line": 23, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "t_version", 
+        "line": 29, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "typedef std::multimap<string, string> xtd::network::http::Request::t_param_map", 
+        "line": 20, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "typedef map<string, string> xtd::network::http::Request::t_header_map", 
+        "line": 21, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Request::Request", 
+        "line": 35, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::setMethod", 
+        "line": 38, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::addCgi", 
+        "line": 39, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::addPost", 
+        "line": 40, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::addHeader", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::setVersion", 
+        "line": 42, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::setVersion", 
+        "line": 43, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::removeCgi", 
+        "line": 44, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::removePost", 
+        "line": 45, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::removeData", 
+        "line": 46, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Request::readQS", 
+        "line": 48, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Request::readHead", 
+        "line": 49, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Request::read", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "Request::t_method xtd::network::http::Request::getMethod", 
+        "line": 53, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "const string & xtd::network::http::Request::getPath", 
+        "line": 54, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::Request::getQS", 
+        "line": 55, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::Request::getRawUrl", 
+        "line": 56, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "const Request::t_param_map & xtd::network::http::Request::getCgis", 
+        "line": 57, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "const Request::t_param_map & xtd::network::http::Request::getPosts", 
+        "line": 58, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "Request::t_param_map xtd::network::http::Request::getParams", 
+        "line": 59, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::existsCgi", 
+        "line": 60, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::existsPost", 
+        "line": 61, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::existsParam", 
+        "line": 62, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::existsHeader", 
+        "line": 63, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::getHeader", 
+        "line": 64, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "const Request::t_header_map & xtd::network::http::Request::getHeaders", 
+        "line": 65, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "const string & xtd::network::http::Request::getVersionStr", 
+        "line": 66, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "Request::t_version xtd::network::http::Request::getVersion", 
+        "line": 67, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Request::getDataSize", 
+        "line": 68, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::getCgi", 
+        "line": 73, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getCgi", 
+        "line": 75, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getCgi", 
+        "line": 77, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::getPost", 
+        "line": 79, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getPost", 
+        "line": 81, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getPost", 
+        "line": 83, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Request::getParam", 
+        "line": 85, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getParam", 
+        "line": 87, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getParam", 
+        "line": 89, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Request::getParam", 
+        "line": 91, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Request", 
+        "line": 16, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh": [
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1Resolver", 
+        "line": 11, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh": [
+      {
+        "symbol": "xtd::network::utils::Resolver< af_inet >::Resolver", 
+        "line": 38, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "xtd::network::utils::Resolver< af_inet >::~Resolver", 
+        "line": 39, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "af_inet::endpoint xtd::network::utils::Resolver< af_inet >::resolve", 
+        "line": 48, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Resolver< af_inet >::getPort", 
+        "line": 54, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::utils::Resolver< af_inet >::getAddr", 
+        "line": 59, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1Resolver_3_01af__inet_01_4", 
+        "line": 31, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh": [
+      {
+        "symbol": "xtd::network::utils::Resolver< af_unix >::Resolver", 
+        "line": 71, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "xtd::network::utils::Resolver< af_unix >::~Resolver", 
+        "line": 72, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "af_unix::endpoint xtd::network::utils::Resolver< af_unix >::resolve", 
+        "line": 75, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "uint32_t xtd::network::utils::Resolver< af_unix >::getPort", 
+        "line": 78, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::utils::Resolver< af_unix >::getAddr", 
+        "line": 79, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1Resolver_3_01af__unix_01_4", 
+        "line": 69, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Resolver.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh": [
+      {
+        "symbol": "typedef map<string, string> xtd::network::http::Response::t_header_map", 
+        "line": 41, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Response::Response", 
+        "line": 44, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::setStatus", 
+        "line": 47, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::addHeader", 
+        "line": 48, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::setData", 
+        "line": 49, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::appendData", 
+        "line": 50, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::setVersion", 
+        "line": 51, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::setCachable", 
+        "line": 52, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "code xtd::network::http::Response::getStatus", 
+        "line": 54, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Response::getHeader", 
+        "line": 55, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "const Response::t_header_map & xtd::network::http::Response::getHeaders", 
+        "line": 56, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "const string & xtd::network::http::Response::getData", 
+        "line": 57, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "const string & xtd::network::http::Response::getVersion", 
+        "line": 58, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::write", 
+        "line": 63, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Response::finalize", 
+        "line": 64, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::Response::statusToMessage", 
+        "line": 59, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Response", 
+        "line": 39, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh": [
+      {
+        "symbol": "xtd::network::utils::scoped_method::scoped_method", 
+        "line": 32, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "xtd::network::utils::scoped_method::~scoped_method", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1scoped__method", 
+        "line": 27, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh": [
+      {
+        "symbol": "typedef std::shared_ptr<Connection<Domain> > xtd::network::base::Server< Domain >::cnx_sptr_t", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "utils::Config xtd::network::base::Server< Domain >::m_conf", 
+        "line": 130, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "utils::deque_id<uint32_t> xtd::network::base::Server< Domain >::m_dequeId", 
+        "line": 131, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "utils::ioServicePtr_t xtd::network::base::Server< Domain >::m_ioService", 
+        "line": 132, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "utils::workPtr_t xtd::network::base::Server< Domain >::m_work", 
+        "line": 133, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "std::shared_ptr<boost::asio::basic_socket_acceptor<Domain> > xtd::network::base::Server< Domain >::m_acceptor", 
+        "line": 134, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::base::Server< Domain >::Server", 
+        "line": 36, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::base::Server< Domain >::~Server", 
+        "line": 37, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::initialize", 
+        "line": 48, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Server< Domain >::run", 
+        "line": 56, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Server< Domain >::join", 
+        "line": 61, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::start", 
+        "line": 66, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::stop", 
+        "line": 71, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual cnx_sptr_t xtd::network::base::Server< Domain >::createCnx", 
+        "line": 76, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::afterAccept", 
+        "line": 77, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::afterSend", 
+        "line": 78, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::afterReceive", 
+        "line": 79, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::onReceiveError", 
+        "line": 89, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::base::Server< Domain >::onReceiveTimeout", 
+        "line": 99, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Server< Domain >::do_receive", 
+        "line": 102, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::Server< Domain >::do_send", 
+        "line": 103, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getNbCurrentThread", 
+        "line": 115, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getReceiveTotal", 
+        "line": 116, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getReceiveError", 
+        "line": 117, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getReceiveTimeout", 
+        "line": 118, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getReceiveSuccess", 
+        "line": 119, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getReceivedLastTime", 
+        "line": 120, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getSendTotal", 
+        "line": 121, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getSendSuccess", 
+        "line": 122, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getSendError", 
+        "line": 123, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getSendTimeout", 
+        "line": 124, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getCnxTotal", 
+        "line": 125, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getCnxAccepted", 
+        "line": 126, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::base::Server< Domain >::getCnxRejected", 
+        "line": 127, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1base_1_1Server", 
+        "line": 31, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh": [
+      {
+        "symbol": "typedef Handler::handler xtd::network::http::Server< Domain >::h", 
+        "line": 320, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "typedef Handler::filter xtd::network::http::Server< Domain >::f", 
+        "line": 321, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Server< Domain >::Server", 
+        "line": 215, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::http::Server< Domain >::~Server", 
+        "line": 216, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::http::Server< Domain >::start", 
+        "line": 221, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::http::Server< Domain >::stop", 
+        "line": 226, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "static bool xtd::network::http::Server< Domain >::f_none", 
+        "line": 333, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_cgi_exist", 
+        "line": 338, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_one_cgi_exist", 
+        "line": 347, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_cgi_equal", 
+        "line": 355, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_cgi_match", 
+        "line": 364, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_post_exist", 
+        "line": 371, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_param_exist", 
+        "line": 377, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_post_equal", 
+        "line": 385, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_post_match", 
+        "line": 395, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_header_exist", 
+        "line": 402, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_header_equal", 
+        "line": 410, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::Server< Domain >::f_header_match", 
+        "line": 419, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_redirect", 
+        "line": 434, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_raw", 
+        "line": 448, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_file", 
+        "line": 467, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_dir", 
+        "line": 486, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_template_file", 
+        "line": 507, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_gen", 
+        "line": 525, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_error_text", 
+        "line": 541, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Server< Domain >::h_error_html", 
+        "line": 556, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_redirect", 
+        "line": 572, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_xml", 
+        "line": 576, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_file", 
+        "line": 585, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_dir", 
+        "line": 595, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind", 
+        "line": 610, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_public", 
+        "line": 625, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_any", 
+        "line": 636, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::bind_default", 
+        "line": 645, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::Server< Domain >::getMatchingHandlers", 
+        "line": 651, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hh"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/fwd.hh": [
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Server", 
+        "line": 10, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/fwd.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh": [
+      {
+        "symbol": "bool xtd::network::bip::Server< TReq, TRes, Domain >::m_isPersistent", 
+        "line": 81, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "xtd::network::bip::Server< TReq, TRes, Domain >::Server", 
+        "line": 34, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "virtual xtd::network::bip::Server< TReq, TRes, Domain >::~Server", 
+        "line": 35, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::bip::Server< TReq, TRes, Domain >::start", 
+        "line": 40, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::bip::Server< TReq, TRes, Domain >::stop", 
+        "line": 45, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::bip::Server< TReq, TRes, Domain >::initialize", 
+        "line": 54, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "virtual void xtd::network::bip::Server< TReq, TRes, Domain >::processObjectRequest", 
+        "line": 66, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "virtual bool xtd::network::bip::Server< TReq, TRes, Domain >::shouldReply", 
+        "line": 72, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "uint32_t & xtd::network::bip::Server< TReq, TRes, Domain >::getReceiveEof", 
+        "line": 78, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1bip_1_1Server", 
+        "line": 25, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh": [
+      {
+        "symbol": "typedef cpptempl::data_map xtd::network::http::Template::t_map", 
+        "line": 61, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "typedef cpptempl::data_list xtd::network::http::Template::t_list", 
+        "line": 62, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "typedef cpptempl::data_ptr xtd::network::http::Template::t_val", 
+        "line": 63, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "static t_val xtd::network::http::Template::val", 
+        "line": 67, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "Template::t_val xtd::network::http::Template::val", 
+        "line": 68, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Template::Template", 
+        "line": 71, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::Template::~Template", 
+        "line": 72, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "Template& xtd::network::http::Template::setTemplate", 
+        "line": 75, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "Template& xtd::network::http::Template::setData", 
+        "line": 76, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "Template& xtd::network::http::Template::setContent", 
+        "line": 77, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Template::resolve", 
+        "line": 80, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::Template::loadTemplate", 
+        "line": 83, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "Template& xtd::network::http::Template::add", 
+        "line": 86, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "Template & xtd::network::http::Template::add", 
+        "line": 89, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1Template", 
+        "line": 59, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::TemplateException::TemplateException", 
+        "line": 69, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::cpptempl::TemplateException::~TemplateException", 
+        "line": 72, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "const char* xtd::network::http::cpptempl::TemplateException::what", 
+        "line": 76, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1TemplateException", 
+        "line": 67, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientThreadManager.hh": [
+      {
+        "symbol": "typedef map<size_t, std::shared_ptr<boost::thread> > xtd::network::base::ThreadManager::threadMap_t", 
+        "line": 19, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientThreadManager.hh"
+      }, 
+      {
+        "symbol": "ThreadManager & xtd::network::base::ThreadManager::getInstance", 
+        "line": 26, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientThreadManager.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::base::ThreadManager::createThread", 
+        "line": 27, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientThreadManager.hh"
+      }, 
+      {
+        "symbol": "boost::asio::io_service & xtd::network::base::ThreadManager::getIoService", 
+        "line": 28, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientThreadManager.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1base_1_1ThreadManager", 
+        "line": 17, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientThreadManager.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "virtual xtd::network::http::cpptempl::Token::~Token", 
+        "line": 192, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "virtual TokenType xtd::network::http::cpptempl::Token::gettype", 
+        "line": 193, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "virtual string xtd::network::http::cpptempl::Token::gettext", 
+        "line": 194, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::cpptempl::Token::set_children", 
+        "line": 195, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "token_vector & xtd::network::http::cpptempl::Token::get_children", 
+        "line": 196, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1Token", 
+        "line": 190, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::TokenEnd::TokenEnd", 
+        "line": 248, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "TokenType xtd::network::http::cpptempl::TokenEnd::gettype", 
+        "line": 249, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenEnd::gettext", 
+        "line": 250, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1TokenEnd", 
+        "line": 245, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenFor::m_key", 
+        "line": 221, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenFor::m_val", 
+        "line": 222, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "token_vector xtd::network::http::cpptempl::TokenFor::m_children", 
+        "line": 223, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::cpptempl::TokenFor::TokenFor", 
+        "line": 224, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "TokenType xtd::network::http::cpptempl::TokenFor::gettype", 
+        "line": 225, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenFor::gettext", 
+        "line": 226, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::cpptempl::TokenFor::set_children", 
+        "line": 227, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "token_vector & xtd::network::http::cpptempl::TokenFor::get_children", 
+        "line": 228, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1TokenFor", 
+        "line": 219, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenIf::m_expr", 
+        "line": 234, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "token_vector xtd::network::http::cpptempl::TokenIf::m_children", 
+        "line": 235, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "xtd::network::http::cpptempl::TokenIf::TokenIf", 
+        "line": 236, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "TokenType xtd::network::http::cpptempl::TokenIf::gettype", 
+        "line": 237, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenIf::gettext", 
+        "line": 238, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "bool xtd::network::http::cpptempl::TokenIf::is_true", 
+        "line": 239, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "void xtd::network::http::cpptempl::TokenIf::set_children", 
+        "line": 240, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "token_vector & xtd::network::http::cpptempl::TokenIf::get_children", 
+        "line": 241, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1TokenIf", 
+        "line": 232, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::TokenText::TokenText", 
+        "line": 204, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "TokenType xtd::network::http::cpptempl::TokenText::gettype", 
+        "line": 205, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenText::gettext", 
+        "line": 206, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1TokenText", 
+        "line": 201, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "xtd::network::http::cpptempl::TokenVar::TokenVar", 
+        "line": 213, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "TokenType xtd::network::http::cpptempl::TokenVar::gettype", 
+        "line": 214, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::TokenVar::gettext", 
+        "line": 215, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1cpptempl_1_1TokenVar", 
+        "line": 210, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh": [
+      {
+        "symbol": "xtd::network::utils::vectorbuf< CharT, TraitsT >::vectorbuf", 
+        "line": 66, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1utils_1_1vectorbuf", 
+        "line": 64, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh": [
+      {
+        "symbol": "xtd::network::http::XmlTemplate::XmlTemplate", 
+        "line": 143, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "XmlTemplate& xtd::network::http::XmlTemplate::setXslt", 
+        "line": 146, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "XmlTemplate& xtd::network::http::XmlTemplate::setCharset", 
+        "line": 147, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::http::XmlTemplate::resolve", 
+        "line": 150, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }, 
+      {
+        "symbol": "classxtd_1_1network_1_1http_1_1XmlTemplate", 
+        "line": 138, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Template.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/bip/tools.hh": [
+      {
+        "symbol": "status xtd::network::bip::loadCompress", 
+        "line": 17, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/tools.hh"
+      }, 
+      {
+        "symbol": "status xtd::network::bip::saveCompress", 
+        "line": 24, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/bip/tools.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh": [
+      {
+        "symbol": "code", 
+        "line": 10, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Response.hh"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.cc": [
+      {
+        "symbol": "ostream& xtd::network::http::operator<<", 
+        "line": 654, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.cc"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh": [
+      {
+        "symbol": "std::ostream& xtd::network::http::operator<<", 
+        "line": 135, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/Request.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.cc": [
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::parse_val", 
+        "line": 56, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.cc"
+      }, 
+      {
+        "symbol": "void xtd::network::http::cpptempl::parse_tree", 
+        "line": 245, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.cc"
+      }, 
+      {
+        "symbol": "token_vector & xtd::network::http::cpptempl::tokenize", 
+        "line": 273, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.cc"
+      }, 
+      {
+        "symbol": "string xtd::network::http::cpptempl::parse", 
+        "line": 341, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.cc"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh": [
+      {
+        "symbol": "TokenType", 
+        "line": 177, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<Data> xtd::network::http::cpptempl::data_ptr", 
+        "line": 56, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "typedef vector<data_ptr> xtd::network::http::cpptempl::data_list", 
+        "line": 57, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "typedef map<string, data_ptr> xtd::network::http::cpptempl::data_map", 
+        "line": 58, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<Token> xtd::network::http::cpptempl::token_ptr", 
+        "line": 61, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "typedef vector<token_ptr> xtd::network::http::cpptempl::token_vector", 
+        "line": 62, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::make_data", 
+        "line": 128, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::make_data", 
+        "line": 133, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::make_data", 
+        "line": 138, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::make_data", 
+        "line": 144, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::make_data", 
+        "line": 150, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }, 
+      {
+        "symbol": "data_ptr xtd::network::http::cpptempl::make_data", 
+        "line": 161, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/http/cpptempl.hh"
+      }
+    ]
+  }, 
+  {
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh": [
+      {
+        "symbol": "option", 
+        "line": 14, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }, 
+      {
+        "symbol": "codec", 
+        "line": 15, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Config.hh"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh": [
+      {
+        "symbol": "typedef std::pair< string, std::shared_ptr<CacheEntry> > xtd::network::utils::EntryPair", 
+        "line": 45, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "typedef std::list< std::shared_ptr<EntryPair> > xtd::network::utils::CacheList", 
+        "line": 47, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "typedef boost::unordered_map< string, CacheList::iterator > xtd::network::utils::CacheMap", 
+        "line": 49, 
+        "documented": true, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "const uint32_t xtd::network::utils::CACHE_CAPACITY_MAX", 
+        "line": 29, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }, 
+      {
+        "symbol": "const uint32_t xtd::network::utils::CACHE_TTL_MAX", 
+        "line": 30, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CacheDns.hh"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh": [
+      {
+        "symbol": "typedef boost::asio::deadline_timer xtd::network::utils::deadLineTimer_t", 
+        "line": 15, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<boost::asio::io_service> xtd::network::utils::ioServicePtr_t", 
+        "line": 16, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<boost::asio::io_service::work> xtd::network::utils::workPtr_t", 
+        "line": 17, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<boost::asio::streambuf> xtd::network::utils::streambufPtr_t", 
+        "line": 18, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef map<boost::thread::id, size_t> xtd::network::utils::t_IdNumberMap", 
+        "line": 19, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::pair<boost::thread::id, size_t> xtd::network::utils::t_IdNumberPair", 
+        "line": 20, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef boost::asio::local::stream_protocol xtd::network::utils::af_unix", 
+        "line": 23, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef boost::asio::ip::tcp xtd::network::utils::af_inet", 
+        "line": 24, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef uint32_t xtd::network::utils::requestId_t", 
+        "line": 25, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef vector<char> xtd::network::utils::vectorBytes_t", 
+        "line": 28, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef vector<uint32_t> xtd::network::utils::vectorUint32_t", 
+        "line": 29, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::deque<requestId_t> xtd::network::utils::dequeId_t", 
+        "line": 30, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<vectorBytes_t> xtd::network::utils::sharedBuf_t", 
+        "line": 31, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef std::shared_ptr<vectorUint32_t> xtd::network::utils::sharedHeader_t", 
+        "line": 32, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }, 
+      {
+        "symbol": "typedef boost::function<void(const boost::system::error_code)> xtd::network::utils::handler_t", 
+        "line": 33, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/CommTypeDefs.hh"
+      }
+    ], 
+    "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.cc": [
+      {
+        "symbol": "void xtd::network::utils::do_sem_wait", 
+        "line": 9, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.cc"
+      }, 
+      {
+        "symbol": "std::time_t xtd::network::utils::ptime_to_time_t", 
+        "line": 26, 
+        "documented": false, 
+        "file": "/home/travis/build/psycofdj/xtdcpp/network/src/utils/Utils.cc"
+      }
+    ]
+  }
+]

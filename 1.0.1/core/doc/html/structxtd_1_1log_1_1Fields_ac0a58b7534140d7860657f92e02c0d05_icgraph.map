@@ -1,0 +1,13 @@
+<map id="xtd::log::Fields::set" name="xtd::log::Fields::set">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1ColoredFormatter.html#ac1723051968880b2b8a99843439279a3" title="Sets tty style for given field (fgColor, bgColor + attributes) " alt="" coords="193,5,384,47"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1ColoredFormatter.html#ae62298e29ca0f7eb5ecd7e3d245baece" title="Sets styles for all given fields. " alt="" coords="193,71,384,112"/>
+<area shape="rect" id="node7" href="$structxtd_1_1log_1_1AutoWidth.html#a2defd346a87c9f113de9d905b1997ed7" title="Constructor. " alt="" coords="217,136,360,177"/>
+<area shape="rect" id="node8" href="$structxtd_1_1log_1_1AutoWidth.html#aacba91f292ae1827cac432c168f67d08" title="Call operator. " alt="" coords="217,201,360,243"/>
+<area shape="rect" id="node9" href="$classxtd_1_1log_1_1Formatter.html#a04f0e52d7d5d29d8fe0e56f593764f7e" title="Set format for a particular field. " alt="" coords="218,267,359,308"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1ColoredFormatter.html#ad607a2738a0dec97ea1c97704e859a7a" title="Sets tty style, split version. " alt="" coords="432,5,623,47"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1ColoredFormatter.html#a85f584841680a65e909065fdb474fb6b" title="Constructor. " alt="" coords="671,168,861,209"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1ColoredFormatter.html#aefce642fe50d79917560883c08bb5940" title="Create a new ColoredFormatter instance from given configuration map. " alt="" coords="1099,204,1289,245"/>
+<area shape="rect" id="node10" href="$classxtd_1_1log_1_1Formatter.html#aeefc07bef8ef73b5d6be462ad3a03d3d" title="Set format for all fields. " alt="" coords="457,257,598,299"/>
+<area shape="rect" id="node11" href="$classxtd_1_1log_1_1Formatter.html#af056dc33479e3a0b1dedbc501f8c0092" title="Constructor. " alt="" coords="695,241,837,283"/>
+<area shape="rect" id="node12" href="$classxtd_1_1log_1_1Formatter.html#a365477ddddf1d5f9400ca200a1c83039" title="Create a new Formatter instance from given configuration map. " alt="" coords="909,235,1051,276"/>
+</map>

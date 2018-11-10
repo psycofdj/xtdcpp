@@ -1,0 +1,14 @@
+<map id="xtd::Application::execute" name="xtd::Application::execute">
+<area shape="rect" id="node2" href="$classxtd_1_1Application.html#a6d08d82d3a540a0fc924788fdd8a2e04" title="Prints error on standard error and exit. " alt="" coords="247,5,393,47"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#a77d7eeda9f5c08df15ef96dcc3591dda" title="Returns (or create) global RootLogger instance. " alt="" coords="261,71,379,98"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1RootLogger.html#a5855e74b37f083b902cec1d3fd398973" title="Shortand for Logger::setName and Logger::setLevel. " alt="" coords="250,123,390,164"/>
+<area shape="rect" id="node7" href="$classxtd_1_1Application.html#a8684d1d061027893f91580106a821d88" title="Parse application configuration, (default nothing) " alt="" coords="225,189,415,215"/>
+<area shape="rect" id="node8" href="$classxtd_1_1Application.html#a3c63f070ac7baaea43a32b3064d0030b" title="Check read options, (default nothing) " alt="" coords="220,239,420,266"/>
+<area shape="rect" id="node9" href="$classxtd_1_1log_1_1RootLogger.html#ae62752c15b444a84ccc4303da003b280" title="Set active log level for all child loggers. " alt="" coords="250,291,390,332"/>
+<area shape="rect" id="node10" href="$namespacextd_1_1log.html#ad62a7ffe75fe416cf648c34acf201324" title="Converts given underlying value to level. " alt="" coords="271,357,369,383"/>
+<area shape="rect" id="node12" href="$classxtd_1_1Application.html#a3983474aa33a7288334e16cec8cdc599" title="initialize application, (default nothing) " alt="" coords="243,407,397,434"/>
+<area shape="rect" id="node13" href="$classxtd_1_1Application.html#ac97ed38310d0543ff63a67e4f48860b6" title="Main application process function, (default nothing) " alt="" coords="237,458,403,485"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1Logger.html#ad2144be152776e562e05d42eb9d503fc" title="Set logger name. " alt="" coords="468,130,641,157"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1Logger.html#a97fca3b06b4cf02e23e268873799140a" title="Set logger active log level. " alt="" coords="470,239,639,266"/>
+<area shape="rect" id="node11" href="$namespacextd_1_1log.html#ac843dc7585be48789f5b3fa33dcf40d4" title="Tells if given string is a valid level label. " alt="" coords="496,357,613,383"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="xtd::counters::Freq::tick" name="xtd::counters::Freq::tick">
+<area shape="rect" id="node2" href="$classxtd_1_1counters_1_1AvgTimedValue.html#a8d3f9dbf787c7c307957038a879fb69a" title="xtd::counters::AvgTimedValue\l::addResponseTime" alt="" coords="185,5,384,47"/>
+<area shape="rect" id="node4" href="$classxtd_1_1counters_1_1Cache.html#a57101c273f95f2cf4d5a71627f0b23de" title="xtd::counters::Cache::hit" alt="" coords="201,71,368,98"/>
+<area shape="rect" id="node5" href="$classxtd_1_1counters_1_1Cache.html#a71c25293724fa534633e6d5c9f2cc36d" title="xtd::counters::Cache\l::miss" alt="" coords="213,123,357,164"/>
+<area shape="rect" id="node6" href="$classxtd_1_1counters_1_1Freq.html#ac5d39dc4ea5211f48bf6f4834fe2558b" title="xtd::counters::Freq\l::~Freq" alt="" coords="219,188,351,229"/>
+<area shape="rect" id="node7" href="$classxtd_1_1counters_1_1Perf.html#a905d73c1604d74e28bb56ea2bb4867ef" title="xtd::counters::Perf\l::stopChrono" alt="" coords="219,253,350,295"/>
+<area shape="rect" id="node3" href="$classxtd_1_1counters_1_1AvgTimedValue.html#a08aa140f45a1160943a494e5eab59aa7" title="xtd::counters::AvgTimedValue\l::~AvgTimedValue" alt="" coords="432,5,631,47"/>
+</map>

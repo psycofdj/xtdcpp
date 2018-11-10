@@ -1,0 +1,9 @@
+<map id="xtd::network::http::operator&lt;&lt;" name="xtd::network::http::operator&lt;&lt;">
+<area shape="rect" id="node2" href="$namespacextd_1_1network_1_1http.html#a82c3b4facf3c8d92550d1e73973d03af" title="xtd::network::http::str" alt="" coords="183,5,330,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1http_1_1Request.html#ad7f2cf0350f22354b25d08ef27c0fa5e" title="xtd::network::http\l::Request::getMethod" alt="" coords="183,57,331,98"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Request.html#ae8a548c88ee532b5de36f0b6e31d3aed" title="xtd::network::http\l::Request::getPath" alt="" coords="191,122,323,163"/>
+<area shape="rect" id="node5" href="$classxtd_1_1network_1_1http_1_1Message.html#a1bc684fd74e5b0805fa5a9e3eb2b93c6" title="xtd::network::http\l::Message::getVersion" alt="" coords="180,187,333,229"/>
+<area shape="rect" id="node6" href="$classxtd_1_1network_1_1http_1_1Message.html#a590bd511d6ea71218095a200c995c7ef" title="xtd::network::http\l::Message::getHeaders" alt="" coords="177,253,336,294"/>
+<area shape="rect" id="node7" href="$classxtd_1_1network_1_1http_1_1Request.html#a64b49b9927fae25a2ee25f6c78c34713" title="xtd::network::http\l::Request::getCgis" alt="" coords="191,318,323,359"/>
+<area shape="rect" id="node8" href="$classxtd_1_1network_1_1http_1_1Request.html#a71d4bde68348831d1daa0f952990112e" title="xtd::network::http\l::Request::getPosts" alt="" coords="187,383,326,425"/>
+</map>

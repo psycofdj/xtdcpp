@@ -1,0 +1,30 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>github.com/AlDanial/cloc</cloc_url>
+  <cloc_version>1.74</cloc_version>
+  <elapsed_seconds>0.0536208152770996</elapsed_seconds>
+  <n_files>10</n_files>
+  <n_lines>762</n_lines>
+  <files_per_second>186.49473993117</files_per_second>
+  <lines_per_second>14210.8991827552</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.build-bionic/reports/cloc/serializer/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh" blank="50" comment="19" code="250"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hxx" blank="22" comment="1" code="97"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh" blank="19" comment="0" code="86"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/unorderedmap.hh" blank="10" comment="11" code="52"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.cc" blank="6" comment="0" code="38"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh" blank="10" comment="1" code="27"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hxx" blank="6" comment="10" code="16"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.cc" blank="3" comment="0" code="11"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer_fwd.hh" blank="4" comment="0" code="7"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.cc" blank="2" comment="0" code="4"  language="C++" />
+  <total blank="132" comment="42" code="588" />
+</files>
+<languages>
+  <language name="C/C++ Header" files_count="7" blank="121" comment="42" code="535" />
+  <language name="C++" files_count="3" blank="11" comment="0" code="53" />
+  <total sum_files="10" blank="132" comment="42" code="588" />
+</languages>
+</results>

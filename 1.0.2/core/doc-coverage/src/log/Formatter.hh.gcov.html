@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/log/Formatter.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - Formatter.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntry">22</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-01-15 22:39:34</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef XTD_CORE_LOG_FORMATTER_HH_
+<span class="lineNum">       2 </span>            : # define XTD_CORE_LOG_FORMATTER_HH_
+<span class="lineNum">       3 </span>            : # include &quot;log/fwd.hh&quot;
+<span class="lineNum">       4 </span>            : # include &quot;log/logtypes.hh&quot;
+<span class="lineNum">       5 </span>            : # include &quot;log/Fields.hh&quot;
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : class TestFormatter;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace xtd {
+<span class="lineNum">      10 </span>            : namespace log {
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : /**
+<span class="lineNum">      13 </span>            :  ** @brief Formats log record data fields for output
+<span class="lineNum">      14 </span>            :  **
+<span class="lineNum">      15 </span>            :  ** This object is used by Appender to convert raw log Record in FormattedRecord
+<span class="lineNum">      16 </span>            :  ** by converting all available fields to a final printable string.
+<span class="lineNum">      17 </span>            :  **
+<span class="lineNum">      18 </span>            :  ** ### Formats and Layouts
+<span class="lineNum">      19 </span>            :  **
+<span class="lineNum">      20 </span>            :  ** Simple fields :
+<span class="lineNum">      21 </span>            :  ** - **name**     : Logger name. Note: logger name may be different than module
+<span class="lineNum">      22 </span>            :  **   due to logging hierarchy tree
+<span class="lineNum">      23 </span>            :  ** - **pid**      : current process id
+<span class="lineNum">      24 </span>            :  ** - **ppid**     : current parent process id
+<span class="lineNum">      25 </span>            :  ** - **module**   : module name of record
+<span class="lineNum">      26 </span>            :  ** - **threadid** : current thread id
+<span class="lineNum">      27 </span>            :  ** - **slevel**   : string identifier of record's @ref level
+<span class="lineNum">      28 </span>            :  ** - **ilevel**   : integer identifier of record's @ref level
+<span class="lineNum">      29 </span>            :  ** - **message**  : record's message string
+<span class="lineNum">      30 </span>            :  ** - **filename** : record's location file name
+<span class="lineNum">      31 </span>            :  ** - **line**     : record's location line in file
+<span class="lineNum">      32 </span>            :  ** - **function** : record's location function
+<span class="lineNum">      33 </span>            :  **
+<span class="lineNum">      34 </span>            :  ** Compound fields :
+<span class="lineNum">      35 </span>            :  ** - **time** : creating time of the log record
+<span class="lineNum">      36 </span>            :  ** - **location** : location in the code where the record was emitted
+<span class="lineNum">      37 </span>            :  ** - **fulllog** : the final formatted log string
+<span class="lineNum">      38 </span>            :  **
+<span class="lineNum">      39 </span>            :  ** Simple and compound fields has their own display format. In addition,
+<span class="lineNum">      40 </span>            :  ** compound fields has a layout that can refer to other fields.
+<span class="lineNum">      41 </span>            :  **
+<span class="lineNum">      42 </span>            :  ** #### Formatting process
+<span class="lineNum">      43 </span>            :  **
+<span class="lineNum">      44 </span>            :  ** The formatting process words as follow :
+<span class="lineNum">      45 </span>            :  **
+<span class="lineNum">      46 </span>            :  ** - Apply formats to simple fields
+<span class="lineNum">      47 </span>            :  ** - Apply layout  to time and location compound fields
+<span class="lineNum">      48 </span>            :  ** - Apply formats to time and location compound fields
+<span class="lineNum">      49 </span>            :  ** - Apply layout to fulllog compound field
+<span class="lineNum">      50 </span>            :  ** - Apply format to fulllog compound field
+<span class="lineNum">      51 </span>            :  **
+<span class="lineNum">      52 </span>            :  ** #### Layouts
+<span class="lineNum">      53 </span>            :  **
+<span class="lineNum">      54 </span>            :  ** Layout can refer to other fields using a ```%(reference)``` notation.
+<span class="lineNum">      55 </span>            :  **
+<span class="lineNum">      56 </span>            :  ** - **fulllog** :  layout that represent the final generated string. This
+<span class="lineNum">      57 </span>            :  **   layout can refer to any of the other fields names.
+<span class="lineNum">      58 </span>            :  **
+<span class="lineNum">      59 </span>            :  **   Default value is ```%(name) [%(pid)] [%(ppid)] %(time) [%(threadid)]
+<span class="lineNum">      60 </span>            :  **   [%(module)] (%(slevel)) %(message) %(location)```
+<span class="lineNum">      61 </span>            :  **
+<span class="lineNum">      62 </span>            :  ** - **location** : layout that represent the source code location that emitted
+<span class="lineNum">      63 </span>            :  **   the log record. This layout can refer to :
+<span class="lineNum">      64 </span>            :  **   - &lt;b&gt; %(file) &lt;/b&gt;: file name
+<span class="lineNum">      65 </span>            :  **   - &lt;b&gt; %(line) &lt;/b&gt;: line number in the file
+<span class="lineNum">      66 </span>            :  **   - &lt;b&gt; %(function) &lt;/b&gt; : name of the function
+<span class="lineNum">      67 </span>            :  **
+<span class="lineNum">      68 </span>            :  **   Default value is ```at %(filename):%(line) -&gt; %(function)```
+<span class="lineNum">      69 </span>            :  **
+<span class="lineNum">      70 </span>            :  ** - The **time** layout that formats the current date and time when the log
+<span class="lineNum">      71 </span>            :  **   record was triggered. This layout can refer to any of the flags handled by
+<span class="lineNum">      72 </span>            :  **   boost::posix_time. Full description
+<span class="lineNum">      73 </span>            :  **   [here](http://www.boost.org/doc/libs/1_55_0/doc/html/date_time/date_time_io.html)
+<span class="lineNum">      74 </span>            :  **
+<span class="lineNum">      75 </span>            :  **   Default value is ```%d-%m-%Y %H:%M:%s```
+<span class="lineNum">      76 </span>            :  **
+<span class="lineNum">      77 </span>            :  ** #### Formats
+<span class="lineNum">      78 </span>            :  **
+<span class="lineNum">      79 </span>            :  ** The default fields formats are given below :
+<span class="lineNum">      80 </span>            :  ** - **name**     : ```%%s```
+<span class="lineNum">      81 </span>            :  ** - **pid**      : ```%%d```
+<span class="lineNum">      82 </span>            :  ** - **ppid**     : ```%%d```
+<span class="lineNum">      83 </span>            :  ** - **module**   : ```%%s```
+<span class="lineNum">      84 </span>            :  ** - **threadid** : ```%02d```
+<span class="lineNum">      85 </span>            :  ** - **slevel**   : ```%%7s```
+<span class="lineNum">      86 </span>            :  ** - **ilevel**   : ```%%d```
+<span class="lineNum">      87 </span>            :  ** - **message**  : ```%%s```
+<span class="lineNum">      88 </span>            :  ** - **filename** : ```%%s```
+<span class="lineNum">      89 </span>            :  ** - **line**     : ```%%d```
+<span class="lineNum">      90 </span>            :  ** - **function** : ```%%s```
+<span class="lineNum">      91 </span>            :  ** - **time**     : ```%%s```
+<span class="lineNum">      92 </span>            :  ** - **location** : ```%%s```
+<span class="lineNum">      93 </span>            :  ** - **fulllog**  : ```%%s```
+<span class="lineNum">      94 </span>            :  **
+<span class="lineNum">      95 </span>            :  **
+<span class="lineNum">      96 </span>            :  ** ### User methods
+<span class="lineNum">      97 </span>            :  **
+<span class="lineNum">      98 </span>            :  ** - @ref Formatter::setLayout &quot;setLayout&quot; :
+<span class="lineNum">      99 </span>            :  **   - @copybrief Formatter::setLayout
+<span class="lineNum">     100 </span>            :  ** - @ref Formatter::setLayouts &quot;setLayouts&quot; :
+<span class="lineNum">     101 </span>            :  **   - @copybrief Formatter::setLayouts
+<span class="lineNum">     102 </span>            :  ** - @ref Formatter::setFieldFormat &quot;setFieldFormat&quot; :
+<span class="lineNum">     103 </span>            :  **   - @copybrief Formatter::setFieldFormat
+<span class="lineNum">     104 </span>            :  ** - @ref Formatter::setFieldFormats &quot;setFieldFormats&quot; :
+<span class="lineNum">     105 </span>            :  **   - @copybrief Formatter::setFieldFormats
+<span class="lineNum">     106 </span>            :  ** - @ref Formatter::addFormatModifier &quot;addFormatModifier&quot; :
+<span class="lineNum">     107 </span>            :  **   - @copybrief Formatter::addFormatModifier
+<span class="lineNum">     108 </span>            :  ** - @ref Formatter::create &quot;create&quot; :
+<span class="lineNum">     109 </span>            :  **   - @copybrief Formatter::create
+<span class="lineNum">     110 </span>            :  **
+<span class="lineNum">     111 </span>            :  ** ### Child class methods
+<span class="lineNum">     112 </span>            :  ** - @ref Formatter::format &quot;format&quot; :
+<span class="lineNum">     113 </span>            :  **   - @copybrief Formatter::format
+<span class="lineNum">     114 </span>            :  ** - @ref Formatter::createFields &quot;createFields&quot; :
+<span class="lineNum">     115 </span>            :  **   - @copybrief Formatter::createFields
+<span class="lineNum">     116 </span>            :  ** - @ref Formatter::getFulllog &quot;getFulllog&quot; :
+<span class="lineNum">     117 </span>            :  **   - @copybrief Formatter::getFulllog
+<span class="lineNum">     118 </span>            :  ** - @ref Formatter::resolveLayout &quot;resolveLayout&quot; :
+<span class="lineNum">     119 </span>            :  **   - @copybrief Formatter::resolveLayout
+<span class="lineNum">     120 </span>            :  ** - @ref Formatter::resolveTime &quot;resolveTime&quot; :
+<span class="lineNum">     121 </span>            :  **   - @copybrief Formatter::resolveTime
+<span class="lineNum">     122 </span>            :  **
+<span class="lineNum">     123 </span>            :  ** ### Format modifiers
+<span class="lineNum">     124 </span>            :  **
+<span class="lineNum">     125 </span>            :  ** In addition to fields formats, user can register one or more format modifiers.
+<span class="lineNum">     126 </span>            :  ** Their goal is to dynamically modify the field formats depending of actual log
+<span class="lineNum">     127 </span>            :  ** record data.
+<span class="lineNum">     128 </span>            :  **
+<span class="lineNum">     129 </span>            :  ** These modifiers can be any functor compatible with
+<span class="lineNum">     130 </span>            :  ** @ref Formatter::t_format_modifier prototype.
+<span class="lineNum">     131 </span>            :  **
+<span class="lineNum">     132 </span>            :  ** XTD's logging facility provides the some format modifiers described in the
+<span class="lineNum">     133 </span>            :  ** dedicated section.
+<span class="lineNum">     134 </span>            :  **
+<span class="lineNum">     135 </span>            :  ** ### Configuration
+<span class="lineNum">     136 </span>            :  **
+<span class="lineNum">     137 </span>            :  ** For a given name **@&lt;name@&gt;**, the @ref Formatter::create function considers
+<span class="lineNum">     138 </span>            :  ** the following property keys, each describing compound field layout or field
+<span class="lineNum">     139 </span>            :  ** format :
+<span class="lineNum">     140 </span>            :  ** - *log.formatter.@&lt;name@&gt;.layout.fulllog*
+<span class="lineNum">     141 </span>            :  ** - *log.formatter.@&lt;name@&gt;.layout.location*
+<span class="lineNum">     142 </span>            :  ** - *log.formatter.@&lt;name@&gt;.layout.time*
+<span class="lineNum">     143 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.name*
+<span class="lineNum">     144 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.pid*
+<span class="lineNum">     145 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.ppid*
+<span class="lineNum">     146 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.module*
+<span class="lineNum">     147 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.threadid*
+<span class="lineNum">     148 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.slevel*
+<span class="lineNum">     149 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.ilevel*
+<span class="lineNum">     150 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.message*
+<span class="lineNum">     151 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.filename*
+<span class="lineNum">     152 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.line*
+<span class="lineNum">     153 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.function*
+<span class="lineNum">     154 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.time*
+<span class="lineNum">     155 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.location*
+<span class="lineNum">     156 </span>            :  ** - *log.formatter.@&lt;name@&gt;.format.fulllog*
+<span class="lineNum">     157 </span>            :  **
+<span class="lineNum">     158 </span>            :  ** ### Thread Safety
+<span class="lineNum">     159 </span>            :  **
+<span class="lineNum">     160 </span>            :  ** - Concurrent calls to multiple objects : **YES**
+<span class="lineNum">     161 </span>            :  ** - Concurrent calls to single object    : **YES**
+<span class="lineNum">     162 </span>            :  **
+<span class="lineNum">     163 </span>            :  ** This object is lock-free and thread safe as long as formats, layout and
+<span class="lineNum">     164 </span>            :  ** modifiers aren't modified by other threads.
+<span class="lineNum">     165 </span>            :  **
+<span class="lineNum">     166 </span>            :  ** ### Usage Exemple
+<span class="lineNum">     167 </span>            :  **
+<span class="lineNum">     168 </span>            :  ** @include formatter.cc
+<span class="lineNum">     169 </span>            :  */
+<span class="lineNum">     170 </span>            : class Formatter
+<span class="lineNum">     171 </span><span class="lineCov">          1 : {</span>
+<span class="lineNum">     172 </span>            :   friend class ConfLoader;
+<span class="lineNum">     173 </span>            :   friend class ::TestFormatter;
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            : protected:
+<span class="lineNum">     176 </span>            :   /**
+<span class="lineNum">     177 </span>            :    ** @brief Holds format string for each field
+<span class="lineNum">     178 </span>            :    */
+<span class="lineNum">     179 </span><span class="lineCov">          1 :   typedef Fields&lt;string&gt; t_formats;</span>
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span>            :   /**
+<span class="lineNum">     182 </span>            :    ** @brief Format modifier functor prototype
+<span class="lineNum">     183 </span>            :    */
+<span class="lineNum">     184 </span><span class="lineCov">          1 :   typedef fn&lt;void(const FormattedRecord&amp;, t_formats&amp;)&gt; t_format_modifier;</span>
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span>            : public:
+<span class="lineNum">     187 </span>            :   /**
+<span class="lineNum">     188 </span>            :    ** @brief Constructor
+<span class="lineNum">     189 </span>            :    */
+<span class="lineNum">     190 </span><span class="lineCov">          1 :   Formatter(void);</span>
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span>            :   /**
+<span class="lineNum">     193 </span>            :    ** @brief Deleted copy constructor
+<span class="lineNum">     194 </span>            :    */
+<span class="lineNum">     195 </span><span class="lineCov">          1 :   Formatter(const Formatter&amp; p_parent);</span>
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span>            :   /**
+<span class="lineNum">     198 </span>            :    ** @brief Destructor
+<span class="lineNum">     199 </span>            :    */
+<span class="lineNum">     200 </span><span class="lineCov">          1 :   virtual ~Formatter(void);</span>
+<span class="lineNum">     201 </span>            : 
+<span class="lineNum">     202 </span>            : public:
+<span class="lineNum">     203 </span>            :   /**
+<span class="lineNum">     204 </span>            :    ** @brief Create a new Formatter instance from given configuration map
+<span class="lineNum">     205 </span>            :    ** @param p_name Formatter name
+<span class="lineNum">     206 </span>            :    ** @param p_properties configuration map
+<span class="lineNum">     207 </span>            :    ** @throw log_error when invalid keys/value given in p_properties
+<span class="lineNum">     208 </span>            :    ** @details
+<span class="lineNum">     209 </span>            :    ** Full configuration specification described in @ref Formatter detailed
+<span class="lineNum">     210 </span>            :    ** section.
+<span class="lineNum">     211 </span>            :    */
+<span class="lineNum">     212 </span><span class="lineCov">          1 :   static sptr&lt;Formatter&gt; create(const string&amp;             p_name,</span>
+<span class="lineNum">     213 </span>            :                                 const map&lt;string,string&gt;&amp; p_properties);
+<span class="lineNum">     214 </span>            : 
+<span class="lineNum">     215 </span>            : public:
+<span class="lineNum">     216 </span>            :   /**
+<span class="lineNum">     217 </span>            :    ** @brief Set layout for a particular compound field
+<span class="lineNum">     218 </span>            :    ** @param p_name name of the field
+<span class="lineNum">     219 </span>            :    ** @param p_layout new layout
+<span class="lineNum">     220 </span>            :    ** @return self, used for chaining calls
+<span class="lineNum">     221 </span>            :    ** @details
+<span class="lineNum">     222 </span>            :    ** The function doesn't check if given p_name is a valid compound field. If not,
+<span class="lineNum">     223 </span>            :    ** new layout will have no effect.
+<span class="lineNum">     224 </span>            :    */
+<span class="lineNum">     225 </span><span class="lineCov">          1 :   Formatter&amp; setLayout(const string&amp; p_name, const string&amp; p_layout);</span>
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span>            :   /**
+<span class="lineNum">     228 </span>            :    ** @brief Set layout for all compound fields
+<span class="lineNum">     229 </span>            :    ** @param p_layouts layout map. Key is field name, value is new layout
+<span class="lineNum">     230 </span>            :    ** @return self, used for chaining calls
+<span class="lineNum">     231 </span>            :    ** @details
+<span class="lineNum">     232 </span>            :    ** The function doesn't check if given p_name is a valid compound field. If not,
+<span class="lineNum">     233 </span>            :    ** new layouts will have no effect.
+<span class="lineNum">     234 </span>            :    */
+<span class="lineNum">     235 </span><span class="lineCov">          1 :   Formatter&amp; setLayouts(const map&lt;string, string&gt;&amp; p_layouts);</span>
+<span class="lineNum">     236 </span>            : 
+<span class="lineNum">     237 </span>            :   /**
+<span class="lineNum">     238 </span>            :    ** @brief Set format for a particular field
+<span class="lineNum">     239 </span>            :    ** @param p_fieldName field name
+<span class="lineNum">     240 </span>            :    ** @param p_format new format
+<span class="lineNum">     241 </span>            :    ** @return self, used for chaining calls
+<span class="lineNum">     242 </span>            :    ** @details
+<span class="lineNum">     243 </span>            :    ** The function doesn't check if given p_name is a valid field. If not,
+<span class="lineNum">     244 </span>            :    ** new format will have no effect.
+<span class="lineNum">     245 </span>            :    */
+<span class="lineNum">     246 </span><span class="lineCov">          1 :   Formatter&amp; setFieldFormat(const string&amp; p_fieldName, const string&amp; p_format);</span>
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span>            :   /**
+<span class="lineNum">     249 </span>            :    ** @brief Set format for all fields
+<span class="lineNum">     250 </span>            :    ** @param p_formats format map, Key is field name, value is new format
+<span class="lineNum">     251 </span>            :    ** @return self, used for chaining
+<span class="lineNum">     252 </span>            :    ** @details
+<span class="lineNum">     253 </span>            :    ** The function doesn't check if given p_name is a valid field. If not,
+<span class="lineNum">     254 </span>            :    ** new formats will have no effect.
+<span class="lineNum">     255 </span>            :    */
+<span class="lineNum">     256 </span><span class="lineCov">          1 :   Formatter&amp; setFieldFormats(const map&lt;string, string&gt;&amp; p_formats);</span>
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            :   /**
+<span class="lineNum">     259 </span>            :    ** @brief Adds a format modifier functor
+<span class="lineNum">     260 </span>            :    ** @param p_functor functor compatible with @ref t_format_modifier prototype
+<span class="lineNum">     261 </span>            :    ** @return self, used for chaining
+<span class="lineNum">     262 </span>            :    */
+<span class="lineNum">     263 </span>            :   template&lt;typename Handler&gt;
+<span class="lineNum">     264 </span><span class="lineCov">          1 :   Formatter&amp; addFormatModifier(Handler p_functor);</span>
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span>            :   /**
+<span class="lineNum">     267 </span>            :    ** @brief Execute formatting process
+<span class="lineNum">     268 </span>            :    ** @tparam Arguments Variadic log message format arguments
+<span class="lineNum">     269 </span>            :    ** @param p_rec active log record
+<span class="lineNum">     270 </span>            :    ** @param p_args arguments to apply to log format
+<span class="lineNum">     271 </span>            :    ** @return FormattedRecord object
+<span class="lineNum">     272 </span>            :    */
+<span class="lineNum">     273 </span>            :   template&lt;typename... Arguments&gt;
+<span class="lineNum">     274 </span><span class="lineCov">          1 :   FormattedRecord format(const Record&amp; p_rec, Arguments&amp;&amp;... p_args) const;</span>
+<span class="lineNum">     275 </span>            : 
+<span class="lineNum">     276 </span>            : protected:
+<span class="lineNum">     277 </span>            :   /**
+<span class="lineNum">     278 </span>            :    ** @brief Apply formats and layouts to all fields but fulllog
+<span class="lineNum">     279 </span>            :    ** @param p_rec active log record
+<span class="lineNum">     280 </span>            :    ** @param p_args Holds formatting result for each fields
+<span class="lineNum">     281 </span>            :    */
+<span class="lineNum">     282 </span><span class="lineCov">          1 :   virtual void createFields(const FormattedRecord&amp; p_rec,</span>
+<span class="lineNum">     283 </span>            :                             Fields&lt;string&gt;&amp;        p_args) const;
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            :   /**
+<span class="lineNum">     286 </span>            :    ** @brief Creates final log message
+<span class="lineNum">     287 </span>            :    ** @param p_rec active log record
+<span class="lineNum">     288 </span>            :    */
+<span class="lineNum">     289 </span><span class="lineCov">          1 :   virtual string getFulllog(const FormattedRecord&amp; p_rec) const;</span>
+<span class="lineNum">     290 </span>            : 
+<span class="lineNum">     291 </span>            :   /**
+<span class="lineNum">     292 </span>            :    ** @brief Resolve given layout from given fields data
+<span class="lineNum">     293 </span>            :    ** @param p_layout layout to resolve
+<span class="lineNum">     294 </span>            :    ** @param p_args fields data
+<span class="lineNum">     295 </span>            :    */
+<span class="lineNum">     296 </span><span class="lineCov">          1 :   string resolveLayout(const string&amp; p_layout, const Fields&lt;string&gt;&amp; p_args) const;</span>
+<span class="lineNum">     297 </span>            : 
+<span class="lineNum">     298 </span>            :   /**
+<span class="lineNum">     299 </span>            :    ** @brief Apply time layout to given boost::posix_time::ptime argument
+<span class="lineNum">     300 </span>            :    ** @param p_layout boost's compatible time layout string
+<span class="lineNum">     301 </span>            :    ** @param p_time ptime argument
+<span class="lineNum">     302 </span>            :    */
+<span class="lineNum">     303 </span><span class="lineCov">          1 :   string resolveTime(const string&amp;                   p_layout,</span>
+<span class="lineNum">     304 </span>            :                      const boost::posix_time::ptime&amp; p_time) const;
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span>            : protected:
+<span class="lineNum">     307 </span><span class="lineCov">          1 :   string                    m_fmt;             ///&lt; fulllog layout</span>
+<span class="lineNum">     308 </span><span class="lineCov">          1 :   string                    m_locFmt;          ///&lt; location layout</span>
+<span class="lineNum">     309 </span><span class="lineCov">          1 :   string                    m_timeFmt;         ///&lt; time layout</span>
+<span class="lineNum">     310 </span><span class="lineCov">          1 :   Fields&lt;string&gt;            m_fieldFormats;    ///&lt; Fields formats</span>
+<span class="lineNum">     311 </span><span class="lineCov">          1 :   vector&lt;t_format_modifier&gt; m_formatModifiers; ///&lt; List of format modifiers</span>
+<span class="lineNum">     312 </span>            : };
+<span class="lineNum">     313 </span>            : 
+<span class="lineNum">     314 </span>            : }}
+<span class="lineNum">     315 </span>            : 
+<span class="lineNum">     316 </span>            : # include &quot;log/Formatter.hxx&quot;
+<span class="lineNum">     317 </span>            : 
+<span class="lineNum">     318 </span>            : #endif // !XTD_CORE_LOG_FORMATTER_HH_
+<span class="lineNum">     319 </span>            : 
+<span class="lineNum">     320 </span>            : // Local Variables:
+<span class="lineNum">     321 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     322 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

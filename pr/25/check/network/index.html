@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Unittest report</title>
+<link href="../../contribs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../contribs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<script src="../../contribs/jquery/jquery.min.js"></script><script src="../../contribs/bootstrap/js/bootstrap.min.js"></script><script type="text/javascript">
+         
+           $(document).ready(function() {
+             $("button").click(function() {
+               var l_tr        = $(this).parents("tr");
+               var l_id        = l_tr.attr("id");
+               var l_detailsID = l_id + "-details";
+               $("#" + l_detailsID).toggle();
+             });
+           });
+         
+        </script><style>
+          
+            pre {
+              white-space: pre-wrap;
+              white-space: -moz-pre-wrap;
+              white-space: -pre-wrap;
+              white-space: -o-pre-wrap;
+              word-wrap: break-word;
+            }
+          
+        </style>
+</head>
+<body bgcolor="#ffffff" style="padding-top:50px;"><div class="container-fluid">
+<div class="row"><div class="col-lg-4 col-lg-offset-4"><div class="panel panel-default">
+<div class="panel-heading">Summary report</div>
+<div class="panel-body"><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<th>Total tests</th>
+<td>1</td>
+</tr>
+<tr>
+<th>Test passed</th>
+<td>1 (100%) </td>
+</tr>
+<tr>
+<th>Test failed</th>
+<td>0 (0%) </td>
+</tr>
+<tr>
+<th>Duration</th>
+<td>4 sec(s)</td>
+</tr>
+</tbody></table></div>
+</div></div></div>
+<div class="row"><div class="col-lg-10 col-lg-offset-1"><div class="panel panel-default">
+<div class="panel-heading">Full report</div>
+<div class="panel-body"><table class="table table-striped table-bordered table-condensed small">
+<thead><tr>
+<th style="width:50px;"></th>
+<th>Test Name</th>
+<th>Status</th>
+<th>Exit code</th>
+<th>Exit value</th>
+<th>Executime Time (sec)</th>
+</tr></thead>
+<tbody>
+<tr id="idm46119002117760" class="success">
+<td class="text-center"><button class="btn btn-xs btn-primary glyphicon glyphicon-plus"></button></td>
+<td>tHttpServer</td>
+<td>passed</td>
+<td>0</td>
+<td>OK</td>
+<td>4.46</td>
+</tr>
+<tr id="idm46119002117760-details" style="display: none;"><td colspan="6"><div><table class="table table-striped table-bordered table-condensed small"><tbody>
+<tr>
+<td>Command line</td>
+<td>/home/travis/build/psycofdj/xtdcpp/.release/network/tHttpServer "-p" "-o" "compiler" "--srcdir=/home/travis/build/psycofdj/xtdcpp/network" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/network/unit" "--outputter=compiler" "-p" "-e" "7"</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td><pre style="max-height:300px; overflow:scroll;" class="small">TestHttpServer::unhandledRequest : start
+TestHttpServer::unhandledRequest : end Ok
+TestHttpServer::malformedRequest : start
+TestHttpServer::malformedRequest : end Ok
+TestHttpServer::simpleHandler : start
+TestHttpServer::simpleHandler : end Ok
+TestHttpServer::filteredHandler : start
+TestHttpServer::filteredHandler : end Ok
+TestHttpServer::anyHandler : start
+TestHttpServer::anyHandler : end Ok
+TestHttpServer::expiredConnection : start
+TestHttpServer::expiredConnection : end Ok
+
+OK (6)
+</pre></td>
+</tr>
+</tbody></table></div></td></tr>
+</tbody>
+</table></div>
+</div></div></div>
+</div></body>
+</html>

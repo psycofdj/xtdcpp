@@ -1,0 +1,5 @@
+<map id="xtd::log::Appender" name="xtd::log::Appender">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1MemoryAppender.html" title="Stores the Nth last log records in memory. " alt="" coords="5,80,180,107"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1StreamAppender.html" title="Prints log records on streams. " alt="" coords="205,80,375,107"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1SyslogAppender.html" title="Forward log record to system syslog facility. " alt="" coords="399,80,567,107"/>
+</map>

@@ -1,0 +1,77 @@
+{
+  "index": "index.html",
+  "kpi": "iwyu",
+  "data": {
+    "success": 6,
+    "errors": 0,
+    "failures": 0
+  },
+  "label": "0",
+  "module": "serializer",
+  "graphs": [
+    {
+      "data": {
+        "datasets": [
+          {
+            "yAxisID": "failure",
+            "pointBorderColor": "rgba(102, 0, 0, 1)",
+            "data": "%(failures)d",
+            "backgroundColor": "rgba(179, 0, 0, 0)",
+            "label": "iwyu: # failures",
+            "borderColor": "rgba(179, 0, 0, 0.5)",
+            "pointBackgroundColor": "rgba(102, 0, 0, 1)"
+          },
+          {
+            "yAxisID": "success",
+            "pointBorderColor": "rgba(31, 122, 31, 1)",
+            "data": "%(success)d",
+            "backgroundColor": "rgba(51, 204, 51, 0)",
+            "label": "iwyu: # success",
+            "borderColor": "rgba(51, 204, 51, 0.5)",
+            "pointBackgroundColor": "rgba(31, 122, 31, 1)"
+          }
+        ],
+        "labels": []
+      },
+      "options": {
+        "scales": {
+          "yAxes": [
+            {
+              "ticks": {
+                "fontSize": 24
+              },
+              "id": "success",
+              "type": "linear",
+              "position": "left",
+              "display": true
+            },
+            {
+              "ticks": {
+                "beginAtZero": true,
+                "fontSize": 24
+              },
+              "id": "failure",
+              "type": "linear",
+              "position": "right",
+              "display": true
+            }
+          ],
+          "xAxes": [
+            {
+              "ticks": {
+                "minRotation": 80,
+                "fontSize": 12
+              }
+            }
+          ]
+        },
+        "title": {
+          "display": true,
+          "text": "iwyu"
+        }
+      },
+      "type": "line"
+    }
+  ],
+  "status": "success"
+}

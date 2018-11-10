@@ -1,0 +1,10 @@
+<map id="src/http/ClientPool.cc" name="src/http/ClientPool.cc">
+<area shape="rect" id="node2" href="$http_2ClientPool_8hh.html" title="http/ClientPool.hh" alt="" coords="1053,80,1180,107"/>
+<area shape="rect" id="node18" href="$network__types_8hh.html" title="network_types.hh" alt="" coords="873,401,998,427"/>
+<area shape="rect" id="node3" href="$base_2ClientPool_8hh.html" title="base/ClientPool.hh" alt="" coords="1051,155,1183,181"/>
+<area shape="rect" id="node21" href="$http_2Client_8hh.html" title="http/Client.hh" alt="" coords="596,155,696,181"/>
+<area shape="rect" id="node9" href="$base_2Client_8hh.html" title="base/Client.hh" alt="" coords="593,229,699,256"/>
+<area shape="rect" id="node13" href="$Config_8hh.html" title="base/Config.hh" alt="" coords="537,311,648,338"/>
+<area shape="rect" id="node15" href="$Utils_8hh.html" title="utils/Utils.hh" alt="" coords="367,311,461,338"/>
+<area shape="rect" id="node17" href="$Resolver_8hh.html" title="utils/Resolver.hh" alt="" coords="802,311,922,338"/>
+</map>

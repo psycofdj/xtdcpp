@@ -1,0 +1,18 @@
+<map id="src/counters.hh" name="src/counters.hh">
+<area shape="rect" id="node2" href="$Base_8hh.html" title="Base.hh" alt="" coords="413,311,483,338"/>
+<area shape="rect" id="node7" href="$Value_8hh.html" title="Value.hh" alt="" coords="571,229,645,256"/>
+<area shape="rect" id="node9" href="$AvgValue_8hh.html" title="AvgValue.hh" alt="" coords="187,155,283,181"/>
+<area shape="rect" id="node13" href="$AvgTimedValue_8hh.html" title="AvgTimedValue.hh" alt="" coords="297,80,429,107"/>
+<area shape="rect" id="node15" href="$Freq_8hh.html" title="Freq.hh" alt="" coords="640,155,707,181"/>
+<area shape="rect" id="node16" href="$InstantFreq_8hh.html" title="InstantFreq.hh" alt="" coords="509,155,616,181"/>
+<area shape="rect" id="node17" href="$ExtValue_8hh.html" title="ExtValue.hh" alt="" coords="193,229,287,256"/>
+<area shape="rect" id="node18" href="$SumExt_8hh.html" title="SumExt.hh" alt="" coords="934,155,1021,181"/>
+<area shape="rect" id="node19" href="$Perf_8hh.html" title="Perf.hh" alt="" coords="467,80,531,107"/>
+<area shape="rect" id="node20" href="$Cache_8hh.html" title="Cache.hh" alt="" coords="705,80,783,107"/>
+<area shape="rect" id="node21" href="$JsonVisitor_8hh.html" title="JsonVisitor.hh" alt="" coords="901,229,1006,256"/>
+<area shape="rect" id="node24" href="$FileVisitor_8hh.html" title="FileVisitor.hh" alt="" coords="1055,229,1153,256"/>
+<area shape="rect" id="node27" href="$CounterManager_8hh.html" title="CounterManager.hh" alt="" coords="1228,229,1364,256"/>
+<area shape="rect" id="node6" href="$Visitor_8hh.html" title="Visitor.hh" alt="" coords="621,393,699,420"/>
+<area shape="rect" id="node11" href="$Composed_8hh.html" title="Composed.hh" alt="" coords="311,229,414,256"/>
+<area shape="rect" id="node29" href="$counters__fwd_8hh.html" title="counters_fwd.hh" alt="" coords="1381,311,1499,338"/>
+</map>

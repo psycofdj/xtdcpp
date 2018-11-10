@@ -1,0 +1,1 @@
+{"tests": [{"args": {"bin": "./tHttpServer", "args": ["-p", "-o", "compiler", "--srcdir=/home/travis/build/psycofdj/xtdcpp/network", "--top-srcdir=/home/travis/build/psycofdj/xtdcpp", "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release", "--testdir=/home/travis/build/psycofdj/xtdcpp/network/unit", "--outputter=compiler", "-p", "-e", "7"]}, "errors": []}], "stats": {}}

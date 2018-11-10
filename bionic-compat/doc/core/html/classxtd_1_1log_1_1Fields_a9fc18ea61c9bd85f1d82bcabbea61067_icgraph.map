@@ -1,0 +1,5 @@
+<map id="xtd::log::Fields::exists" name="xtd::log::Fields::exists">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1ColoredFormatter.html#a8b060e7f732c9859b151192521c95b9f" title="Sets tty attributes for given field. " alt="" coords="204,5,379,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1ColoredFormatter.html#a8d4f81235542fb1fac2fa1b09bf2f847" title="Sets foreground tty color for given field. " alt="" coords="204,71,379,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1ColoredFormatter.html#a6f2b28bab49aad9e8a6a50e28b63ecd7" title="Sets background tty color for given field. " alt="" coords="204,136,379,177"/>
+</map>

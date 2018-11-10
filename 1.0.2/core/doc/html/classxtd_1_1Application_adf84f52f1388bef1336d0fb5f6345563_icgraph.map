@@ -1,0 +1,9 @@
+<map id="xtd::Application::error" name="xtd::Application::error">
+<area shape="rect" id="node2" href="$classxtd_1_1Application.html#a6505bf904c26aa16009cbb5ec3d7ed05" title="Bind option&#39;s parameter to a file name. " alt="" coords="209,5,374,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1Application.html#ab8e835ba678494c42e12c4613958d18a" title="initialize application, (default nothing) " alt="" coords="439,107,606,133"/>
+<area shape="rect" id="node5" href="$classxtd_1_1Application.html#a6277c4956209f6a672fdcde25b6cad5a" title="Bind option&#39;s parameter to a directory. " alt="" coords="211,107,372,133"/>
+<area shape="rect" id="node6" href="$classxtd_1_1Application.html#ac9739b519e6000b0d783c6a79ca9f8c1" title="Set targeted variable to option&#39;s parameter regex. " alt="" coords="200,157,383,184"/>
+<area shape="rect" id="node7" href="$classxtd_1_1Application.html#a24fee41865f36ba29f20bfb075563b51" title="Register an option to parser. " alt="" coords="202,208,381,235"/>
+<area shape="rect" id="node4" href="$classxtd_1_1Application.html#af6aafabf6c552d200f810f754f34e14c" title="main entry point, usually called with main(int,char**)&#39;s arguments " alt="" coords="663,107,829,133"/>
+<area shape="rect" id="node8" href="$classxtd_1_1Application.html#a3da92b7f6543aa1dd26aee2d886d8135" title="Constructor. " alt="" coords="431,208,615,235"/>
+</map>

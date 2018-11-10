@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="1.82"/>
+    <errors>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
+            <location file="/home/travis/build/psycofdj/xtdcpp/network/src/base/ClientPool.hxx" line="78"/>
+        </error>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
+            <location file="/home/travis/build/psycofdj/xtdcpp/network/src/http/Server.hxx" line="53"/>
+        </error>
+    </errors>
+</results>

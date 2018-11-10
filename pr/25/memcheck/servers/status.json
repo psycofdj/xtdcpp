@@ -1,0 +1,57 @@
+{
+  "status": "success", 
+  "index": "index.html", 
+  "module": "servers", 
+  "label": "0", 
+  "graphs": [
+    {
+      "data": {
+        "labels": [], 
+        "datasets": [
+          {
+            "borderColor": "rgba(179, 0, 0, 0.5)", 
+            "pointBorderColor": "rgba(102, 0, 0, 1)", 
+            "yAxisID": "absolute", 
+            "label": "memcheck: # error count", 
+            "backgroundColor": "rgba(179, 0, 0, 0.5)", 
+            "pointBackgroundColor": "rgba(102, 0, 0, 1)", 
+            "data": "%(total)d"
+          }
+        ]
+      }, 
+      "type": "line", 
+      "options": {
+        "scales": {
+          "xAxes": [
+            {
+              "ticks": {
+                "fontSize": 12, 
+                "minRotation": 80
+              }
+            }
+          ], 
+          "yAxes": [
+            {
+              "position": "left", 
+              "ticks": {
+                "fontSize": 24, 
+                "beginAtZero": true
+              }, 
+              "type": "linear", 
+              "id": "absolute", 
+              "display": true
+            }
+          ]
+        }, 
+        "title": {
+          "text": "%(module)s : memcheck", 
+          "display": true
+        }
+      }
+    }
+  ], 
+  "kpi": "memcheck", 
+  "data": {
+    "total": 0
+  }
+}

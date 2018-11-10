@@ -1,0 +1,298 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.224489795918" lines-covered="55" lines-valid="245" timestamp="1541879690" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.00561797752809" name="......servers.src.app">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/Server.hh" line-rate="0.0" name="......servers.src.app.Server.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="70"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="97"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HttpServer.hh" line-rate="0.015625" name="......servers.src.app.HttpServer.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="57"/>
+						<line branch="false" hits="0" number="59"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="70"/>
+						<line branch="false" hits="0" number="73"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="76"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="80"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="85"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="87"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="89"/>
+						<line branch="false" hits="0" number="90"/>
+						<line branch="false" hits="0" number="91"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="1" number="96"/>
+						<line branch="false" hits="0" number="97"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="104"/>
+						<line branch="false" hits="0" number="111"/>
+						<line branch="false" hits="0" number="115"/>
+						<line branch="false" hits="0" number="120"/>
+						<line branch="false" hits="0" number="125"/>
+						<line branch="false" hits="0" number="173"/>
+						<line branch="false" hits="0" number="174"/>
+						<line branch="false" hits="0" number="175"/>
+						<line branch="false" hits="0" number="176"/>
+						<line branch="false" hits="0" number="177"/>
+						<line branch="false" hits="0" number="178"/>
+						<line branch="false" hits="0" number="181"/>
+						<line branch="false" hits="0" number="182"/>
+						<line branch="false" hits="0" number="183"/>
+						<line branch="false" hits="0" number="184"/>
+						<line branch="false" hits="0" number="185"/>
+						<line branch="false" hits="0" number="186"/>
+						<line branch="false" hits="0" number="189"/>
+						<line branch="false" hits="0" number="190"/>
+						<line branch="false" hits="0" number="191"/>
+						<line branch="false" hits="0" number="194"/>
+						<line branch="false" hits="0" number="195"/>
+						<line branch="false" hits="0" number="196"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HtmlOArchive.hh" line-rate="0.0" name="......servers.src.app.HtmlOArchive.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="57"/>
+						<line branch="false" hits="0" number="59"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="76"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="89"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="97"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="107"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="128"/>
+						<line branch="false" hits="0" number="130"/>
+						<line branch="false" hits="0" number="131"/>
+						<line branch="false" hits="0" number="132"/>
+						<line branch="false" hits="0" number="133"/>
+						<line branch="false" hits="0" number="134"/>
+						<line branch="false" hits="0" number="135"/>
+						<line branch="false" hits="0" number="136"/>
+						<line branch="false" hits="0" number="137"/>
+						<line branch="false" hits="0" number="138"/>
+						<line branch="false" hits="0" number="143"/>
+						<line branch="false" hits="0" number="149"/>
+						<line branch="false" hits="0" number="154"/>
+						<line branch="false" hits="0" number="155"/>
+						<line branch="false" hits="0" number="156"/>
+						<line branch="false" hits="0" number="159"/>
+						<line branch="false" hits="0" number="162"/>
+						<line branch="false" hits="0" number="165"/>
+						<line branch="false" hits="0" number="167"/>
+						<line branch="false" hits="0" number="169"/>
+						<line branch="false" hits="0" number="171"/>
+						<line branch="false" hits="0" number="172"/>
+						<line branch="false" hits="0" number="173"/>
+						<line branch="false" hits="0" number="174"/>
+						<line branch="false" hits="0" number="175"/>
+						<line branch="false" hits="0" number="176"/>
+						<line branch="false" hits="0" number="177"/>
+						<line branch="false" hits="0" number="178"/>
+						<line branch="false" hits="0" number="179"/>
+						<line branch="false" hits="0" number="180"/>
+						<line branch="false" hits="0" number="181"/>
+						<line branch="false" hits="0" number="182"/>
+						<line branch="false" hits="0" number="183"/>
+						<line branch="false" hits="0" number="184"/>
+						<line branch="false" hits="0" number="185"/>
+						<line branch="false" hits="0" number="186"/>
+						<line branch="false" hits="0" number="187"/>
+						<line branch="false" hits="0" number="188"/>
+						<line branch="false" hits="0" number="189"/>
+						<line branch="false" hits="0" number="190"/>
+						<line branch="false" hits="0" number="191"/>
+						<line branch="false" hits="0" number="192"/>
+						<line branch="false" hits="0" number="193"/>
+						<line branch="false" hits="0" number="194"/>
+						<line branch="false" hits="0" number="195"/>
+						<line branch="false" hits="0" number="197"/>
+						<line branch="false" hits="0" number="200"/>
+						<line branch="false" hits="0" number="201"/>
+						<line branch="false" hits="0" number="203"/>
+						<line branch="false" hits="0" number="204"/>
+						<line branch="false" hits="0" number="214"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.805970149254" name="......servers.src.param">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Visitor.hh" line-rate="1.0" name="......servers.src.param.Visitor.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="15"/>
+						<line branch="false" hits="1" number="20"/>
+						<line branch="false" hits="1" number="24"/>
+						<line branch="false" hits="1" number="28"/>
+						<line branch="false" hits="1" number="32"/>
+						<line branch="false" hits="1" number="36"/>
+						<line branch="false" hits="1" number="40"/>
+						<line branch="false" hits="1" number="48"/>
+						<line branch="false" hits="1" number="57"/>
+						<line branch="false" hits="1" number="64"/>
+						<line branch="false" hits="1" number="68"/>
+						<line branch="false" hits="1" number="72"/>
+						<line branch="false" hits="1" number="76"/>
+						<line branch="false" hits="1" number="80"/>
+						<line branch="false" hits="1" number="84"/>
+						<line branch="false" hits="1" number="93"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Pod.hh" line-rate="0.714285714286" name="......servers.src.param.Pod.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="19"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="1" number="31"/>
+						<line branch="false" hits="1" number="38"/>
+						<line branch="false" hits="1" number="46"/>
+						<line branch="false" hits="1" number="53"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Base.hh" line-rate="0.703703703704" name="......servers.src.param.Base.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="8"/>
+						<line branch="false" hits="1" number="21"/>
+						<line branch="false" hits="1" number="32"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="1" number="62"/>
+						<line branch="false" hits="1" number="70"/>
+						<line branch="false" hits="1" number="77"/>
+						<line branch="false" hits="1" number="85"/>
+						<line branch="false" hits="1" number="93"/>
+						<line branch="false" hits="1" number="100"/>
+						<line branch="false" hits="1" number="106"/>
+						<line branch="false" hits="1" number="114"/>
+						<line branch="false" hits="1" number="125"/>
+						<line branch="false" hits="1" number="134"/>
+						<line branch="false" hits="1" number="146"/>
+						<line branch="false" hits="1" number="155"/>
+						<line branch="false" hits="1" number="165"/>
+						<line branch="false" hits="1" number="175"/>
+						<line branch="false" hits="1" number="183"/>
+						<line branch="false" hits="1" number="193"/>
+						<line branch="false" hits="1" number="201"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Handler.hh" line-rate="0.823529411765" name="......servers.src.param.Handler.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="1" number="29"/>
+						<line branch="false" hits="1" number="41"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="1" number="62"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="1" number="76"/>
+						<line branch="false" hits="1" number="85"/>
+						<line branch="false" hits="1" number="91"/>
+						<line branch="false" hits="1" number="99"/>
+						<line branch="false" hits="1" number="108"/>
+						<line branch="false" hits="1" number="118"/>
+						<line branch="false" hits="1" number="128"/>
+						<line branch="false" hits="1" number="139"/>
+						<line branch="false" hits="1" number="150"/>
+						<line branch="false" hits="1" number="161"/>
+						<line branch="false" hits="1" number="174"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

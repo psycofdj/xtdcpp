@@ -1,0 +1,16 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/network/src/network.hh" name="/home/travis/build/psycofdj/xtdcpp/network/src/network.hh">
+<area shape="rect" id="node2" href="$CommTypeDefs_8hh.html" title="utils/CommTypeDefs.hh" alt="" coords="2646,490,2818,517"/>
+<area shape="rect" id="node9" href="$Request_8hh.html" title="http/Request.hh" alt="" coords="792,408,915,435"/>
+<area shape="rect" id="node16" href="$Response_8hh.html" title="http/Response.hh" alt="" coords="287,109,420,136"/>
+<area shape="rect" id="node17" href="$http_2Server_8hh.html" title="http/Server.hh" alt="" coords="995,259,1109,285"/>
+<area shape="rect" id="node19" href="$Config_8hh.html" title="utils/Config.hh" alt="" coords="1167,408,1279,435"/>
+<area shape="rect" id="node37" href="$bip_2Client_8hh.html" title="bip/Client.hh" alt="" coords="1347,109,1448,136"/>
+<area shape="rect" id="node46" href="$bip_2Server_8hh.html" title="bip/Server.hh" alt="" coords="1155,184,1261,211"/>
+<area shape="rect" id="node18" href="$base_2Server_8hh.html" title="base/Server.hh" alt="" coords="1235,333,1354,360"/>
+<area shape="rect" id="node31" href="$Template_8hh.html" title="http/Template.hh" alt="" coords="324,408,455,435"/>
+<area shape="rect" id="node23" href="$Utils_8hh.html" title="utils/Utils.hh" alt="" coords="1791,408,1891,435"/>
+<area shape="rect" id="node33" href="$cpptempl_8hh.html" title="cpptempl.hh" alt="" coords="774,490,877,517"/>
+<area shape="rect" id="node38" href="$base_2Client_8hh.html" title="base/Client.hh" alt="" coords="1494,184,1607,211"/>
+<area shape="rect" id="node39" href="$Resolver_8hh.html" title="utils/Resolver.hh" alt="" coords="1723,259,1847,285"/>
+<area shape="rect" id="node40" href="$CacheDns_8hh.html" title="utils/CacheDns.hh" alt="" coords="1850,333,1987,360"/>
+</map>

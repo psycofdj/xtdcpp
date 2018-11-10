@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0" lines-covered="0" lines-valid="57" timestamp="1517737100" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......serializer.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../serializer/src/serializer.hh" line-rate="0.0" name="......serializer.src.serializer.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="22"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="-1" number="24"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="29"/>
+						<line branch="false" hits="-1" number="32"/>
+						<line branch="false" hits="-1" number="33"/>
+						<line branch="false" hits="-1" number="34"/>
+						<line branch="false" hits="-1" number="39"/>
+						<line branch="false" hits="-1" number="40"/>
+						<line branch="false" hits="-1" number="47"/>
+						<line branch="false" hits="-1" number="54"/>
+						<line branch="false" hits="-1" number="73"/>
+						<line branch="false" hits="-1" number="76"/>
+						<line branch="false" hits="-1" number="80"/>
+						<line branch="false" hits="-1" number="86"/>
+						<line branch="false" hits="-1" number="88"/>
+						<line branch="false" hits="-1" number="90"/>
+						<line branch="false" hits="-1" number="92"/>
+						<line branch="false" hits="-1" number="95"/>
+						<line branch="false" hits="-1" number="97"/>
+						<line branch="false" hits="-1" number="99"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......serializer.src.archives">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../serializer/src/archives/DebugArchive.hh" line-rate="0.0" name="......serializer.src.archives.DebugArchive.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="33"/>
+						<line branch="false" hits="-1" number="41"/>
+						<line branch="false" hits="-1" number="53"/>
+						<line branch="false" hits="-1" number="71"/>
+						<line branch="false" hits="-1" number="78"/>
+						<line branch="false" hits="-1" number="85"/>
+						<line branch="false" hits="-1" number="97"/>
+						<line branch="false" hits="-1" number="108"/>
+						<line branch="false" hits="-1" number="121"/>
+						<line branch="false" hits="-1" number="128"/>
+						<line branch="false" hits="-1" number="136"/>
+						<line branch="false" hits="-1" number="148"/>
+						<line branch="false" hits="-1" number="166"/>
+						<line branch="false" hits="-1" number="173"/>
+						<line branch="false" hits="-1" number="180"/>
+						<line branch="false" hits="-1" number="192"/>
+						<line branch="false" hits="-1" number="203"/>
+						<line branch="false" hits="-1" number="216"/>
+						<line branch="false" hits="-1" number="224"/>
+						<line branch="false" hits="-1" number="232"/>
+						<line branch="false" hits="-1" number="244"/>
+						<line branch="false" hits="-1" number="263"/>
+						<line branch="false" hits="-1" number="270"/>
+						<line branch="false" hits="-1" number="277"/>
+						<line branch="false" hits="-1" number="289"/>
+						<line branch="false" hits="-1" number="300"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......serializer.src.objects">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../serializer/src/objects/Doc.hh" line-rate="0.0" name="......serializer.src.objects.Doc.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="13"/>
+						<line branch="false" hits="-1" number="17"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="29"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

@@ -1,0 +1,26 @@
+<map id="src/Base.hh" name="src/Base.hh">
+<area shape="rect" id="node2" href="$Composed_8hh.html" title="src/Composed.hh" alt="" coords="371,80,496,107"/>
+<area shape="rect" id="node5" href="$counters_8hh.html" title="src/counters.hh" alt="" coords="663,304,775,331"/>
+<area shape="rect" id="node13" href="$Value_8hh.html" title="src/Value.hh" alt="" coords="875,80,970,107"/>
+<area shape="rect" id="node21" href="$Base_8cc.html" title="src/Base.cc" alt="" coords="1557,80,1649,107"/>
+<area shape="rect" id="node22" href="$CounterManager_8hh.html" title="src/CounterManager.hh" alt="" coords="1198,80,1357,107"/>
+<area shape="rect" id="node24" href="$ExtValue_8hh.html" title="src/ExtValue.hh" alt="" coords="1417,80,1532,107"/>
+<area shape="rect" id="node3" href="$AvgTimedValue_8hh.html" title="src/AvgTimedValue.hh" alt="" coords="5,229,160,256"/>
+<area shape="rect" id="node6" href="$AvgValue_8hh.html" title="src/AvgValue.hh" alt="" coords="251,155,370,181"/>
+<area shape="rect" id="node8" href="$Perf_8hh.html" title="src/Perf.hh" alt="" coords="429,229,515,256"/>
+<area shape="rect" id="node10" href="$Cache_8hh.html" title="src/Cache.hh" alt="" coords="539,229,639,256"/>
+<area shape="rect" id="node12" href="$Composed_8cc.html" title="src/Composed.cc" alt="" coords="496,155,621,181"/>
+<area shape="rect" id="node4" href="$AvgTimedValue_8cc.html" title="src/AvgTimedValue.cc" alt="" coords="5,304,160,331"/>
+<area shape="rect" id="node7" href="$AvgValue_8cc.html" title="src/AvgValue.cc" alt="" coords="286,229,405,256"/>
+<area shape="rect" id="node9" href="$Perf_8cc.html" title="src/Perf.cc" alt="" coords="429,304,515,331"/>
+<area shape="rect" id="node11" href="$Cache_8cc.html" title="src/Cache.cc" alt="" coords="539,304,639,331"/>
+<area shape="rect" id="node14" href="$Freq_8hh.html" title="src/Freq.hh" alt="" coords="645,155,733,181"/>
+<area shape="rect" id="node16" href="$InstantFreq_8hh.html" title="src/InstantFreq.hh" alt="" coords="757,155,885,181"/>
+<area shape="rect" id="node18" href="$SumExt_8hh.html" title="src/SumExt.hh" alt="" coords="1011,155,1120,181"/>
+<area shape="rect" id="node20" href="$Value_8cc.html" title="src/Value.cc" alt="" coords="1145,155,1239,181"/>
+<area shape="rect" id="node15" href="$Freq_8cc.html" title="src/Freq.cc" alt="" coords="715,229,803,256"/>
+<area shape="rect" id="node17" href="$InstantFreq_8cc.html" title="src/InstantFreq.cc" alt="" coords="877,229,1005,256"/>
+<area shape="rect" id="node19" href="$SumExt_8cc.html" title="src/SumExt.cc" alt="" coords="1131,229,1240,256"/>
+<area shape="rect" id="node23" href="$CounterManager_8cc.html" title="src/CounterManager.cc" alt="" coords="1315,155,1474,181"/>
+<area shape="rect" id="node25" href="$ExtValue_8cc.html" title="src/ExtValue.cc" alt="" coords="1549,155,1664,181"/>
+</map>

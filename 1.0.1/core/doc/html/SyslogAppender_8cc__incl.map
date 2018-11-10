@@ -1,0 +1,15 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/core/src/log/SyslogAppender.cc" name="/home/travis/build/psycofdj/xtdcpp/core/src/log/SyslogAppender.cc">
+<area shape="rect" id="node2" href="$SyslogAppender_8hh.html" title="log/SyslogAppender.hh" alt="" coords="340,117,508,143"/>
+<area shape="rect" id="node26" href="$helpers_8hh.html" title="log/helpers.hh" alt="" coords="585,281,697,307"/>
+<area shape="rect" id="node28" href="$ConfLoader_8hh.html" title="log/ConfLoader.hh" alt="" coords="777,199,914,225"/>
+<area shape="rect" id="node4" href="$Appender_8hh.html" title="log/Appender.hh" alt="" coords="430,199,557,225"/>
+<area shape="rect" id="node25" href="$cloneable_8hh.html" title="mixins/cloneable.hh" alt="" coords="171,199,319,225"/>
+<area shape="rect" id="node5" href="$logtypes_8hh.html" title="log/logtypes.hh" alt="" coords="259,363,378,389"/>
+<area shape="rect" id="node20" href="$fwd_8hh.html" title="log/fwd.hh" alt="" coords="685,363,771,389"/>
+<area shape="rect" id="node21" href="$Formatter_8hh.html" title="log/Formatter.hh" alt="" coords="383,281,511,307"/>
+<area shape="rect" id="node7" href="$error_8hh.html" title="error.hh" alt="" coords="140,445,212,471"/>
+<area shape="rect" id="node8" href="$types_8hh.html" title="types.hh" alt="" coords="297,601,375,628"/>
+<area shape="rect" id="node16" href="$format_8hh.html" title="format.hh" alt="" coords="133,527,219,553"/>
+<area shape="rect" id="node22" href="$Fields_8hh.html" title="log/Fields.hh" alt="" coords="402,363,502,389"/>
+<area shape="rect" id="node29" href="$singleton_8hh.html" title="mixins/singleton.hh" alt="" coords="899,527,1045,553"/>
+</map>

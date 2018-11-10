@@ -1,0 +1,6 @@
+<map id="xtd::counters::Freq::~Freq" name="xtd::counters::Freq::~Freq">
+<area shape="rect" id="node2" href="$classxtd_1_1counters_1_1Freq.html#a9e91ea45fc5e9874dc81ca4bd723efc6" title="xtd::counters::Freq\l::tick" alt="" coords="185,5,317,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1counters_1_1Freq.html#a622e28502b8613bbac6fd40f324ddb8c" title="xtd::counters::Freq\l::operator=" alt="" coords="185,71,317,112"/>
+<area shape="rect" id="node5" href="$classxtd_1_1counters_1_1Freq.html#af4ee512e594def96c8bd907d2a369729" title="xtd::counters::Freq\l::update_safe" alt="" coords="185,136,317,177"/>
+<area shape="rect" id="node4" href="$classxtd_1_1counters_1_1Value.html#a017667569f4177e0c44836ef4e9bc7b0" title="xtd::counters::Value\l::operator=" alt="" coords="365,71,504,112"/>
+</map>

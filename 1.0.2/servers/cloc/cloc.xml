@@ -1,0 +1,32 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0735681056976318</elapsed_seconds>
+  <n_files>12</n_files>
+  <n_lines>2748</n_lines>
+  <files_per_second>163.114163212528</files_per_second>
+  <lines_per_second>37353.1433756688</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/servers/cloc/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc" blank="126" comment="79" code="543"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HtmlOArchive.cc" blank="81" comment="9" code="388"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Base.hh" blank="68" comment="156" code="187"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HtmlOArchive.hh" blank="33" comment="0" code="169"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.hh" blank="40" comment="12" code="152"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Handler.cc" blank="26" comment="2" code="123"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Handler.hh" blank="47" comment="108" code="110"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.hh" blank="20" comment="1" code="86"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Visitor.hh" blank="14" comment="55" code="49"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Visitor.cc" blank="6" comment="0" code="21"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/param/Base.cc" blank="5" comment="0" code="14"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc" blank="4" comment="4" code="10"  language="C++" />
+  <total blank="470" comment="426" code="1852" />
+</files>
+<languages>
+  <language name="C++" files_count="6" blank="248" comment="94" code="1099" />
+  <language name="C/C++ Header" files_count="6" blank="222" comment="332" code="753" />
+  <total sum_files="12" blank="470" comment="426" code="1852" />
+</languages>
+</results>

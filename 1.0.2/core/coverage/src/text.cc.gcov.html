@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/text.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - text.cc<span style="font-size: 80%;"> (source / <a href="text.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">35</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-01-15 22:41:14</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;text.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;boost/assign.hpp&gt;
+<span class="lineNum">       3 </span>            : #include &lt;boost/algorithm/string/replace.hpp&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/regex.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/algorithm/string/regex_find_format.hpp&gt;
+<span class="lineNum">       6 </span>            : #include &lt;boost/algorithm/string/trim.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &quot;format.hh&quot;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace xtd {
+<span class="lineNum">      10 </span>            : namespace text {
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span><span class="lineNoCov">          0 : xml::t_data xml::ms_entityList = xml::initialize();</span>
+<a name="13"><span class="lineNum">      13 </span>            : </a>
+<span class="lineNum">      14 </span>            : xml::t_data
+<span class="lineNum">      15 </span><span class="lineNoCov">          0 : xml::initialize(void)</span>
+<span class="lineNum">      16 </span>            : {
+<span class="lineNum">      17 </span>            :   return boost::assign::tuple_list_of
+<span class="lineNum">      18 </span><span class="lineNoCov">          0 :     (&quot;&amp;&quot;,  &quot;&amp;amp;&quot;)    // &amp; (must be first)</span>
+<span class="lineNum">      19 </span><span class="lineNoCov">          0 :     (&quot;\&quot;&quot;, &quot;&amp;quot;&quot;)   // &quot;</span>
+<span class="lineNum">      20 </span><span class="lineNoCov">          0 :     (&quot;'&quot;,  &quot;&amp;apos;&quot;)   // '</span>
+<span class="lineNum">      21 </span><span class="lineNoCov">          0 :     (&quot;&lt;&quot;,  &quot;&amp;lt;&quot;)     // &lt;</span>
+<span class="lineNum">      22 </span><span class="lineNoCov">          0 :     (&quot;&gt;&quot;,  &quot;&amp;gt;&quot;);    // &gt;</span>
+<span class="lineNum">      23 </span>            : }
+<span class="lineNum">      24 </span>            : 
+<a name="25"><span class="lineNum">      25 </span>            : </a>
+<span class="lineNum">      26 </span>            : void
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 : xml::encode(string&amp; p_str)</span>
+<span class="lineNum">      28 </span>            : {
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 :   t_data::const_iterator c_tuple;</span>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 :   for (auto&amp; c_tuple : ms_entityList)</span>
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :     boost::replace_all(p_str, c_tuple.get&lt;0&gt;(), c_tuple.get&lt;1&gt;());</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 : }</span>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<span class="lineNum">      35 </span>            : string
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 : xml::encode_copy(const string&amp; p_str)</span>
+<span class="lineNum">      37 </span>            : {
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   string l_value = p_str;</span>
+<span class="lineNum">      39 </span><span class="lineNoCov">          0 :   encode(l_value);</span>
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   return l_value;</span>
+<span class="lineNum">      41 </span>            : }
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : 
+<a name="45"><span class="lineNum">      45 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">      46 </span>            : string
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 : url::hex_to_string::operator()(const T&amp; p_match) const</span>
+<span class="lineNum">      48 </span>            : {
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :   stringstream  l_value;</span>
+<span class="lineNum">      50 </span>            :   int           l_intVal;
+<span class="lineNum">      51 </span>            :   unsigned char l_result;
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 :   l_value &lt;&lt; std::hex &lt;&lt; p_match.match_results().str(1);</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :   l_value &gt;&gt; l_intVal;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :   l_result = l_intVal;</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   return format::vargs(&quot;%c&quot;, l_result);</span>
+<span class="lineNum">      56 </span>            : }
+<span class="lineNum">      57 </span>            : 
+<a name="58"><span class="lineNum">      58 </span>            : </a>
+<span class="lineNum">      59 </span>            : string
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 : url::decode_copy(const string&amp; p_value)</span>
+<span class="lineNum">      61 </span>            : {
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   string       l_value(p_value);</span>
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   boost::regex l_hexRegex(&quot;%([0-9a-fA-F]{2})&quot;);</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   boost::regex l_spaceRegex(&quot;[ \t]{2,}&quot;);</span>
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span>            :   // replace all + by space
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   boost::replace_all(l_value, &quot;+&quot;, &quot; &quot;);</span>
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            :   // replace hex value by corresponding character
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   boost::smatch l_match;</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   boost::algorithm::find_format_all(l_value,</span>
+<span class="lineNum">      72 </span>            :                                     boost::algorithm::regex_finder(l_hexRegex),
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :                                     hex_to_string());</span>
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :   // remove duplicate spaces
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   boost::algorithm::find_format_all(l_value,</span>
+<span class="lineNum">      77 </span>            :                                     boost::algorithm::regex_finder(l_spaceRegex),
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :                                     boost::algorithm::const_formatter(&quot; &quot;));</span>
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :   boost::trim(l_value);</span>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 :   return l_value;</span>
+<span class="lineNum">      82 </span>            : }
+<a name="83"><span class="lineNum">      83 </span>            : </a>
+<span class="lineNum">      84 </span>            : 
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 : }}</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

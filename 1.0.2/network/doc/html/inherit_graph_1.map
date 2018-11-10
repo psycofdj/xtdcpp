@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classxtd_1_1network_1_1base_1_1Client.html" title="xtd::network::base\l::Client\&lt; TDomain \&gt;" alt="" coords="5,56,147,97"/>
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1bip_1_1Client.html" title="xtd::network::bip::\lClient\&lt; TRequest, TResponse,\l TDomain \&gt;" alt="" coords="195,13,399,69"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Client.html" title="xtd::network::http\l::Client\&lt; TDomain \&gt;" alt="" coords="226,92,367,133"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1bip_1_1ClientPool_1_1PersistentClient.html" title="xtd::network::bip::\lClientPool\&lt; TRequest,\l TResponse, TDomain \&gt;\l::PersistentClient" alt="" coords="447,5,613,76"/>
+</map>

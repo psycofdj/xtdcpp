@@ -1,0 +1,703 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Server.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Server.hh<span style="font-size: 80%;"> (source / <a href="Server.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-05 07:57:29</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef NETWORK_HTTP_SERVER_HH_</a>
+<span class="lineNum">       2 </span>            : # define NETWORK_HTTP_SERVER_HH_
+<span class="lineNum">       3 </span>            : # include &quot;base/Server.hh&quot;
+<span class="lineNum">       4 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : namespace boost { namespace system { class error_code; } }
+<span class="lineNum">       7 </span>            : namespace xtd { namespace network { namespace http { class Generator; } } }
+<span class="lineNum">       8 </span>            : namespace xtd { namespace network { namespace http { class Request; } } }
+<span class="lineNum">       9 </span>            : namespace xtd { namespace network { namespace http { class Response; } } }
+<span class="lineNum">      10 </span>            : namespace xtd { namespace network { namespace http { class Template; } } }
+<span class="lineNum">      11 </span>            : namespace xtd {
+<span class="lineNum">      12 </span>            : namespace network {
+<span class="lineNum">      13 </span>            : namespace http {
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : std::function&lt;bool(const Request&amp; p_req)&gt;
+<span class="lineNum">      16 </span>            : operator&amp;&amp;(std::function&lt;bool(const Request&amp; p_req)&gt; p_fn1,
+<span class="lineNum">      17 </span>            :            std::function&lt;bool(const Request&amp; p_req)&gt; p_fn2);
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : std::function&lt;bool(const Request&amp; p_req)&gt;
+<span class="lineNum">      21 </span>            : operator||(std::function&lt;bool(const Request&amp; p_req)&gt; p_fn1,
+<span class="lineNum">      22 </span>            :            std::function&lt;bool(const Request&amp; p_req)&gt; p_fn2);
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /**
+<span class="lineNum">      26 </span>            :  ** @param Domain mode de connexion, utils::af_inet ou utils::af_unix
+<span class="lineNum">      27 </span>            :  ** @details
+<span class="lineNum">      28 </span>            :  ** Serveur générique http. Gère la réception de requête HTTP, les transforme en
+<span class="lineNum">      29 </span>            :  ** objet Request, et envoie des réponses HTTP à partir d'objet Response.
+<span class="lineNum">      30 </span>            :  **
+<span class="lineNum">      31 </span>            :  ** En interne, cet objet gère une liste de &quot;handlers&quot;, capables de transformer
+<span class="lineNum">      32 </span>            :  ** un objet Request en un objet Response. Il gère également un mécanisme
+<span class="lineNum">      33 </span>            :  ** d'enregistrement et de routage des requête ces différents handlers.
+<span class="lineNum">      34 </span>            :  **
+<span class="lineNum">      35 </span>            :  ** &lt;br&gt;
+<span class="lineNum">      36 </span>            :  ** &lt;h2&gt; Le routage &lt;/h2&gt;
+<span class="lineNum">      37 </span>            :  **
+<span class="lineNum">      38 </span>            :  ** Le routage est extrêmement simple. On pacourt la liste des handlers enregistrés,
+<span class="lineNum">      39 </span>            :  ** et on exécute le premier vérifiant toutes les conditions. Si aucun handler est
+<span class="lineNum">      40 </span>            :  ** trouvé, on exécute le handler par défaut.
+<span class="lineNum">      41 </span>            :  **
+<span class="lineNum">      42 </span>            :  ** Pour être exécuté, un handler doit remplir deux critère :
+<span class="lineNum">      43 </span>            :  ** - l'url sur laquelle il à été enregistré correspond a la ressource demandée dans
+<span class="lineNum">      44 </span>            :  **   la requête (ce qui suit le GET ou le POST de la première ligne du header).
+<span class="lineNum">      45 </span>            :  **   On note le cas spécial où un handler peut être enregistré sur toutes les urls
+<span class="lineNum">      46 </span>            :  **   en même temps.
+<span class="lineNum">      47 </span>            :  **
+<span class="lineNum">      48 </span>            :  ** - si le handler a été enregistré avec un filtre, on vérifie la condition posée
+<span class="lineNum">      49 </span>            :  **   le filtre est vrai pour la requête.
+<span class="lineNum">      50 </span>            :  **
+<span class="lineNum">      51 </span>            :  **
+<span class="lineNum">      52 </span>            :  **
+<span class="lineNum">      53 </span>            :  **
+<span class="lineNum">      54 </span>            :  **
+<span class="lineNum">      55 </span>            :  **
+<span class="lineNum">      56 </span>            :  ** &lt;br&gt;
+<span class="lineNum">      57 </span>            :  ** &lt;h2&gt; Les handlers &lt;/h2&gt;
+<span class="lineNum">      58 </span>            :  **
+<span class="lineNum">      59 </span>            :  ** Un handler doit être vu comme un pointeur sur fonction dont le prototype serait :
+<span class="lineNum">      60 </span>            :  ** @code
+<span class="lineNum">      61 </span>            :  **   status myhandler(uint32_t p_requestID, const Request&amp; p_req, Response&amp; p_res);
+<span class="lineNum">      62 </span>            :  ** @endcode
+<span class="lineNum">      63 </span>            :  **
+<span class="lineNum">      64 </span>            :  ** En réalité, cet objet demande à ce que les handlers soient construit à partir de ses classes internes,
+<span class="lineNum">      65 </span>            :  ** dont le raccourcis est &quot;h&quot;. Exemple :
+<span class="lineNum">      66 </span>            :  ** @code
+<span class="lineNum">      67 </span>            :  **   // une fonction à moi que j'aime
+<span class="lineNum">      68 </span>            :  **   status MyServer::myhandler(uint32_t p_requestID, const Request&amp; p_req, Response&amp; p_res);
+<span class="lineNum">      69 </span>            :  **
+<span class="lineNum">      70 </span>            :  **   // enregistrement de ma fonction comme handler de la ressources /index
+<span class="lineNum">      71 </span>            :  **   bind(&quot;/index&quot;, h(&amp;MyServer::myhandler, this));
+<span class="lineNum">      72 </span>            :  ** @endcode
+<span class="lineNum">      73 </span>            :  **
+<span class="lineNum">      74 </span>            :  ** La raison pour laquelle ces handlers ont été wrappé dans un objet interne est
+<span class="lineNum">      75 </span>            :  ** d'une part de ne pas demander à l'utilisateur de systématiquement binder 3
+<span class="lineNum">      76 </span>            :  ** placeholders _1, _2, _3.
+<span class="lineNum">      77 </span>            :  **
+<span class="lineNum">      78 </span>            :  **
+<span class="lineNum">      79 </span>            :  **
+<span class="lineNum">      80 </span>            :  **
+<span class="lineNum">      81 </span>            :  **
+<span class="lineNum">      82 </span>            :  ** &lt;br&gt;
+<span class="lineNum">      83 </span>            :  ** &lt;h2&gt; Les filtres &lt;/h2&gt;
+<span class="lineNum">      84 </span>            :  **
+<span class="lineNum">      85 </span>            :  ** De la même façon, les filtres doivent être vus comme un pointeur sur fonction dont le prototype serait :
+<span class="lineNum">      86 </span>            :  ** @code
+<span class="lineNum">      87 </span>            :  **   bool filter(const Request&amp;);
+<span class="lineNum">      88 </span>            :  ** @endcode
+<span class="lineNum">      89 </span>            :  **
+<span class="lineNum">      90 </span>            :  ** Ils se contruisent à partir de l'objet interne du server dont le raccourcis est &quot;f&quot;. Exemple :
+<span class="lineNum">      91 </span>            :  ** @code
+<span class="lineNum">      92 </span>            :  **   // une fonction à moi que j'aime
+<span class="lineNum">      93 </span>            :  **   status MyServer::myhandler(uint32_t p_requestID, const Request&amp; p_req, Response&amp; p_res);
+<span class="lineNum">      94 </span>            :  **   bool  MyServer::myfilter(const Request&amp; p_req);
+<span class="lineNum">      95 </span>            :  **
+<span class="lineNum">      96 </span>            :  **   // enregistrement de ma fonction comme handler de la ressources /index
+<span class="lineNum">      97 </span>            :  **   bind(&quot;/index&quot;, h(&amp;MyServer::myhandler, this), f(&amp;MyServer::myfilter, this));
+<span class="lineNum">      98 </span>            :  ** @endcode
+<span class="lineNum">      99 </span>            :  **
+<span class="lineNum">     100 </span>            :  ** Ils ont également une autre fonctionnalité, il peuvent se composer avec les
+<span class="lineNum">     101 </span>            :  ** opérateurs standards booléens ||, &amp;&amp; et !. Exemple :
+<span class="lineNum">     102 </span>            :  **
+<span class="lineNum">     103 </span>            :  ** @code
+<span class="lineNum">     104 </span>            :  **   // une fonction à moi que j'aime
+<span class="lineNum">     105 </span>            :  **   status MyServer::myhandler(uint32_t p_requestID, const Request&amp; p_req, Response&amp; p_res);
+<span class="lineNum">     106 </span>            :  **   bool  MyServer::hasHeader(const string&amp; p_headerName, const Request&amp; p_req)
+<span class="lineNum">     107 </span>            :  **   {
+<span class="lineNum">     108 </span>            :  **     return p_req.existsHeader(p_headerName);
+<span class="lineNum">     109 </span>            :  **   }
+<span class="lineNum">     110 </span>            :  **
+<span class="lineNum">     111 </span>            :  **   // enregistrement de ma fonction comme handler de la ressources /index
+<span class="lineNum">     112 </span>            :  **   bind(&quot;/index&quot;,
+<span class="lineNum">     113 </span>            :  **        h(&amp;MyServer::myhandler, this),
+<span class="lineNum">     114 </span>            :  **        f(&amp;MyServer::hasHeader, this, &quot;Content-type&quot;) &amp;&amp;
+<span class="lineNum">     115 </span>            :  **        f(&amp;MyServer::hasHeader, this, &quot;Content-Length&quot;));
+<span class="lineNum">     116 </span>            :  ** @endcode
+<span class="lineNum">     117 </span>            :  **
+<span class="lineNum">     118 </span>            :  **
+<span class="lineNum">     119 </span>            :  **
+<span class="lineNum">     120 </span>            :  ** &lt;br&gt;
+<span class="lineNum">     121 </span>            :  ** &lt;h2&gt; L'enregistrement &lt;/h2&gt;
+<span class="lineNum">     122 </span>            :  **
+<span class="lineNum">     123 </span>            :  ** Cet objet founi de nombreuses méthodes utilitaires pour faciliter l'enregistrement des handlers.
+<span class="lineNum">     124 </span>            :  ** Elles sont toutes préfixées par &quot;bind&quot;.
+<span class="lineNum">     125 </span>            :  **
+<span class="lineNum">     126 </span>            :  ** - @code void bind(const string&amp; p_url, handler p_handler, [filter p_filter]); @endcode
+<span class="lineNum">     127 </span>            :  **   @copydoc xtd::network::http::Server::bind &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     128 </span>            :  **
+<span class="lineNum">     129 </span>            :  ** - @code void bind_any(handler p_handler, [filter p_filter]); @endcode
+<span class="lineNum">     130 </span>            :  **   @copydoc xtd::network::http::Server::bind_any &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     131 </span>            :  **
+<span class="lineNum">     132 </span>            :  ** - @code void bind_default(handler p_handler); @endcode
+<span class="lineNum">     133 </span>            :  **   @copydoc xtd::network::http::Server::bind_default &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     134 </span>            :  **
+<span class="lineNum">     135 </span>            :  ** - @code void bind_redirect(const string&amp; p_src, const string&amp; p_dst, [filter p_filter]); @endcode
+<span class="lineNum">     136 </span>            :  **   @copydoc xtd::network::http::Server::bind_redirect &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     137 </span>            :  **
+<span class="lineNum">     138 </span>            :  ** - @code
+<span class="lineNum">     139 </span>            :  ** void bind_file(const string&amp; p_path,
+<span class="lineNum">     140 </span>            :  **                const string&amp; p_filePath,
+<span class="lineNum">     141 </span>            :  **                const string&amp; p_contentType = &quot;text/plain&quot;,
+<span class="lineNum">     142 </span>            :  **                [filter            p_filter]);
+<span class="lineNum">     143 </span>            :  **   @endcode
+<span class="lineNum">     144 </span>            :  **   @copydoc xtd::network::http::Server::bind_file &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     145 </span>            :  **
+<span class="lineNum">     146 </span>            :  ** - @code
+<span class="lineNum">     147 </span>            :  ** void bind_dir(const string&amp; p_path,
+<span class="lineNum">     148 </span>            :  **               const string&amp; p_filePath,
+<span class="lineNum">     149 </span>            :  **               const string&amp; p_contentType = &quot;text/plain&quot;,
+<span class="lineNum">     150 </span>            :  **               [filter            p_filter]);
+<span class="lineNum">     151 </span>            :  **   @endcode
+<span class="lineNum">     152 </span>            :  **   @copydoc xtd::network::http::Server::bind_dir &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     153 </span>            :  **
+<span class="lineNum">     154 </span>            :  **
+<span class="lineNum">     155 </span>            :  ** &lt;h2&gt; Les handlers prédéfinis &lt;/h2&gt;
+<span class="lineNum">     156 </span>            :  **
+<span class="lineNum">     157 </span>            :  ** - @code h_redirect(const string&amp; p_dst, const uint32_t p_requestId, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     158 </span>            :  **   @copydoc xtd::network::http::Server::h_redirect
+<span class="lineNum">     159 </span>            :  **
+<span class="lineNum">     160 </span>            :  ** - @code h_raw(const string&amp; p_data, const string&amp; p_contentType, const uint32_t p_requestId, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     161 </span>            :  **   @copydoc xtd::network::http::Server::h_raw
+<span class="lineNum">     162 </span>            :  **
+<span class="lineNum">     163 </span>            :  ** - @code h_file(const string&amp; p_filePath, const string&amp; p_contentType, const uint32_t p_requestId, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     164 </span>            :  **   @copydoc xtd::network::http::Server::h_file
+<span class="lineNum">     165 </span>            :  **
+<span class="lineNum">     166 </span>            :  ** - @code h_dir(const string&amp; p_dirPath, const string&amp; p_contentType, const uint32_t p_requestId, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     167 </span>            :  **   @copydoc xtd::network::http::Server::h_dir
+<span class="lineNum">     168 </span>            :  **
+<span class="lineNum">     169 </span>            :  ** - @code h_template_file(const Template&amp; p_tmpl, const string&amp; const uint32_t p_requestID, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     170 </span>            :  **   @copydoc xtd::network::http::Server::h_template_file
+<span class="lineNum">     171 </span>            :  **
+<span class="lineNum">     172 </span>            :  ** - @code h_error_text(const string&amp; p_message, const uint32_t p_requestId, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     173 </span>            :  **   @copydoc xtd::network::http::Server::h_error_text
+<span class="lineNum">     174 </span>            :  **
+<span class="lineNum">     175 </span>            :  ** - @code h_error_html(const string&amp; p_message, const uint32_t p_requestId, const Request&amp; p_request, Response&amp; p_response); @endcode
+<span class="lineNum">     176 </span>            :  **   @copydoc xtd::network::http::Server::h_error_html
+<span class="lineNum">     177 </span>            :  **
+<span class="lineNum">     178 </span>            :  ** &lt;h2&gt; Les filtres prédéfinis &lt;/h2&gt;
+<span class="lineNum">     179 </span>            :  **
+<span class="lineNum">     180 </span>            :  **
+<span class="lineNum">     181 </span>            :  ** - @code static bool f_none(const Request&amp; p_request); @endcode
+<span class="lineNum">     182 </span>            :  **   @copydoc xtd::network::http::Server::f_none &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     183 </span>            :  **
+<span class="lineNum">     184 </span>            :  ** - @code bool f_cgi_exist(const string&amp; p_cgiName, const Request&amp; p_request); @endcode
+<span class="lineNum">     185 </span>            :  **   @copydoc xtd::network::http::Server::f_cgi_exist &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     186 </span>            :  **
+<span class="lineNum">     187 </span>            :  ** - @code bool f_one_cgi_exist(const vector &lt;string &gt; &amp; p_cgiName, const Request&amp; p_req); @endcode
+<span class="lineNum">     188 </span>            :  **   @copydoc xtd::network::http::Server::f_one_cgi_exist &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     189 </span>            :  **
+<span class="lineNum">     190 </span>            :  ** - @code bool f_cgi_equal(const string&amp; p_cgiName, const string&amp; p_value, const Request&amp; p_request); @endcode
+<span class="lineNum">     191 </span>            :  **   @copydoc xtd::network::http::Server::f_cgi_equal &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     192 </span>            :  **
+<span class="lineNum">     193 </span>            :  ** - @code bool f_cgi_match(const string&amp; p_cgiName, const string&amp; p_regex, const Request&amp; p_request); @endcode
+<span class="lineNum">     194 </span>            :  **   @copydoc xtd::network::http::Server::f_cgi_match &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     195 </span>            :  **
+<span class="lineNum">     196 </span>            :  ** - @code bool f_post_exist(const string&amp; p_cgiName, const Request&amp; p_request); @endcode
+<span class="lineNum">     197 </span>            :  **   @copydoc xtd::network::http::Server::f_post_exist &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     198 </span>            :  **
+<span class="lineNum">     199 </span>            :  ** - @code bool f_post_equal(const string&amp; p_cgiName, const string&amp; p_value, const Request&amp; p_request); @endcode
+<span class="lineNum">     200 </span>            :  **   @copydoc xtd::network::http::Server::f_post_equal &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     201 </span>            :  **
+<span class="lineNum">     202 </span>            :  ** - @code bool f_post_match(const string&amp; p_cgiName, const string&amp; p_regex, const Request&amp; p_request); @endcode
+<span class="lineNum">     203 </span>            :  **   @copydoc xtd::network::http::Server::f_post_match &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     204 </span>            :  **
+<span class="lineNum">     205 </span>            :  ** - @code bool f_header_exist(const string&amp; p_headerName, const Request&amp; p_request); @endcode
+<span class="lineNum">     206 </span>            :  **   @copydoc xtd::network::http::Server::f_header_exist &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     207 </span>            :  **
+<span class="lineNum">     208 </span>            :  ** - @code bool f_header_equal(const string&amp; p_headerName, const string&amp; p_value, const Request&amp; p_request); @endcode
+<span class="lineNum">     209 </span>            :  **   @copydoc xtd::network::http::Server::f_header_equal &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     210 </span>            :  **
+<span class="lineNum">     211 </span>            :  ** - @code bool f_header_match(const string&amp; p_headerName, const string&amp; p_value, const Request&amp; p_request); @endcode
+<span class="lineNum">     212 </span>            :  **   @copydoc xtd::network::http::Server::f_header_match &lt;br&gt;&lt;br&gt;
+<span class="lineNum">     213 </span>            :  **
+<span class="lineNum">     214 </span>            :  */
+<span class="lineNum">     215 </span>            : template&lt;typename Domain&gt;
+<span class="lineNum">     216 </span>            : class Server : public base::Server&lt;Domain&gt;
+<span class="lineNum">     217 </span>            : {
+<span class="lineNum">     218 </span>            : private:
+<span class="lineNum">     219 </span>            :   typedef base::Server&lt;Domain&gt;       TBase;
+<span class="lineNum">     220 </span>            :   typedef typename TBase::cnx_sptr_t cnx_sptr_t;
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            : public:
+<span class="lineNum">     223 </span>            :   Server(void);
+<span class="lineNum">     224 </span>            :   virtual ~Server(void);
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span>            :   /**
+<span class="lineNum">     227 </span>            :    ** @brief invoke base start method and print log
+<span class="lineNum">     228 </span>            :    */
+<span class="lineNum">     229 </span>            :   virtual void start(void);
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span>            :   /**
+<span class="lineNum">     232 </span>            :    ** @brief invoke base stop method and print log
+<span class="lineNum">     233 </span>            :    */
+<span class="lineNum">     234 </span>            :   virtual void stop(void);
+<span class="lineNum">     235 </span>            : 
+<span class="lineNum">     236 </span>            : private:
+<span class="lineNum">     237 </span>            :   cnx_sptr_t createCnx(string p_hostname, uint32_t p_port);
+<span class="lineNum">     238 </span>            :   void       afterAccept(cnx_sptr_t p_conn);
+<span class="lineNum">     239 </span>            :   void       afterSend(cnx_sptr_t   p_conn);
+<span class="lineNum">     240 </span>            :   void       afterReceive(cnx_sptr_t p_conn, sptr&lt;vector&lt;char&gt;&gt; p_inBuffer);
+<span class="lineNum">     241 </span>            :   void       processRequest(uint32_t p_processID, std::istream&amp; p_request, Request&amp; p_req, Response&amp; p_res);
+<span class="lineNum">     242 </span>            :   void       onReceiveError(const boost::system::error_code p_error, cnx_sptr_t p_conn);
+<span class="lineNum">     243 </span>            :   void       onReceiveTimeout(const boost::system::error_code p_error, cnx_sptr_t p_conn);
+<a name="244"><span class="lineNum">     244 </span>            : </a>
+<span class="lineNum">     245 </span>            : protected:
+<span class="lineNum">     246 </span><span class="lineCov">         26 :   class Handler</span>
+<span class="lineNum">     247 </span>            :   {
+<span class="lineNum">     248 </span>            :   public:
+<span class="lineNum">     249 </span>            :     typedef vector&lt;Handler&gt;                                                  t_listof;
+<span class="lineNum">     250 </span>            :     typedef std::function&lt;status(const uint32_t, const Request&amp;, Response&amp;)&gt; t_process;
+<span class="lineNum">     251 </span>            :     typedef std::function&lt;bool(const Request&amp;)&gt;                              t_filter;
+<span class="lineNum">     252 </span>            : 
+<span class="lineNum">     253 </span>            :   public:
+<span class="lineNum">     254 </span>            :     static bool less(const Handler&amp; p_obj1, const Handler&amp; p_obj2);
+<span class="lineNum">     255 </span>            : 
+<span class="lineNum">     256 </span>            :   public:
+<span class="lineNum">     257 </span>            :     Handler(void);
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span>            :   public:
+<span class="lineNum">     260 </span>            :     string    m_path;
+<span class="lineNum">     261 </span>            :     t_process m_process;
+<span class="lineNum">     262 </span>            :     t_filter  m_filter;
+<span class="lineNum">     263 </span>            :     bool      m_matchAny;
+<span class="lineNum">     264 </span>            :     string    m_descr;
+<span class="lineNum">     265 </span>            :   };
+<span class="lineNum">     266 </span>            : 
+<span class="lineNum">     267 </span>            : protected:
+<span class="lineNum">     268 </span>            :   typedef typename Handler::t_process handler;
+<span class="lineNum">     269 </span>            :   typedef typename Handler::t_filter  filter;
+<span class="lineNum">     270 </span>            : 
+<span class="lineNum">     271 </span>            : protected:
+<span class="lineNum">     272 </span>            :   template&lt;typename T, typename... Arguments&gt;
+<span class="lineNum">     273 </span>            :   handler h(T p_fn, Arguments&amp;&amp;... p_args);
+<span class="lineNum">     274 </span>            : 
+<span class="lineNum">     275 </span>            :   template&lt;typename T, typename... Arguments&gt;
+<span class="lineNum">     276 </span>            :   filter f(T p_fn, Arguments&amp;&amp;... p_args);
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span>            : protected:
+<span class="lineNum">     279 </span>            :   // filters
+<span class="lineNum">     280 </span>            :   /**
+<span class="lineNum">     281 </span>            :    ** @brief Toujours vrai
+<span class="lineNum">     282 </span>            :    */
+<span class="lineNum">     283 </span>            :   static bool f_none(const Request&amp; p_request);
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            :   /**
+<span class="lineNum">     286 </span>            :    ** @brief Vrai si la requête contient un paramètre GET nommé p_cgiName
+<span class="lineNum">     287 </span>            :    */
+<span class="lineNum">     288 </span>            :   bool f_cgi_exist(const string&amp;  p_cgiName,
+<span class="lineNum">     289 </span>            :                    const Request&amp; p_request);
+<span class="lineNum">     290 </span>            : 
+<span class="lineNum">     291 </span>            : 
+<span class="lineNum">     292 </span>            :   /**
+<span class="lineNum">     293 </span>            :    ** @details
+<span class="lineNum">     294 </span>            :    ** Vrai si la requête contient un paramètre GET dont le nom
+<span class="lineNum">     295 </span>            :    ** correspond à l'un des éléments du tableau p_cgiName
+<span class="lineNum">     296 </span>            :    */
+<span class="lineNum">     297 </span>            :   bool f_one_cgi_exist(const vector&lt;string&gt;&amp; p_cgiName,
+<span class="lineNum">     298 </span>            :                        const Request&amp;        p_req);
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span>            :   /**
+<span class="lineNum">     301 </span>            :    ** @details
+<span class="lineNum">     302 </span>            :    ** Vrai si la requête contient un paramètre GET nommé p_cgiName
+<span class="lineNum">     303 </span>            :    ** et dont la valeur est égale à p_value
+<span class="lineNum">     304 </span>            :    */
+<span class="lineNum">     305 </span>            :   bool f_cgi_equal(const string&amp;  p_cgiName,
+<span class="lineNum">     306 </span>            :                    const string&amp;  p_value,
+<span class="lineNum">     307 </span>            :                    const Request&amp; p_request);
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            :   /**
+<span class="lineNum">     310 </span>            :    ** @details
+<span class="lineNum">     311 </span>            :    ** Vrai si la requête contient un paramètre GET nommé p_cgiName
+<span class="lineNum">     312 </span>            :    ** et dont la valeur match la regexp p_regex
+<span class="lineNum">     313 </span>            :    */
+<span class="lineNum">     314 </span>            :   bool f_cgi_match(const string&amp;  p_cgiName,
+<span class="lineNum">     315 </span>            :                    const string&amp;  p_regex,
+<span class="lineNum">     316 </span>            :                    const Request&amp; p_request);
+<span class="lineNum">     317 </span>            : 
+<span class="lineNum">     318 </span>            :   /**
+<span class="lineNum">     319 </span>            :    ** @brief Vrai si la requête contient un paramètre POST nommé p_cgiName
+<span class="lineNum">     320 </span>            :    */
+<span class="lineNum">     321 </span>            :   bool f_post_exist(const string&amp;  p_cgiName,
+<span class="lineNum">     322 </span>            :                     const Request&amp; p_request);
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span>            :   /**
+<span class="lineNum">     325 </span>            :    ** @brief Vrai si la requête contient un paramètre POST ou GET nommé p_cgiName
+<span class="lineNum">     326 </span>            :    */
+<span class="lineNum">     327 </span>            :   bool f_param_exist(const string&amp;  p_cgiName,
+<span class="lineNum">     328 </span>            :                      const Request&amp; p_request);
+<span class="lineNum">     329 </span>            : 
+<span class="lineNum">     330 </span>            :   /**
+<span class="lineNum">     331 </span>            :    ** @details
+<span class="lineNum">     332 </span>            :    ** Vrai si la requête contient un paramètre POST nommé p_cgiName
+<span class="lineNum">     333 </span>            :    ** et dont la valeur est égale à p_value
+<span class="lineNum">     334 </span>            :    */
+<span class="lineNum">     335 </span>            :   bool f_post_equal(const string&amp;  p_cgiName,
+<span class="lineNum">     336 </span>            :                     const string&amp;  p_value,
+<span class="lineNum">     337 </span>            :                     const Request&amp; p_request);
+<span class="lineNum">     338 </span>            : 
+<span class="lineNum">     339 </span>            : 
+<span class="lineNum">     340 </span>            :   /**
+<span class="lineNum">     341 </span>            :    ** @details
+<span class="lineNum">     342 </span>            :    ** Vrai si la requête contient un paramètre POST nommé p_cgiName
+<span class="lineNum">     343 </span>            :    ** et dont la valeur match la regexp p_regex
+<span class="lineNum">     344 </span>            :    */
+<span class="lineNum">     345 </span>            :   bool f_post_match(const string&amp;  p_cgiName,
+<span class="lineNum">     346 </span>            :                     const string&amp;  p_regex,
+<span class="lineNum">     347 </span>            :                     const Request&amp; p_request);
+<span class="lineNum">     348 </span>            : 
+<span class="lineNum">     349 </span>            :   /**
+<span class="lineNum">     350 </span>            :    ** @brief Vrai si p_request contient le header p_headerName
+<span class="lineNum">     351 </span>            :    */
+<span class="lineNum">     352 </span>            :   bool f_header_exist(const string&amp;  p_headerName,
+<span class="lineNum">     353 </span>            :                       const Request&amp; p_request);
+<span class="lineNum">     354 </span>            : 
+<span class="lineNum">     355 </span>            :   /**
+<span class="lineNum">     356 </span>            :    ** @details
+<span class="lineNum">     357 </span>            :    ** Vrai si p_request contient le header p_headerName dont la valeur est egale
+<span class="lineNum">     358 </span>            :    ** a p_value
+<span class="lineNum">     359 </span>            :    */
+<span class="lineNum">     360 </span>            :   bool f_header_equal(const string&amp;  p_headerName,
+<span class="lineNum">     361 </span>            :                       const string&amp;  p_value,
+<span class="lineNum">     362 </span>            :                       const Request&amp; p_request);
+<span class="lineNum">     363 </span>            : 
+<span class="lineNum">     364 </span>            :   /**
+<span class="lineNum">     365 </span>            :    ** @details
+<span class="lineNum">     366 </span>            :    ** Vrai si p_request contient le header p_headerName dont la valeur match la
+<span class="lineNum">     367 </span>            :    ** regexp p_value
+<span class="lineNum">     368 </span>            :    */
+<span class="lineNum">     369 </span>            :   bool f_header_match(const string&amp;  p_headerName,
+<span class="lineNum">     370 </span>            :                       const string&amp;  p_value,
+<span class="lineNum">     371 </span>            :                       const Request&amp; p_request);
+<span class="lineNum">     372 </span>            : 
+<span class="lineNum">     373 </span>            :   // handlers
+<span class="lineNum">     374 </span>            :   /**
+<span class="lineNum">     375 </span>            :    ** @brief Handler de redirection
+<span class="lineNum">     376 </span>            :    ** @param p_dst destination de la redirection HTTP
+<span class="lineNum">     377 </span>            :    ** @param p_requestId identifiant de requête
+<span class="lineNum">     378 </span>            :    ** @param p_request @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     379 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     380 </span>            :    ** @details
+<span class="lineNum">     381 </span>            :    ** Créer une redirection HTTP Response::STATUS_302 &quot;code 302&quot; redirigeant sur p_dst
+<span class="lineNum">     382 </span>            :    */
+<span class="lineNum">     383 </span>            :   status h_redirect(const string&amp;  p_dst,
+<span class="lineNum">     384 </span>            :                     const uint32_t p_requestId,
+<span class="lineNum">     385 </span>            :                     const Request&amp; p_request,
+<span class="lineNum">     386 </span>            :                     Response&amp;      p_response);
+<span class="lineNum">     387 </span>            : 
+<span class="lineNum">     388 </span>            :   /**
+<span class="lineNum">     389 </span>            :    ** @brief Handler de contenu
+<span class="lineNum">     390 </span>            :    ** @param p_data donnée à insérer dans la réponse
+<span class="lineNum">     391 </span>            :    ** @param p_contentType type MIME de la donnée
+<span class="lineNum">     392 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     393 </span>            :    ** @details
+<span class="lineNum">     394 </span>            :    ** Créer une réponse HTTP (Response::STATUS_200 contenant la
+<span class="lineNum">     395 </span>            :    ** donnée p_data et le header @b Content-Type p_contentType
+<span class="lineNum">     396 </span>            :    */
+<span class="lineNum">     397 </span>            :   status h_raw(const string&amp;     p_data,
+<span class="lineNum">     398 </span>            :                const string&amp;     p_contentType,
+<span class="lineNum">     399 </span>            :                const uint32_t /* p_requestId*/,
+<span class="lineNum">     400 </span>            :                const Request&amp; /* p_request */,
+<span class="lineNum">     401 </span>            :                Response&amp;         p_response);
+<span class="lineNum">     402 </span>            : 
+<span class="lineNum">     403 </span>            :   /**
+<span class="lineNum">     404 </span>            :    ** @brief Handler de fichier
+<span class="lineNum">     405 </span>            :    ** @param p_filePath chemin vers le fichier à insérer dans la réponse
+<span class="lineNum">     406 </span>            :    ** @param p_contentType type MIME du fichier
+<span class="lineNum">     407 </span>            :    ** @param p_cachable La reponse peut elle mettre en mis en cache par le navigateur ?
+<span class="lineNum">     408 </span>            :    ** @param p_requestId identifiant de requête
+<span class="lineNum">     409 </span>            :    ** @param p_request @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     410 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     411 </span>            :    ** @details
+<span class="lineNum">     412 </span>            :    ** Créer une réponse HTTP Response::STATUS_200 embarquant le
+<span class="lineNum">     413 </span>            :    ** contenu du fichier pointé par p_filePath et le header @b Content-Type p_contentType.
+<span class="lineNum">     414 </span>            :    ** Si p_filePath n'éxiste pas, la réponse sera générée par @ref xtd::network::http::Server::h_error_text.
+<span class="lineNum">     415 </span>            :    */
+<span class="lineNum">     416 </span>            :   status h_file(const string&amp;  p_filePath,
+<span class="lineNum">     417 </span>            :                 const string&amp;  p_contentType,
+<span class="lineNum">     418 </span>            :                 bool           p_cachable,
+<span class="lineNum">     419 </span>            :                 const uint32_t p_requestId,
+<span class="lineNum">     420 </span>            :                 const Request&amp; p_request,
+<span class="lineNum">     421 </span>            :                 Response&amp;      p_response);
+<span class="lineNum">     422 </span>            : 
+<span class="lineNum">     423 </span>            :   /**
+<span class="lineNum">     424 </span>            :    ** @brief Handler de répertoire
+<span class="lineNum">     425 </span>            :    ** @param p_dirPath chemin vers le répertoire à servir
+<span class="lineNum">     426 </span>            :    ** @param p_contentType type MIME des fichiers du répertoire
+<span class="lineNum">     427 </span>            :    ** @param p_cachable La reponse peut elle mettre en mis en cache par le navigateur ?
+<span class="lineNum">     428 </span>            :    ** @param p_requestId identifiant de requête
+<span class="lineNum">     429 </span>            :    ** @param p_request @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     430 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     431 </span>            :    ** @details
+<span class="lineNum">     432 </span>            :    ** Comme @ref xtd::network::http::Server::h_file mais trouve automatiquement quel
+<span class="lineNum">     433 </span>            :    ** fichier de p_dirPath à servir en fonction de la ressource demandé dans p_request.
+<span class="lineNum">     434 </span>            :    */
+<span class="lineNum">     435 </span>            :   status h_dir(const string&amp;  p_dirPath,
+<span class="lineNum">     436 </span>            :                const string&amp;  p_contentType,
+<span class="lineNum">     437 </span>            :                bool           p_cachable,
+<span class="lineNum">     438 </span>            :                const uint32_t p_requestId,
+<span class="lineNum">     439 </span>            :                const Request&amp; p_request,
+<span class="lineNum">     440 </span>            :                Response&amp;      p_response);
+<span class="lineNum">     441 </span>            : 
+<span class="lineNum">     442 </span>            : 
+<span class="lineNum">     443 </span>            :   /**
+<span class="lineNum">     444 </span>            :    ** @brief Handler de texte templaté a partir d'un fichier
+<span class="lineNum">     445 </span>            :    ** @param p_tmpl objet @ref xtd::network::http::Template &quot;template&quot;
+<span class="lineNum">     446 </span>            :    ** @param p_filePath fichier a partir duquel initialiser le template
+<span class="lineNum">     447 </span>            :    ** @param p_requestID identifiant de requête
+<span class="lineNum">     448 </span>            :    ** @param p_req @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     449 </span>            :    ** @param p_res @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     450 </span>            :    ** @details
+<span class="lineNum">     451 </span>            :    ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl Response::STATUS_200.
+<span class="lineNum">     452 </span>            :    ** Le header @b Content-Type est également donné par p_tmpl.
+<span class="lineNum">     453 </span>            :    ** Si la lecture du fichier p_filePath ou si la résolution des variable
+<span class="lineNum">     454 </span>            :    ** du template échouent, alors la réponse sera générée par
+<span class="lineNum">     455 </span>            :    ** @ref xtd::network::http::Server::h_error_text.
+<span class="lineNum">     456 </span>            :    */
+<span class="lineNum">     457 </span>            :   status h_template_file(Template&amp;      p_tmpl,
+<span class="lineNum">     458 </span>            :                          const string&amp;  p_filePath,
+<span class="lineNum">     459 </span>            :                          const uint32_t p_requestID,
+<span class="lineNum">     460 </span>            :                          const Request&amp; p_req,
+<span class="lineNum">     461 </span>            :                          Response&amp;      p_res);
+<span class="lineNum">     462 </span>            : 
+<span class="lineNum">     463 </span>            : 
+<span class="lineNum">     464 </span>            :   /**
+<span class="lineNum">     465 </span>            :    ** @brief Handler de generation de texte
+<span class="lineNum">     466 </span>            :    ** @param p_gen objet @ref xtd::network::http::Generator &quot;generateur&quot;
+<span class="lineNum">     467 </span>            :    ** @param p_requestId identifiant de requête
+<span class="lineNum">     468 </span>            :    ** @param p_request @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     469 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     470 </span>            :    ** @details
+<span class="lineNum">     471 </span>            :    ** Génère une réponse HTTP pré-formatée par l'objet Template p_tmpl Response::STATUS_200.
+<span class="lineNum">     472 </span>            :    ** Le header @b Content-Type est également donné par p_tmpl.
+<span class="lineNum">     473 </span>            :    ** Si la résolution des variable du template échoue, alors la réponse sera générée
+<span class="lineNum">     474 </span>            :    ** par @ref xtd::network::http::Server::h_error_text.
+<span class="lineNum">     475 </span>            :    */
+<span class="lineNum">     476 </span>            :   status h_gen(Generator&amp;     p_gen,
+<span class="lineNum">     477 </span>            :                const uint32_t p_requestId,
+<span class="lineNum">     478 </span>            :                const Request&amp; p_request,
+<span class="lineNum">     479 </span>            :                Response&amp;      p_response);
+<span class="lineNum">     480 </span>            : 
+<span class="lineNum">     481 </span>            : 
+<span class="lineNum">     482 </span>            :   /**
+<span class="lineNum">     483 </span>            :    ** @brief Handler de génération de message d'erreur en texte
+<span class="lineNum">     484 </span>            :    ** @param p_message contenu du message d'erreur
+<span class="lineNum">     485 </span>            :    ** @param p_requestId identifiant de requête
+<span class="lineNum">     486 </span>            :    ** @param p_request @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     487 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     488 </span>            :    ** @details
+<span class="lineNum">     489 </span>            :    ** Génère une réponse HTTP d'erreur Response::STATUS_500 de type
+<span class="lineNum">     490 </span>            :    ** @b Content-Type &quot;text/plain&quot; contenant le message p_message.
+<span class="lineNum">     491 </span>            :    */
+<span class="lineNum">     492 </span>            :   status h_error_text(const string&amp;  p_message,
+<span class="lineNum">     493 </span>            :                       const uint32_t p_requestId,
+<span class="lineNum">     494 </span>            :                       const Request&amp; p_request,
+<span class="lineNum">     495 </span>            :                       Response&amp;      p_response);
+<span class="lineNum">     496 </span>            : 
+<span class="lineNum">     497 </span>            : 
+<span class="lineNum">     498 </span>            :   /**
+<span class="lineNum">     499 </span>            :    ** @brief Handler de génération de message d'erreur en html
+<span class="lineNum">     500 </span>            :    ** @param p_message contenu du message d'erreur
+<span class="lineNum">     501 </span>            :    ** @param p_requestId identifiant de requête
+<span class="lineNum">     502 </span>            :    ** @param p_request @ref xtd::network::http::Request &quot;requête&quot;
+<span class="lineNum">     503 </span>            :    ** @param p_response @ref xtd::network::http::Response &quot;réponse&quot;
+<span class="lineNum">     504 </span>            :    ** @details
+<span class="lineNum">     505 </span>            :    ** Même chose que @ref xtd::network::http::Server::h_error_text mais le message
+<span class="lineNum">     506 </span>            :    ** généré est de type &quot;text/html&quot;.
+<span class="lineNum">     507 </span>            :    */
+<span class="lineNum">     508 </span>            :   status h_error_html(const string&amp;  p_message,
+<span class="lineNum">     509 </span>            :                       const uint32_t p_requestId,
+<span class="lineNum">     510 </span>            :                       const Request&amp; p_request,
+<span class="lineNum">     511 </span>            :                       Response&amp;      p_response);
+<span class="lineNum">     512 </span>            : 
+<span class="lineNum">     513 </span>            : 
+<span class="lineNum">     514 </span>            : 
+<span class="lineNum">     515 </span>            :   // binders
+<span class="lineNum">     516 </span>            :   /**
+<span class="lineNum">     517 </span>            :    ** @param p_src ressource sur laquelle déclencher la redirection
+<span class="lineNum">     518 </span>            :    ** @param p_dst destination de la redirection
+<span class="lineNum">     519 </span>            :    ** @param p_filter filter &quot;filtre&quot; optionnel
+<span class="lineNum">     520 </span>            :    ** @details
+<span class="lineNum">     521 </span>            :    ** Enregistrement d'un handler de redirection. Créer une réponse http qui contient
+<span class="lineNum">     522 </span>            :    ** le header &quot;Location : p_dst&quot; et le code HTTP Response::STATUS_302.
+<span class="lineNum">     523 </span>            :    */
+<span class="lineNum">     524 </span>            :   void bind_redirect(const string&amp; p_src,
+<span class="lineNum">     525 </span>            :                      const string&amp; p_dst,
+<span class="lineNum">     526 </span>            :                      filter        p_filter = &amp;Server::f_none);
+<span class="lineNum">     527 </span>            : 
+<span class="lineNum">     528 </span>            : 
+<span class="lineNum">     529 </span>            :   void bind_xml(const string&amp; p_url,
+<span class="lineNum">     530 </span>            :                 const string&amp; p_xmlPath,
+<span class="lineNum">     531 </span>            :                 const string&amp; p_xsltPath,
+<span class="lineNum">     532 </span>            :                 filter        p_filter = &amp;Server::f_none);
+<span class="lineNum">     533 </span>            : 
+<span class="lineNum">     534 </span>            :   /**
+<span class="lineNum">     535 </span>            :    ** @details
+<span class="lineNum">     536 </span>            :    ** Voir @ref xtd::network::http::Server::h_file
+<span class="lineNum">     537 </span>            :    */
+<span class="lineNum">     538 </span>            :   void bind_file(const string&amp; p_path,
+<span class="lineNum">     539 </span>            :                  const string&amp; p_filePath,
+<span class="lineNum">     540 </span>            :                  const string&amp; p_contentType,
+<span class="lineNum">     541 </span>            :                  bool          p_cachable,
+<span class="lineNum">     542 </span>            :                  filter        p_filter = &amp;Server::f_none);
+<span class="lineNum">     543 </span>            : 
+<span class="lineNum">     544 </span>            :   /**
+<span class="lineNum">     545 </span>            :    ** @details
+<span class="lineNum">     546 </span>            :    ** Voir @ref xtd::network::http::Server::h_dir
+<span class="lineNum">     547 </span>            :    */
+<span class="lineNum">     548 </span>            :   void bind_dir(const string&amp; p_url,
+<span class="lineNum">     549 </span>            :                 const string&amp; p_filePath,
+<span class="lineNum">     550 </span>            :                 const string&amp; p_contentType,
+<span class="lineNum">     551 </span>            :                 bool          p_cachable,
+<span class="lineNum">     552 </span>            :                 filter        p_filter = &amp;Server::f_none);
+<span class="lineNum">     553 </span>            : 
+<span class="lineNum">     554 </span>            :   /**
+<span class="lineNum">     555 </span>            :    ** @param p_url ressource à enregistrer
+<span class="lineNum">     556 </span>            :    ** @param p_handler handler à enregistrer
+<span class="lineNum">     557 </span>            :    ** @param p_filter filter &quot;filtre&quot; optionnel
+<span class="lineNum">     558 </span>            :    ** @param p_descr description du handler (optionnel)
+<span class="lineNum">     559 </span>            :    ** @details
+<span class="lineNum">     560 </span>            :    ** Enregistrement générique de la ressource p_url sous condition optionnelle p_filter
+<span class="lineNum">     561 </span>            :    ** sur le handler p_handler.
+<span class="lineNum">     562 </span>            :    */
+<span class="lineNum">     563 </span>            :   void bind(const string&amp; p_url,
+<span class="lineNum">     564 </span>            :             handler       p_handler,
+<span class="lineNum">     565 </span>            :             filter        p_filter = &amp;Server::f_none,
+<span class="lineNum">     566 </span>            :             const string&amp; p_descr  = string());
+<span class="lineNum">     567 </span>            : 
+<span class="lineNum">     568 </span>            : 
+<span class="lineNum">     569 </span>            :   /**
+<span class="lineNum">     570 </span>            :    ** @param p_url ressource à enregistrer
+<span class="lineNum">     571 </span>            :    ** @param p_handler handler à enregistrer
+<span class="lineNum">     572 </span>            :    ** @param p_descr description du handler
+<span class="lineNum">     573 </span>            :    ** @details
+<span class="lineNum">     574 </span>            :    ** Enregistrement générique de la ressource p_url sur le handler p_handler.
+<span class="lineNum">     575 </span>            :    ** Cette ressource sera automatique mise a disposition dans
+<span class="lineNum">     576 </span>            :    ** la création de l'index automatique.
+<span class="lineNum">     577 </span>            :    */
+<span class="lineNum">     578 </span>            :   void bind_public(const string&amp; p_url,
+<span class="lineNum">     579 </span>            :                    handler       p_handler,
+<span class="lineNum">     580 </span>            :                    const string&amp; p_descr);
+<span class="lineNum">     581 </span>            : 
+<span class="lineNum">     582 </span>            : 
+<span class="lineNum">     583 </span>            :   /**
+<span class="lineNum">     584 </span>            :    ** @param p_handler handler à enregistrer
+<span class="lineNum">     585 </span>            :    ** @param p_filter filter &quot;filtre&quot; optionnel
+<span class="lineNum">     586 </span>            :    ** @details
+<span class="lineNum">     587 </span>            :    ** Comme @ref xtd::network::http::Server::bind mais se déclenche quelque soit la
+<span class="lineNum">     588 </span>            :    ** ressource demandée.
+<span class="lineNum">     589 </span>            :    */
+<span class="lineNum">     590 </span>            :   void bind_any(handler p_handler,
+<span class="lineNum">     591 </span>            :                 filter  p_filter = &amp;Server::f_none);
+<span class="lineNum">     592 </span>            : 
+<span class="lineNum">     593 </span>            :   /**
+<span class="lineNum">     594 </span>            :    ** @param p_handler handler à enregistrer
+<span class="lineNum">     595 </span>            :    ** @details
+<span class="lineNum">     596 </span>            :    ** Enregistrement du handler à exécuter lorsqu'aucun handler valide n'a été trouvé.
+<span class="lineNum">     597 </span>            :    ** A la construction, le handler par défaut est Server::h_error_template.
+<span class="lineNum">     598 </span>            :    */
+<span class="lineNum">     599 </span>            :   void bind_default(handler p_handler);
+<span class="lineNum">     600 </span>            : 
+<span class="lineNum">     601 </span>            : 
+<span class="lineNum">     602 </span>            :   /**
+<span class="lineNum">     603 </span>            :    ** @details Cree la liste des handler accessibles sans parametres
+<span class="lineNum">     604 </span>            :    */
+<span class="lineNum">     605 </span>            :   void getMatchingHandlers(const Request&amp;              p_req,
+<span class="lineNum">     606 </span>            :                            typename Handler::t_listof&amp; p_res) const;
+<span class="lineNum">     607 </span>            : 
+<span class="lineNum">     608 </span>            : private:
+<span class="lineNum">     609 </span>            :   bool     isUrlBinded(const string&amp; p_urlPath) const;
+<span class="lineNum">     610 </span>            :   handler&amp; findHandler(const Request&amp; p_req);
+<span class="lineNum">     611 </span>            : 
+<span class="lineNum">     612 </span>            : private:
+<span class="lineNum">     613 </span>            :   handler                    m_defaultHandler;
+<span class="lineNum">     614 </span>            :   typename Handler::t_listof m_handlerList;
+<span class="lineNum">     615 </span>            : };
+<span class="lineNum">     616 </span>            : 
+<span class="lineNum">     617 </span>            : }}} //end namespaces
+<span class="lineNum">     618 </span>            : 
+<span class="lineNum">     619 </span>            : #endif // !NETWORK_HTTP_SERVER_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

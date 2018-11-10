@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - servers unit test coverage - app/HtmlOArchive.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">app</a> - HtmlOArchive.hh<span style="font-size: 80%;"> (source / <a href="HtmlOArchive.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">servers unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:14:59</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef SERVERS_APP_HTMLOARCHIVE_HH_</a>
+<span class="lineNum">       2 </span>            : # define SERVERS_APP_HTMLOARCHIVE_HH_
+<span class="lineNum">       3 </span>            : # include &lt;boost/archive/detail/archive_serializer_map.hpp&gt; // IWYU pragma: keep
+<span class="lineNum">       4 </span>            : # include &lt;boost/archive/impl/archive_serializer_map.ipp&gt;   // IWYU pragma: keep
+<span class="lineNum">       5 </span>            : # include &lt;boost/archive/xml_oarchive.hpp&gt;                  // IWYU pragma: keep
+<span class="lineNum">       6 </span>            : // # include &lt;boost/serialization/pfto.hpp&gt;
+<span class="lineNum">       7 </span>            : # include &lt;deque&gt;
+<span class="lineNum">       8 </span>            : # include &lt;list&gt;
+<span class="lineNum">       9 </span>            : # include &lt;stack&gt;
+<span class="lineNum">      10 </span>            : # include &lt;sstream&gt;  // IWYU pragma: keep
+<span class="lineNum">      11 </span>            : # include &quot;types.hh&quot; // libcore
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : # if (BOOST_VERSION / 100) &gt; 1058
+<span class="lineNum">      14 </span>            : #  define SAVE_OVERRIVE_PROTO
+<span class="lineNum">      15 </span>            : #  define SAVE_OVERRIVE_CALL
+<span class="lineNum">      16 </span>            : # else
+<span class="lineNum">      17 </span>            : #  define SAVE_OVERRIVE_PROTO , int
+<span class="lineNum">      18 </span>            : #  define SAVE_OVERRIVE_CALL , 0
+<span class="lineNum">      19 </span>            : # endif
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : namespace boost { namespace archive { class class_id_optional_type; } }
+<span class="lineNum">      22 </span>            : namespace boost { namespace archive { class class_id_reference_type; } }
+<span class="lineNum">      23 </span>            : namespace boost { namespace archive { class class_id_type; } }
+<span class="lineNum">      24 </span>            : namespace boost { namespace archive { class object_id_type; } }
+<span class="lineNum">      25 </span>            : namespace boost { namespace archive { class object_reference_type; } }
+<span class="lineNum">      26 </span>            : namespace boost { namespace archive { class save_access; } }
+<span class="lineNum">      27 </span>            : namespace boost { namespace archive { class version_type; } }
+<span class="lineNum">      28 </span>            : namespace boost { namespace archive { namespace detail { template &lt;class Archive&gt; class interface_oarchive; } } }
+<span class="lineNum">      29 </span>            : namespace boost { namespace archive { struct class_name_type; } }
+<span class="lineNum">      30 </span>            : namespace boost { namespace archive { struct tracking_type; } }
+<span class="lineNum">      31 </span>            : namespace boost { namespace archive { template &lt;class Archive&gt; class basic_xml_oarchive; } }
+<span class="lineNum">      32 </span>            : namespace boost { namespace serialization { class collection_size_type; } }
+<span class="lineNum">      33 </span>            : namespace boost { namespace serialization { class item_version_type; } }
+<span class="lineNum">      34 </span>            : namespace boost { namespace serialization { template &lt;class T&gt; struct nvp; } }
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : namespace xtd {
+<span class="lineNum">      37 </span>            : namespace servers {
+<a name="38"><span class="lineNum">      38 </span>            : namespace app {</a>
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 : class HtmlOArchive :</span>
+<span class="lineNum">      41 </span>            :     public boost::archive::xml_oarchive_impl&lt;HtmlOArchive&gt;
+<span class="lineNum">      42 </span>            : {
+<span class="lineNum">      43 </span>            :   typedef boost::archive::xml_oarchive_impl&lt;HtmlOArchive&gt; base;
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   friend class boost::archive::detail::interface_oarchive&lt;HtmlOArchive&gt;;
+<span class="lineNum">      46 </span>            :   friend class boost::archive::basic_xml_oarchive&lt;HtmlOArchive&gt;;
+<span class="lineNum">      47 </span>            :   friend class boost::archive::save_access;
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : private:
+<span class="lineNum">      50 </span>            :   class Object
+<span class="lineNum">      51 </span>            :   {
+<span class="lineNum">      52 </span>            :   public:
+<span class="lineNum">      53 </span>            :     Object(const string&amp; p_name, size_t p_depth);
+<span class="lineNum">      54 </span>            :     virtual ~Object(void);
+<span class="lineNum">      55 </span>            :   public:
+<span class="lineNum">      56 </span>            :     virtual void write(std::ostream&amp; p_buf);
+<span class="lineNum">      57 </span>            :     virtual void display(std::ostream&amp; p_buf) = 0;
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            :     void write_head(std::ostream&amp; p_buf);
+<span class="lineNum">      60 </span>            :     void write_tail(std::ostream&amp; p_buf);
+<span class="lineNum">      61 </span>            :   public:
+<span class="lineNum">      62 </span>            :     string m_name;
+<span class="lineNum">      63 </span>            :     size_t m_depth;
+<a name="64"><span class="lineNum">      64 </span>            :   };</a>
+<span class="lineNum">      65 </span>            : 
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   class PodObject : public Object</span>
+<span class="lineNum">      67 </span>            :   {
+<span class="lineNum">      68 </span>            :   public:
+<span class="lineNum">      69 </span>            :     PodObject(const string&amp; p_name,
+<span class="lineNum">      70 </span>            :               size_t        p_depth,
+<span class="lineNum">      71 </span>            :               const string&amp; p_type,
+<span class="lineNum">      72 </span>            :               const string&amp; p_default);
+<span class="lineNum">      73 </span>            :   public:
+<span class="lineNum">      74 </span>            :     void display(std::ostream&amp; p_buf);
+<span class="lineNum">      75 </span>            :   public:
+<span class="lineNum">      76 </span>            :     string m_type;
+<span class="lineNum">      77 </span>            :     string m_default;
+<span class="lineNum">      78 </span>            :   };
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            :   class StructObject : public Object
+<span class="lineNum">      81 </span>            :   {
+<span class="lineNum">      82 </span>            :   public:
+<span class="lineNum">      83 </span>            :     StructObject(const string&amp; p_name,
+<span class="lineNum">      84 </span>            :                  size_t        p_depth,
+<span class="lineNum">      85 </span>            :                  unsigned int       p_classID,
+<span class="lineNum">      86 </span>            :                  unsigned int       p_objectID,
+<span class="lineNum">      87 </span>            :                  unsigned int       p_version,
+<span class="lineNum">      88 </span>            :                  unsigned int       p_trackinglevel);
+<span class="lineNum">      89 </span>            :     virtual ~StructObject(void);
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            :   public:
+<span class="lineNum">      92 </span>            :     void write(std::ostream&amp; p_buf);
+<span class="lineNum">      93 </span>            :     virtual void display(std::ostream&amp; p_buf);
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span>            :   public:
+<span class="lineNum">      96 </span>            :     unsigned int         m_classID;
+<span class="lineNum">      97 </span>            :     unsigned int         m_objectID;
+<span class="lineNum">      98 </span>            :     unsigned int         m_version;
+<span class="lineNum">      99 </span>            :     unsigned int         m_tracking;
+<span class="lineNum">     100 </span>            :     vector&lt;Object*&gt; m_childs;
+<span class="lineNum">     101 </span>            :   };
+<a name="102"><span class="lineNum">     102 </span>            : </a>
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :   class VectorObject : public StructObject</span>
+<span class="lineNum">     105 </span>            :   {
+<span class="lineNum">     106 </span>            :   public:
+<span class="lineNum">     107 </span>            :     VectorObject(const string&amp; p_name,
+<span class="lineNum">     108 </span>            :                  size_t        p_depth,
+<span class="lineNum">     109 </span>            :                  unsigned int       p_classID,
+<span class="lineNum">     110 </span>            :                  unsigned int       p_objectID,
+<span class="lineNum">     111 </span>            :                  unsigned int       p_version,
+<span class="lineNum">     112 </span>            :                  unsigned int       p_trackinglevel,
+<span class="lineNum">     113 </span>            :                  unsigned int       p_itemVersion);
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            :   public:
+<span class="lineNum">     116 </span>            :     void display(std::ostream&amp; p_buf);
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span>            :   private:
+<span class="lineNum">     119 </span>            :     unsigned m_itemVersion;
+<span class="lineNum">     120 </span>            :   };
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : 
+<a name="123"><span class="lineNum">     123 </span>            : </a>
+<span class="lineNum">     124 </span>            : private:
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 :   class context</span>
+<span class="lineNum">     126 </span>            :   {
+<span class="lineNum">     127 </span>            :   public:
+<span class="lineNum">     128 </span>            :     context(void);
+<span class="lineNum">     129 </span>            :   public:
+<span class="lineNum">     130 </span>            :     size_t  m_depth;
+<span class="lineNum">     131 </span>            :     string  m_fieldName;
+<span class="lineNum">     132 </span>            :     unsigned int m_classID;
+<span class="lineNum">     133 </span>            :     unsigned int m_tracking;
+<span class="lineNum">     134 </span>            :     unsigned int m_version;
+<span class="lineNum">     135 </span>            :     unsigned int m_objectID;
+<span class="lineNum">     136 </span>            :     string  m_type;
+<span class="lineNum">     137 </span>            :     string  m_value;
+<span class="lineNum">     138 </span>            :     unsigned int m_itemVersion;
+<span class="lineNum">     139 </span>            :   };
+<span class="lineNum">     140 </span>            : 
+<a name="141"><span class="lineNum">     141 </span>            : public:</a>
+<span class="lineNum">     142 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :   HtmlOArchive&amp; operator*(T&amp; p_value)</span>
+<span class="lineNum">     144 </span>            :   {
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 :     return base::operator&amp;(p_value);</span>
+<span class="lineNum">     146 </span>            :   }
+<a name="147"><span class="lineNum">     147 </span>            : </a>
+<span class="lineNum">     148 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   HtmlOArchive&amp; operator/(T&amp; p_value)</span>
+<span class="lineNum">     150 </span>            :   {
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :     return *this * p_value;</span>
+<span class="lineNum">     152 </span>            :   }
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :   void save_binary(void *address, size_t count);
+<span class="lineNum">     155 </span>            :   void save_start(const char* p_name);
+<span class="lineNum">     156 </span>            :   void save_end(const char* p_name);
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     159 </span>            :   void save_override(T &amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     162 </span>            :   void save_override(const boost::serialization::nvp&lt;T&gt;&amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     165 </span>            :   void save_override(const boost::serialization::nvp&lt;vector&lt;T&gt; &gt;&amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     166 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     167 </span>            :   void save_override(const boost::serialization::nvp&lt;std::deque&lt;T&gt; &gt;&amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     168 </span>            :   template&lt;class T&gt;
+<span class="lineNum">     169 </span>            :   void save_override(const boost::serialization::nvp&lt;std::list&lt;T&gt; &gt;&amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            :   void save(const char* /* t */);
+<span class="lineNum">     172 </span>            :   void save(const string&amp; /* t */);
+<span class="lineNum">     173 </span>            :   void save(const unsigned char&amp; /* t */);
+<span class="lineNum">     174 </span>            :   void save(const unsigned short&amp; /* t */);
+<span class="lineNum">     175 </span>            :   void save(const unsigned int&amp; /* t */);
+<span class="lineNum">     176 </span>            :   void save(const unsigned long&amp; /* t */);
+<span class="lineNum">     177 </span>            :   void save(const unsigned long long&amp; /* t */);
+<span class="lineNum">     178 </span>            :   void save(const char&amp; /* t */);
+<span class="lineNum">     179 </span>            :   void save(const short&amp; /* t */);
+<span class="lineNum">     180 </span>            :   void save(const int&amp; /* t */);
+<span class="lineNum">     181 </span>            :   void save(const long&amp; /* t */);
+<span class="lineNum">     182 </span>            :   void save(const long long&amp; /* t */);
+<span class="lineNum">     183 </span>            :   void save(const bool&amp; /* t */);
+<span class="lineNum">     184 </span>            :   void save(const double&amp; /* t */);
+<span class="lineNum">     185 </span>            :   void save(const float&amp; /* t */);
+<span class="lineNum">     186 </span>            :   void save(const boost::serialization::collection_size_type&amp;);
+<span class="lineNum">     187 </span>            :   void save(const boost::serialization::item_version_type&amp;);
+<span class="lineNum">     188 </span>            :   void save_override(const boost::archive::object_id_type &amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     189 </span>            :   void save_override(const boost::archive::object_reference_type&amp; SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     190 </span>            :   void save_override(const boost::archive::version_type &amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     191 </span>            :   void save_override(const boost::archive::class_id_type &amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     192 </span>            :   void save_override(const boost::archive::class_id_reference_type&amp; SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     193 </span>            :   void save_override(const boost::archive::class_id_optional_type &amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     194 </span>            :   void save_override(const boost::archive::class_name_type&amp; SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     195 </span>            :   void save_override(const boost::archive::tracking_type &amp; t SAVE_OVERRIVE_PROTO);
+<span class="lineNum">     196 </span>            : public:
+<span class="lineNum">     197 </span>            :   HtmlOArchive(std::ostream&amp; p_stream);
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : public:
+<span class="lineNum">     200 </span>            :   typedef std::stack&lt;context&gt; t_info;
+<span class="lineNum">     201 </span>            :   typedef std::stack&lt;Object*&gt; t_objects;
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            :   t_info    m_info;
+<span class="lineNum">     204 </span>            :   t_objects m_objects;
+<span class="lineNum">     205 </span>            : 
+<span class="lineNum">     206 </span>            : private:
+<span class="lineNum">     207 </span>            :   bool          m_pass;
+<span class="lineNum">     208 </span>            :   size_t   m_depth;
+<span class="lineNum">     209 </span>            :   std::ostream&amp; m_os;
+<span class="lineNum">     210 </span>            :   bool          m_isVector;
+<span class="lineNum">     211 </span>            : };
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     214 </span>            : std::ostream&amp; to_javascript(std::ostream&amp; p_stream);
+<span class="lineNum">     215 </span>            : 
+<span class="lineNum">     216 </span>            : }}} //end namespaces
+<span class="lineNum">     217 </span>            : 
+<span class="lineNum">     218 </span>            : # include &quot;app/HtmlOArchive.hxx&quot; // IWYU pragma: export
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span>            : BOOST_SERIALIZATION_REGISTER_ARCHIVE(xtd::servers::app::HtmlOArchive)
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            : #endif // !SERVERS_APP_HTMLOARCHIVE_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<map id="xtd::valueof" name="xtd::valueof">
+<area shape="rect" id="node2" href="$structxtd_1_1log_1_1AutoWidth.html#aacba91f292ae1827cac432c168f67d08" title="Call operator. " alt="" coords="144,11,279,52"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#ad2efc26287edf8534ae7b46b22907c02" title="Converts given level to underlying value. " alt="" coords="150,77,273,103"/>
+<area shape="rect" id="node9" href="$namespacextd_1_1log.html#a30a04ba66fbfa45d812491c81b2a343d" title="Tells if given integer is a valid level underlying value. " alt="" coords="153,127,270,154"/>
+<area shape="rect" id="node10" href="$classxtd_1_1tty_1_1attrs.html#a08ea8d35436115a5f063328cc8bc95d1" title="Convert attrs to string. " alt="" coords="153,179,269,220"/>
+<area shape="rect" id="node11" href="$namespacextd_1_1tty.html#af0d94e4d7489d88a4fd2854da6e062a7" title="Outputs attrs to ostream. " alt="" coords="343,215,478,242"/>
+<area shape="rect" id="node12" href="$classxtd_1_1tty_1_1color.html#ac611dd8916ad58ce6414f5a43154f391" title="Converts color to string. " alt="" coords="152,296,271,337"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1Formatter.html#a77af7d22d7d7c103dd11d4838f5ea16a" title="Apply formats and layouts to all fields but fulllog. " alt="" coords="346,37,475,79"/>
+<area shape="rect" id="node8" href="$classxtd_1_1log_1_1SyslogAppender.html#a23e3ac72a469017a2338e332c97a44af" title="Actually deliver given record to syslog. " alt="" coords="327,103,495,144"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1ColoredFormatter.html#af96f719d459e8b0463919752c424295c" title="Same as Formatter::createFields but also applies styles. " alt="" coords="543,5,717,47"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1Formatter.html#a937fd6341531fa0be9eafd193d43090f" title="Creates final log message. " alt="" coords="565,71,695,112"/>
+<area shape="rect" id="node7" href="$classxtd_1_1log_1_1ColoredFormatter.html#af22f3dfdc499abdc154a931ff93e5256" title="Same as Formatter::getFulllog but also applies styles. " alt="" coords="765,71,940,112"/>
+<area shape="rect" id="node13" href="$namespacextd_1_1tty.html#a328b4586a6229454ca5b603742e35506" title="Outputs color to ostream. " alt="" coords="343,303,478,330"/>
+</map>

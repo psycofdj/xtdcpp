@@ -1,0 +1,6 @@
+<map id="xtd::counters::InstantFreq::~InstantFreq" name="xtd::counters::InstantFreq::~InstantFreq">
+<area shape="rect" id="node2" href="$classxtd_1_1counters_1_1InstantFreq.html#a1760f09b25b97545169be189bf99d250" title="xtd::counters::InstantFreq\l::tick" alt="" coords="225,5,397,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1counters_1_1InstantFreq.html#a3ae7dc13ff6209a0628cdf481ab0a37c" title="xtd::counters::InstantFreq\l::operator=" alt="" coords="225,71,397,112"/>
+<area shape="rect" id="node5" href="$classxtd_1_1counters_1_1InstantFreq.html#a2e4629f5a835d7b52425a72f25dcd4d2" title="xtd::counters::InstantFreq\l::update_safe" alt="" coords="225,136,397,177"/>
+<area shape="rect" id="node4" href="$classxtd_1_1counters_1_1Value.html#a017667569f4177e0c44836ef4e9bc7b0" title="xtd::counters::Value\l::operator=" alt="" coords="445,71,584,112"/>
+</map>

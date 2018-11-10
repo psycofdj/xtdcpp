@@ -1,0 +1,6 @@
+<map id="xtd::log::Fields::get" name="xtd::log::Fields::get">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1ColoredFormatter.html#a8b060e7f732c9859b151192521c95b9f" title="Sets tty attributes for given field. " alt="" coords="188,5,363,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1ColoredFormatter.html#a8d4f81235542fb1fac2fa1b09bf2f847" title="Sets foreground tty color for given field. " alt="" coords="188,71,363,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1ColoredFormatter.html#a6f2b28bab49aad9e8a6a50e28b63ecd7" title="Sets background tty color for given field. " alt="" coords="188,136,363,177"/>
+<area shape="rect" id="node5" href="$structxtd_1_1log_1_1AutoWidth.html#aacba91f292ae1827cac432c168f67d08" title="Call operator. " alt="" coords="208,201,343,243"/>
+</map>

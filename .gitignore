@@ -1,0 +1,39 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+.build/
+.release/
+Makefile.in
+autom4te.cache/
+common/Makefile.in
+config.h.in
+config.log
+configure
+counters/Makefile.in
+network/Makefile.in
+servers/Makefile.in

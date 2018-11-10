@@ -1,0 +1,7 @@
+<map id="xtd::log::ConfLoader::configure" name="xtd::log::ConfLoader::configure">
+<area shape="rect" id="node2" href="$namespacextd_1_1log.html#ac843dc7585be48789f5b3fa33dcf40d4" title="Tells if given string is a valid level label. " alt="" coords="481,11,604,37"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#ad62a7ffe75fe416cf648c34acf201324" title="Converts given underlying value to level. " alt="" coords="265,36,372,63"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1RootLogger.html#a65eaae686994b81f83dc27db4a3bac28" title="Retrieve logger for given module. " alt="" coords="229,87,408,113"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1Logger.html#a97fca3b06b4cf02e23e268873799140a" title="Set logger active log level. " alt="" coords="227,137,410,164"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1Logger.html#a335aea1ddce63493987a35668583d6f0" title="Remove all registered Appender. " alt="" coords="204,188,433,215"/>
+</map>

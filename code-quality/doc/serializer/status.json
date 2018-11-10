@@ -1,0 +1,9 @@
+{
+  "status": "success", 
+  "index": "html/index.html", 
+  "module": "serializer", 
+  "label": "ok", 
+  "graphs": [], 
+  "kpi": "doc", 
+  "data": {}
+}

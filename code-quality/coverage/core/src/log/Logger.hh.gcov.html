@@ -1,0 +1,634 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/log/Logger.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - Logger.hh<span style="font-size: 80%;"> (source / <a href="Logger.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 09:45:22</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef CORE_LOG_LOGGER_HH_</a>
+<span class="lineNum">       2 </span>            : # define CORE_LOG_LOGGER_HH_
+<span class="lineNum">       3 </span>            : # include &lt;mutex&gt;
+<span class="lineNum">       4 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       5 </span>            : # include &quot;log/logtypes.hh&quot;
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : class TestLogger;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace xtd { namespace log { class Appender; } }
+<span class="lineNum">      10 </span>            : namespace xtd {
+<span class="lineNum">      11 </span>            : namespace log {
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /**
+<span class="lineNum">      15 </span>            :  ** @brief Handles log record and log @ref level
+<span class="lineNum">      16 </span>            :  ** @details
+<span class="lineNum">      17 </span>            :  **
+<span class="lineNum">      18 </span>            :  ** The Logger handles user logs by filtering those under configured @ref level
+<span class="lineNum">      19 </span>            :  ** and propagating the others to its registered @ref Appender objects.
+<span class="lineNum">      20 </span>            :  **
+<span class="lineNum">      21 </span>            :  ** ### Object methods
+<span class="lineNum">      22 </span>            :  **
+<span class="lineNum">      23 </span>            :  ** - @ref Logger::getLevel &quot;getLevel()&quot;
+<span class="lineNum">      24 </span>            :  **   - @copybrief Logger::getLevel
+<span class="lineNum">      25 </span>            :  ** - @ref Logger::setLevel &quot;setLevel(level)&quot;
+<span class="lineNum">      26 </span>            :  **   - @copybrief Logger::setLevel
+<span class="lineNum">      27 </span>            :  ** - @ref Logger::addAppender &quot;addAppender(object)&quot;
+<span class="lineNum">      28 </span>            :  **   - @copybrief Logger::addAppender
+<span class="lineNum">      29 </span>            :  ** - @ref Logger::clearAppenders &quot;clearAppenders()&quot;
+<span class="lineNum">      30 </span>            :  **   - @copybrief Logger::clearAppenders
+<span class="lineNum">      31 </span>            :  ** - @ref Logger::log &quot;log(format, args...)&quot;
+<span class="lineNum">      32 </span>            :  **   - @copybrief Logger::log
+<span class="lineNum">      33 </span>            :  **
+<span class="lineNum">      34 </span>            :  ** ### Variadic arguments format
+<span class="lineNum">      35 </span>            :  **
+<span class="lineNum">      36 </span>            :  ** @ref Logger::log and all following logging shorthands allow to provide a format
+<span class="lineNum">      37 </span>            :  ** message with variadic template argument. Functionally, its equivalent to plain
+<span class="lineNum">      38 </span>            :  ** old **C-printf** argument but allows to pass std::string and user-defined
+<span class="lineNum">      39 </span>            :  ** objects. We internally rely on boost::format, please see
+<span class="lineNum">      40 </span>            :  ** http://www.boost.org/doc/libs/1_58_0/libs/format/doc/format.html for more details
+<span class="lineNum">      41 </span>            :  **
+<span class="lineNum">      42 </span>            :  ** @code
+<span class="lineNum">      43 </span>            :  ** string  l_name = &quot;my name&quot;;
+<span class="lineNum">      44 </span>            :  ** Logger&amp; l_obj  = log::getRoot();
+<span class="lineNum">      45 </span>            :  **
+<span class="lineNum">      46 </span>            :  ** l_obj.log(level::err, &quot;message %d variadic args : %s, %.2f&quot;, 2, l_name, 2.256);
+<span class="lineNum">      47 </span>            :  ** @endcode
+<span class="lineNum">      48 </span>            :  **
+<span class="lineNum">      49 </span>            :  **
+<span class="lineNum">      50 </span>            :  ** ### Logging shorthands
+<span class="lineNum">      51 </span>            :  **
+<span class="lineNum">      52 </span>            :  ** - @ref Logger::emerg &quot;emerg(format, args...)&quot;
+<span class="lineNum">      53 </span>            :  **   - @copybrief Logger::emerg
+<span class="lineNum">      54 </span>            :  ** - @ref Logger::alert &quot;alert(format, args...)&quot;
+<span class="lineNum">      55 </span>            :  **   - @copybrief Logger::alert
+<span class="lineNum">      56 </span>            :  ** - @ref Logger::crit &quot;crit(format, args...)&quot;
+<span class="lineNum">      57 </span>            :  **   - @copybrief Logger::crit
+<span class="lineNum">      58 </span>            :  ** - @ref Logger::err &quot;err(format, args...)&quot;
+<span class="lineNum">      59 </span>            :  **   - @copybrief Logger::err
+<span class="lineNum">      60 </span>            :  ** - @ref Logger::warning &quot;warning(format, args...)&quot;
+<span class="lineNum">      61 </span>            :  **   - @copybrief Logger::warning
+<span class="lineNum">      62 </span>            :  ** - @ref Logger::notice &quot;notice(format, args...)&quot;
+<span class="lineNum">      63 </span>            :  **   - @copybrief Logger::notice
+<span class="lineNum">      64 </span>            :  ** - @ref Logger::info &quot;info(format, args...)&quot;
+<span class="lineNum">      65 </span>            :  **   - @copybrief Logger::info
+<span class="lineNum">      66 </span>            :  ** - @ref Logger::debug &quot;debug(format, args...)&quot;
+<span class="lineNum">      67 </span>            :  **   - @copybrief Logger::debug
+<span class="lineNum">      68 </span>            :  **
+<span class="lineNum">      69 </span>            :  ** @code
+<span class="lineNum">      70 </span>            :  ** Logger&amp; l_obj  = log::getRoot();
+<span class="lineNum">      71 </span>            :  **
+<span class="lineNum">      72 </span>            :  ** l_obj.emerg(&quot;emergency message&quot;);
+<span class="lineNum">      73 </span>            :  ** l_obj.alert(&quot;alert message&quot;);
+<span class="lineNum">      74 </span>            :  ** l_obj.crit(&quot;critical message&quot;);
+<span class="lineNum">      75 </span>            :  ** l_obj.err(&quot;error message&quot;);
+<span class="lineNum">      76 </span>            :  ** l_obj.warning(&quot;warning message&quot;);
+<span class="lineNum">      77 </span>            :  ** l_obj.notice(&quot;notice message&quot;);
+<span class="lineNum">      78 </span>            :  ** l_obj.info(&quot;info message&quot;);
+<span class="lineNum">      79 </span>            :  ** l_obj.debug(&quot;debug message&quot;);
+<span class="lineNum">      80 </span>            :  ** @endcode
+<span class="lineNum">      81 </span>            :  **
+<span class="lineNum">      82 </span>            :  ** ### Thread Safety
+<span class="lineNum">      83 </span>            :  **
+<span class="lineNum">      84 </span>            :  ** - Concurrent calls to multiple objects : **YES**
+<span class="lineNum">      85 </span>            :  ** - Concurrent calls to single object    : **YES**
+<span class="lineNum">      86 </span>            :  **
+<span class="lineNum">      87 </span>            :  ** The class uses a mutex-based locking that provides thread safeness for all
+<span class="lineNum">      88 </span>            :  ** read and write operations on internal Appender list.
+<span class="lineNum">      89 </span>            :  ** However record forwarding to each appender it not lock. The Appender object
+<span class="lineNum">      90 </span>            :  ** is responsible of its own thread safeness.
+<span class="lineNum">      91 </span>            :  */
+<span class="lineNum">      92 </span>            : class Logger : public std::enable_shared_from_this&lt;Logger&gt;
+<span class="lineNum">      93 </span>            : {
+<span class="lineNum">      94 </span>            :   friend class ::TestLogger;
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span>            : protected:
+<span class="lineNum">      97 </span>            :   /**
+<span class="lineNum">      98 </span>            :    ** @brief Type for child Appender list
+<span class="lineNum">      99 </span>            :    */
+<span class="lineNum">     100 </span>            :   typedef vector&lt;sptr&lt;Appender&gt;&gt; t_appenders;
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            :   /**
+<span class="lineNum">     103 </span>            :    ** @brief Generates growing thread identifiers
+<span class="lineNum">     104 </span>            :    ** @details
+<span class="lineNum">     105 </span>            :    ** Internally maintain a conversion map from std::thread::id to int32_t.
+<span class="lineNum">     106 </span>            :    **
+<span class="lineNum">     107 </span>            :    ** This object is thread safe.
+<span class="lineNum">     108 </span>            :    */
+<span class="lineNum">     109 </span>            :   struct thread_counter
+<span class="lineNum">     110 </span>            :   {
+<span class="lineNum">     111 </span>            :   public:
+<span class="lineNum">     112 </span>            :     /**
+<span class="lineNum">     113 </span>            :      ** @brief Generate identifier for current thread
+<span class="lineNum">     114 </span>            :      */
+<span class="lineNum">     115 </span>            :     static int32_t get_id(void);
+<span class="lineNum">     116 </span>            :   private:
+<span class="lineNum">     117 </span>            :     static map&lt;size_t, uint32_t&gt; ms_ids;
+<span class="lineNum">     118 </span>            :     static std::mutex            ms_mutex;
+<span class="lineNum">     119 </span>            :     static size_t                ms_mainID;
+<span class="lineNum">     120 </span>            :   };
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : public:
+<span class="lineNum">     123 </span>            :   /**
+<span class="lineNum">     124 </span>            :    ** @brief Default Constructor
+<span class="lineNum">     125 </span>            :    */
+<span class="lineNum">     126 </span>            :   Logger(void);
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            :   /**
+<span class="lineNum">     129 </span>            :    ** @brief Deleted copy constructor
+<span class="lineNum">     130 </span>            :    */
+<span class="lineNum">     131 </span>            :   Logger(const Logger&amp;) = delete;
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span>            :   /**
+<span class="lineNum">     134 </span>            :    ** @brief Constructs for a specific module
+<span class="lineNum">     135 </span>            :    ** @param p_parent Parent Logger object
+<span class="lineNum">     136 </span>            :    ** @param p_module Module name
+<span class="lineNum">     137 </span>            :    ** @details
+<span class="lineNum">     138 </span>            :    ** Logger will inherit parent settings :
+<span class="lineNum">     139 </span>            :    ** - current log @ref level
+<span class="lineNum">     140 </span>            :    ** - name
+<span class="lineNum">     141 </span>            :    ** - list of @ref Appender
+<span class="lineNum">     142 </span>            :    */
+<span class="lineNum">     143 </span>            :   Logger(const Logger&amp; p_parent, const string&amp; p_module);
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span>            :   /**
+<span class="lineNum">     146 </span>            :    ** @brief Destructor
+<span class="lineNum">     147 </span>            :    */
+<span class="lineNum">     148 </span>            :   virtual ~Logger(void);
+<span class="lineNum">     149 </span>            : 
+<span class="lineNum">     150 </span>            : public:
+<span class="lineNum">     151 </span>            :   /**
+<span class="lineNum">     152 </span>            :    ** @brief Get logger name
+<span class="lineNum">     153 </span>            :    */
+<span class="lineNum">     154 </span>            :   inline string getName(void)  const;
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            :   /**
+<span class="lineNum">     157 </span>            :    ** @brief Get current logger @ref level
+<span class="lineNum">     158 </span>            :    */
+<span class="lineNum">     159 </span>            :   inline level getLevel(void) const;
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            :   /**
+<span class="lineNum">     162 </span>            :    ** @brief Set logger name
+<span class="lineNum">     163 </span>            :    ** @param p_name new logger name
+<span class="lineNum">     164 </span>            :    ** @return self
+<span class="lineNum">     165 </span>            :    */
+<span class="lineNum">     166 </span>            :   inline Logger&amp; setName(const string&amp; p_name);
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span>            :   /**
+<span class="lineNum">     169 </span>            :    ** @brief Set logger active log @ref level
+<span class="lineNum">     170 </span>            :    ** @param p_level new level
+<span class="lineNum">     171 </span>            :    ** @return self
+<span class="lineNum">     172 </span>            :    */
+<span class="lineNum">     173 </span>            :   inline Logger&amp; setLevel(level p_level);
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            :   /**
+<span class="lineNum">     176 </span>            :    ** @brief Add an @ref Appender to internal list
+<span class="lineNum">     177 </span>            :    ** @param p_appender Appender to add
+<span class="lineNum">     178 </span>            :    ** @return self
+<span class="lineNum">     179 </span>            :    */
+<span class="lineNum">     180 </span>            :   Logger&amp; addAppender(const sptr&lt;Appender&gt;&amp; p_appender);
+<span class="lineNum">     181 </span>            : 
+<span class="lineNum">     182 </span>            :   /**
+<span class="lineNum">     183 </span>            :    ** @brief Remove all registered @ref Appender
+<span class="lineNum">     184 </span>            :    ** @return self
+<span class="lineNum">     185 </span>            :    */
+<span class="lineNum">     186 </span>            :   Logger&amp; clearAppenders(void);
+<span class="lineNum">     187 </span>            : 
+<span class="lineNum">     188 </span>            :   /**
+<span class="lineNum">     189 </span>            :    ** @brief Trigger @ref level::emerg log
+<span class="lineNum">     190 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     191 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     192 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     193 </span>            :    */
+<span class="lineNum">     194 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     195 </span>            :   void emerg(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span>            :   /**
+<span class="lineNum">     198 </span>            :    ** @brief Trigger @ref level::alert log
+<span class="lineNum">     199 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     200 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     201 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     202 </span>            :    */
+<span class="lineNum">     203 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     204 </span>            :   void alert(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     205 </span>            : 
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            :   /**
+<span class="lineNum">     208 </span>            :    ** @brief Trigger @ref level::crit log
+<span class="lineNum">     209 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     210 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     211 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     212 </span>            :    */
+<span class="lineNum">     213 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     214 </span>            :   void crit(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     215 </span>            : 
+<span class="lineNum">     216 </span>            : 
+<span class="lineNum">     217 </span>            :   /**
+<span class="lineNum">     218 </span>            :    ** @brief Trigger @ref level::err log
+<span class="lineNum">     219 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     220 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     221 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     222 </span>            :    */
+<span class="lineNum">     223 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     224 </span>            :   void err(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span>            :   /**
+<span class="lineNum">     227 </span>            :    ** @brief Trigger @ref level::warning log
+<span class="lineNum">     228 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     229 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     230 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     231 </span>            :    */
+<span class="lineNum">     232 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     233 </span>            :   void warning(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     234 </span>            : 
+<span class="lineNum">     235 </span>            : 
+<span class="lineNum">     236 </span>            :   /**
+<span class="lineNum">     237 </span>            :    ** @brief Trigger @ref level::notice log
+<span class="lineNum">     238 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     239 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     240 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     241 </span>            :    */
+<span class="lineNum">     242 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     243 </span>            :   void notice(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     244 </span>            : 
+<span class="lineNum">     245 </span>            :   /**
+<span class="lineNum">     246 </span>            :    ** @brief Trigger @ref level::info log
+<span class="lineNum">     247 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     248 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     249 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     250 </span>            :    */
+<span class="lineNum">     251 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     252 </span>            :   void info(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     253 </span>            : 
+<span class="lineNum">     254 </span>            :   /**
+<span class="lineNum">     255 </span>            :    ** @brief Trigger @ref level::debug log
+<span class="lineNum">     256 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     257 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     258 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     259 </span>            :    */
+<span class="lineNum">     260 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     261 </span>            :   void debug(const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     262 </span>            : 
+<span class="lineNum">     263 </span>            :   /**
+<span class="lineNum">     264 </span>            :    ** @brief Trigger @ref level::emerg log
+<span class="lineNum">     265 </span>            :    ** @tparam Args Variable template argument list
+<span class="lineNum">     266 </span>            :    ** @param p_level @ref level of the debug record
+<span class="lineNum">     267 </span>            :    ** @param p_format boost::format compatible format message
+<span class="lineNum">     268 </span>            :    ** @param p_args arguments to apply to given p_format
+<span class="lineNum">     269 </span>            :    */
+<span class="lineNum">     270 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     271 </span>            :   void log(level p_level, const string&amp; p_format, Args... p_args) const;
+<span class="lineNum">     272 </span>            : 
+<span class="lineNum">     273 </span>            : private:
+<span class="lineNum">     274 </span>            :   const t_appenders getAppenders(void) const;
+<span class="lineNum">     275 </span>            : 
+<span class="lineNum">     276 </span>            : private:
+<span class="lineNum">     277 </span>            :   string             m_module;
+<span class="lineNum">     278 </span>            :   string             m_name;
+<span class="lineNum">     279 </span>            :   level              m_level;
+<span class="lineNum">     280 </span>            :   t_appenders        m_appenders;
+<span class="lineNum">     281 </span>            :   mutable std::mutex m_mutex;
+<span class="lineNum">     282 </span>            : };
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            : /* ----------------------------------------------------------------------- */
+<span class="lineNum">     285 </span>            : 
+<span class="lineNum">     286 </span>            : /**
+<span class="lineNum">     287 </span>            :  ** @brief Manage @ref Logger childs, one for each requests module
+<span class="lineNum">     288 </span>            :  ** @details
+<span class="lineNum">     289 </span>            :  **
+<span class="lineNum">     290 </span>            :  **
+<span class="lineNum">     291 </span>            :  ** This object is responsible for creating and serving Logger for requested
+<span class="lineNum">     292 </span>            :  ** modules.
+<span class="lineNum">     293 </span>            :  **
+<span class="lineNum">     294 </span>            :  ** In addition, it offer convenient methods to forward calls to
+<span class="lineNum">     295 </span>            :  ** targeted module Logger.
+<span class="lineNum">     296 </span>            :  **
+<span class="lineNum">     297 </span>            :  ** ### Methods
+<span class="lineNum">     298 </span>            :  **
+<span class="lineNum">     299 </span>            :  ** - @ref RootLogger::get &quot;get(module)&quot;
+<span class="lineNum">     300 </span>            :  **   - @copybrief RootLogger::get
+<span class="lineNum">     301 </span>            :  ** - @ref RootLogger::getLevels &quot;getLevels()&quot;
+<span class="lineNum">     302 </span>            :  **   - @copybrief RootLogger::getLevels
+<span class="lineNum">     303 </span>            :  ** - @ref RootLogger::setAllLevels &quot;setAllLevels(level)&quot;
+<span class="lineNum">     304 </span>            :  **   - @copybrief RootLogger::setAllLevels
+<span class="lineNum">     305 </span>            :  ** - @ref RootLogger::setAllValueLevels &quot;setAllValueLevels(int)&quot;
+<span class="lineNum">     306 </span>            :  **   - @copybrief RootLogger::setAllValueLevels
+<span class="lineNum">     307 </span>            :  ** - @ref RootLogger::updateLevels &quot;updateLevels(regexp, level)&quot;
+<span class="lineNum">     308 </span>            :  **   - @copybrief RootLogger::updateLevels
+<span class="lineNum">     309 </span>            :  **
+<span class="lineNum">     310 </span>            :  **
+<span class="lineNum">     311 </span>            :  ** ### Shorthand methods
+<span class="lineNum">     312 </span>            :  **
+<span class="lineNum">     313 </span>            :  ** - @ref RootLogger::initialize &quot;initialize(name, level)&quot;
+<span class="lineNum">     314 </span>            :  **   - @copybrief RootLogger::initialize
+<span class="lineNum">     315 </span>            :  ** - @ref RootLogger::getLevelTo &quot;getLevelTo(module)&quot;
+<span class="lineNum">     316 </span>            :  **   - @copybrief RootLogger::getLevelTo
+<span class="lineNum">     317 </span>            :  ** - @ref RootLogger::setLevelTo &quot;setLevelTo(module, level)&quot;
+<span class="lineNum">     318 </span>            :  **   - @copybrief RootLogger::setLevelTo
+<span class="lineNum">     319 </span>            :  ** - @ref RootLogger::alertTo &quot;alertTo(module, format, args...)&quot;
+<span class="lineNum">     320 </span>            :  **   - @copybrief RootLogger::alertTo
+<span class="lineNum">     321 </span>            :  ** - @ref RootLogger::critTo &quot;critTo(module, format, args...)&quot;
+<span class="lineNum">     322 </span>            :  **   - @copybrief RootLogger::critTo
+<span class="lineNum">     323 </span>            :  ** - @ref RootLogger::warningTo &quot;warningTo(module, format, args...)&quot;
+<span class="lineNum">     324 </span>            :  **   - @copybrief RootLogger::warningTo
+<span class="lineNum">     325 </span>            :  ** - @ref RootLogger::infoTo &quot;infoTo(module, format, args...)&quot;
+<span class="lineNum">     326 </span>            :  **   - @copybrief RootLogger::infoTo
+<span class="lineNum">     327 </span>            :  ** - @ref RootLogger::noticeTo &quot;noticeTo(module, format, args...)&quot;
+<span class="lineNum">     328 </span>            :  **   - @copybrief RootLogger::noticeTo
+<span class="lineNum">     329 </span>            :  ** - @ref RootLogger::debugTo &quot;debugTo(module, format, args...)&quot;
+<span class="lineNum">     330 </span>            :  **   - @copybrief RootLogger::debugTo
+<span class="lineNum">     331 </span>            :  **
+<span class="lineNum">     332 </span>            :  **
+<span class="lineNum">     333 </span>            :  ** ### Modules and hierarchy
+<span class="lineNum">     334 </span>            :  **
+<span class="lineNum">     335 </span>            :  ** When a Logger is requested by any of the object methods referring to the
+<span class="lineNum">     336 </span>            :  ** **p_module** parameter, the RootLogger will either return the previously
+<span class="lineNum">     337 </span>            :  ** created Logger if it exists, or will create a new instance.
+<span class="lineNum">     338 </span>            :  ** Newly created instances inherit all parameters from their closest parent
+<span class="lineNum">     339 </span>            :  ** in the module hierarchy. Ultimately, the RootLogger itself will be used
+<span class="lineNum">     340 </span>            :  ** create the new instance if no parent were found.
+<span class="lineNum">     341 </span>            :  **
+<span class="lineNum">     342 </span>            :  ** Hierarchy among module is determined by their name. Each period **.** found
+<span class="lineNum">     343 </span>            :  ** in the **p_module** string creates a new layer in the hierarchy tree.
+<span class="lineNum">     344 </span>            :  ** Example :
+<span class="lineNum">     345 </span>            :  ** - module **&quot;a.b.c&quot;** is direct child of **&quot;a.b&quot;**, which itself child
+<span class="lineNum">     346 </span>            :  **   of **&quot;a&quot;**
+<span class="lineNum">     347 </span>            :  **
+<span class="lineNum">     348 </span>            :  ** When looking for the closest parent of a module, we're looking for the closest
+<span class="lineNum">     349 </span>            :  ** ancestor in this hierarchy.
+<span class="lineNum">     350 </span>            :  ** Example :
+<span class="lineNum">     351 </span>            :  ** - module &quot;a.b.c&quot; as closest parent &quot;a&quot; (assuming &quot;a.b&quot; was never created)
+<span class="lineNum">     352 </span>            :  **
+<span class="lineNum">     353 </span>            :  ** @code
+<span class="lineNum">     354 </span>            :  ** RootLogger&amp; l_root = log::getRoot();
+<span class="lineNum">     355 </span>            :  **
+<span class="lineNum">     356 </span>            :  ** l_root.setLevel(level::crit);
+<span class="lineNum">     357 </span>            :  **
+<span class="lineNum">     358 </span>            :  ** Logger&amp; l_module1 = l_root.get(&quot;a&quot;); // logger for module &quot;a&quot;
+<span class="lineNum">     359 </span>            :  ** assert(l_module1.getLevel() == level::crit);
+<span class="lineNum">     360 </span>            :  **
+<span class="lineNum">     361 </span>            :  ** l_module1.setLevel(level::debug);
+<span class="lineNum">     362 </span>            :  **
+<span class="lineNum">     363 </span>            :  ** // new module will be constructed from closest parent : module &quot;a&quot;
+<span class="lineNum">     364 </span>            :  ** Logger&amp; l_module2 = l_root.get(&quot;a.b.c&quot;); // logger for module &quot;a.b.c&quot;
+<span class="lineNum">     365 </span>            :  ** assert(l_module2.getLevel() == level::debug);
+<span class="lineNum">     366 </span>            :  **
+<span class="lineNum">     367 </span>            :  ** // Once created for a given module, Logger are kept in memory
+<span class="lineNum">     368 </span>            :  ** Logger&amp; l_ref1 = l_root.get(&quot;a&quot;);
+<span class="lineNum">     369 </span>            :  ** l_ref1.setLevel(level::alert);
+<span class="lineNum">     370 </span>            :  **
+<span class="lineNum">     371 </span>            :  ** Logger&amp; l_ref2 = l_root.get(&quot;a.b.c&quot;);
+<span class="lineNum">     372 </span>            :  ** assert(l_module1.getLevel() == level::alert);
+<span class="lineNum">     373 </span>            :  ** assert(l_module2.getLevel() == level::debug);
+<span class="lineNum">     374 </span>            :  ** @endcode
+<span class="lineNum">     375 </span>            :  **
+<span class="lineNum">     376 </span>            :  **
+<span class="lineNum">     377 </span>            :  ** ### Multiple RootLogger
+<span class="lineNum">     378 </span>            :  **
+<span class="lineNum">     379 </span>            :  ** Using multiple instances of RootLogger is possible. However, modules should
+<span class="lineNum">     380 </span>            :  ** give you already enough flexibility. If you really need to, be aware that
+<span class="lineNum">     381 </span>            :  ** all helper free functions defined in the namespace uses a single static
+<span class="lineNum">     382 </span>            :  ** RootLogger instance.
+<span class="lineNum">     383 </span>            :  **
+<span class="lineNum">     384 </span>            :  ** ### Thread Safety
+<span class="lineNum">     385 </span>            :  **
+<span class="lineNum">     386 </span>            :  ** - Concurrent calls to multiple objects : **YES**
+<span class="lineNum">     387 </span>            :  ** - Concurrent calls to single object    : **YES**
+<span class="lineNum">     388 </span>            :  **
+<span class="lineNum">     389 </span>            :  ** The class uses a mutex-based locking that provides thread safeness for all
+<span class="lineNum">     390 </span>            :  ** read and write operations on internal child Logger list.
+<span class="lineNum">     391 </span>            :  **
+<span class="lineNum">     392 </span>            :  ** Calls to child logger methods are not protected, Logger object is
+<a name="393"><span class="lineNum">     393 </span>            :  ** responsible of its own thread safeness.</a>
+<span class="lineNum">     394 </span>            :  */
+<span class="lineNum">     395 </span><span class="lineCov">         46 : class RootLogger : public Logger</span>
+<span class="lineNum">     396 </span>            : {
+<span class="lineNum">     397 </span>            :   friend class ::TestLogger;
+<span class="lineNum">     398 </span>            : 
+<span class="lineNum">     399 </span>            : private:
+<span class="lineNum">     400 </span>            :   typedef map&lt;string, sptr&lt;Logger&gt;&gt; t_loggers;
+<span class="lineNum">     401 </span>            :   typedef map&lt;string, level&gt;        t_levels;
+<span class="lineNum">     402 </span>            : 
+<span class="lineNum">     403 </span>            : public:
+<span class="lineNum">     404 </span>            :   /**
+<span class="lineNum">     405 </span>            :    ** @brief Constructor
+<span class="lineNum">     406 </span>            :    */
+<span class="lineNum">     407 </span>            :   RootLogger(void);
+<span class="lineNum">     408 </span>            : 
+<span class="lineNum">     409 </span>            :   /**
+<span class="lineNum">     410 </span>            :    ** @brief Deleted copy constructor
+<span class="lineNum">     411 </span>            :    */
+<span class="lineNum">     412 </span>            :   RootLogger(const RootLogger&amp;) = delete;
+<span class="lineNum">     413 </span>            : 
+<span class="lineNum">     414 </span>            : public:
+<span class="lineNum">     415 </span>            :   /**
+<span class="lineNum">     416 </span>            :    ** @brief Retrieve logger for given module
+<span class="lineNum">     417 </span>            :    ** @param p_module module name
+<span class="lineNum">     418 </span>            :    ** @return Logger for given module
+<span class="lineNum">     419 </span>            :    ** @details
+<span class="lineNum">     420 </span>            :    ** This function searches its internal data for a previously created logger
+<span class="lineNum">     421 </span>            :    ** associated to module name p_module. If none found, a new Logger is created
+<span class="lineNum">     422 </span>            :    ** and will inherit all parameters if its closest parent.
+<span class="lineNum">     423 </span>            :    */
+<span class="lineNum">     424 </span>            :   Logger&amp; get(const string&amp; p_module);
+<span class="lineNum">     425 </span>            : 
+<span class="lineNum">     426 </span>            :   /**
+<span class="lineNum">     427 </span>            :    ** @brief Returns @ref level for all child loggers
+<span class="lineNum">     428 </span>            :    ** @return map associating module name to their corresponding @ref level
+<span class="lineNum">     429 </span>            :    */
+<span class="lineNum">     430 </span>            :   const t_levels getLevels(void) const;
+<span class="lineNum">     431 </span>            : 
+<span class="lineNum">     432 </span>            :   /**
+<span class="lineNum">     433 </span>            :    ** @brief Shortand for @ref Logger::setName and @ref Logger::setLevel
+<span class="lineNum">     434 </span>            :    ** @param p_name New module name
+<span class="lineNum">     435 </span>            :    ** @param p_level New active log @ref level
+<span class="lineNum">     436 </span>            :    ** @return self
+<span class="lineNum">     437 </span>            :    */
+<span class="lineNum">     438 </span>            :   RootLogger&amp; initialize(const string&amp; p_name, level p_level);
+<span class="lineNum">     439 </span>            : 
+<span class="lineNum">     440 </span>            :   /**
+<span class="lineNum">     441 </span>            :    ** @brief Set active log level for all child loggers
+<span class="lineNum">     442 </span>            :    ** @param p_level new active log level
+<span class="lineNum">     443 </span>            :    ** @return self
+<span class="lineNum">     444 </span>            :    */
+<span class="lineNum">     445 </span>            :   RootLogger&amp; setAllLevels(level p_level);
+<span class="lineNum">     446 </span>            : 
+<span class="lineNum">     447 </span>            : 
+<span class="lineNum">     448 </span>            :   /**
+<span class="lineNum">     449 </span>            :    ** @brief Same as @ref RootLogger::setAllLevels with integer level value
+<span class="lineNum">     450 </span>            :    ** @param p_level integer level value
+<span class="lineNum">     451 </span>            :    ** @return self
+<span class="lineNum">     452 </span>            :    */
+<span class="lineNum">     453 </span>            :   RootLogger&amp; setAllValueLevels(uint32_t p_level);
+<span class="lineNum">     454 </span>            : 
+<span class="lineNum">     455 </span>            :   /**
+<span class="lineNum">     456 </span>            :    ** @brief Set active log level for all child loggers matchin given regexp prefix
+<span class="lineNum">     457 </span>            :    ** @param p_regexpPrefix Logger name matching regexp
+<span class="lineNum">     458 </span>            :    ** @param p_level new active log @ref level
+<span class="lineNum">     459 </span>            :    ** @return self
+<span class="lineNum">     460 </span>            :    ** @details
+<span class="lineNum">     461 </span>            :    ** Given regexp is considered as a prefix. Internally, this method will match
+<span class="lineNum">     462 </span>            :    ** on &quot;@&lt;prefix_regex@&gt;.*&quot;.
+<span class="lineNum">     463 </span>            :    */
+<span class="lineNum">     464 </span>            :   RootLogger&amp; updateLevels(const string&amp; p_regexpPrefix, level p_level);
+<span class="lineNum">     465 </span>            : 
+<span class="lineNum">     466 </span>            : public:
+<span class="lineNum">     467 </span>            :   /**
+<span class="lineNum">     468 </span>            :    ** @brief Returns level applicable to module.
+<span class="lineNum">     469 </span>            :    ** @param p_module module name
+<span class="lineNum">     470 </span>            :    ** @return active current level of given module
+<span class="lineNum">     471 </span>            :    ** @details
+<span class="lineNum">     472 </span>            :    ** This method is @b not equivalent to get(p_module).getLevel() when logger for
+<span class="lineNum">     473 </span>            :    ** module does not exist. In that case, the method returns the level of closest
+<span class="lineNum">     474 </span>            :    ** parent in hierarchy.
+<span class="lineNum">     475 </span>            :    */
+<span class="lineNum">     476 </span>            :   level getLevelTo(const string&amp; p_module) const;
+<span class="lineNum">     477 </span>            : 
+<span class="lineNum">     478 </span>            :   /**
+<span class="lineNum">     479 </span>            :    ** @brief Shorthand for get(p_module).setLevel(p_level)
+<span class="lineNum">     480 </span>            :    ** @param p_module module name
+<span class="lineNum">     481 </span>            :    ** @param p_level new active log @ref level
+<span class="lineNum">     482 </span>            :    ** @return self
+<span class="lineNum">     483 </span>            :    */
+<span class="lineNum">     484 </span>            :   RootLogger&amp; setLevelTo(const string&amp; p_module, level p_level);
+<span class="lineNum">     485 </span>            : 
+<span class="lineNum">     486 </span>            :   /**
+<span class="lineNum">     487 </span>            :    ** @brief Shorthand for get(p_module).emerg(p_format, p_args)
+<span class="lineNum">     488 </span>            :    */
+<span class="lineNum">     489 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     490 </span>            :   void emergTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     491 </span>            : 
+<span class="lineNum">     492 </span>            :   /**
+<span class="lineNum">     493 </span>            :    ** @brief Shorthand for get(p_module).alert(p_format, p_args)
+<span class="lineNum">     494 </span>            :    */
+<span class="lineNum">     495 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     496 </span>            :   void alertTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     497 </span>            : 
+<span class="lineNum">     498 </span>            :   /**
+<span class="lineNum">     499 </span>            :    ** @brief Shorthand for get(p_module).crit(p_format, p_args)
+<span class="lineNum">     500 </span>            :    */
+<span class="lineNum">     501 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     502 </span>            :   void critTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     503 </span>            : 
+<span class="lineNum">     504 </span>            :   /**
+<span class="lineNum">     505 </span>            :    ** @brief Shorthand for get(p_module).err(p_format, p_args)
+<span class="lineNum">     506 </span>            :    */
+<span class="lineNum">     507 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     508 </span>            :   void errTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     509 </span>            : 
+<span class="lineNum">     510 </span>            :   /**
+<span class="lineNum">     511 </span>            :    ** @brief Shorthand for get(p_module).warning(p_format, p_args)
+<span class="lineNum">     512 </span>            :    */
+<span class="lineNum">     513 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     514 </span>            :   void warningTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     515 </span>            : 
+<span class="lineNum">     516 </span>            :   /**
+<span class="lineNum">     517 </span>            :    ** @brief Shorthand for get(p_module).info(p_format, p_args)
+<span class="lineNum">     518 </span>            :    */
+<span class="lineNum">     519 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     520 </span>            :   void infoTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     521 </span>            : 
+<span class="lineNum">     522 </span>            :   /**
+<span class="lineNum">     523 </span>            :    ** @brief Shorthand for get(p_module).notice(p_format, p_args)
+<span class="lineNum">     524 </span>            :    */
+<span class="lineNum">     525 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     526 </span>            :   void noticeTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     527 </span>            : 
+<span class="lineNum">     528 </span>            :   /**
+<span class="lineNum">     529 </span>            :    ** @brief Shorthand for get(p_module).debug(p_format, p_args)
+<span class="lineNum">     530 </span>            :    */
+<span class="lineNum">     531 </span>            :   template&lt;typename ... Args&gt;
+<span class="lineNum">     532 </span>            :   void debugTo(const string&amp; p_module, const string&amp; p_format, Args... p_args);
+<span class="lineNum">     533 </span>            : 
+<span class="lineNum">     534 </span>            : private:
+<span class="lineNum">     535 </span>            :   t_loggers::const_iterator getClosestParent(const string&amp; p_module) const;
+<span class="lineNum">     536 </span>            : 
+<span class="lineNum">     537 </span>            : private:
+<span class="lineNum">     538 </span>            :   t_loggers          m_loggers;
+<span class="lineNum">     539 </span>            :   mutable std::mutex m_mutex;
+<span class="lineNum">     540 </span>            : };
+<span class="lineNum">     541 </span>            : 
+<span class="lineNum">     542 </span>            : }}
+<span class="lineNum">     543 </span>            : 
+<span class="lineNum">     544 </span>            : # include &quot;log/Logger.hxx&quot; // IWYU pragma: export
+<span class="lineNum">     545 </span>            : 
+<span class="lineNum">     546 </span>            : #endif // !CORE_LOG_LOGGER_HH_
+<span class="lineNum">     547 </span>            : 
+<span class="lineNum">     548 </span>            : // Local Variables:
+<span class="lineNum">     549 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     550 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

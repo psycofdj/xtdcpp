@@ -1,0 +1,11 @@
+<map id="xtd::network::http::XmlTemplate::resolve" name="xtd::network::http::XmlTemplate::resolve">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1http_1_1Template.html#a476ce5e5b8465ea80ade07c003ab5cfd" title="xtd::network::http\l::Template::resolve" alt="" coords="225,71,360,112"/>
+<area shape="rect" id="node8" href="$classxtd_1_1network_1_1http_1_1Template.html#aab2224df74586a476877a36db8ea2473" title="xtd::network::http\l::Template::val" alt="" coords="231,136,355,177"/>
+<area shape="rect" id="node9" href="$classxtd_1_1network_1_1http_1_1Template.html#a9f7dca8396a9e5092b1e293076a7ec86" title="xtd::network::http\l::Template::setTemplate" alt="" coords="211,201,375,243"/>
+<area shape="rect" id="node10" href="$classxtd_1_1network_1_1http_1_1Template.html#ad6ba5fa3f5e0a2256cc356d1c6fd21f8" title="xtd::network::http\l::Template::setData" alt="" coords="223,267,362,308"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1http_1_1Generator.html#a289cfd48cc9c5646c8f06455df41f09d" title="xtd::network::http\l::Generator::addError" alt="" coords="470,5,614,47"/>
+<area shape="rect" id="node4" href="$namespacextd_1_1network_1_1http_1_1cpptempl.html#a10e259ee95bf5effff9095cdd140a058" title="xtd::network::http\l::cpptempl::parse" alt="" coords="480,71,604,112"/>
+<area shape="rect" id="node7" href="$classxtd_1_1network_1_1http_1_1cpptempl_1_1TemplateException.html#ae7f1bb4b84c8689b502cdbaa0954ed41" title="xtd::network::http\l::cpptempl::TemplateException::what" alt="" coords="423,136,661,177"/>
+<area shape="rect" id="node5" href="$namespacextd_1_1network_1_1http_1_1cpptempl.html#ab8c502f7e8347124c43f3dab3a583b34" title="xtd::network::http\l::cpptempl::tokenize" alt="" coords="715,39,855,80"/>
+<area shape="rect" id="node6" href="$namespacextd_1_1network_1_1http_1_1cpptempl.html#a27515db5dde2876849fa316963a67e63" title="xtd::network::http\l::cpptempl::parse_tree" alt="" coords="709,104,861,145"/>
+</map>

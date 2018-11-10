@@ -1,0 +1,7 @@
+<map id="xtd::log::to_value" name="xtd::log::to_value">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1Formatter.html#a364c26192677bc4f748626aeb790b5bd" title="Apply formats and layouts to all fields but fulllog. " alt="" coords="195,37,325,79"/>
+<area shape="rect" id="node6" href="$classxtd_1_1log_1_1SyslogAppender.html#a23e3ac72a469017a2338e332c97a44af" title="Actually deliver given record to syslog. " alt="" coords="176,103,344,144"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1ColoredFormatter.html#af96f719d459e8b0463919752c424295c" title="Same as Formatter::createFields but also applies styles. " alt="" coords="392,5,567,47"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1Formatter.html#a989f7e1efe0bb7733ef6ee63b2451974" title="Creates final log message. " alt="" coords="415,71,544,112"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1ColoredFormatter.html#af22f3dfdc499abdc154a931ff93e5256" title="Same as Formatter::getFulllog but also applies styles. " alt="" coords="615,71,789,112"/>
+</map>

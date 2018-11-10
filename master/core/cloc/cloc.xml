@@ -1,0 +1,66 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.15518593788147</elapsed_seconds>
+  <n_files>46</n_files>
+  <n_lines>6697</n_lines>
+  <files_per_second>296.418610010493</files_per_second>
+  <lines_per_second>43154.683287832</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/core/cloc/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/Application.cc" blank="73" comment="19" code="349"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/tty.cc" blank="65" comment="4" code="332"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.cc" blank="43" comment="3" code="221"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/ColoredFormatter.cc" blank="28" comment="3" code="168"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Logger.cc" blank="41" comment="3" code="164"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Formatter.cc" blank="28" comment="0" code="161"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/tty.hh" blank="52" comment="238" code="147"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/SyslogAppender.cc" blank="22" comment="3" code="123"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/Application.hh" blank="54" comment="227" code="113"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Logger.hh" blank="58" comment="386" code="107"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/ConfLoader.cc" blank="24" comment="3" code="107"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.hh" blank="15" comment="0" code="74"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/ConfLoader.hh" blank="25" comment="179" code="72"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/helpers.cc" blank="15" comment="8" code="71"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/FormatModifiers.cc" blank="12" comment="2" code="71"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/text.cc" blank="18" comment="3" code="64"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/logtypes.hh" blank="22" comment="36" code="62"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/StreamAppender.cc" blank="15" comment="2" code="60"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/ColoredFormatter.hh" blank="25" comment="136" code="60"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/types.hh" blank="14" comment="29" code="54"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.hh" blank="30" comment="132" code="49"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Formatter.hh" blank="24" comment="250" code="48"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/MemoryAppender.cc" blank="12" comment="0" code="47"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Appender.hh" blank="18" comment="65" code="45"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/mixins/cloneable.hh" blank="15" comment="3" code="42"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/config/types.hh" blank="9" comment="0" code="42"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/format.hh" blank="10" comment="32" code="41"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Fields.hh" blank="14" comment="33" code="38"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/mixins/singleton.hh" blank="11" comment="43" code="37"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/utils/CacheLRU.hh" blank="17" comment="33" code="36"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/FormatModifiers.hh" blank="19" comment="53" code="35"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/helpers.hh" blank="25" comment="106" code="35"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/SyslogAppender.hh" blank="14" comment="107" code="34"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/text.hh" blank="14" comment="27" code="32"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Appender.cc" blank="9" comment="0" code="32"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/error.hh" blank="9" comment="21" code="31"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/MemoryAppender.hh" blank="13" comment="54" code="31"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Stream.hh" blank="13" comment="22" code="30"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/StreamAppender.hh" blank="12" comment="57" code="28"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/utils/safe_deque.hh" blank="8" comment="0" code="25"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/utils/scoped_fn.hh" blank="7" comment="0" code="21"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Stream.cc" blank="6" comment="0" code="19"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log/fwd.hh" blank="5" comment="0" code="18"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/types.cc" blank="3" comment="0" code="14"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.cc" blank="4" comment="0" code="9"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/core/src/log.hh" blank="2" comment="0" code="4"  language="C/C++ Header" />
+  <total blank="972" comment="2322" code="3403" />
+</files>
+<languages>
+  <language name="C++" files_count="17" blank="418" comment="53" code="2012" />
+  <language name="C/C++ Header" files_count="29" blank="554" comment="2269" code="1391" />
+  <total sum_files="46" blank="972" comment="2322" code="3403" />
+</languages>
+</results>

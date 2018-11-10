@@ -1,0 +1,6 @@
+<map id="xtd::network::http::str" name="xtd::network::http::str">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1http_1_1Request.html#a8bc12470bb1a04d71d84ed1053551df9" title="xtd::network::http\l::Request::existsParam" alt="" coords="200,5,360,47"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1network_1_1http.html#a9cd58530344372f236be8478d9c41ac3" title="xtd::network::http\l::operator\&lt;\&lt;" alt="" coords="218,71,342,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Response.html#a7ef5311a674ff168339f040b390f40c2" title="xtd::network::http\l::Response::writeInitial" alt="" coords="202,136,358,177"/>
+<area shape="rect" id="node5" href="$classxtd_1_1network_1_1http_1_1Json.html#a7a9ed4f957c77813ecbb84e228936b5e" title="xtd::network::http\l::Json::resolve" alt="" coords="218,201,342,243"/>
+</map>

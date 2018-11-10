@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network documentation coverage - http/types.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - types.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-01-15 22:39:48</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef NETWORK_HTTP_TYPES_HH_
+<span class="lineNum">       2 </span>            : # define NETWORK_HTTP_TYPES_HH_
+<span class="lineNum">       3 </span>            : # include &lt;types.hh&gt; //libcore
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : namespace xtd {
+<span class="lineNum">       6 </span>            : namespace network {
+<span class="lineNum">       7 </span>            : namespace http {
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span><span class="lineNoCov">          0 : enum class version : uint32_t {</span>
+<span class="lineNum">      10 </span>            :   v1_0,
+<span class="lineNum">      11 </span>            :   v1_1
+<span class="lineNum">      12 </span>            :  };
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span><span class="lineNoCov">          0 : enum class method : uint32_t {</span>
+<span class="lineNum">      15 </span>            :   get    = 0,
+<span class="lineNum">      16 </span>            :   post   = 1,
+<span class="lineNum">      17 </span>            :   head   = 2,
+<span class="lineNum">      18 </span>            :   patch  = 3,
+<span class="lineNum">      19 </span>            :   put    = 4,
+<span class="lineNum">      20 </span>            :   del    = 5
+<span class="lineNum">      21 </span>            :  };
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 : enum class code : uint32_t {</span>
+<span class="lineNum">      24 </span>            :   //Information 1xx
+<span class="lineNum">      25 </span>            :   proceeed, //Continue
+<span class="lineNum">      26 </span>            :   switch_protocol, //Switching protocol
+<span class="lineNum">      27 </span>            :   //Successful 2xx
+<span class="lineNum">      28 </span>            :   ok, //OK
+<span class="lineNum">      29 </span>            :   created, //Created
+<span class="lineNum">      30 </span>            :   accepted, //Accepted
+<span class="lineNum">      31 </span>            :   no_content, //No Content
+<span class="lineNum">      32 </span>            :   partial_content, //Partial content
+<span class="lineNum">      33 </span>            :   //Redirection 3xx
+<span class="lineNum">      34 </span>            :   multiple_choices, //Multiple Choices
+<span class="lineNum">      35 </span>            :   moved_permanently, //Moved Permanently
+<span class="lineNum">      36 </span>            :   moved_temporarily, //Moved Temporarily
+<span class="lineNum">      37 </span>            :   not_modified, //Not Modified
+<span class="lineNum">      38 </span>            :   //Client Error 4xx
+<span class="lineNum">      39 </span>            :   bad_request, //Bad Request
+<span class="lineNum">      40 </span>            :   unauthorized, //Unauthorized
+<span class="lineNum">      41 </span>            :   forbidden, //Forbidden
+<span class="lineNum">      42 </span>            :   not_found, //Not Found
+<span class="lineNum">      43 </span>            :   method_not_allowed, //Method not allowed
+<span class="lineNum">      44 </span>            :   //Server Error 5xx
+<span class="lineNum">      45 </span>            :   internal_error, //Internal Server Error
+<span class="lineNum">      46 </span>            :   not_implemented, //Not Implemented
+<span class="lineNum">      47 </span>            :   bad_gateway, //Bad Gateway
+<span class="lineNum">      48 </span>            :   service_unavailable //Service Unavailable
+<span class="lineNum">      49 </span>            :  };
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            : string str(version p_version);
+<span class="lineNum">      52 </span>            : string str(method  p_method);
+<span class="lineNum">      53 </span>            : string str(code    p_code);
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : }}}
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : #endif // !NETWORK_HTTP_TYPES_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

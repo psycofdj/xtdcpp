@@ -1,0 +1,72 @@
+{
+  "src/objects/Doc.hh": {
+    "rm": [
+      "#include <stdint.h>  // lines 3-3", 
+      "#include <types.hh>  // lines 5-5", 
+      "#include <vector>  // lines 6-6", 
+      "namespace std { namespace boost { namespace serialization { class access; } } }  // lines 8-8"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>              // for uint32_t", 
+      "#include <boost/serialization/access.hpp>   // for access", 
+      "#include <cstdint>                          // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>              // for uint32_t", 
+      "#include <boost/serialization/access.hpp>   // for access", 
+      "#include <boost/serialization/version.hpp>  // for BOOST_CLASS_VERSION", 
+      "#include <cstdint>                          // for uint32_t", 
+      "#include \"objects/Doc.hxx\""
+    ], 
+    "errors": false
+  }, 
+  "src/serializer.hxx": {
+    "rm": [
+      "#include <boost/iostreams/device/back_inserter.hpp>  // lines 4-4", 
+      "#include <boost/iostreams/filtering_stream.hpp>  // lines 5-5", 
+      "#include <boost/range/iterator_range_core.hpp>  // lines 6-6", 
+      "#include <sstream>  // lines 8-8", 
+      "#include \"types.hh\"  // lines 9-9", 
+      "namespace std { namespace boost { namespace iostreams { struct input; } } }  // lines 12-12", 
+      "namespace std { namespace boost { namespace iostreams { struct output; } } }  // lines 13-13"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/serialization/nvp.hpp>  // for make_nvp"
+    ], 
+    "errors": false
+  }, 
+  "src/serializer.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/serializer.hh": {
+    "rm": [
+      "#include <iostream>  // lines 4-4", 
+      "#include <types.hh>  // lines 7-7", 
+      "#include <vector>  // lines 6-6"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/archive/basic_archive.hpp>  // for archive_flags::no_codecvt, archive_flags::no_header, archive_flags::no_xml_tag_checking", 
+      "#include <string>                           // for string", 
+      "#include \"archives/DebugArchive.hh\"         // for DebugBinIArchive, DebugBinOArchive, DebugTextIArchive, DebugTextOArchive, DebugXmlIArchive, DebugXmlOArchive", 
+      "#include \"serializer.hxx\""
+    ], 
+    "errors": false
+  }, 
+  "src/objects/Doc.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/objects/Doc.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

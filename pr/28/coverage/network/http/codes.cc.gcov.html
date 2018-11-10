@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/codes.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - codes.cc<span style="font-size: 80%;"> (source / <a href="codes.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">86</td>
+            <td class="headerCovTableEntry">92</td>
+            <td class="headerCovTableEntryHi">93.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:15:09</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">60.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;http/codes.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;iterator&gt;
+<span class="lineNum">       3 </span>            : #include &quot;types.hh&quot; // libcore
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : namespace xtd {
+<span class="lineNum">       6 </span>            : namespace network {
+<span class="lineNum">       7 </span>            : namespace http {
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span><span class="lineCov">        320 : map&lt;uint32_t,string&gt; codes::ms_messages = {</span>
+<span class="lineNum">      10 </span><span class="lineCov">          4 :   { valueof(code::proceeed),                             &quot;Continue&quot;                             },</span>
+<span class="lineNum">      11 </span><span class="lineCov">          4 :   { valueof(code::switch_protocol),                      &quot;Switching Protocols&quot;                  },</span>
+<span class="lineNum">      12 </span><span class="lineCov">          4 :   { valueof(code::processing),                           &quot;Processing&quot;                           },</span>
+<span class="lineNum">      13 </span>            :   //Successful 2xx
+<span class="lineNum">      14 </span><span class="lineCov">          4 :   { valueof(code::ok),                                   &quot;OK&quot;                                   },</span>
+<span class="lineNum">      15 </span><span class="lineCov">          4 :   { valueof(code::created),                              &quot;Created&quot;                              },</span>
+<span class="lineNum">      16 </span><span class="lineCov">          4 :   { valueof(code::accepted),                             &quot;Accepted&quot;                             },</span>
+<span class="lineNum">      17 </span><span class="lineCov">          4 :   { valueof(code::non_authorative_information),          &quot;Non-Authoritative Information&quot;        },</span>
+<span class="lineNum">      18 </span><span class="lineCov">          4 :   { valueof(code::no_content),                           &quot;No Content&quot;                           },</span>
+<span class="lineNum">      19 </span><span class="lineCov">          4 :   { valueof(code::reset_content),                        &quot;Reset Content&quot;                        },</span>
+<span class="lineNum">      20 </span><span class="lineCov">          4 :   { valueof(code::partial_content),                      &quot;Partial Content&quot;                      },</span>
+<span class="lineNum">      21 </span><span class="lineCov">          4 :   { valueof(code::multi_status),                         &quot;Multi-Status&quot;                         },</span>
+<span class="lineNum">      22 </span><span class="lineCov">          4 :   { valueof(code::content_dfferent),                     &quot;Content Different&quot;                    },</span>
+<span class="lineNum">      23 </span><span class="lineCov">          4 :   { valueof(code::im_used),                              &quot;IM Used&quot;                              },</span>
+<span class="lineNum">      24 </span>            :   //Redirection 3xx
+<span class="lineNum">      25 </span><span class="lineCov">          4 :   { valueof(code::multiple_choices),                     &quot;Multiple Choices&quot;                     },</span>
+<span class="lineNum">      26 </span><span class="lineCov">          4 :   { valueof(code::moved_permanently),                    &quot;Moved Permanently&quot;                    },</span>
+<span class="lineNum">      27 </span><span class="lineCov">          4 :   { valueof(code::moved_temporarily),                    &quot;Moved Temporarily&quot;                    },</span>
+<span class="lineNum">      28 </span><span class="lineCov">          4 :   { valueof(code::see_other),                            &quot;See Other&quot;                            },</span>
+<span class="lineNum">      29 </span><span class="lineCov">          4 :   { valueof(code::not_modified),                         &quot;Not Modified&quot;                         },</span>
+<span class="lineNum">      30 </span><span class="lineCov">          4 :   { valueof(code::use_proxy),                            &quot;Use Proxy&quot;                            },</span>
+<span class="lineNum">      31 </span><span class="lineCov">          4 :   { valueof(code::temporary_redirect),                   &quot;Temporary Redirect&quot;                   },</span>
+<span class="lineNum">      32 </span><span class="lineCov">          4 :   { valueof(code::permanent_redirect),                   &quot;Permanent Redirect&quot;                   },</span>
+<span class="lineNum">      33 </span><span class="lineCov">          4 :   { valueof(code::too_many_redirects),                   &quot;Too many Redirects&quot;                   },</span>
+<span class="lineNum">      34 </span>            :   //Client Error 4xx
+<span class="lineNum">      35 </span><span class="lineCov">          4 :   { valueof(code::bad_request),                          &quot;Bad Request&quot;                          },</span>
+<span class="lineNum">      36 </span><span class="lineCov">          4 :   { valueof(code::unauthorized),                         &quot;Unauthorized&quot;                         },</span>
+<span class="lineNum">      37 </span><span class="lineCov">          4 :   { valueof(code::payment_required),                     &quot;Payment Required&quot;                     },</span>
+<span class="lineNum">      38 </span><span class="lineCov">          4 :   { valueof(code::forbidden),                            &quot;Forbidden&quot;                            },</span>
+<span class="lineNum">      39 </span><span class="lineCov">          4 :   { valueof(code::not_found),                            &quot;Not Found&quot;                            },</span>
+<span class="lineNum">      40 </span><span class="lineCov">          4 :   { valueof(code::method_not_allowed),                   &quot;Method Not Allowed&quot;                   },</span>
+<span class="lineNum">      41 </span><span class="lineCov">          4 :   { valueof(code::not_Acceptable),                       &quot;Not Acceptable&quot;                       },</span>
+<span class="lineNum">      42 </span><span class="lineCov">          4 :   { valueof(code::proxy_auth_required),                  &quot;Proxy Authentication Required&quot;        },</span>
+<span class="lineNum">      43 </span><span class="lineCov">          4 :   { valueof(code::request_timeout),                      &quot;Request Time-out&quot;                     },</span>
+<span class="lineNum">      44 </span><span class="lineCov">          4 :   { valueof(code::conflit),                              &quot;Conflict&quot;                             },</span>
+<span class="lineNum">      45 </span><span class="lineCov">          4 :   { valueof(code::gone),                                 &quot;Gone&quot;                                 },</span>
+<span class="lineNum">      46 </span><span class="lineCov">          4 :   { valueof(code::length_required),                      &quot;Length Required&quot;                      },</span>
+<span class="lineNum">      47 </span><span class="lineCov">          4 :   { valueof(code::precondition_ailed),                   &quot;Precondition Failed&quot;                  },</span>
+<span class="lineNum">      48 </span><span class="lineCov">          4 :   { valueof(code::request_entity_too_large),             &quot;Request Entity Too Large&quot;             },</span>
+<span class="lineNum">      49 </span><span class="lineCov">          4 :   { valueof(code::request_uri_too_long),                 &quot;Request-URI Too Long&quot;                 },</span>
+<span class="lineNum">      50 </span><span class="lineCov">          4 :   { valueof(code::unsupported_media_type),               &quot;Unsupported Media Type&quot;               },</span>
+<span class="lineNum">      51 </span><span class="lineCov">          4 :   { valueof(code::requested_range_unsatisfiable),        &quot;Requested range unsatisfiable&quot;        },</span>
+<span class="lineNum">      52 </span><span class="lineCov">          4 :   { valueof(code::expectation_failed),                   &quot;Expectation failed&quot;                   },</span>
+<span class="lineNum">      53 </span><span class="lineCov">          4 :   { valueof(code::im_a_teapot),                          &quot;I’m a teapot&quot;                         },</span>
+<span class="lineNum">      54 </span><span class="lineCov">          4 :   { valueof(code::bad_mapping),                          &quot;Bad mapping&quot;                          },</span>
+<span class="lineNum">      55 </span><span class="lineCov">          4 :   { valueof(code::unprocessable_entity),                 &quot;Unprocessable entity&quot;                 },</span>
+<span class="lineNum">      56 </span><span class="lineCov">          4 :   { valueof(code::locked),                               &quot;Locked&quot;                               },</span>
+<span class="lineNum">      57 </span><span class="lineCov">          4 :   { valueof(code::method_failure),                       &quot;Method failure&quot;                       },</span>
+<span class="lineNum">      58 </span><span class="lineCov">          4 :   { valueof(code::unordered_collection),                 &quot;Unordered Collection&quot;                 },</span>
+<span class="lineNum">      59 </span><span class="lineCov">          4 :   { valueof(code::upgrade_required),                     &quot;Upgrade Required&quot;                     },</span>
+<span class="lineNum">      60 </span><span class="lineCov">          4 :   { valueof(code::precondition_required),                &quot;Precondition Required&quot;                },</span>
+<span class="lineNum">      61 </span><span class="lineCov">          4 :   { valueof(code::too_many_requests),                    &quot;Too Many Requests&quot;                    },</span>
+<span class="lineNum">      62 </span><span class="lineCov">          4 :   { valueof(code::request_header_fields_too_large),      &quot;Request Header Fields Too Large&quot;      },</span>
+<span class="lineNum">      63 </span><span class="lineCov">          4 :   { valueof(code::retry_with),                           &quot;Retry With&quot;                           },</span>
+<span class="lineNum">      64 </span><span class="lineCov">          4 :   { valueof(code::blocked_by_windows_parental_controls), &quot;Blocked by Windows Parental Controls&quot; },</span>
+<span class="lineNum">      65 </span><span class="lineCov">          4 :   { valueof(code::unavailable_for_legal_reasons),        &quot;Unavailable For Legal Reasons&quot;        },</span>
+<span class="lineNum">      66 </span><span class="lineCov">          4 :   { valueof(code::unrecoverable_error),                  &quot;Unrecoverable Error&quot;                  },</span>
+<span class="lineNum">      67 </span><span class="lineCov">          4 :   { valueof(code::no_response),                          &quot;No Response&quot;                          },</span>
+<span class="lineNum">      68 </span><span class="lineCov">          4 :   { valueof(code::ssl_certificate_error),                &quot;SSL Certificate Error&quot;                },</span>
+<span class="lineNum">      69 </span><span class="lineCov">          4 :   { valueof(code::ssl_certificate_required),             &quot;SSL Certificate Required&quot;             },</span>
+<span class="lineNum">      70 </span><span class="lineCov">          4 :   { valueof(code::http_request_sent_to_https_port),      &quot;HTTP Request Sent to HTTPS Port&quot;      },</span>
+<span class="lineNum">      71 </span><span class="lineCov">          4 :   { valueof(code::client_closed_request),                &quot;Client Closed Request&quot;                },</span>
+<span class="lineNum">      72 </span>            :   //Server Error 5xx
+<span class="lineNum">      73 </span><span class="lineCov">          4 :   { valueof(code::internal_server_error),                &quot;Internal Server Error&quot;                },</span>
+<span class="lineNum">      74 </span><span class="lineCov">          4 :   { valueof(code::not_implemented),                      &quot;Not Implemented&quot;                      },</span>
+<span class="lineNum">      75 </span><span class="lineCov">          4 :   { valueof(code::bad_gateway_ou_proxy_error),           &quot;Bad Gateway ou Proxy Error&quot;           },</span>
+<span class="lineNum">      76 </span><span class="lineCov">          4 :   { valueof(code::service_unavailable),                  &quot;Service Unavailable&quot;                  },</span>
+<span class="lineNum">      77 </span><span class="lineCov">          4 :   { valueof(code::gateway_time_out),                     &quot;Gateway Time-out&quot;                     },</span>
+<span class="lineNum">      78 </span><span class="lineCov">          4 :   { valueof(code::http_version_not_supported),           &quot;HTTP Version not supported&quot;           },</span>
+<span class="lineNum">      79 </span><span class="lineCov">          4 :   { valueof(code::variant_also_negotiates),              &quot;Variant Also Negotiates&quot;              },</span>
+<span class="lineNum">      80 </span><span class="lineCov">          4 :   { valueof(code::insufficient_storage),                 &quot;Insufficient storage&quot;                 },</span>
+<span class="lineNum">      81 </span><span class="lineCov">          4 :   { valueof(code::loop_detected),                        &quot;Loop detected&quot;                        },</span>
+<span class="lineNum">      82 </span><span class="lineCov">          4 :   { valueof(code::bandwidth_limit_exceeded),             &quot;Bandwidth Limit Exceeded&quot;             },</span>
+<span class="lineNum">      83 </span><span class="lineCov">          4 :   { valueof(code::not_extended),                         &quot;Not extended&quot;                         },</span>
+<span class="lineNum">      84 </span><span class="lineCov">          4 :   { valueof(code::network_authentication_required),      &quot;Network authentication required&quot;      },</span>
+<span class="lineNum">      85 </span><span class="lineCov">          4 :   { valueof(code::unknown_error),                        &quot;Unknown Error&quot;                        },</span>
+<span class="lineNum">      86 </span><span class="lineCov">          4 :   { valueof(code::web_server_is_down),                   &quot;Web Server Is Down&quot;                   },</span>
+<span class="lineNum">      87 </span><span class="lineCov">          4 :   { valueof(code::connection_timed_out),                 &quot;Connection Timed Out&quot;                 },</span>
+<span class="lineNum">      88 </span><span class="lineCov">          4 :   { valueof(code::origin_is_unreachable),                &quot;Origin Is Unreachable&quot;                },</span>
+<span class="lineNum">      89 </span><span class="lineCov">          4 :   { valueof(code::a_timeout_occurred),                   &quot;A Timeout Occurred&quot;                   },</span>
+<span class="lineNum">      90 </span><span class="lineCov">          4 :   { valueof(code::ssl_handshake_failed),                 &quot;SSL Handshake Failed&quot;                 },</span>
+<span class="lineNum">      91 </span><span class="lineCov">          4 :   { valueof(code::invalid_ssl_certificate),              &quot;Invalid SSL Certificate&quot;              },</span>
+<span class="lineNum">      92 </span><span class="lineCov">          4 :   { valueof(code::railgun_error),                        &quot;Railgun Error&quot;                        },</span>
+<span class="lineNum">      93 </span>            :   { 999,                                                 &quot;Unknown Status Code&quot;                  }
+<span class="lineNum">      94 </span><span class="lineCov">        160 : };</span>
+<span class="lineNum">      95 </span>            : 
+<a name="96"><span class="lineNum">      96 </span>            : </a>
+<span class="lineNum">      97 </span>            : void
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 : codes::setMessage(uint32_t p_code, const string&amp; p_message)</span>
+<span class="lineNum">      99 </span>            : {
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :   ms_messages[p_code] = p_message;</span>
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     102 </span>            : 
+<a name="103"><span class="lineNum">     103 </span>            : </a>
+<span class="lineNum">     104 </span>            : const string&amp;
+<span class="lineNum">     105 </span><span class="lineCov">         24 : codes::getMessage(uint32_t p_code)</span>
+<span class="lineNum">     106 </span>            : {
+<span class="lineNum">     107 </span><span class="lineCov">         24 :   const auto&amp; c_value = ms_messages.find(p_code);</span>
+<span class="lineNum">     108 </span><span class="lineCov">         24 :   if (ms_messages.end() == c_value)</span>
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :     return ms_messages.rbegin()-&gt;second;</span>
+<span class="lineNum">     110 </span><span class="lineCov">         24 :   return c_value-&gt;second;</span>
+<span class="lineNum">     111 </span>            : }
+<span class="lineNum">     112 </span>            : 
+<a name="113"><span class="lineNum">     113 </span>            : </a>
+<span class="lineNum">     114 </span>            : const string&amp;
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 : codes::getMessage(code p_code)</span>
+<span class="lineNum">     116 </span>            : {
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :   return getMessage(valueof(p_code));</span>
+<a name="118"><span class="lineNum">     118 </span>            : }</a>
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span><span class="lineCov">          6 : }}}</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

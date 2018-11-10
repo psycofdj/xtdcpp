@@ -1,0 +1,229 @@
+{
+  "src/app/HtmlOArchive.cc": {
+    "rm": [
+      "#include <boost/archive/basic_archive.hpp>  // lines 2-2", 
+      "#include <boost/serialization/item_version_type.hpp>  // lines 5-5", 
+      "#include <limits>  // lines 6-6", 
+      "namespace std { namespace std { namespace boost { namespace serialization { class collection_size_type; } } } }  // lines 9-9"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"app/HtmlOArchive.hh\"", 
+      "#include <boost/format.hpp>        // for format, str", 
+      "#include <boost/lexical_cast.hpp>  // for lexical_cast", 
+      "#include \"types.hh\"                // for string, ostream, size_t, stringstream"
+    ], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc:1:\n/usr/include/unistd.h:229:10: fatal error: 'stddef.h' file not found\n#include <stddef.h>\n         ^~~~~~~~~~\nCycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp>\n/build/iwyu-mhPUyW/iwyu-5.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/param/Pod.hh": {
+    "rm": [
+      "namespace std { namespace xtd { namespace servers { namespace param { class POD; } } } }  // lines 9-9", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class POD; } } } }  // lines 10-10", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class POD; } } } }  // lines 11-11", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class POD; } } } }  // lines 12-12", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class POD; } } } }  // lines 13-13", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class POD; } } } }  // lines 14-14", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class Visitor; } } } }  // lines 6-6"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"param/Base.hh\"  // for Base", 
+      "#include \"types.hh\"       // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Base.hh": {
+    "rm": [
+      "#include <boost/any.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 4-4", 
+      "#include <boost/function.hpp>  // lines 5-5", 
+      "namespace std { namespace boost { template <typename Signature> class function; } }  // lines 8-8", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class Visitor; } } } }  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"param/Base.hxx\"", 
+      "#include \"types.hh\"             // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Pod.cc": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t, uint8_t"
+    ], 
+    "full": [
+      "#include \"param/Pod.hh\"", 
+      "#include \"param/Pod.hxx\"", 
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t, uint8_t", 
+      "#include \"types.hh\"             // for string, uint32_t, uint64_t, uint8_t"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Pod.hxx": {
+    "rm": [
+      "#include <boost/algorithm/string/case_conv.hpp>  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/lexical_cast.hpp>  // for bad_lexical_cast, lexical_cast", 
+      "#include \"param/Base.hh\"           // for Base", 
+      "#include \"param/Pod.hh\"            // for POD", 
+      "#include \"param/Visitor.hh\"        // for Visitor", 
+      "#include \"types.hh\"                // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Handler.hh": {
+    "rm": [
+      "#include <boost/bind.hpp>  // lines 3-3", 
+      "#include <boost/core/ref.hpp>  // lines 4-4", 
+      "#include <map>  // lines 6-6", 
+      "#include <memory>  // lines 7-7", 
+      "#include <types.hh>  // lines 9-9", 
+      "#include <utility>  // lines 10-10", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class Visitor; } } } }  // lines 14-14"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <error.hh>       // for error, xtd_error_class", 
+      "#include <string>         // for string", 
+      "#include \"param/Base.hh\"  // for Base, Base::t_sptr, Visitor", 
+      "#include \"param/Pod.hh\"   // for POD"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Base.cc": {
+    "rm": [
+      "#include <boost/cstdint.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/conversion.hpp>  // lines 4-4", 
+      "#include <boost/lexical_cast.hpp>  // lines 5-5"
+    ], 
+    "add": [
+      "#include <bits/types/struct_tm.h>  // for tm", 
+      "#include <bits/types/time_t.h>     // for time_t"
+    ], 
+    "full": [
+      "#include \"param/Base.hh\"", 
+      "#include <bits/types/struct_tm.h>  // for tm", 
+      "#include <bits/types/time_t.h>     // for time_t", 
+      "#include <time.h>                  // for mktime"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Visitor.hh": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t, uint8_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint64_t, uint8_t", 
+      "#include <http/Template.hh>     // for Json", 
+      "#include \"param/Pod.hh\"         // for POD", 
+      "#include \"types.hh\"             // for string, uint32_t, uint64_t, uint8_t"
+    ], 
+    "errors": false
+  }, 
+  "src/app/HtmlOArchive.hxx": {
+    "rm": [
+      "#include <boost/serialization/nvp.hpp>  // lines 4-4", 
+      "#include <deque>  // lines 6-6", 
+      "#include <list>  // lines 7-7"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"types.hh\"  // for stringstream"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Base.hxx": {
+    "rm": [
+      "#include <boost/any.hpp>  // lines 4-4", 
+      "#include <boost/bind.hpp>  // lines 5-5", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 6-6", 
+      "#include <boost/function.hpp>  // lines 8-8", 
+      "#include <typeinfo>  // lines 9-9", 
+      "namespace std { namespace xtd { namespace servers { namespace param { class Base; } } } }  // lines 14-14"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/foreach.hpp>  // for auto_any_base, BOOST_FOREACH", 
+      "#include \"log/helpers.hh\"     // for crit", 
+      "#include \"log/logtypes.hh\"    // for HERE", 
+      "#include \"types.hh\"           // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/app/HtmlOArchive.hh": {
+    "rm": [
+      "#include <deque>  // lines 7-7", 
+      "#include <list>  // lines 8-8", 
+      "#include <stack>  // lines 9-9", 
+      "namespace std { namespace std { namespace boost { namespace archive { class class_id_optional_type; } } } }  // lines 21-21", 
+      "namespace std { namespace std { namespace boost { namespace archive { class class_id_reference_type; } } } }  // lines 22-22", 
+      "namespace std { namespace std { namespace boost { namespace archive { class class_id_type; } } } }  // lines 23-23", 
+      "namespace std { namespace std { namespace boost { namespace archive { class object_id_type; } } } }  // lines 24-24", 
+      "namespace std { namespace std { namespace boost { namespace archive { class object_reference_type; } } } }  // lines 25-25", 
+      "namespace std { namespace std { namespace boost { namespace archive { class save_access; } } } }  // lines 26-26", 
+      "namespace std { namespace std { namespace boost { namespace archive { class version_type; } } } }  // lines 27-27", 
+      "namespace std { namespace std { namespace boost { namespace archive { namespace detail { template <class Archive> class interface_oarchive; } } } } }  // lines 28-28", 
+      "namespace std { namespace std { namespace boost { namespace archive { struct class_name_type; } } } }  // lines 29-29", 
+      "namespace std { namespace std { namespace boost { namespace archive { struct tracking_type; } } } }  // lines 30-30", 
+      "namespace std { namespace std { namespace boost { namespace archive { template <class Archive> class basic_xml_oarchive; } } } }  // lines 31-31", 
+      "namespace std { namespace std { namespace boost { namespace serialization { class collection_size_type; } } } }  // lines 32-32", 
+      "namespace std { namespace std { namespace boost { namespace serialization { class item_version_type; } } } }  // lines 33-33", 
+      "namespace std { namespace std { namespace boost { namespace serialization { template <class T> struct nvp; } } } }  // lines 34-34"
+    ], 
+    "add": [
+      "#include <boost/version.hpp>               // for BOOST_VERSION"
+    ], 
+    "full": [
+      "#include <boost/archive/detail/archive_serializer_map.hpp>", 
+      "#include <boost/archive/impl/archive_serializer_map.ipp>", 
+      "#include <boost/archive/xml_oarchive.hpp>  // for BOOST_SERIALIZATION_REGISTER_ARCHIVE", 
+      "#include <boost/version.hpp>               // for BOOST_VERSION", 
+      "#include <sstream>", 
+      "#include \"app/HtmlOArchive.hxx\"", 
+      "#include \"types.hh\"                        // for string, size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/param/Handler.cc": {
+    "rm": [
+      "#include <boost/algorithm/string/case_conv.hpp>  // lines 2-2", 
+      "#include <boost/bind.hpp>  // lines 3-3", 
+      "#include \"log/helpers.hh\"  // lines 7-7", 
+      "#include \"types.hh\"  // lines 6-6"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"param/Handler.hh\"", 
+      "#include <boost/filesystem.hpp>  // for create_directories, is_directory, filesystem", 
+      "#include <boost/foreach.hpp>     // for auto_any_base, BOOST_FOREACH", 
+      "#include \"log/logtypes.hh\"       // for HERE", 
+      "#include \"param/Base.hh\"         // for Visitor"
+    ], 
+    "errors": false
+  }, 
+  "/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": "In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:1:\nIn file included from /home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh:4:\nIn file included from /usr/include/boost/serialization/version.hpp:19:\nIn file included from /usr/include/boost/config.hpp:44:\nIn file included from /usr/include/boost/config/detail/select_stdlib_config.hpp:18:\n/usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/cstddef:50:10: fatal error: 'stddef.h' file not found\n#include <stddef.h>\n         ^~~~~~~~~~\nCycle in include-mapping:\n  <boost/phoenix/support/detail/iterate.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp> ->\n  <boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp>\n/build/iwyu-mhPUyW/iwyu-5.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping\n"
+  }, 
+  "src/param/Visitor.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

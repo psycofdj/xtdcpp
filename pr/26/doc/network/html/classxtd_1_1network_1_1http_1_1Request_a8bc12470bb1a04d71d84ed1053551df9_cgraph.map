@@ -1,0 +1,7 @@
+<map id="xtd::network::http::Request::existsParam" name="xtd::network::http::Request::existsParam">
+<area shape="rect" id="node2" href="$namespacextd_1_1network_1_1http.html#a82c3b4facf3c8d92550d1e73973d03af" title="xtd::network::http::str" alt="" coords="220,5,367,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1http_1_1Message.html#a175bc3a305044a4df4095cc12849b5e6" title="xtd::network::http\l::Message::readVersion" alt="" coords="213,57,373,98"/>
+<area shape="rect" id="node5" href="$classxtd_1_1network_1_1http_1_1Request.html#a44a1430ee6b5e2e17ae2287d4cd6de16" title="xtd::network::http\l::Request::setMethod" alt="" coords="219,122,367,163"/>
+<area shape="rect" id="node6" href="$classxtd_1_1network_1_1http_1_1Request.html#a42304776ec9355ab89c6e8e0391f4309" title="xtd::network::http\l::Request::addCgi" alt="" coords="229,187,357,229"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Message.html#a9c73e9b758134391ff075c0a974e5d5f" title="xtd::network::http\l::Message::setVersion" alt="" coords="421,57,575,98"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="xtd::servers::app::HttpServer::HttpServer" name="xtd::servers::app::HttpServer::HttpServer">
+<area shape="rect" id="node2" href="$classxtd_1_1servers_1_1app_1_1HttpServer.html#a6c6bb7c70218f171e327ed2197d0f6dc" title="xtd::servers::app::\lHttpServer::handleUSR2" alt="" coords="224,5,403,47"/>
+<area shape="rect" id="node4" href="$classxtd_1_1servers_1_1app_1_1HttpServer.html#a022eecad815296f1d27b19a4b6cca908" title="xtd::servers::app::\lHttpServer::handleTERM" alt="" coords="225,71,402,112"/>
+<area shape="rect" id="node3" href="$classxtd_1_1servers_1_1app_1_1HttpServer.html#a4b2a904b65659aa4e5d67d1ad4a02603" title="xtd::servers::app::\lHttpServer::modeProbeActivation" alt="" coords="451,5,688,47"/>
+<area shape="rect" id="node5" href="$classxtd_1_1servers_1_1app_1_1HttpServer.html#a7fdba08e0fa4dc9bbec30a989ccf4049" title="xtd::servers::app::\lHttpServer::stop" alt="" coords="501,71,638,112"/>
+</map>

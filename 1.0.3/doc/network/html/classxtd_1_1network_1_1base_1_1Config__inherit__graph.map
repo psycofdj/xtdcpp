@@ -1,0 +1,9 @@
+<map id="xtd::network::base::Config" name="xtd::network::base::Config">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1base_1_1Client.html" title="xtd::network::base\l::Client\&lt; TDomain \&gt;" alt="" coords="184,69,325,110"/>
+<area shape="rect" id="node5" href="$classxtd_1_1network_1_1base_1_1Client.html" title="xtd::network::base\l::Client\&lt; Domain \&gt;" alt="" coords="188,134,321,175"/>
+<area shape="rect" id="node6" href="$classxtd_1_1network_1_1base_1_1Server.html" title="xtd::network::base\l::Server\&lt; Domain \&gt;" alt="" coords="186,199,323,241"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1bip_1_1Client.html" title="xtd::network::bip::\lClient\&lt; TRequest, TResponse,\l TDomain \&gt;" alt="" coords="373,5,577,61"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1http_1_1Client.html" title="xtd::network::http\l::Client\&lt; TDomain \&gt;" alt="" coords="405,85,546,126"/>
+<area shape="rect" id="node7" href="$classxtd_1_1network_1_1bip_1_1Server.html" title="xtd::network::bip::\lServer\&lt; Domain \&gt;" alt="" coords="411,166,540,207"/>
+<area shape="rect" id="node8" href="$classxtd_1_1network_1_1http_1_1Server.html" title=" &#160;&#160;" alt="" coords="407,231,544,273"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="src/network.hh" name="src/network.hh">
+<area shape="rect" id="node2" href="$network__types_8hh.html" title="network_types.hh" alt="" coords="5,326,131,353"/>
+<area shape="rect" id="node5" href="$Request_8hh.html" title="http/Request.hh" alt="" coords="844,80,959,107"/>
+<area shape="rect" id="node13" href="$http__types_8hh.html" title="http/http_types.hh" alt="" coords="1995,237,2122,263"/>
+<area shape="rect" id="node15" href="$Response_8hh.html" title="http/Response.hh" alt="" coords="1895,80,2020,107"/>
+<area shape="rect" id="node16" href="$http_2Server_8hh.html" title="http/Server.hh" alt="" coords="1013,80,1117,107"/>
+<area shape="rect" id="node30" href="$bip_2Client_8hh.html" title="bip/Client.hh" alt="" coords="1142,80,1237,107"/>
+<area shape="rect" id="node41" href="$bip_2Server_8hh.html" title="bip/Server.hh" alt="" coords="404,80,503,107"/>
+<area shape="rect" id="node12" href="$Message_8hh.html" title="http/Message.hh" alt="" coords="1898,155,2017,181"/>
+<area shape="rect" id="node17" href="$base_2Server_8hh.html" title="base/Server.hh" alt="" coords="398,155,509,181"/>
+<area shape="rect" id="node22" href="$Template_8hh.html" title="http/Template.hh" alt="" coords="1637,155,1757,181"/>
+<area shape="rect" id="node20" href="$Config_8hh.html" title="base/Config.hh" alt="" coords="1227,237,1338,263"/>
+<area shape="rect" id="node24" href="$cpptempl_8hh.html" title="cpptempl.hh" alt="" coords="2197,237,2291,263"/>
+<area shape="rect" id="node31" href="$base_2Client_8hh.html" title="base/Client.hh" alt="" coords="1136,155,1243,181"/>
+<area shape="rect" id="node33" href="$Utils_8hh.html" title="utils/Utils.hh" alt="" coords="589,237,683,263"/>
+<area shape="rect" id="node39" href="$Resolver_8hh.html" title="utils/Resolver.hh" alt="" coords="1363,237,1483,263"/>
+</map>

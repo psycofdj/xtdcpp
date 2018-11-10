@@ -1,0 +1,26 @@
+<map id="src/error.hh" name="src/error.hh">
+<area shape="rect" id="node2" href="$Parser_8hh.html" title="src/config/Parser.hh" alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node4" href="$ConfLoader_8cc.html" title="src/log/ConfLoader.cc" alt="" coords="646,379,797,405"/>
+<area shape="rect" id="node5" href="$logtypes_8hh.html" title="src/log/logtypes.hh" alt="" coords="1131,80,1263,107"/>
+<area shape="rect" id="node3" href="$Parser_8cc.html" title="src/config/Parser.cc" alt="" coords="5,155,144,181"/>
+<area shape="rect" id="node6" href="$helpers_8hh.html" title="src/log/helpers.hh" alt="" coords="1508,229,1633,256"/>
+<area shape="rect" id="node17" href="$Appender_8hh.html" title="src/log/Appender.hh" alt="" coords="756,229,895,256"/>
+<area shape="rect" id="node22" href="$ColoredFormatter_8hh.html" title="src/log/ColoredFormatter.hh" alt="" coords="1220,229,1404,256"/>
+<area shape="rect" id="node23" href="$FormatModifiers_8hh.html" title="src/log/FormatModifiers.hh" alt="" coords="1858,155,2035,181"/>
+<area shape="rect" id="node24" href="$Formatter_8hh.html" title="src/log/Formatter.hh" alt="" coords="1021,155,1160,181"/>
+<area shape="rect" id="node25" href="$Logger_8hh.html" title="src/log/Logger.hh" alt="" coords="1073,229,1196,256"/>
+<area shape="rect" id="node7" href="$src_2log_8hh.html" title="src/log.hh" alt="" coords="1929,304,2007,331"/>
+<area shape="rect" id="node8" href="$Appender_8cc.html" title="src/log/Appender.cc" alt="" coords="989,304,1128,331"/>
+<area shape="rect" id="node9" href="$ColoredFormatter_8cc.html" title="src/log/ColoredFormatter.cc" alt="" coords="1581,379,1765,405"/>
+<area shape="rect" id="node10" href="$ConfLoader_8hh.html" title="src/log/ConfLoader.hh" alt="" coords="1553,304,1703,331"/>
+<area shape="rect" id="node11" href="$Formatter_8cc.html" title="src/log/Formatter.cc" alt="" coords="1976,379,2115,405"/>
+<area shape="rect" id="node12" href="$SyslogAppender_8cc.html" title="src/log/SyslogAppender.cc" alt="" coords="1379,379,1557,405"/>
+<area shape="rect" id="node13" href="$FormatModifiers_8cc.html" title="src/log/FormatModifiers.cc" alt="" coords="2083,304,2261,331"/>
+<area shape="rect" id="node14" href="$helpers_8cc.html" title="src/log/helpers.cc" alt="" coords="1728,304,1853,331"/>
+<area shape="rect" id="node15" href="$Logger_8cc.html" title="src/log/Logger.cc" alt="" coords="1152,304,1275,331"/>
+<area shape="rect" id="node16" href="$MemoryAppender_8cc.html" title="src/log/MemoryAppender.cc" alt="" coords="966,379,1151,405"/>
+<area shape="rect" id="node18" href="$MemoryAppender_8hh.html" title="src/log/MemoryAppender.hh" alt="" coords="526,304,711,331"/>
+<area shape="rect" id="node19" href="$StreamAppender_8hh.html" title="src/log/StreamAppender.hh" alt="" coords="219,304,399,331"/>
+<area shape="rect" id="node21" href="$SyslogAppender_8hh.html" title="src/log/SyslogAppender.hh" alt="" coords="736,304,915,331"/>
+<area shape="rect" id="node20" href="$StreamAppender_8cc.html" title="src/log/StreamAppender.cc" alt="" coords="219,379,399,405"/>
+</map>

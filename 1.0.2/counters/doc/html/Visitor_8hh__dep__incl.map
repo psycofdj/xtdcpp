@@ -1,0 +1,29 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh" name="/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh">
+<area shape="rect" id="node2" href="$Base_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Base.hh" alt="" coords="1533,109,1705,165"/>
+<area shape="rect" id="node27" href="$JsonVisitor_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/JsonVisitor.hh" alt="" coords="1977,213,2149,269"/>
+<area shape="rect" id="node28" href="$FileVisitor_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/FileVisitor.hh" alt="" coords="2173,213,2345,269"/>
+<area shape="rect" id="node3" href="$Value_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Value.hh" alt="" coords="645,213,817,269"/>
+<area shape="rect" id="node6" href="$counters_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/counters.hh" alt="" coords="1264,525,1436,581"/>
+<area shape="rect" id="node20" href="$Composed_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Composed.hh" alt="" coords="1141,213,1313,269"/>
+<area shape="rect" id="node22" href="$Base_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Base.cc" alt="" coords="945,213,1117,269"/>
+<area shape="rect" id="node23" href="$CounterManager_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/CounterManager.hh" alt="" coords="1781,213,1953,269"/>
+<area shape="rect" id="node25" href="$ExtValue_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/ExtValue.hh" alt="" coords="1533,213,1705,269"/>
+<area shape="rect" id="node4" href="$AvgTimedValue_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/AvgTimedValue.hh" alt="" coords="5,421,177,477"/>
+<area shape="rect" id="node7" href="$Freq_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Freq.hh" alt="" coords="645,317,817,373"/>
+<area shape="rect" id="node8" href="$Cache_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Cache.hh" alt="" coords="449,421,621,477"/>
+<area shape="rect" id="node13" href="$InstantFreq_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/InstantFreq.hh" alt="" coords="347,317,519,373"/>
+<area shape="rect" id="node15" href="$AvgValue_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/AvgValue.hh" alt="" coords="1141,317,1313,373"/>
+<area shape="rect" id="node17" href="$SumExt_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/SumExt.hh" alt="" coords="893,317,1065,373"/>
+<area shape="rect" id="node19" href="$Value_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Value.cc" alt="" coords="99,317,271,373"/>
+<area shape="rect" id="node5" href="$AvgTimedValue_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/AvgTimedValue.cc" alt="" coords="5,525,177,581"/>
+<area shape="rect" id="node10" href="$Perf_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Perf.hh" alt="" coords="841,421,1013,477"/>
+<area shape="rect" id="node12" href="$Freq_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Freq.cc" alt="" coords="645,421,817,477"/>
+<area shape="rect" id="node9" href="$Cache_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Cache.cc" alt="" coords="449,525,621,581"/>
+<area shape="rect" id="node11" href="$Perf_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Perf.cc" alt="" coords="841,525,1013,581"/>
+<area shape="rect" id="node14" href="$InstantFreq_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/InstantFreq.cc" alt="" coords="201,421,373,477"/>
+<area shape="rect" id="node16" href="$AvgValue_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/AvgValue.cc" alt="" coords="1439,421,1611,477"/>
+<area shape="rect" id="node18" href="$SumExt_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/SumExt.cc" alt="" coords="1089,421,1261,477"/>
+<area shape="rect" id="node21" href="$Composed_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/Composed.cc" alt="" coords="1337,317,1509,373"/>
+<area shape="rect" id="node24" href="$CounterManager_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/CounterManager.cc" alt="" coords="1883,317,2055,373"/>
+<area shape="rect" id="node26" href="$ExtValue_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/counters\l/src/ExtValue.cc" alt="" coords="1533,317,1705,373"/>
+</map>

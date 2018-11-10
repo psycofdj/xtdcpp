@@ -1,0 +1,513 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/Application.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - Application.cc</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-01-15 22:39:34</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #include &quot;Application.hh&quot;
+<span class="lineNum">       2 </span>            : #include &lt;cstdlib&gt;
+<span class="lineNum">       3 </span>            : #include &lt;string.h&gt;
+<span class="lineNum">       4 </span>            : #include &lt;fstream&gt;
+<span class="lineNum">       5 </span>            : #include &lt;sstream&gt;
+<span class="lineNum">       6 </span>            : #include &lt;utility&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/filesystem.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;boost/regex.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;boost/algorithm/string/split.hpp&gt;
+<span class="lineNum">      10 </span>            : #include &lt;boost/algorithm/string/trim.hpp&gt;
+<span class="lineNum">      11 </span>            : #include &lt;boost/algorithm/string/classification.hpp&gt;
+<span class="lineNum">      12 </span>            : #include &lt;unistd.h&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #ifdef HAVE_DEPENDENCY_TRACKING
+<span class="lineNum">      15 </span>            : ///! RSC keyword
+<span class="lineNum">      16 </span>            : extern char rcsid[];
+<span class="lineNum">      17 </span>            : #else
+<span class="lineNum">      18 </span>            : ///! RSC keyword
+<span class="lineNum">      19 </span><span class="lineCov">          1 : const static char rcsid[] = &quot;$rscid: include 'xtdmake/tracking/module.cmake' to enable binary tracking system $&quot;;</span>
+<span class="lineNum">      20 </span>            : #endif
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : namespace xtd {
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : Application::Application(bool p_disableExit, bool p_disableCatch) :
+<span class="lineNum">      25 </span>            :   m_binName(),
+<span class="lineNum">      26 </span>            :   m_logLevel(to_value(log::level::crit)),
+<span class="lineNum">      27 </span>            :   m_remainingArgs(),
+<span class="lineNum">      28 </span>            :   m_rcsid(rcsid),
+<span class="lineNum">      29 </span>            :   m_disableExit(p_disableExit),
+<span class="lineNum">      30 </span>            :   m_disableCatch(p_disableCatch),
+<span class="lineNum">      31 </span>            :   m_optionList(),
+<span class="lineNum">      32 </span>            :   m_helpText(),
+<span class="lineNum">      33 </span>            :   m_runThread(),
+<span class="lineNum">      34 </span>            :   m_work(m_ioService),
+<span class="lineNum">      35 </span>            :   m_signals(m_ioService),
+<span class="lineNum">      36 </span>            :   m_signalHandlerMap()
+<span class="lineNum">      37 </span>            : {
+<span class="lineNum">      38 </span>            :   addOption('h', &quot;help&quot;,
+<span class="lineNum">      39 </span>            :             argument::none,
+<span class="lineNum">      40 </span>            :             requirement::optional,
+<span class="lineNum">      41 </span>            :             &quot;imprime ce message&quot;,
+<span class="lineNum">      42 </span>            :             bindCallback(std::bind(&amp;Application::usage, this, std::ref(std::cerr))));
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            :   addOption('e', &quot;log-level&quot;,
+<span class="lineNum">      45 </span>            :             argument::mandatory,
+<span class="lineNum">      46 </span>            :             requirement::optional,
+<span class="lineNum">      47 </span>            :             R&quot;(change le niveau de log à &lt;arg&gt; (defaut 2).
+<span class="lineNum">      48 </span>            :                0 -&gt; emergency
+<span class="lineNum">      49 </span>            :                1 -&gt; alert
+<span class="lineNum">      50 </span>            :                2 -&gt; critical
+<span class="lineNum">      51 </span>            :                3 -&gt; error
+<span class="lineNum">      52 </span>            :                4 -&gt; warning
+<span class="lineNum">      53 </span>            :                5 -&gt; notice
+<span class="lineNum">      54 </span>            :                6 -&gt; info
+<span class="lineNum">      55 </span>            :                7 -&gt; debug)&quot;,
+<span class="lineNum">      56 </span>            :             bindValues(m_logLevel, vector&lt;uint32_t&gt;({0u, 1u, 2u, 3u, 4u, 5u, 6u, 7u})));
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            :   m_signals.async_wait(std::bind(&amp;Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
+<span class="lineNum">      59 </span>            : }
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : Application::~Application(void)
+<span class="lineNum">      62 </span>            : {
+<span class="lineNum">      63 </span>            : }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : const string&amp;
+<span class="lineNum">      66 </span>            : Application::getVersion(void) const
+<span class="lineNum">      67 </span>            : {
+<span class="lineNum">      68 </span>            :   return m_rcsid;
+<span class="lineNum">      69 </span>            : }
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : Application::t_callback
+<span class="lineNum">      73 </span>            : Application::bindFile(string&amp; p_target, bool p_readable) const
+<span class="lineNum">      74 </span>            : {
+<span class="lineNum">      75 </span>            :   return [&amp;p_target, p_readable, this](const string&amp; p_value, const t_option&amp; p_opt) {
+<span class="lineNum">      76 </span>            :     p_target = p_value;
+<span class="lineNum">      77 </span>            :     if ((p_readable &amp;&amp; (false == boost::filesystem::exists(p_value))) ||
+<span class="lineNum">      78 </span>            :         (p_readable &amp;&amp; (true  == boost::filesystem::is_directory(p_value))))
+<span class="lineNum">      79 </span>            :       error(1, &quot;invalid option -%c=%s, must be readable file&quot;, p_opt.m_shortOpt, p_value);
+<span class="lineNum">      80 </span>            :   };
+<span class="lineNum">      81 </span>            : }
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            : Application::t_callback
+<span class="lineNum">      84 </span>            : Application::bindDir(string&amp; p_target) const
+<span class="lineNum">      85 </span>            : {
+<span class="lineNum">      86 </span>            :   return [&amp;p_target, this](const string&amp; p_value, const t_option&amp; p_opt) {
+<span class="lineNum">      87 </span>            :     p_target = p_value;
+<span class="lineNum">      88 </span>            :     if (false == boost::filesystem::is_directory(p_value))
+<span class="lineNum">      89 </span>            :       error(1, &quot;invalid option -%c=%s, must be a directory&quot;, p_opt.m_shortOpt, p_value);
+<span class="lineNum">      90 </span>            :   };
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : }
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            : Application::t_callback
+<span class="lineNum">      95 </span>            : Application::bindRegex(string&amp; p_target) const
+<span class="lineNum">      96 </span>            : {
+<span class="lineNum">      97 </span>            :   return [&amp;p_target, this](const string&amp; p_value, const t_option&amp; p_opt) {
+<span class="lineNum">      98 </span>            :     try {
+<span class="lineNum">      99 </span>            :       boost::regex l_regex(p_value);
+<span class="lineNum">     100 </span>            :     } catch (boost::bad_expression&amp;) {
+<span class="lineNum">     101 </span>            :       error(1, &quot;invalid option --%s=%s, must be a valid regex&quot;, p_value, p_opt.m_longOpt);
+<span class="lineNum">     102 </span>            :     }
+<span class="lineNum">     103 </span>            :     p_target = p_value;
+<span class="lineNum">     104 </span>            :   };
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            : }
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            : Application::t_callback
+<span class="lineNum">     110 </span>            : Application::bindString(string&amp; p_target) const
+<span class="lineNum">     111 </span>            : {
+<span class="lineNum">     112 </span>            :   return [&amp;p_target](const string&amp; p_value, const t_option&amp;) {
+<span class="lineNum">     113 </span>            :     p_target = p_value;
+<span class="lineNum">     114 </span>            :   };
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : }
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            : Application::t_callback
+<span class="lineNum">     120 </span>            : Application::bindGiven(bool&amp; p_target) const
+<span class="lineNum">     121 </span>            : {
+<span class="lineNum">     122 </span>            :   p_target = false;
+<span class="lineNum">     123 </span>            :   return [&amp;p_target](const string&amp;, const t_option&amp;) {
+<span class="lineNum">     124 </span>            :     p_target = true;
+<span class="lineNum">     125 </span>            :   };
+<span class="lineNum">     126 </span>            : }
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            : int
+<span class="lineNum">     130 </span>            : Application::execute(int p_argc, const char* const p_argv[])
+<span class="lineNum">     131 </span>            : {
+<span class="lineNum">     132 </span>            :   int l_status = 0;
+<span class="lineNum">     133 </span>            :   char* l_name = 0;
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            :   l_name = strdup(p_argv[0]);
+<span class="lineNum">     136 </span>            :   m_binName = basename(l_name);
+<span class="lineNum">     137 </span>            :   free(l_name);
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            :   std::function&lt;void(std::function&lt;void(void)&gt;)&gt; l_noProtect = [&amp;](std::function&lt;void(void)&gt; p_handler) {
+<span class="lineNum">     140 </span>            :     p_handler();
+<span class="lineNum">     141 </span>            :   };
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span>            :   std::function&lt;void(std::function&lt;void(void)&gt;)&gt; l_doProtect = [&amp;](std::function&lt;void(void)&gt; p_handler) {
+<span class="lineNum">     144 </span>            :     try {
+<span class="lineNum">     145 </span>            :       p_handler();
+<span class="lineNum">     146 </span>            :     }
+<span class="lineNum">     147 </span>            :     catch (std::exception&amp; l_error) {
+<span class="lineNum">     148 </span>            :       error_nohelp(1, &quot;caught exception : %s&quot;, l_error.what());
+<span class="lineNum">     149 </span>            :     }
+<span class="lineNum">     150 </span>            :   };
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            :   auto l_init = [&amp;](void) {
+<span class="lineNum">     153 </span>            :     log::getRoot().initialize(string(m_binName), log::level::crit);
+<span class="lineNum">     154 </span>            :     readArgs(p_argc, p_argv);
+<span class="lineNum">     155 </span>            :     parseConfig();
+<span class="lineNum">     156 </span>            :     checkOptions();
+<span class="lineNum">     157 </span>            :     log::getRoot().setAllLevels(log::from(m_logLevel));
+<span class="lineNum">     158 </span>            :     initialize();
+<span class="lineNum">     159 </span>            :   };
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            :   auto l_process = [&amp;](void) {
+<span class="lineNum">     162 </span>            :     m_runThread = boost::thread(boost::bind(&amp;boost::asio::io_service::run, &amp;m_ioService));
+<span class="lineNum">     163 </span>            :     l_status = process();
+<span class="lineNum">     164 </span>            :     m_ioService.stop();
+<span class="lineNum">     165 </span>            :     m_runThread.join();
+<span class="lineNum">     166 </span>            :   };
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span>            :   auto l_getProtector = [&amp;](void) {
+<span class="lineNum">     169 </span>            :     if (true == m_disableCatch)
+<span class="lineNum">     170 </span>            :       return l_noProtect;
+<span class="lineNum">     171 </span>            :     return l_doProtect;
+<span class="lineNum">     172 </span>            :   };
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span>            :   l_getProtector()(l_init);
+<span class="lineNum">     175 </span>            :   l_getProtector()(l_process);
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span>            :   return l_status;
+<span class="lineNum">     178 </span>            : }
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            : 
+<span class="lineNum">     181 </span>            : /**
+<span class="lineNum">     182 </span>            :  ** @details
+<span class="lineNum">     183 </span>            :  ** 1. Mysteriously appeared here. Commented until any bug pops back.
+<span class="lineNum">     184 </span>            :  */
+<span class="lineNum">     185 </span>            : void
+<span class="lineNum">     186 </span>            : Application::handleSignal(const boost::system::error_code&amp; /* p_error */,
+<span class="lineNum">     187 </span>            :                           int                                 p_signalNumber)
+<span class="lineNum">     188 </span>            : {
+<span class="lineNum">     189 </span>            :   int l_signal = p_signalNumber;
+<span class="lineNum">     190 </span>            : 
+<span class="lineNum">     191 </span>            :   // 1.
+<span class="lineNum">     192 </span>            :   // if (p_signalNumber == 0)
+<span class="lineNum">     193 </span>            :   //   l_signal = 15;
+<span class="lineNum">     194 </span>            : 
+<span class="lineNum">     195 </span>            :   auto l_it = m_signalHandlerMap.find(l_signal);
+<span class="lineNum">     196 </span>            :   if (l_it == m_signalHandlerMap.end())
+<span class="lineNum">     197 </span>            :   {
+<span class="lineNum">     198 </span>            :     log::crit(&quot;core.application&quot;, &quot;No signal corresponding to %i found&quot;, p_signalNumber, HERE);
+<span class="lineNum">     199 </span>            :     m_signals.async_wait(std::bind(&amp;Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
+<span class="lineNum">     200 </span>            :     return;
+<span class="lineNum">     201 </span>            :   }
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            :   (*l_it).second();
+<span class="lineNum">     204 </span>            :   m_signals.async_wait(std::bind(&amp;Application::handleSignal, this, std::placeholders::_1, std::placeholders::_2));
+<span class="lineNum">     205 </span>            : }
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            : bool
+<span class="lineNum">     208 </span>            : Application::addSignalHandler(int p_signalNumber, t_sig_handler p_handler)
+<span class="lineNum">     209 </span>            : {
+<span class="lineNum">     210 </span>            :   if (m_signalHandlerMap.find(p_signalNumber) != m_signalHandlerMap.end())
+<span class="lineNum">     211 </span>            :     return false;
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            :   m_signals.add(p_signalNumber);
+<span class="lineNum">     214 </span>            :   m_signalHandlerMap[p_signalNumber] = p_handler;
+<span class="lineNum">     215 </span>            :   return true;
+<span class="lineNum">     216 </span>            : }
+<span class="lineNum">     217 </span>            : 
+<span class="lineNum">     218 </span>            : int
+<span class="lineNum">     219 </span>            : Application::process(void)
+<span class="lineNum">     220 </span>            : {
+<span class="lineNum">     221 </span>            :   return 0;
+<span class="lineNum">     222 </span>            : }
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            : void
+<span class="lineNum">     225 </span>            : Application::addOption(const char        p_shortOpt,
+<span class="lineNum">     226 </span>            :                        const string&amp;     p_longOpt,
+<span class="lineNum">     227 </span>            :                        const argument    p_argType,
+<span class="lineNum">     228 </span>            :                        const requirement p_status,
+<span class="lineNum">     229 </span>            :                        const string&amp;     p_description,
+<span class="lineNum">     230 </span>            :                        t_callback        p_callback)
+<span class="lineNum">     231 </span>            : {
+<span class="lineNum">     232 </span>            :   t_option l_opt;
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span>            :   auto l_checker =
+<span class="lineNum">     235 </span>            :     [this, p_shortOpt, &amp;p_longOpt](const t_option_list::value_type&amp; c_optItem) {
+<span class="lineNum">     236 </span>            :     if (c_optItem.m_shortOpt == p_shortOpt)
+<span class="lineNum">     237 </span>            :       error(1, &quot;short option '%c' already exists&quot;, p_shortOpt);
+<span class="lineNum">     238 </span>            :     if ((c_optItem.m_longOpt == p_longOpt) &amp;&amp; (p_longOpt != &quot;&quot;))
+<span class="lineNum">     239 </span>            :       error(1, &quot;long option '%s' already exists&quot;, p_longOpt);
+<span class="lineNum">     240 </span>            :   };
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span>            :   std::for_each(m_optionList.begin(), m_optionList.end(), l_checker);
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span>            :   if (0 == p_longOpt.find_first_of(&quot;-&quot;) || (p_shortOpt == '-'))
+<span class="lineNum">     245 </span>            :     error(1, &quot;invalid option '%s', leading dash is forbidden&quot;, p_longOpt);
+<span class="lineNum">     246 </span>            : 
+<span class="lineNum">     247 </span>            :   l_opt.m_given        = false;
+<span class="lineNum">     248 </span>            :   l_opt.m_shortOpt     = p_shortOpt;
+<span class="lineNum">     249 </span>            :   l_opt.m_longOpt      = p_longOpt;
+<span class="lineNum">     250 </span>            :   l_opt.m_argumentType = p_argType;
+<span class="lineNum">     251 </span>            :   l_opt.m_status       = p_status;
+<span class="lineNum">     252 </span>            :   l_opt.m_description  = p_description;
+<span class="lineNum">     253 </span>            :   l_opt.m_callback     = p_callback;
+<span class="lineNum">     254 </span>            :   m_optionList.push_back(l_opt);
+<span class="lineNum">     255 </span>            : }
+<span class="lineNum">     256 </span>            : 
+<span class="lineNum">     257 </span>            : /**
+<span class="lineNum">     258 </span>            :  ** @details
+<span class="lineNum">     259 </span>            :  ** 1. Reset getopt_long internal global variable.
+<span class="lineNum">     260 </span>            :  */
+<span class="lineNum">     261 </span>            : void
+<span class="lineNum">     262 </span>            : Application::readArgs(int p_argc, const char* const p_argv[])
+<span class="lineNum">     263 </span>            : {
+<span class="lineNum">     264 </span>            :   char                    l_option_name = 0;
+<span class="lineNum">     265 </span>            :   int                     l_option_index = 0;
+<span class="lineNum">     266 </span>            :   string                  l_shortOptString;
+<span class="lineNum">     267 </span>            :   struct option           l_options[100];
+<span class="lineNum">     268 </span>            :   size_t                  c_optIdx = 0;
+<span class="lineNum">     269 </span>            :   t_option_list::iterator c_opt;
+<span class="lineNum">     270 </span>            : 
+<span class="lineNum">     271 </span>            :   for (c_optIdx = 0; c_optIdx &lt; m_optionList.size(); c_optIdx++)
+<span class="lineNum">     272 </span>            :   {
+<span class="lineNum">     273 </span>            :     if (m_optionList[c_optIdx].m_longOpt != &quot;&quot;)
+<span class="lineNum">     274 </span>            :     {
+<span class="lineNum">     275 </span>            :       l_options[c_optIdx].name = m_optionList[c_optIdx].m_longOpt.c_str();
+<span class="lineNum">     276 </span>            :       l_options[c_optIdx].flag = 0;
+<span class="lineNum">     277 </span>            :       l_options[c_optIdx].val = m_optionList[c_optIdx].m_shortOpt;
+<span class="lineNum">     278 </span>            : 
+<span class="lineNum">     279 </span>            :       switch (m_optionList[c_optIdx].m_argumentType)
+<span class="lineNum">     280 </span>            :       {
+<span class="lineNum">     281 </span>            :       case argument::none:      l_options[c_optIdx].has_arg = 0; break;
+<span class="lineNum">     282 </span>            :       case argument::mandatory: l_options[c_optIdx].has_arg = 1; break;
+<span class="lineNum">     283 </span>            :       }
+<span class="lineNum">     284 </span>            :     }
+<span class="lineNum">     285 </span>            :     l_shortOptString += m_optionList[c_optIdx].m_shortOpt;
+<span class="lineNum">     286 </span>            :     switch (m_optionList[c_optIdx].m_argumentType)
+<span class="lineNum">     287 </span>            :     {
+<span class="lineNum">     288 </span>            :     case argument::none:                               break;
+<span class="lineNum">     289 </span>            :     case argument::mandatory: l_shortOptString += &quot;:&quot;; break;
+<span class="lineNum">     290 </span>            :     }
+<span class="lineNum">     291 </span>            :   }
+<span class="lineNum">     292 </span>            : 
+<span class="lineNum">     293 </span>            : 
+<span class="lineNum">     294 </span>            :   l_options[m_optionList.size()].name    = NULL;
+<span class="lineNum">     295 </span>            :   l_options[m_optionList.size()].flag    = 0;
+<span class="lineNum">     296 </span>            :   l_options[m_optionList.size()].val     = 0;
+<span class="lineNum">     297 </span>            :   l_options[m_optionList.size()].has_arg = 0;
+<span class="lineNum">     298 </span>            : 
+<span class="lineNum">     299 </span>            :   // 1.
+<span class="lineNum">     300 </span>            :   optind = 1;
+<span class="lineNum">     301 </span>            :   optopt = 0;
+<span class="lineNum">     302 </span>            :   opterr = 0;
+<span class="lineNum">     303 </span>            : 
+<span class="lineNum">     304 </span>            :   while (1)
+<span class="lineNum">     305 </span>            :   {
+<span class="lineNum">     306 </span>            :     l_option_name = getopt_long(p_argc, const_cast&lt;char**&gt;(p_argv), l_shortOptString.c_str(), l_options, &amp;l_option_index);
+<span class="lineNum">     307 </span>            : 
+<span class="lineNum">     308 </span>            :     if (l_option_name == -1)
+<span class="lineNum">     309 </span>            :       break;
+<span class="lineNum">     310 </span>            : 
+<span class="lineNum">     311 </span>            :     if (l_option_name == '?')
+<span class="lineNum">     312 </span>            :       error(1, &quot;invalid option -%c&quot;, static_cast&lt;char&gt;(optopt));
+<span class="lineNum">     313 </span>            : 
+<span class="lineNum">     314 </span>            :     for (auto&amp; c_opt : m_optionList)
+<span class="lineNum">     315 </span>            :     {
+<span class="lineNum">     316 </span>            :       if (c_opt.m_shortOpt == l_option_name)
+<span class="lineNum">     317 </span>            :       {
+<span class="lineNum">     318 </span>            :         c_opt.m_given = true;
+<span class="lineNum">     319 </span>            :         string l_argValue;
+<span class="lineNum">     320 </span>            :         if (optarg) {
+<span class="lineNum">     321 </span>            :           l_argValue = optarg;
+<span class="lineNum">     322 </span>            :         }
+<span class="lineNum">     323 </span>            :         c_opt.m_callback(l_argValue, c_opt);
+<span class="lineNum">     324 </span>            :         break;
+<span class="lineNum">     325 </span>            :       }
+<span class="lineNum">     326 </span>            :     }
+<span class="lineNum">     327 </span>            :   }
+<span class="lineNum">     328 </span>            : 
+<span class="lineNum">     329 </span>            :   for (auto&amp; c_opt : m_optionList)
+<span class="lineNum">     330 </span>            :   {
+<span class="lineNum">     331 </span>            :     switch (c_opt.m_status)
+<span class="lineNum">     332 </span>            :     {
+<span class="lineNum">     333 </span>            :     case requirement::optional: break;
+<span class="lineNum">     334 </span>            :     case requirement::mandatory:
+<span class="lineNum">     335 </span>            :       if (c_opt.m_given == false)
+<span class="lineNum">     336 </span>            :         error(1, &quot;option '%c' is mandatory&quot;, c_opt.m_shortOpt);
+<span class="lineNum">     337 </span>            :       break;
+<span class="lineNum">     338 </span>            :     }
+<span class="lineNum">     339 </span>            :   }
+<span class="lineNum">     340 </span>            : 
+<span class="lineNum">     341 </span>            :   while (optind &lt; p_argc)
+<span class="lineNum">     342 </span>            :   {
+<span class="lineNum">     343 </span>            :     m_remainingArgs.push_back(string(p_argv[optind]));
+<span class="lineNum">     344 </span>            :     optind++;
+<span class="lineNum">     345 </span>            :   }
+<span class="lineNum">     346 </span>            : }
+<span class="lineNum">     347 </span>            : 
+<span class="lineNum">     348 </span>            : 
+<span class="lineNum">     349 </span>            : bool
+<span class="lineNum">     350 </span>            : Application::isOptionGiven(const string&amp; p_optionName) const
+<span class="lineNum">     351 </span>            : {
+<span class="lineNum">     352 </span>            :   for (const auto&amp; cc_opt : m_optionList)
+<span class="lineNum">     353 </span>            :   {
+<span class="lineNum">     354 </span>            :     string l_shortOpt;
+<span class="lineNum">     355 </span>            : 
+<span class="lineNum">     356 </span>            :     l_shortOpt += cc_opt.m_shortOpt;
+<span class="lineNum">     357 </span>            : 
+<span class="lineNum">     358 </span>            :     if ((cc_opt.m_given    == true) &amp;&amp;
+<span class="lineNum">     359 </span>            :         ((l_shortOpt        == p_optionName) ||
+<span class="lineNum">     360 </span>            :          (cc_opt.m_longOpt == p_optionName)))
+<span class="lineNum">     361 </span>            :     {
+<span class="lineNum">     362 </span>            :       return true;
+<span class="lineNum">     363 </span>            :     }
+<span class="lineNum">     364 </span>            :   }
+<span class="lineNum">     365 </span>            :   return false;
+<span class="lineNum">     366 </span>            : }
+<span class="lineNum">     367 </span>            : 
+<span class="lineNum">     368 </span>            : 
+<span class="lineNum">     369 </span>            : void
+<span class="lineNum">     370 </span>            : Application::usage(std::ostream&amp; p_stream) const
+<span class="lineNum">     371 </span>            : {
+<span class="lineNum">     372 </span>            :   size_t                                    l_maxOptStrSize = 0;
+<span class="lineNum">     373 </span>            :   vector&lt;std::pair&lt;string, vector&lt;string&gt;&gt;&gt; l_data;
+<span class="lineNum">     374 </span>            : 
+<span class="lineNum">     375 </span>            :   p_stream &lt;&lt; &quot;usage : &quot; &lt;&lt; m_binName &lt;&lt; &quot; [options]&quot; &lt;&lt; endl
+<span class="lineNum">     376 </span>            :            &lt;&lt; endl;
+<span class="lineNum">     377 </span>            : 
+<span class="lineNum">     378 </span>            :   for (const auto&amp; cc_optItem : m_optionList)
+<span class="lineNum">     379 </span>            :   {
+<span class="lineNum">     380 </span>            :     string         l_shortForm = &quot;-&quot;;
+<span class="lineNum">     381 </span>            :     string         l_longForm  = &quot;&quot;;
+<span class="lineNum">     382 </span>            :     stringstream   l_format;
+<span class="lineNum">     383 </span>            :     vector&lt;string&gt; l_lines;
+<span class="lineNum">     384 </span>            : 
+<span class="lineNum">     385 </span>            :     l_shortForm += cc_optItem.m_shortOpt;
+<span class="lineNum">     386 </span>            :     if (cc_optItem.m_longOpt.size())
+<span class="lineNum">     387 </span>            :     {
+<span class="lineNum">     388 </span>            :       l_longForm += &quot;--&quot;;
+<span class="lineNum">     389 </span>            :       l_longForm += cc_optItem.m_longOpt;
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span>            :       switch (cc_optItem.m_argumentType)
+<span class="lineNum">     392 </span>            :       {
+<span class="lineNum">     393 </span>            :       case argument::none:                                 break;
+<span class="lineNum">     394 </span>            :       case argument::mandatory: l_longForm += &quot; &lt;arg&gt;&quot;;    break;
+<span class="lineNum">     395 </span>            :       }
+<span class="lineNum">     396 </span>            :     }
+<span class="lineNum">     397 </span>            : 
+<span class="lineNum">     398 </span>            :     l_format &lt;&lt; std::right &lt;&lt; std::setw(5) &lt;&lt; l_shortForm &lt;&lt; &quot; | &quot; &lt;&lt; l_longForm;
+<span class="lineNum">     399 </span>            :     l_maxOptStrSize = std::max(l_maxOptStrSize, l_format.str().size());
+<span class="lineNum">     400 </span>            : 
+<span class="lineNum">     401 </span>            :     boost::split(l_lines, cc_optItem.m_description, boost::is_any_of(&quot;\n&quot;));
+<span class="lineNum">     402 </span>            :     l_data.push_back(std::make_pair(l_format.str(), l_lines));
+<span class="lineNum">     403 </span>            :   }
+<span class="lineNum">     404 </span>            : 
+<span class="lineNum">     405 </span>            :   for (size_t c_idx = 0; c_idx &lt; l_data.size(); c_idx++)
+<span class="lineNum">     406 </span>            :   {
+<span class="lineNum">     407 </span>            :     p_stream &lt;&lt; std::left &lt;&lt; std::setw(l_maxOptStrSize) &lt;&lt; l_data[c_idx].first
+<span class="lineNum">     408 </span>            :              &lt;&lt; &quot; : &quot; &lt;&lt; l_data[c_idx].second[0] &lt;&lt; endl;
+<span class="lineNum">     409 </span>            :     for (size_t c_lineIdx = 1; c_lineIdx &lt; l_data[c_idx].second.size(); c_lineIdx++)
+<span class="lineNum">     410 </span>            :       p_stream &lt;&lt; std::setw(l_maxOptStrSize + 3) &lt;&lt; &quot; &quot; &lt;&lt; boost::trim_copy(l_data[c_idx].second[c_lineIdx]) &lt;&lt; std::endl;
+<span class="lineNum">     411 </span>            :   }
+<span class="lineNum">     412 </span>            : 
+<span class="lineNum">     413 </span>            :   if (m_helpText.size() != 0)
+<span class="lineNum">     414 </span>            :   {
+<span class="lineNum">     415 </span>            :     p_stream &lt;&lt; endl
+<span class="lineNum">     416 </span>            :              &lt;&lt; endl
+<span class="lineNum">     417 </span>            :              &lt;&lt; m_helpText
+<span class="lineNum">     418 </span>            :              &lt;&lt; endl;
+<span class="lineNum">     419 </span>            :   }
+<span class="lineNum">     420 </span>            : 
+<span class="lineNum">     421 </span>            : 
+<span class="lineNum">     422 </span>            :   // LCOV_EXCL_START
+<span class="lineNum">     423 </span>            :   if (false == m_disableExit)
+<span class="lineNum">     424 </span>            :     std::exit(1);
+<span class="lineNum">     425 </span>            :   // LCOV_EXCL_STOP
+<span class="lineNum">     426 </span>            : }
+<span class="lineNum">     427 </span>            : 
+<span class="lineNum">     428 </span>            : void
+<span class="lineNum">     429 </span>            : Application::addHelpMsg(const string&amp; p_helpMessage)
+<span class="lineNum">     430 </span>            : {
+<span class="lineNum">     431 </span>            :   if (m_helpText.size())
+<span class="lineNum">     432 </span>            :     m_helpText += &quot;\n&quot;;
+<span class="lineNum">     433 </span>            :   m_helpText += &quot;  &quot; + p_helpMessage;
+<span class="lineNum">     434 </span>            : }
+<span class="lineNum">     435 </span>            : 
+<span class="lineNum">     436 </span>            : 
+<span class="lineNum">     437 </span>            : }
+<span class="lineNum">     438 </span>            : 
+<span class="lineNum">     439 </span>            : // Local Variables:
+<span class="lineNum">     440 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     441 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

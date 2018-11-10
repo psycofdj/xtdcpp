@@ -1,0 +1,14 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/core/src/log/Formatter.hh" name="/home/travis/build/psycofdj/xtdcpp/core/src/log/Formatter.hh">
+<area shape="rect" id="node2" href="$Appender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Appender.hh" alt="" coords="456,109,613,165"/>
+<area shape="rect" id="node4" href="$ConfLoader_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ConfLoader.cc" alt="" coords="448,317,611,373"/>
+<area shape="rect" id="node11" href="$ColoredFormatter_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ColoredFormatter.hh" alt="" coords="963,109,1167,165"/>
+<area shape="rect" id="node13" href="$Formatter_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Formatter.cc" alt="" coords="1192,109,1349,165"/>
+<area shape="rect" id="node3" href="$Appender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Appender.cc" alt="" coords="731,213,888,269"/>
+<area shape="rect" id="node5" href="$MemoryAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/MemoryAppender.hh" alt="" coords="501,213,707,269"/>
+<area shape="rect" id="node7" href="$StreamAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/StreamAppender.hh" alt="" coords="225,213,426,269"/>
+<area shape="rect" id="node9" href="$SyslogAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/SyslogAppender.hh" alt="" coords="5,213,200,269"/>
+<area shape="rect" id="node6" href="$MemoryAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/MemoryAppender.cc" alt="" coords="635,317,837,373"/>
+<area shape="rect" id="node8" href="$StreamAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/StreamAppender.cc" alt="" coords="225,317,423,373"/>
+<area shape="rect" id="node10" href="$SyslogAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/SyslogAppender.cc" alt="" coords="6,317,199,373"/>
+<area shape="rect" id="node12" href="$ColoredFormatter_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ColoredFormatter.cc" alt="" coords="1013,213,1216,269"/>
+</map>

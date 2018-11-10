@@ -1,0 +1,5 @@
+<map id="xtd::network::base::Config::Config" name="xtd::network::base::Config::Config">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1base_1_1Config.html#ac19f7c58cc97a09871614244335c875c" title="xtd::network::base\l::Config::setNoDelay" alt="" coords="191,5,336,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1base_1_1Config.html#a42f8e5f722d44112547fd79fe1737775" title="xtd::network::base\l::Config::setReuseAddr" alt="" coords="184,71,343,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1base_1_1Config.html#a52cb4d9f80001f1973dc18dfeba1a029" title="xtd::network::base\l::Config::setLinger" alt="" coords="198,136,329,177"/>
+</map>

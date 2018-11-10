@@ -1,0 +1,1030 @@
+[
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 16,
+        "symbol": "xtd::counters::Atomic::Atomic"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 19,
+        "symbol": "void xtd::counters::Atomic::inc"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 20,
+        "symbol": "void xtd::counters::Atomic::dec"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 21,
+        "symbol": "void xtd::counters::Atomic::write"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 24,
+        "symbol": "void xtd::counters::Atomic::inc"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 26,
+        "symbol": "void xtd::counters::Atomic::dec"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "void xtd::counters::Atomic::write"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 14,
+        "symbol": "classxtd_1_1counters_1_1Atomic"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh",
+        "documented": false,
+        "line": 13,
+        "symbol": "classxtd_1_1counters_1_1AvgExt"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 24,
+        "symbol": "typedef std::pair<boost::posix_time::ptime, uint32_t> xtd::counters::AvgTimedValue::t_elem"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 25,
+        "symbol": "typedef std::deque<t_elem> xtd::counters::AvgTimedValue::t_samples"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 26,
+        "symbol": "typedef std::deque< boost::posix_time::ptime > xtd::counters::AvgTimedValue::t_timevect"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 29,
+        "symbol": "typedef std::shared_ptr<AvgTimedValue> xtd::counters::AvgTimedValue::t_sptr"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 56,
+        "symbol": "t_samples xtd::counters::AvgTimedValue::m_samples"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 57,
+        "symbol": "t_timevect xtd::counters::AvgTimedValue::m_startTimes"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 58,
+        "symbol": "vector<uint32_t> xtd::counters::AvgTimedValue::m_reseted"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 59,
+        "symbol": "Freq xtd::counters::AvgTimedValue::m_globalPerf"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 60,
+        "symbol": "InstantFreq xtd::counters::AvgTimedValue::m_instantPerf"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 61,
+        "symbol": "Value32 xtd::counters::AvgTimedValue::m_mean"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 62,
+        "symbol": "Value32 xtd::counters::AvgTimedValue::m_min"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 63,
+        "symbol": "Value32 xtd::counters::AvgTimedValue::m_max"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 64,
+        "symbol": "Value32 xtd::counters::AvgTimedValue::m_overThreshold"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 65,
+        "symbol": "const uint32_t xtd::counters::AvgTimedValue::m_timeDeltaMs"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 66,
+        "symbol": "const uint32_t xtd::counters::AvgTimedValue::m_thresholdMs"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 67,
+        "symbol": "bool xtd::counters::AvgTimedValue::m_assert"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 32,
+        "symbol": "xtd::counters::AvgTimedValue::AvgTimedValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 37,
+        "symbol": "virtual xtd::counters::AvgTimedValue::~AvgTimedValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 40,
+        "symbol": "void xtd::counters::AvgTimedValue::startChrono"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 41,
+        "symbol": "void xtd::counters::AvgTimedValue::stopChrono"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 42,
+        "symbol": "void xtd::counters::AvgTimedValue::addResponseTime"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 43,
+        "symbol": "void xtd::counters::AvgTimedValue::setAssert"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 46,
+        "symbol": "void xtd::counters::AvgTimedValue::update_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh",
+        "documented": false,
+        "line": 20,
+        "symbol": "classxtd_1_1counters_1_1AvgTimedValue"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 19,
+        "symbol": "typedef std::shared_ptr<AvgValue<TType> > xtd::counters::AvgValue< TType >::t_sptr"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 22,
+        "symbol": "typedef std::deque<TType> xtd::counters::AvgValue< TType >::t_samples"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 25,
+        "symbol": "const uint32_t xtd::counters::AvgValue< TType >::mcs_defaultSampleSize"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 41,
+        "symbol": "t_samples xtd::counters::AvgValue< TType >::m_samples"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 42,
+        "symbol": "Value<TType> xtd::counters::AvgValue< TType >::m_mean"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 43,
+        "symbol": "Value<TType> xtd::counters::AvgValue< TType >::m_min"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 44,
+        "symbol": "Value<TType> xtd::counters::AvgValue< TType >::m_max"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 45,
+        "symbol": "uint32_t xtd::counters::AvgValue< TType >::m_nbEvent"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 47,
+        "symbol": "const uint32_t xtd::counters::AvgValue< TType >::m_sampleSize"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "xtd::counters::AvgValue< TType >::AvgValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 30,
+        "symbol": "virtual xtd::counters::AvgValue< TType >::~AvgValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 33,
+        "symbol": "AvgValue& xtd::counters::AvgValue< TType >::operator="
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 34,
+        "symbol": "AvgValue& xtd::counters::AvgValue< TType >::operator+"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 37,
+        "symbol": "void xtd::counters::AvgValue< TType >::affect_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 38,
+        "symbol": "void xtd::counters::AvgValue< TType >::add_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 15,
+        "symbol": "classxtd_1_1counters_1_1AvgValue"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 18,
+        "symbol": "typedef std::shared_ptr<Base> xtd::counters::Base::t_sptr"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 19,
+        "symbol": "typedef map<string, string> xtd::counters::Base::t_data"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 35,
+        "symbol": "string xtd::counters::Base::m_name"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 36,
+        "symbol": "boost::mutex xtd::counters::Base::m_mutex"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 22,
+        "symbol": "xtd::counters::Base::Base"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 23,
+        "symbol": "xtd::counters::Base::~Base"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 26,
+        "symbol": "void xtd::counters::Base::visit"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 27,
+        "symbol": "void xtd::counters::Base::update"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "const string & xtd::counters::Base::getName"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 31,
+        "symbol": "void xtd::counters::Base::update_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 32,
+        "symbol": "virtual void xtd::counters::Base::visit_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh",
+        "documented": false,
+        "line": 14,
+        "symbol": "classxtd_1_1counters_1_1Base"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 27,
+        "symbol": "typedef std::shared_ptr<Cache> xtd::counters::Cache::t_sptr"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 30,
+        "symbol": "xtd::counters::Cache::Cache"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 34,
+        "symbol": "void xtd::counters::Cache::hit"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 35,
+        "symbol": "void xtd::counters::Cache::miss"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 36,
+        "symbol": "void xtd::counters::Cache::invalid"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 37,
+        "symbol": "void xtd::counters::Cache::valid"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": false,
+        "line": 38,
+        "symbol": "void xtd::counters::Cache::filtered"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh",
+        "documented": true,
+        "line": 23,
+        "symbol": "classxtd_1_1counters_1_1Cache"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh",
+        "documented": false,
+        "line": 15,
+        "symbol": "xtd::counters::Composed::Composed"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh",
+        "documented": false,
+        "line": 16,
+        "symbol": "virtual xtd::counters::Composed::~Composed"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh",
+        "documented": false,
+        "line": 19,
+        "symbol": "void xtd::counters::Composed::addItem"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh",
+        "documented": false,
+        "line": 22,
+        "symbol": "void xtd::counters::Composed::update_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh",
+        "documented": false,
+        "line": 23,
+        "symbol": "void xtd::counters::Composed::visit_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh",
+        "documented": false,
+        "line": 13,
+        "symbol": "classxtd_1_1counters_1_1Composed"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 22,
+        "symbol": "typedef std::shared_ptr<CounterManager> xtd::counters::CounterManager::t_sptr"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 23,
+        "symbol": "typedef std::multimap<boost::filesystem::path, Base::t_sptr> xtd::counters::CounterManager::t_counters"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 26,
+        "symbol": "xtd::counters::CounterManager::CounterManager"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 27,
+        "symbol": "xtd::counters::CounterManager::~CounterManager"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 30,
+        "symbol": "status xtd::counters::CounterManager::start"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 31,
+        "symbol": "void xtd::counters::CounterManager::stop"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 32,
+        "symbol": "void xtd::counters::CounterManager::toJson"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 33,
+        "symbol": "string xtd::counters::CounterManager::getSnmpPath"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 34,
+        "symbol": "status xtd::counters::CounterManager::add"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 35,
+        "symbol": "const CounterManager::t_counters xtd::counters::CounterManager::getCounters"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 36,
+        "symbol": "void xtd::counters::CounterManager::writeOnDisk"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 19,
+        "symbol": "classxtd_1_1counters_1_1CounterManager"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh",
+        "documented": false,
+        "line": 10,
+        "symbol": "classxtd_1_1counters_1_1ExtValue"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh",
+        "documented": false,
+        "line": 18,
+        "symbol": "xtd::counters::ExtValue< TType >::ExtValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh",
+        "documented": false,
+        "line": 19,
+        "symbol": "virtual xtd::counters::ExtValue< TType >::~ExtValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh",
+        "documented": false,
+        "line": 22,
+        "symbol": "void xtd::counters::ExtValue< TType >::visit_safe"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 20,
+        "symbol": "xtd::counters::FileVisitor::FileVisitor"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 26,
+        "symbol": "void xtd::counters::FileVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 27,
+        "symbol": "void xtd::counters::FileVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "void xtd::counters::FileVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 29,
+        "symbol": "void xtd::counters::FileVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 30,
+        "symbol": "void xtd::counters::FileVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh",
+        "documented": false,
+        "line": 15,
+        "symbol": "classxtd_1_1counters_1_1FileVisitor"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh",
+        "documented": false,
+        "line": 16,
+        "symbol": "xtd::counters::Freq::Freq"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh",
+        "documented": false,
+        "line": 17,
+        "symbol": "virtual xtd::counters::Freq::~Freq"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh",
+        "documented": false,
+        "line": 20,
+        "symbol": "void xtd::counters::Freq::tick"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh",
+        "documented": false,
+        "line": 21,
+        "symbol": "Freq & xtd::counters::Freq::operator="
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh",
+        "documented": false,
+        "line": 24,
+        "symbol": "void xtd::counters::Freq::update_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh",
+        "documented": false,
+        "line": 12,
+        "symbol": "classxtd_1_1counters_1_1Freq"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh",
+        "documented": false,
+        "line": 21,
+        "symbol": "xtd::counters::InstantFreq::InstantFreq"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh",
+        "documented": false,
+        "line": 23,
+        "symbol": "virtual xtd::counters::InstantFreq::~InstantFreq"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh",
+        "documented": false,
+        "line": 26,
+        "symbol": "void xtd::counters::InstantFreq::tick"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh",
+        "documented": false,
+        "line": 27,
+        "symbol": "InstantFreq & xtd::counters::InstantFreq::operator="
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh",
+        "documented": false,
+        "line": 30,
+        "symbol": "void xtd::counters::InstantFreq::update_safe"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh",
+        "documented": false,
+        "line": 14,
+        "symbol": "classxtd_1_1counters_1_1InstantFreq"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 20,
+        "symbol": "xtd::counters::JsonVisitor::JsonVisitor"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 27,
+        "symbol": "void xtd::counters::JsonVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "void xtd::counters::JsonVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 29,
+        "symbol": "void xtd::counters::JsonVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 30,
+        "symbol": "void xtd::counters::JsonVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 31,
+        "symbol": "void xtd::counters::JsonVisitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh",
+        "documented": false,
+        "line": 14,
+        "symbol": "classxtd_1_1counters_1_1JsonVisitor"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.hh",
+        "documented": false,
+        "line": 31,
+        "symbol": "xtd::counters::Perf::Perf"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.hh",
+        "documented": false,
+        "line": 37,
+        "symbol": "void xtd::counters::Perf::startChrono"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.hh",
+        "documented": false,
+        "line": 38,
+        "symbol": "void xtd::counters::Perf::stopChrono"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.hh",
+        "documented": true,
+        "line": 24,
+        "symbol": "classxtd_1_1counters_1_1Perf"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh",
+        "documented": false,
+        "line": 21,
+        "symbol": "xtd::counters::SumExt< TType >::SumExt"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh",
+        "documented": false,
+        "line": 22,
+        "symbol": "virtual xtd::counters::SumExt< TType >::~SumExt"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh",
+        "documented": false,
+        "line": 25,
+        "symbol": "void xtd::counters::SumExt< TType >::addItem"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "virtual void xtd::counters::SumExt< TType >::update_safe"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh",
+        "documented": false,
+        "line": 12,
+        "symbol": "classxtd_1_1counters_1_1SumExt"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh",
+        "documented": false,
+        "line": 9,
+        "symbol": "classxtd_1_1counters_1_1Value"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 41,
+        "symbol": "typedef std::shared_ptr<Value<TType> > xtd::counters::Value< TType >::t_sptr"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 63,
+        "symbol": "bool xtd::counters::Value< TType >::m_isNaN"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 64,
+        "symbol": "TType xtd::counters::Value< TType >::m_value"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 65,
+        "symbol": "Atomic xtd::counters::Value< TType >::m_atom"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 44,
+        "symbol": "xtd::counters::Value< TType >::Value"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 45,
+        "symbol": "virtual xtd::counters::Value< TType >::~Value"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 48,
+        "symbol": "Value& xtd::counters::Value< TType >::NaN"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 49,
+        "symbol": "bool xtd::counters::Value< TType >::isNaN"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 50,
+        "symbol": "Value& xtd::counters::Value< TType >::operator="
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 51,
+        "symbol": "Value& xtd::counters::Value< TType >::operator++"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 52,
+        "symbol": "Value& xtd::counters::Value< TType >::operator++"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 53,
+        "symbol": "Value& xtd::counters::Value< TType >::operator--"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 54,
+        "symbol": "Value& xtd::counters::Value< TType >::operator--"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 57,
+        "symbol": "const TType& xtd::counters::Value< TType >::getValue"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 60,
+        "symbol": "void xtd::counters::Value< TType >::visit_safe"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh",
+        "documented": false,
+        "line": 12,
+        "symbol": "virtual void xtd::counters::Visitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh",
+        "documented": false,
+        "line": 13,
+        "symbol": "virtual void xtd::counters::Visitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh",
+        "documented": false,
+        "line": 14,
+        "symbol": "virtual void xtd::counters::Visitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh",
+        "documented": false,
+        "line": 15,
+        "symbol": "virtual void xtd::counters::Visitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh",
+        "documented": false,
+        "line": 16,
+        "symbol": "virtual void xtd::counters::Visitor::operator()"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh",
+        "documented": false,
+        "line": 10,
+        "symbol": "classxtd_1_1counters_1_1Visitor"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh",
+        "documented": false,
+        "line": 34,
+        "symbol": "typedef SumExt<uint32_t> xtd::counters::SumExt32"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh",
+        "documented": false,
+        "line": 35,
+        "symbol": "typedef SumExt<uint64_t> xtd::counters::SumExt64"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 68,
+        "symbol": "typedef Value<uint32_t> xtd::counters::Value32"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh",
+        "documented": false,
+        "line": 69,
+        "symbol": "typedef Value<uint64_t> xtd::counters::Value64"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh",
+        "documented": false,
+        "line": 16,
+        "symbol": "exec_status"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh",
+        "documented": false,
+        "line": 28,
+        "symbol": "typedef ExtValue<uint32_t> xtd::counters::ExtValue32"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh",
+        "documented": false,
+        "line": 29,
+        "symbol": "typedef ExtValue<uint64_t> xtd::counters::ExtValue64"
+      }
+    ],
+    "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh": [
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 50,
+        "symbol": "typedef AvgValue<uint32_t> xtd::counters::AvgValue32"
+      },
+      {
+        "file": "/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh",
+        "documented": false,
+        "line": 51,
+        "symbol": "typedef AvgValue<uint64_t> xtd::counters::AvgValue64"
+      }
+    ]
+  }
+]

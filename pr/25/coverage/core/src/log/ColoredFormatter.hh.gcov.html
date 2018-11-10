@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/log/ColoredFormatter.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - ColoredFormatter.hh<span style="font-size: 80%;"> (source / <a href="ColoredFormatter.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 09:53:40</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef CORE_LOG_COLOREDFORMATTER_HH_</a>
+<span class="lineNum">       2 </span>            : # define CORE_LOG_COLOREDFORMATTER_HH_
+<span class="lineNum">       3 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       4 </span>            : # include &quot;log/Fields.hh&quot;
+<span class="lineNum">       5 </span>            : # include &quot;log/Formatter.hh&quot;
+<span class="lineNum">       6 </span>            : # include &quot;log/logtypes.hh&quot;
+<span class="lineNum">       7 </span>            : # include &quot;tty.hh&quot;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : class TestColoredFormatter;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace xtd {
+<span class="lineNum">      12 </span>            : namespace log {
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /**
+<span class="lineNum">      15 </span>            :  ** @brief Formats log record with @ref tty styles
+<span class="lineNum">      16 </span>            :  ** @details
+<span class="lineNum">      17 </span>            :  ** This object inherit from Formatter and adds the possibility to apply
+<span class="lineNum">      18 </span>            :  ** @ref tty styles to fields and dynamic style modifiers.
+<span class="lineNum">      19 </span>            :  **
+<span class="lineNum">      20 </span>            :  ** ### Styles
+<span class="lineNum">      21 </span>            :  **
+<span class="lineNum">      22 </span>            :  ** The default fields styles (fg-color, bg-color, attributes) are given below :
+<span class="lineNum">      23 </span>            :  ** - name      : green,   unset, unset
+<span class="lineNum">      24 </span>            :  ** - threadid  : yellow,  unset, unset
+<span class="lineNum">      25 </span>            :  ** - message   : white,   unset, unset
+<span class="lineNum">      26 </span>            :  ** - module    : lyellow, unset, unset
+<span class="lineNum">      27 </span>            :  ** - time      : cyan,    unset, unset
+<span class="lineNum">      28 </span>            :  ** - slevel    : lred,    unset, bold
+<span class="lineNum">      29 </span>            :  ** - location  : lblack,  unset, unset
+<span class="lineNum">      30 </span>            :  ** - pid       : lblue,   unset, unset
+<span class="lineNum">      31 </span>            :  ** - ppid      : lblue,   unset, bold
+<span class="lineNum">      32 </span>            :  ** - all other : unset, unset, unset
+<span class="lineNum">      33 </span>            :  **
+<span class="lineNum">      34 </span>            :  ** ### User methods
+<span class="lineNum">      35 </span>            :  **
+<span class="lineNum">      36 </span>            :  ** In addition to parent class methods, this objects provides :
+<span class="lineNum">      37 </span>            :  **
+<span class="lineNum">      38 </span>            :  ** - @ref ColoredFormatter::setAttrs &quot;setAttrs&quot; :
+<span class="lineNum">      39 </span>            :  **   - @copybrief ColoredFormatter::setAttrs
+<span class="lineNum">      40 </span>            :  ** - @ref ColoredFormatter::setFgColor &quot;setFgColor&quot; :
+<span class="lineNum">      41 </span>            :  **   - @copybrief ColoredFormatter::setFgColor
+<span class="lineNum">      42 </span>            :  ** - @ref ColoredFormatter::setBgColor &quot;setBgColor&quot; :
+<span class="lineNum">      43 </span>            :  **   - @copybrief ColoredFormatter::setBgColor
+<span class="lineNum">      44 </span>            :  ** - @ref ColoredFormatter::setStyle &quot;setStyle&quot; :
+<span class="lineNum">      45 </span>            :  **   - @copybrief ColoredFormatter::setStyle
+<span class="lineNum">      46 </span>            :  ** - @ref ColoredFormatter::setStyles &quot;setStyles&quot; :
+<span class="lineNum">      47 </span>            :  **   - @copybrief ColoredFormatter::setStyles
+<span class="lineNum">      48 </span>            :  ** - @ref ColoredFormatter::addStyleModifier &quot;addStyleModifier&quot; :
+<span class="lineNum">      49 </span>            :  **   - @copybrief ColoredFormatter::addStyleModifier
+<span class="lineNum">      50 </span>            :  **
+<span class="lineNum">      51 </span>            :  ** ### Configuration
+<span class="lineNum">      52 </span>            :  **
+<span class="lineNum">      53 </span>            :  ** In addition of the property keys used in @ref ColoredFormatter configuration,
+<span class="lineNum">      54 </span>            :  ** this objects considers **for each fields** the following triplet :
+<span class="lineNum">      55 </span>            :  ** - *log.formatter.@&lt;name@&gt;.style.@&lt;field@&gt;.fgColor*
+<span class="lineNum">      56 </span>            :  ** - *log.formatter.@&lt;name@&gt;.style.@&lt;field@&gt;.bgColor*
+<span class="lineNum">      57 </span>            :  ** - *log.formatter.@&lt;name@&gt;.style.@&lt;field@&gt;.attrs*
+<span class="lineNum">      58 </span>            :  **
+<span class="lineNum">      59 </span>            :  **
+<span class="lineNum">      60 </span>            :  ** - **fgColor** and **bgColor** : name matching one of the @ref tty::color constants
+<span class="lineNum">      61 </span>            :  ** or a number coding for extended terminal color code.
+<span class="lineNum">      62 </span>            :  **
+<span class="lineNum">      63 </span>            :  ** - **attrs** : a comma or pipe separated list of names matching one of the
+<span class="lineNum">      64 </span>            :  ** @ref tty::attrs constants
+<span class="lineNum">      65 </span>            :  */
+<span class="lineNum">      66 </span>            : class ColoredFormatter : public Formatter
+<span class="lineNum">      67 </span>            : {
+<span class="lineNum">      68 </span>            :   friend class ConfLoader;
+<span class="lineNum">      69 </span>            :   friend class ::TestColoredFormatter;
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            : protected:
+<span class="lineNum">      72 </span>            :   /**
+<span class="lineNum">      73 </span>            :    ** @brief Holds style for each field
+<span class="lineNum">      74 </span>            :    */
+<span class="lineNum">      75 </span>            :   typedef Fields&lt;tty::style&gt; t_styles;
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span>            : protected:
+<span class="lineNum">      78 </span>            :   /**
+<span class="lineNum">      79 </span>            :    ** @brief Style modifier functor prototype
+<span class="lineNum">      80 </span>            :    */
+<span class="lineNum">      81 </span>            :   typedef fn&lt;void(const FormattedRecord&amp;, t_styles&amp;)&gt; t_style_modifier;
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            : public:
+<span class="lineNum">      84 </span>            :   /**
+<span class="lineNum">      85 </span>            :    ** @brief Constructor
+<span class="lineNum">      86 </span>            :    */
+<span class="lineNum">      87 </span>            :   ColoredFormatter(void);
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            :   /**
+<span class="lineNum">      90 </span>            :    ** @brief Constructor from parent Formatter
+<span class="lineNum">      91 </span>            :    */
+<span class="lineNum">      92 </span>            :   ColoredFormatter(const Formatter&amp; p_base);
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            :   /**
+<span class="lineNum">      95 </span>            :    ** @brief Destructor
+<span class="lineNum">      96 </span>            :    */
+<span class="lineNum">      97 </span>            :   virtual ~ColoredFormatter(void);
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            : public:
+<span class="lineNum">     100 </span>            :   /**
+<span class="lineNum">     101 </span>            :    ** @brief Create a new ColoredFormatter instance from given configuration map
+<span class="lineNum">     102 </span>            :    ** @param p_name Formatter name
+<span class="lineNum">     103 </span>            :    ** @param p_properties configuration map
+<span class="lineNum">     104 </span>            :    ** @throw log_error when invalid keys/value given in p_properties
+<span class="lineNum">     105 </span>            :    */
+<span class="lineNum">     106 </span>            :   static sptr&lt;Formatter&gt; create(const string&amp;             p_name,
+<span class="lineNum">     107 </span>            :                                 const map&lt;string,string&gt;&amp; p_properties);
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            : public:
+<span class="lineNum">     110 </span>            :   /**
+<span class="lineNum">     111 </span>            :    ** @brief Sets tty attributes for given field
+<span class="lineNum">     112 </span>            :    ** @param p_field field name to modify
+<span class="lineNum">     113 </span>            :    ** @param p_attrs new tty::attrs
+<span class="lineNum">     114 </span>            :    ** @return self for chaining calls
+<span class="lineNum">     115 </span>            :    ** @details
+<span class="lineNum">     116 </span>            :    ** If given p_field is unknown, the method has no effect
+<span class="lineNum">     117 </span>            :    */
+<span class="lineNum">     118 </span>            :   ColoredFormatter&amp; setAttrs(const string&amp;     p_field,
+<span class="lineNum">     119 </span>            :                              const tty::attrs&amp; p_attrs);
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            :   /**
+<span class="lineNum">     122 </span>            :    ** @brief Sets foreground tty color for given field
+<span class="lineNum">     123 </span>            :    ** @param p_field field name to modify
+<span class="lineNum">     124 </span>            :    ** @param p_fg new tty::color
+<span class="lineNum">     125 </span>            :    ** @return self for chaining calls
+<span class="lineNum">     126 </span>            :    ** @details
+<span class="lineNum">     127 </span>            :    ** If given p_field is unknown, the method has no effect
+<span class="lineNum">     128 </span>            :    */
+<span class="lineNum">     129 </span>            :   ColoredFormatter&amp; setFgColor(const string&amp;     p_field,
+<span class="lineNum">     130 </span>            :                                const tty::color&amp; p_fg);
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            :   /**
+<span class="lineNum">     133 </span>            :    ** @brief Sets background tty color for given field
+<span class="lineNum">     134 </span>            :    ** @param p_field field name to modify
+<span class="lineNum">     135 </span>            :    ** @param p_bg new tty::color
+<span class="lineNum">     136 </span>            :    ** @return self for chaining calls
+<span class="lineNum">     137 </span>            :    ** @details
+<span class="lineNum">     138 </span>            :    ** If given p_field is unknown, the method has no effect
+<span class="lineNum">     139 </span>            :    */
+<span class="lineNum">     140 </span>            :   ColoredFormatter&amp; setBgColor(const string&amp;     p_field,
+<span class="lineNum">     141 </span>            :                                const tty::color&amp; p_bg);
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span>            :   /**
+<span class="lineNum">     144 </span>            :    ** @brief Sets tty style for given field (fgColor, bgColor + attributes)
+<span class="lineNum">     145 </span>            :    ** @param p_field field name to modify
+<span class="lineNum">     146 </span>            :    ** @param p_style new tty::style
+<span class="lineNum">     147 </span>            :    ** @return self for chaining calls
+<span class="lineNum">     148 </span>            :    ** @details
+<span class="lineNum">     149 </span>            :    ** If given p_field is unknown, the method has no effect
+<span class="lineNum">     150 </span>            :    */
+<span class="lineNum">     151 </span>            :   ColoredFormatter&amp; setStyle(const string&amp;     p_field,
+<span class="lineNum">     152 </span>            :                              const tty::style&amp; p_style);
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :   /**
+<span class="lineNum">     155 </span>            :    ** @brief Sets tty style, split version
+<span class="lineNum">     156 </span>            :    ** @param p_field field name to modify
+<span class="lineNum">     157 </span>            :    ** @param p_fg new foreground tty::color
+<span class="lineNum">     158 </span>            :    ** @param p_bg new background tty::color
+<span class="lineNum">     159 </span>            :    ** @param p_attrs new tty attributes
+<span class="lineNum">     160 </span>            :    ** @return self for chaining calls
+<span class="lineNum">     161 </span>            :    ** @details
+<span class="lineNum">     162 </span>            :    ** If given p_field is unknown, the method has no effect
+<span class="lineNum">     163 </span>            :    */
+<span class="lineNum">     164 </span>            :   ColoredFormatter&amp; setStyle(const string&amp;     p_field,
+<span class="lineNum">     165 </span>            :                              const tty::color&amp; p_fg,
+<span class="lineNum">     166 </span>            :                              const tty::color&amp; p_bg,
+<span class="lineNum">     167 </span>            :                              const tty::attrs&amp; p_attrs);
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span>            :   /**
+<span class="lineNum">     170 </span>            :    ** @brief Sets styles for all given fields
+<span class="lineNum">     171 </span>            :    ** @param p_styles map where key is field name and value is new tty::style
+<span class="lineNum">     172 </span>            :    ** @return self for chaining calls
+<span class="lineNum">     173 </span>            :    ** @details
+<span class="lineNum">     174 </span>            :    ** If given p_field is unknown, the method has no effect
+<span class="lineNum">     175 </span>            :    */
+<span class="lineNum">     176 </span>            :   ColoredFormatter&amp; setStyles(const map&lt;string, tty::style&gt;&amp; p_styles);
+<span class="lineNum">     177 </span>            : 
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span>            :   /**
+<span class="lineNum">     180 </span>            :    ** @brief Adds a style modifier functor
+<span class="lineNum">     181 </span>            :    ** @param p_functor functor compatible with @ref t_style_modifier prototype
+<span class="lineNum">     182 </span>            :    ** @return self, used for chaining
+<span class="lineNum">     183 </span>            :    */
+<span class="lineNum">     184 </span>            :   template&lt;typename Handler&gt;
+<span class="lineNum">     185 </span>            :   ColoredFormatter&amp; addStyleModifier(Handler p_functor);
+<span class="lineNum">     186 </span>            : 
+<span class="lineNum">     187 </span>            : protected:
+<span class="lineNum">     188 </span>            :   /**
+<span class="lineNum">     189 </span>            :    ** @brief Same as @ref Formatter::createFields but also applies styles
+<span class="lineNum">     190 </span>            :    */
+<span class="lineNum">     191 </span>            :   virtual void createFields(const FormattedRecord&amp; p_rec, Fields&lt;string&gt;&amp; p_args) const override;
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            :   /**
+<span class="lineNum">     194 </span>            :    ** @brief Same as @ref Formatter::getFulllog but also applies styles
+<span class="lineNum">     195 </span>            :    */
+<span class="lineNum">     196 </span>            :   virtual string getFulllog(const FormattedRecord&amp; p_rec) const override;
+<span class="lineNum">     197 </span>            : 
+<span class="lineNum">     198 </span>            : private:
+<span class="lineNum">     199 </span>            :   void defaultStyles(void);
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            : protected:
+<span class="lineNum">     202 </span>            :   t_styles                  m_fieldStyles;    ///&lt; Fields style
+<span class="lineNum">     203 </span>            :   vector&lt;t_style_modifier&gt;  m_styleModifiers; ///&lt; List of style modifiers
+<span class="lineNum">     204 </span>            : };
+<span class="lineNum">     205 </span>            : 
+<span class="lineNum">     206 </span>            : 
+<a name="207"><span class="lineNum">     207 </span>            : template&lt;typename Handler&gt;</a>
+<span class="lineNum">     208 </span>            : ColoredFormatter&amp;
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">          3 : ColoredFormatter::addStyleModifier(Handler p_functor)</span></a>
+<span class="lineNum">     210 </span>            : {
+<span class="lineNum">     211 </span><span class="lineCov">         17 :   t_style_modifier l_modifier = [p_functor](const FormattedRecord&amp; p_rec, t_styles&amp; p_format) {</span>
+<span class="lineNum">     212 </span><span class="lineCov">          7 :     p_functor(p_rec, p_format);</span>
+<span class="lineNum">     213 </span><span class="lineCov">         13 :   };</span>
+<span class="lineNum">     214 </span><span class="lineCov">          3 :   m_styleModifiers.push_back(l_modifier);</span>
+<span class="lineNum">     215 </span><span class="lineCov">          6 :   return *this;</span>
+<span class="lineNum">     216 </span>            : }
+<span class="lineNum">     217 </span>            : 
+<span class="lineNum">     218 </span>            : }}
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span>            : #endif // !CORE_LOG_COLOREDFORMATTER_HH_
+<span class="lineNum">     221 </span>            : 
+<span class="lineNum">     222 </span>            : // Local Variables:
+<span class="lineNum">     223 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     224 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

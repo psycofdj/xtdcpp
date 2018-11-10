@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - servers documentation coverage - app/HttpServer.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">app</a> - HttpServer.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">servers documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">64</td>
+            <td class="headerCovTableEntryLo">1.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 21:16:04</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef SERVERS_APP_HTTPSERVER_HH_
+<span class="lineNum">       2 </span>            : # define SERVERS_APP_HTTPSERVER_HH_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;unistd.h&gt;
+<span class="lineNum">       5 </span>            : # include &lt;vector&gt;
+<span class="lineNum">       6 </span>            : # include &lt;map&gt;
+<span class="lineNum">       7 </span>            : # include &lt;iostream&gt;
+<span class="lineNum">       8 </span>            : # include &lt;ctime&gt;
+<span class="lineNum">       9 </span>            : # include &lt;memory&gt;
+<span class="lineNum">      10 </span>            : # include &lt;boost/lexical_cast.hpp&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : # include &lt;Application.hh&gt;   // libcore
+<span class="lineNum">      13 </span>            : # include &lt;network_fwd.hh&gt;   // libnetwork
+<span class="lineNum">      14 </span>            : # include &lt;network_types.hh&gt; // libnetwork
+<span class="lineNum">      15 </span>            : # include &lt;http/Server.hh&gt;   // libnetwork
+<span class="lineNum">      16 </span>            : # include &lt;counters.hh&gt;      // libcounters
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : using boost::format;
+<span class="lineNum">      19 </span>            : using boost::str;
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : namespace xtd {
+<span class="lineNum">      22 </span>            : namespace config  { class Parser; }
+<span class="lineNum">      23 </span>            : namespace servers {
+<span class="lineNum">      24 </span>            : namespace param { class Handler; }
+<span class="lineNum">      25 </span>            : namespace app {
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : class Action
+<span class="lineNum">      28 </span><span class="lineNoCov">          0 : {</span>
+<span class="lineNum">      29 </span>            : public:
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :   Action(string p_name, string p_description) :</span>
+<span class="lineNum">      31 </span>            :     m_name(p_name),
+<span class="lineNum">      32 </span>            :     m_description(p_description),
+<span class="lineNum">      33 </span>            :     m_log(&quot;no log&quot;),
+<span class="lineNum">      34 </span>            :     m_timestamp(boost::posix_time::microsec_clock::local_time())
+<span class="lineNum">      35 </span>            :   {}
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :   ~Action(void) {}</span>
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            : public:
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   string              m_name;</span>
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :   string              m_description;</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :   string              m_log;</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   boost::posix_time::ptime m_timestamp;</span>
+<span class="lineNum">      44 </span>            : };
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : class HttpServer :
+<span class="lineNum">      48 </span>            :     public Application,
+<span class="lineNum">      49 </span>            :     public network::http::Server&lt;network::af_inet&gt;
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 : {</span>
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : private:
+<span class="lineNum">      53 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">      54 </span>            :   struct id_translator
+<span class="lineNum">      55 </span>            :   {
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :     typedef T internal_type;</span>
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :     typedef T external_type;</span>
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span><span class="lineNoCov">          0 :     boost::optional&lt;T&gt; get_value(const T &amp;v) { return  v.substr(1, v.size() - 2) ; }</span>
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :     boost::optional&lt;T&gt; put_value(const T &amp;v) { return '&quot;' + v +'&quot;'; }</span>
+<span class="lineNum">      61 </span>            :   };
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            : protected:
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   typedef HttpServer                                    http_app;</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   typedef network::http::Server&lt;network::af_inet&gt;       http_net;</span>
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   typedef sptr&lt;servers::param::Handler&gt;                 t_param_handler;</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   typedef counters::CounterManager::t_sptr              t_prober;</span>
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   typedef sptr&lt;Action&gt;                                  t_action;</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   typedef map&lt;string, t_action&gt;                         t_actions;</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   typedef sptr&lt;counters::Base&gt;                          t_counter;</span>
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : public:
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :   static const uint32_t mcs_defaultProbeDelay        = 30;</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :   static const uint32_t mcs_defaultTimeoutMs         = 5000;</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :   static const uint32_t mcs_defaultThresholdMs       = 0;</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :   static const char     mcs_defaultListenInterface[];</span>
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : public:
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :   HttpServer(bool p_isDebug = false);</span>
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 :   virtual ~HttpServer(void);</span>
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span>            : protected:
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 :   virtual string getCommonConfKey(void)   const;</span>
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   virtual string getSpecificConfKey(void) const;</span>
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :   virtual string getSnmpPath(void)        const;</span>
+<span class="lineNum">      86 </span><span class="lineNoCov">          0 :   virtual void   handleTERM(void);</span>
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   virtual int    process(void);</span>
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 :   virtual void   stop(void);</span>
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :   virtual void   start(void);</span>
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :   virtual void   parseConfig(void);</span>
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   virtual void   parseHttpPort(void);</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :   virtual void   checkOptions(void);</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   virtual void   setUp(void);</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   virtual status defineProbes(void);</span>
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span><span class="lineCov">          1 :   void handleUSR2(void);</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :   void modeProbeActivation(void);</span>
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   void setLastAdminLog(const string&amp; p_message);</span>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :   void bind_action(const string&amp; p_name,</span>
+<span class="lineNum">     101 </span>            :                    const string&amp; p_description,
+<span class="lineNum">     102 </span>            :                    handler       p_action);
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :   status h_runAction(const string&amp;                 p_name,</span>
+<span class="lineNum">     105 </span>            :                      handler                       p_action,
+<span class="lineNum">     106 </span>            :                      const uint32_t                p_requestId,
+<span class="lineNum">     107 </span>            :                      const network::http::Request&amp; p_req,
+<span class="lineNum">     108 </span>            :                      network::http::Response&amp;      p_res);
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 :   status addProbe(t_counter     p_counter,</span>
+<span class="lineNum">     112 </span>            :                   const string&amp; p_path);
+<span class="lineNum">     113 </span>            : 
+<span class="lineNum">     114 </span>            :   template&lt;typename TType&gt;
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :   status addProbe(const TType&amp;  p_value,</span>
+<span class="lineNum">     116 </span>            :                   const string&amp; p_path,
+<span class="lineNum">     117 </span>            :                   const string&amp; p_name);
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 :   status readConf(const std::string&amp; p_key,</span>
+<span class="lineNum">     121 </span>            :                   T&amp;                 p_dst,
+<span class="lineNum">     122 </span>            :                   const T&amp;           p_default);
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 :   status readConf(const std::string&amp; p_key, T&amp; p_dst);</span>
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            : private:
+<span class="lineNum">     128 </span>            :   /**
+<span class="lineNum">     129 </span>            :    ** @details
+<span class="lineNum">     130 </span>            :    ** process_mem_usage(double &amp;, double &amp;) - takes two doubles by reference,
+<span class="lineNum">     131 </span>            :    ** attempts to read the system-dependent data for a process' virtual memory
+<span class="lineNum">     132 </span>            :    ** size and resident set size, and return the results in KB.
+<span class="lineNum">     133 </span>            :    **
+<span class="lineNum">     134 </span>            :    ** On failure, returns 0.0, 0.0
+<span class="lineNum">     135 </span>            :    */
+<span class="lineNum">     136 </span>            :   void process_mem_usage(uint32_t&amp; p_vmUsage, uint32_t&amp; p_residentSet);
+<span class="lineNum">     137 </span>            : 
+<span class="lineNum">     138 </span>            :   status h_actionList(const uint32_t                p_requestID,
+<span class="lineNum">     139 </span>            :                       const network::http::Request&amp; p_req,
+<span class="lineNum">     140 </span>            :                       network::http::Response&amp;      p_res);
+<span class="lineNum">     141 </span>            : 
+<span class="lineNum">     142 </span>            :   status h_ident(const uint32_t                     p_requestID,
+<span class="lineNum">     143 </span>            :                  const network::http::Request&amp;      p_req,
+<span class="lineNum">     144 </span>            :                  network::http::Response&amp;           p_res);
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            :   status h_index(const uint32_t                     p_requestID,
+<span class="lineNum">     147 </span>            :                  const network::http::Request&amp;      p_req,
+<span class="lineNum">     148 </span>            :                  network::http::Response&amp;           p_res);
+<span class="lineNum">     149 </span>            : 
+<span class="lineNum">     150 </span>            :   status h_counter(const uint32_t                   p_requestID,
+<span class="lineNum">     151 </span>            :                    const network::http::Request&amp;    p_req,
+<span class="lineNum">     152 </span>            :                    network::http::Response&amp;         p_res);
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :   status h_admin(const uint32_t                     p_requestID,
+<span class="lineNum">     155 </span>            :                  const network::http::Request&amp;      p_req,
+<span class="lineNum">     156 </span>            :                  network::http::Response&amp;           p_res);
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span>            :   status h_conf(const uint32_t                      p_requestID,
+<span class="lineNum">     160 </span>            :                 const network::http::Request&amp;       p_req,
+<span class="lineNum">     161 </span>            :                 network::http::Response&amp;            p_res);
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            :   status h_log(const uint32_t                       p_requestID,
+<span class="lineNum">     164 </span>            :                const network::http::Request&amp;        p_req,
+<span class="lineNum">     165 </span>            :                network::http::Response&amp;             p_res);
+<span class="lineNum">     166 </span>            : 
+<span class="lineNum">     167 </span>            :   status h_probe(const uint32_t                     p_requestID,
+<span class="lineNum">     168 </span>            :                  const network::http::Request&amp;      p_req,
+<span class="lineNum">     169 </span>            :                  network::http::Response&amp;           p_res);
+<span class="lineNum">     170 </span>            : 
+<span class="lineNum">     171 </span>            : protected:
+<span class="lineNum">     172 </span>            :   // config
+<span class="lineNum">     173 </span><span class="lineNoCov">          0 :   shared_ptr&lt;config::Parser&gt; m_config;</span>
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 :   string                     m_configPath;</span>
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :   size_t                     m_nbThread;</span>
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 :   size_t                     m_timeoutMs;</span>
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 :   bool                       m_isModeProbe;</span>
+<span class="lineNum">     178 </span><span class="lineNoCov">          0 :   bool                       m_isDebug;</span>
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            :   // snmp
+<span class="lineNum">     181 </span><span class="lineNoCov">          0 :   string                              m_snmpPath;</span>
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 :   uint32_t                            m_probeDelay;</span>
+<span class="lineNum">     183 </span><span class="lineNoCov">          0 :   t_prober                            m_prober;</span>
+<span class="lineNum">     184 </span><span class="lineNoCov">          0 :   shared_ptr&lt;counters::Value32&gt;       m_ramCounter;</span>
+<span class="lineNum">     185 </span><span class="lineNoCov">          0 :   shared_ptr&lt;counters::AvgTimedValue&gt; m_perfCounter;</span>
+<span class="lineNum">     186 </span><span class="lineNoCov">          0 :   uint32_t                            m_thresholdMs;</span>
+<span class="lineNum">     187 </span>            : 
+<span class="lineNum">     188 </span>            :   // http
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 :   string                 m_httpHost;</span>
+<span class="lineNum">     190 </span><span class="lineNoCov">          0 :   uint32_t               m_httpPort;</span>
+<span class="lineNum">     191 </span><span class="lineNoCov">          0 :   string                 m_httpConfigPath;</span>
+<span class="lineNum">     192 </span>            : 
+<span class="lineNum">     193 </span>            :   // admin
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :   t_param_handler m_params;</span>
+<span class="lineNum">     195 </span><span class="lineNoCov">          0 :   string          m_adminDir;</span>
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :   t_actions       m_actions;</span>
+<span class="lineNum">     197 </span>            : };
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : }}} //end namespaces
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            : #include &quot;HttpServer.hxx&quot; // IWYU pragma: export
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            : #endif // !SERVERS_APP_HTTPSERVER_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

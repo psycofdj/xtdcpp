@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Request.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Request.hxx<span style="font-size: 80%;"> (source / <a href="Request.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-02-18 10:07:18</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef NETWORK_HTTP_REQUEST_HXX_</a>
+<span class="lineNum">       2 </span>            : # define NETWORK_HTTP_REQUEST_HXX_
+<span class="lineNum">       3 </span>            : # include &lt;boost/lexical_cast.hpp&gt;
+<span class="lineNum">       4 </span>            : # include &lt;log.hh&gt;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : namespace xtd {
+<span class="lineNum">       7 </span>            : namespace network {
+<span class="lineNum">       8 </span>            : namespace http {
+<span class="lineNum">       9 </span>            : 
+<a name="10"><span class="lineNum">      10 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">      11 </span>            : bool
+<span class="lineNum">      12 </span><span class="lineNoCov">          0 : Request::getCgi(const string&amp; p_key, T&amp; p_dst) const</span>
+<span class="lineNum">      13 </span>            : {
+<span class="lineNum">      14 </span><span class="lineNoCov">          0 :   return getData(m_cgi, p_key, p_dst);</span>
+<span class="lineNum">      15 </span>            : }
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      18 </span>            : void
+<span class="lineNum">      19 </span>            : Request::getCgi(const string&amp; p_key, vector&lt;T&gt;&amp; p_dst) const
+<span class="lineNum">      20 </span>            : {
+<span class="lineNum">      21 </span>            :   getData(m_cgi, p_key, p_dst);
+<span class="lineNum">      22 </span>            : }
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      25 </span>            : void
+<span class="lineNum">      26 </span>            : Request::getCgi(const string&amp; p_key, T&amp; p_dst, const T&amp; p_default) const
+<span class="lineNum">      27 </span>            : {
+<span class="lineNum">      28 </span>            :   getData(m_cgi, p_key, p_dst, p_default);
+<span class="lineNum">      29 </span>            : }
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : 
+<a name="33"><span class="lineNum">      33 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">      34 </span>            : bool
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 : Request::getPost(const string&amp; p_key, T&amp; p_dst) const</span>
+<span class="lineNum">      36 </span>            : {
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :   return getData(m_post, p_key, p_dst);</span>
+<span class="lineNum">      38 </span>            : }
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      41 </span>            : void
+<span class="lineNum">      42 </span>            : Request::getPost(const string&amp; p_key, vector&lt;T&gt;&amp; p_dst) const
+<span class="lineNum">      43 </span>            : {
+<span class="lineNum">      44 </span>            :   getData(m_post, p_key, p_dst);
+<span class="lineNum">      45 </span>            : }
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      48 </span>            : void
+<span class="lineNum">      49 </span>            : Request::getPost(const string&amp; p_key, T&amp; p_dst, const T&amp; p_default) const
+<span class="lineNum">      50 </span>            : {
+<span class="lineNum">      51 </span>            :   getData(m_post, p_key, p_dst, p_default);
+<span class="lineNum">      52 </span>            : }
+<span class="lineNum">      53 </span>            : 
+<a name="54"><span class="lineNum">      54 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">      55 </span>            : bool
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 : Request::getParam(const string&amp; p_key, T&amp; p_dst) const</span>
+<span class="lineNum">      57 </span>            : {
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   return getData(m_cgi, p_key, p_dst) || getData(m_post, p_key, p_dst);</span>
+<span class="lineNum">      59 </span>            : }
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      62 </span>            : void
+<span class="lineNum">      63 </span>            : Request::getParam(const string&amp; p_key, vector&lt;T&gt;&amp; p_dst) const
+<span class="lineNum">      64 </span>            : {
+<span class="lineNum">      65 </span>            :   getData(m_cgi, p_key, p_dst);
+<span class="lineNum">      66 </span>            :   getData(m_post, p_key, p_dst);
+<span class="lineNum">      67 </span>            : }
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      70 </span>            : void
+<span class="lineNum">      71 </span>            : Request::getParam(const string&amp; p_key, T&amp; p_dst, const T&amp; p_default) const
+<span class="lineNum">      72 </span>            : {
+<span class="lineNum">      73 </span>            :   if ((false == getData(m_cgi,  p_key, p_dst)) &amp;&amp;
+<span class="lineNum">      74 </span>            :       (false == getData(m_post, p_key, p_dst)))
+<span class="lineNum">      75 </span>            :     p_dst = p_default;
+<span class="lineNum">      76 </span>            : }
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      79 </span>            : void
+<span class="lineNum">      80 </span>            : Request::getParam(const string&amp; p_key, vector&lt;T&gt;&amp; p_dst, const vector&lt;T&gt;&amp; p_default) const
+<span class="lineNum">      81 </span>            : {
+<span class="lineNum">      82 </span>            :   getData(m_cgi,  p_key, p_dst);
+<span class="lineNum">      83 </span>            :   getData(m_post, p_key, p_dst);
+<span class="lineNum">      84 </span>            :   if (p_dst.size() == 0)
+<span class="lineNum">      85 </span>            :     p_dst = p_default;
+<span class="lineNum">      86 </span>            : }
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            : 
+<a name="89"><span class="lineNum">      89 </span>            : template&lt;typename TDst&gt;</a>
+<span class="lineNum">      90 </span>            : bool
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 : Request::as(const string&amp; p_src, TDst&amp; p_dst) const</span>
+<span class="lineNum">      92 </span>            : {
+<span class="lineNum">      93 </span>            :   try {
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :     p_dst = boost::lexical_cast&lt;TDst&gt;(p_src);</span>
+<span class="lineNum">      95 </span>            :   }
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   catch (boost::bad_lexical_cast&amp;) {</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;warning : invalid conversion of key %s&quot;, p_src, HERE);</span>
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">      99 </span>            :   }
+<span class="lineNum">     100 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">     101 </span>            : }
+<span class="lineNum">     102 </span>            : 
+<a name="103"><span class="lineNum">     103 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">     104 </span>            : bool
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 : Request::getData(const t_param_map&amp; p_src, const string&amp; p_key, T&amp; p_dst) const</span>
+<span class="lineNum">     106 </span>            : {
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :   t_param_map::const_iterator c_iter = p_src.find(p_key);</span>
+<span class="lineNum">     108 </span><span class="lineNoCov">          0 :   if (c_iter == p_src.end())</span>
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :   return as(c_iter-&gt;second, p_dst);</span>
+<span class="lineNum">     111 </span>            : }
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     114 </span>            : void
+<span class="lineNum">     115 </span>            : Request::getData(const t_param_map&amp; p_src, const string&amp; p_key, vector&lt;T&gt;&amp; p_dst) const
+<span class="lineNum">     116 </span>            : {
+<span class="lineNum">     117 </span>            :   t_param_map::const_iterator c_iter = p_src.find(p_key);
+<span class="lineNum">     118 </span>            :   while ((c_iter != p_src.end()) &amp;&amp;
+<span class="lineNum">     119 </span>            :          (c_iter-&gt;first == p_key))
+<span class="lineNum">     120 </span>            :   {
+<span class="lineNum">     121 </span>            :     T l_value;
+<span class="lineNum">     122 </span>            :     if (true == as(c_iter-&gt;second, l_value))
+<span class="lineNum">     123 </span>            :       p_dst.push_back(l_value);
+<span class="lineNum">     124 </span>            :     c_iter++;
+<span class="lineNum">     125 </span>            :   }
+<span class="lineNum">     126 </span>            : }
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     129 </span>            : void
+<span class="lineNum">     130 </span>            : Request::getData(const t_param_map&amp; p_src, const string&amp; p_key, T&amp; p_dst, const T&amp; p_default) const
+<span class="lineNum">     131 </span>            : {
+<span class="lineNum">     132 </span>            :   if (false == getData(p_src, p_key, p_dst))
+<span class="lineNum">     133 </span>            :     p_dst = p_default;
+<span class="lineNum">     134 </span>            : }
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     137 </span>            : void
+<span class="lineNum">     138 </span>            : Request::getData(const t_param_map&amp; p_src, const string&amp; p_key, vector&lt;T&gt;&amp; p_dst, const vector&lt;T&gt;&amp; p_default) const
+<span class="lineNum">     139 </span>            : {
+<span class="lineNum">     140 </span>            :   getData(p_src, p_key, p_dst);
+<span class="lineNum">     141 </span>            :   if (p_dst.size() == 0)
+<span class="lineNum">     142 </span>            :     p_dst = p_default;
+<span class="lineNum">     143 </span>            : }
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : }}}
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : 
+<span class="lineNum">     149 </span>            : #endif // !NETWORK_HTTP_REQUEST_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

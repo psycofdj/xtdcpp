@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ANSI_X3.4-1968"?>
+<pmd-cpd>
+   <duplication lines="13" tokens="112">
+      <file line="124"
+            path="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HtmlOArchive.cc"/>
+      <file line="178"
+            path="/home/travis/build/psycofdj/xtdcpp/servers/src/app/HtmlOArchive.cc"/>
+      <codefragment><![CDATA[  vector<Object*>::reverse_iterator cc_obj;
+  stringstream l_attrs;
+
+  p_buf << format("p_html = \"\";\n");
+
+  if (m_objectID != std::numeric_limits<unsigned int>::max())
+    l_attrs << format(" object_id='_%d'") % m_objectID;
+  if (m_classID != std::numeric_limits<unsigned int>::max())
+    l_attrs << format(" class_id='%d'") % m_classID;
+  if (m_version != std::numeric_limits<unsigned int>::max())
+    l_attrs << format(" version='%d'") % m_version;
+  if (m_tracking != std::numeric_limits<unsigned int>::max())
+    l_attrs << format(" tracking_level='%d'") % m_tracking;]]></codefragment>
+   </duplication>
+</pmd-cpd>

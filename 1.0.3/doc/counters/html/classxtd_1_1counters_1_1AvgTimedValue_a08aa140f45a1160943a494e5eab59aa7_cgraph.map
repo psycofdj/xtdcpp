@@ -1,0 +1,10 @@
+<map id="xtd::counters::AvgTimedValue::~AvgTimedValue" name="xtd::counters::AvgTimedValue::~AvgTimedValue">
+<area shape="rect" id="node2" href="$classxtd_1_1counters_1_1AvgTimedValue.html#ab5b5b6e1b4dae4bb4172ebc11ffc7c91" title="xtd::counters::AvgTimedValue\l::startChrono" alt="" coords="252,5,451,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1counters_1_1AvgTimedValue.html#a9a6818ff8c4f882a1445e9c49ed79e0f" title="xtd::counters::AvgTimedValue\l::stopChrono" alt="" coords="252,71,451,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1counters_1_1AvgTimedValue.html#a8d3f9dbf787c7c307957038a879fb69a" title="xtd::counters::AvgTimedValue\l::addResponseTime" alt="" coords="252,136,451,177"/>
+<area shape="rect" id="node7" href="$classxtd_1_1counters_1_1AvgTimedValue.html#a789b1bdb5596f6cb332435892411dbb0" title="xtd::counters::AvgTimedValue\l::setAssert" alt="" coords="252,201,451,243"/>
+<area shape="rect" id="node8" href="$classxtd_1_1counters_1_1AvgTimedValue.html#a1430fd5ff91e960a251b0656c2b5c0ca" title="xtd::counters::AvgTimedValue\l::update_safe" alt="" coords="252,267,451,308"/>
+<area shape="rect" id="node5" href="$classxtd_1_1counters_1_1Freq.html#a9e91ea45fc5e9874dc81ca4bd723efc6" title="xtd::counters::Freq\l::tick" alt="" coords="520,104,652,145"/>
+<area shape="rect" id="node6" href="$classxtd_1_1counters_1_1InstantFreq.html#a1760f09b25b97545169be189bf99d250" title="xtd::counters::InstantFreq\l::tick" alt="" coords="500,169,672,211"/>
+<area shape="rect" id="node9" href="$classxtd_1_1counters_1_1Value.html#ab206db077ef38ac776a7e64774f56f2b" title="xtd::counters::Value::NaN" alt="" coords="499,274,673,301"/>
+</map>

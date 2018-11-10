@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Template.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Template.hxx<span style="font-size: 80%;"> (source / <a href="Template.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">30</td>
+            <td class="headerCovTableEntryLo">46.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-02-18 10:07:18</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef NETWORK_HTTP_TEMPLATE_HXX_</a>
+<span class="lineNum">       2 </span>            : # define NETWORK_HTTP_TEMPLATE_HXX_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;boost/algorithm/string/replace.hpp&gt;
+<span class="lineNum">       5 </span>            : # include &lt;json_parser.hpp&gt; // libcore
+<span class="lineNum">       6 </span>            : # include &lt;log.hh&gt;          // libcore
+<span class="lineNum">       7 </span>            : # include &lt;format.hh&gt;       // libcore
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace xtd {
+<span class="lineNum">      10 </span>            : namespace network {
+<span class="lineNum">      11 </span>            : namespace http {
+<span class="lineNum">      12 </span>            : 
+<a name="13"><span class="lineNum">      13 </span>            : </a>
+<span class="lineNum">      14 </span>            : const string&amp;
+<span class="lineNum">      15 </span><span class="lineNoCov">          0 : Generator::getContentType(void) const</span>
+<span class="lineNum">      16 </span>            : {
+<span class="lineNum">      17 </span><span class="lineNoCov">          0 :   return m_contentType;</span>
+<span class="lineNum">      18 </span>            : }
+<a name="19"><span class="lineNum">      19 </span>            : </a>
+<span class="lineNum">      20 </span>            : const string&amp;
+<span class="lineNum">      21 </span><span class="lineNoCov">          0 : Generator::getError(void) const</span>
+<span class="lineNum">      22 </span>            : {
+<span class="lineNum">      23 </span><span class="lineNoCov">          0 :   return m_error;</span>
+<span class="lineNum">      24 </span>            : }
+<a name="25"><span class="lineNum">      25 </span>            : </a>
+<span class="lineNum">      26 </span>            : void
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 : Generator::addError(const string&amp; p_error)</span>
+<span class="lineNum">      28 </span>            : {
+<span class="lineNum">      29 </span><span class="lineNoCov">          0 :   if (0 != m_error.size())</span>
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 :     m_error += &quot;, &quot;;</span>
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 :   m_error += p_error;</span>
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :   log::err(&quot;network.http.template&quot;, &quot;%s&quot;, p_error, HERE);</span>
+<span class="lineNum">      34 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : template&lt;typename T&gt;
+<span class="lineNum">      38 </span>            : void
+<span class="lineNum">      39 </span>            : Json::add(const string&amp; p_path,
+<span class="lineNum">      40 </span>            :           const string&amp; p_key,
+<span class="lineNum">      41 </span>            :           const T&amp;      p_val)
+<span class="lineNum">      42 </span>            : {
+<span class="lineNum">      43 </span>            :   using namespace boost::property_tree;
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   ptree::path_type l_path(boost::replace_all_copy(p_path, &quot;.&quot;, &quot;!&quot;), '!');
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            :   l_path /= ptree::path_type(p_key, '!');
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            :   try {
+<span class="lineNum">      50 </span>            :     m_root.put&lt;T&gt;(l_path, p_val, json_parser::translator&lt;T&gt;());
+<span class="lineNum">      51 </span>            :   } catch (const ptree_bad_data&amp; l_error) {
+<span class="lineNum">      52 </span>            :     addError(format::vargs(&quot;json add value error : %s&quot;, l_error.what()));
+<span class="lineNum">      53 </span>            :   }
+<span class="lineNum">      54 </span>            : }
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : 
+<a name="57"><span class="lineNum">      57 </span>            : template&lt;class T&gt;</a>
+<span class="lineNum">      58 </span>            : Template::t_val
+<span class="lineNum">      59 </span><span class="lineCov">          8 : Template::val(T p_val)</span>
+<span class="lineNum">      60 </span>            : {
+<span class="lineNum">      61 </span><span class="lineCov">          8 :   return cpptempl::make_data(p_val);</span>
+<span class="lineNum">      62 </span>            : }
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : 
+<a name="65"><span class="lineNum">      65 </span>            : template&lt;typename T&gt;</a>
+<span class="lineNum">      66 </span>            : Template&amp;
+<span class="lineNum">      67 </span><span class="lineCov">          8 : Template::add(const string&amp; p_key,</span>
+<span class="lineNum">      68 </span>            :               T                  p_val)
+<span class="lineNum">      69 </span>            : {
+<span class="lineNum">      70 </span><span class="lineCov">          8 :   m_data[p_key] = val(p_val);</span>
+<span class="lineNum">      71 </span><span class="lineCov">          8 :   return *this;</span>
+<span class="lineNum">      72 </span>            : }
+<span class="lineNum">      73 </span>            : 
+<a name="74"><span class="lineNum">      74 </span>            : </a>
+<span class="lineNum">      75 </span>            : Template&amp;
+<span class="lineNum">      76 </span><span class="lineCov">          8 : Template::setTemplate(const string&amp; p_text)</span>
+<span class="lineNum">      77 </span>            : {
+<span class="lineNum">      78 </span><span class="lineCov">          8 :   m_template = p_text;</span>
+<span class="lineNum">      79 </span><span class="lineCov">          8 :   return *this;</span>
+<span class="lineNum">      80 </span>            : }
+<a name="81"><span class="lineNum">      81 </span>            : </a>
+<span class="lineNum">      82 </span>            : Template&amp;
+<span class="lineNum">      83 </span><span class="lineCov">          4 : Template::setData(cpptempl::data_map&amp; p_data)</span>
+<span class="lineNum">      84 </span>            : {
+<span class="lineNum">      85 </span><span class="lineCov">          4 :   m_data = p_data;</span>
+<span class="lineNum">      86 </span><span class="lineCov">          4 :   return *this;</span>
+<span class="lineNum">      87 </span>            : }
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            : Template&amp;
+<span class="lineNum">      90 </span>            : Template::setContent(const string&amp; p_text)
+<span class="lineNum">      91 </span>            : {
+<span class="lineNum">      92 </span>            :   m_content = p_text;
+<span class="lineNum">      93 </span>            :   return *this;
+<span class="lineNum">      94 </span>            : }
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            : HtmlTemplate&amp;
+<span class="lineNum">      98 </span>            : HtmlTemplate::setCharset(const string&amp; p_charset)
+<span class="lineNum">      99 </span>            : {
+<span class="lineNum">     100 </span>            :   m_charset = p_charset;
+<span class="lineNum">     101 </span>            :   return *this;
+<span class="lineNum">     102 </span>            : }
+<a name="103"><span class="lineNum">     103 </span>            : </a>
+<span class="lineNum">     104 </span>            : HtmlTemplate&amp;
+<span class="lineNum">     105 </span><span class="lineCov">          4 : HtmlTemplate::setTitle(const string&amp; p_title)</span>
+<span class="lineNum">     106 </span>            : {
+<span class="lineNum">     107 </span><span class="lineCov">          4 :   m_title = p_title;</span>
+<span class="lineNum">     108 </span><span class="lineCov">          4 :   return *this;</span>
+<span class="lineNum">     109 </span>            : }
+<a name="110"><span class="lineNum">     110 </span>            : </a>
+<span class="lineNum">     111 </span>            : HtmlTemplate&amp;
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 : HtmlTemplate::addCss(const string&amp; p_cssUrl)</span>
+<span class="lineNum">     113 </span>            : {
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :   m_cssList.push_back(p_cssUrl);</span>
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :   return *this;</span>
+<span class="lineNum">     116 </span>            : }
+<a name="117"><span class="lineNum">     117 </span>            : </a>
+<span class="lineNum">     118 </span>            : HtmlTemplate&amp;
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 : HtmlTemplate::addJs(const string&amp; p_jsUrl)</span>
+<span class="lineNum">     120 </span>            : {
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :   m_jsList.push_back(p_jsUrl);</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   return *this;</span>
+<span class="lineNum">     123 </span>            : }
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            : HtmlTemplate&amp;
+<span class="lineNum">     126 </span>            : HtmlTemplate::setMetaKeywords(const string&amp;  p_keywords)
+<span class="lineNum">     127 </span>            : {
+<span class="lineNum">     128 </span>            :   m_metaKeywords = p_keywords;
+<span class="lineNum">     129 </span>            :   return *this;
+<span class="lineNum">     130 </span>            : }
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            : HtmlTemplate&amp;
+<span class="lineNum">     133 </span>            : HtmlTemplate::setMetaDescription(const string&amp; p_description)
+<span class="lineNum">     134 </span>            : {
+<span class="lineNum">     135 </span>            :   m_metaDescription = p_description;
+<span class="lineNum">     136 </span>            :   return *this;
+<span class="lineNum">     137 </span>            : }
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            : HtmlTemplate&amp;
+<span class="lineNum">     140 </span>            : HtmlTemplate::setContentType(const string&amp; p_mimeType,
+<span class="lineNum">     141 </span>            :                              const string&amp; p_charset)
+<span class="lineNum">     142 </span>            : {
+<span class="lineNum">     143 </span>            :   m_mimeType = p_mimeType;
+<span class="lineNum">     144 </span>            :   m_charset  = p_charset;
+<span class="lineNum">     145 </span>            :   return *this;
+<span class="lineNum">     146 </span>            : }
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : XmlTemplate&amp;
+<span class="lineNum">     149 </span>            : XmlTemplate::setXslt(const string&amp; p_xsltUrl)
+<span class="lineNum">     150 </span>            : {
+<span class="lineNum">     151 </span>            :   m_xsltUrl = p_xsltUrl;
+<span class="lineNum">     152 </span>            :   return *this;
+<span class="lineNum">     153 </span>            : }
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            : XmlTemplate&amp;
+<span class="lineNum">     157 </span>            : XmlTemplate::setCharset(const string&amp; p_charset)
+<span class="lineNum">     158 </span>            : {
+<span class="lineNum">     159 </span>            :   m_charset = p_charset;
+<span class="lineNum">     160 </span>            :   return *this;
+<span class="lineNum">     161 </span>            : }
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : }}} //end namespaces
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            : #endif // !NETWORK_HTTP_TEMPLATE_HXX_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0370209217071533</elapsed_seconds>
+  <n_files>29</n_files>
+  <n_lines>1465</n_lines>
+  <files_per_second>783.340842494381</files_per_second>
+  <lines_per_second>39572.218422561</lines_per_second>
+  <report_file>/home/travis/build/psycofdj/xtdcpp/.release/reports/cloc/counters/cloc.xml</report_file>
+</header>
+<files>
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.cc" blank="34" comment="12" code="162"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.cc" blank="22" comment="0" code="107"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.cc" blank="12" comment="0" code="76"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Value.hh" blank="17" comment="1" code="55"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.cc" blank="12" comment="0" code="55"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/AvgTimedValue.hh" blank="14" comment="0" code="55"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/JsonVisitor.hh" blank="13" comment="0" code="41"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.hh" blank="13" comment="0" code="40"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/FileVisitor.hh" blank="12" comment="0" code="38"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/CounterManager.hh" blank="11" comment="0" code="38"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Cache.hh" blank="9" comment="7" code="38"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.cc" blank="10" comment="0" code="37"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.cc" blank="10" comment="0" code="35"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Base.cc" blank="9" comment="0" code="33"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/InstantFreq.hh" blank="12" comment="1" code="32"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Perf.hh" blank="9" comment="7" code="31"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.cc" blank="6" comment="0" code="30"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Base.hh" blank="10" comment="0" code="30"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.hh" blank="11" comment="0" code="27"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Value.cc" blank="9" comment="0" code="26"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Freq.hh" blank="8" comment="0" code="24"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.hh" blank="9" comment="1" code="23"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Composed.hh" blank="9" comment="0" code="22"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/counters_fwd.hh" blank="6" comment="0" code="21"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/Visitor.hh" blank="5" comment="0" code="16"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/counters.hh" blank="3" comment="0" code="16"  language="C/C++ Header" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/AvgValue.cc" blank="4" comment="0" code="7"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/SumExt.cc" blank="4" comment="0" code="7"  language="C++" />
+  <file name="/home/travis/build/psycofdj/xtdcpp/counters/src/ExtValue.cc" blank="4" comment="0" code="7"  language="C++" />
+  <total blank="307" comment="29" code="1129" />
+</files>
+<languages>
+  <language name="C++" files_count="12" blank="136" comment="12" code="582" />
+  <language name="C/C++ Header" files_count="17" blank="171" comment="17" code="547" />
+  <total sum_files="29" blank="307" comment="29" code="1129" />
+</languages>
+</results>

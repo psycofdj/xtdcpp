@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20181110-1921-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.10.2"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="badd68f28420"
+	OSRelease="4.4.0-101-generic"
+	OSVersion="#124~14.04.1-Ubuntu SMP Fri Nov 10 19:05:36 UTC 2017"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="45"
+	ProcessorCacheSize="20480"
+	NumberOfLogicalCPU="2"
+	NumberOfPhysicalCPU="1"
+	TotalVirtualMemory="0"
+	TotalPhysicalMemory="7479"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2600"
+	>
+	<Testing>
+		<StartDateTime>Nov 10 19:21 UTC</StartDateTime>
+		<StartTestTime>1541877702</StartTestTime>
+		<TestList>
+			<Test>./tConfigParser</Test>
+			<Test>./tApplication2</Test>
+			<Test>./tAppender</Test>
+			<Test>./tConfLoader</Test>
+			<Test>./tFields</Test>
+			<Test>./tColoredFormatter</Test>
+			<Test>./tHelpers</Test>
+			<Test>./tFormatter</Test>
+			<Test>./tFormatModifiers</Test>
+			<Test>./tStreamAppender</Test>
+			<Test>./tMemoryAppender</Test>
+			<Test>./tLogger</Test>
+			<Test>./tSyslogAppender</Test>
+			<Test>./tApplication</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>tConfigParser</Name>
+			<Path>.</Path>
+			<FullName>./tConfigParser</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tConfigParser "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.111002</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tConfigParser "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0ucc7PSwtILCpOLbKyArKLS4pKk0vyixSsFIpLEotKuELwqknNS1Hwz8ZQVACicRoBk8WhOT21BKdWiBwOjcWpiUXJGTj1wqVxai8BMhNzi/GYgFCBz+dumTkEfA9VATWEy99bQcNMkwsAcluM2A==</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tApplication2</Name>
+			<Path>.</Path>
+			<FullName>./tApplication2</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tApplication2 "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.117654</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tApplication2 "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0ucSwoyMlMTizJzM8zsrJKS8xODQGKGipYKRSXJBaVcIXgVZOal6Lgn41HkRERBhkhDOLy91bQMNLkAgCZyDRq====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tAppender</Name>
+			<Path>.</Path>
+			<FullName>./tAppender</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.108607</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0ucSwoSM1LSS2yskrLzClJLVKwUiguSSwq4QrBLgnkK/hnc3H5eytoGGpyAQA47RYq====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tConfLoader</Name>
+			<Path>.</Path>
+			<FullName>./tConfLoader</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tConfLoader "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.114662</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tConfLoader "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0ucc7PS/PJT0xJLbKySgayM9NLi1IVrBSKSxKLSrhC8KhIzUtR8M/m4vL3VtAw1OQCAEnrGf4=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tFields</Name>
+			<Path>.</Path>
+			<FullName>./tFields</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tFields "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.107357</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tFields "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0ucctMzUkptrJKTy1RsFIoLkksKuEKwRBPzUtR8M9GkSjGoaEYl4bUiszikmKseuBSUG1c/t4KGsaaXACftjYC====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tColoredFormatter</Name>
+			<Path>.</Path>
+			<FullName>./tColoredFormatter</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tColoredFormatter "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.116189</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tColoredFormatter "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0ucc7PyS9KTXHLL8pNLClJLbKySgMzFawUiksSi0q4QvArSs1LUfDPxqEquSg1sSQVblRiUXqxQnFmFUjECIVnSMgAqDVc/t4KGkaaXADJN0CV====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tHelpers</Name>
+			<Path>.</Path>
+			<FullName>./tHelpers</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tHelpers "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.109403</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tHelpers "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJx1kDFuwzAMRXefgmMytJoKBDpBgQ5ZshWBoVi0rVYSDZJ2mtvHBozURZWVj++DnycUfcc4IIu1LVMCC6KOtToVCGYPx++/SKmeXByxLG7oE1mUQ+6e2g9c0oMs6cGX7Q0tyeyC/F6dUMR1CCHDRLPzf3W3t6anhEbZTUHMZQzRm0FuDbX+y/yob4bBNMRoxhzUROrMJuW1aezhAJ/ITAzXPkQERqE4Lf1a4uR0vuZCJLo0pzq5fKsdd2JX/LI+g7GdU9CDErR4RYZ5a0yYVUB7l2EeIQxOBP25XHp9SHX8gN3bvroD8bO6Rg==</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tFormatter</Name>
+			<Path>.</Path>
+			<FullName>./tFormatter</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tFormatter "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.118723</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tFormatter "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0uccsvyk0sKUktsrJKTEmB8HzzUzLTMlOLFKwUiksSi0q4QggrTM1LUfDPRleZBmbiMgcui11zclFqYkkqLs1wWahmLn9vBQ1jTS4Ar+9LVA==</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tFormatModifiers</Name>
+			<Path>.</Path>
+			<FullName>./tFormatModifiers</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tFormatModifiers "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.120108</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tFormatModifiers "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0uccsvyk0s8c1PyUzLTC0qtrJKLC3JD88sSclQsFIoLkksKuEKIaQsNS9FwT8bu7riksqcVKdKn9Sy1Bz8JqKpJGiob2JJMgFHoqiDGsjl762gYazJBQCYhltY====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tStreamAppender</Name>
+			<Path>.</Path>
+			<FullName>./tStreamAppender</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tStreamAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.108854</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tStreamAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0uCS4pSk3MdSwoSM1LSS2yskrOzysuKSpNLskvUrBSKC5JLCrhCiGoDiio4J+NVWFBUWZeCV6jYCrwGJIM5Jak4ncQTAnUGC5/bwUNY00uAEhTUhA=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tMemoryAppender</Name>
+			<Path>.</Path>
+			<FullName>./tMemoryAppender</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tMemoryAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.11515</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tMemoryAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0u8U3NzS+qdCwoSM1LSS2ysiooyswrUbBSKC5JLCrhCsGjAshV8M/GqiS5KDWxJBWvKXAlUGO4/L0VNIw0uQDmLzQS====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tLogger</Name>
+			<Path>.</Path>
+			<FullName>./tLogger</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tLogger "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.116582</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tLogger "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0u8clPT08tsrJKTy1RsFIoLkksKuEKwRBPzUtR8M9Gl/BJLUvNKcalDS6LRXNpQUpiSSoe/WgKsBhRnFrimJODxwg0BXi8EJKP1w9gaSzaE1NSHAsKgBKpRVj1o8pDDeDy91bQMNPkAgD+HIRo====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tSyslogAppender</Name>
+			<Path>.</Path>
+			<FullName>./tSyslogAppender</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tSyslogAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.101265</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tSyslogAppender "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJwLSS0uCa4szslPdywoSM1LSS2yskrOzysuKSpNLskvUrBSKC5JLCrhCiGoDiio4J+NVWFBUWZeCV6jYCrwGJJclJpYkorfQTAlUGO4/L0VNIw1uQCG9lKO====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>tApplication</Name>
+			<Path>.</Path>
+			<FullName>./tApplication</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tApplication "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>1.03896</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.build-bionic/core/tApplication "--srcdir=/home/travis/build/psycofdj/xtdcpp/core" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.build-bionic" "--testdir=/home/travis/build/psycofdj/xtdcpp/core/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyF1MFOhDAQgOE7T9GjHj3ogRvRaIyJJO5m7wMdupMthbSD6+PriqywOsOthJ+PQga2mLjoe081MHUhz8Hasj8tTW4SQ+RsqyUYrCkPf5uIYIvokqzMCgmhNN7nid5R2c9lJnFDAocyM52WLt9DsB435AJ4WbmoJKyiYB/JK9uZFRryQFE3xkAjNhwpOF05Nxr0hg4/dGdKNGYHfkBlchaNBt2D9xXUB52aVRr2OrQVrrzrc7P6eM/NylD/U2poUddDO3jgbmWLy1AiHfIOY1J/A4tGgo4Qf4nTwThF06rF9P3VHYn3pv8aMW5M08UW2NyK2M+9svLFXN3cXWefvLG29g==</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Nov 10 19:21 UTC</EndDateTime>
+		<EndTestTime>1541877703</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

@@ -1,0 +1,6 @@
+<map id="xtd::network::utils::Config::Config" name="xtd::network::utils::Config::Config">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1utils_1_1Config.html#a1dbcee3c0f2631269ea3e716a62ce333" title="xtd::network::utils\l::Config::setNoDelay" alt="" coords="187,5,332,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1utils_1_1Config.html#a5e78cf9920484c88da5f42bae16b7a1f" title="xtd::network::utils\l::Config::setReuseAddr" alt="" coords="180,71,339,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1utils_1_1Config.html#a1a0e52354981c89c5aaf2b31d4490de2" title="xtd::network::utils\l::Config::setLinger" alt="" coords="195,136,324,177"/>
+<area shape="rect" id="node5" href="$classxtd_1_1network_1_1utils_1_1Config.html#aab76e2174465ead19cc97fa3f5a7f009" title="xtd::network::utils\l::Config::setCompress" alt="" coords="182,201,337,243"/>
+</map>

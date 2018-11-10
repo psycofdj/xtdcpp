@@ -1,0 +1,4 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$namespacextd_1_1log.html#a77d7eeda9f5c08df15ef96dcc3591dda" title="Returns (or create) global RootLogger instance. " alt="" coords="104,5,223,32"/>
+<area shape="rect" id="node3" href="$namespacextd_1_1log.html#a84a72ebe6da663185a2fa605878e6b7d" title="Logs to global RootLogger with level::crit severity. " alt="" coords="118,56,209,83"/>
+</map>

@@ -1,0 +1,3053 @@
+
+
+
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Include sanity report</title>
+    <link href="../../contribs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../contribs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="../../contribs/jquery/jquery.min.js"></script>
+    <script src="../../contribs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     function SelectText(text) {
+       var doc = document,
+           range, selection
+       ;
+       if (doc.body.createTextRange) {
+         range = document.body.createTextRange();
+         range.moveToElementText(text);
+         range.select();
+       } else if (window.getSelection) {
+         selection = window.getSelection();
+         range = document.createRange();
+         range.selectNodeContents(text);
+         selection.removeAllRanges();
+         selection.addRange(range);
+       }
+     }
+     $(document).ready(function() {
+       $("button.open").click(function() {
+         var l_tr        = $(this).parents("tr");
+         var l_id        = l_tr.attr("id");
+         var l_detailsID = l_id + "-details";
+         $("." + l_detailsID).toggle();
+       });
+       $("pre").dblclick(function() {
+         SelectText($(this)[0]);
+       });
+       $("#split").click(function() {
+         $(".header").toggleClass("hidden");
+         $(".header-split").toggleClass("hidden");
+       });
+     });
+    </script>
+    <style>
+
+     .includes {
+       overflow: scroll;
+       font-size:10px;
+     }
+
+     .maintable {
+       table-layout:fixed;
+     }
+
+    </style>
+  </head>
+  <body bgcolor="#ffffff" style="padding-top:50px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-4"><div class="panel panel-default">
+          <div class="panel-heading">Summary report</div>
+          <div class="panel-body">
+            <table class="table table-bordered table-condensed small">
+              <tbody>
+                <tr>
+                  <th>Analyzed files</th>
+                  <td>28</td>
+                </tr>
+                <tr>
+                  <th>Files Ok</th>
+                  <td>7</td>
+                </tr>
+                <tr>
+                  <th>Files Ko</th>
+                  <td>21</td>
+                </tr>
+                <tr>
+                  <th>Iwyu errors</th>
+                  <td>0</td>
+                </tr>
+                <tr class="bg-warning">
+                  <th>(from Ko files) Missing includes</th>
+                  <td>17</td>
+                </tr>
+                <tr class="bg-danger">
+                  <th>(from Ko files) Unwanted includes</th>
+                  <td>59</td>
+                </tr>
+                <tr class="bg-info">
+                  <th>(from Ko files) Total includes</th>
+                  <td>80</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <button id="split" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Split comments
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">Full report
+            </div>
+            <div class="panel-body">
+              <table class="maintable table table-striped table-bordered table-condensed small">
+                <thead>
+                  <tr>
+                    <th style="width:50px;"></th>
+                    <th>File name</th>
+                    <th>Missing</th>
+                    <th>Unwanted</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    
+                      
+                        
+                  <tr id="idm0" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> AvgTimedValue.cc </td>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>6</td>
+                  </tr>
+
+                  
+<tr class="idm0-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;AvgTimedValue.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;  // for posix_time, time_duration
+#include &lt;boost/foreach.hpp&gt;                                 // for auto_any_base, BOOST_FOREACH
+#include &lt;boost/thread.hpp&gt;                                  // for mutex, mutex::scoped_lock
+#include &lt;cstdlib&gt;                                           // for exit
+#include &#34;log/logtypes.hh&#34;                                   // for HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm0-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;cstdlib&gt;                                           // for exit
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm0-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;ext/alloc_traits.h&gt;  // lines 2-2
+#include &lt;stdlib.h&gt;  // lines 3-3
+#include &lt;algorithm&gt;  // lines 4-4
+#include &lt;boost/bind.hpp&gt;  // lines 5-5
+#include &lt;boost/date_time/posix_time/posix_time_duration.hpp&gt;  // lines 7-7
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;  // lines 8-8
+#include &lt;boost/date_time/time.hpp&gt;  // lines 9-9
+#include &lt;boost/operators.hpp&gt;  // lines 11-11
+#include &lt;limits&gt;  // lines 13-13
+#include &#34;log/helpers.hh&#34;  // lines 14-14
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm0-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;AvgTimedValue.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;
+#include &lt;boost/foreach.hpp&gt;
+#include &lt;boost/thread.hpp&gt;
+#include &lt;cstdlib&gt;
+#include &#34;log/logtypes.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for posix_time, time_duration
+// for auto_any_base, BOOST_FOREACH
+// for mutex, mutex::scoped_lock
+// for exit
+// for HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm0-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;cstdlib&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for exit
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm0-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;ext/alloc_traits.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;algorithm&gt;
+#include &lt;boost/bind.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time_duration.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+#include &lt;boost/date_time/time.hpp&gt;
+#include &lt;boost/operators.hpp&gt;
+#include &lt;limits&gt;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 5-5
+// lines 7-7
+// lines 8-8
+// lines 9-9
+// lines 11-11
+// lines 13-13
+// lines 14-14
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm1" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> AvgTimedValue.hh </td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>9</td>
+                  </tr>
+
+                  
+<tr class="idm1-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/shared_ptr.h&gt;                          // for shared_ptr
+#include &lt;bits/stdint-uintn.h&gt;                        // for uint32_t
+#include &lt;boost/container/detail/std_fwd.hpp&gt;         // for pair
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;  // for ptime
+#include &#34;Composed.hh&#34;                                // for Composed
+#include &#34;Freq.hh&#34;                                    // for Freq
+#include &#34;InstantFreq.hh&#34;                             // for InstantFreq
+#include &#34;Value.hh&#34;                                   // for Value32
+#include &#34;types.hh&#34;                                   // for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm1-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/shared_ptr.h&gt;                          // for shared_ptr
+#include &lt;bits/stdint-uintn.h&gt;                        // for uint32_t
+#include &lt;boost/container/detail/std_fwd.hpp&gt;         // for pair
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm1-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;deque&gt;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm1-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/shared_ptr.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/container/detail/std_fwd.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+#include &#34;Composed.hh&#34;
+#include &#34;Freq.hh&#34;
+#include &#34;InstantFreq.hh&#34;
+#include &#34;Value.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for shared_ptr
+// for uint32_t
+// for pair
+// for ptime
+// for Composed
+// for Freq
+// for InstantFreq
+// for Value32
+// for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm1-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/shared_ptr.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/container/detail/std_fwd.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for shared_ptr
+// for uint32_t
+// for pair
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm1-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;deque&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm2" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> AvgValue.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm3" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> AvgValue.hh </td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+#include &#34;Composed.hh&#34;          // for Composed
+#include &#34;Value.hh&#34;             // for Value
+#include &#34;types.hh&#34;             // for uint32_t, string, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;deque&gt;  // lines 3-3
+namespace std { namespace xtd { namespace counters { class AvgValue; } } }  // lines 8-8
+namespace std { namespace xtd { namespace counters { class AvgValue; } } }  // lines 9-9
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Composed.hh&#34;
+#include &#34;Value.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t, uint64_t
+// for Composed
+// for Value
+// for uint32_t, string, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;deque&gt;
+namespace std { namespace xtd { namespace counters { class AvgValue; } } }
+namespace std { namespace xtd { namespace counters { class AvgValue; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 8-8
+// lines 9-9
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm4" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> AvgValue.hxx </td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &lt;boost/thread.hpp&gt;     // for mutex, mutex::scoped_lock
+#include &#34;AvgValue.hh&#34;          // for AvgValue
+#include &#34;Composed.hh&#34;          // for Composed
+#include &#34;types.hh&#34;             // for string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;numeric&gt;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/thread.hpp&gt;
+#include &#34;AvgValue.hh&#34;
+#include &#34;Composed.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for mutex, mutex::scoped_lock
+// for AvgValue
+// for Composed
+// for string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;numeric&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm5" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Base.cc </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                  </tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Base.hh&#34;
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 3-3
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Base.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm6" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Base.hh </td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>1</td>
+                  </tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;types.hh&#34;  // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/core/noncopyable.hpp&gt;  // lines 3-3
+#include &lt;boost/thread.hpp&gt;  // lines 4-4
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/core/noncopyable.hpp&gt;
+#include &lt;boost/thread.hpp&gt;
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm7" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> Cache.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm8" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Cache.hh </td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>6</td>
+                  </tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &#34;Composed.hh&#34;          // for Composed
+#include &#34;Freq.hh&#34;              // for Freq
+#include &#34;InstantFreq.hh&#34;       // for InstantFreq
+#include &#34;Value.hh&#34;             // for Value32
+#include &#34;types.hh&#34;             // for string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Composed.hh&#34;
+#include &#34;Freq.hh&#34;
+#include &#34;InstantFreq.hh&#34;
+#include &#34;Value.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for Composed
+// for Freq
+// for InstantFreq
+// for Value32
+// for string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm9" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Composed.cc </td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Composed.hh&#34;
+#include &#34;types.hh&#34;  // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/bind.hpp&gt;  // lines 2-2
+#include &lt;boost/core/ref.hpp&gt;  // lines 3-3
+#include &lt;boost/range/algorithm/for_each.hpp&gt;  // lines 4-4
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Composed.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/bind.hpp&gt;
+#include &lt;boost/core/ref.hpp&gt;
+#include &lt;boost/range/algorithm/for_each.hpp&gt;
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm10" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Composed.hh </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Base.hh&#34;   // for Base, Visitor
+#include &#34;types.hh&#34;  // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 6-6
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Base.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for Base, Visitor
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 6-6
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm11" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> CounterManager.cc </td>
+                    <td>1</td>
+                    <td>8</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;CounterManager.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;  // for posix_time
+#include &lt;boost/filesystem.hpp&gt;                              // for filesystem, path
+#include &#34;log/logtypes.hh&#34;                                   // for HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;boost/filesystem.hpp&gt;                              // for filesystem, path
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/replace.hpp&gt;  // lines 3-3
+#include &lt;boost/bind.hpp&gt;  // lines 4-4
+#include &lt;boost/date_time/posix_time/posix_time_duration.hpp&gt;  // lines 6-6
+#include &lt;boost/iterator/iterator_traits.hpp&gt;  // lines 7-7
+#include &lt;boost/property_tree/ptree.hpp&gt;  // lines 8-8
+#include &#34;FileVisitor.hh&#34;  // lines 9-9
+#include &#34;JsonVisitor.hh&#34;  // lines 10-10
+#include &#34;log/helpers.hh&#34;  // lines 11-11
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;CounterManager.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;
+#include &lt;boost/filesystem.hpp&gt;
+#include &#34;log/logtypes.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for posix_time
+// for filesystem, path
+// for HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;boost/filesystem.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for filesystem, path
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/replace.hpp&gt;
+#include &lt;boost/bind.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time_duration.hpp&gt;
+#include &lt;boost/iterator/iterator_traits.hpp&gt;
+#include &lt;boost/property_tree/ptree.hpp&gt;
+#include &#34;FileVisitor.hh&#34;
+#include &#34;JsonVisitor.hh&#34;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+// lines 6-6
+// lines 7-7
+// lines 8-8
+// lines 9-9
+// lines 10-10
+// lines 11-11
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm12" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> CounterManager.hh </td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;                // for uint32_t
+#include &lt;boost/property_tree/ptree_fwd.hpp&gt;  // for ptree
+#include &lt;boost/thread.hpp&gt;                   // for mutex, thread
+#include &#34;types.hh&#34;                           // for string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;                // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/filesystem.hpp&gt;  // lines 3-3
+#include &#34;Base.hh&#34;  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/property_tree/ptree_fwd.hpp&gt;
+#include &lt;boost/thread.hpp&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for ptree
+// for mutex, thread
+// for string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/filesystem.hpp&gt;
+#include &#34;Base.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm13" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> ExtValue.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm14" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> ExtValue.hh </td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+#include &#34;Base.hh&#34;              // for Base
+#include &#34;Visitor.hh&#34;           // for Visitor
+#include &#34;types.hh&#34;             // for string, uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+#include &#34;Visitor.hh&#34;           // for Visitor
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace std { namespace xtd { namespace counters { class ExtValue; } } } }  // lines 8-8
+namespace std { namespace std { namespace xtd { namespace counters { class ExtValue; } } } }  // lines 9-9
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 6-6
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Base.hh&#34;
+#include &#34;Visitor.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t, uint64_t
+// for Base
+// for Visitor
+// for string, uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Visitor.hh&#34;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t, uint64_t
+// for Visitor
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace std { namespace xtd { namespace counters { class ExtValue; } } } }
+namespace std { namespace std { namespace xtd { namespace counters { class ExtValue; } } } }
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 8-8
+// lines 9-9
+// lines 6-6
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm15" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> ExtValue.hxx </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm15-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm16" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Freq.cc </td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm16-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Freq.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;  // for posix_time, time_duration
+#include &lt;boost/interprocess/sync/spin/condition.hpp&gt;        // for ipcdetail
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;  // lines 3-3
+#include &lt;boost/date_time/time.hpp&gt;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Freq.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;
+#include &lt;boost/interprocess/sync/spin/condition.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for posix_time, time_duration
+// for ipcdetail
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+#include &lt;boost/date_time/time.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm17" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Freq.hh </td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm17-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;                        // for uint32_t
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;  // for ptime
+#include &#34;types.hh&#34;                                   // for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;                        // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;Value.hh&#34;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for ptime
+// for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;Value.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm18" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> InstantFreq.cc </td>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm18-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;InstantFreq.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;  // for posix_time, time_duration
+#include &lt;boost/thread.hpp&gt;                                  // for mutex, mutex::scoped_lock
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/bind.hpp&gt;  // lines 2-2
+#include &lt;boost/core/ref.hpp&gt;  // lines 3-3
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;  // lines 5-5
+#include &lt;boost/date_time/time.hpp&gt;  // lines 6-6
+#include &lt;boost/range/algorithm/find_if.hpp&gt;  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;InstantFreq.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;
+#include &lt;boost/thread.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for posix_time, time_duration
+// for mutex, mutex::scoped_lock
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/bind.hpp&gt;
+#include &lt;boost/core/ref.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+#include &lt;boost/date_time/time.hpp&gt;
+#include &lt;boost/range/algorithm/find_if.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 5-5
+// lines 6-6
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm19" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> InstantFreq.hh </td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm19-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;                        // for uint32_t
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;  // for ptime
+#include &#34;types.hh&#34;                                   // for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;                        // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;deque&gt;  // lines 4-4
+#include &#34;Value.hh&#34;  // lines 5-5
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for ptime
+// for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;deque&gt;
+#include &#34;Value.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+// lines 5-5
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm20" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Perf.cc </td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm20-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Perf.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;  // for posix_time, time_duration
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;ext/alloc_traits.h&gt;  // lines 2-2
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;  // lines 4-4
+#include &lt;boost/date_time/time.hpp&gt;  // lines 5-5
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Perf.hh&#34;
+#include &lt;boost/date_time/posix_time/posix_time_config.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for posix_time, time_duration
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;ext/alloc_traits.h&gt;
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+#include &lt;boost/date_time/time.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 4-4
+// lines 5-5
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm21" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Perf.hh </td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>6</td>
+                  </tr>
+
+                  
+<tr class="idm21-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &#34;AvgValue.hh&#34;          // for AvgValue
+#include &#34;Composed.hh&#34;          // for Composed
+#include &#34;Freq.hh&#34;              // for Freq
+#include &#34;InstantFreq.hh&#34;       // for InstantFreq
+#include &#34;types.hh&#34;             // for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;  // lines 3-3
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;AvgValue.hh&#34;
+#include &#34;Composed.hh&#34;
+#include &#34;Freq.hh&#34;
+#include &#34;InstantFreq.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for AvgValue
+// for Composed
+// for Freq
+// for InstantFreq
+// for uint32_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm22" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> SumExt.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm22-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm23" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> SumExt.hh </td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm23-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+#include &#34;Value.hh&#34;             // for Value
+#include &#34;types.hh&#34;             // for string, uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/core/addressof.hpp&gt;  // lines 3-3
+namespace std { namespace std { namespace xtd { namespace counters { class SumExt; } } } }  // lines 8-8
+namespace std { namespace std { namespace xtd { namespace counters { class SumExt; } } } }  // lines 9-9
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Value.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t, uint64_t
+// for Value
+// for string, uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/core/addressof.hpp&gt;
+namespace std { namespace std { namespace xtd { namespace counters { class SumExt; } } } }
+namespace std { namespace std { namespace xtd { namespace counters { class SumExt; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 8-8
+// lines 9-9
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm24" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> SumExt.hxx </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm24-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm25" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> Value.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm25-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm26" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Value.hh </td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm26-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+#include &#34;Base.hh&#34;              // for Base
+#include &#34;Visitor.hh&#34;           // for Visitor
+#include &#34;types.hh&#34;             // for uint32_t, string, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t, uint64_t
+#include &#34;Visitor.hh&#34;           // for Visitor
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/thread.hpp&gt;  // lines 3-3
+namespace std { namespace std { namespace xtd { namespace counters { class Value; } } } }  // lines 32-32
+namespace std { namespace std { namespace xtd { namespace counters { class Value; } } } }  // lines 33-33
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Base.hh&#34;
+#include &#34;Visitor.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t, uint64_t
+// for Base
+// for Visitor
+// for uint32_t, string, uint64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;Visitor.hh&#34;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t, uint64_t
+// for Visitor
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/thread.hpp&gt;
+namespace std { namespace std { namespace xtd { namespace counters { class Value; } } } }
+namespace std { namespace std { namespace xtd { namespace counters { class Value; } } } }
+namespace std { namespace std { namespace xtd { namespace counters { class Visitor; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 32-32
+// lines 33-33
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm27" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> Value.hxx </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm27-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/interprocess/sync/spin/condition.hpp&gt;  // for ipcdetail
+#include &#34;Base.hh&#34;                                     // for Base
+#include &#34;Value.hh&#34;                                    // for Value, Atomic
+#include &#34;Visitor.hh&#34;                                  // for Visitor
+#include &#34;types.hh&#34;                                    // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/thread.hpp&gt;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/interprocess/sync/spin/condition.hpp&gt;
+#include &#34;Base.hh&#34;
+#include &#34;Value.hh&#34;
+#include &#34;Visitor.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for ipcdetail
+// for Base
+// for Value, Atomic
+// for Visitor
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/thread.hpp&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

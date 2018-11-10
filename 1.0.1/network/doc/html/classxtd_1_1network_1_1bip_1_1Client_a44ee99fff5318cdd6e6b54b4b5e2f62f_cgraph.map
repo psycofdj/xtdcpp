@@ -1,0 +1,5 @@
+<map id="xtd::network::bip::Client::getLastRTTMs" name="xtd::network::bip::Client::getLastRTTMs">
+<area shape="rect" id="node2" href="$classxtd_1_1network_1_1bip_1_1Client.html#acda47c19d4fc71705f4db91226cec1b9" title="envoi d&#39;une structure requête au server " alt="" coords="217,5,352,47"/>
+<area shape="rect" id="node3" href="$classxtd_1_1network_1_1bip_1_1Client.html#a0e259e8174324fdbc199eb87427aa237" title="reception de la structure réponse " alt="" coords="217,71,352,112"/>
+<area shape="rect" id="node4" href="$classxtd_1_1network_1_1bip_1_1Client.html#a5721e7ec64739ab5a252d5ac59e4a86e" title="xtd::network::bip::\lClient::shouldReceive" alt="" coords="207,136,363,177"/>
+</map>

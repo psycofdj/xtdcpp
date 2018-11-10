@@ -1,0 +1,356 @@
+[
+  {
+    "/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh": [
+      {
+        "documented": false,
+        "line": 17,
+        "symbol": "typedef vector<Doc> xtd::serializer::Doc::t_listof",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh"
+      },
+      {
+        "documented": false,
+        "line": 27,
+        "symbol": "uint32_t xtd::serializer::Doc::m_score",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh"
+      },
+      {
+        "documented": false,
+        "line": 29,
+        "symbol": "uint32_t xtd::serializer::Doc::m_debugScore",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh"
+      },
+      {
+        "documented": false,
+        "line": 20,
+        "symbol": "xtd::serializer::Doc::Doc",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh"
+      },
+      {
+        "documented": false,
+        "line": 13,
+        "symbol": "classxtd_1_1serializer_1_1Doc",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/objects/Doc.hh"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh": [
+      {
+        "documented": false,
+        "line": 33,
+        "symbol": "typedef DebugBinOArchive xtd::serializer::mode::bin::saver",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 34,
+        "symbol": "typedef DebugBinIArchive xtd::serializer::mode::bin::loader",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 32,
+        "symbol": "structxtd_1_1serializer_1_1mode_1_1bin",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 20,
+        "symbol": "structxtd_1_1serializer_1_1mode",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 40,
+        "symbol": "xtd::serializer::option::option",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 47,
+        "symbol": "xtd::serializer::option::option",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 54,
+        "symbol": "int xtd::serializer::option::value",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 39,
+        "symbol": "structxtd_1_1serializer_1_1option",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 76,
+        "symbol": "static void xtd::serializer::serializer< Mode >::save",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 80,
+        "symbol": "static void xtd::serializer::serializer< Mode >::load",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 73,
+        "symbol": "structxtd_1_1serializer_1_1serializer",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 23,
+        "symbol": "typedef DebugTextOArchive xtd::serializer::mode::text::saver",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 24,
+        "symbol": "typedef DebugTextIArchive xtd::serializer::mode::text::loader",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 22,
+        "symbol": "structxtd_1_1serializer_1_1mode_1_1text",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 28,
+        "symbol": "typedef DebugXmlOArchive xtd::serializer::mode::xml::saver",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 29,
+        "symbol": "typedef DebugXmlIArchive xtd::serializer::mode::xml::loader",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 27,
+        "symbol": "structxtd_1_1serializer_1_1mode_1_1xml",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 86,
+        "symbol": "string xtd::serializer::as_xml",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 88,
+        "symbol": "std::vector<char> xtd::serializer::as_bin",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 90,
+        "symbol": "void xtd::serializer::as_bin",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 92,
+        "symbol": "std::vector<char> xtd::serializer::as_text",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 95,
+        "symbol": "void xtd::serializer::from_bin",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 97,
+        "symbol": "void xtd::serializer::from_bin",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 99,
+        "symbol": "void xtd::serializer::from_text",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      },
+      {
+        "documented": false,
+        "line": 14,
+        "symbol": "ENUM_CASE",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/serializer.hh"
+      }
+    ]
+  },
+  {
+    "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh": [
+      {
+        "documented": false,
+        "line": 270,
+        "symbol": "xtd::serializer::DebugBinIArchive::DebugBinIArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 277,
+        "symbol": "DebugBinIArchive& xtd::serializer::DebugBinIArchive::operator*",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 289,
+        "symbol": "DebugBinIArchive& xtd::serializer::DebugBinIArchive::operator/",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 300,
+        "symbol": "bool xtd::serializer::DebugBinIArchive::getDebugState",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 263,
+        "symbol": "classxtd_1_1serializer_1_1DebugBinIArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 224,
+        "symbol": "xtd::serializer::DebugBinOArchive::DebugBinOArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 232,
+        "symbol": "DebugBinOArchive& xtd::serializer::DebugBinOArchive::operator*",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 244,
+        "symbol": "DebugBinOArchive& xtd::serializer::DebugBinOArchive::operator/",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 216,
+        "symbol": "classxtd_1_1serializer_1_1DebugBinOArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 173,
+        "symbol": "xtd::serializer::DebugTextIArchive::DebugTextIArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 180,
+        "symbol": "DebugTextIArchive& xtd::serializer::DebugTextIArchive::operator*",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 192,
+        "symbol": "DebugTextIArchive& xtd::serializer::DebugTextIArchive::operator/",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 203,
+        "symbol": "bool xtd::serializer::DebugTextIArchive::getDebugState",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 166,
+        "symbol": "classxtd_1_1serializer_1_1DebugTextIArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 128,
+        "symbol": "xtd::serializer::DebugTextOArchive::DebugTextOArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 136,
+        "symbol": "DebugTextOArchive& xtd::serializer::DebugTextOArchive::operator*",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 148,
+        "symbol": "DebugTextOArchive& xtd::serializer::DebugTextOArchive::operator/",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 121,
+        "symbol": "classxtd_1_1serializer_1_1DebugTextOArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 78,
+        "symbol": "xtd::serializer::DebugXmlIArchive::DebugXmlIArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 85,
+        "symbol": "DebugXmlIArchive& xtd::serializer::DebugXmlIArchive::operator*",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 97,
+        "symbol": "DebugXmlIArchive& xtd::serializer::DebugXmlIArchive::operator/",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 108,
+        "symbol": "bool xtd::serializer::DebugXmlIArchive::getDebugState",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 71,
+        "symbol": "classxtd_1_1serializer_1_1DebugXmlIArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 33,
+        "symbol": "xtd::serializer::DebugXmlOArchive::DebugXmlOArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 41,
+        "symbol": "DebugXmlOArchive& xtd::serializer::DebugXmlOArchive::operator*",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 53,
+        "symbol": "DebugXmlOArchive& xtd::serializer::DebugXmlOArchive::operator/",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      },
+      {
+        "documented": false,
+        "line": 26,
+        "symbol": "classxtd_1_1serializer_1_1DebugXmlOArchive",
+        "file": "/home/travis/build/psycofdj/xtdcpp/serializer/src/archives/DebugArchive.hh"
+      }
+    ]
+  }
+]

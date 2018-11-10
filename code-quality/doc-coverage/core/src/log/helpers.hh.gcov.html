@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core documentation coverage - src/log/helpers.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - helpers.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 09:38:21</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef XTD_CORE_LOG_HELPERS_HH_
+<span class="lineNum">       2 </span>            : # define XTD_CORE_LOG_HELPERS_HH_
+<span class="lineNum">       3 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       4 </span>            : # include &quot;log/logtypes.hh&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : namespace xtd { namespace log { class RootLogger; } }
+<span class="lineNum">       7 </span>            : namespace xtd {
+<span class="lineNum">       8 </span>            : namespace log {
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : /**
+<span class="lineNum">      11 </span>            :  ** @brief Converts given @ref level to underlying value
+<span class="lineNum">      12 </span>            :  ** @param p_level @ref level
+<span class="lineNum">      13 </span>            :  ** @return underlying value, compatible to syslog
+<span class="lineNum">      14 </span>            :  */
+<span class="lineNum">      15 </span>            : std::uint32_t to_value(level p_level);
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : /**
+<span class="lineNum">      18 </span>            :  ** @brief Converts given @ref level to string label
+<span class="lineNum">      19 </span>            :  ** @param p_level @ref level
+<span class="lineNum">      20 </span>            :  ** @return label string
+<span class="lineNum">      21 </span>            :  */
+<span class="lineNum">      22 </span>            : std::string to_string(level p_level);
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /**
+<span class="lineNum">      26 </span>            :  ** @brief Stream operator for @ref level
+<span class="lineNum">      27 </span>            :  ** @param p_buff output stream
+<span class="lineNum">      28 </span>            :  ** @param p_level log serverity level
+<span class="lineNum">      29 </span>            :  */
+<span class="lineNum">      30 </span><span class="lineCov">          1 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; p_buff, level p_level);</span>
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : /**
+<span class="lineNum">      34 </span>            :  ** @brief Tells if given string is a valid @ref level label
+<span class="lineNum">      35 </span>            :  ** @param p_level @ref level label string
+<span class="lineNum">      36 </span>            :  ** @return true is given label is valid
+<span class="lineNum">      37 </span>            :  */
+<span class="lineNum">      38 </span>            : bool is_valid(const std::string&amp; p_level);
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : /**
+<span class="lineNum">      41 </span>            :  ** @brief Tells if given integer is a valid @ref level underlying value
+<span class="lineNum">      42 </span>            :  ** @param p_level @ref level underlying value
+<span class="lineNum">      43 </span>            :  ** @return true is given value is valid
+<span class="lineNum">      44 </span>            :  */
+<span class="lineNum">      45 </span>            : bool is_valid(const std::uint32_t&amp; p_level);
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : /**
+<span class="lineNum">      48 </span>            :  ** @brief Converts given underlying value to @ref level
+<span class="lineNum">      49 </span>            :  ** @param p_level underlying @ref level value
+<span class="lineNum">      50 </span>            :  ** @return corresponding @ref level, @ref level::crit if value is invalid
+<span class="lineNum">      51 </span>            :  */
+<span class="lineNum">      52 </span>            : level from(const std::uint32_t&amp; p_level);
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            : /**
+<span class="lineNum">      55 </span>            :  ** @brief Converts given label to @ref level
+<span class="lineNum">      56 </span>            :  ** @param p_level @ref level label
+<span class="lineNum">      57 </span>            :  ** @return corresponding @ref level, @ref level::crit if label is invalid
+<span class="lineNum">      58 </span>            :  */
+<span class="lineNum">      59 </span>            : level from(const std::string&amp; p_level);
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : /**
+<span class="lineNum">      62 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::emerg severity
+<span class="lineNum">      63 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">      64 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">      65 </span>            :  ** @param p_format log message format
+<span class="lineNum">      66 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">      67 </span>            :  */
+<span class="lineNum">      68 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">      69 </span><span class="lineCov">          1 : void emerg(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            : /**
+<span class="lineNum">      72 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::emerg severity
+<span class="lineNum">      73 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">      74 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">      75 </span>            :  ** @param p_format log message format
+<span class="lineNum">      76 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">      77 </span>            :  */
+<span class="lineNum">      78 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">      79 </span><span class="lineCov">          1 : void alert(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            : /**
+<span class="lineNum">      82 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::crit severity
+<span class="lineNum">      83 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">      84 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">      85 </span>            :  ** @param p_format log message format
+<span class="lineNum">      86 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">      87 </span>            :  */
+<span class="lineNum">      88 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">      89 </span><span class="lineCov">          1 : void crit(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            : /**
+<span class="lineNum">      92 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::err severity
+<span class="lineNum">      93 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">      94 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">      95 </span>            :  ** @param p_format log message format
+<span class="lineNum">      96 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">      97 </span>            :  */
+<span class="lineNum">      98 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">      99 </span><span class="lineCov">          1 : void err(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : /**
+<span class="lineNum">     102 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::warning severity
+<span class="lineNum">     103 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">     104 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">     105 </span>            :  ** @param p_format log message format
+<span class="lineNum">     106 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">     107 </span>            :  */
+<span class="lineNum">     108 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">     109 </span><span class="lineCov">          1 : void warning(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : /**
+<span class="lineNum">     112 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::info severity
+<span class="lineNum">     113 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">     114 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">     115 </span>            :  ** @param p_format log message format
+<span class="lineNum">     116 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">     117 </span>            :  */
+<span class="lineNum">     118 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">     119 </span><span class="lineCov">          1 : void info(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : /**
+<span class="lineNum">     122 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::notice severity
+<span class="lineNum">     123 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">     124 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">     125 </span>            :  ** @param p_format log message format
+<span class="lineNum">     126 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">     127 </span>            :  */
+<span class="lineNum">     128 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">     129 </span><span class="lineCov">          1 : void notice(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span>            : /**
+<span class="lineNum">     132 </span>            :  ** @brief Logs to global @ref RootLogger with @ref level::debug severity
+<span class="lineNum">     133 </span>            :  ** @tparam Args Variadic argument types
+<span class="lineNum">     134 </span>            :  ** @param p_module module to send log to
+<span class="lineNum">     135 </span>            :  ** @param p_format log message format
+<span class="lineNum">     136 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">     137 </span>            :  */
+<span class="lineNum">     138 </span>            : template&lt;typename ... Args&gt;
+<span class="lineNum">     139 </span><span class="lineCov">          1 : void debug(const string&amp; p_module, const string&amp; p_format, Args... p_args);</span>
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            : /**
+<span class="lineNum">     142 </span>            :  ** @brief Throws given exception class with formatted message and logs with @ref level::crit
+<span class="lineNum">     143 </span>            :  ** @tparam TError Exception class to throw
+<span class="lineNum">     144 </span>            :  ** @tparam Args Variadic arguments type
+<span class="lineNum">     145 </span>            :  ** @param p_module module to log to
+<span class="lineNum">     146 </span>            :  ** @param p_format message format
+<span class="lineNum">     147 </span>            :  ** @param p_args arguments to apply to message format
+<span class="lineNum">     148 </span>            :  */
+<span class="lineNum">     149 </span>            : template&lt;class TError, typename... Args&gt;
+<span class="lineNum">     150 </span><span class="lineCov">          1 : void raise(const string&amp; p_module, const string&amp; p_format, Args&amp;&amp;... p_args);</span>
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            : 
+<span class="lineNum">     153 </span>            : /**
+<span class="lineNum">     154 </span>            :  ** @brief Returns (or create) global @ref RootLogger instance
+<span class="lineNum">     155 </span>            :  ** @return Global @ref RootLogger instance
+<span class="lineNum">     156 </span>            :  */
+<span class="lineNum">     157 </span>            : RootLogger&amp; getRoot(void);
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span>            : }}
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span>            : # include &quot;log/helpers.hxx&quot; // IWYU pragma: export
+<span class="lineNum">     162 </span>            : 
+<span class="lineNum">     163 </span>            : #endif // !XTD_CORE_LOG_HELPERS_HH_
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            : // Local Variables:
+<span class="lineNum">     166 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     167 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

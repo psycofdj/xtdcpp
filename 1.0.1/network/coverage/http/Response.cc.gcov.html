@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Response.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Response.cc<span style="font-size: 80%;"> (source / <a href="Response.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">88</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2016-12-29 16:00:50</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;Response.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;boost/format.hpp&gt;
+<span class="lineNum">       3 </span>            : #include &lt;boost/lexical_cast.hpp&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/format.hpp&gt;
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace xtd {
+<span class="lineNum">      11 </span>            : namespace network {
+<span class="lineNum">      12 </span>            : namespace http {
+<a name="13"><span class="lineNum">      13 </span>            : </a>
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span><span class="lineNoCov">          0 : Response::Response(void) :</span>
+<span class="lineNum">      16 </span>            :   m_status(code::bad_request),
+<span class="lineNum">      17 </span>            :   m_headers(),
+<span class="lineNum">      18 </span>            :   m_data(),
+<span class="lineNum">      19 </span><span class="lineNoCov">          0 :   m_cachable(false)</span>
+<span class="lineNum">      20 </span>            : {
+<span class="lineNum">      21 </span><span class="lineNoCov">          0 : }</span>
+<a name="22"><span class="lineNum">      22 </span>            : </a>
+<span class="lineNum">      23 </span>            : void
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 : Response::setCachable(bool p_status)</span>
+<span class="lineNum">      25 </span>            : {
+<span class="lineNum">      26 </span><span class="lineNoCov">          0 :   m_cachable = p_status;</span>
+<span class="lineNum">      27 </span><span class="lineNoCov">          0 : }</span>
+<a name="28"><span class="lineNum">      28 </span>            : </a>
+<span class="lineNum">      29 </span>            : void
+<span class="lineNum">      30 </span><span class="lineNoCov">          0 : Response::setStatus(code p_status)</span>
+<span class="lineNum">      31 </span>            : {
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :   m_status = p_status;</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 : }</span>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<span class="lineNum">      35 </span>            : void
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 : Response::addHeader(const string&amp; p_name, const string&amp; p_value)</span>
+<span class="lineNum">      37 </span>            : {
+<span class="lineNum">      38 </span><span class="lineNoCov">          0 :   m_headers[p_name] = p_value;</span>
+<span class="lineNum">      39 </span><span class="lineNoCov">          0 : }</span>
+<a name="40"><span class="lineNum">      40 </span>            : </a>
+<span class="lineNum">      41 </span>            : void
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 : Response::setData(const string&amp; p_data)</span>
+<span class="lineNum">      43 </span>            : {
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :   m_data = p_data;</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      46 </span>            : 
+<a name="47"><span class="lineNum">      47 </span>            : </a>
+<span class="lineNum">      48 </span>            : void
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 : Response::appendData(const string&amp; p_data)</span>
+<span class="lineNum">      50 </span>            : {
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   m_data += p_data;</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">          0 : }</span>
+<a name="53"><span class="lineNum">      53 </span>            : </a>
+<span class="lineNum">      54 </span>            : void
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 : Response::setVersion(const string&amp; p_version)</span>
+<span class="lineNum">      56 </span>            : {
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   m_version = p_version;</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 : }</span>
+<a name="59"><span class="lineNum">      59 </span>            : </a>
+<span class="lineNum">      60 </span>            : code
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 : Response::getStatus(void) const</span>
+<span class="lineNum">      62 </span>            : {
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   return m_status;</span>
+<span class="lineNum">      64 </span>            : }
+<a name="65"><span class="lineNum">      65 </span>            : </a>
+<span class="lineNum">      66 </span>            : bool
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 : Response::getHeader(const string&amp; p_name, string&amp; p_value) const</span>
+<span class="lineNum">      68 </span>            : {
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   t_header_map::const_iterator c_header = m_headers.find(p_name);</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   if (c_header == m_headers.end())</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :   p_value = c_header-&gt;second;</span>
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">      74 </span>            : }
+<a name="75"><span class="lineNum">      75 </span>            : </a>
+<span class="lineNum">      76 </span>            : const Response::t_header_map&amp;
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 : Response::getHeaders(void) const</span>
+<span class="lineNum">      78 </span>            : {
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :   return m_headers;</span>
+<span class="lineNum">      80 </span>            : }
+<a name="81"><span class="lineNum">      81 </span>            : </a>
+<span class="lineNum">      82 </span>            : const string&amp;
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 : Response::getData(void) const</span>
+<span class="lineNum">      84 </span>            : {
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :   return m_data;</span>
+<span class="lineNum">      86 </span>            : }
+<a name="87"><span class="lineNum">      87 </span>            : </a>
+<span class="lineNum">      88 </span>            : const string&amp;
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 : Response::getVersion(void) const</span>
+<span class="lineNum">      90 </span>            : {
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   return m_version;</span>
+<span class="lineNum">      92 </span>            : }
+<span class="lineNum">      93 </span>            : 
+<a name="94"><span class="lineNum">      94 </span>            : </a>
+<span class="lineNum">      95 </span>            : void
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 : Response::finalize(void)</span>
+<span class="lineNum">      97 </span>            : {
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   addHeader(&quot;Content-Size&quot;,   boost::lexical_cast&lt;string&gt;(getData().size()));</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   addHeader(&quot;Content-Length&quot;, boost::lexical_cast&lt;string&gt;(getData().size()));</span>
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :   if (true == m_cachable)</span>
+<span class="lineNum">     102 </span>            :   {
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :     std::stringstream        l_out;</span>
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :     uint64_t                 l_cacheTTLSec = 365 * 24 * 60 * 60;</span>
+<span class="lineNum">     105 </span>            :     boost::posix_time::ptime l_time        =
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :       boost::posix_time::second_clock::universal_time() +</span>
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :       boost::posix_time::seconds(l_cacheTTLSec);</span>
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :     l_out.imbue(std::locale(l_out.getloc(), new boost::posix_time::time_facet(&quot;%a, %d %b %Y %H:%M:%S GMT&quot;)));</span>
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :     l_out &lt;&lt; l_time;</span>
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :     addHeader(&quot;Expires&quot;,       l_out.str());</span>
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 :     addHeader(&quot;Cache-Control&quot;, boost::str(boost::format(&quot;private,maxage=%d&quot;) % l_cacheTTLSec));</span>
+<span class="lineNum">     114 </span>            :   }
+<span class="lineNum">     115 </span>            :   else
+<span class="lineNum">     116 </span>            :   {
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :     addHeader(&quot;Pragma&quot;,        &quot;no-cache&quot;);</span>
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :     addHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);</span>
+<span class="lineNum">     119 </span>            :   }
+<span class="lineNum">     120 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     121 </span>            : 
+<a name="122"><span class="lineNum">     122 </span>            : </a>
+<span class="lineNum">     123 </span>            : void
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 : Response::write(std::ostream&amp; p_response) const</span>
+<span class="lineNum">     125 </span>            : {
+<span class="lineNum">     126 </span><span class="lineNoCov">          0 :   t_header_map::const_iterator c_header;</span>
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :   string                       l_status = statusToMessage(getStatus());</span>
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :   string                       l_data   = getData();</span>
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   p_response &lt;&lt; boost::format(&quot;HTTP/%s %s\r\n&quot;) % getVersion() % l_status;</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :   for (c_header = getHeaders().begin();</span>
+<span class="lineNum">     132 </span><span class="lineNoCov">          0 :        c_header != getHeaders().end();</span>
+<span class="lineNum">     133 </span>            :        c_header++)
+<span class="lineNum">     134 </span><span class="lineNoCov">          0 :     p_response &lt;&lt; boost::str(boost::format(&quot;%s: %s\r\n&quot;)</span>
+<span class="lineNum">     135 </span><span class="lineNoCov">          0 :                              % c_header-&gt;first</span>
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :                              % c_header-&gt;second);</span>
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :   p_response &lt;&lt; &quot;\r\n&quot;;</span>
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :   p_response &lt;&lt; getData();</span>
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 : }</span>
+<a name="140"><span class="lineNum">     140 </span>            : </a>
+<span class="lineNum">     141 </span>            : string
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 : Response::statusToMessage(code p_status)</span>
+<span class="lineNum">     143 </span>            : {
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 :   string l_value;</span>
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :   switch (p_status)</span>
+<span class="lineNum">     147 </span>            :   {
+<span class="lineNum">     148 </span>            :     //Information 1xx
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   case code::proceeed:            l_value = &quot;100 Continue&quot;;              break;</span>
+<span class="lineNum">     150 </span><span class="lineNoCov">          0 :   case code::switch_protocol:     l_value = &quot;101 Switching protocol&quot;;    break;</span>
+<span class="lineNum">     151 </span>            :     //Successful 2xx
+<span class="lineNum">     152 </span><span class="lineNoCov">          0 :   case code::ok:                  l_value = &quot;200 OK&quot;;                    break;</span>
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :   case code::created:             l_value = &quot;201 Created&quot;;               break;</span>
+<span class="lineNum">     154 </span><span class="lineNoCov">          0 :   case code::accepted:            l_value = &quot;202 Accepted&quot;;              break;</span>
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 :   case code::no_content:          l_value = &quot;204 No Content&quot;;            break;</span>
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   case code::partial_content:     l_value = &quot;206 Partial content&quot;;       break;</span>
+<span class="lineNum">     157 </span>            : 
+<span class="lineNum">     158 </span>            :     //Redirection 3xx
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 :   case code::multiple_choices:    l_value = &quot;300 Multiple Choices&quot;;      break;</span>
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :   case code::moved_permanently:   l_value = &quot;301 Moved Permanently&quot;;     break;</span>
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :   case code::moved_temporarily:   l_value = &quot;302 Moved Temporarily&quot;;     break;</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :   case code::not_modified:        l_value = &quot;304 Not Modified&quot;;          break;</span>
+<span class="lineNum">     163 </span>            :     //Client Error 4xx
+<span class="lineNum">     164 </span><span class="lineNoCov">          0 :   case code::bad_request:         l_value = &quot;400 Bad Request&quot;;           break;</span>
+<span class="lineNum">     165 </span><span class="lineNoCov">          0 :   case code::unauthorized:        l_value = &quot;401 Unauthorized&quot;;          break;</span>
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 :   case code::forbidden:           l_value = &quot;403 Forbidden&quot;;             break;</span>
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   case code::not_found:           l_value = &quot;404 Not Found&quot;;             break;</span>
+<span class="lineNum">     168 </span><span class="lineNoCov">          0 :   case code::method_not_allowed:  l_value = &quot;405 Method not allowed&quot;;    break;</span>
+<span class="lineNum">     169 </span>            :     //Server Error 5xx
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 :   case code::internal_error:      l_value = &quot;500 Internal Server Error&quot;; break;</span>
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :   case code::not_implemented:     l_value = &quot;501 Not Implemented&quot;;       break;</span>
+<span class="lineNum">     172 </span><span class="lineNoCov">          0 :   case code::bad_gateway:         l_value = &quot;502 Bad Gateway&quot;;           break;</span>
+<span class="lineNum">     173 </span><span class="lineNoCov">          0 :   case code::service_unavailable: l_value = &quot;503 Service Unavailable&quot;;   break;</span>
+<span class="lineNum">     174 </span>            :   }
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :   return l_value;</span>
+<a name="176"><span class="lineNum">     176 </span>            : }</a>
+<span class="lineNum">     177 </span>            : 
+<span class="lineNum">     178 </span><span class="lineNoCov">          0 : }}} //end namespaces</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

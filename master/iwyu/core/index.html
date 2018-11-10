@@ -1,0 +1,3948 @@
+
+
+
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Include sanity report</title>
+    <link href="../../contribs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../contribs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="../../contribs/jquery/jquery.min.js"></script>
+    <script src="../../contribs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     function SelectText(text) {
+       var doc = document,
+           range, selection
+       ;
+       if (doc.body.createTextRange) {
+         range = document.body.createTextRange();
+         range.moveToElementText(text);
+         range.select();
+       } else if (window.getSelection) {
+         selection = window.getSelection();
+         range = document.createRange();
+         range.selectNodeContents(text);
+         selection.removeAllRanges();
+         selection.addRange(range);
+       }
+     }
+     $(document).ready(function() {
+       $("button.open").click(function() {
+         var l_tr        = $(this).parents("tr");
+         var l_id        = l_tr.attr("id");
+         var l_detailsID = l_id + "-details";
+         $("." + l_detailsID).toggle();
+       });
+       $("pre").dblclick(function() {
+         SelectText($(this)[0]);
+       });
+       $("#split").click(function() {
+         $(".header").toggleClass("hidden");
+         $(".header-split").toggleClass("hidden");
+       });
+     });
+    </script>
+    <style>
+
+     .includes {
+       overflow: scroll;
+       font-size:10px;
+     }
+
+     .maintable {
+       table-layout:fixed;
+     }
+
+    </style>
+  </head>
+  <body bgcolor="#ffffff" style="padding-top:50px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-4"><div class="panel panel-default">
+          <div class="panel-heading">Summary report</div>
+          <div class="panel-body">
+            <table class="table table-bordered table-condensed small">
+              <tbody>
+                <tr>
+                  <th>Analyzed files</th>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th>Files Ok</th>
+                  <td>4</td>
+                </tr>
+                <tr>
+                  <th>Files Ko</th>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <th>Iwyu errors</th>
+                  <td>2</td>
+                </tr>
+                <tr class="bg-warning">
+                  <th>(from Ko files) Missing includes</th>
+                  <td>17</td>
+                </tr>
+                <tr class="bg-danger">
+                  <th>(from Ko files) Unwanted includes</th>
+                  <td>104</td>
+                </tr>
+                <tr class="bg-info">
+                  <th>(from Ko files) Total includes</th>
+                  <td>133</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <button id="split" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Split comments
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">Full report
+            </div>
+            <div class="panel-body">
+              <table class="maintable table table-striped table-bordered table-condensed small">
+                <thead>
+                  <tr>
+                    <th style="width:50px;"></th>
+                    <th>File name</th>
+                    <th>Missing</th>
+                    <th>Unwanted</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    
+                  <tr id="idm0" class="warning">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> /home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.cc </td>
+                    <td>err.</td>
+                    <td>err.</td>
+                    <td>err.</td>
+                  </tr>
+
+                  <tr class="idm0-details" style="display: none;">
+                    <td></td>
+                    <td colspan="4">
+                      <pre class="includes bg-warning">
+In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.cc:1:
+In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Grammar.hh:3:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/string:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/char_traits.h:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/postypes.h:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/cwchar:44:
+/usr/include/wchar.h:35:10: fatal error: &#39;stddef.h&#39; file not found
+#include &lt;stddef.h&gt;
+         ^~~~~~~~~~
+Cycle in include-mapping:
+  &lt;boost/phoenix/support/detail/iterate.hpp&gt; -&gt;
+  &lt;boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp&gt; -&gt;
+  &lt;boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp&gt;
+/build/iwyu-mhPUyW/iwyu-5.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping
+
+                      </pre>
+                    </td>
+                  </tr>
+                    
+                  <tr id="idm1" class="warning">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> /home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.cc </td>
+                    <td>err.</td>
+                    <td>err.</td>
+                    <td>err.</td>
+                  </tr>
+
+                  <tr class="idm1-details" style="display: none;">
+                    <td></td>
+                    <td colspan="4">
+                      <pre class="includes bg-warning">
+In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.cc:1:
+In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/Parser.hh:3:
+In file included from /home/travis/build/psycofdj/xtdcpp/core/src/config/types.hh:3:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/string:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/char_traits.h:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/bits/postypes.h:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/7.3.0/../../../../include/c++/7.3.0/cwchar:44:
+/usr/include/wchar.h:35:10: fatal error: &#39;stddef.h&#39; file not found
+#include &lt;stddef.h&gt;
+         ^~~~~~~~~~
+Cycle in include-mapping:
+  &lt;boost/phoenix/support/detail/iterate.hpp&gt; -&gt;
+  &lt;boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp&gt; -&gt;
+  &lt;boost/phoenix/operator/detail/cpp03/mem_fun_ptr_eval_result_of.hpp&gt;
+/build/iwyu-mhPUyW/iwyu-5.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping
+
+                      </pre>
+                    </td>
+                  </tr>
+                    
+                      
+                        
+                  <tr id="idm2" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/Application.cc </td>
+                    <td>4</td>
+                    <td>7</td>
+                    <td>9</td>
+                  </tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Application.hh&#34;
+#include &lt;bits/getopt_core.h&gt;  // for optind, opterr, optopt
+#include &lt;getopt.h&gt;            // for option
+#include &lt;libgen.h&gt;            // for basename
+#include &lt;string.h&gt;            // for strdup
+#include &lt;cstdlib&gt;             // for free
+#include &#34;log/Logger.hh&#34;       // for RootLogger
+#include &#34;log/helpers.hh&#34;      // for getRoot, to_value
+#include &#34;log/logtypes.hh&#34;     // for level, level::crit, HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/getopt_core.h&gt;  // for optind, opterr, optopt
+#include &#34;log/Logger.hh&#34;       // for RootLogger
+#include &#34;log/helpers.hh&#34;      // for getRoot, to_value
+#include &#34;log/logtypes.hh&#34;     // for level, level::crit, HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;unistd.h&gt;  // lines 5-5
+#include &lt;boost/algorithm/string/classification.hpp&gt;  // lines 9-9
+#include &lt;boost/algorithm/string/split.hpp&gt;  // lines 11-11
+#include &lt;boost/algorithm/string/trim.hpp&gt;  // lines 10-10
+#include &lt;boost/filesystem.hpp&gt;  // lines 8-8
+#include &lt;memory&gt;  // lines 7-7
+namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 13-13
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;Application.hh&#34;
+#include &lt;bits/getopt_core.h&gt;
+#include &lt;getopt.h&gt;
+#include &lt;libgen.h&gt;
+#include &lt;string.h&gt;
+#include &lt;cstdlib&gt;
+#include &#34;log/Logger.hh&#34;
+#include &#34;log/helpers.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for optind, opterr, optopt
+// for option
+// for basename
+// for strdup
+// for free
+// for RootLogger
+// for getRoot, to_value
+// for level, level::crit, HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/getopt_core.h&gt;
+#include &#34;log/Logger.hh&#34;
+#include &#34;log/helpers.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for optind, opterr, optopt
+// for RootLogger
+// for getRoot, to_value
+// for level, level::crit, HERE
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;unistd.h&gt;
+#include &lt;boost/algorithm/string/classification.hpp&gt;
+#include &lt;boost/algorithm/string/split.hpp&gt;
+#include &lt;boost/algorithm/string/trim.hpp&gt;
+#include &lt;boost/filesystem.hpp&gt;
+#include &lt;memory&gt;
+namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 5-5
+// lines 9-9
+// lines 11-11
+// lines 10-10
+// lines 8-8
+// lines 7-7
+// lines 13-13
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm3" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/Application.hh </td>
+                    <td>1</td>
+                    <td>9</td>
+                    <td>6</td>
+                  </tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &lt;boost/thread.hpp&gt;     // for thread
+#include &lt;iostream&gt;             // for cerr
+#include &lt;string&gt;               // for string
+#include &#34;Application.hxx&#34;
+#include &#34;types.hh&#34;             // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;stdint.h&gt;  // lines 4-4
+#include &lt;boost/asio.hpp&gt;  // lines 5-5
+#include &lt;functional&gt;  // lines 7-7
+#include &lt;limits&gt;  // lines 9-9
+#include &lt;map&gt;  // lines 10-10
+#include &lt;vector&gt;  // lines 12-12
+namespace std { namespace std { class TestApplication; } }  // lines 15-15
+namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 17-17
+namespace std { namespace std { namespace xtd { struct Application::t_option; } } }  // lines 115-115
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;boost/thread.hpp&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &#34;Application.hxx&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for thread
+// for cerr
+// for string
+
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;stdint.h&gt;
+#include &lt;boost/asio.hpp&gt;
+#include &lt;functional&gt;
+#include &lt;limits&gt;
+#include &lt;map&gt;
+#include &lt;vector&gt;
+namespace std { namespace std { class TestApplication; } }
+namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }
+namespace std { namespace std { namespace xtd { struct Application::t_option; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+// lines 5-5
+// lines 7-7
+// lines 9-9
+// lines 10-10
+// lines 12-12
+// lines 15-15
+// lines 17-17
+// lines 115-115
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm4" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/Application.hxx </td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/lexical_cast.hpp&gt;  // for bad_lexical_cast, lexical_cast
+#include &lt;cstdlib&gt;                 // for exit
+#include &lt;string&gt;                  // for string
+#include &#34;format.hh&#34;               // for format
+#include &#34;log.hh&#34;
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;cstdlib&gt;                 // for exit
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;stdlib.h&gt;  // lines 5-5
+#include &lt;stdexcept&gt;  // lines 7-7
+#include &#34;types.hh&#34;  // lines 10-10
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;cstdlib&gt;
+#include &lt;string&gt;
+#include &#34;format.hh&#34;
+#include &#34;log.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for bad_lexical_cast, lexical_cast
+// for exit
+// for string
+// for format
+
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;cstdlib&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for exit
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;stdlib.h&gt;
+#include &lt;stdexcept&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 5-5
+// lines 7-7
+// lines 10-10
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm5" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Appender.cc </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                  </tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Appender.hh&#34;
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;log/Formatter.hh&#34;  // lines 2-2
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Appender.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;log/Formatter.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm6" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Appender.hh </td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Formatter.hh&#34;
+#include &#34;log/logtypes.hh&#34;  // for FormattedRecord, Record
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;functional&gt;  // lines 3-3
+#include &lt;memory&gt;  // lines 4-4
+#include &lt;vector&gt;  // lines 5-5
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Formatter.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for FormattedRecord, Record
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;functional&gt;
+#include &lt;memory&gt;
+#include &lt;vector&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+// lines 5-5
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm7" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/ColoredFormatter.cc </td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/ColoredFormatter.hh&#34;
+#include &#34;types.hh&#34;  // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/classification.hpp&gt;  // lines 2-2
+#include &lt;boost/algorithm/string/split.hpp&gt;  // lines 3-3
+#include &lt;iostream&gt;  // lines 4-4
+#include &#34;log/helpers.hh&#34;  // lines 6-6
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/ColoredFormatter.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/classification.hpp&gt;
+#include &lt;boost/algorithm/string/split.hpp&gt;
+#include &lt;iostream&gt;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 6-6
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm8" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/ColoredFormatter.hh </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Fields.hh&#34;     // for Fields
+#include &#34;log/Formatter.hh&#34;  // for Formatter
+#include &#34;log/logtypes.hh&#34;   // for FormattedRecord
+#include &#34;tty.hh&#34;            // for color, attrs, style
+#include &#34;types.hh&#34;          // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { class TestColoredFormatter; }  // lines 9-9
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Fields.hh&#34;
+#include &#34;log/Formatter.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;tty.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for Fields
+// for Formatter
+// for FormattedRecord
+// for color, attrs, style
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { class TestColoredFormatter; }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 9-9
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm9" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/ConfLoader.cc </td>
+                    <td>0</td>
+                    <td>11</td>
+                    <td>9</td>
+                  </tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;log/ConfLoader.hh&gt;
+#include &#34;log/ColoredFormatter.hh&#34;
+#include &#34;log/Formatter.hh&#34;
+#include &#34;log/Logger.hh&#34;    // for RootLogger, Logger
+#include &#34;log/MemoryAppender.hh&#34;
+#include &#34;log/StreamAppender.hh&#34;
+#include &#34;log/SyslogAppender.hh&#34;
+#include &#34;log/logtypes.hh&#34;  // for HERE, level
+#include &#34;types.hh&#34;         // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;ext/alloc_traits.h&gt;  // lines 2-2
+#include &lt;algorithm&gt;  // lines 3-3
+#include &lt;boost/algorithm/string/case_conv.hpp&gt;  // lines 4-4
+#include &lt;boost/algorithm/string/classification.hpp&gt;  // lines 5-5
+#include &lt;boost/algorithm/string/split.hpp&gt;  // lines 6-6
+#include &lt;boost/format.hpp&gt;  // lines 7-7
+#include &lt;exception&gt;  // lines 9-9
+#include &lt;iterator&gt;  // lines 10-10
+#include &lt;regex&gt;  // lines 8-8
+#include &#34;log/Appender.hh&#34;  // lines 12-12
+#include &#34;log/helpers.hh&#34;  // lines 14-14
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;log/ConfLoader.hh&gt;
+#include &#34;log/ColoredFormatter.hh&#34;
+#include &#34;log/Formatter.hh&#34;
+#include &#34;log/Logger.hh&#34;
+#include &#34;log/MemoryAppender.hh&#34;
+#include &#34;log/StreamAppender.hh&#34;
+#include &#34;log/SyslogAppender.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+
+
+// for RootLogger, Logger
+
+
+
+// for HERE, level
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;ext/alloc_traits.h&gt;
+#include &lt;algorithm&gt;
+#include &lt;boost/algorithm/string/case_conv.hpp&gt;
+#include &lt;boost/algorithm/string/classification.hpp&gt;
+#include &lt;boost/algorithm/string/split.hpp&gt;
+#include &lt;boost/format.hpp&gt;
+#include &lt;exception&gt;
+#include &lt;iterator&gt;
+#include &lt;regex&gt;
+#include &#34;log/Appender.hh&#34;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 5-5
+// lines 6-6
+// lines 7-7
+// lines 9-9
+// lines 10-10
+// lines 8-8
+// lines 12-12
+// lines 14-14
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm10" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/ConfLoader.hh </td>
+                    <td>1</td>
+                    <td>6</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/preprocessor.hpp&gt;  // for BOOST_PP_CAT
+#include &#34;log/Logger.hh&#34;           // for RootLogger
+#include &#34;log/helpers.hh&#34;          // for getRoot
+#include &#34;types.hh&#34;                // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &#34;log/Logger.hh&#34;           // for RootLogger
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;mixins/singleton.hh&#34;  // lines 6-6
+namespace std { class TestConfLoader; }  // lines 8-8
+namespace std { namespace xtd { namespace log { class Appender; } } }  // lines 10-10
+namespace std { namespace xtd { namespace log { class ConfLoader; } } }  // lines 11-11
+namespace std { namespace xtd { namespace log { class Formatter; } } }  // lines 12-12
+namespace std { namespace xtd { namespace log { class RootLogger; } } }  // lines 13-13
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/preprocessor.hpp&gt;
+#include &#34;log/Logger.hh&#34;
+#include &#34;log/helpers.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for BOOST_PP_CAT
+// for RootLogger
+// for getRoot
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &#34;log/Logger.hh&#34;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for RootLogger
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;mixins/singleton.hh&#34;
+namespace std { class TestConfLoader; }
+namespace std { namespace xtd { namespace log { class Appender; } } }
+namespace std { namespace xtd { namespace log { class ConfLoader; } } }
+namespace std { namespace xtd { namespace log { class Formatter; } } }
+namespace std { namespace xtd { namespace log { class RootLogger; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 6-6
+// lines 8-8
+// lines 10-10
+// lines 11-11
+// lines 12-12
+// lines 13-13
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm11" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/FormatModifiers.cc </td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/FormatModifiers.hh&#34;
+#include &#34;types.hh&#34;  // for size_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;algorithm&gt;  // lines 2-2
+#include &lt;boost/format.hpp&gt;  // lines 3-3
+#include &#34;log/helpers.hh&#34;  // lines 5-5
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/FormatModifiers.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for size_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;algorithm&gt;
+#include &lt;boost/format.hpp&gt;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 5-5
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm12" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/FormatModifiers.hh </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Fields.hh&#34;    // for Fields
+#include &#34;log/logtypes.hh&#34;  // for FormattedRecord
+#include &#34;tty.hh&#34;           // for style
+#include &#34;types.hh&#34;         // for size_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;regex&gt;  // lines 3-3
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Fields.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;tty.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for Fields
+// for FormattedRecord
+// for style
+// for size_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;regex&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm13" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Formatter.cc </td>
+                    <td>1</td>
+                    <td>6</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Formatter.hh&#34;
+#include &lt;bits/shared_ptr.h&gt;  // for shared_ptr
+#include &lt;boost/format.hpp&gt;   // for format, str
+#include &#34;log/Fields.hh&#34;      // for Fields
+#include &#34;types.hh&#34;           // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/shared_ptr.h&gt;  // for shared_ptr
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/replace.hpp&gt;  // lines 2-2
+#include &lt;boost/date_time/gregorian/gregorian.hpp&gt;  // lines 3-3
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;  // lines 4-4
+#include &lt;boost/iterator/iterator_traits.hpp&gt;  // lines 6-6
+#include &lt;iostream&gt;  // lines 7-7
+#include &#34;log/helpers.hh&#34;  // lines 10-10
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Formatter.hh&#34;
+#include &lt;bits/shared_ptr.h&gt;
+#include &lt;boost/format.hpp&gt;
+#include &#34;log/Fields.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for shared_ptr
+// for format, str
+// for Fields
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/shared_ptr.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for shared_ptr
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/replace.hpp&gt;
+#include &lt;boost/date_time/gregorian/gregorian.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+#include &lt;boost/iterator/iterator_traits.hpp&gt;
+#include &lt;iostream&gt;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 6-6
+// lines 7-7
+// lines 10-10
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm14" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Formatter.hh </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;  // for ptime
+#include &#34;log/Fields.hh&#34;                              // for Fields
+#include &#34;log/Formatter.hxx&#34;
+#include &#34;log/logtypes.hh&#34;                            // for FormattedRecord, Record
+#include &#34;types.hh&#34;                                   // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { class TestFormatter; }  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+#include &#34;log/Fields.hh&#34;
+#include &#34;log/Formatter.hxx&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for ptime
+// for Fields
+
+// for FormattedRecord, Record
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { class TestFormatter; }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm15" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Formatter.hxx </td>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm15-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/format.hpp&gt;  // for format
+#include &#34;format.hh&#34;         // for format
+#include &#34;log/logtypes.hh&#34;   // for FormattedRecord, Record
+#include &#34;types.hh&#34;          // for size_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/lexical_cast.hpp&gt;  // lines 5-5
+#include &lt;exception&gt;  // lines 7-7
+#include &lt;regex&gt;  // lines 6-6
+#include &#34;text.hh&#34;  // lines 9-9
+namespace std { namespace xtd { namespace log { class Formatter; } } }  // lines 13-13
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/format.hpp&gt;
+#include &#34;format.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for format
+// for format
+// for FormattedRecord, Record
+// for size_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm15-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;exception&gt;
+#include &lt;regex&gt;
+#include &#34;text.hh&#34;
+namespace std { namespace xtd { namespace log { class Formatter; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 5-5
+// lines 7-7
+// lines 6-6
+// lines 9-9
+// lines 13-13
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm16" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Logger.cc </td>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm16-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Logger.hh&#34;
+#include &lt;thread&gt;  // for get_id, hash, thread
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/classification.hpp&gt;  // lines 2-2
+#include &lt;boost/algorithm/string/join.hpp&gt;  // lines 3-3
+#include &lt;boost/algorithm/string/split.hpp&gt;  // lines 4-4
+#include &lt;regex&gt;  // lines 5-5
+#include &#34;log/helpers.hh&#34;  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Logger.hh&#34;
+#include &lt;thread&gt;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for get_id, hash, thread
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm16-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/classification.hpp&gt;
+#include &lt;boost/algorithm/string/join.hpp&gt;
+#include &lt;boost/algorithm/string/split.hpp&gt;
+#include &lt;regex&gt;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 5-5
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm17" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Logger.hh </td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm17-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-intn.h&gt;   // for int32_t
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &#34;log/Logger.hxx&#34;
+#include &#34;log/logtypes.hh&#34;      // for level
+#include &#34;types.hh&#34;             // for string, size_t, int32_t, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;   // for int32_t
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;mutex&gt;  // lines 3-3
+namespace std { class TestLogger; }  // lines 7-7
+namespace std { namespace xtd { namespace log { class Appender; } } }  // lines 9-9
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;log/Logger.hxx&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for int32_t
+// for uint32_t
+
+// for level
+// for string, size_t, int32_t, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for int32_t
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm17-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;mutex&gt;
+namespace std { class TestLogger; }
+namespace std { namespace xtd { namespace log { class Appender; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 7-7
+// lines 9-9
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm18" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/Logger.hxx </td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm18-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;unistd.h&gt;         // for getpid, getppid
+#include &#34;log/Appender.hh&#34;
+#include &#34;log/logtypes.hh&#34;  // for level, Record, level::alert, level::crit, level::debug, level::emerg, level::err, level::info, level::notice, level::warning
+#include &#34;types.hh&#34;         // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;  // lines 6-6
+namespace std { namespace xtd { namespace log { class Logger; } } }  // lines 10-10
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;unistd.h&gt;
+#include &#34;log/Appender.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for getpid, getppid
+
+// for level, Record, level::alert, level::crit, level::debug, level::emerg, level::err, level::info, level::notice, level::warning
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm18-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+namespace std { namespace xtd { namespace log { class Logger; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 6-6
+// lines 10-10
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm19" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/MemoryAppender.cc </td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm19-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/MemoryAppender.hh&#34;
+#include &lt;bits/stdint-intn.h&gt;      // for int64_t
+#include &lt;boost/lexical_cast.hpp&gt;  // for bad_lexical_cast
+#include &#34;types.hh&#34;                // for int64_t, size_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;      // for int64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;log/helpers.hh&#34;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/MemoryAppender.hh&#34;
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for int64_t
+// for bad_lexical_cast
+// for int64_t, size_t, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for int64_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm19-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm20" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/MemoryAppender.hh </td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm20-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;mutex&gt;            // for mutex
+#include &#34;log/Appender.hh&#34;  // for Appender
+#include &#34;log/logtypes.hh&#34;  // for FormattedRecord
+#include &#34;types.hh&#34;         // for size_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/circular_buffer.hpp&gt;  // lines 3-3
+#include &#34;log/Formatter.hh&#34;  // lines 7-7
+namespace std { class TestMemoryAppender; }  // lines 10-10
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;mutex&gt;
+#include &#34;log/Appender.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for mutex
+// for Appender
+// for FormattedRecord
+// for size_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm20-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/circular_buffer.hpp&gt;
+#include &#34;log/Formatter.hh&#34;
+namespace std { class TestMemoryAppender; }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 7-7
+// lines 10-10
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm21" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/log/Stream.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm21-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm21-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm22" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/log/Stream.hh </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm22-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm22-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm23" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/StreamAppender.cc </td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm23-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/StreamAppender.hh&#34;
+#include &#34;types.hh&#34;  // for ofstream, ostream, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;log/Stream.hh&#34;  // lines 3-3
+#include &#34;log/helpers.hh&#34;  // lines 4-4
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/StreamAppender.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for ofstream, ostream, string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm23-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &#34;log/Stream.hh&#34;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm24" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/StreamAppender.hh </td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm24-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Appender.hh&#34;  // for Appender
+#include &#34;log/logtypes.hh&#34;  // for FormattedRecord
+#include &#34;types.hh&#34;         // for ostream
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;iostream&gt;  // lines 3-3
+#include &#34;log/Formatter.hh&#34;  // lines 6-6
+namespace std { class TestStreamAppender; }  // lines 9-9
+namespace std { namespace xtd { namespace log { class Stream; } } }  // lines 11-11
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Appender.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for Appender
+// for FormattedRecord
+// for ostream
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm24-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;iostream&gt;
+#include &#34;log/Formatter.hh&#34;
+namespace std { class TestStreamAppender; }
+namespace std { namespace xtd { namespace log { class Stream; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 6-6
+// lines 9-9
+// lines 11-11
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm25" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/SyslogAppender.cc </td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>3</td>
+                  </tr>
+
+                  
+<tr class="idm25-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/SyslogAppender.hh&#34;
+#include &lt;syslog.h&gt;  // for closelog, openlog, LOG_AUTH, LOG_AUTHPRIV, LOG_CONS, LOG_CRON, LOG_DAEMON, LOG_FTP, LOG_KERN, LOG_LOCAL0, LOG_LOCAL1, LOG_LOCAL2, LOG_LOCAL3, LOG_LOCAL4, LOG_LOCAL5, LOG_LOCAL6, LOG_LOCAL7, LOG_LPR, LOG_MAIL, LOG_NDELAY, LOG_NEWS, LOG_NOWAIT, LOG_ODELAY, LOG_PERROR
+#include &#34;types.hh&#34;  // for uint32_t, string, int32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/case_conv.hpp&gt;  // lines 3-3
+#include &lt;boost/algorithm/string/classification.hpp&gt;  // lines 4-4
+#include &lt;boost/algorithm/string/split.hpp&gt;  // lines 5-5
+#include &#34;log/helpers.hh&#34;  // lines 7-7
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/SyslogAppender.hh&#34;
+#include &lt;syslog.h&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for closelog, openlog, LOG_AUTH, LOG_AUTHPRIV, LOG_CONS, LOG_CRON, LOG_DAEMON, LOG_FTP, LOG_KERN, LOG_LOCAL0, LOG_LOCAL1, LOG_LOCAL2, LOG_LOCAL3, LOG_LOCAL4, LOG_LOCAL5, LOG_LOCAL6, LOG_LOCAL7, LOG_LPR, LOG_MAIL, LOG_NDELAY, LOG_NEWS, LOG_NOWAIT, LOG_ODELAY, LOG_PERROR
+// for uint32_t, string, int32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm25-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/algorithm/string/case_conv.hpp&gt;
+#include &lt;boost/algorithm/string/classification.hpp&gt;
+#include &lt;boost/algorithm/string/split.hpp&gt;
+#include &#34;log/helpers.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+// lines 5-5
+// lines 7-7
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm26" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/SyslogAppender.hh </td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>5</td>
+                  </tr>
+
+                  
+<tr class="idm26-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-intn.h&gt;   // for int32_t
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &#34;log/Appender.hh&#34;      // for Appender
+#include &#34;log/logtypes.hh&#34;      // for FormattedRecord
+#include &#34;types.hh&#34;             // for int32_t, string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;   // for int32_t
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;mutex&gt;  // lines 3-3
+#include &#34;log/Formatter.hh&#34;  // lines 5-5
+namespace std { class TestSyslogAppender; }  // lines 9-9
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;log/Appender.hh&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for int32_t
+// for uint32_t
+// for Appender
+// for FormattedRecord
+// for int32_t, string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for int32_t
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm26-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;mutex&gt;
+#include &#34;log/Formatter.hh&#34;
+namespace std { class TestSyslogAppender; }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 5-5
+// lines 9-9
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm27" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/log/helpers.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm27-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm27-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm28" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/helpers.hh </td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm28-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Logger.hh&#34;    // for RootLogger
+#include &#34;log/helpers.hxx&#34;
+#include &#34;log/logtypes.hh&#34;  // for level
+#include &#34;types.hh&#34;         // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm28-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &#34;log/Logger.hh&#34;    // for RootLogger
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm28-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace xtd { namespace log { class RootLogger; } } }  // lines 6-6
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm28-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;log/Logger.hh&#34;
+#include &#34;log/helpers.hxx&#34;
+#include &#34;log/logtypes.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for RootLogger
+
+// for level
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm28-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &#34;log/Logger.hh&#34;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for RootLogger
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm28-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+namespace std { namespace xtd { namespace log { class RootLogger; } } }
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 6-6
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm29" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/log/helpers.hxx </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm29-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/format.hpp&gt;  // for format
+#include &#34;format.hh&#34;         // for format
+#include &#34;log/Logger.hh&#34;     // for RootLogger
+#include &#34;types.hh&#34;          // for string, size_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm29-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm29-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;exception&gt;  // lines 5-5
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm29-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;boost/format.hpp&gt;
+#include &#34;format.hh&#34;
+#include &#34;log/Logger.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for format
+// for format
+// for RootLogger
+// for string, size_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm29-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm29-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;exception&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 5-5
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm30" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/text.cc </td>
+                    <td>0</td>
+                    <td>7</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm30-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;text.hh&#34;
+#include &#34;types.hh&#34;  // for string, size_t, stringstream
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm30-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm30-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;algorithm&gt;  // lines 2-2
+#include &lt;boost/algorithm/string/replace.hpp&gt;  // lines 3-3
+#include &lt;boost/assign/list_of.hpp&gt;  // lines 4-4
+#include &lt;exception&gt;  // lines 5-5
+#include &lt;iterator&gt;  // lines 6-6
+#include &lt;regex&gt;  // lines 7-7
+#include &#34;format.hh&#34;  // lines 9-9
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm30-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;text.hh&#34;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for string, size_t, stringstream
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm30-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm30-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;algorithm&gt;
+#include &lt;boost/algorithm/string/replace.hpp&gt;
+#include &lt;boost/assign/list_of.hpp&gt;
+#include &lt;exception&gt;
+#include &lt;iterator&gt;
+#include &lt;regex&gt;
+#include &#34;format.hh&#34;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 2-2
+// lines 3-3
+// lines 4-4
+// lines 5-5
+// lines 6-6
+// lines 7-7
+// lines 9-9
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm31" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/text.hh </td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>1</td>
+                  </tr>
+
+                  
+<tr class="idm31-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;types.hh&#34;  // for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm31-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm31-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/tuple/tuple.hpp&gt;  // lines 3-3
+#include &lt;regex&gt;  // lines 5-5
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm31-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for string
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm31-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm31-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;boost/tuple/tuple.hpp&gt;
+#include &lt;regex&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 5-5
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm32" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/tty.cc </td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>4</td>
+                  </tr>
+
+                  
+<tr class="idm32-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;tty.hh&#34;
+#include &lt;boost/format.hpp&gt;        // for format, str
+#include &lt;boost/lexical_cast.hpp&gt;  // for bad_lexical_cast
+#include &#34;types.hh&#34;                // for ostream, string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm32-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm32-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;algorithm&gt;  // lines 3-3
+#include &lt;boost/algorithm/string/join.hpp&gt;  // lines 4-4
+#include &lt;boost/assign/std/vector.hpp&gt;  // lines 5-5
+#include &lt;iterator&gt;  // lines 8-8
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm32-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &#34;tty.hh&#34;
+#include &lt;boost/format.hpp&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+
+// for format, str
+// for bad_lexical_cast
+// for ostream, string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm32-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm32-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;algorithm&gt;
+#include &lt;boost/algorithm/string/join.hpp&gt;
+#include &lt;boost/assign/std/vector.hpp&gt;
+#include &lt;iterator&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 3-3
+// lines 4-4
+// lines 5-5
+// lines 8-8
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm33" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/tty.hh </td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>2</td>
+                  </tr>
+
+                  
+<tr class="idm33-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+#include &#34;types.hh&#34;             // for ostream, string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm33-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;  // for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm33-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm33-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/stdint-uintn.h&gt;
+#include &#34;types.hh&#34;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for uint32_t
+// for ostream, string, uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm33-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for uint32_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm33-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm34" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/types.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm34-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm34-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm34-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm34-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm34-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm34-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                        
+                  <tr id="idm35" class="danger">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> src/types.hh </td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>21</td>
+                  </tr>
+
+                  
+<tr class="idm35-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/c++config.h&gt;     // for size_t
+#include &lt;bits/stdint-intn.h&gt;   // for int16_t, int32_t, int64_t, int8_t
+#include &lt;bits/stdint-uintn.h&gt;  // for uint16_t, uint32_t, uint64_t, uint8_t
+#include &lt;bits/stl_map.h&gt;
+#include &lt;bits/stl_pair.h&gt;      // for pair
+#include &lt;bits/stl_vector.h&gt;
+#include &lt;bits/stringfwd.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;cstddef&gt;
+#include &lt;cstdint&gt;
+#include &lt;fstream&gt;
+#include &lt;functional&gt;
+#include &lt;iosfwd&gt;               // for ostream, ifstream, istream, ofstream, stringstream
+#include &lt;map&gt;
+#include &lt;memory&gt;
+#include &lt;ostream&gt;              // for endl
+#include &lt;string&gt;
+#include &lt;type_traits&gt;          // for underlying_type, enable_if, is_enum, is_integral
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm35-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;   // for int16_t, int32_t, int64_t, int8_t
+#include &lt;bits/stdint-uintn.h&gt;  // for uint16_t, uint32_t, uint64_t, uint8_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm35-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;bits/shared_ptr.h&gt;  // lines 20-20
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm35-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+#include &lt;bits/c++config.h&gt;
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+#include &lt;bits/stl_map.h&gt;
+#include &lt;bits/stl_pair.h&gt;
+#include &lt;bits/stl_vector.h&gt;
+#include &lt;bits/stringfwd.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;cstddef&gt;
+#include &lt;cstdint&gt;
+#include &lt;fstream&gt;
+#include &lt;functional&gt;
+#include &lt;iosfwd&gt;
+#include &lt;map&gt;
+#include &lt;memory&gt;
+#include &lt;ostream&gt;
+#include &lt;string&gt;
+#include &lt;type_traits&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+// for size_t
+// for int16_t, int32_t, int64_t, int8_t
+// for uint16_t, uint32_t, uint64_t, uint8_t
+
+// for pair
+
+
+
+
+
+
+
+
+// for ostream, ifstream, istream, ofstream, stringstream
+
+
+// for endl
+
+// for underlying_type, enable_if, is_enum, is_integral
+
+
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm35-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+#include &lt;bits/stdint-intn.h&gt;
+#include &lt;bits/stdint-uintn.h&gt;
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+// for int16_t, int32_t, int64_t, int8_t
+// for uint16_t, uint32_t, uint64_t, uint8_t
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm35-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+#include &lt;bits/shared_ptr.h&gt;
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+// lines 20-20
+</pre>
+  </td>
+</tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0127388535032" lines-covered="2" lines-valid="157" timestamp="1483027219" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0127388535032" name="......counters.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgTimedValue.hh" line-rate="0.0" name="......counters.src.AvgTimedValue.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="24"/>
+						<line branch="false" hits="-1" number="25"/>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="29"/>
+						<line branch="false" hits="-1" number="32"/>
+						<line branch="false" hits="-1" number="37"/>
+						<line branch="false" hits="-1" number="40"/>
+						<line branch="false" hits="-1" number="41"/>
+						<line branch="false" hits="-1" number="42"/>
+						<line branch="false" hits="-1" number="43"/>
+						<line branch="false" hits="-1" number="46"/>
+						<line branch="false" hits="-1" number="56"/>
+						<line branch="false" hits="-1" number="57"/>
+						<line branch="false" hits="-1" number="58"/>
+						<line branch="false" hits="-1" number="59"/>
+						<line branch="false" hits="-1" number="60"/>
+						<line branch="false" hits="-1" number="61"/>
+						<line branch="false" hits="-1" number="62"/>
+						<line branch="false" hits="-1" number="63"/>
+						<line branch="false" hits="-1" number="64"/>
+						<line branch="false" hits="-1" number="65"/>
+						<line branch="false" hits="-1" number="66"/>
+						<line branch="false" hits="-1" number="67"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/ExtValue.hh" line-rate="0.0" name="......counters.src.ExtValue.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="29"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Visitor.hh" line-rate="0.0" name="......counters.src.Visitor.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="10"/>
+						<line branch="false" hits="-1" number="12"/>
+						<line branch="false" hits="-1" number="13"/>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="15"/>
+						<line branch="false" hits="-1" number="16"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgValue.hh" line-rate="0.0" name="......counters.src.AvgValue.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="50"/>
+						<line branch="false" hits="-1" number="51"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Base.hh" line-rate="0.0" name="......counters.src.Base.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="18"/>
+						<line branch="false" hits="-1" number="19"/>
+						<line branch="false" hits="-1" number="22"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="31"/>
+						<line branch="false" hits="-1" number="32"/>
+						<line branch="false" hits="-1" number="35"/>
+						<line branch="false" hits="-1" number="36"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Composed.hh" line-rate="0.0" name="......counters.src.Composed.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="13"/>
+						<line branch="false" hits="-1" number="15"/>
+						<line branch="false" hits="-1" number="16"/>
+						<line branch="false" hits="-1" number="19"/>
+						<line branch="false" hits="-1" number="22"/>
+						<line branch="false" hits="-1" number="23"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/FileVisitor.hh" line-rate="0.0" name="......counters.src.FileVisitor.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="15"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="29"/>
+						<line branch="false" hits="-1" number="30"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/InstantFreq.hh" line-rate="0.0" name="......counters.src.InstantFreq.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="21"/>
+						<line branch="false" hits="-1" number="23"/>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="30"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Perf.hh" line-rate="0.25" name="......counters.src.Perf.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="24"/>
+						<line branch="false" hits="-1" number="31"/>
+						<line branch="false" hits="-1" number="37"/>
+						<line branch="false" hits="-1" number="38"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/JsonVisitor.hh" line-rate="0.0" name="......counters.src.JsonVisitor.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="14"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="29"/>
+						<line branch="false" hits="-1" number="30"/>
+						<line branch="false" hits="-1" number="31"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/counters_fwd.hh" line-rate="0.0" name="......counters.src.counters_fwd.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="9"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Value.hh" line-rate="0.0" name="......counters.src.Value.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="68"/>
+						<line branch="false" hits="-1" number="69"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/CounterManager.hh" line-rate="0.0" name="......counters.src.CounterManager.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="16"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/SumExt.hh" line-rate="0.0" name="......counters.src.SumExt.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="34"/>
+						<line branch="false" hits="-1" number="35"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Freq.hh" line-rate="0.0" name="......counters.src.Freq.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="12"/>
+						<line branch="false" hits="-1" number="16"/>
+						<line branch="false" hits="-1" number="17"/>
+						<line branch="false" hits="-1" number="20"/>
+						<line branch="false" hits="-1" number="21"/>
+						<line branch="false" hits="-1" number="24"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Cache.hh" line-rate="0.125" name="......counters.src.Cache.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="23"/>
+						<line branch="false" hits="-1" number="27"/>
+						<line branch="false" hits="-1" number="30"/>
+						<line branch="false" hits="-1" number="34"/>
+						<line branch="false" hits="-1" number="35"/>
+						<line branch="false" hits="-1" number="36"/>
+						<line branch="false" hits="-1" number="37"/>
+						<line branch="false" hits="-1" number="38"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

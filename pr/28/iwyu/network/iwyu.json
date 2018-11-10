@@ -1,0 +1,886 @@
+{
+  "src/http/cpptempl.hh": {
+    "rm": [
+      "#include <exception>  // lines 41-41", 
+      "namespace std { namespace xtd { namespace network { namespace http { namespace cpptempl { class Data; } } } } }  // lines 51-51", 
+      "namespace std { namespace xtd { namespace network { namespace http { namespace cpptempl { class Token; } } } } }  // lines 56-56"
+    ], 
+    "add": [], 
+    "full": [
+      "#include <boost/lexical_cast.hpp>  // for lexical_cast", 
+      "#include \"types.hh\"                // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/utils/Resolver.hh": {
+    "rm": [
+      "namespace std { namespace boost { namespace asio { class io_service; } } }  // lines 6-6", 
+      "namespace std { namespace xtd { namespace network { namespace utils { template <typename Domain> class Resolver; } } } }  // lines 25-26", 
+      "namespace std { namespace xtd { namespace utils { template <typename TKey, typename TVal> class CacheLRU; } } }  // lines 7-7"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/asio.hpp>       // for io_service"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/asio.hpp>       // for io_service", 
+      "#include \"network_types.hh\"     // for af_inet, af_unix", 
+      "#include \"types.hh\"             // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Server.hxx": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <boost/bind.hpp>  // lines 4-4", 
+      "#include <boost/cstdint.hpp>  // lines 5-5", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>  // lines 6-6", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 7-7", 
+      "#include <boost/date_time/time.hpp>  // lines 8-8", 
+      "#include <boost/lexical_cast.hpp>  // lines 10-10", 
+      "#include <boost/system/error_code.hpp>  // lines 11-11", 
+      "#include \"utils/safe_deque.hh\"  // lines 17-17"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                         // for uint32_t", 
+      "#include <sys/socket.h>                                // for bind", 
+      "#include <boost/interprocess/sync/lock_options.hpp>    // for posix_time, ptime"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                         // for uint32_t", 
+      "#include <sys/socket.h>                                // for bind", 
+      "#include <boost/interprocess/sync/lock_options.hpp>    // for posix_time, ptime", 
+      "#include <boost/interprocess/sync/spin/condition.hpp>  // for ipcdetail", 
+      "#include <boost/thread.hpp>                            // for system", 
+      "#include \"base/Config.hh\"                              // for Config", 
+      "#include \"base/Server.hh\"                              // for Server, Server::cnx_sptr_t, error_code", 
+      "#include \"log/helpers.hh\"                              // for info, debug", 
+      "#include \"log/logtypes.hh\"                             // for HERE", 
+      "#include \"types.hh\"                                    // for uint32_t, size_t, string", 
+      "#include \"utils/Resolver.hh\"                           // for asio", 
+      "#include \"utils/scoped_fn.hh\"                          // for scoped_fn"
+    ], 
+    "errors": false
+  }, 
+  "src/http/codes.cc": {
+    "rm": [
+      "#include <iterator>  // lines 2-2"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"http/codes.hh\"", 
+      "#include \"types.hh\"  // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Config.hh": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Config.hxx\"", 
+      "#include \"types.hh\"             // for uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Client.hh": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 5-5", 
+      "#include <types.hh>  // lines 7-7", 
+      "#include \"utils/Utils.hh\"  // lines 9-9", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Client; } } } } }  // lines 10-10", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Client; } } } } }  // lines 11-11", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class ThreadManager; } } } } }  // lines 17-17", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { template <typename Domain> class Connection; } } } } }  // lines 18-18"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <cstdint>                                             // for uint32_t", 
+      "#include \"base/ThreadManager.hh\"                               // for ThreadManager"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore", 
+      "#include <cstdint>                                             // for uint32_t", 
+      "#include <string>                                              // for string", 
+      "#include \"base/Config.hh\"                                      // for Config", 
+      "#include \"base/ThreadManager.hh\"                               // for ThreadManager", 
+      "#include \"utils/Resolver.hh\"                                   // for io_service"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/Client.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/ClientPool.hh": {
+    "rm": [
+      "namespace std { namespace xtd { namespace network { namespace http { class ClientPool; } } } }  // lines 8-8", 
+      "namespace std { namespace xtd { namespace network { namespace http { class ClientPool; } } } }  // lines 9-9"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"base/ClientPool.hh\"  // for ClientPool", 
+      "#include \"http/Client.hh\"      // for Client"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Connection.hh": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 8-8", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Connection; } } } } }  // lines 59-59", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace utils { template <typename Domain> class Resolver; } } } } }  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"network_types.hh\"     // for t_handler", 
+      "#include \"types.hh\"             // for uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/utils/Utils.cc": {
+    "rm": [
+      "#include <boost/date_time/time.hpp>  // lines 5-5", 
+      "#include <boost/date_time/time_system_counted.hpp>  // lines 6-6"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"utils/Utils.hh\"", 
+      "#include <errno.h>                                             // for EINTR", 
+      "#include <boost/date_time/gregorian/gregorian.hpp>             // for date", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>    // for time_duration, time_duration::sec_type", 
+      "#include <boost/interprocess/exceptions.hpp>                   // for interprocess_exception", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Request.hh": {
+    "rm": [
+      "#include <regex>  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint8_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint8_t", 
+      "#include \"http/Message.hh\"      // for Message", 
+      "#include \"http/Request.hxx\"", 
+      "#include \"http/http_types.hh\"   // for method", 
+      "#include \"types.hh\"             // for string, status, uint8_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Template.hxx": {
+    "rm": [
+      "#include <boost/algorithm/string/replace.hpp>  // lines 4-4", 
+      "#include <boost/property_tree/exceptions.hpp>  // lines 5-5", 
+      "#include <boost/property_tree/ptree.hpp>  // lines 6-6", 
+      "#include <boost/property_tree/ptree_fwd.hpp>  // lines 7-7", 
+      "#include <json_parser.hpp>  // lines 8-8", 
+      "#include \"format.hh\"  // lines 12-12", 
+      "#include \"log/helpers.hh\"  // lines 10-10", 
+      "namespace std { namespace xtd { namespace network { namespace http { class HtmlTemplate; } } } }  // lines 15-15", 
+      "namespace std { namespace xtd { namespace network { namespace http { class Template; } } } }  // lines 16-16", 
+      "namespace std { namespace xtd { namespace network { namespace http { class XmlTemplate; } } } }  // lines 17-17"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"http/cpptempl.hh\"  // for data_map, make_data", 
+      "#include \"log/logtypes.hh\"   // for HERE", 
+      "#include \"types.hh\"          // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Config.hxx": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"types.hh\"             // for uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Template.hh": {
+    "rm": [
+      "#include <boost/property_tree/ptree.hpp>  // lines 3-3", 
+      "#include <boost/property_tree/ptree_fwd.hpp>  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"cpptempl.hh\"  // for data_map, data_list, data_ptr", 
+      "#include \"http/Template.hxx\"", 
+      "#include \"types.hh\"     // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Client.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/cpptempl.cc": {
+    "rm": [
+      "#include <ext/alloc_traits.h>  // lines 2-2", 
+      "#include <algorithm>  // lines 3-3", 
+      "#include <boost/algorithm/string/classification.hpp>  // lines 4-4", 
+      "#include <boost/algorithm/string/join.hpp>  // lines 5-5", 
+      "#include <boost/algorithm/string/predicate.hpp>  // lines 6-6", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 7-7", 
+      "#include <boost/algorithm/string/trim.hpp>  // lines 8-8", 
+      "#include <iterator>  // lines 9-9", 
+      "#include \"format.hh\"  // lines 11-11"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"cpptempl.hh\"", 
+      "#include \"types.hh\"  // for string, size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/ClientPool.hh": {
+    "rm": [
+      "namespace std { namespace xtd { namespace network { namespace bip { class ClientPool; } } } }  // lines 9-9", 
+      "namespace std { namespace xtd { namespace network { namespace bip { class ClientPool; } } } }  // lines 10-10"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"base/ClientPool.hh\"  // for ClientPool", 
+      "#include \"bip/Client.hh\"       // for Client"
+    ], 
+    "errors": false
+  }, 
+  "src/http/codes.hh": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"http/http_types.hh\"   // for code", 
+      "#include \"types.hh\"             // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/base/ThreadManager.hh": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <thread>  // lines 4-4"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"mixins/singleton.hh\"  // for Singleton", 
+      "#include \"types.hh\"             // for size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/Connection.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Client.hxx": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 5-5", 
+      "#include <boost/interprocess/sync/spin/condition.hpp>  // lines 8-8", 
+      "#include \"bip/compress.hxx\"  // lines 17-17", 
+      "#include \"serializer.hh\"  // lines 14-14"
+    ], 
+    "add": [
+      "#include <bits/refwrap.h>                                      // for ref", 
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/refwrap.h>                                      // for ref", 
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>    // for time_duration", 
+      "#include <boost/interprocess/creation_tags.hpp>                // for ipcdetail", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore", 
+      "#include <boost/system/error_code.hpp>                         // for error_code", 
+      "#include <utils/scoped_fn.hh>                                  // for scoped_fn", 
+      "#include \"bip/Client.hh\"                                       // for Client, Client::cnxstatus, Client::TBase, Client::cnx_sptr_t", 
+      "#include \"bip/Connection.hh\"                                   // for Connection", 
+      "#include \"log/helpers.hh\"                                      // for debug, err, crit", 
+      "#include \"log/logtypes.hh\"                                     // for HERE", 
+      "#include \"network_types.hh\"                                    // for compress_codec", 
+      "#include \"types.hh\"                                            // for bind, string, uint32_t", 
+      "#include \"utils/Utils.hh\"                                      // for do_sem_wait"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Response.hh": {
+    "rm": [], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"http/Message.hh\"      // for Message", 
+      "#include \"http/http_types.hh\"   // for code", 
+      "#include \"types.hh\"             // for ostream, uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/utils/Resolver.cc": {
+    "rm": [
+      "#include <boost/lexical_cast.hpp>  // lines 3-3", 
+      "#include \"log/helpers.hh\"  // lines 5-5", 
+      "#include \"utils/CacheLRU.hh\"  // lines 8-8"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"utils/Resolver.hh\"", 
+      "#include <boost/asio.hpp>                 // for io_service", 
+      "#include <boost/system/system_error.hpp>  // for system_error", 
+      "#include \"log/logtypes.hh\"                // for HERE", 
+      "#include \"types.hh\"                       // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Template.cc": {
+    "rm": [
+      "#include <algorithm>  // lines 2-2", 
+      "#include <boost/assign/std/vector.hpp>  // lines 3-3", 
+      "#include <boost/format.hpp>  // lines 4-4", 
+      "#include <boost/property_tree/exceptions.hpp>  // lines 5-5", 
+      "#include <iterator>  // lines 6-6", 
+      "#include <json_parser.hpp>  // lines 7-7", 
+      "#include \"format.hh\"  // lines 9-9", 
+      "#include \"log/helpers.hh\"  // lines 11-11"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Template.hh\"", 
+      "#include \"http/cpptempl.hh\"  // for parse, TemplateException, data_list, data_map", 
+      "#include \"log/logtypes.hh\"   // for HERE", 
+      "#include \"text.hh\"           // for xml", 
+      "#include \"types.hh\"          // for string"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Server.hxx": {
+    "rm": [
+      "#include <fnmatch.h>  // lines 5-5", 
+      "#include <boost/asio.hpp>  // lines 6-6", 
+      "#include <boost/iostreams/device/back_inserter.hpp>  // lines 7-7", 
+      "#include <boost/range/iterator.hpp>  // lines 9-9", 
+      "#include <boost/range/iterator_range_core.hpp>  // lines 10-10", 
+      "#include <boost/system/error_code.hpp>  // lines 12-12", 
+      "#include <cmath>  // lines 13-13", 
+      "#include <regex>  // lines 11-11", 
+      "#include <sstream>  // lines 14-14", 
+      "#include \"format.hh\"  // lines 15-15"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                   // for uint32_t", 
+      "#include <algorithm>                             // for sort, count_if", 
+      "#include <boost/thread.hpp>                      // for system", 
+      "#include \"base/Server.hh\"                        // for error_code"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                   // for uint32_t", 
+      "#include <algorithm>                             // for sort, count_if", 
+      "#include <boost/iostreams/filtering_stream.hpp>  // for filtering_istream, filtering_ostream", 
+      "#include <boost/thread.hpp>                      // for system", 
+      "#include \"base/Server.hh\"                        // for error_code", 
+      "#include \"http/Connection.hh\"                    // for Connection", 
+      "#include \"http/Request.hh\"                       // for Request", 
+      "#include \"http/Response.hh\"                      // for Response", 
+      "#include \"http/Server.hh\"                        // for Server, Server::Handler, Server::cnx_sptr_t, Server::filter, Server::handler, Server::TBase", 
+      "#include \"http/Template.hh\"                      // for HtmlTemplate", 
+      "#include \"http/http_types.hh\"                    // for code, code::internal_server_error, code::ok, code::moved_temporarily, version, version::v1_0", 
+      "#include \"log/helpers.hh\"                        // for err, info", 
+      "#include \"log/logtypes.hh\"                       // for HERE", 
+      "#include \"types.hh\"                              // for string, uint32_t, ifstream, stringstream"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Connection.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Request.hxx": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Client.hh": {
+    "rm": [
+      "namespace std { namespace boost { namespace system { class error_code; } } }  // lines 9-9", 
+      "namespace std { namespace xtd { namespace network { namespace bip { class Client; } } } }  // lines 10-10", 
+      "namespace std { namespace xtd { namespace network { namespace bip { class Client; } } } }  // lines 11-11"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/system/error_code.hpp>                         // for error_code"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/date_time/posix_time/posix_time.hpp>           // for ptime", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore", 
+      "#include <boost/system/error_code.hpp>                         // for error_code", 
+      "#include \"base/Client.hh\"                                      // for Client", 
+      "#include \"network_types.hh\"                                    // for compress_codec", 
+      "#include \"types.hh\"                                            // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Client.hxx": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 5-5", 
+      "#include <boost/interprocess/sync/spin/condition.hpp>  // lines 8-8", 
+      "#include <boost/iostreams/device/back_inserter.hpp>  // lines 9-9", 
+      "#include <boost/range/iterator_range_core.hpp>  // lines 11-11", 
+      "#include \"http/Request.hh\"  // lines 19-19", 
+      "#include \"http/Response.hh\"  // lines 20-20"
+    ], 
+    "add": [
+      "#include <bits/refwrap.h>                                      // for ref", 
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/refwrap.h>                                      // for ref", 
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/date_time/posix_time/posix_time_config.hpp>    // for time_duration", 
+      "#include <boost/interprocess/creation_tags.hpp>                // for ipcdetail", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore", 
+      "#include <boost/iostreams/filtering_stream.hpp>                // for filtering_istream, filtering_ostream", 
+      "#include <boost/system/error_code.hpp>                         // for error_code", 
+      "#include <utils/scoped_fn.hh>                                  // for scoped_fn", 
+      "#include \"http/Client.hh\"                                      // for Client, Client::cnxstatus, Client::TBase, Client::cnx_sptr_t", 
+      "#include \"http/Connection.hh\"                                  // for Connection", 
+      "#include \"log/helpers.hh\"                                      // for debug, err, crit", 
+      "#include \"log/logtypes.hh\"                                     // for HERE", 
+      "#include \"types.hh\"                                            // for bind, string, uint32_t", 
+      "#include \"utils/Utils.hh\"                                      // for do_sem_wait"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Client.hh": {
+    "rm": [
+      "namespace std { namespace boost { namespace system { class error_code; } } }  // lines 8-8", 
+      "namespace std { namespace xtd { namespace network { namespace http { class Client; } } } }  // lines 9-9", 
+      "namespace std { namespace xtd { namespace network { namespace http { class Client; } } } }  // lines 10-10", 
+      "namespace std { namespace xtd { namespace network { namespace http { class Request; } } } }  // lines 9-9", 
+      "namespace std { namespace xtd { namespace network { namespace http { class Response; } } } }  // lines 10-10"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/system/error_code.hpp>                         // for error_code"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                                 // for uint32_t", 
+      "#include <boost/date_time/posix_time/posix_time.hpp>           // for ptime", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore", 
+      "#include <boost/system/error_code.hpp>                         // for error_code", 
+      "#include \"base/Client.hh\"                                      // for Client", 
+      "#include \"types.hh\"                                            // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Server.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Server.hh": {
+    "rm": [
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 7-7", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace bip { class Server; } } } } }  // lines 14-14", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace bip { class Server; } } } } }  // lines 15-15"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Server.hh\"       // for Server, error_code", 
+      "#include \"network_types.hh\"     // for compress_codec", 
+      "#include \"types.hh\"             // for uint32_t, string, size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/http_types.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/utils/Utils.hh": {
+    "rm": [
+      "#include <ctime>  // lines 4-4", 
+      "namespace std { namespace boost { namespace interprocess { class interprocess_semaphore; } } }  // lines 6-6"
+    ], 
+    "add": [
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore"
+    ], 
+    "full": [
+      "#include <boost/date_time/posix_time/posix_time.hpp>           // for ptime", 
+      "#include <boost/interprocess/sync/interprocess_semaphore.hpp>  // for interprocess_semaphore"
+    ], 
+    "errors": false
+  }, 
+  "src/base/ThreadManager.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/bip/Connection.hh": {
+    "rm": [
+      "#include <boost/crc.hpp>  // lines 3-3", 
+      "namespace std { namespace std { namespace boost { namespace asio { class io_service; } } } }  // lines 8-8", 
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 9-9", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Config; } } } } }  // lines 10-10", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace bip { class Connection; } } } } }  // lines 10-10", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace bip { class Connection; } } } } }  // lines 11-11"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint8_t", 
+      "#include \"base/Config.hh\"       // for Config"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t, uint8_t", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"base/Connection.hh\"   // for error_code, Connection", 
+      "#include \"network_types.hh\"     // for t_handler", 
+      "#include \"types.hh\"             // for size_t, uint32_t, uint8_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Client.hxx": {
+    "rm": [
+      "#include <boost/interprocess/detail/atomic.hpp>  // lines 7-7", 
+      "#include <log.hh>  // lines 5-5", 
+      "#include <types.hh>  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                                  // for uint32_t", 
+      "#include <boost/interprocess/sync/posix/ptime_to_timespec.hpp>  // for ipcdetail", 
+      "#include \"base/Client.hh\"                                       // for Client", 
+      "#include \"base/Config.hh\"                                       // for Config", 
+      "#include \"log/helpers.hh\"                                       // for debug", 
+      "#include \"log/logtypes.hh\"                                      // for HERE", 
+      "#include \"types.hh\"                                             // for string, uint32_t", 
+      "#include \"utils/Resolver.hh\"                                    // for asio"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                                  // for uint32_t", 
+      "#include <boost/interprocess/sync/posix/ptime_to_timespec.hpp>  // for ipcdetail", 
+      "#include \"base/Client.hh\"                                       // for Client", 
+      "#include \"base/Config.hh\"                                       // for Config", 
+      "#include \"base/Connection.hh\"                                   // for error_code, system", 
+      "#include \"base/ThreadManager.hh\"                                // for ThreadManager", 
+      "#include \"log/helpers.hh\"                                       // for debug", 
+      "#include \"log/logtypes.hh\"                                      // for HERE", 
+      "#include \"types.hh\"                                             // for string, uint32_t", 
+      "#include \"utils/Resolver.hh\"                                    // for asio", 
+      "#include \"utils/scoped_fn.hh\"                                   // for scoped_fn"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/Connection.hxx": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <boost/system/error_code.hpp>  // lines 4-4", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Config; } } } } }  // lines 11-11"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint8_t, uint32_t", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"base/Connection.hh\"   // for error_code, system"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint8_t, uint32_t", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"base/Connection.hh\"   // for error_code, system", 
+      "#include \"bip/Connection.hh\"    // for Connection, Connection::TBase, asio, io_service", 
+      "#include \"log/helpers.hh\"       // for debug, err", 
+      "#include \"log/logtypes.hh\"      // for HERE", 
+      "#include \"network_types.hh\"     // for t_handler", 
+      "#include \"types.hh\"             // for size_t, uint8_t, uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Connection.hh": {
+    "rm": [
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Connection; } } } } }  // lines 11-11", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Connection; } } } } }  // lines 12-12"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"network_types.hh\"     // for t_handler", 
+      "#include \"types.hh\"             // for size_t, uint32_t, string"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"base/Connection.hh\"   // for error_code, Connection", 
+      "#include \"network_types.hh\"     // for t_handler", 
+      "#include \"types.hh\"             // for size_t, uint32_t, string"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Response.cc": {
+    "rm": [
+      "#include <boost/date_time/gregorian/gregorian.hpp>  // lines 2-2", 
+      "#include <boost/date_time/posix_time/posix_time_duration.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_types.hpp>  // lines 4-4", 
+      "#include <boost/date_time/time.hpp>  // lines 5-5", 
+      "#include <boost/iterator/iterator_traits.hpp>  // lines 6-6", 
+      "#include \"format.hh\"  // lines 8-8"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Response.hh\"", 
+      "#include <boost/date_time/posix_time/posix_time.hpp>  // for ptime", 
+      "#include \"http/codes.hh\"                              // for codes"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Message.cc": {
+    "rm": [
+      "#include <algorithm>  // lines 2-2", 
+      "#include <boost/algorithm/string/classification.hpp>  // lines 3-3", 
+      "#include <boost/algorithm/string/trim.hpp>  // lines 4-4", 
+      "#include <iterator>  // lines 6-6", 
+      "#include \"format.hh\"  // lines 7-7", 
+      "#include \"log/helpers.hh\"  // lines 8-8"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"http/Message.hh\"", 
+      "#include <boost/lexical_cast.hpp>  // for bad_lexical_cast", 
+      "#include \"log/logtypes.hh\"         // for HERE"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/Server.hxx": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <boost/interprocess/sync/spin/condition.hpp>  // lines 4-4", 
+      "#include <boost/system/error_code.hpp>  // lines 5-5", 
+      "#include \"bip/compress.hxx\"  // lines 12-12", 
+      "#include \"serializer.hh\"  // lines 9-9"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Server.hh\"       // for error_code"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Server.hh\"       // for error_code", 
+      "#include \"bip/Connection.hh\"    // for Connection", 
+      "#include \"bip/Server.hh\"        // for Server, Server::cnx_sptr_t, Server::TBase", 
+      "#include \"log/helpers.hh\"       // for info, crit, err", 
+      "#include \"log/logtypes.hh\"      // for HERE", 
+      "#include \"network_types.hh\"     // for compress_codec, compress_codec::none", 
+      "#include \"types.hh\"             // for uint32_t, string, size_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/ClientPool.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Connection.hxx": {
+    "rm": [
+      "#include <log.hh>  // lines 4-4"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                   // for uint32_t", 
+      "#include \"base/Config.hh\"                        // for Config", 
+      "#include \"base/Connection.hh\"                    // for error_code, system", 
+      "#include \"http/Connection.hh\"                    // for Connection", 
+      "#include \"log/helpers.hh\"                        // for err, info", 
+      "#include \"log/logtypes.hh\"                       // for HERE", 
+      "#include \"network_types.hh\"                      // for t_handler", 
+      "#include \"types.hh\"                              // for size_t, string, uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                   // for uint32_t", 
+      "#include <boost/iostreams/filtering_stream.hpp>  // for filtering_istream", 
+      "#include \"base/Config.hh\"                        // for Config", 
+      "#include \"base/Connection.hh\"                    // for error_code, system", 
+      "#include \"http/Connection.hh\"                    // for Connection", 
+      "#include \"http/Message.hh\"                       // for Message", 
+      "#include \"log/helpers.hh\"                        // for err, info", 
+      "#include \"log/logtypes.hh\"                       // for HERE", 
+      "#include \"network_types.hh\"                      // for t_handler", 
+      "#include \"types.hh\"                              // for size_t, string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Connection.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Config.cc": {
+    "rm": [
+      "#include \"network_types.hh\"  // lines 3-3"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"base/Config.hh\"", 
+      "#include \"types.hh\"  // for uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Server.hh": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 9-9", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Server; } } } } }  // lines 11-11", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { class Server; } } } } }  // lines 12-12", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace base { template <typename D> class Connection; } } } } }  // lines 10-10", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace utils { template <typename D> class Resolver; } } } } }  // lines 11-11"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include <boost/thread.hpp>     // for thread_group", 
+      "#include \"base/Config.hh\"       // for Config", 
+      "#include \"types.hh\"             // for uint32_t, size_t, string", 
+      "#include \"utils/safe_deque.hh\"  // for safe_deque"
+    ], 
+    "errors": false
+  }, 
+  "src/http/http_types.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Request.cc": {
+    "rm": [
+      "#include <ext/alloc_traits.h>  // lines 2-2", 
+      "#include <algorithm>  // lines 3-3", 
+      "#include <boost/algorithm/string/case_conv.hpp>  // lines 4-4", 
+      "#include <boost/algorithm/string/classification.hpp>  // lines 5-5", 
+      "#include <boost/algorithm/string/join.hpp>  // lines 6-6", 
+      "#include <boost/algorithm/string/predicate.hpp>  // lines 7-7", 
+      "#include <boost/algorithm/string/split.hpp>  // lines 8-8", 
+      "#include <boost/algorithm/string/trim.hpp>  // lines 9-9", 
+      "#include <boost/assign/list_inserter.hpp>  // lines 10-10", 
+      "#include <boost/assign/std/vector.hpp>  // lines 11-11", 
+      "#include <limits>  // lines 12-12", 
+      "#include \"format.hh\"  // lines 15-15", 
+      "#include \"log/helpers.hh\"  // lines 16-16"
+    ], 
+    "add": [], 
+    "full": [
+      "#include \"Request.hh\"", 
+      "#include \"log/logtypes.hh\"  // for HERE", 
+      "#include \"text.hh\"          // for url", 
+      "#include \"types.hh\"         // for string, status, status::error, status::ok, istream, ostream, uint64_t, uint8_t"
+    ], 
+    "errors": false
+  }, 
+  "src/bip/ClientPool.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/base/Connection.hxx": {
+    "rm": [
+      "#include <boost/asio.hpp>  // lines 3-3", 
+      "#include <boost/date_time/posix_time/posix_time_duration.hpp>  // lines 4-4", 
+      "#include <boost/lexical_cast.hpp>  // lines 5-5", 
+      "#include <boost/system/error_code.hpp>  // lines 6-6", 
+      "#include <boost/system/system_error.hpp>  // lines 7-7", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace utils { template <typename Domain> class Resolver; } } } } }  // lines 17-17"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>                             // for uint32_t", 
+      "#include <boost/date_time/posix_time/time_formatters.hpp>  // for posix_time"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>                             // for uint32_t", 
+      "#include <boost/date_time/posix_time/time_formatters.hpp>  // for posix_time", 
+      "#include \"base/Config.hh\"                                  // for Config", 
+      "#include \"base/Connection.hh\"                              // for Connection, error_code, system", 
+      "#include \"format.hh\"                                       // for format", 
+      "#include \"log/helpers.hh\"                                  // for debug, err, info", 
+      "#include \"log/logtypes.hh\"                                 // for HERE", 
+      "#include \"network_types.hh\"                                // for t_handler", 
+      "#include \"types.hh\"                                        // for string, uint32_t", 
+      "#include \"utils/Resolver.hh\"                               // for asio, io_service"
+    ], 
+    "errors": false
+  }, 
+  "src/http/Server.hh": {
+    "rm": [
+      "namespace std { namespace std { namespace boost { namespace system { class error_code; } } } }  // lines 6-6", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Generator; } } } } }  // lines 7-7", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Request; } } } } }  // lines 8-8", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Response; } } } } }  // lines 9-9", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Server; } } } } }  // lines 28-28", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Server; } } } } }  // lines 29-29", 
+      "namespace std { namespace std { namespace xtd { namespace network { namespace http { class Template; } } } } }  // lines 10-10"
+    ], 
+    "add": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"http/Request.hh\"      // for Request", 
+      "#include \"http/Response.hh\"     // for Response"
+    ], 
+    "full": [
+      "#include <bits/stdint-uintn.h>  // for uint32_t", 
+      "#include \"base/Server.hh\"       // for Server, error_code", 
+      "#include \"http/Request.hh\"      // for Request", 
+      "#include \"http/Response.hh\"     // for Response", 
+      "#include \"types.hh\"             // for string, uint32_t"
+    ], 
+    "errors": false
+  }, 
+  "src/base/Client.cc": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }, 
+  "src/http/Message.hh": {
+    "rm": [], 
+    "add": [], 
+    "full": [], 
+    "errors": false
+  }
+}

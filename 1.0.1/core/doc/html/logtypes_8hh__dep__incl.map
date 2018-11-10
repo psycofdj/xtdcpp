@@ -1,0 +1,23 @@
+<map id="/home/travis/build/psycofdj/xtdcpp/core/src/log/logtypes.hh" name="/home/travis/build/psycofdj/xtdcpp/core/src/log/logtypes.hh">
+<area shape="rect" id="node2" href="$helpers_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/helpers.hh" alt="" coords="1339,213,1496,269"/>
+<area shape="rect" id="node14" href="$Appender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Appender.hh" alt="" coords="519,213,676,269"/>
+<area shape="rect" id="node19" href="$ColoredFormatter_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ColoredFormatter.hh" alt="" coords="714,213,918,269"/>
+<area shape="rect" id="node20" href="$FormatModifiers_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/FormatModifiers.hh" alt="" coords="1808,109,2003,165"/>
+<area shape="rect" id="node21" href="$Formatter_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Formatter.hh" alt="" coords="635,109,792,165"/>
+<area shape="rect" id="node22" href="$Logger_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Logger.hh" alt="" coords="73,213,231,269"/>
+<area shape="rect" id="node3" href="$src_2log_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log.hh" alt="" coords="1791,317,1948,373"/>
+<area shape="rect" id="node4" href="$Appender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Appender.cc" alt="" coords="1036,317,1193,373"/>
+<area shape="rect" id="node5" href="$ColoredFormatter_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ColoredFormatter.cc" alt="" coords="1427,421,1629,477"/>
+<area shape="rect" id="node6" href="$ConfLoader_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ConfLoader.hh" alt="" coords="1421,317,1585,373"/>
+<area shape="rect" id="node7" href="$ConfLoader_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/ConfLoader.cc" alt="" coords="288,421,451,477"/>
+<area shape="rect" id="node8" href="$Formatter_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Formatter.cc" alt="" coords="1957,421,2115,477"/>
+<area shape="rect" id="node9" href="$SyslogAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/SyslogAppender.cc" alt="" coords="1209,421,1402,477"/>
+<area shape="rect" id="node10" href="$FormatModifiers_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/FormatModifiers.cc" alt="" coords="2074,317,2267,373"/>
+<area shape="rect" id="node11" href="$helpers_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/helpers.cc" alt="" coords="1609,317,1767,373"/>
+<area shape="rect" id="node12" href="$Logger_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/Logger.cc" alt="" coords="855,317,1012,373"/>
+<area shape="rect" id="node13" href="$MemoryAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/MemoryAppender.cc" alt="" coords="741,421,944,477"/>
+<area shape="rect" id="node15" href="$MemoryAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/MemoryAppender.hh" alt="" coords="407,317,612,373"/>
+<area shape="rect" id="node16" href="$StreamAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/StreamAppender.hh" alt="" coords="29,317,230,373"/>
+<area shape="rect" id="node18" href="$SyslogAppender_8hh.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/SyslogAppender.hh" alt="" coords="636,317,831,373"/>
+<area shape="rect" id="node17" href="$StreamAppender_8cc.html" title="/home/travis/build\l/psycofdj/xtdcpp/core\l/src/log/StreamAppender.cc" alt="" coords="30,421,229,477"/>
+</map>

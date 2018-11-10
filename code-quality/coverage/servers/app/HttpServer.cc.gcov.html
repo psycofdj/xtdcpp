@@ -1,0 +1,831 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - servers unit test coverage - app/HttpServer.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">app</a> - HttpServer.cc<span style="font-size: 80%;"> (source / <a href="HttpServer.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">servers unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">346</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 09:38:43</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">31</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : # include &lt;unistd.h&gt;</a>
+<span class="lineNum">       2 </span>            : # include &lt;ios&gt;
+<span class="lineNum">       3 </span>            : # include &lt;iostream&gt;
+<span class="lineNum">       4 </span>            : # include &lt;fstream&gt;
+<span class="lineNum">       5 </span>            : # include &lt;string&gt;
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : # include &lt;boost/format.hpp&gt;
+<span class="lineNum">       8 </span>            : # include &lt;boost/algorithm/string.hpp&gt;
+<span class="lineNum">       9 </span>            : # include &lt;boost/filesystem.hpp&gt;
+<span class="lineNum">      10 </span>            : # include &lt;boost/filesystem/convenience.hpp&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : # include &lt;config/Parser.hh&gt;     // libcore
+<span class="lineNum">      13 </span>            : # include &lt;json_parser.hpp&gt;      // libcore
+<span class="lineNum">      14 </span>            : # include &lt;log.hh&gt;               // libcore
+<span class="lineNum">      15 </span>            : # include &lt;counters.hh&gt;          // libcounters
+<span class="lineNum">      16 </span>            : # include &lt;http/Request.hh&gt;      // libnetwork
+<span class="lineNum">      17 </span>            : # include &lt;http/Response.hh&gt;     // libnetwork
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : # include &quot;app/HttpServer.hh&quot;
+<span class="lineNum">      20 </span>            : # include &quot;app/HtmlOArchive.hh&quot;
+<span class="lineNum">      21 </span>            : # include &quot;param/Handler.hh&quot;
+<span class="lineNum">      22 </span>            : # include &quot;param/Visitor.hh&quot;
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : namespace xtd {
+<span class="lineNum">      28 </span>            : namespace servers {
+<span class="lineNum">      29 </span>            : namespace app {
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : using namespace network;
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : namespace       bfs = boost::filesystem;
+<span class="lineNum">      34 </span>            : namespace       ba  = boost::algorithm;
+<span class="lineNum">      35 </span>            : namespace       bpt = boost::posix_time;
+<span class="lineNum">      36 </span>            : 
+<a name="37"><span class="lineNum">      37 </span>            : const char HttpServer::mcs_defaultListenInterface[] = &quot;0.0.0.0&quot;;</a>
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span><span class="lineNoCov">          0 : HttpServer::HttpServer(bool p_isDebug) :</span>
+<span class="lineNum">      40 </span>            :   Application(),
+<span class="lineNum">      41 </span>            :   http_net(),
+<span class="lineNum">      42 </span>            :   m_config(0),
+<span class="lineNum">      43 </span>            :   m_configPath(),
+<span class="lineNum">      44 </span>            :   m_nbThread(0),
+<span class="lineNum">      45 </span>            :   m_timeoutMs(mcs_defaultTimeoutMs),
+<span class="lineNum">      46 </span>            :   m_isModeProbe(false),
+<span class="lineNum">      47 </span>            :   m_isDebug(p_isDebug),
+<span class="lineNum">      48 </span>            :   m_snmpPath(&quot;/var/run/xtd/snmp/&quot;),
+<span class="lineNum">      49 </span>            :   m_probeDelay(mcs_defaultProbeDelay),
+<span class="lineNum">      50 </span>            :   m_prober(),
+<span class="lineNum">      51 </span>            :   m_ramCounter(),
+<span class="lineNum">      52 </span>            :   m_perfCounter(),
+<span class="lineNum">      53 </span>            :   m_thresholdMs(mcs_defaultThresholdMs),
+<span class="lineNum">      54 </span>            :   m_httpHost(mcs_defaultListenInterface),
+<span class="lineNum">      55 </span>            :   m_httpPort(0),
+<span class="lineNum">      56 </span>            :   m_httpConfigPath(&quot;/usr/lib/xtd/www&quot;),
+<span class="lineNum">      57 </span>            :   m_adminDir(&quot;/var/run/xtd/snmp/admin&quot;),
+<span class="lineNum">      58 </span><span class="lineNoCov">          0 :   m_actions()</span>
+<span class="lineNum">      59 </span>            : {
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :   addOption('c', &quot;config-file&quot;, argument::mandatory, requirement::mandatory, &quot;use &lt;file&gt; as input config file&quot;,                bindFile(m_configPath));</span>
+<span class="lineNum">      61 </span><span class="lineNoCov">          0 :   addOption('w', &quot;http-port&quot;,   argument::mandatory, requirement::optional,  &quot;use &lt;port&gt; as http server port&quot;,                 bindNumber(m_httpPort));</span>
+<span class="lineNum">      62 </span><span class="lineNoCov">          0 :   addOption('n', &quot;nb-thread&quot;,   argument::mandatory, requirement::optional,  &quot;allocates &lt;nbr&gt; threads for incomming requests&quot;, bindNumber(m_nbThread));</span>
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   addOption('t', &quot;timeout&quot;,     argument::mandatory, requirement::optional,  &quot;server timeout in ms&quot;,                           bindNumber(m_timeoutMs));</span>
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   http_net::setReuseAddr(true);</span>
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   addSignalHandler(SIGUSR2, std::bind(&amp;HttpServer::handleUSR2, this));</span>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   addSignalHandler(SIGTERM, std::bind(&amp;HttpServer::handleTERM, this));</span>
+<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 : HttpServer::~HttpServer(void)</span>
+<span class="lineNum">      71 </span>            : {
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 : }</span>
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<span class="lineNum">      74 </span>            : void
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 : HttpServer::handleTERM(void)</span>
+<span class="lineNum">      76 </span>            : {
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :   log::crit(&quot;servers.app.http&quot;, &quot;received 'SIGTERM' signal&quot;);</span>
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :   stop();</span>
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 : }</span>
+<a name="80"><span class="lineNum">      80 </span>            : </a>
+<span class="lineNum">      81 </span>            : void
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 : HttpServer::start(void)</span>
+<span class="lineNum">      83 </span>            : {
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   m_params-&gt;initialize();</span>
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :   m_prober-&gt;start();</span>
+<span class="lineNum">      86 </span><span class="lineNoCov">          0 :   http_net::start();</span>
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   log::crit(&quot;servers.app.http&quot;, &quot;app::http server started&quot;);</span>
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 : }</span>
+<a name="89"><span class="lineNum">      89 </span>            : </a>
+<span class="lineNum">      90 </span>            : void
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 : HttpServer::stop(void)</span>
+<span class="lineNum">      92 </span>            : {
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :   http_net::stop();</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   log::crit(&quot;servers.app.http&quot;, &quot;app::http server stopped&quot;);</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   m_prober-&gt;stop();</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 : }</span>
+<a name="97"><span class="lineNum">      97 </span>            : </a>
+<span class="lineNum">      98 </span>            : void
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 : HttpServer::parseConfig(void)</span>
+<span class="lineNum">     100 </span>            : {
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :   string   l_key;</span>
+<span class="lineNum">     102 </span><span class="lineNoCov">          0 :   string   l_strValue;</span>
+<span class="lineNum">     103 </span><span class="lineNoCov">          0 :   string   l_common    = getCommonConfKey();</span>
+<span class="lineNum">     104 </span><span class="lineNoCov">          0 :   string   l_specific  = getSpecificConfKey();</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :   uint32_t l_timeoutMs = 0;;</span>
+<span class="lineNum">     106 </span>            : 
+<span class="lineNum">     107 </span>            :   // Retrieve configuration file
+<span class="lineNum">     108 </span>            :   try
+<span class="lineNum">     109 </span>            :   {
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :     if (0 == m_configPath.size())</span>
+<span class="lineNum">     111 </span>            :     {
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 :       error_nohelp(1, &quot;option --config-file is mandatory&quot;);</span>
+<span class="lineNum">     113 </span>            :     }
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 :     if ((false == bfs::is_regular_file(m_configPath)) &amp;&amp;</span>
+<span class="lineNum">     116 </span><span class="lineNoCov">          0 :         (false == bfs::is_symlink(m_configPath)))</span>
+<span class="lineNum">     117 </span>            :     {
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :       error_nohelp(1, &quot;invalid --config-file='%s' option, file unreadable&quot;, m_configPath);</span>
+<span class="lineNum">     119 </span>            :     }
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :     m_config.reset(new config::Parser(m_configPath));</span>
+<span class="lineNum">     122 </span>            :   }
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :   catch (std::exception&amp; l_error)</span>
+<span class="lineNum">     124 </span>            :   {
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 :     error_nohelp(1, &quot;could not load config file '%s' : %s&quot;, m_configPath, l_error.what());</span>
+<span class="lineNum">     126 </span>            :   }
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            :   // log level
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :   if (false == isOptionGiven(&quot;e&quot;))</span>
+<span class="lineNum">     131 </span>            :   {
+<span class="lineNum">     132 </span><span class="lineNoCov">          0 :     l_key = format::vargs(&quot;%s:server:log_level&quot;, l_common);</span>
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :     readConf(l_key, m_logLevel, m_logLevel);</span>
+<span class="lineNum">     134 </span>            :   }
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span>            :   // snmp path
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :   l_key      = format::vargs(&quot;%s:server:snmp_dir&quot;, l_common);</span>
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :   l_strValue = format::vargs(&quot;/var/run/snmp/%s&quot;, l_common);</span>
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :   readConf(l_key, m_snmpPath, l_strValue);</span>
+<span class="lineNum">     140 </span>            : 
+<span class="lineNum">     141 </span>            :   // action dir
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 :   l_key      = format::vargs(&quot;%s:server:action_dir&quot;, l_specific);</span>
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :   l_strValue = format::vargs(&quot;%s/admin&quot;, m_snmpPath);</span>
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 :   readConf(l_key, m_adminDir, l_strValue);</span>
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : 
+<span class="lineNum">     147 </span>            :   // refresh delay
+<span class="lineNum">     148 </span><span class="lineNoCov">          0 :   l_key = format::vargs(&quot;%s:server:snmp_refresh_delay_sec&quot;, l_common);</span>
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :   readConf(l_key, m_probeDelay);</span>
+<span class="lineNum">     150 </span>            : 
+<span class="lineNum">     151 </span>            :   // assets dir
+<span class="lineNum">     152 </span><span class="lineNoCov">          0 :   l_key = format::vargs(&quot;%s:server:http:assets_dir&quot;, l_common);</span>
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :   readConf(l_key, m_httpConfigPath, m_httpConfigPath);</span>
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            :   // listen interface
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   l_key = format::vargs(&quot;%s:server:http:listen&quot;, l_common);</span>
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 :   readConf(l_key, m_httpHost, string(mcs_defaultListenInterface));</span>
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span>            :   // threads
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :   if (false == isOptionGiven(&quot;n&quot;))</span>
+<span class="lineNum">     161 </span>            :   {
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :     l_key = format::vargs(&quot;%s:server:http:threads&quot;, l_common);</span>
+<span class="lineNum">     163 </span><span class="lineNoCov">          0 :     readConf(l_key, m_nbThread);</span>
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 :   l_key = format::vargs(&quot;%s:server:http:threshold_ms&quot;, l_common);</span>
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 :   readConf(l_key, m_thresholdMs, m_thresholdMs);</span>
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span>            :   // http port : delegate to child class
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 :   if (false == isOptionGiven(&quot;http-port&quot;))</span>
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :     parseHttpPort();</span>
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span>            :   // http receive timeout
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 :   l_key = format::vargs(&quot;%s:server:http:rcv_timeout_ms&quot;, l_common);</span>
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :   readConf(l_key, l_timeoutMs, http_net::getReceiveTimeoutMs());</span>
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 :   http_net::setReceiveTimeoutMs(l_timeoutMs);</span>
+<span class="lineNum">     177 </span>            : 
+<span class="lineNum">     178 </span>            :   // http send timeout ms
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 :   l_key = format::vargs(&quot;%s:server:http:send_timeout_ms&quot;, l_common);</span>
+<span class="lineNum">     180 </span><span class="lineNoCov">          0 :   readConf(l_key, l_timeoutMs, http_net::getSendTimeoutMs());</span>
+<span class="lineNum">     181 </span><span class="lineNoCov">          0 :   http_net::setSendTimeoutMs(l_timeoutMs);</span>
+<span class="lineNum">     182 </span><span class="lineNoCov">          0 : }</span>
+<a name="183"><span class="lineNum">     183 </span>            : </a>
+<span class="lineNum">     184 </span>            : void
+<span class="lineNum">     185 </span><span class="lineNoCov">          0 : HttpServer::parseHttpPort(void)</span>
+<span class="lineNum">     186 </span>            : {
+<span class="lineNum">     187 </span><span class="lineNoCov">          0 :   string l_key = format::vargs(&quot;%s:server:http:port&quot;, getSpecificConfKey());</span>
+<span class="lineNum">     188 </span><span class="lineNoCov">          0 :   readConf(l_key, m_httpPort);</span>
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     190 </span>            : 
+<a name="191"><span class="lineNum">     191 </span>            : </a>
+<span class="lineNum">     192 </span>            : void
+<span class="lineNum">     193 </span><span class="lineNoCov">          0 : HttpServer::checkOptions(void)</span>
+<span class="lineNum">     194 </span>            : {
+<span class="lineNum">     195 </span><span class="lineNoCov">          0 :   if ((m_httpPort == 0) || (m_httpPort &gt; 65535))</span>
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :     error_nohelp(1, &quot;invalid --http-port '%d', must have 0 &lt; port &lt; 65536&quot;, m_httpPort);</span>
+<span class="lineNum">     197 </span>            : 
+<span class="lineNum">     198 </span><span class="lineNoCov">          0 :   if ((m_nbThread == 0) || (m_nbThread &gt; 1000))</span>
+<span class="lineNum">     199 </span><span class="lineNoCov">          0 :     error_nohelp(1, &quot;invalid --nb-thread='%d', must have 0 &lt; nbr &lt;= 1000&quot;, m_nbThread);</span>
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span><span class="lineNoCov">          0 :   if (m_timeoutMs &lt; 100)</span>
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :     error_nohelp(1, &quot;invalid --timeout='%d', must have 100 &lt;= nbr&quot;, m_nbThread);</span>
+<span class="lineNum">     203 </span><span class="lineNoCov">          0 : }</span>
+<a name="204"><span class="lineNum">     204 </span>            : </a>
+<span class="lineNum">     205 </span>            : status
+<span class="lineNum">     206 </span><span class="lineNoCov">          0 : HttpServer::addProbe(t_counter p_counter, const string&amp; p_path)</span>
+<span class="lineNum">     207 </span>            : {
+<span class="lineNum">     208 </span><span class="lineNoCov">          0 :   if (status::ok != m_prober-&gt;add(p_counter, p_path))</span>
+<span class="lineNum">     209 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     211 </span>            : }
+<span class="lineNum">     212 </span>            : 
+<a name="213"><span class="lineNum">     213 </span>            : </a>
+<span class="lineNum">     214 </span>            : status
+<span class="lineNum">     215 </span><span class="lineNoCov">          0 : HttpServer::defineProbes(void)</span>
+<span class="lineNum">     216 </span>            : {
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :   string l_dir = m_isDebug ? &quot;server_http&quot; : &quot;server&quot;;</span>
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :   if ((status::ok != addProbe(m_ramCounter,                    &quot;&quot;                          )) ||</span>
+<span class="lineNum">     220 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_app::m_perfCounter,         l_dir                       )) ||</span>
+<span class="lineNum">     221 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getReceiveTotal(),     l_dir,        &quot;qry.total&quot;   )) ||</span>
+<span class="lineNum">     222 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getReceiveError(),     l_dir,        &quot;qry.error&quot;   )) ||</span>
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getReceiveTimeout(),   l_dir,        &quot;qry.timeout&quot; )) ||</span>
+<span class="lineNum">     224 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getReceiveSuccess(),   l_dir,        &quot;qry.success&quot; )) ||</span>
+<span class="lineNum">     225 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getReceivedLastTime(), l_dir,        &quot;qry.lasttime&quot;)) ||</span>
+<span class="lineNum">     226 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getSendTotal(),        l_dir,        &quot;rsp.total&quot;   )) ||</span>
+<span class="lineNum">     227 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getSendSuccess(),      l_dir,        &quot;rsp.success&quot; )) ||</span>
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getSendTimeout(),      l_dir,        &quot;rsp.timeout&quot; )) ||</span>
+<span class="lineNum">     229 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getSendError(),        l_dir,        &quot;rsp.error&quot;   )) ||</span>
+<span class="lineNum">     230 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getCnxTotal(),         l_dir,        &quot;cnx.total&quot;   )) ||</span>
+<span class="lineNum">     231 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getCnxAccepted(),      l_dir,        &quot;cnx.accepted&quot;)) ||</span>
+<span class="lineNum">     232 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getCnxRejected(),      l_dir,        &quot;cnx.rejected&quot;)) ||</span>
+<span class="lineNum">     233 </span><span class="lineNoCov">          0 :       (status::ok != addProbe(http_net::getNbCurrentThread(),  l_dir,        &quot;threads&quot;     )))</span>
+<span class="lineNum">     234 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     236 </span>            : }
+<span class="lineNum">     237 </span>            : 
+<a name="238"><span class="lineNum">     238 </span>            : </a>
+<span class="lineNum">     239 </span>            : void
+<span class="lineNum">     240 </span><span class="lineNoCov">          0 : HttpServer::initialize(void)</span>
+<span class="lineNum">     241 </span>            : {
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 :   m_ramCounter.reset(new counters::Value32(&quot;ram.usage&quot;));</span>
+<span class="lineNum">     243 </span>            :   // 60000ms = 60s = 1min : timed window size
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 :   http_app::m_perfCounter.reset(new counters::AvgTimedValue(&quot;&quot;, m_nbThread, 60000, m_thresholdMs));</span>
+<span class="lineNum">     245 </span><span class="lineNoCov">          0 :   m_prober.reset(new counters::CounterManager(m_probeDelay, getSnmpPath()));</span>
+<span class="lineNum">     246 </span><span class="lineNoCov">          0 :   m_params.reset(new param::Handler(m_adminDir));</span>
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span>            :   // Link admin console contexts
+<span class="lineNum">     249 </span><span class="lineNoCov">          0 :   bind_public(&quot;/admin&quot;,    h(&amp;HttpServer::h_admin, this),      &quot;administration&quot;);</span>
+<span class="lineNum">     250 </span><span class="lineNoCov">          0 :   bind_public(&quot;/action&quot;,   h(&amp;HttpServer::h_actionList, this), &quot;actions&quot;);</span>
+<span class="lineNum">     251 </span><span class="lineNoCov">          0 :   bind_public(&quot;/counter*&quot;, h(&amp;HttpServer::h_counter, this),    &quot;counters&quot;);</span>
+<span class="lineNum">     252 </span><span class="lineNoCov">          0 :   bind_public(&quot;/conf&quot;,     h(&amp;HttpServer::h_conf, this),       &quot;configuration&quot;);</span>
+<span class="lineNum">     253 </span><span class="lineNoCov">          0 :   bind_public(&quot;/ident&quot;,    h(&amp;HttpServer::h_ident, this),      &quot;identity&quot;);</span>
+<span class="lineNum">     254 </span><span class="lineNoCov">          0 :   bind_public(&quot;/log&quot;,      h(&amp;HttpServer::h_log, this),        &quot;logs&quot;);</span>
+<span class="lineNum">     255 </span><span class="lineNoCov">          0 :   bind_public(&quot;/index&quot;,    h(&amp;HttpServer::h_index, this),      &quot;index&quot;);</span>
+<span class="lineNum">     256 </span>            : 
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span><span class="lineNoCov">          0 :   bind_dir(&quot;/css/images/*&quot;, m_httpConfigPath + &quot;/css/images&quot;, &quot;images/png&quot;,      true);</span>
+<span class="lineNum">     259 </span><span class="lineNoCov">          0 :   bind_dir(&quot;/css/*&quot;,        m_httpConfigPath + &quot;/css&quot;,        &quot;text/css&quot;,        true);</span>
+<span class="lineNum">     260 </span><span class="lineNoCov">          0 :   bind_dir(&quot;/img/gif/*&quot;,    m_httpConfigPath + &quot;/img/gif&quot;,    &quot;image/gif&quot;,       true);</span>
+<span class="lineNum">     261 </span><span class="lineNoCov">          0 :   bind_dir(&quot;/img/png/*&quot;,    m_httpConfigPath + &quot;/img/png&quot;,    &quot;image/png&quot;,       true);</span>
+<span class="lineNum">     262 </span><span class="lineNoCov">          0 :   bind_dir(&quot;/js/*&quot;,         m_httpConfigPath + &quot;/js&quot;,         &quot;text/javascript&quot;, true);</span>
+<span class="lineNum">     263 </span>            : 
+<span class="lineNum">     264 </span><span class="lineNoCov">          0 :   bind_redirect(&quot;/&quot;, &quot;/index&quot;);</span>
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span>            :   // Add mode probe handler
+<span class="lineNum">     267 </span><span class="lineNoCov">          0 :   bind_any(h(&amp;HttpServer::h_probe, this),</span>
+<span class="lineNum">     268 </span><span class="lineNoCov">          0 :            f(&amp;HttpServer::f_cgi_exist, this, &quot;mode&quot;) &amp;&amp;</span>
+<span class="lineNum">     269 </span><span class="lineNoCov">          0 :            f(&amp;HttpServer::f_cgi_equal, this, &quot;mode&quot;, &quot;probe&quot;));</span>
+<span class="lineNum">     270 </span><span class="lineNoCov">          0 : }</span>
+<a name="271"><span class="lineNum">     271 </span>            : </a>
+<span class="lineNum">     272 </span>            : int
+<span class="lineNum">     273 </span><span class="lineNoCov">          0 : HttpServer::process(void)</span>
+<span class="lineNum">     274 </span>            : {
+<span class="lineNum">     275 </span><span class="lineNoCov">          0 :   if (status::ok != defineProbes())</span>
+<span class="lineNum">     276 </span><span class="lineNoCov">          0 :     error_nohelp(1, &quot;unable to create exploit probes&quot;);</span>
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span>            : 
+<span class="lineNum">     279 </span>            :   try
+<span class="lineNum">     280 </span>            :   {
+<span class="lineNum">     281 </span>            :     // 1.
+<span class="lineNum">     282 </span><span class="lineNoCov">          0 :     http_net::initialize(m_httpHost, m_httpPort, m_nbThread);</span>
+<span class="lineNum">     283 </span>            :     // 2.
+<span class="lineNum">     284 </span><span class="lineNoCov">          0 :     start();</span>
+<span class="lineNum">     285 </span>            :     // 3.
+<span class="lineNum">     286 </span><span class="lineNoCov">          0 :     http_net::join();</span>
+<span class="lineNum">     287 </span>            :   }
+<span class="lineNum">     288 </span><span class="lineNoCov">          0 :   catch (std::exception&amp; l_error)</span>
+<span class="lineNum">     289 </span>            :   {
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 :     error_nohelp(1, &quot;unable to run http server on %s:%d, %s&quot;, m_httpHost, m_httpPort, l_error.what());</span>
+<span class="lineNum">     291 </span><span class="lineNoCov">          0 :     return 1;</span>
+<span class="lineNum">     292 </span>            :   }
+<span class="lineNum">     293 </span>            : 
+<span class="lineNum">     294 </span><span class="lineNoCov">          0 :   m_prober-&gt;stop();</span>
+<span class="lineNum">     295 </span>            : 
+<span class="lineNum">     296 </span><span class="lineNoCov">          0 :   return 0;</span>
+<span class="lineNum">     297 </span>            : }
+<span class="lineNum">     298 </span>            : 
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span>            : /**
+<span class="lineNum">     301 </span>            :  ** @details
+<span class="lineNum">     302 </span>            :  ** gestion vip hebex desactivation du service http
+<span class="lineNum">     303 </span>            :  ** et reponse 503 mode probe.
+<a name="304"><span class="lineNum">     304 </span>            :  */</a>
+<span class="lineNum">     305 </span>            : void
+<span class="lineNum">     306 </span><span class="lineNoCov">          0 : HttpServer::handleUSR2(void)</span>
+<span class="lineNum">     307 </span>            : {
+<span class="lineNum">     308 </span><span class="lineNoCov">          0 :   log::crit(&quot;servers.app.http&quot;, &quot;Received a 'SIGUSR2' signal : mode PROBE activated&quot;, HERE);</span>
+<span class="lineNum">     309 </span><span class="lineNoCov">          0 :   modeProbeActivation();</span>
+<a name="310"><span class="lineNum">     310 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">     311 </span>            : 
+<span class="lineNum">     312 </span><span class="lineNoCov">          0 : void HttpServer::modeProbeActivation(void)</span>
+<span class="lineNum">     313 </span>            : {
+<span class="lineNum">     314 </span><span class="lineNoCov">          0 :   m_isModeProbe = true;</span>
+<span class="lineNum">     315 </span><span class="lineNoCov">          0 : }</span>
+<a name="316"><span class="lineNum">     316 </span>            : </a>
+<span class="lineNum">     317 </span>            : void
+<span class="lineNum">     318 </span><span class="lineNoCov">          0 : HttpServer::bind_action(const string&amp; p_name,</span>
+<span class="lineNum">     319 </span>            :                         const string&amp; p_description,
+<span class="lineNum">     320 </span>            :                         handler       p_action)
+<span class="lineNum">     321 </span>            : {
+<span class="lineNum">     322 </span><span class="lineNoCov">          0 :   t_action l_action(new Action(p_name, p_description));</span>
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span><span class="lineNoCov">          0 :   m_actions.insert(std::pair&lt;string, t_action&gt;(p_name, l_action));</span>
+<span class="lineNum">     325 </span><span class="lineNoCov">          0 :   bind(&quot;/action/&quot; + p_name, h(&amp;HttpServer::h_runAction, this, p_name, p_action));</span>
+<span class="lineNum">     326 </span><span class="lineNoCov">          0 : }</span>
+<a name="327"><span class="lineNum">     327 </span>            : </a>
+<span class="lineNum">     328 </span>            : status
+<span class="lineNum">     329 </span><span class="lineNoCov">          0 : HttpServer::h_runAction(const string&amp;        p_name,</span>
+<span class="lineNum">     330 </span>            :                         handler              p_action,
+<span class="lineNum">     331 </span>            :                         const uint32_t       p_requestID,
+<span class="lineNum">     332 </span>            :                         const http::Request&amp; p_req,
+<span class="lineNum">     333 </span>            :                         http::Response&amp;      p_res)
+<span class="lineNum">     334 </span>            : {
+<span class="lineNum">     335 </span><span class="lineNoCov">          0 :   status              l_ret    = status::error;</span>
+<span class="lineNum">     336 </span><span class="lineNoCov">          0 :   string              l_status = &quot;FAILED&quot;;</span>
+<span class="lineNum">     337 </span><span class="lineNoCov">          0 :   string              l_data;</span>
+<span class="lineNum">     338 </span><span class="lineNoCov">          0 :   http::Json          l_tmpl;</span>
+<span class="lineNum">     339 </span><span class="lineNoCov">          0 :   string              l_text;</span>
+<span class="lineNum">     340 </span><span class="lineNoCov">          0 :   t_actions::iterator c_action;</span>
+<span class="lineNum">     341 </span>            : 
+<span class="lineNum">     342 </span><span class="lineNoCov">          0 :   c_action = m_actions.find(p_name);</span>
+<span class="lineNum">     343 </span>            : 
+<span class="lineNum">     344 </span><span class="lineNoCov">          0 :   if (c_action == m_actions.end())</span>
+<span class="lineNum">     345 </span>            :   {
+<span class="lineNum">     346 </span><span class="lineNoCov">          0 :     l_status = &quot;UNKNOWN&quot;;</span>
+<span class="lineNum">     347 </span><span class="lineNoCov">          0 :     log::crit(&quot;servers.app.http&quot;, &quot;can't find action '%s' into map actions ; action aborted.&quot;, p_name, HERE);</span>
+<span class="lineNum">     348 </span>            :   }
+<span class="lineNum">     349 </span>            :   else
+<span class="lineNum">     350 </span>            :   {
+<span class="lineNum">     351 </span><span class="lineNoCov">          0 :     string l_log;</span>
+<span class="lineNum">     352 </span><span class="lineNoCov">          0 :     p_req.getCgi(&quot;log&quot;, l_log);</span>
+<span class="lineNum">     353 </span>            : 
+<span class="lineNum">     354 </span><span class="lineNoCov">          0 :     l_ret = p_action(p_requestID, p_req, p_res);</span>
+<span class="lineNum">     355 </span><span class="lineNoCov">          0 :     if (l_ret == status::ok)</span>
+<span class="lineNum">     356 </span>            :     {
+<span class="lineNum">     357 </span><span class="lineNoCov">          0 :       l_status = &quot;DONE&quot;;</span>
+<span class="lineNum">     358 </span><span class="lineNoCov">          0 :       p_res.setStatus(http::code::ok);</span>
+<span class="lineNum">     359 </span><span class="lineNoCov">          0 :       c_action-&gt;second-&gt;m_timestamp = bpt::microsec_clock::local_time();</span>
+<span class="lineNum">     360 </span><span class="lineNoCov">          0 :       c_action-&gt;second-&gt;m_log       = l_log;</span>
+<span class="lineNum">     361 </span>            :     }
+<span class="lineNum">     362 </span><span class="lineNoCov">          0 :     log::crit(&quot;servers.app.http&quot;, &quot;action '%s' - execution status : %s&quot;, p_name, l_status, HERE);</span>
+<span class="lineNum">     363 </span>            :   }
+<span class="lineNum">     364 </span>            : 
+<span class="lineNum">     365 </span>            :   // Create Json response
+<span class="lineNum">     366 </span><span class="lineNoCov">          0 :   l_tmpl.add(&quot;status&quot;, p_name, l_status);</span>
+<span class="lineNum">     367 </span>            : 
+<span class="lineNum">     368 </span>            :   // Export Json to string
+<span class="lineNum">     369 </span><span class="lineNoCov">          0 :   if (status::ok != l_tmpl.resolve(l_text))</span>
+<span class="lineNum">     370 </span><span class="lineNoCov">          0 :     return h_error_text(l_tmpl.getError(), p_requestID, p_req, p_res);</span>
+<span class="lineNum">     371 </span>            : 
+<span class="lineNum">     372 </span>            :   // Set response
+<span class="lineNum">     373 </span><span class="lineNoCov">          0 :   p_res.addHeader(&quot;Content-Type&quot;, l_tmpl.getContentType());</span>
+<span class="lineNum">     374 </span><span class="lineNoCov">          0 :   p_res.setData(l_text);</span>
+<span class="lineNum">     375 </span><span class="lineNoCov">          0 :   return l_ret;</span>
+<span class="lineNum">     376 </span>            : }
+<span class="lineNum">     377 </span>            : 
+<a name="378"><span class="lineNum">     378 </span>            : </a>
+<span class="lineNum">     379 </span>            : status
+<span class="lineNum">     380 </span><span class="lineNoCov">          0 : HttpServer::h_actionList(const uint32_t       p_requestID,</span>
+<span class="lineNum">     381 </span>            :                          const http::Request&amp; p_req,
+<span class="lineNum">     382 </span>            :                          http::Response&amp;      p_res)
+<span class="lineNum">     383 </span>            : {
+<span class="lineNum">     384 </span><span class="lineNoCov">          0 :   http::Json l_tmpl;</span>
+<span class="lineNum">     385 </span>            : 
+<span class="lineNum">     386 </span><span class="lineNoCov">          0 :   for (auto&amp; cc_value : m_actions)</span>
+<span class="lineNum">     387 </span>            :   {
+<span class="lineNum">     388 </span><span class="lineNoCov">          0 :     l_tmpl.add(cc_value.first, &quot;description&quot;, cc_value.second-&gt;m_description);</span>
+<span class="lineNum">     389 </span><span class="lineNoCov">          0 :     l_tmpl.add(cc_value.first, &quot;log&quot;,         cc_value.second-&gt;m_log);</span>
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span><span class="lineNoCov">          0 :     tm     l_tm = to_tm(cc_value.second-&gt;m_timestamp);</span>
+<span class="lineNum">     392 </span><span class="lineNoCov">          0 :     time_t l_date = mktime(&amp;l_tm);</span>
+<span class="lineNum">     393 </span>            : 
+<span class="lineNum">     394 </span><span class="lineNoCov">          0 :     l_tmpl.add(cc_value.first, &quot;timestamp&quot;, boost::lexical_cast&lt;uint32_t&gt;(l_date));</span>
+<span class="lineNum">     395 </span>            :   }
+<span class="lineNum">     396 </span>            : 
+<span class="lineNum">     397 </span><span class="lineNoCov">          0 :   return h_gen(l_tmpl, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     398 </span>            : }
+<a name="399"><span class="lineNum">     399 </span>            : </a>
+<span class="lineNum">     400 </span>            : status
+<span class="lineNum">     401 </span><span class="lineNoCov">          0 : HttpServer::h_probe(const uint32_t                /*p_requestID*/,</span>
+<span class="lineNum">     402 </span>            :                     const http::Request&amp; p_req,
+<span class="lineNum">     403 </span>            :                     http::Response&amp;      p_res)
+<span class="lineNum">     404 </span>            : {
+<span class="lineNum">     405 </span><span class="lineNoCov">          0 :   p_res.setVersion(p_req.getVersion());</span>
+<span class="lineNum">     406 </span><span class="lineNoCov">          0 :   if (true == m_isModeProbe)</span>
+<span class="lineNum">     407 </span>            :   {
+<span class="lineNum">     408 </span><span class="lineNoCov">          0 :     p_res.setStatus(http::code::service_unavailable);</span>
+<span class="lineNum">     409 </span><span class="lineNoCov">          0 :     p_res.setData(http::str(http::code::service_unavailable));</span>
+<span class="lineNum">     410 </span>            :   }
+<span class="lineNum">     411 </span>            :   else
+<span class="lineNum">     412 </span>            :   {
+<span class="lineNum">     413 </span><span class="lineNoCov">          0 :     p_res.setStatus(http::code::ok);</span>
+<span class="lineNum">     414 </span><span class="lineNoCov">          0 :     p_res.setData(http::str(http::code::ok));</span>
+<span class="lineNum">     415 </span>            :   }
+<span class="lineNum">     416 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     417 </span>            : }
+<span class="lineNum">     418 </span>            : 
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span>            : /* -------------------------------------------------------------------- */
+<a name="421"><span class="lineNum">     421 </span>            : </a>
+<span class="lineNum">     422 </span>            : string
+<span class="lineNum">     423 </span><span class="lineNoCov">          0 : HttpServer::getCommonConfKey(void) const</span>
+<span class="lineNum">     424 </span>            : {
+<span class="lineNum">     425 </span><span class="lineNoCov">          0 :   return m_binName;</span>
+<span class="lineNum">     426 </span>            : }
+<a name="427"><span class="lineNum">     427 </span>            : </a>
+<span class="lineNum">     428 </span>            : string
+<span class="lineNum">     429 </span><span class="lineNoCov">          0 : HttpServer::getSpecificConfKey(void) const</span>
+<span class="lineNum">     430 </span>            : {
+<span class="lineNum">     431 </span><span class="lineNoCov">          0 :   return getCommonConfKey();</span>
+<span class="lineNum">     432 </span>            : }
+<a name="433"><span class="lineNum">     433 </span>            : </a>
+<span class="lineNum">     434 </span>            : string
+<span class="lineNum">     435 </span><span class="lineNoCov">          0 : HttpServer::getSnmpPath(void) const</span>
+<span class="lineNum">     436 </span>            : {
+<span class="lineNum">     437 </span><span class="lineNoCov">          0 :   return m_snmpPath;</span>
+<span class="lineNum">     438 </span>            : }
+<span class="lineNum">     439 </span>            : 
+<a name="440"><span class="lineNum">     440 </span>            : </a>
+<span class="lineNum">     441 </span>            : status
+<span class="lineNum">     442 </span><span class="lineNoCov">          0 : HttpServer::h_index(const uint32_t       p_requestID,</span>
+<span class="lineNum">     443 </span>            :                     const http::Request&amp; p_req,
+<span class="lineNum">     444 </span>            :                     http::Response&amp;      p_res)
+<span class="lineNum">     445 </span>            : {
+<span class="lineNum">     446 </span>            :   using http::Template;
+<span class="lineNum">     447 </span>            :   using http::HtmlTemplate;
+<span class="lineNum">     448 </span>            : 
+<span class="lineNum">     449 </span><span class="lineNoCov">          0 :   Handler::t_listof l_list;</span>
+<span class="lineNum">     450 </span><span class="lineNoCov">          0 :   HtmlTemplate      l_tmpl(true);</span>
+<span class="lineNum">     451 </span><span class="lineNoCov">          0 :   Template::t_list  l_links;</span>
+<span class="lineNum">     452 </span><span class="lineNoCov">          0 :   string            l_title = format::vargs(&quot;%s : Handler list&quot;, m_binName);</span>
+<span class="lineNum">     453 </span>            : 
+<span class="lineNum">     454 </span><span class="lineNoCov">          0 :   getMatchingHandlers(p_req, l_list);</span>
+<span class="lineNum">     455 </span>            : 
+<span class="lineNum">     456 </span><span class="lineNoCov">          0 :   std::sort(l_list.begin(),</span>
+<span class="lineNum">     457 </span>            :             l_list.end(),
+<span class="lineNum">     458 </span><span class="lineNoCov">          0 :             std::bind(std::less&lt;string&gt;(),</span>
+<span class="lineNum">     459 </span><span class="lineNoCov">          0 :                       std::bind(&amp;Handler::m_descr, std::placeholders::_2),</span>
+<span class="lineNum">     460 </span><span class="lineNoCov">          0 :                       std::bind(&amp;Handler::m_descr, std::placeholders::_1)));</span>
+<span class="lineNum">     461 </span>            : 
+<span class="lineNum">     462 </span><span class="lineNoCov">          0 :   for(const Handler&amp; c_handler : l_list)</span>
+<span class="lineNum">     463 </span>            :   {
+<span class="lineNum">     464 </span><span class="lineNoCov">          0 :     string          l_url = c_handler.m_path;</span>
+<span class="lineNum">     465 </span><span class="lineNoCov">          0 :     Template::t_map l_link;</span>
+<span class="lineNum">     466 </span>            : 
+<span class="lineNum">     467 </span><span class="lineNoCov">          0 :     trim_right_if(l_url, boost::is_any_of(&quot;*&quot;));</span>
+<span class="lineNum">     468 </span><span class="lineNoCov">          0 :     l_link[&quot;link&quot;] = Template::val(l_url);</span>
+<span class="lineNum">     469 </span><span class="lineNoCov">          0 :     l_link[&quot;text&quot;] = Template::val(c_handler.m_descr);</span>
+<span class="lineNum">     470 </span><span class="lineNoCov">          0 :     l_links.push_back(Template::val(l_link));</span>
+<span class="lineNum">     471 </span>            :   }
+<span class="lineNum">     472 </span>            : 
+<span class="lineNum">     473 </span>            :   l_tmpl
+<span class="lineNum">     474 </span><span class="lineNoCov">          0 :     .setTitle(l_title)</span>
+<span class="lineNum">     475 </span><span class="lineNoCov">          0 :     .add(&quot;title&quot;, l_title)</span>
+<span class="lineNum">     476 </span><span class="lineNoCov">          0 :     .add(&quot;links&quot;, l_links);</span>
+<span class="lineNum">     477 </span>            : 
+<span class="lineNum">     478 </span><span class="lineNoCov">          0 :   return h_template_file(l_tmpl, m_httpConfigPath + &quot;/tpl/index.tpl&quot;, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     479 </span>            : }
+<span class="lineNum">     480 </span>            : 
+<span class="lineNum">     481 </span>            : 
+<span class="lineNum">     482 </span>            : /**
+<span class="lineNum">     483 </span>            :  ** @details
+<span class="lineNum">     484 </span>            :  ** 1. recuperation des informations vmstats
+<span class="lineNum">     485 </span>            :  ** 3. récupération de tous les compteurs et filtrage
+<span class="lineNum">     486 </span>            :  ** 3. création de la réponse http
+<a name="487"><span class="lineNum">     487 </span>            :  */</a>
+<span class="lineNum">     488 </span>            : status
+<span class="lineNum">     489 </span><span class="lineNoCov">          0 : HttpServer::h_ident(const uint32_t       p_requestID,</span>
+<span class="lineNum">     490 </span>            :                     const http::Request&amp; p_req,
+<span class="lineNum">     491 </span>            :                     http::Response&amp;      p_res)
+<span class="lineNum">     492 </span>            : {
+<span class="lineNum">     493 </span><span class="lineNoCov">          0 :   http::Json l_tmpl;</span>
+<span class="lineNum">     494 </span><span class="lineNoCov">          0 :   string               l_key;</span>
+<span class="lineNum">     495 </span><span class="lineNoCov">          0 :   string               l_value;</span>
+<span class="lineNum">     496 </span>            : 
+<span class="lineNum">     497 </span>            :   enum class state { key, value, ignore };
+<span class="lineNum">     498 </span><span class="lineNoCov">          0 :   state l_state = state::ignore;</span>
+<span class="lineNum">     499 </span>            : 
+<span class="lineNum">     500 </span><span class="lineNoCov">          0 :   for (auto c_char : m_rcsid)</span>
+<span class="lineNum">     501 </span>            :   {
+<span class="lineNum">     502 </span><span class="lineNoCov">          0 :     if (c_char == '$')</span>
+<span class="lineNum">     503 </span>            :     {
+<span class="lineNum">     504 </span><span class="lineNoCov">          0 :       if (l_state == state::ignore)</span>
+<span class="lineNum">     505 </span><span class="lineNoCov">          0 :         l_state = state::key;</span>
+<span class="lineNum">     506 </span>            :       else
+<span class="lineNum">     507 </span>            :       {
+<span class="lineNum">     508 </span><span class="lineNoCov">          0 :         l_tmpl.add(&quot;&quot;, boost::trim_copy(l_key), boost::trim_copy(l_value));</span>
+<span class="lineNum">     509 </span><span class="lineNoCov">          0 :         l_key.clear();</span>
+<span class="lineNum">     510 </span><span class="lineNoCov">          0 :         l_value.clear();</span>
+<span class="lineNum">     511 </span><span class="lineNoCov">          0 :         l_state = state::ignore;</span>
+<span class="lineNum">     512 </span>            :       }
+<span class="lineNum">     513 </span><span class="lineNoCov">          0 :       continue;</span>
+<span class="lineNum">     514 </span>            :     }
+<span class="lineNum">     515 </span>            : 
+<span class="lineNum">     516 </span><span class="lineNoCov">          0 :     if ((c_char == ':') &amp;&amp; (l_state == state::key))</span>
+<span class="lineNum">     517 </span><span class="lineNoCov">          0 :       l_state = state::value;</span>
+<span class="lineNum">     518 </span><span class="lineNoCov">          0 :     else if (l_state == state::key)</span>
+<span class="lineNum">     519 </span><span class="lineNoCov">          0 :       l_key += c_char;</span>
+<span class="lineNum">     520 </span><span class="lineNoCov">          0 :     else if (l_state == state::value)</span>
+<span class="lineNum">     521 </span><span class="lineNoCov">          0 :       l_value += c_char;</span>
+<span class="lineNum">     522 </span>            :   }
+<span class="lineNum">     523 </span><span class="lineNoCov">          0 :   return h_gen(l_tmpl, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     524 </span>            : }
+<span class="lineNum">     525 </span>            : 
+<span class="lineNum">     526 </span>            : /**
+<span class="lineNum">     527 </span>            :  ** @details
+<span class="lineNum">     528 </span>            :  ** 1. recuperation des informations vmstats
+<span class="lineNum">     529 </span>            :  ** 3. récupération de tous les compteurs et filtrage
+<span class="lineNum">     530 </span>            :  ** 3. création de la réponse http
+<a name="531"><span class="lineNum">     531 </span>            :  */</a>
+<span class="lineNum">     532 </span>            : status
+<span class="lineNum">     533 </span><span class="lineNoCov">          0 : HttpServer::h_counter(const uint32_t       /* p_requestID */,</span>
+<span class="lineNum">     534 </span>            :                       const http::Request&amp;    p_req,
+<span class="lineNum">     535 </span>            :                       http::Response&amp;         p_res)
+<span class="lineNum">     536 </span>            : {
+<span class="lineNum">     537 </span>            :   using namespace boost::property_tree;
+<span class="lineNum">     538 </span>            : 
+<span class="lineNum">     539 </span>            :   uint32_t     l_vmUsage;
+<span class="lineNum">     540 </span>            :   uint32_t     l_residentSet;
+<span class="lineNum">     541 </span><span class="lineNoCov">          0 :   stringstream l_responseData;</span>
+<span class="lineNum">     542 </span>            : 
+<span class="lineNum">     543 </span>            :   // 1.
+<span class="lineNum">     544 </span><span class="lineNoCov">          0 :   process_mem_usage(l_vmUsage, l_residentSet);</span>
+<span class="lineNum">     545 </span><span class="lineNoCov">          0 :   (*m_ramCounter) = l_residentSet;</span>
+<span class="lineNum">     546 </span>            : 
+<span class="lineNum">     547 </span>            :   // 2.
+<span class="lineNum">     548 </span><span class="lineNoCov">          0 :   ptree  l_elements;</span>
+<span class="lineNum">     549 </span><span class="lineNoCov">          0 :   ptree  l_root;</span>
+<span class="lineNum">     550 </span><span class="lineNoCov">          0 :   string l_subPath = p_req.getPath();</span>
+<span class="lineNum">     551 </span>            : 
+<span class="lineNum">     552 </span><span class="lineNoCov">          0 :   ba::replace_all(l_subPath, &quot;/&quot;, &quot;!&quot;);</span>
+<span class="lineNum">     553 </span><span class="lineNoCov">          0 :   ba::trim_if(l_subPath, ba::is_any_of(&quot;!&quot;));</span>
+<span class="lineNum">     554 </span><span class="lineNoCov">          0 :   ptree::path_type l_subPathType(l_subPath, '!');</span>
+<span class="lineNum">     555 </span>            : 
+<span class="lineNum">     556 </span>            :   // Gets json tree representation of counters from prober
+<span class="lineNum">     557 </span><span class="lineNoCov">          0 :   m_prober-&gt;toJson(l_elements);</span>
+<span class="lineNum">     558 </span>            : 
+<span class="lineNum">     559 </span>            :   try
+<span class="lineNum">     560 </span>            :   {
+<span class="lineNum">     561 </span><span class="lineNoCov">          0 :     l_root.put_child(&quot;counter&quot;, l_elements);</span>
+<span class="lineNum">     562 </span><span class="lineNoCov">          0 :     ptree l_child = l_root.get_child(l_subPathType);</span>
+<span class="lineNum">     563 </span><span class="lineNoCov">          0 :     write_json(l_responseData, l_child);</span>
+<span class="lineNum">     564 </span><span class="lineNoCov">          0 :     p_res.setData(l_responseData.str());</span>
+<span class="lineNum">     565 </span><span class="lineNoCov">          0 :     p_res.addHeader(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="lineNum">     566 </span><span class="lineNoCov">          0 :     p_res.setStatus(http::code::ok);</span>
+<span class="lineNum">     567 </span>            :   }
+<span class="lineNum">     568 </span><span class="lineNoCov">          0 :   catch (file_parser_error&amp;)</span>
+<span class="lineNum">     569 </span>            :   {
+<span class="lineNum">     570 </span><span class="lineNoCov">          0 :     string           l_name = l_subPath.substr(l_subPath.find_last_of(&quot;!&quot;)+1);</span>
+<span class="lineNum">     571 </span><span class="lineNoCov">          0 :     ptree::path_type l_namePathType(l_name, '!');</span>
+<span class="lineNum">     572 </span><span class="lineNoCov">          0 :     ptree            l_node;</span>
+<span class="lineNum">     573 </span>            : 
+<span class="lineNum">     574 </span><span class="lineNoCov">          0 :     l_node.put&lt;string&gt;(l_namePathType, l_root.get&lt;string&gt;(l_subPathType));</span>
+<span class="lineNum">     575 </span><span class="lineNoCov">          0 :     write_json(l_responseData, l_node);</span>
+<span class="lineNum">     576 </span><span class="lineNoCov">          0 :     p_res.setData(l_responseData.str());</span>
+<span class="lineNum">     577 </span><span class="lineNoCov">          0 :     p_res.addHeader(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="lineNum">     578 </span><span class="lineNoCov">          0 :     p_res.setStatus(http::code::ok);</span>
+<span class="lineNum">     579 </span>            :   }
+<span class="lineNum">     580 </span><span class="lineNoCov">          0 :   catch (ptree_bad_path&amp;)</span>
+<span class="lineNum">     581 </span>            :   {
+<span class="lineNum">     582 </span><span class="lineNoCov">          0 :     l_responseData &lt;&lt; p_req.getPath() &lt;&lt; &quot; not found&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     583 </span><span class="lineNoCov">          0 :     p_res.setData(l_responseData.str());</span>
+<span class="lineNum">     584 </span><span class="lineNoCov">          0 :     p_res.setStatus(http::code::bad_request);</span>
+<span class="lineNum">     585 </span>            :   }
+<span class="lineNum">     586 </span>            : 
+<span class="lineNum">     587 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     588 </span>            : }
+<a name="589"><span class="lineNum">     589 </span>            : </a>
+<span class="lineNum">     590 </span>            : status
+<span class="lineNum">     591 </span><span class="lineNoCov">          0 : HttpServer::h_admin(const uint32_t       p_requestID,</span>
+<span class="lineNum">     592 </span>            :                     const http::Request&amp; p_req,
+<span class="lineNum">     593 </span>            :                     http::Response&amp;      p_res)
+<span class="lineNum">     594 </span>            : {
+<span class="lineNum">     595 </span><span class="lineNoCov">          0 :   string l_providedLog;</span>
+<span class="lineNum">     596 </span><span class="lineNoCov">          0 :   string l_log = &quot;&quot;;</span>
+<span class="lineNum">     597 </span>            : 
+<span class="lineNum">     598 </span>            :   // Verify integrity of given cgi parameters
+<span class="lineNum">     599 </span><span class="lineNoCov">          0 :   for (auto&amp; c_param : p_req.getCgis())</span>
+<span class="lineNum">     600 </span>            :   {
+<span class="lineNum">     601 </span><span class="lineNoCov">          0 :     if (c_param.first == &quot;log&quot;)</span>
+<span class="lineNum">     602 </span><span class="lineNoCov">          0 :       l_log = c_param.second;</span>
+<span class="lineNum">     603 </span>            :     else
+<span class="lineNum">     604 </span>            :     {
+<span class="lineNum">     605 </span><span class="lineNoCov">          0 :       if (false == m_params-&gt;verify(c_param.first, c_param.second))</span>
+<span class="lineNum">     606 </span>            :       {
+<span class="lineNum">     607 </span><span class="lineNoCov">          0 :         string l_msg = format::vargs(&quot;Parameter '%s' from cgi can't be setted to value '%s'&quot;,  c_param.first, c_param.second);</span>
+<span class="lineNum">     608 </span><span class="lineNoCov">          0 :         log::crit(&quot;servers.app.http&quot;, &quot;h_admin: %s&quot;, l_msg, HERE);</span>
+<span class="lineNum">     609 </span><span class="lineNoCov">          0 :         return h_error_text(l_msg, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     610 </span>            :       }
+<span class="lineNum">     611 </span>            :     }
+<span class="lineNum">     612 </span>            :   }
+<span class="lineNum">     613 </span>            : 
+<span class="lineNum">     614 </span>            :   //
+<span class="lineNum">     615 </span><span class="lineNoCov">          0 :   if(!l_log.empty() &amp;&amp; p_req.getCgis().size()==1)</span>
+<span class="lineNum">     616 </span>            :   {
+<span class="lineNum">     617 </span><span class="lineNoCov">          0 :     string l_msg = &quot;Parameter 'log' is alone, parameter change skipped&quot;;</span>
+<span class="lineNum">     618 </span><span class="lineNoCov">          0 :     log::crit(&quot;servers.app.http&quot;, &quot;h_admin: %s&quot;, l_msg, HERE);</span>
+<span class="lineNum">     619 </span><span class="lineNoCov">          0 :     return h_error_text(l_msg, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     620 </span>            :   }
+<span class="lineNum">     621 </span>            :   else
+<span class="lineNum">     622 </span>            :   {
+<span class="lineNum">     623 </span><span class="lineNoCov">          0 :     stringstream ss;</span>
+<span class="lineNum">     624 </span>            : 
+<span class="lineNum">     625 </span><span class="lineNoCov">          0 :     ss &lt;&lt; &quot;Actions applied : &quot;;</span>
+<span class="lineNum">     626 </span>            :     // Apply
+<span class="lineNum">     627 </span><span class="lineNoCov">          0 :     BOOST_FOREACH(const http::Request::t_param_map::value_type&amp; c_param, p_req.getCgis())</span>
+<span class="lineNum">     628 </span>            :     {
+<span class="lineNum">     629 </span><span class="lineNoCov">          0 :       if(c_param.first != &quot;log&quot;)</span>
+<span class="lineNum">     630 </span>            :       {
+<span class="lineNum">     631 </span><span class="lineNoCov">          0 :         if (false == m_params-&gt;fromStr(c_param.first, c_param.second, l_log))</span>
+<span class="lineNum">     632 </span>            :         {
+<span class="lineNum">     633 </span>            :           string l_msg = format::vargs(&quot;unable to set parameter '%s' to value '%s' despite verification !!!&quot;,
+<span class="lineNum">     634 </span>            :                                        c_param.first,
+<span class="lineNum">     635 </span><span class="lineNoCov">          0 :                                        c_param.second);</span>
+<span class="lineNum">     636 </span><span class="lineNoCov">          0 :           log::crit(&quot;servers.app.http&quot;, &quot;h_admin: %s&quot;, l_msg, HERE);</span>
+<span class="lineNum">     637 </span><span class="lineNoCov">          0 :           return h_error_text(l_msg, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     638 </span>            :         }
+<span class="lineNum">     639 </span>            : 
+<span class="lineNum">     640 </span><span class="lineNoCov">          0 :         ss &lt;&lt; &quot; | &quot; &lt;&lt; c_param.first &lt;&lt; &quot; : &quot; &lt;&lt; c_param.second;</span>
+<span class="lineNum">     641 </span>            :       }
+<span class="lineNum">     642 </span>            :     }
+<span class="lineNum">     643 </span>            : 
+<span class="lineNum">     644 </span>            :     // Trace action
+<span class="lineNum">     645 </span><span class="lineNoCov">          0 :     log::info(&quot;servers.app.http&quot;, &quot;h_admin: update action executed : %s&quot;, ss.str(), HERE);</span>
+<span class="lineNum">     646 </span>            :   }
+<span class="lineNum">     647 </span>            : 
+<span class="lineNum">     648 </span><span class="lineNoCov">          0 :   http::Json l_tmpl;</span>
+<span class="lineNum">     649 </span><span class="lineNoCov">          0 :   param::JsonVisitor   l_json(l_tmpl);</span>
+<span class="lineNum">     650 </span>            : 
+<span class="lineNum">     651 </span><span class="lineNoCov">          0 :   l_json.writeExtraInfo(&quot;query&quot;, p_req.getQS());</span>
+<span class="lineNum">     652 </span>            : 
+<span class="lineNum">     653 </span><span class="lineNoCov">          0 :   m_params-&gt;accept(l_json);</span>
+<span class="lineNum">     654 </span><span class="lineNoCov">          0 :   return h_gen(l_tmpl, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     655 </span>            : }
+<a name="656"><span class="lineNum">     656 </span>            : </a>
+<span class="lineNum">     657 </span>            : status
+<span class="lineNum">     658 </span><span class="lineNoCov">          0 : HttpServer::h_conf(const uint32_t       p_requestID,</span>
+<span class="lineNum">     659 </span>            :                    const http::Request&amp; p_req,
+<span class="lineNum">     660 </span>            :                    http::Response&amp;      p_res)
+<span class="lineNum">     661 </span>            : {
+<span class="lineNum">     662 </span><span class="lineNoCov">          0 :   http::Json l_tmpl;</span>
+<span class="lineNum">     663 </span><span class="lineNoCov">          0 :   auto       l_range = m_config-&gt;search(&quot;&quot;);</span>
+<span class="lineNum">     664 </span>            : 
+<span class="lineNum">     665 </span><span class="lineNoCov">          0 :   while (l_range.first != l_range.second)</span>
+<span class="lineNum">     666 </span>            :   {
+<span class="lineNum">     667 </span><span class="lineNoCov">          0 :     string l_s = boost::replace_all_copy(l_range.first-&gt;first, &quot;:&quot;, &quot;!&quot;);</span>
+<span class="lineNum">     668 </span><span class="lineNoCov">          0 :     l_tmpl.add(&quot;&quot;, l_s, l_range.first-&gt;second);</span>
+<span class="lineNum">     669 </span><span class="lineNoCov">          0 :     l_range.first++;</span>
+<span class="lineNum">     670 </span>            :   }
+<span class="lineNum">     671 </span>            : 
+<span class="lineNum">     672 </span><span class="lineNoCov">          0 :   return h_gen(l_tmpl, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     673 </span>            : }
+<span class="lineNum">     674 </span>            : 
+<a name="675"><span class="lineNum">     675 </span>            : </a>
+<span class="lineNum">     676 </span>            : status
+<span class="lineNum">     677 </span><span class="lineNoCov">          0 : HttpServer::h_log(const uint32_t       p_requestID,</span>
+<span class="lineNum">     678 </span>            :                   const http::Request&amp; p_req,
+<span class="lineNum">     679 </span>            :                   http::Response&amp;      p_res)
+<span class="lineNum">     680 </span>            : {
+<span class="lineNum">     681 </span><span class="lineNoCov">          0 :   http::Json       l_tmpl;</span>
+<span class="lineNum">     682 </span><span class="lineNoCov">          0 :   log::RootLogger&amp; l_logger = log::getRoot();</span>
+<span class="lineNum">     683 </span><span class="lineNoCov">          0 :   const auto&amp;      l_cgis   = p_req.getCgis();</span>
+<span class="lineNum">     684 </span>            : 
+<span class="lineNum">     685 </span><span class="lineNoCov">          0 :   if (0 != l_cgis.size())</span>
+<span class="lineNum">     686 </span>            :   {
+<span class="lineNum">     687 </span><span class="lineNoCov">          0 :     for (const auto&amp; c_param : p_req.getCgis())</span>
+<span class="lineNum">     688 </span>            :     {
+<span class="lineNum">     689 </span><span class="lineNoCov">          0 :       if (false == log::is_valid(c_param.second))</span>
+<span class="lineNum">     690 </span><span class="lineNoCov">          0 :         continue;</span>
+<span class="lineNum">     691 </span><span class="lineNoCov">          0 :       if (c_param.first == &quot;all&quot;)</span>
+<span class="lineNum">     692 </span><span class="lineNoCov">          0 :         l_logger.setAllLevels(log::from(c_param.second));</span>
+<span class="lineNum">     693 </span><span class="lineNoCov">          0 :       else if (c_param.first == &quot;default&quot;)</span>
+<span class="lineNum">     694 </span><span class="lineNoCov">          0 :         l_logger.setLevelTo(&quot;&quot;, log::from(c_param.second));</span>
+<span class="lineNum">     695 </span>            :       else
+<span class="lineNum">     696 </span><span class="lineNoCov">          0 :         l_logger.updateLevels(c_param.first, log::from(c_param.second));</span>
+<span class="lineNum">     697 </span>            :     }
+<span class="lineNum">     698 </span><span class="lineNoCov">          0 :     return h_redirect(&quot;/log&quot;, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     699 </span>            :   }
+<span class="lineNum">     700 </span>            : 
+<span class="lineNum">     701 </span><span class="lineNoCov">          0 :   for (const auto&amp; cc_value : l_logger.getLevels())</span>
+<span class="lineNum">     702 </span>            :   {
+<span class="lineNum">     703 </span><span class="lineNoCov">          0 :     if (cc_value.first == &quot;&quot;)</span>
+<span class="lineNum">     704 </span><span class="lineNoCov">          0 :       l_tmpl.add(&quot;&quot;, &quot;default&quot;, log::to_string(cc_value.second));</span>
+<span class="lineNum">     705 </span>            :     else
+<span class="lineNum">     706 </span><span class="lineNoCov">          0 :       l_tmpl.add(&quot;modules&quot;, cc_value.first, log::to_string(cc_value.second));</span>
+<span class="lineNum">     707 </span>            :   }
+<span class="lineNum">     708 </span>            : 
+<span class="lineNum">     709 </span><span class="lineNoCov">          0 :   return h_gen(l_tmpl, p_requestID, p_req, p_res);</span>
+<span class="lineNum">     710 </span>            : }
+<a name="711"><span class="lineNum">     711 </span>            : </a>
+<span class="lineNum">     712 </span>            : void
+<span class="lineNum">     713 </span><span class="lineNoCov">          0 : HttpServer::process_mem_usage(uint32_t&amp; p_vmUsage,</span>
+<span class="lineNum">     714 </span>            :                               uint32_t&amp; p_residentSet)
+<span class="lineNum">     715 </span>            : {
+<span class="lineNum">     716 </span><span class="lineNoCov">          0 :   p_vmUsage     = 0;</span>
+<span class="lineNum">     717 </span><span class="lineNoCov">          0 :   p_residentSet = 0;</span>
+<span class="lineNum">     718 </span>            : 
+<span class="lineNum">     719 </span>            :   // 'file' stat seems to give the most reliable results
+<span class="lineNum">     720 </span>            :   //
+<span class="lineNum">     721 </span><span class="lineNoCov">          0 :   ifstream stat_stream(&quot;/proc/self/stat&quot;, std::ios_base::in);</span>
+<span class="lineNum">     722 </span>            : 
+<span class="lineNum">     723 </span>            :   // dummy vars for leading entries in stat that we don't care about
+<span class="lineNum">     724 </span>            :   //
+<span class="lineNum">     725 </span><span class="lineNoCov">          0 :   string pid, comm, state, ppid, pgrp, session, tty_nr;</span>
+<span class="lineNum">     726 </span><span class="lineNoCov">          0 :   string tpgid, flags, minflt, cminflt, majflt, cmajflt;</span>
+<span class="lineNum">     727 </span><span class="lineNoCov">          0 :   string utime, stime, cutime, cstime, priority, nice;</span>
+<span class="lineNum">     728 </span><span class="lineNoCov">          0 :   string O, itrealvalue, starttime;</span>
+<span class="lineNum">     729 </span>            : 
+<span class="lineNum">     730 </span>            :   // the two fields we want
+<span class="lineNum">     731 </span>            :   //
+<span class="lineNum">     732 </span>            :   unsigned long vsize;
+<span class="lineNum">     733 </span>            :   long rss;
+<span class="lineNum">     734 </span>            : 
+<span class="lineNum">     735 </span><span class="lineNoCov">          0 :   stat_stream &gt;&gt; pid &gt;&gt; comm &gt;&gt; state &gt;&gt; ppid &gt;&gt; pgrp &gt;&gt; session &gt;&gt; tty_nr</span>
+<span class="lineNum">     736 </span><span class="lineNoCov">          0 :               &gt;&gt; tpgid &gt;&gt; flags &gt;&gt; minflt &gt;&gt; cminflt &gt;&gt; majflt &gt;&gt; cmajflt</span>
+<span class="lineNum">     737 </span><span class="lineNoCov">          0 :               &gt;&gt; utime &gt;&gt; stime &gt;&gt; cutime &gt;&gt; cstime &gt;&gt; priority &gt;&gt; nice</span>
+<span class="lineNum">     738 </span><span class="lineNoCov">          0 :               &gt;&gt; O &gt;&gt; itrealvalue &gt;&gt; starttime &gt;&gt; vsize &gt;&gt; rss; // don't care about the rest</span>
+<span class="lineNum">     739 </span>            : 
+<span class="lineNum">     740 </span><span class="lineNoCov">          0 :   stat_stream.close();</span>
+<span class="lineNum">     741 </span>            : 
+<span class="lineNum">     742 </span><span class="lineNoCov">          0 :   long page_size_kb = ::sysconf(_SC_PAGE_SIZE) / 1024; // in case x86-64 is configured to use 2MB pages</span>
+<span class="lineNum">     743 </span><span class="lineNoCov">          0 :   p_vmUsage     = vsize / 1024.0;</span>
+<span class="lineNum">     744 </span><span class="lineNoCov">          0 :   p_residentSet = rss * page_size_kb;</span>
+<a name="745"><span class="lineNum">     745 </span><span class="lineNoCov">          0 : }</span></a>
+<span class="lineNum">     746 </span>            : 
+<span class="lineNum">     747 </span><span class="lineNoCov">          0 : }}} //end namspaces</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

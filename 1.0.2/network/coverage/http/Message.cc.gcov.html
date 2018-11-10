@@ -1,0 +1,351 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Message.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Message.cc<span style="font-size: 80%;"> (source / <a href="Message.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">92</td>
+            <td class="headerCovTableEntry">111</td>
+            <td class="headerCovTableEntryMed">82.9 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-01-15 22:41:36</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntryMed">87.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;http/Message.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;boost/algorithm/string/split.hpp&gt;
+<span class="lineNum">       3 </span>            : #include &lt;boost/algorithm/string/trim.hpp&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/algorithm/string/predicate.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/algorithm/string/find_format.hpp&gt;
+<span class="lineNum">       6 </span>            : #include &lt;boost/algorithm/string/regex_find_format.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;boost/algorithm/string/case_conv.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;boost/algorithm/string/classification.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;boost/algorithm/string/replace.hpp&gt;
+<span class="lineNum">      10 </span>            : #include &lt;log.hh&gt;  // libcore
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : namespace xtd {
+<span class="lineNum">      13 </span>            : namespace network {
+<span class="lineNum">      14 </span>            : namespace http {
+<a name="15"><span class="lineNum">      15 </span>            : </a>
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span><span class="lineCov">         44 : Message::Message(void):</span>
+<span class="lineNum">      18 </span>            :   m_version(version::v1_0),
+<span class="lineNum">      19 </span><span class="lineCov">         44 :   m_headers()</span>
+<span class="lineNum">      20 </span>            : {
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">         44 : }</span></a>
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineCov">         44 : Message::~Message(void)</span>
+<span class="lineNum">      24 </span>            : {
+<span class="lineNum">      25 </span><span class="lineCov">         44 : }</span>
+<a name="26"><span class="lineNum">      26 </span>            : </a>
+<span class="lineNum">      27 </span>            : void
+<span class="lineNum">      28 </span><span class="lineCov">         26 : Message::setVersion(version p_version)</span>
+<span class="lineNum">      29 </span>            : {
+<span class="lineNum">      30 </span><span class="lineCov">         26 :   m_version = p_version;</span>
+<span class="lineNum">      31 </span><span class="lineCov">         26 : }</span>
+<a name="32"><span class="lineNum">      32 </span>            : </a>
+<span class="lineNum">      33 </span>            : version
+<span class="lineNum">      34 </span><span class="lineCov">         39 : Message::getVersion(void) const</span>
+<span class="lineNum">      35 </span>            : {
+<span class="lineNum">      36 </span><span class="lineCov">         39 :   return m_version;</span>
+<span class="lineNum">      37 </span>            : }
+<span class="lineNum">      38 </span>            : 
+<a name="39"><span class="lineNum">      39 </span>            : </a>
+<span class="lineNum">      40 </span>            : bool
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 : Message::existsHeader(const string&amp; p_name) const</span>
+<span class="lineNum">      42 </span>            : {
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   return m_headers.count(p_name) != 0;</span>
+<span class="lineNum">      44 </span>            : }
+<span class="lineNum">      45 </span>            : 
+<a name="46"><span class="lineNum">      46 </span>            : </a>
+<span class="lineNum">      47 </span>            : void
+<span class="lineNum">      48 </span><span class="lineCov">        136 : Message::addHeader(const string&amp; p_name,</span>
+<span class="lineNum">      49 </span>            :                    const string&amp; p_value)
+<span class="lineNum">      50 </span>            : {
+<span class="lineNum">      51 </span><span class="lineCov">        136 :   m_headers[p_name] = p_value;</span>
+<span class="lineNum">      52 </span><span class="lineCov">        136 : }</span>
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            : 
+<a name="55"><span class="lineNum">      55 </span>            : </a>
+<span class="lineNum">      56 </span>            : bool
+<span class="lineNum">      57 </span><span class="lineCov">         42 : Message::getHeader(const string&amp; p_name, string&amp; p_value) const</span>
+<span class="lineNum">      58 </span>            : {
+<span class="lineNum">      59 </span><span class="lineCov">         42 :   t_header_map::const_iterator c_header = m_headers.find(p_name);</span>
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span><span class="lineCov">         42 :   if (c_header == m_headers.end())</span>
+<span class="lineNum">      62 </span><span class="lineCov">         19 :     return false;</span>
+<span class="lineNum">      63 </span><span class="lineCov">         23 :   p_value = c_header-&gt;second;</span>
+<span class="lineNum">      64 </span><span class="lineCov">         23 :   return true;</span>
+<span class="lineNum">      65 </span>            : }
+<a name="66"><span class="lineNum">      66 </span>            : </a>
+<span class="lineNum">      67 </span>            : const Message::t_header_map&amp;
+<span class="lineNum">      68 </span><span class="lineCov">         32 : Message::getHeaders(void) const</span>
+<span class="lineNum">      69 </span>            : {
+<span class="lineNum">      70 </span><span class="lineCov">         32 :   return m_headers;</span>
+<span class="lineNum">      71 </span>            : }
+<span class="lineNum">      72 </span>            : 
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<span class="lineNum">      74 </span>            : status
+<span class="lineNum">      75 </span><span class="lineCov">        150 : Message::readHeaders(istream&amp; p_request)</span>
+<span class="lineNum">      76 </span>            : {
+<span class="lineNum">      77 </span><span class="lineCov">        270 :   while (false == p_request.eof())</span>
+<span class="lineNum">      78 </span>            :   {
+<span class="lineNum">      79 </span><span class="lineCov">        270 :     vector&lt;string&gt; l_parts;</span>
+<span class="lineNum">      80 </span><span class="lineCov">        270 :     string         l_line;</span>
+<span class="lineNum">      81 </span>            : 
+<span class="lineNum">      82 </span><span class="lineCov">        150 :     getline(p_request, l_line);</span>
+<span class="lineNum">      83 </span><span class="lineCov">        150 :     boost::trim_if(l_line, boost::is_any_of(&quot;\t\r\n &quot;));</span>
+<span class="lineNum">      84 </span><span class="lineCov">        150 :     if (0 == l_line.size())</span>
+<span class="lineNum">      85 </span><span class="lineCov">         30 :       break;</span>
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span><span class="lineCov">        120 :     l_parts.push_back(l_line.substr(0, l_line.find_first_of(&quot;:&quot;)));</span>
+<span class="lineNum">      88 </span><span class="lineCov">        120 :     l_parts.push_back(l_line.substr(l_line.find_first_of(&quot;:&quot;) + 1));</span>
+<span class="lineNum">      89 </span><span class="lineCov">        120 :     boost::trim(l_parts[0]);</span>
+<span class="lineNum">      90 </span><span class="lineCov">        120 :     boost::trim(l_parts[1]);</span>
+<span class="lineNum">      91 </span><span class="lineCov">        120 :     addHeader(l_parts[0], l_parts[1]);</span>
+<span class="lineNum">      92 </span><span class="lineCov">        120 :     log::info(&quot;network.http.request&quot;, &quot;received header %s: %s&quot;, l_parts[0], l_parts[1], HERE);</span>
+<span class="lineNum">      93 </span>            :   }
+<span class="lineNum">      94 </span>            : 
+<span class="lineNum">      95 </span><span class="lineCov">         30 :   return status::ok;</span>
+<span class="lineNum">      96 </span>            : }
+<a name="97"><span class="lineNum">      97 </span>            : </a>
+<span class="lineNum">      98 </span>            : status
+<span class="lineNum">      99 </span><span class="lineCov">         12 : Message::readVersion(const string&amp; p_version)</span>
+<span class="lineNum">     100 </span>            : {
+<span class="lineNum">     101 </span><span class="lineCov">         12 :   size_t l_pos = p_version.find_last_of(&quot;/&quot;);</span>
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span><span class="lineCov">         12 :   if (p_version.substr(0, l_pos) != &quot;HTTP&quot;)</span>
+<span class="lineNum">     104 </span>            :   {
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;version error : invalid&quot;, HERE);</span>
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     107 </span>            :   }
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span><span class="lineCov">         24 :   string l_version = p_version.substr(l_pos + 1);</span>
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span><span class="lineCov">         12 :   if (l_version == &quot;1.0&quot;)</span>
+<span class="lineNum">     112 </span><span class="lineCov">          2 :     setVersion(version::v1_0);</span>
+<span class="lineNum">     113 </span><span class="lineCov">         10 :   else if (l_version == &quot;1.1&quot;)</span>
+<span class="lineNum">     114 </span><span class="lineCov">         10 :     setVersion(version::v1_1);</span>
+<span class="lineNum">     115 </span>            :   else
+<span class="lineNum">     116 </span>            :   {
+<span class="lineNum">     117 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : unknown version '%s'&quot;, l_version, HERE);</span>
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     119 </span>            :   }
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span><span class="lineCov">         12 :   return status::ok;</span>
+<span class="lineNum">     122 </span>            : }
+<span class="lineNum">     123 </span>            : 
+<a name="124"><span class="lineNum">     124 </span>            : </a>
+<span class="lineNum">     125 </span>            : status
+<span class="lineNum">     126 </span><span class="lineCov">         15 : Message::read(std::istream&amp; p_request)</span>
+<span class="lineNum">     127 </span>            : {
+<span class="lineNum">     128 </span><span class="lineCov">         15 :   if (status::ok != readHead(p_request))</span>
+<span class="lineNum">     129 </span>            :   {
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : bad initial line&quot;, HERE);</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     132 </span>            :   }
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span><span class="lineCov">         15 :   if (status::ok != readData(p_request))</span>
+<span class="lineNum">     135 </span>            :   {
+<span class="lineNum">     136 </span><span class="lineCov">          1 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : invalid data&quot;, HERE);</span>
+<span class="lineNum">     137 </span><span class="lineCov">          1 :     return status::error;</span>
+<span class="lineNum">     138 </span>            :   }
+<span class="lineNum">     139 </span>            : 
+<span class="lineNum">     140 </span><span class="lineCov">         14 :   return status::ok;</span>
+<span class="lineNum">     141 </span>            : }
+<span class="lineNum">     142 </span>            : 
+<a name="143"><span class="lineNum">     143 </span>            : </a>
+<span class="lineNum">     144 </span>            : status
+<span class="lineNum">     145 </span><span class="lineCov">         30 : Message::readHead(std::istream&amp; p_request)</span>
+<span class="lineNum">     146 </span>            : {
+<span class="lineNum">     147 </span><span class="lineCov">         30 :   if (status::ok != readInitial(p_request))</span>
+<span class="lineNum">     148 </span>            :   {
+<span class="lineNum">     149 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : bad initial line&quot;, HERE);</span>
+<span class="lineNum">     150 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     151 </span>            :   }
+<span class="lineNum">     152 </span>            : 
+<span class="lineNum">     153 </span><span class="lineCov">         30 :   if (status::ok != readHeaders(p_request))</span>
+<span class="lineNum">     154 </span>            :   {
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : bad headers lines&quot;, HERE);</span>
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     157 </span>            :   }
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span><span class="lineCov">         30 :   return status::ok;</span>
+<span class="lineNum">     160 </span>            : }
+<span class="lineNum">     161 </span>            : 
+<a name="162"><span class="lineNum">     162 </span>            : </a>
+<span class="lineNum">     163 </span>            : status
+<span class="lineNum">     164 </span><span class="lineCov">         18 : Message::readInitial(istream&amp; p_request)</span>
+<span class="lineNum">     165 </span>            : {
+<span class="lineNum">     166 </span><span class="lineCov">         36 :   string         l_line;</span>
+<span class="lineNum">     167 </span><span class="lineCov">         36 :   vector&lt;string&gt; l_parts;</span>
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span><span class="lineCov">         18 :   getline(p_request, l_line);</span>
+<span class="lineNum">     170 </span><span class="lineCov">         18 :   boost::trim_if(l_line, boost::is_any_of(&quot; \n\r\t&quot;));</span>
+<span class="lineNum">     171 </span><span class="lineCov">         36 :   return status::ok;</span>
+<span class="lineNum">     172 </span>            : }
+<span class="lineNum">     173 </span>            : 
+<a name="174"><span class="lineNum">     174 </span>            : </a>
+<span class="lineNum">     175 </span>            : status
+<span class="lineNum">     176 </span><span class="lineCov">         30 : Message::getDataSize(size_t&amp; p_length) const</span>
+<span class="lineNum">     177 </span>            : {
+<span class="lineNum">     178 </span><span class="lineCov">         60 :   string l_strVal;</span>
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span><span class="lineCov">         30 :   if (false == getHeader(&quot;Content-Length&quot;, l_strVal))</span>
+<span class="lineNum">     181 </span>            :   {
+<span class="lineNum">     182 </span><span class="lineCov">         16 :     p_length = 0;</span>
+<span class="lineNum">     183 </span><span class="lineCov">         16 :     return status::ok;</span>
+<span class="lineNum">     184 </span>            :   }
+<span class="lineNum">     185 </span>            : 
+<span class="lineNum">     186 </span>            :   try {
+<span class="lineNum">     187 </span><span class="lineCov">         14 :     p_length = boost::lexical_cast&lt;size_t&gt;(l_strVal);</span>
+<span class="lineNum">     188 </span>            :   }
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 :   catch (boost::bad_lexical_cast)</span>
+<span class="lineNum">     190 </span>            :   {
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : unable to interpret content-length '%s' as int&quot;, l_strVal, HERE);</span>
+<span class="lineNum">     193 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     194 </span>            :   }
+<span class="lineNum">     195 </span>            : 
+<span class="lineNum">     196 </span><span class="lineCov">         14 :   return status::ok;</span>
+<span class="lineNum">     197 </span>            : }
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            : /**
+<span class="lineNum">     202 </span>            :  ** @details
+<span class="lineNum">     203 </span>            :  ** on lit jusqu'a eof et on append dans m_data chaque chunk
+<a name="204"><span class="lineNum">     204 </span>            :  */</a>
+<span class="lineNum">     205 </span>            : status
+<span class="lineNum">     206 </span><span class="lineCov">         15 : Message::readData(istream&amp; p_request)</span>
+<span class="lineNum">     207 </span>            : {
+<span class="lineNum">     208 </span>            :   size_t l_length;
+<span class="lineNum">     209 </span>            : 
+<span class="lineNum">     210 </span>            :   copy(std::istreambuf_iterator&lt;char&gt;(p_request.rdbuf()),
+<span class="lineNum">     211 </span>            :        std::istreambuf_iterator&lt;char&gt;(),
+<span class="lineNum">     212 </span><span class="lineCov">         15 :        back_inserter(m_data));</span>
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span><span class="lineCov">         15 :   if (status::error == getDataSize(l_length))</span>
+<span class="lineNum">     215 </span>            :   {
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : error while gettin data length&quot;, HERE);</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     218 </span>            :   }
+<span class="lineNum">     219 </span>            : 
+<span class="lineNum">     220 </span><span class="lineCov">         15 :   if (l_length &lt; m_data.size())</span>
+<span class="lineNum">     221 </span>            :   {
+<span class="lineNum">     222 </span><span class="lineCov">          1 :     log::err(&quot;network.http.request&quot;, &quot;read data : read more data than expected&quot;, HERE);</span>
+<span class="lineNum">     223 </span><span class="lineCov">          1 :     return status::error;</span>
+<span class="lineNum">     224 </span>            :   }
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span><span class="lineCov">         14 :   return status::ok;</span>
+<span class="lineNum">     227 </span>            : }
+<a name="228"><span class="lineNum">     228 </span>            : </a>
+<span class="lineNum">     229 </span>            : void
+<span class="lineNum">     230 </span><span class="lineCov">         16 : Message::write(std::ostream&amp; p_stream) const</span>
+<span class="lineNum">     231 </span>            : {
+<span class="lineNum">     232 </span><span class="lineCov">         16 :   writeInitial(p_stream);</span>
+<span class="lineNum">     233 </span><span class="lineCov">         16 :   writeHeaders(p_stream);</span>
+<span class="lineNum">     234 </span><span class="lineCov">         16 :   p_stream &lt;&lt; &quot;\r\n&quot;;</span>
+<span class="lineNum">     235 </span><span class="lineCov">         16 :   writeData(p_stream);</span>
+<span class="lineNum">     236 </span><span class="lineCov">         16 : }</span>
+<a name="237"><span class="lineNum">     237 </span>            : </a>
+<span class="lineNum">     238 </span>            : void
+<span class="lineNum">     239 </span><span class="lineNoCov">          0 : Message::writeInitial(std::ostream&amp; /* p_stream */) const</span>
+<span class="lineNum">     240 </span>            : {
+<span class="lineNum">     241 </span><span class="lineNoCov">          0 : }</span>
+<a name="242"><span class="lineNum">     242 </span>            : </a>
+<span class="lineNum">     243 </span>            : void
+<span class="lineNum">     244 </span><span class="lineCov">         16 : Message::writeData(std::ostream&amp; p_stream) const</span>
+<span class="lineNum">     245 </span>            : {
+<span class="lineNum">     246 </span><span class="lineCov">         16 :   p_stream &lt;&lt; getData();</span>
+<span class="lineNum">     247 </span><span class="lineCov">         16 : }</span>
+<a name="248"><span class="lineNum">     248 </span>            : </a>
+<span class="lineNum">     249 </span>            : void
+<span class="lineNum">     250 </span><span class="lineCov">         16 : Message::writeHeaders(std::ostream&amp; p_stream) const</span>
+<span class="lineNum">     251 </span>            : {
+<span class="lineNum">     252 </span><span class="lineCov">         16 :   p_stream &lt;&lt; format::vargs(&quot;Content-Length: %d\r\n&quot;, getData().size());</span>
+<span class="lineNum">     253 </span><span class="lineCov">         32 :   for (auto&amp; c_header : getHeaders())</span>
+<span class="lineNum">     254 </span><span class="lineCov">         16 :     p_stream &lt;&lt; format::vargs(&quot;%s: %s\r\n&quot;, c_header.first, c_header.second);</span>
+<span class="lineNum">     255 </span><span class="lineCov">         16 : }</span>
+<span class="lineNum">     256 </span>            : 
+<a name="257"><span class="lineNum">     257 </span>            : </a>
+<span class="lineNum">     258 </span>            : const string&amp;
+<span class="lineNum">     259 </span><span class="lineCov">         32 : Message::getData(void) const</span>
+<span class="lineNum">     260 </span>            : {
+<span class="lineNum">     261 </span><span class="lineCov">         32 :   return m_data;</span>
+<span class="lineNum">     262 </span>            : }
+<span class="lineNum">     263 </span>            : 
+<span class="lineNum">     264 </span>            : 
+<a name="265"><span class="lineNum">     265 </span>            : </a>
+<span class="lineNum">     266 </span>            : 
+<span class="lineNum">     267 </span><span class="lineCov">          3 : }}}</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<map id="src/log/fwd.hh" name="src/log/fwd.hh">
+<area shape="rect" id="node2" href="$helpers_8hh.html" title="src/log/helpers.hh" alt="" coords="1242,155,1367,181"/>
+<area shape="rect" id="node6" href="$ConfLoader_8hh.html" title="src/log/ConfLoader.hh" alt="" coords="1091,229,1241,256"/>
+<area shape="rect" id="node14" href="$Appender_8hh.html" title="src/log/Appender.hh" alt="" coords="542,155,681,181"/>
+<area shape="rect" id="node15" href="$MemoryAppender_8hh.html" title="src/log/MemoryAppender.hh" alt="" coords="261,229,447,256"/>
+<area shape="rect" id="node16" href="$StreamAppender_8hh.html" title="src/log/StreamAppender.hh" alt="" coords="5,229,185,256"/>
+<area shape="rect" id="node19" href="$ColoredFormatter_8hh.html" title="src/log/ColoredFormatter.hh" alt="" coords="803,155,987,181"/>
+<area shape="rect" id="node20" href="$Formatter_8hh.html" title="src/log/Formatter.hh" alt="" coords="705,80,843,107"/>
+<area shape="rect" id="node3" href="$src_2log_8hh.html" title="src/log.hh" alt="" coords="1917,229,1996,256"/>
+<area shape="rect" id="node4" href="$Appender_8cc.html" title="src/log/Appender.cc" alt="" coords="725,229,863,256"/>
+<area shape="rect" id="node5" href="$ColoredFormatter_8cc.html" title="src/log/ColoredFormatter.cc" alt="" coords="1089,304,1273,331"/>
+<area shape="rect" id="node7" href="$ConfLoader_8cc.html" title="src/log/ConfLoader.cc" alt="" coords="436,304,587,331"/>
+<area shape="rect" id="node8" href="$Formatter_8cc.html" title="src/log/Formatter.cc" alt="" coords="1311,304,1450,331"/>
+<area shape="rect" id="node9" href="$SyslogAppender_8cc.html" title="src/log/SyslogAppender.cc" alt="" coords="886,304,1065,331"/>
+<area shape="rect" id="node10" href="$FormatModifiers_8cc.html" title="src/log/FormatModifiers.cc" alt="" coords="1419,229,1596,256"/>
+<area shape="rect" id="node11" href="$helpers_8cc.html" title="src/log/helpers.cc" alt="" coords="1621,229,1746,256"/>
+<area shape="rect" id="node12" href="$Logger_8cc.html" title="src/log/Logger.cc" alt="" coords="1770,229,1893,256"/>
+<area shape="rect" id="node13" href="$MemoryAppender_8cc.html" title="src/log/MemoryAppender.cc" alt="" coords="637,304,823,331"/>
+<area shape="rect" id="node18" href="$SyslogAppender_8hh.html" title="src/log/SyslogAppender.hh" alt="" coords="522,229,701,256"/>
+<area shape="rect" id="node17" href="$StreamAppender_8cc.html" title="src/log/StreamAppender.cc" alt="" coords="5,304,185,331"/>
+</map>

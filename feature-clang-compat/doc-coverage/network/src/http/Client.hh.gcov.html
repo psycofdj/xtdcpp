@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network documentation coverage - src/http/Client.hh</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/http</a> - Client.hh</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network documentation coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">40.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-04 21:16:45</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : #ifndef NETWORK_HTTP_CLIENT_HH_
+<span class="lineNum">       2 </span>            : # define NETWORK_HTTP_CLIENT_HH_
+<span class="lineNum">       3 </span>            : # include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+<span class="lineNum">       4 </span>            : # include &lt;boost/interprocess/sync/interprocess_semaphore.hpp&gt;
+<span class="lineNum">       5 </span>            : # include &quot;base/Client.hh&quot;
+<span class="lineNum">       6 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : namespace boost { namespace system { class error_code; } }
+<span class="lineNum">       9 </span>            : namespace xtd { namespace network { namespace http { class Request; } } }
+<span class="lineNum">      10 </span>            : namespace xtd { namespace network { namespace http { class Response; } } }
+<span class="lineNum">      11 </span>            : namespace xtd {
+<span class="lineNum">      12 </span>            : namespace network {
+<span class="lineNum">      13 </span>            : namespace http {
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : template&lt;typename TDomain&gt;
+<span class="lineNum">      16 </span>            : class Client : public base::Client&lt;TDomain&gt;
+<span class="lineNum">      17 </span><span class="lineNoCov">          0 : {</span>
+<span class="lineNum">      18 </span>            : private:
+<span class="lineNum">      19 </span>            :   typedef base::Client&lt;TDomain&gt;      TBase;
+<span class="lineNum">      20 </span>            :   typedef typename TBase::cnx_sptr_t cnx_sptr_t;
+<span class="lineNum">      21 </span>            :   typedef typename TBase::cnxstatus  cnxstatus;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : public:
+<span class="lineNum">      24 </span><span class="lineNoCov">          0 :   Client(void);</span>
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :   virtual ~Client(void);</span>
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : public:
+<span class="lineNum">      28 </span>            :   /**
+<span class="lineNum">      29 </span>            :    ** @brief envoi d'une structure requête au server
+<span class="lineNum">      30 </span>            :    ** @param p_request la requête
+<span class="lineNum">      31 </span>            :    ** @return status::ok si tout va bien, status::error sinon
+<span class="lineNum">      32 </span>            :    ** @details
+<span class="lineNum">      33 </span>            :    ** Non bloquant, status::ok ne veut pas dire que le message est bien arrivé,
+<span class="lineNum">      34 </span>            :    ** simplement que l'objet étaient en étant d'envoyer une requête (pas
+<span class="lineNum">      35 </span>            :    ** déjà en attente de réponse par exemple).
+<span class="lineNum">      36 </span>            :    */
+<span class="lineNum">      37 </span><span class="lineCov">          1 :   status send(const Request&amp; p_request);</span>
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            :   /**
+<span class="lineNum">      40 </span>            :    ** @brief reception de la structure réponse
+<span class="lineNum">      41 </span>            :    ** @param p_response structure à remplir avec la réponse du server
+<span class="lineNum">      42 </span>            :    ** @return status::ok si tout va bien, status::timeout en cas de timeout et staus::error en cas d'erreur.
+<span class="lineNum">      43 </span>            :    ** @details
+<span class="lineNum">      44 </span>            :    ** Cette méthode est bloquante, elle attend la réception effective de la réponse
+<span class="lineNum">      45 </span>            :    ** du serveur ou la survenue d'une erreur/timeout.
+<span class="lineNum">      46 </span>            :    */
+<span class="lineNum">      47 </span><span class="lineCov">          1 :   status receive(Response&amp; p_response);</span>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : private:
+<span class="lineNum">      50 </span>            :   cnx_sptr_t createCnx(string p_hostname, uint32_t p_port);
+<span class="lineNum">      51 </span>            :   void       do_receive(void);
+<span class="lineNum">      52 </span>            :   void       onSent(const boost::system::error_code p_error);
+<span class="lineNum">      53 </span>            :   void       onReceived(const boost::system::error_code p_error,
+<span class="lineNum">      54 </span>            :                         sptr&lt;vector&lt;char&gt;&gt;              p_response);
+<span class="lineNum">      55 </span>            : private:
+<span class="lineNum">      56 </span>            :   /** Semaphore uitilise pour bloquer l'utilisateur soit dans le send (noget) soit dans le receive */
+<span class="lineNum">      57 </span>            :   boost::interprocess::interprocess_semaphore m_userSemaphore;
+<span class="lineNum">      58 </span>            :   cnxstatus                                   m_status;
+<span class="lineNum">      59 </span>            :   vector&lt;char&gt;                                m_response;
+<span class="lineNum">      60 </span>            :   boost::posix_time::ptime                    m_lastSend;
+<span class="lineNum">      61 </span>            : };
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            : }}} //end namespaces
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : #endif // !NETWORK_HTTPCLIENT_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

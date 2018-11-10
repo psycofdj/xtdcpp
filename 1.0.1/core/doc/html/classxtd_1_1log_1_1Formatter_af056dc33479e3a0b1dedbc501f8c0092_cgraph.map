@@ -1,0 +1,7 @@
+<map id="xtd::log::Formatter::Formatter" name="xtd::log::Formatter::Formatter">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1Formatter.html#a42088b47363218fa2d9f7641651ca0cd" title="Set layout for all compound fields. " alt="" coords="195,5,336,47"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1Formatter.html#aeefc07bef8ef73b5d6be462ad3a03d3d" title="Set format for all fields. " alt="" coords="195,71,336,112"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1Formatter.html#a906770a330ec66756306d2e97245560a" title="Set layout for a particular compound field. " alt="" coords="384,5,525,47"/>
+<area shape="rect" id="node5" href="$classxtd_1_1log_1_1Formatter.html#a04f0e52d7d5d29d8fe0e56f593764f7e" title="Set format for a particular field. " alt="" coords="384,71,525,112"/>
+<area shape="rect" id="node6" href="$structxtd_1_1log_1_1Fields.html#ac0a58b7534140d7860657f92e02c0d05" title="Sets value for given field. " alt="" coords="573,78,713,105"/>
+</map>

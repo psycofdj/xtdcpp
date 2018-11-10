@@ -1,0 +1,519 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/tty.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - tty.hh<span style="font-size: 80%;"> (source / <a href="tty.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-02-05 07:56:13</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef XTD_CORE_TTY_HH_</a>
+<span class="lineNum">       2 </span>            : # define XTD_CORE_TTY_HH_
+<span class="lineNum">       3 </span>            : # include &quot;types.hh&quot;
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : namespace xtd {
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : /**
+<span class="lineNum">       9 </span>            :  ** @brief Manipulate text on tty environment
+<span class="lineNum">      10 </span>            :  */
+<span class="lineNum">      11 </span>            : namespace tty {
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /**
+<span class="lineNum">      14 </span>            :  ** @brief ANSI codes for terminal output options
+<span class="lineNum">      15 </span>            :  ** @details
+<span class="lineNum">      16 </span>            :  **
+<span class="lineNum">      17 </span>            :  ** This object holds one or more terminal output option.
+<span class="lineNum">      18 </span>            :  **
+<span class="lineNum">      19 </span>            :  ** It cannot be constructed and can only be used through pre-defined constants.
+<span class="lineNum">      20 </span>            :  ** Available constants are :
+<span class="lineNum">      21 </span>            :  ** - attrs::unset       : @copybrief attrs::unset
+<span class="lineNum">      22 </span>            :  ** - attrs::reset       : @copybrief attrs::reset
+<span class="lineNum">      23 </span>            :  ** - attrs::dim         : @copybrief attrs::dim
+<span class="lineNum">      24 </span>            :  ** - attrs::bold        : @copybrief attrs::bold
+<span class="lineNum">      25 </span>            :  ** - attrs::underlined  : @copybrief attrs::underlined
+<span class="lineNum">      26 </span>            :  ** - attrs::blink       : @copybrief attrs::blink
+<span class="lineNum">      27 </span>            :  ** - attrs::reverse     : @copybrief attrs::reverse
+<span class="lineNum">      28 </span>            :  ** - attrs::hidden      : @copybrief attrs::hidden
+<span class="lineNum">      29 </span>            :  **
+<span class="lineNum">      30 </span>            :  ** Multiple constants can be combined together with
+<span class="lineNum">      31 </span>            :  ** @ref attrs::operator| &quot;operator|&quot; or @ref attrs::operator|= &quot;operator|=&quot;.
+<span class="lineNum">      32 </span>            :  **  Example :
+<span class="lineNum">      33 </span>            :  ** @code
+<span class="lineNum">      34 </span>            :  ** attrs l_val = attrs::unset;
+<span class="lineNum">      35 </span>            :  **
+<span class="lineNum">      36 </span>            :  ** l_val  = attrs::bold;
+<span class="lineNum">      37 </span>            :  ** l_val  = attrs::bold | attrs::underlined;
+<span class="lineNum">      38 </span>            :  ** l_val |= reset;
+<span class="lineNum">      39 </span>            :  ** @endcode
+<span class="lineNum">      40 </span>            :  **
+<span class="lineNum">      41 </span>            :  ** Available methods :
+<span class="lineNum">      42 </span>            :  ** - @ref attrs::getValues &quot;getValues&quot; : @copybrief attrs::getValues
+<a name="43"><span class="lineNum">      43 </span>            :  ** - @ref attrs::isSet &quot;isSet&quot;         : @copybrief attrs::isSet</a>
+<span class="lineNum">      44 </span>            :  */
+<span class="lineNum">      45 </span><span class="lineCov">       2063 : class attrs</span>
+<span class="lineNum">      46 </span>            : {
+<span class="lineNum">      47 </span>            : private:
+<span class="lineNum">      48 </span>            :   enum class s : uint32_t {
+<span class="lineNum">      49 </span>            :     reset      = 0,
+<span class="lineNum">      50 </span>            :     bold       = 1,
+<span class="lineNum">      51 </span>            :     dim        = 2,
+<span class="lineNum">      52 </span>            :     underlined = 4,
+<span class="lineNum">      53 </span>            :     blink      = 5,
+<span class="lineNum">      54 </span>            :     reverse    = 7,
+<span class="lineNum">      55 </span>            :     hidden     = 8
+<span class="lineNum">      56 </span>            :   };
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            : public:
+<span class="lineNum">      59 </span>            :   static const attrs unset;      ///&lt; Default output attribute, no effect
+<span class="lineNum">      60 </span>            :   static const attrs reset;      ///&lt; Remove all previously defined attribute
+<span class="lineNum">      61 </span>            :   static const attrs dim;        ///&lt; Reduced weight effect
+<span class="lineNum">      62 </span>            :   static const attrs bold;       ///&lt; Increased weight effect
+<span class="lineNum">      63 </span>            :   static const attrs underlined; ///&lt; Underlined effect
+<span class="lineNum">      64 </span>            :   static const attrs blink;      ///&lt; Blinking effect
+<span class="lineNum">      65 </span>            :   static const attrs reverse;    ///&lt; brief Revered foreground and background effect
+<span class="lineNum">      66 </span>            :   static const attrs hidden;     ///&lt; Hidden font effect
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            : private:
+<span class="lineNum">      69 </span>            :   attrs(void);
+<span class="lineNum">      70 </span>            :   attrs(s p_attr);
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            : public:
+<span class="lineNum">      73 </span>            :   /**
+<span class="lineNum">      74 </span>            :    ** @brief Constructs attrs from string
+<span class="lineNum">      75 </span>            :    ** @param p_value string value
+<span class="lineNum">      76 </span>            :    ** @param p_attrs result attrs reference
+<span class="lineNum">      77 </span>            :    ** @return bool is p_value is a valid attribute string value
+<span class="lineNum">      78 </span>            :    */
+<span class="lineNum">      79 </span>            :   static bool from_string(const string&amp; p_value, attrs&amp; p_attrs);
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   /**
+<span class="lineNum">      82 </span>            :    ** @brief Convert attrs to string
+<span class="lineNum">      83 </span>            :    ** @param p_attrs attrs to convert
+<span class="lineNum">      84 </span>            :    */
+<span class="lineNum">      85 </span>            :   static string to_string(const attrs&amp; p_attrs);
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            : public:
+<span class="lineNum">      88 </span>            :   /**
+<span class="lineNum">      89 </span>            :    ** @brief Creates the bitwise or self and given attrs
+<span class="lineNum">      90 </span>            :    ** @param p_o1 attributes to add
+<span class="lineNum">      91 </span>            :    */
+<span class="lineNum">      92 </span>            :   attrs operator|(const attrs&amp; p_o1) const;
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            :   /**
+<span class="lineNum">      95 </span>            :    ** @brief Merge given attributes into self
+<span class="lineNum">      96 </span>            :    ** @param p_o1 attributes to merge
+<span class="lineNum">      97 </span>            :    */
+<span class="lineNum">      98 </span>            :   attrs&amp; operator|=(const attrs&amp; p_o1);
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            :   /**
+<span class="lineNum">     101 </span>            :    ** @brief Tells if given attrs is equivalent to current object
+<span class="lineNum">     102 </span>            :    ** @param p_obj Object to compare
+<span class="lineNum">     103 </span>            :    */
+<span class="lineNum">     104 </span>            :   bool operator==(const attrs&amp; p_obj) const;
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            :   /**
+<span class="lineNum">     107 </span>            :    ** @brief Returns internal ANSI code values
+<span class="lineNum">     108 </span>            :    ** @return vector of each effect id
+<span class="lineNum">     109 </span>            :    */
+<span class="lineNum">     110 </span>            :   const vector&lt;uint32_t&gt;&amp; getValues(void) const;
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            :   /**
+<span class="lineNum">     113 </span>            :    ** @brief Tells if at least one effect is registered
+<span class="lineNum">     114 </span>            :    */
+<span class="lineNum">     115 </span>            :   bool isSet(void) const;
+<span class="lineNum">     116 </span>            : 
+<span class="lineNum">     117 </span>            : private:
+<span class="lineNum">     118 </span>            :   vector&lt;uint32_t&gt; m_attrs;
+<span class="lineNum">     119 </span>            : };
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : /**
+<span class="lineNum">     123 </span>            :  ** @brief ANSI code for terminal output color
+<span class="lineNum">     124 </span>            :  ** @details
+<span class="lineNum">     125 </span>            :  ** There's two types of TTY colors, standard predefined and extended.
+<span class="lineNum">     126 </span>            :  **
+<span class="lineNum">     127 </span>            :  ** Predefined colors are built from constants and can be displayed on almost every
+<span class="lineNum">     128 </span>            :  ** terminals. Available colors are :
+<span class="lineNum">     129 </span>            :  ** - @ref color::unset    : @copybrief color::unset
+<span class="lineNum">     130 </span>            :  ** - @ref color::normal   : @copybrief color::normal
+<span class="lineNum">     131 </span>            :  ** - @ref color::black    : @copybrief color::black
+<span class="lineNum">     132 </span>            :  ** - @ref color::red      : @copybrief color::red
+<span class="lineNum">     133 </span>            :  ** - @ref color::green    : @copybrief color::green
+<span class="lineNum">     134 </span>            :  ** - @ref color::yellow   : @copybrief color::yellow
+<span class="lineNum">     135 </span>            :  ** - @ref color::blue     : @copybrief color::blue
+<span class="lineNum">     136 </span>            :  ** - @ref color::magenta  : @copybrief color::magenta
+<span class="lineNum">     137 </span>            :  ** - @ref color::cyan     : @copybrief color::cyan
+<span class="lineNum">     138 </span>            :  ** - @ref color::gray     : @copybrief color::gray
+<span class="lineNum">     139 </span>            :  ** - @ref color::lblack   : @copybrief color::lblack
+<span class="lineNum">     140 </span>            :  ** - @ref color::lred     : @copybrief color::lred
+<span class="lineNum">     141 </span>            :  ** - @ref color::lgreen   : @copybrief color::lgreen
+<span class="lineNum">     142 </span>            :  ** - @ref color::lyellow  : @copybrief color::lyellow
+<span class="lineNum">     143 </span>            :  ** - @ref color::lblue    : @copybrief color::lblue
+<span class="lineNum">     144 </span>            :  ** - @ref color::lmagenta : @copybrief color::lmagenta
+<span class="lineNum">     145 </span>            :  ** - @ref color::lcyan    : @copybrief color::lcyan
+<span class="lineNum">     146 </span>            :  ** - @ref color::lgray    : @copybrief color::lgray
+<span class="lineNum">     147 </span>            :  ** - @ref color::white    : @copybrief color::white
+<span class="lineNum">     148 </span>            :  **
+<span class="lineNum">     149 </span>            :  **
+<span class="lineNum">     150 </span>            :  ** Extended colors are direclty from their ANSI color code using the
+<span class="lineNum">     151 </span>            :  ** *uint32_t* constructor. Their compatibility depends on the terminal
+<span class="lineNum">     152 </span>            :  ** capabilities.
+<span class="lineNum">     153 </span>            :  */
+<span class="lineNum">     154 </span>            : class color
+<span class="lineNum">     155 </span>            : {
+<span class="lineNum">     156 </span>            : public:
+<span class="lineNum">     157 </span>            :   static const color unset;    ///&lt; no color directive
+<span class="lineNum">     158 </span>            :   static const color normal;   ///&lt; default color
+<span class="lineNum">     159 </span>            :   static const color black;    ///&lt; black
+<span class="lineNum">     160 </span>            :   static const color red;      ///&lt; red
+<span class="lineNum">     161 </span>            :   static const color green;    ///&lt; green
+<span class="lineNum">     162 </span>            :   static const color yellow;   ///&lt; yellow
+<span class="lineNum">     163 </span>            :   static const color blue;     ///&lt; blue
+<span class="lineNum">     164 </span>            :   static const color magenta;  ///&lt; magenta
+<span class="lineNum">     165 </span>            :   static const color cyan;     ///&lt; cyan
+<span class="lineNum">     166 </span>            :   static const color gray;     ///&lt; gray
+<span class="lineNum">     167 </span>            :   static const color lblack;   ///&lt; light black
+<span class="lineNum">     168 </span>            :   static const color lred;     ///&lt; light red
+<span class="lineNum">     169 </span>            :   static const color lgreen;   ///&lt; light green
+<span class="lineNum">     170 </span>            :   static const color lyellow;  ///&lt; light yellow
+<span class="lineNum">     171 </span>            :   static const color lblue;    ///&lt; light blue
+<span class="lineNum">     172 </span>            :   static const color lmagenta; ///&lt; light magenta
+<span class="lineNum">     173 </span>            :   static const color lcyan;    ///&lt; light cyan
+<span class="lineNum">     174 </span>            :   static const color lgray;    ///&lt; light gray
+<span class="lineNum">     175 </span>            :   static const color white;    ///&lt; white
+<span class="lineNum">     176 </span>            : 
+<span class="lineNum">     177 </span>            : private:
+<span class="lineNum">     178 </span>            :   enum class c : uint32_t {
+<span class="lineNum">     179 </span>            :     unset    = 0,
+<span class="lineNum">     180 </span>            :     black    = 30,
+<span class="lineNum">     181 </span>            :     red      = 31,
+<span class="lineNum">     182 </span>            :     green    = 32,
+<span class="lineNum">     183 </span>            :     yellow   = 33,
+<span class="lineNum">     184 </span>            :     blue     = 34,
+<span class="lineNum">     185 </span>            :     magenta  = 35,
+<span class="lineNum">     186 </span>            :     cyan     = 36,
+<span class="lineNum">     187 </span>            :     gray     = 37,
+<span class="lineNum">     188 </span>            :     normal   = 39,
+<span class="lineNum">     189 </span>            :     lblack   = 90,
+<span class="lineNum">     190 </span>            :     lred     = 91,
+<span class="lineNum">     191 </span>            :     lgreen   = 92,
+<span class="lineNum">     192 </span>            :     lyellow  = 93,
+<span class="lineNum">     193 </span>            :     lblue    = 94,
+<span class="lineNum">     194 </span>            :     lmagenta = 95,
+<span class="lineNum">     195 </span>            :     lcyan    = 96,
+<span class="lineNum">     196 </span>            :     lgray    = 97,
+<span class="lineNum">     197 </span>            :     white    = 97
+<span class="lineNum">     198 </span>            :   };
+<span class="lineNum">     199 </span>            : 
+<span class="lineNum">     200 </span>            : private:
+<span class="lineNum">     201 </span>            :   color(c p_color);
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            : public:
+<span class="lineNum">     204 </span>            :   /**
+<span class="lineNum">     205 </span>            :    ** @brief Constructor for extended color
+<span class="lineNum">     206 </span>            :    ** @param p_value terminal color code
+<span class="lineNum">     207 </span>            :    */
+<span class="lineNum">     208 </span>            :   color(uint32_t p_value);
+<span class="lineNum">     209 </span>            : 
+<span class="lineNum">     210 </span>            : public:
+<span class="lineNum">     211 </span>            :   /**
+<span class="lineNum">     212 </span>            :    ** @brief Construct color from string value
+<span class="lineNum">     213 </span>            :    ** @param p_value string value
+<span class="lineNum">     214 </span>            :    ** @param p_attrs ouput result reference
+<span class="lineNum">     215 </span>            :    ** @return true is p_value is a valid color name
+<span class="lineNum">     216 </span>            :    */
+<span class="lineNum">     217 </span>            :   static bool from_string(const string&amp; p_value, color&amp; p_attrs);
+<span class="lineNum">     218 </span>            : 
+<span class="lineNum">     219 </span>            :   /**
+<span class="lineNum">     220 </span>            :    ** @brief Converts color to string
+<span class="lineNum">     221 </span>            :    */
+<span class="lineNum">     222 </span>            :   static string to_string(const color&amp; p_color);
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span>            : public:
+<span class="lineNum">     225 </span>            :   /**
+<span class="lineNum">     226 </span>            :    ** @brief Tells if given color is equivalent to current object
+<span class="lineNum">     227 </span>            :    ** @param p_obj Object to compare
+<span class="lineNum">     228 </span>            :    */
+<span class="lineNum">     229 </span>            :   bool operator==(const color&amp; p_obj) const;
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span>            :   /**
+<span class="lineNum">     232 </span>            :    ** @brief Tells if color is extended
+<span class="lineNum">     233 </span>            :    */
+<span class="lineNum">     234 </span>            :   bool isExtended(void) const;
+<span class="lineNum">     235 </span>            : 
+<span class="lineNum">     236 </span>            :   /**
+<span class="lineNum">     237 </span>            :    ** @brief Get terminal color code
+<span class="lineNum">     238 </span>            :    */
+<span class="lineNum">     239 </span>            :   uint32_t getValue(void) const;
+<span class="lineNum">     240 </span>            : 
+<span class="lineNum">     241 </span>            :   /**
+<span class="lineNum">     242 </span>            :    ** @brief Tells is color is not color::unset
+<span class="lineNum">     243 </span>            :    */
+<span class="lineNum">     244 </span>            :   bool isSet(void) const;
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span>            : private:
+<span class="lineNum">     247 </span>            :   uint32_t m_value;
+<span class="lineNum">     248 </span>            :   bool     m_extended;
+<span class="lineNum">     249 </span>            : };
+<span class="lineNum">     250 </span>            : 
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span>            : /**
+<span class="lineNum">     253 </span>            :  ** @brief Aggregates foreground color, background color and display options
+<span class="lineNum">     254 </span>            :  ** @details
+<span class="lineNum">     255 </span>            :  **
+<span class="lineNum">     256 </span>            :  ** Usage example :
+<span class="lineNum">     257 </span>            :  ** @code
+<span class="lineNum">     258 </span>            :  ** // Full style specification
+<span class="lineNum">     259 </span>            :  ** style l_val(color::red, color::black, attrs::underlined | attrs::bold);
+<span class="lineNum">     260 </span>            :  **
+<span class="lineNum">     261 </span>            :  ** // Foreground and background specification
+<span class="lineNum">     262 </span>            :  ** style l_val(color::red, color::black);
+<span class="lineNum">     263 </span>            :  **
+<span class="lineNum">     264 </span>            :  ** // Foreground effects specification
+<span class="lineNum">     265 </span>            :  ** style l_val(color::red, attrs::bold);
+<span class="lineNum">     266 </span>            :  **
+<span class="lineNum">     267 </span>            :  ** // Foreground specification
+<span class="lineNum">     268 </span>            :  ** style l_val(color::red);
+<span class="lineNum">     269 </span>            :  **
+<span class="lineNum">     270 </span>            :  ** // Default style
+<span class="lineNum">     271 </span>            :  ** style l_val;
+<a name="272"><span class="lineNum">     272 </span>            :  ** @endcode</a>
+<span class="lineNum">     273 </span>            :  */
+<span class="lineNum">     274 </span><span class="lineCov">       1508 : struct style</span>
+<span class="lineNum">     275 </span>            : {
+<span class="lineNum">     276 </span>            : public:
+<span class="lineNum">     277 </span>            :   /**
+<span class="lineNum">     278 </span>            :    ** @brief Full specification constructor with default values
+<span class="lineNum">     279 </span>            :    ** @param p_fg foreground color (default unset)
+<span class="lineNum">     280 </span>            :    ** @param p_bg background color (default unset)
+<span class="lineNum">     281 </span>            :    ** @param p_attrs effect attributes (default unset)
+<span class="lineNum">     282 </span>            :    */
+<span class="lineNum">     283 </span>            :   style(const color&amp; p_fg    = color::unset,
+<span class="lineNum">     284 </span>            :         const color&amp; p_bg    = color::unset,
+<span class="lineNum">     285 </span>            :         const attrs&amp; p_attrs = attrs::unset);
+<span class="lineNum">     286 </span>            : 
+<span class="lineNum">     287 </span>            :   /**
+<span class="lineNum">     288 </span>            :    ** @brief Foreground and effect specification constructor
+<span class="lineNum">     289 </span>            :    ** @param p_fg foreground color
+<span class="lineNum">     290 </span>            :    ** @param p_attrs effect attributes
+<span class="lineNum">     291 </span>            :    */
+<span class="lineNum">     292 </span>            :   style(const color&amp; p_fg,
+<span class="lineNum">     293 </span>            :         const attrs&amp; p_attrs);
+<span class="lineNum">     294 </span>            : 
+<span class="lineNum">     295 </span>            : public:
+<span class="lineNum">     296 </span>            :   /**
+<span class="lineNum">     297 </span>            :    ** @brief Returns foreground color
+<span class="lineNum">     298 </span>            :    */
+<span class="lineNum">     299 </span>            :   const color&amp; getFgColor(void) const;
+<span class="lineNum">     300 </span>            : 
+<span class="lineNum">     301 </span>            :   /**
+<span class="lineNum">     302 </span>            :    ** @brief Returns background color
+<span class="lineNum">     303 </span>            :    */
+<span class="lineNum">     304 </span>            :   const color&amp; getBgColor(void) const;
+<span class="lineNum">     305 </span>            : 
+<span class="lineNum">     306 </span>            :   /**
+<span class="lineNum">     307 </span>            :    ** @brief Returns effect attributes
+<span class="lineNum">     308 </span>            :    */
+<span class="lineNum">     309 </span>            :   const attrs&amp; getAttrs(void)   const;
+<span class="lineNum">     310 </span>            : 
+<span class="lineNum">     311 </span>            :   /**
+<span class="lineNum">     312 </span>            :    ** @brief Sets forground color
+<span class="lineNum">     313 </span>            :    ** @param p_fg foreground color
+<span class="lineNum">     314 </span>            :    */
+<span class="lineNum">     315 </span>            :   void setFgColor(const color&amp; p_fg);
+<span class="lineNum">     316 </span>            : 
+<span class="lineNum">     317 </span>            :   /**
+<span class="lineNum">     318 </span>            :    ** @brief Sets background color
+<span class="lineNum">     319 </span>            :    ** @param p_bg background color
+<span class="lineNum">     320 </span>            :    */
+<span class="lineNum">     321 </span>            :   void setBgColor(const color&amp; p_bg);
+<span class="lineNum">     322 </span>            : 
+<span class="lineNum">     323 </span>            :   /**
+<span class="lineNum">     324 </span>            :    ** @brief Sets effect attributes
+<span class="lineNum">     325 </span>            :    ** @param p_attrs effect attributes
+<span class="lineNum">     326 </span>            :    */
+<span class="lineNum">     327 </span>            :   void setAttrs(const attrs&amp; p_attrs);
+<span class="lineNum">     328 </span>            : 
+<span class="lineNum">     329 </span>            : private:
+<span class="lineNum">     330 </span>            :   color m_fg;
+<span class="lineNum">     331 </span>            :   color m_bg;
+<span class="lineNum">     332 </span>            :   attrs m_attrs;
+<span class="lineNum">     333 </span>            : };
+<span class="lineNum">     334 </span>            : 
+<span class="lineNum">     335 </span>            : /**
+<span class="lineNum">     336 </span>            :  ** @brief Generates ANSI codes for given text and style
+<span class="lineNum">     337 </span>            :  ** @details
+<span class="lineNum">     338 </span>            :  **
+<span class="lineNum">     339 </span>            :  ** This object defines several constructors allowing to define only foreground
+<span class="lineNum">     340 </span>            :  ** colors, foreground and background colors, colors and attributes or only
+<span class="lineNum">     341 </span>            :  ** foreground color and attributes.
+<span class="lineNum">     342 </span>            :  **
+<span class="lineNum">     343 </span>            :  ** The method @ref Text::str return the full ANSI espace sequence for given text
+<span class="lineNum">     344 </span>            :  ** and style options.
+<span class="lineNum">     345 </span>            :  **
+<span class="lineNum">     346 </span>            :  ** It also defines an implicit *string* cast operator allowing to use this object
+<span class="lineNum">     347 </span>            :  ** as a genuine string.
+<span class="lineNum">     348 </span>            :  **
+<span class="lineNum">     349 </span>            :  ** Example :
+<span class="lineNum">     350 </span>            :  ** @code
+<span class="lineNum">     351 </span>            :  ** Text   l_msg = Text(&quot;some text in red&quot;, color::red);
+<span class="lineNum">     352 </span>            :  ** string l_val = l_msg;
+<a name="353"><span class="lineNum">     353 </span>            :  ** @endcode</a>
+<span class="lineNum">     354 </span>            :  */
+<span class="lineNum">     355 </span><span class="lineCov">        126 : class Text</span>
+<span class="lineNum">     356 </span>            : {
+<span class="lineNum">     357 </span>            : public:
+<span class="lineNum">     358 </span>            :   /**
+<span class="lineNum">     359 </span>            :    ** @brief Full specification constructor
+<span class="lineNum">     360 </span>            :    ** @param p_str Text string content
+<span class="lineNum">     361 </span>            :    ** @param p_fg TTY foreground color
+<span class="lineNum">     362 </span>            :    ** @param p_bg TTY background color
+<span class="lineNum">     363 </span>            :    ** @param p_attrs TTY attributes
+<span class="lineNum">     364 </span>            :    */
+<span class="lineNum">     365 </span>            :   Text(const string&amp; p_str,
+<span class="lineNum">     366 </span>            :        const color&amp; p_fg    = color::unset,
+<span class="lineNum">     367 </span>            :        const color&amp; p_bg    = color::unset,
+<span class="lineNum">     368 </span>            :        const attrs&amp; p_attrs = attrs::unset);
+<span class="lineNum">     369 </span>            : 
+<span class="lineNum">     370 </span>            :   /**
+<span class="lineNum">     371 </span>            :    ** @brief Partial specification constructor
+<span class="lineNum">     372 </span>            :    ** @param p_str Text string content
+<span class="lineNum">     373 </span>            :    ** @param p_fg TTY foreground color
+<span class="lineNum">     374 </span>            :    ** @param p_attrs TTY attributes
+<span class="lineNum">     375 </span>            :    */
+<span class="lineNum">     376 </span>            :   Text(const string&amp; p_str,
+<span class="lineNum">     377 </span>            :        const color&amp; p_fg,
+<span class="lineNum">     378 </span>            :        const attrs&amp; p_attrs);
+<span class="lineNum">     379 </span>            : 
+<span class="lineNum">     380 </span>            :   /**
+<span class="lineNum">     381 </span>            :    ** @brief Construct from text and style object
+<span class="lineNum">     382 </span>            :    ** @param p_str Text string content
+<span class="lineNum">     383 </span>            :    ** @param p_style TTY style object
+<span class="lineNum">     384 </span>            :    */
+<span class="lineNum">     385 </span>            :   Text(const string&amp; p_str,
+<span class="lineNum">     386 </span>            :        const style&amp; p_style);
+<span class="lineNum">     387 </span>            : 
+<span class="lineNum">     388 </span>            : public:
+<span class="lineNum">     389 </span>            :   /**
+<span class="lineNum">     390 </span>            :    ** @brief Generates terminal color codes
+<span class="lineNum">     391 </span>            :    */
+<span class="lineNum">     392 </span>            :   string str(void) const;
+<span class="lineNum">     393 </span>            : 
+<span class="lineNum">     394 </span>            :   /**
+<span class="lineNum">     395 </span>            :    ** @brief Implicit string cast operator
+<span class="lineNum">     396 </span>            :    */
+<span class="lineNum">     397 </span>            :   operator string() const;
+<span class="lineNum">     398 </span>            : 
+<span class="lineNum">     399 </span>            : private:
+<span class="lineNum">     400 </span>            :   string m_str;
+<span class="lineNum">     401 </span>            :   style  m_style;
+<span class="lineNum">     402 </span>            : };
+<span class="lineNum">     403 </span>            : 
+<span class="lineNum">     404 </span>            : /**
+<span class="lineNum">     405 </span>            :  ** @brief Outputs @ref Text to ostream
+<span class="lineNum">     406 </span>            :  ** @param p_buf input stream
+<span class="lineNum">     407 </span>            :  ** @param p_text input Text
+<span class="lineNum">     408 </span>            :  */
+<span class="lineNum">     409 </span>            : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const Text&amp; p_text);
+<span class="lineNum">     410 </span>            : 
+<span class="lineNum">     411 </span>            : 
+<span class="lineNum">     412 </span>            : /**
+<span class="lineNum">     413 </span>            :  ** @brief Outputs @ref color to ostream
+<span class="lineNum">     414 </span>            :  ** @param p_buf input stream
+<span class="lineNum">     415 </span>            :  ** @param p_color input color
+<span class="lineNum">     416 </span>            :  */
+<span class="lineNum">     417 </span>            : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const color&amp; p_color);
+<span class="lineNum">     418 </span>            : 
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span>            : /**
+<span class="lineNum">     421 </span>            :  ** @brief Outputs @ref attrs to ostream
+<span class="lineNum">     422 </span>            :  ** @param p_buf input stream
+<span class="lineNum">     423 </span>            :  ** @param p_attrs input attrs
+<span class="lineNum">     424 </span>            :  */
+<span class="lineNum">     425 </span>            : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const attrs&amp; p_attrs);
+<span class="lineNum">     426 </span>            : 
+<span class="lineNum">     427 </span>            : 
+<span class="lineNum">     428 </span>            : 
+<span class="lineNum">     429 </span>            : }}
+<span class="lineNum">     430 </span>            : 
+<span class="lineNum">     431 </span>            : #endif // !XTD_CORE_TTY_HH_
+<span class="lineNum">     432 </span>            : 
+<span class="lineNum">     433 </span>            : // Local Variables:
+<span class="lineNum">     434 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">     435 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

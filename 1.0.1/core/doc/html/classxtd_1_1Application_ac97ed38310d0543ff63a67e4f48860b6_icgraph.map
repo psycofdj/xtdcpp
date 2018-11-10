@@ -1,0 +1,4 @@
+<map id="xtd::Application::process" name="xtd::Application::process">
+<area shape="rect" id="node2" href="$classxtd_1_1Application.html#af6aafabf6c552d200f810f754f34e14c" title="main entry point, usually called with main(int,char**)&#39;s arguments " alt="" coords="459,5,637,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1Application.html#ab8e835ba678494c42e12c4613958d18a" title="initialize application, (default nothing) " alt="" coords="232,31,411,57"/>
+</map>

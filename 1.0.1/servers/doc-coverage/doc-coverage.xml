@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.228215767635" lines-covered="55" lines-valid="241" timestamp="1483027205" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.00571428571429" name="......servers.src.app">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/Server.hh" line-rate="0.0" name="......servers.src.app.Server.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="26"/>
+						<line branch="false" hits="-1" number="28"/>
+						<line branch="false" hits="-1" number="29"/>
+						<line branch="false" hits="-1" number="30"/>
+						<line branch="false" hits="-1" number="40"/>
+						<line branch="false" hits="-1" number="41"/>
+						<line branch="false" hits="-1" number="42"/>
+						<line branch="false" hits="-1" number="43"/>
+						<line branch="false" hits="-1" number="44"/>
+						<line branch="false" hits="-1" number="47"/>
+						<line branch="false" hits="-1" number="48"/>
+						<line branch="false" hits="-1" number="51"/>
+						<line branch="false" hits="-1" number="57"/>
+						<line branch="false" hits="-1" number="58"/>
+						<line branch="false" hits="-1" number="59"/>
+						<line branch="false" hits="-1" number="60"/>
+						<line branch="false" hits="-1" number="61"/>
+						<line branch="false" hits="-1" number="62"/>
+						<line branch="false" hits="-1" number="63"/>
+						<line branch="false" hits="-1" number="64"/>
+						<line branch="false" hits="-1" number="65"/>
+						<line branch="false" hits="-1" number="67"/>
+						<line branch="false" hits="-1" number="71"/>
+						<line branch="false" hits="-1" number="75"/>
+						<line branch="false" hits="-1" number="90"/>
+						<line branch="false" hits="-1" number="91"/>
+						<line branch="false" hits="-1" number="92"/>
+						<line branch="false" hits="-1" number="93"/>
+						<line branch="false" hits="-1" number="94"/>
+						<line branch="false" hits="-1" number="95"/>
+						<line branch="false" hits="-1" number="96"/>
+						<line branch="false" hits="-1" number="97"/>
+						<line branch="false" hits="-1" number="98"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HttpServer.hh" line-rate="0.0" name="......servers.src.app.HttpServer.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="56"/>
+						<line branch="false" hits="-1" number="57"/>
+						<line branch="false" hits="-1" number="59"/>
+						<line branch="false" hits="-1" number="60"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/app/HtmlOArchive.hh" line-rate="0.0" name="......servers.src.app.HtmlOArchive.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="194"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.818181818182" name="......servers.src.param">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Visitor.hh" line-rate="1.0" name="......servers.src.param.Visitor.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="18"/>
+						<line branch="false" hits="1" number="23"/>
+						<line branch="false" hits="1" number="27"/>
+						<line branch="false" hits="1" number="31"/>
+						<line branch="false" hits="1" number="35"/>
+						<line branch="false" hits="1" number="39"/>
+						<line branch="false" hits="1" number="43"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Base.hh" line-rate="0.714285714286" name="......servers.src.param.Base.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="231"/>
+						<line branch="false" hits="-1" number="233"/>
+						<line branch="false" hits="-1" number="234"/>
+						<line branch="false" hits="1" number="243"/>
+						<line branch="false" hits="1" number="250"/>
+						<line branch="false" hits="1" number="258"/>
+						<line branch="false" hits="1" number="265"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../servers/src/param/Handler.hh" line-rate="0.0" name="......servers.src.param.Handler.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="17"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

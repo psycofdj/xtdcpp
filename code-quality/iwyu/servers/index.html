@@ -1,0 +1,1341 @@
+
+
+
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Include sanity report</title>
+    <link href="../../contribs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../contribs/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="../../contribs/jquery/jquery.min.js"></script>
+    <script src="../../contribs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     function SelectText(text) {
+       var doc = document,
+           range, selection
+       ;
+       if (doc.body.createTextRange) {
+         range = document.body.createTextRange();
+         range.moveToElementText(text);
+         range.select();
+       } else if (window.getSelection) {
+         selection = window.getSelection();
+         range = document.createRange();
+         range.selectNodeContents(text);
+         selection.removeAllRanges();
+         selection.addRange(range);
+       }
+     }
+     $(document).ready(function() {
+       $("button.open").click(function() {
+         var l_tr        = $(this).parents("tr");
+         var l_id        = l_tr.attr("id");
+         var l_detailsID = l_id + "-details";
+         $("." + l_detailsID).toggle();
+       });
+       $("pre").dblclick(function() {
+         SelectText($(this)[0]);
+       });
+       $("#split").click(function() {
+         $(".header").toggleClass("hidden");
+         $(".header-split").toggleClass("hidden");
+       });
+     });
+    </script>
+    <style>
+
+     .includes {
+       overflow: scroll;
+       font-size:10px;
+     }
+
+     .maintable {
+       table-layout:fixed;
+     }
+
+    </style>
+  </head>
+  <body bgcolor="#ffffff" style="padding-top:50px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-4"><div class="panel panel-default">
+          <div class="panel-heading">Summary report</div>
+          <div class="panel-body">
+            <table class="table table-bordered table-condensed small">
+              <tbody>
+                <tr>
+                  <th>Analyzed files</th>
+                  <td>15</td>
+                </tr>
+                <tr>
+                  <th>Files Ok</th>
+                  <td>13</td>
+                </tr>
+                <tr>
+                  <th>Files Ko</th>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th>Iwyu errors</th>
+                  <td>2</td>
+                </tr>
+                <tr class="bg-warning">
+                  <th>(from Ko files) Missing includes</th>
+                  <td>0</td>
+                </tr>
+                <tr class="bg-danger">
+                  <th>(from Ko files) Unwanted includes</th>
+                  <td>0</td>
+                </tr>
+                <tr class="bg-info">
+                  <th>(from Ko files) Total includes</th>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <button id="split" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Split comments
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-heading">Full report
+            </div>
+            <div class="panel-body">
+              <table class="maintable table table-striped table-bordered table-condensed small">
+                <thead>
+                  <tr>
+                    <th style="width:50px;"></th>
+                    <th>File name</th>
+                    <th>Missing</th>
+                    <th>Unwanted</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    
+                  <tr id="idm0" class="warning">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> /home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc </td>
+                    <td>err.</td>
+                    <td>err.</td>
+                    <td>err.</td>
+                  </tr>
+
+                  <tr class="idm0-details" style="display: none;">
+                    <td></td>
+                    <td colspan="4">
+                      <pre class="includes bg-warning">
+In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.cc:19:
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.hh:93:18: error: &#39;xtd::servers::app::HttpServer::initialize&#39; hides overloaded virtual function [-Werror,-Woverloaded-virtual]
+  virtual void   initialize(void);
+                 ^
+/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh:47:16: note: hidden overloaded virtual function &#39;xtd::network::base::Server&lt;boost::asio::ip::tcp&gt;::initialize&#39; declared here: different number of parameters (3 vs 0)
+  virtual void initialize(const string&amp;  p_host,
+               ^
+Cycle in include-mapping:
+  &lt;boost/phoenix/support/detail/iterate.hpp&gt; -&gt;
+  &lt;boost/phoenix/scope/detail/local_gen.hpp&gt; -&gt;
+  &lt;boost/phoenix/scope/detail/local_gen.hpp&gt;
+/include-what-you-use-clang_4.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping
+
+                      </pre>
+                    </td>
+                  </tr>
+                    
+                  <tr id="idm1" class="warning">
+                    <td class="text-center">
+                      <button class="open btn btn-xs btn-primary glyphicon glyphicon-plus"></button>
+                    </td>
+                    <td> /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc </td>
+                    <td>err.</td>
+                    <td>err.</td>
+                    <td>err.</td>
+                  </tr>
+
+                  <tr class="idm1-details" style="display: none;">
+                    <td></td>
+                    <td colspan="4">
+                      <pre class="includes bg-warning">
+In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:2:
+In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.hh:8:
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/HttpServer.hh:93:18: error: &#39;xtd::servers::app::HttpServer::initialize&#39; hides overloaded virtual function [-Werror,-Woverloaded-virtual]
+  virtual void   initialize(void);
+                 ^
+/home/travis/build/psycofdj/xtdcpp/network/src/base/Server.hh:47:16: note: hidden overloaded virtual function &#39;xtd::network::base::Server&lt;boost::asio::ip::tcp&gt;::initialize&#39; declared here: different number of parameters (3 vs 0)
+  virtual void initialize(const string&amp;  p_host,
+               ^
+In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:3:
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.hxx:317:7: error: use &#39;template&#39; keyword to treat &#39;listen&#39; as a dependent template name
+    -&gt;listen&lt;bool&gt;(boost::bind(&amp;bip_app::setAssertRTT, this, _2));
+      ^
+      template 
+In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:2:
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.hh:63:18: error: &#39;xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::initialize&#39; hides overloaded virtual function [-Werror,-Woverloaded-virtual]
+  virtual void   initialize(void);
+                 ^
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:13:16: note: in instantiation of template class &#39;xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;&#39; requested here
+template class Server&lt;serializer::Doc, serializer::Doc, network::af_unix&gt;;
+               ^
+/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh:65:16: note: hidden overloaded virtual function &#39;xtd::network::bip::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::local::stream_protocol&gt;::initialize&#39; declared here: different number of parameters (3 vs 0)
+  virtual void initialize(const string&amp;        p_host,
+               ^
+In file included from /home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:2:
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.hh:63:18: error: &#39;xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::initialize&#39; hides overloaded virtual function [-Werror,-Woverloaded-virtual]
+  virtual void   initialize(void);
+                 ^
+/home/travis/build/psycofdj/xtdcpp/servers/src/app/Server.cc:14:16: note: in instantiation of template class &#39;xtd::servers::app::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;&#39; requested here
+template class Server&lt;serializer::Doc, serializer::Doc, network::af_inet&gt;;
+               ^
+/home/travis/build/psycofdj/xtdcpp/network/src/bip/Server.hh:65:16: note: hidden overloaded virtual function &#39;xtd::network::bip::Server&lt;xtd::serializer::Doc, xtd::serializer::Doc, boost::asio::ip::tcp&gt;::initialize&#39; declared here: different number of parameters (3 vs 0)
+  virtual void initialize(const string&amp;        p_host,
+               ^
+Cycle in include-mapping:
+  &lt;boost/phoenix/support/detail/iterate.hpp&gt; -&gt;
+  &lt;boost/phoenix/scope/detail/local_gen.hpp&gt; -&gt;
+  &lt;boost/phoenix/scope/detail/local_gen.hpp&gt;
+/include-what-you-use-clang_4.0/iwyu_include_picker.cc:845: Assertion failed: Cycle in include-mapping
+
+                      </pre>
+                    </td>
+                  </tr>
+                    
+                      
+                  <tr id="idm2" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/app/HtmlOArchive.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm2-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm3" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/app/HtmlOArchive.hh </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm3-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm4" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/app/HtmlOArchive.hxx </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm4-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm5" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Base.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm5-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm6" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Base.hh </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm6-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm7" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Base.hxx </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm7-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm8" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Handler.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm8-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm9" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Handler.hh </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm9-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm10" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Pod.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm10-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm11" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Pod.hh </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm11-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm12" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Pod.hxx </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm12-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm13" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Visitor.cc </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm13-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                    
+                      
+                  <tr id="idm14" class="success">
+                    <td class="text-center">
+                    </td>
+                    <td> src/param/Visitor.hh </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="4">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="4">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details header" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="4">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+  <td class="bg-info" colspan="2">
+    <div class="text-center"><strong>Full</strong></div>
+    <pre class="includes bg-info">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+  <td class="bg-warning" colspan="2">
+    <div class="text-center"><strong>Missing</strong></div>
+    <pre class="includes bg-warning">
+</pre>
+  </td>
+</tr>
+
+                  
+<tr class="idm14-details hidden header-split" style="display: none;">
+  <td></td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+  <td class="bg-danger" colspan="2">
+    <div class="text-center"><strong>Unwanted</strong></div>
+    <pre class="includes bg-danger">
+</pre>
+  </td>
+</tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

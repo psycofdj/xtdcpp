@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/cpptempl.hh</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - cpptempl.hh<span style="font-size: 80%;"> (source / <a href="cpptempl.hh.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntry">29</td>
+            <td class="headerCovTableEntryLo">65.5 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:56:46</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntry">34</td>
+            <td class="headerCovTableEntryLo">67.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            :   cpptempl
+<span class="lineNum">       3 </span>            :   =================
+<span class="lineNum">       4 </span>            :   This is a template engine for C++.
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            :   Syntax
+<span class="lineNum">       7 </span>            :   =================
+<span class="lineNum">       8 </span>            :   Variables: {$variable_name}
+<span class="lineNum">       9 </span>            :   Loops: {% for person in people %}Name: {$person.name}{% endfor %}
+<span class="lineNum">      10 </span>            :   If: {% for person.name == &quot;Bob&quot; %}Full name: Robert{% endif %}
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            :   Copyright
+<span class="lineNum">      13 </span>            :   ==================
+<span class="lineNum">      14 </span>            :   Author: Ryan Ginstrom
+<span class="lineNum">      15 </span>            :   MIT License
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            :   Usage
+<span class="lineNum">      18 </span>            :   =======================
+<span class="lineNum">      19 </span>            :   string text = &quot;{% if item %}{$item}{% endif %}\n&quot;
+<span class="lineNum">      20 </span>            :   &quot;{% if thing %}{$thing}{% endif %}&quot; ;
+<span class="lineNum">      21 </span>            :   cpptempl::data_map data ;
+<span class="lineNum">      22 </span>            :   data[&quot;item&quot;] = cpptempl::make_data(&quot;aaa&quot;) ;
+<span class="lineNum">      23 </span>            :   data[&quot;thing&quot;] = cpptempl::make_data(&quot;bbb&quot;) ;
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            :   string result = cpptempl::parse(text, data) ;
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            :   Handy Functions
+<span class="lineNum">      28 </span>            :   ========================
+<span class="lineNum">      29 </span>            :   make_data() : Feed it a string, data_map, or data_list to create a data entry.
+<span class="lineNum">      30 </span>            :   Example:
+<span class="lineNum">      31 </span>            :   data_map person ;
+<span class="lineNum">      32 </span>            :   person[&quot;name&quot;] = make_data(&quot;Bob&quot;) ;
+<span class="lineNum">      33 </span>            :   person[&quot;occupation&quot;] = make_data(&quot;Plumber&quot;) ;
+<span class="lineNum">      34 </span>            :   data_map data ;
+<span class="lineNum">      35 </span>            :   data[&quot;person&quot;] = make_data(person) ;
+<span class="lineNum">      36 </span>            :   string result = parse(templ_text, data) ;
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : */
+<span class="lineNum">      39 </span>            : #ifndef NETWORK_HTTP_CPPTEMPL_HH_
+<span class="lineNum">      40 </span>            : # define NETWORK_HTTP_CPPTEMPL_HH_
+<span class="lineNum">      41 </span>            : # include &lt;exception&gt;
+<span class="lineNum">      42 </span>            : # include &lt;boost/lexical_cast.hpp&gt;
+<span class="lineNum">      43 </span>            : # include &quot;types.hh&quot; //libcore
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : namespace xtd {
+<span class="lineNum">      46 </span>            : namespace network {
+<span class="lineNum">      47 </span>            : namespace http {
+<span class="lineNum">      48 </span>            : namespace cpptempl {
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : // various typedefs
+<span class="lineNum">      51 </span>            : class Data;
+<span class="lineNum">      52 </span>            : typedef sptr&lt;Data&gt;            data_ptr;
+<span class="lineNum">      53 </span>            : typedef vector&lt;data_ptr&gt;      data_list;
+<span class="lineNum">      54 </span>            : typedef map&lt;string, data_ptr&gt; data_map;
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : class Token;
+<span class="lineNum">      57 </span>            : typedef sptr&lt;Token&gt;       token_ptr;
+<span class="lineNum">      58 </span>            : typedef vector&lt;token_ptr&gt; token_vector;
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : // Custom exception class for library errors
+<span class="lineNum">      62 </span>            : class TemplateException : public std::exception
+<a name="63"><span class="lineNum">      63 </span>            : {</a>
+<span class="lineNum">      64 </span>            : public:
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :   TemplateException(string reason) :</span>
+<a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :     m_message(reason)</span></a>
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 :   { }</span>
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :   ~TemplateException() throw()</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   { }</span>
+<a name="70"><span class="lineNum">      70 </span>            : </a>
+<span class="lineNum">      71 </span>            : public:
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :   const char* what(void) const throw()</span>
+<span class="lineNum">      73 </span>            :   {
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :     return m_message.c_str();</span>
+<span class="lineNum">      75 </span>            :   }
+<span class="lineNum">      76 </span>            : private:
+<span class="lineNum">      77 </span>            :   string m_message;
+<span class="lineNum">      78 </span>            : };
+<span class="lineNum">      79 </span>            : 
+<a name="80"><span class="lineNum">      80 </span>            : </a>
+<span class="lineNum">      81 </span>            : // Data types used in templates
+<span class="lineNum">      82 </span><span class="lineCov">         88 : class Data</span>
+<a name="83"><span class="lineNum">      83 </span>            : {</a>
+<span class="lineNum">      84 </span>            : public:
+<span class="lineNum">      85 </span><span class="lineCov">         88 :   virtual ~Data(void) {}</span>
+<span class="lineNum">      86 </span>            :   virtual bool        empty() = 0;
+<span class="lineNum">      87 </span>            :   virtual string getvalue();
+<span class="lineNum">      88 </span>            :   virtual data_list&amp;  getlist();
+<span class="lineNum">      89 </span>            :   virtual data_map&amp;   getmap();
+<span class="lineNum">      90 </span>            : };
+<a name="91"><span class="lineNum">      91 </span>            : </a>
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span><span class="lineCov">        144 : class DataValue : public Data</span>
+<span class="lineNum">      94 </span>            : {
+<a name="95"><span class="lineNum">      95 </span>            :   string m_value;</a>
+<span class="lineNum">      96 </span>            : public:
+<span class="lineNum">      97 </span><span class="lineCov">         72 :   DataValue(string value) : m_value(value){}</span>
+<span class="lineNum">      98 </span>            :   string getvalue();
+<span class="lineNum">      99 </span>            :   bool empty();
+<span class="lineNum">     100 </span>            : };
+<a name="101"><span class="lineNum">     101 </span>            : </a>
+<span class="lineNum">     102 </span>            : 
+<span class="lineNum">     103 </span><span class="lineCov">         32 : class DataList : public Data</span>
+<span class="lineNum">     104 </span>            : {
+<a name="105"><span class="lineNum">     105 </span>            :   data_list m_items;</a>
+<span class="lineNum">     106 </span>            : public:
+<span class="lineNum">     107 </span><span class="lineCov">         16 :   DataList(data_list &amp;items) : m_items(items){}</span>
+<span class="lineNum">     108 </span>            :   data_list&amp; getlist();
+<span class="lineNum">     109 </span>            :   bool empty();
+<span class="lineNum">     110 </span>            : };
+<a name="111"><span class="lineNum">     111 </span>            : </a>
+<span class="lineNum">     112 </span>            : 
+<span class="lineNum">     113 </span><span class="lineNoCov">          0 : class DataMap : public Data</span>
+<span class="lineNum">     114 </span>            : {
+<span class="lineNum">     115 </span>            :   data_map m_items;
+<span class="lineNum">     116 </span>            : public:
+<span class="lineNum">     117 </span>            :   DataMap(data_map &amp;items) : m_items(items){}
+<span class="lineNum">     118 </span>            :   data_map&amp; getmap();
+<span class="lineNum">     119 </span>            :   bool empty();
+<span class="lineNum">     120 </span>            : };
+<span class="lineNum">     121 </span>            : 
+<a name="122"><span class="lineNum">     122 </span>            : </a>
+<span class="lineNum">     123 </span>            : // convenience functions for making data objects
+<span class="lineNum">     124 </span><span class="lineCov">         72 : inline data_ptr make_data(string p_val)</span>
+<span class="lineNum">     125 </span>            : {
+<span class="lineNum">     126 </span><span class="lineCov">         72 :   return data_ptr(new DataValue(p_val));</span>
+<a name="127"><span class="lineNum">     127 </span>            : }</a>
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span><span class="lineCov">         16 : inline data_ptr make_data(data_list&amp; p_val)</span>
+<span class="lineNum">     130 </span>            : {
+<span class="lineNum">     131 </span><span class="lineCov">         16 :   return data_ptr(new DataList(p_val));</span>
+<span class="lineNum">     132 </span>            : }
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            : inline data_ptr make_data(data_map&amp; p_val)
+<span class="lineNum">     135 </span>            : {
+<span class="lineNum">     136 </span>            :   return data_ptr(new DataMap(p_val));
+<span class="lineNum">     137 </span>            : }
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     140 </span>            : inline data_ptr make_data(T&amp; p_val)
+<span class="lineNum">     141 </span>            : {
+<span class="lineNum">     142 </span>            :   return make_data(boost::lexical_cast&lt;string&gt;(p_val));
+<span class="lineNum">     143 </span>            : }
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     146 </span>            : inline data_ptr make_data(vector&lt;T&gt;&amp; p_val)
+<span class="lineNum">     147 </span>            : {
+<span class="lineNum">     148 </span>            :   data_list                         l_list;
+<span class="lineNum">     149 </span>            :   typename vector&lt;T&gt;::iterator c_val;
+<span class="lineNum">     150 </span>            : 
+<span class="lineNum">     151 </span>            :   for (c_val = p_val.begin(); c_val != p_val.end(); c_val++)
+<span class="lineNum">     152 </span>            :     l_list.push_back(make_data(*c_val));
+<span class="lineNum">     153 </span>            :   return make_data(l_list);
+<span class="lineNum">     154 </span>            : }
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            : template&lt;typename T&gt;
+<span class="lineNum">     157 </span>            : inline data_ptr make_data(map&lt;string, T&gt;&amp; p_val)
+<span class="lineNum">     158 </span>            : {
+<span class="lineNum">     159 </span>            :   data_map                                    l_map;
+<span class="lineNum">     160 </span>            :   typename map&lt;string, T&gt;::iterator c_val;
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span>            :   for (c_val = p_val.begin(); c_val != p_val.end(); c_val++)
+<span class="lineNum">     163 </span>            :     l_map[c_val-&gt;first] = make_data(c_val-&gt;second);
+<span class="lineNum">     164 </span>            : 
+<span class="lineNum">     165 </span>            :   return make_data(l_map);
+<span class="lineNum">     166 </span>            : }
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span>            : // get a data value from a data map
+<span class="lineNum">     169 </span>            : // e.g. foo.bar =&gt; data[&quot;foo&quot;][&quot;bar&quot;]
+<span class="lineNum">     170 </span>            : data_ptr parse_val(string key, data_map &amp;data);
+<span class="lineNum">     171 </span>            : 
+<span class="lineNum">     172 </span>            : typedef enum
+<span class="lineNum">     173 </span>            :   {
+<span class="lineNum">     174 </span>            :     TOKEN_TYPE_NONE,
+<span class="lineNum">     175 </span>            :     TOKEN_TYPE_TEXT,
+<span class="lineNum">     176 </span>            :     TOKEN_TYPE_VAR,
+<span class="lineNum">     177 </span>            :     TOKEN_TYPE_IF,
+<span class="lineNum">     178 </span>            :     TOKEN_TYPE_FOR,
+<span class="lineNum">     179 </span>            :     TOKEN_TYPE_ENDIF,
+<span class="lineNum">     180 </span>            :     TOKEN_TYPE_ENDFOR,
+<span class="lineNum">     181 </span>            :   } TokenType;
+<span class="lineNum">     182 </span>            : 
+<a name="183"><span class="lineNum">     183 </span>            : </a>
+<span class="lineNum">     184 </span>            : // Template tokens
+<span class="lineNum">     185 </span><span class="lineCov">        248 : class Token</span>
+<a name="186"><span class="lineNum">     186 </span>            : {</a>
+<span class="lineNum">     187 </span>            : public:
+<span class="lineNum">     188 </span><span class="lineCov">        248 :   virtual ~Token(void) {}</span>
+<span class="lineNum">     189 </span>            :   virtual TokenType gettype() = 0;
+<span class="lineNum">     190 </span>            :   virtual string gettext(data_map &amp;data) = 0;
+<span class="lineNum">     191 </span>            :   virtual void set_children(token_vector &amp;children);
+<span class="lineNum">     192 </span>            :   virtual token_vector &amp; get_children();
+<span class="lineNum">     193 </span>            : };
+<a name="194"><span class="lineNum">     194 </span>            : </a>
+<span class="lineNum">     195 </span>            : 
+<span class="lineNum">     196 </span><span class="lineCov">        256 : class TokenText : public Token</span>
+<span class="lineNum">     197 </span>            : {
+<a name="198"><span class="lineNum">     198 </span>            :   string m_text;</a>
+<span class="lineNum">     199 </span>            : public:
+<span class="lineNum">     200 </span><span class="lineCov">        128 :   TokenText(string text) : m_text(text){}</span>
+<span class="lineNum">     201 </span>            :   TokenType gettype();
+<span class="lineNum">     202 </span>            :   string gettext(data_map &amp;data);
+<a name="203"><span class="lineNum">     203 </span>            : };</a>
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span><span class="lineCov">        176 : class TokenVar : public Token</span>
+<span class="lineNum">     206 </span>            : {
+<a name="207"><span class="lineNum">     207 </span>            :   string m_key;</a>
+<span class="lineNum">     208 </span>            : public:
+<span class="lineNum">     209 </span><span class="lineCov">         88 :   TokenVar(string key) : m_key(key){}</span>
+<span class="lineNum">     210 </span>            :   TokenType gettype();
+<span class="lineNum">     211 </span>            :   string gettext(data_map &amp;data);
+<a name="212"><span class="lineNum">     212 </span>            : };</a>
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span><span class="lineCov">         32 : class TokenFor : public Token</span>
+<span class="lineNum">     215 </span>            : {
+<span class="lineNum">     216 </span>            : public:
+<span class="lineNum">     217 </span>            :   string m_key;
+<span class="lineNum">     218 </span>            :   string m_val;
+<span class="lineNum">     219 </span>            :   token_vector m_children;
+<span class="lineNum">     220 </span>            :   TokenFor(string expr);
+<span class="lineNum">     221 </span>            :   TokenType gettype();
+<span class="lineNum">     222 </span>            :   string gettext(data_map &amp;data);
+<span class="lineNum">     223 </span>            :   void set_children(token_vector &amp;children);
+<span class="lineNum">     224 </span>            :   token_vector &amp;get_children();
+<a name="225"><span class="lineNum">     225 </span>            : };</a>
+<span class="lineNum">     226 </span>            : 
+<span class="lineNum">     227 </span><span class="lineNoCov">          0 : class TokenIf : public Token</span>
+<span class="lineNum">     228 </span>            : {
+<span class="lineNum">     229 </span>            : public:
+<a name="230"><span class="lineNum">     230 </span>            :   string m_expr;</a>
+<span class="lineNum">     231 </span>            :   token_vector m_children;
+<span class="lineNum">     232 </span><span class="lineNoCov">          0 :   TokenIf(string expr) : m_expr(expr){}</span>
+<span class="lineNum">     233 </span>            :   TokenType gettype();
+<span class="lineNum">     234 </span>            :   string gettext(data_map &amp;data);
+<span class="lineNum">     235 </span>            :   bool is_true(string expr, data_map &amp;data);
+<span class="lineNum">     236 </span>            :   void set_children(token_vector &amp;children);
+<span class="lineNum">     237 </span>            :   token_vector &amp;get_children();
+<a name="238"><span class="lineNum">     238 </span>            : };</a>
+<span class="lineNum">     239 </span>            : 
+<span class="lineNum">     240 </span><span class="lineCov">         32 : class TokenEnd : public Token // end of control block</span>
+<span class="lineNum">     241 </span>            : {
+<a name="242"><span class="lineNum">     242 </span>            :   string m_type;</a>
+<span class="lineNum">     243 </span>            : public:
+<span class="lineNum">     244 </span><span class="lineCov">         16 :   TokenEnd(string text) : m_type(text){}</span>
+<span class="lineNum">     245 </span>            :   TokenType gettype();
+<span class="lineNum">     246 </span>            :   string gettext(data_map &amp;data);
+<span class="lineNum">     247 </span>            : };
+<span class="lineNum">     248 </span>            : 
+<span class="lineNum">     249 </span>            : void          parse_tree(token_vector &amp;tokens, token_vector &amp;tree, TokenType until=TOKEN_TYPE_NONE);
+<span class="lineNum">     250 </span>            : token_vector&amp; tokenize(string text, token_vector &amp;tokens);
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span>            : // The big daddy. Pass in the template and data,
+<span class="lineNum">     253 </span>            : // and get out a completed doc.
+<span class="lineNum">     254 </span>            : string parse(string templ_text, data_map &amp;data);
+<span class="lineNum">     255 </span>            : 
+<span class="lineNum">     256 </span>            : }}}} //end namespaces
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            : #endif // !NETWORK_HTTP_CPPTEMPL_HH_
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

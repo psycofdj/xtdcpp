@@ -1,0 +1,1499 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.0" lines-covered="0" lines-valid="436" timestamp="1484519941" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.0" name="......counters.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Value.hxx" line-rate="0.0" name="......counters.src.Value.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::isNaN() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="61"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::visit_safe(xtd::counters::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="116"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::visit_safe(xtd::counters::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="116"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::operator++(int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="92"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::getValue() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="68"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::operator--(int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="108"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::Atomic::write&lt;unsigned long&gt;(unsigned long&amp;, unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::operator--()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="100"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::operator++()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="84"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::isNaN() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="61"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::NaN()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="52"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::operator--()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="100"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::operator++(int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="92"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::operator=(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="75"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::Value(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="42"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::operator=(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="75"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::Value(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="42"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::operator--(int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="108"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::Atomic::inc&lt;unsigned long&gt;(unsigned long&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::NaN()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="52"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::getValue() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="68"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::Atomic::dec&lt;unsigned long&gt;(unsigned long&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="26"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::operator++()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="84"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="48"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="55"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="70"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="78"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="87"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="102"/>
+						<line branch="false" hits="0" number="103"/>
+						<line branch="false" hits="0" number="108"/>
+						<line branch="false" hits="0" number="110"/>
+						<line branch="false" hits="0" number="111"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="118"/>
+						<line branch="false" hits="0" number="119"/>
+						<line branch="false" hits="0" number="121"/>
+						<line branch="false" hits="0" number="122"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgValue.cc" line-rate="0.0" name="......counters.src.AvgValue.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_AvgValue.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="11"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgTimedValue.hh" line-rate="0.0" name="......counters.src.AvgTimedValue.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::~AvgTimedValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="37"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::~AvgTimedValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="37"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="37"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Freq.hh" line-rate="0.0" name="......counters.src.Freq.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Freq::~Freq()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Freq::~Freq()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="17"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Cache.hh" line-rate="0.0" name="......counters.src.Cache.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::~Cache()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::~Cache()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="22"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/SumExt.hxx" line-rate="0.0" name="......counters.src.SumExt.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned long&gt;::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="31"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned int&gt;::addItem(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned int&gt;::SumExt(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="15"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned int&gt;::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="31"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned long&gt;::addItem(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned long&gt;::SumExt(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="15"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="39"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Value.hh" line-rate="0.0" name="......counters.src.Value.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::~Value()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::~Value()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Atomic::~Atomic()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="13"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned long&gt;::~Value()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Value&lt;unsigned int&gt;::~Value()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="13"/>
+						<line branch="false" hits="0" number="45"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/InstantFreq.cc" line-rate="0.0" name="......counters.src.InstantFreq.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::shrink_safe(boost::posix_time::ptime const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="41"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::expired_safe(boost::posix_time::ptime const&amp;, boost::posix_time::ptime const&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="50"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::tick()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="24"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::InstantFreq(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="15"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::operator=(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_InstantFreq.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="66"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="66"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/JsonVisitor.hh" line-rate="0.0" name="......counters.src.JsonVisitor.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::JsonVisitor::write&lt;unsigned char&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned char)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::JsonVisitor::write&lt;unsigned short&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned short)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::JsonVisitor::write&lt;unsigned long&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::JsonVisitor::JsonVisitor(boost::property_tree::string_path&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, boost::property_tree::id_translator&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt; const&amp;, boost::property_tree::basic_ptree&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::less&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="20"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::JsonVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned short)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::JsonVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="27"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::JsonVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::JsonVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned char)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="28"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::JsonVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="31"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::JsonVisitor::write&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::JsonVisitor::write&lt;unsigned int&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="45"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="49"/>
+						<line branch="false" hits="0" number="50"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Value.cc" line-rate="0.0" name="......counters.src.Value.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Atomic::dec(unsigned int&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="21"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Atomic::Atomic()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="9"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="35"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Atomic::inc(unsigned int&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="15"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Atomic::write(unsigned int&amp;, unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="27"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Value.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="35"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="10"/>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="35"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Freq.cc" line-rate="0.0" name="......counters.src.Freq.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Freq::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="36"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Freq.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="46"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Freq::Freq(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="14"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Freq::tick()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="46"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Freq::operator=(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="46"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/ExtValue.hxx" line-rate="0.0" name="......counters.src.ExtValue.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned int&gt;::ExtValue(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="14"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned int&gt;::visit_safe(xtd::counters::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned long&gt;::visit_safe(xtd::counters::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned long&gt;::ExtValue(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="14"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="26"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/ExtValue.hh" line-rate="0.0" name="......counters.src.ExtValue.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned long&gt;::~ExtValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned int&gt;::~ExtValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned int&gt;::~ExtValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::ExtValue&lt;unsigned long&gt;::~ExtValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="19"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="19"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgTimedValue.cc" line-rate="0.0" name="......counters.src.AvgTimedValue.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::AvgTimedValue(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int, unsigned int, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::shrink_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="133"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::responsetime_safe(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="92"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_AvgTimedValue.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="202"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::is_greater(std::pair&lt;boost::posix_time::ptime, unsigned int&gt;&amp;, boost::posix_time::ptime const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="153"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::thresdhold_safe(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="107"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::stopChrono(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="65"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::startChrono(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="50"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="161"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="202"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::addResponseTime(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="84"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::setAssert(bool)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="197"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgTimedValue::compute_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="176"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="16"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="76"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="80"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="87"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="94"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="103"/>
+						<line branch="false" hits="0" number="107"/>
+						<line branch="false" hits="0" number="109"/>
+						<line branch="false" hits="0" number="111"/>
+						<line branch="false" hits="0" number="112"/>
+						<line branch="false" hits="0" number="114"/>
+						<line branch="false" hits="0" number="118"/>
+						<line branch="false" hits="0" number="120"/>
+						<line branch="false" hits="0" number="122"/>
+						<line branch="false" hits="0" number="133"/>
+						<line branch="false" hits="0" number="136"/>
+						<line branch="false" hits="0" number="137"/>
+						<line branch="false" hits="0" number="141"/>
+						<line branch="false" hits="0" number="142"/>
+						<line branch="false" hits="0" number="144"/>
+						<line branch="false" hits="0" number="147"/>
+						<line branch="false" hits="0" number="148"/>
+						<line branch="false" hits="0" number="153"/>
+						<line branch="false" hits="0" number="156"/>
+						<line branch="false" hits="0" number="161"/>
+						<line branch="false" hits="0" number="163"/>
+						<line branch="false" hits="0" number="165"/>
+						<line branch="false" hits="0" number="167"/>
+						<line branch="false" hits="0" number="168"/>
+						<line branch="false" hits="0" number="169"/>
+						<line branch="false" hits="0" number="172"/>
+						<line branch="false" hits="0" number="173"/>
+						<line branch="false" hits="0" number="176"/>
+						<line branch="false" hits="0" number="178"/>
+						<line branch="false" hits="0" number="179"/>
+						<line branch="false" hits="0" number="180"/>
+						<line branch="false" hits="0" number="183"/>
+						<line branch="false" hits="0" number="185"/>
+						<line branch="false" hits="0" number="186"/>
+						<line branch="false" hits="0" number="187"/>
+						<line branch="false" hits="0" number="191"/>
+						<line branch="false" hits="0" number="192"/>
+						<line branch="false" hits="0" number="193"/>
+						<line branch="false" hits="0" number="194"/>
+						<line branch="false" hits="0" number="197"/>
+						<line branch="false" hits="0" number="199"/>
+						<line branch="false" hits="0" number="200"/>
+						<line branch="false" hits="0" number="202"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Perf.hh" line-rate="0.0" name="......counters.src.Perf.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Perf::~Perf()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Perf::~Perf()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="23"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Composed.cc" line-rate="0.0" name="......counters.src.Composed.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Composed::addItem(xtd::counters::Base&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="15"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Composed::Composed(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="9"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Composed::visit_safe(xtd::counters::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Composed::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Composed.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="10"/>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="15"/>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="19"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Perf.cc" line-rate="0.0" name="......counters.src.Perf.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Perf::startChrono(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="47"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Perf::Perf(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int, unsigned int, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="13"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Perf.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="47"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Perf::stopChrono(unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="37"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="13"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="47"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/SumExt.hh" line-rate="0.0" name="......counters.src.SumExt.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned long&gt;::~SumExt()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned int&gt;::~SumExt()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned int&gt;::~SumExt()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::SumExt&lt;unsigned long&gt;::~SumExt()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="22"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="22"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgValue.hxx" line-rate="0.0" name="......counters.src.AvgValue.hxx">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::add_safe(xtd::counters::AvgValue&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::AvgValue(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::operator=(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="38"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::affect_safe(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="84"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::add_safe(xtd::counters::AvgValue&lt;unsigned long&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="58"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::operator=(unsigned long const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="38"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::operator+(xtd::counters::AvgValue&lt;unsigned long&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="48"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::AvgValue(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="17"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::operator+(xtd::counters::AvgValue&lt;unsigned int&gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="48"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::affect_safe(unsigned int const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="84"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="17"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="48"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="52"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="60"/>
+						<line branch="false" hits="0" number="62"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="70"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="73"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="75"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="88"/>
+						<line branch="false" hits="0" number="89"/>
+						<line branch="false" hits="0" number="92"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="101"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Visitor.hh" line-rate="0.0" name="......counters.src.Visitor.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Visitor::Visitor()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="9"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="9"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/AvgValue.hh" line-rate="0.0" name="......counters.src.AvgValue.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::~AvgValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::~AvgValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned long&gt;::~AvgValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::AvgValue&lt;unsigned int&gt;::~AvgValue()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="30"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Composed.hh" line-rate="0.0" name="......counters.src.Composed.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Composed::~Composed()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Composed::~Composed()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="16"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="16"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/FileVisitor.hh" line-rate="0.0" name="......counters.src.FileVisitor.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::FileVisitor::write&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::FileVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned short)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="28"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::FileVisitor::write&lt;unsigned short&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned short)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::FileVisitor::write&lt;unsigned int&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::FileVisitor::FileVisitor(boost::filesystem::path const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="20"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::FileVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="26"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::FileVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::FileVisitor::write&lt;unsigned char&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned char)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::FileVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned char)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="27"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="void xtd::counters::FileVisitor::write&lt;unsigned long&gt;(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::FileVisitor::operator()(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned long)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="30"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="23"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/CounterManager.cc" line-rate="0.0" name="......counters.src.CounterManager.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::start()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="34"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::toJson(boost::property_tree::basic_ptree&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;, std::less&lt;std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; &gt; &gt;&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="89"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::~CounterManager()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::writeOnDisk() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="116"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::add(std::shared_ptr&lt;xtd::counters::Base&gt;, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="69"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_CounterManager.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="128"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::refresh() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="106"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::CounterManager(unsigned int, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="21"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::stop()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="77"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::~CounterManager()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="29"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::getSnmpPath[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="57"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="128"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::CounterManager::getCounters()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="63"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="31"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="36"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="50"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="57"/>
+						<line branch="false" hits="0" number="59"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="69"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="72"/>
+						<line branch="false" hits="0" number="73"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="81"/>
+						<line branch="false" hits="0" number="82"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="84"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="89"/>
+						<line branch="false" hits="0" number="91"/>
+						<line branch="false" hits="0" number="93"/>
+						<line branch="false" hits="0" number="95"/>
+						<line branch="false" hits="0" number="96"/>
+						<line branch="false" hits="0" number="98"/>
+						<line branch="false" hits="0" number="99"/>
+						<line branch="false" hits="0" number="100"/>
+						<line branch="false" hits="0" number="101"/>
+						<line branch="false" hits="0" number="103"/>
+						<line branch="false" hits="0" number="106"/>
+						<line branch="false" hits="0" number="108"/>
+						<line branch="false" hits="0" number="110"/>
+						<line branch="false" hits="0" number="111"/>
+						<line branch="false" hits="0" number="113"/>
+						<line branch="false" hits="0" number="116"/>
+						<line branch="false" hits="0" number="118"/>
+						<line branch="false" hits="0" number="120"/>
+						<line branch="false" hits="0" number="121"/>
+						<line branch="false" hits="0" number="123"/>
+						<line branch="false" hits="0" number="124"/>
+						<line branch="false" hits="0" number="126"/>
+						<line branch="false" hits="0" number="128"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/InstantFreq.hh" line-rate="0.0" name="......counters.src.InstantFreq.hh">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::~InstantFreq()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::InstantFreq::~InstantFreq()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="23"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="23"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Cache.cc" line-rate="0.0" name="......counters.src.Cache.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::miss()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="61"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::Cache(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, unsigned int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="9"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::hit()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="51"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::invalid()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="71"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::filtered()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="83"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="90"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Cache.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="90"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Cache::valid()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="77"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="9"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="24"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="26"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="30"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="33"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="35"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="38"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="40"/>
+						<line branch="false" hits="0" number="41"/>
+						<line branch="false" hits="0" number="42"/>
+						<line branch="false" hits="0" number="43"/>
+						<line branch="false" hits="0" number="44"/>
+						<line branch="false" hits="0" number="45"/>
+						<line branch="false" hits="0" number="46"/>
+						<line branch="false" hits="0" number="47"/>
+						<line branch="false" hits="0" number="48"/>
+						<line branch="false" hits="0" number="51"/>
+						<line branch="false" hits="0" number="53"/>
+						<line branch="false" hits="0" number="54"/>
+						<line branch="false" hits="0" number="55"/>
+						<line branch="false" hits="0" number="56"/>
+						<line branch="false" hits="0" number="57"/>
+						<line branch="false" hits="0" number="58"/>
+						<line branch="false" hits="0" number="61"/>
+						<line branch="false" hits="0" number="63"/>
+						<line branch="false" hits="0" number="64"/>
+						<line branch="false" hits="0" number="65"/>
+						<line branch="false" hits="0" number="66"/>
+						<line branch="false" hits="0" number="67"/>
+						<line branch="false" hits="0" number="68"/>
+						<line branch="false" hits="0" number="71"/>
+						<line branch="false" hits="0" number="73"/>
+						<line branch="false" hits="0" number="74"/>
+						<line branch="false" hits="0" number="77"/>
+						<line branch="false" hits="0" number="79"/>
+						<line branch="false" hits="0" number="80"/>
+						<line branch="false" hits="0" number="83"/>
+						<line branch="false" hits="0" number="85"/>
+						<line branch="false" hits="0" number="86"/>
+						<line branch="false" hits="0" number="87"/>
+						<line branch="false" hits="0" number="90"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/SumExt.cc" line-rate="0.0" name="......counters.src.SumExt.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_SumExt.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="11"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/ExtValue.cc" line-rate="0.0" name="......counters.src.ExtValue.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_ExtValue.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="11"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="11"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../counters/src/Base.cc" line-rate="0.0" name="......counters.src.Base.cc">
+					<methods>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::update_safe()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="32"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::visit(xtd::counters::Visitor&amp;) const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="18"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::~Base()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="12"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::getName[abi:cxx11]() const" signature="">
+							<lines>
+								<line branch="false" hits="0" number="37"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="_GLOBAL__sub_I_Base.cc" signature="">
+							<lines>
+								<line branch="false" hits="0" number="42"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::update()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="25"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::~Base()" signature="">
+							<lines>
+								<line branch="false" hits="0" number="12"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="__static_initialization_and_destruction_0(int, int)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="42"/>
+							</lines>
+						</method>
+						<method branch-rate="0.0" line-rate="0.0" name="xtd::counters::Base::Base(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)" signature="">
+							<lines>
+								<line branch="false" hits="0" number="7"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line branch="false" hits="0" number="7"/>
+						<line branch="false" hits="0" number="8"/>
+						<line branch="false" hits="0" number="10"/>
+						<line branch="false" hits="0" number="12"/>
+						<line branch="false" hits="0" number="14"/>
+						<line branch="false" hits="0" number="18"/>
+						<line branch="false" hits="0" number="20"/>
+						<line branch="false" hits="0" number="21"/>
+						<line branch="false" hits="0" number="22"/>
+						<line branch="false" hits="0" number="25"/>
+						<line branch="false" hits="0" number="27"/>
+						<line branch="false" hits="0" number="28"/>
+						<line branch="false" hits="0" number="29"/>
+						<line branch="false" hits="0" number="32"/>
+						<line branch="false" hits="0" number="34"/>
+						<line branch="false" hits="0" number="37"/>
+						<line branch="false" hits="0" number="39"/>
+						<line branch="false" hits="0" number="42"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

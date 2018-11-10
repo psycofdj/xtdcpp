@@ -1,0 +1,28 @@
+<map id="src/network_types.hh" name="src/network_types.hh">
+<area shape="rect" id="node2" href="$base_2Client_8cc.html" title="src/base/Client.cc" alt="" coords="301,229,429,256"/>
+<area shape="rect" id="node3" href="$Config_8cc.html" title="src/base/Config.cc" alt="" coords="43,80,175,107"/>
+<area shape="rect" id="node4" href="$base_2Connection_8cc.html" title="src/base/Connection.cc" alt="" coords="920,229,1080,256"/>
+<area shape="rect" id="node5" href="$base_2Server_8cc.html" title="src/base/Server.cc" alt="" coords="251,80,383,107"/>
+<area shape="rect" id="node6" href="$bip_2Client_8cc.html" title="src/bip/Client.cc" alt="" coords="8,304,125,331"/>
+<area shape="rect" id="node7" href="$bip_2Connection_8cc.html" title="src/bip/Connection.cc" alt="" coords="1236,304,1385,331"/>
+<area shape="rect" id="node8" href="$bip_2Server_8cc.html" title="src/bip/Server.cc" alt="" coords="517,155,638,181"/>
+<area shape="rect" id="node9" href="$bip_2Server_8hh.html" title="src/bip/Server.hh" alt="" coords="517,80,638,107"/>
+<area shape="rect" id="node10" href="$network_8hh.html" title="src/network.hh" alt="" coords="210,304,318,331"/>
+<area shape="rect" id="node11" href="$http_2Client_8cc.html" title="src/http/Client.cc" alt="" coords="1001,304,1124,331"/>
+<area shape="rect" id="node12" href="$http_2Connection_8cc.html" title="src/http/Connection.cc" alt="" coords="1673,304,1828,331"/>
+<area shape="rect" id="node13" href="$http_2Server_8cc.html" title="src/http/Server.cc" alt="" coords="1558,80,1685,107"/>
+<area shape="rect" id="node14" href="$network__fwd_8hh.html" title="src/network_fwd.hh" alt="" coords="1709,80,1845,107"/>
+<area shape="rect" id="node15" href="$Resolver_8hh.html" title="src/utils/Resolver.hh" alt="" coords="911,80,1054,107"/>
+<area shape="rect" id="node16" href="$base_2Client_8hh.html" title="src/base/Client.hh" alt="" coords="663,155,791,181"/>
+<area shape="rect" id="node24" href="$base_2Connection_8hh.html" title="src/base/Connection.hh" alt="" coords="920,155,1080,181"/>
+<area shape="rect" id="node27" href="$Resolver_8cc.html" title="src/utils/Resolver.cc" alt="" coords="1105,155,1247,181"/>
+<area shape="rect" id="node17" href="$base_2ClientPool_8hh.html" title="src/base/ClientPool.hh" alt="" coords="595,229,749,256"/>
+<area shape="rect" id="node22" href="$bip_2Client_8hh.html" title="src/bip/Client.hh" alt="" coords="453,229,571,256"/>
+<area shape="rect" id="node23" href="$http_2Client_8hh.html" title="src/http/Client.hh" alt="" coords="773,229,896,256"/>
+<area shape="rect" id="node18" href="$bip_2ClientPool_8hh.html" title="src/bip/ClientPool.hh" alt="" coords="479,304,622,331"/>
+<area shape="rect" id="node20" href="$http_2ClientPool_8hh.html" title="src/http/ClientPool.hh" alt="" coords="722,304,870,331"/>
+<area shape="rect" id="node19" href="$bip_2ClientPool_8cc.html" title="src/bip/ClientPool.cc" alt="" coords="479,379,622,405"/>
+<area shape="rect" id="node21" href="$http_2ClientPool_8cc.html" title="src/http/ClientPool.cc" alt="" coords="722,379,870,405"/>
+<area shape="rect" id="node25" href="$bip_2Connection_8hh.html" title="src/bip/Connection.hh" alt="" coords="1104,229,1253,256"/>
+<area shape="rect" id="node26" href="$http_2Connection_8hh.html" title="src/http/Connection.hh" alt="" coords="1277,229,1432,256"/>
+</map>

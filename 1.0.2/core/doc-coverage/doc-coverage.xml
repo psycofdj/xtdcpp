@@ -1,0 +1,314 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage
+  SYSTEM 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'>
+<coverage branch-rate="0.0" branches-covered="0" branches-valid="0" complexity="0" line-rate="0.954545454545" lines-covered="336" lines-valid="352" timestamp="1484519973" version="2.0.3">
+	<sources>
+		<source>.</source>
+	</sources>
+	<packages>
+		<package branch-rate="0.0" complexity="0" line-rate="0.333333333333" name="......core.src.mixins">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/mixins/cloneable.hh" line-rate="0.0" name="......core.src.mixins.cloneable.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="-1" number="33"/>
+						<line branch="false" hits="-1" number="35"/>
+						<line branch="false" hits="-1" number="38"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/mixins/singleton.hh" line-rate="0.857142857143" name="......core.src.mixins.singleton.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="34"/>
+						<line branch="false" hits="1" number="39"/>
+						<line branch="false" hits="1" number="44"/>
+						<line branch="false" hits="1" number="54"/>
+						<line branch="false" hits="-1" number="63"/>
+						<line branch="false" hits="1" number="71"/>
+						<line branch="false" hits="1" number="72"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.976" name="......core.src">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/Application.cc" line-rate="1.0" name="......core.src.Application.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="19"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/types.cc" line-rate="1.0" name="......core.src.types.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="5"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/Application.hh" line-rate="1.0" name="......core.src.Application.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="124"/>
+						<line branch="false" hits="1" number="125"/>
+						<line branch="false" hits="1" number="126"/>
+						<line branch="false" hits="1" number="127"/>
+						<line branch="false" hits="1" number="128"/>
+						<line branch="false" hits="1" number="129"/>
+						<line branch="false" hits="1" number="130"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/error.hh" line-rate="1.0" name="......core.src.error.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="11"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/tty.cc" line-rate="1.0" name="......core.src.tty.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="150"/>
+						<line branch="false" hits="1" number="268"/>
+						<line branch="false" hits="1" number="395"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/types.hh" line-rate="1.0" name="......core.src.types.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="35"/>
+						<line branch="false" hits="1" number="40"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/format.hh" line-rate="1.0" name="......core.src.format.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="13"/>
+						<line branch="false" hits="1" number="25"/>
+						<line branch="false" hits="1" number="43"/>
+						<line branch="false" hits="1" number="61"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/text.hh" line-rate="1.0" name="......core.src.text.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="17"/>
+						<line branch="false" hits="1" number="38"/>
+						<line branch="false" hits="1" number="43"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/tty.hh" line-rate="1.0" name="......core.src.tty.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="358"/>
+						<line branch="false" hits="1" number="367"/>
+						<line branch="false" hits="1" number="378"/>
+						<line branch="false" hits="1" number="387"/>
+						<line branch="false" hits="1" number="394"/>
+						<line branch="false" hits="1" number="399"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="1.0" name="......core.src.config">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/config/Parser.hh" line-rate="1.0" name="......core.src.config.Parser.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="25"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package branch-rate="0.0" complexity="0" line-rate="0.994791666667" name="......core.src.log">
+			<classes>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/helpers.hh" line-rate="1.0" name="......core.src.log.helpers.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="29"/>
+						<line branch="false" hits="1" number="68"/>
+						<line branch="false" hits="1" number="78"/>
+						<line branch="false" hits="1" number="88"/>
+						<line branch="false" hits="1" number="98"/>
+						<line branch="false" hits="1" number="108"/>
+						<line branch="false" hits="1" number="118"/>
+						<line branch="false" hits="1" number="128"/>
+						<line branch="false" hits="1" number="138"/>
+						<line branch="false" hits="1" number="149"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/MemoryAppender.hh" line-rate="1.0" name="......core.src.log.MemoryAppender.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="39"/>
+						<line branch="false" hits="1" number="49"/>
+						<line branch="false" hits="1" number="55"/>
+						<line branch="false" hits="1" number="64"/>
+						<line branch="false" hits="1" number="71"/>
+						<line branch="false" hits="1" number="82"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/logtypes.hh" line-rate="1.0" name="......core.src.log.logtypes.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="16"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/Fields.hh" line-rate="1.0" name="......core.src.log.Fields.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="17"/>
+						<line branch="false" hits="1" number="25"/>
+						<line branch="false" hits="1" number="34"/>
+						<line branch="false" hits="1" number="40"/>
+						<line branch="false" hits="1" number="47"/>
+						<line branch="false" hits="1" number="55"/>
+						<line branch="false" hits="1" number="58"/>
+						<line branch="false" hits="1" number="59"/>
+						<line branch="false" hits="1" number="60"/>
+						<line branch="false" hits="1" number="61"/>
+						<line branch="false" hits="1" number="62"/>
+						<line branch="false" hits="1" number="63"/>
+						<line branch="false" hits="1" number="64"/>
+						<line branch="false" hits="1" number="65"/>
+						<line branch="false" hits="1" number="66"/>
+						<line branch="false" hits="1" number="67"/>
+						<line branch="false" hits="1" number="68"/>
+						<line branch="false" hits="1" number="69"/>
+						<line branch="false" hits="1" number="70"/>
+						<line branch="false" hits="1" number="71"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/SyslogAppender.hh" line-rate="1.0" name="......core.src.log.SyslogAppender.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="77"/>
+						<line branch="false" hits="1" number="92"/>
+						<line branch="false" hits="1" number="100"/>
+						<line branch="false" hits="1" number="110"/>
+						<line branch="false" hits="1" number="119"/>
+						<line branch="false" hits="1" number="130"/>
+						<line branch="false" hits="1" number="138"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/Logger.hh" line-rate="1.0" name="......core.src.log.Logger.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="111"/>
+						<line branch="false" hits="1" number="116"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/ConfLoader.hh" line-rate="1.0" name="......core.src.log.ConfLoader.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="16"/>
+						<line branch="false" hits="1" number="27"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/FormatModifiers.hh" line-rate="1.0" name="......core.src.log.FormatModifiers.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="75"/>
+						<line branch="false" hits="1" number="81"/>
+						<line branch="false" hits="1" number="91"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/ColoredFormatter.hh" line-rate="1.0" name="......core.src.log.ColoredFormatter.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="67"/>
+						<line branch="false" hits="1" number="75"/>
+						<line branch="false" hits="1" number="81"/>
+						<line branch="false" hits="1" number="87"/>
+						<line branch="false" hits="1" number="92"/>
+						<line branch="false" hits="1" number="97"/>
+						<line branch="false" hits="1" number="106"/>
+						<line branch="false" hits="1" number="118"/>
+						<line branch="false" hits="1" number="129"/>
+						<line branch="false" hits="1" number="140"/>
+						<line branch="false" hits="1" number="151"/>
+						<line branch="false" hits="1" number="164"/>
+						<line branch="false" hits="1" number="176"/>
+						<line branch="false" hits="1" number="185"/>
+						<line branch="false" hits="1" number="191"/>
+						<line branch="false" hits="1" number="196"/>
+						<line branch="false" hits="1" number="199"/>
+						<line branch="false" hits="1" number="200"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/Formatter.hh" line-rate="1.0" name="......core.src.log.Formatter.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="171"/>
+						<line branch="false" hits="1" number="179"/>
+						<line branch="false" hits="1" number="184"/>
+						<line branch="false" hits="1" number="190"/>
+						<line branch="false" hits="1" number="195"/>
+						<line branch="false" hits="1" number="200"/>
+						<line branch="false" hits="1" number="212"/>
+						<line branch="false" hits="1" number="225"/>
+						<line branch="false" hits="1" number="235"/>
+						<line branch="false" hits="1" number="246"/>
+						<line branch="false" hits="1" number="256"/>
+						<line branch="false" hits="1" number="264"/>
+						<line branch="false" hits="1" number="274"/>
+						<line branch="false" hits="1" number="282"/>
+						<line branch="false" hits="1" number="289"/>
+						<line branch="false" hits="1" number="296"/>
+						<line branch="false" hits="1" number="303"/>
+						<line branch="false" hits="1" number="307"/>
+						<line branch="false" hits="1" number="308"/>
+						<line branch="false" hits="1" number="309"/>
+						<line branch="false" hits="1" number="310"/>
+						<line branch="false" hits="1" number="311"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/helpers.cc" line-rate="1.0" name="......core.src.log.helpers.cc">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="33"/>
+						<line branch="false" hits="1" number="40"/>
+						<line branch="false" hits="1" number="48"/>
+						<line branch="false" hits="1" number="53"/>
+						<line branch="false" hits="1" number="61"/>
+						<line branch="false" hits="1" number="66"/>
+						<line branch="false" hits="1" number="74"/>
+						<line branch="false" hits="1" number="89"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/StreamAppender.hh" line-rate="1.0" name="......core.src.log.StreamAppender.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="42"/>
+						<line branch="false" hits="1" number="52"/>
+						<line branch="false" hits="1" number="60"/>
+						<line branch="false" hits="1" number="66"/>
+						<line branch="false" hits="1" number="77"/>
+						<line branch="false" hits="1" number="85"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/Stream.hh" line-rate="1.0" name="......core.src.log.Stream.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="15"/>
+						<line branch="false" hits="1" number="21"/>
+						<line branch="false" hits="1" number="27"/>
+						<line branch="false" hits="1" number="33"/>
+						<line branch="false" hits="1" number="40"/>
+					</lines>
+				</class>
+				<class branch-rate="0.0" complexity="0" filename="../../core/src/log/Appender.hh" line-rate="1.0" name="......core.src.log.Appender.hh">
+					<methods/>
+					<lines>
+						<line branch="false" hits="1" number="43"/>
+						<line branch="false" hits="1" number="53"/>
+						<line branch="false" hits="1" number="58"/>
+						<line branch="false" hits="1" number="65"/>
+						<line branch="false" hits="1" number="71"/>
+						<line branch="false" hits="1" number="76"/>
+						<line branch="false" hits="1" number="81"/>
+						<line branch="false" hits="1" number="88"/>
+						<line branch="false" hits="1" number="97"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>

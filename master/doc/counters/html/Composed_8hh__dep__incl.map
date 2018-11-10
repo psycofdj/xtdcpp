@@ -1,0 +1,12 @@
+<map id="src/Composed.hh" name="src/Composed.hh">
+<area shape="rect" id="node2" href="$AvgTimedValue_8hh.html" title="src/AvgTimedValue.hh" alt="" coords="120,80,275,107"/>
+<area shape="rect" id="node5" href="$AvgValue_8hh.html" title="src/AvgValue.hh" alt="" coords="305,80,423,107"/>
+<area shape="rect" id="node7" href="$Perf_8hh.html" title="src/Perf.hh" alt="" coords="429,155,515,181"/>
+<area shape="rect" id="node9" href="$Cache_8hh.html" title="src/Cache.hh" alt="" coords="503,80,603,107"/>
+<area shape="rect" id="node11" href="$Composed_8cc.html" title="src/Composed.cc" alt="" coords="628,80,753,107"/>
+<area shape="rect" id="node3" href="$AvgTimedValue_8cc.html" title="src/AvgTimedValue.cc" alt="" coords="5,155,160,181"/>
+<area shape="rect" id="node4" href="$counters_8hh.html" title="src/counters.hh" alt="" coords="243,229,355,256"/>
+<area shape="rect" id="node6" href="$AvgValue_8cc.html" title="src/AvgValue.cc" alt="" coords="286,155,405,181"/>
+<area shape="rect" id="node8" href="$Perf_8cc.html" title="src/Perf.cc" alt="" coords="429,229,515,256"/>
+<area shape="rect" id="node10" href="$Cache_8cc.html" title="src/Cache.cc" alt="" coords="591,155,691,181"/>
+</map>

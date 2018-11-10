@@ -1,0 +1,5 @@
+<map id="xtd::format::vargs" name="xtd::format::vargs">
+<area shape="rect" id="node2" href="$structxtd_1_1format.html#acf0ea99074a605c9436c4ef0e458cb3c" title="Applies given arguments to input format. " alt="" coords="208,5,333,32"/>
+<area shape="rect" id="node3" href="$structxtd_1_1format.html#abc080894e313e8df73d57888c04469a6" title="Applies given arguments to input format, give adulterate result on error. " alt="" coords="208,57,333,98"/>
+<area shape="rect" id="node4" href="$classxtd_1_1text_1_1xml.html#a75c4caafbada294ca593a907b9ad1e00" title="Same as encode but returns a copy of input string. " alt="" coords="179,123,363,149"/>
+</map>

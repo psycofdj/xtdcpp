@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/log/Formatter.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - Formatter.cc<span style="font-size: 80%;"> (source / <a href="Formatter.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">90</td>
+            <td class="headerCovTableEntry">90</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-11-10 19:20:08</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;log/Formatter.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;boost/algorithm/string/replace.hpp&gt;
+<span class="lineNum">       3 </span>            : #include &lt;boost/date_time/gregorian/gregorian.hpp&gt;
+<span class="lineNum">       4 </span>            : #include &lt;boost/date_time/posix_time/posix_time_types.hpp&gt;
+<span class="lineNum">       5 </span>            : #include &lt;boost/format.hpp&gt;
+<span class="lineNum">       6 </span>            : #include &lt;boost/iterator/iterator_traits.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;iostream&gt;
+<span class="lineNum">       8 </span>            : #include &quot;types.hh&quot;
+<span class="lineNum">       9 </span>            : #include &quot;log/Fields.hh&quot;
+<span class="lineNum">      10 </span>            : #include &quot;log/helpers.hh&quot;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : namespace xtd {
+<span class="lineNum">      14 </span>            : namespace log {
+<span class="lineNum">      15 </span>            : 
+<a name="16"><span class="lineNum">      16 </span>            : </a>
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span><span class="lineCov">         48 : Formatter::Formatter(void)</span>
+<span class="lineNum">      19 </span>            : {
+<span class="lineNum">      20 </span><span class="lineCov">         48 :   setLayouts({</span>
+<span class="lineNum">      21 </span>            :       { &quot;fulllog&quot;,  &quot;%(name) [%(pid)] [%(ppid)] %(time) [%(threadid)] [%(module)] (%(slevel)) %(message) %(location)&quot; },
+<span class="lineNum">      22 </span>            :       { &quot;location&quot;, &quot;at %(filename):%(line) -&gt; %(function)&quot;                                                           },
+<span class="lineNum">      23 </span>            :       { &quot;time&quot;,     &quot;%d-%m-%Y %H:%M:%s&quot;                                                                               }
+<span class="lineNum">      24 </span><span class="lineCov">         96 :     });</span>
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span><span class="lineCov">         48 :   setFieldFormats({</span>
+<span class="lineNum">      27 </span>            :       { &quot;name&quot;,     &quot;%s&quot;   },
+<span class="lineNum">      28 </span>            :       { &quot;pid&quot;,      &quot;%d&quot;   },
+<span class="lineNum">      29 </span>            :       { &quot;ppid&quot;,     &quot;%d&quot;   },
+<span class="lineNum">      30 </span>            :       { &quot;module&quot;,   &quot;%s&quot;   },
+<span class="lineNum">      31 </span>            :       { &quot;threadid&quot;, &quot;%02d&quot; },
+<span class="lineNum">      32 </span>            :       { &quot;slevel&quot;,   &quot;%7s&quot;  },
+<span class="lineNum">      33 </span>            :       { &quot;ilevel&quot;,   &quot;%d&quot;   },
+<span class="lineNum">      34 </span>            :       { &quot;message&quot;,  &quot;%s&quot;   },
+<span class="lineNum">      35 </span>            :       { &quot;filename&quot;, &quot;%s&quot;   },
+<span class="lineNum">      36 </span>            :       { &quot;line&quot;,     &quot;%d&quot;   },
+<span class="lineNum">      37 </span>            :       { &quot;function&quot;, &quot;%s&quot;   },
+<span class="lineNum">      38 </span>            :       { &quot;time&quot;,     &quot;%s&quot;   },
+<span class="lineNum">      39 </span>            :       { &quot;location&quot;, &quot;%s&quot;   },
+<span class="lineNum">      40 </span>            :       { &quot;fulllog&quot;,  &quot;%s&quot;   }
+<span class="lineNum">      41 </span><span class="lineCov">         96 :     });</span>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">         48 : }</span></a>
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span><span class="lineCov">          7 : Formatter::Formatter(const Formatter&amp; p_obj) :</span>
+<span class="lineNum">      45 </span>            :   m_fmt(p_obj.m_fmt),
+<span class="lineNum">      46 </span>            :   m_locFmt(p_obj.m_locFmt),
+<span class="lineNum">      47 </span>            :   m_timeFmt(p_obj.m_timeFmt),
+<span class="lineNum">      48 </span>            :   m_fieldFormats(p_obj.m_fieldFormats),
+<span class="lineNum">      49 </span><span class="lineCov">          7 :   m_formatModifiers(p_obj.m_formatModifiers)</span>
+<span class="lineNum">      50 </span>            : {
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          7 : }</span></a>
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span><span class="lineCov">         65 : Formatter::~Formatter(void)</span>
+<span class="lineNum">      54 </span>            : {
+<span class="lineNum">      55 </span><span class="lineCov">         65 : }</span>
+<a name="56"><span class="lineNum">      56 </span>            : </a>
+<span class="lineNum">      57 </span>            : Formatter&amp;
+<span class="lineNum">      58 </span><span class="lineCov">        157 : Formatter::setLayout(const string&amp; p_name, const string&amp; p_layout)</span>
+<span class="lineNum">      59 </span>            : {
+<span class="lineNum">      60 </span><span class="lineCov">        157 :   if (&quot;fulllog&quot; == p_name)</span>
+<span class="lineNum">      61 </span><span class="lineCov">         60 :     m_fmt = p_layout;</span>
+<span class="lineNum">      62 </span><span class="lineCov">         97 :   else if (&quot;location&quot; == p_name)</span>
+<span class="lineNum">      63 </span><span class="lineCov">         49 :     m_locFmt = p_layout;</span>
+<span class="lineNum">      64 </span><span class="lineCov">         48 :   else if (&quot;time&quot; == p_name)</span>
+<span class="lineNum">      65 </span><span class="lineCov">         48 :     m_timeFmt = p_layout;</span>
+<span class="lineNum">      66 </span><span class="lineCov">        157 :   return *this;</span>
+<span class="lineNum">      67 </span>            : }
+<a name="68"><span class="lineNum">      68 </span>            : </a>
+<span class="lineNum">      69 </span>            : Formatter&amp;
+<span class="lineNum">      70 </span><span class="lineCov">         48 : Formatter::setLayouts(const map&lt;string, string&gt;&amp; p_layouts)</span>
+<span class="lineNum">      71 </span>            : {
+<span class="lineNum">      72 </span><span class="lineCov">        192 :   for (auto&amp; c_layout : p_layouts)</span>
+<span class="lineNum">      73 </span><span class="lineCov">        144 :     setLayout(c_layout.first, c_layout.second);</span>
+<span class="lineNum">      74 </span><span class="lineCov">         48 :   return *this;</span>
+<span class="lineNum">      75 </span>            : }
+<a name="76"><span class="lineNum">      76 </span>            : </a>
+<span class="lineNum">      77 </span>            : Formatter&amp;
+<span class="lineNum">      78 </span><span class="lineCov">        675 : Formatter::setFieldFormat(const string&amp; p_fieldName, const string&amp; p_format)</span>
+<span class="lineNum">      79 </span>            : {
+<span class="lineNum">      80 </span><span class="lineCov">        675 :   m_fieldFormats.set(p_fieldName, p_format);</span>
+<span class="lineNum">      81 </span><span class="lineCov">        675 :   return *this;</span>
+<span class="lineNum">      82 </span>            : }
+<a name="83"><span class="lineNum">      83 </span>            : </a>
+<span class="lineNum">      84 </span>            : Formatter&amp;
+<span class="lineNum">      85 </span><span class="lineCov">         48 : Formatter::setFieldFormats(const map&lt;string, string&gt;&amp; p_formats)</span>
+<span class="lineNum">      86 </span>            : {
+<span class="lineNum">      87 </span><span class="lineCov">        720 :   for (auto c_format : p_formats)</span>
+<span class="lineNum">      88 </span><span class="lineCov">        672 :     setFieldFormat(c_format.first, c_format.second);</span>
+<span class="lineNum">      89 </span><span class="lineCov">         48 :   return *this;</span>
+<span class="lineNum">      90 </span>            : }
+<a name="91"><span class="lineNum">      91 </span>            : </a>
+<span class="lineNum">      92 </span>            : string
+<span class="lineNum">      93 </span><span class="lineCov">         23 : Formatter::resolveTime(const string&amp; p_format, const boost::posix_time::ptime&amp; p_time) const</span>
+<span class="lineNum">      94 </span>            : {
+<span class="lineNum">      95 </span><span class="lineCov">         23 :   static std::locale l_locale(std::cout.getloc(), new boost::posix_time::time_facet(p_format.c_str()));</span>
+<span class="lineNum">      96 </span><span class="lineCov">         46 :   std::stringstream  l_buffer;</span>
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineCov">         23 :   l_buffer.imbue(l_locale);</span>
+<span class="lineNum">      99 </span><span class="lineCov">         23 :   l_buffer &lt;&lt; p_time;</span>
+<span class="lineNum">     100 </span><span class="lineCov">         46 :   return l_buffer.str();</span>
+<span class="lineNum">     101 </span>            : }
+<a name="102"><span class="lineNum">     102 </span>            : </a>
+<span class="lineNum">     103 </span>            : string
+<span class="lineNum">     104 </span><span class="lineCov">         25 : Formatter::resolveLayout(const string&amp; p_layout, const Fields&lt;string&gt;&amp; p_args) const</span>
+<span class="lineNum">     105 </span>            : {
+<span class="lineNum">     106 </span><span class="lineCov">         25 :   string l_result = p_layout;</span>
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(name)&quot;,     p_args.m_name);</span>
+<span class="lineNum">     109 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(module)&quot;,   p_args.m_module);</span>
+<span class="lineNum">     110 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(threadid)&quot;, p_args.m_threadid);</span>
+<span class="lineNum">     111 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(slevel)&quot;,   p_args.m_slevel);</span>
+<span class="lineNum">     112 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(ilevel)&quot;,   p_args.m_ilevel);</span>
+<span class="lineNum">     113 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(message)&quot;,  p_args.m_message);</span>
+<span class="lineNum">     114 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(filename)&quot;, p_args.m_filename);</span>
+<span class="lineNum">     115 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(line)&quot;,     p_args.m_line);</span>
+<span class="lineNum">     116 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(function)&quot;, p_args.m_function);</span>
+<span class="lineNum">     117 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(location)&quot;, p_args.m_location);</span>
+<span class="lineNum">     118 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(time)&quot;,     p_args.m_time);</span>
+<span class="lineNum">     119 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(pid)&quot;,      p_args.m_pid);</span>
+<span class="lineNum">     120 </span><span class="lineCov">         25 :   boost::replace_all(l_result, &quot;%(ppid)&quot;,     p_args.m_ppid);</span>
+<span class="lineNum">     121 </span><span class="lineCov">         25 :   return l_result;</span>
+<span class="lineNum">     122 </span>            : }
+<a name="123"><span class="lineNum">     123 </span>            : </a>
+<span class="lineNum">     124 </span>            : void
+<span class="lineNum">     125 </span><span class="lineCov">         23 : Formatter::createFields(const FormattedRecord&amp; p_rec, t_formats&amp; p_args) const</span>
+<span class="lineNum">     126 </span>            : {
+<span class="lineNum">     127 </span>            :   using boost::str;
+<span class="lineNum">     128 </span>            :   using boost::format;
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span><span class="lineCov">         46 :   t_formats l_formats(m_fieldFormats);</span>
+<span class="lineNum">     131 </span><span class="lineCov">         28 :   for (auto&amp; c_fn : m_formatModifiers)</span>
+<span class="lineNum">     132 </span><span class="lineCov">          5 :     c_fn(p_rec, l_formats);</span>
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span><span class="lineCov">         23 :   p_args.m_name     = str(format(l_formats.m_name)     % p_rec.m_name);</span>
+<span class="lineNum">     135 </span><span class="lineCov">         23 :   p_args.m_threadid = str(format(l_formats.m_threadid) % p_rec.m_threadID);</span>
+<span class="lineNum">     136 </span><span class="lineCov">         23 :   p_args.m_threadid = str(format(l_formats.m_threadid) % 789465);</span>
+<span class="lineNum">     137 </span><span class="lineCov">         23 :   p_args.m_module   = str(format(l_formats.m_module)   % p_rec.m_module);</span>
+<span class="lineNum">     138 </span><span class="lineCov">         23 :   p_args.m_slevel   = str(format(l_formats.m_slevel)   % to_string(p_rec.m_level));</span>
+<span class="lineNum">     139 </span><span class="lineCov">         23 :   p_args.m_ilevel   = str(format(l_formats.m_ilevel)   % to_value(p_rec.m_level));</span>
+<span class="lineNum">     140 </span><span class="lineCov">         23 :   p_args.m_message  = str(format(l_formats.m_message)  % p_rec.m_message);</span>
+<span class="lineNum">     141 </span><span class="lineCov">         23 :   p_args.m_time     = str(format(l_formats.m_time)     % resolveTime(m_timeFmt, p_rec.m_time));</span>
+<span class="lineNum">     142 </span><span class="lineCov">         23 :   p_args.m_pid      = str(format(l_formats.m_pid)      % p_rec.m_pid);</span>
+<span class="lineNum">     143 </span><span class="lineCov">         23 :   p_args.m_ppid     = str(format(l_formats.m_ppid)     % p_rec.m_ppid);</span>
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span><span class="lineCov">         23 :   if (true == p_rec.m_hasLoc)</span>
+<span class="lineNum">     146 </span>            :   {
+<span class="lineNum">     147 </span><span class="lineCov">          2 :     p_args.m_filename = str(format(l_formats.m_filename) % p_rec.m_filename);</span>
+<span class="lineNum">     148 </span><span class="lineCov">          2 :     p_args.m_line     = str(format(l_formats.m_line)     % p_rec.m_line);</span>
+<span class="lineNum">     149 </span><span class="lineCov">          2 :     p_args.m_function = str(format(l_formats.m_function) % p_rec.m_function);</span>
+<span class="lineNum">     150 </span><span class="lineCov">          2 :     p_args.m_location = str(format(l_formats.m_location) % resolveLayout(m_locFmt, p_args));</span>
+<span class="lineNum">     151 </span>            :   }
+<span class="lineNum">     152 </span><span class="lineCov">         23 : }</span>
+<a name="153"><span class="lineNum">     153 </span>            : </a>
+<span class="lineNum">     154 </span>            : string
+<span class="lineNum">     155 </span><span class="lineCov">         23 : Formatter::getFulllog(const FormattedRecord&amp; p_rec) const</span>
+<span class="lineNum">     156 </span>            : {
+<span class="lineNum">     157 </span><span class="lineCov">         46 :   Fields&lt;string&gt; l_args;</span>
+<span class="lineNum">     158 </span>            : 
+<span class="lineNum">     159 </span><span class="lineCov">         23 :   createFields(p_rec, l_args);</span>
+<span class="lineNum">     160 </span><span class="lineCov">         46 :   return boost::str(boost::format(m_fieldFormats.m_fulllog) % resolveLayout(m_fmt, l_args));</span>
+<span class="lineNum">     161 </span>            : }
+<a name="162"><span class="lineNum">     162 </span>            : </a>
+<span class="lineNum">     163 </span>            : std::shared_ptr&lt;Formatter&gt;
+<span class="lineNum">     164 </span><span class="lineCov">         10 : Formatter::create(const string&amp; p_name, const map&lt;string,string&gt;&amp; p_properties)</span>
+<span class="lineNum">     165 </span>            : {
+<span class="lineNum">     166 </span><span class="lineCov">         10 :   std::shared_ptr&lt;Formatter&gt; l_result(new Formatter());</span>
+<span class="lineNum">     167 </span>            : 
+<span class="lineNum">     168 </span><span class="lineCov">         10 :   static const vector&lt;string&gt; ls_formats = { &quot;fulllog&quot;, &quot;location&quot;, &quot;time&quot; };</span>
+<span class="lineNum">     169 </span>            :   static const vector&lt;string&gt; ls_fields  = {
+<span class="lineNum">     170 </span>            :     &quot;name&quot;,     &quot;pid&quot;,    &quot;ppid&quot;,     &quot;module&quot;,   &quot;threadid&quot;,
+<span class="lineNum">     171 </span>            :     &quot;slevel&quot;,   &quot;ilevel&quot;, &quot;message&quot;,  &quot;filename&quot;, &quot;line&quot;,
+<span class="lineNum">     172 </span>            :     &quot;function&quot;, &quot;time&quot;,   &quot;location&quot;, &quot;fulllog&quot;
+<span class="lineNum">     173 </span><span class="lineCov">         10 :   };</span>
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span><span class="lineCov">         40 :   for (const auto&amp; c_format : ls_formats)</span>
+<span class="lineNum">     176 </span>            :   {
+<span class="lineNum">     177 </span><span class="lineCov">         30 :     auto c_item = p_properties.find(&quot;log.formatter.&quot; + p_name + &quot;.layout.&quot; + c_format);</span>
+<span class="lineNum">     178 </span><span class="lineCov">         30 :     if (c_item != p_properties.end())</span>
+<span class="lineNum">     179 </span><span class="lineCov">          1 :       l_result-&gt;setLayout(c_format, c_item-&gt;second);</span>
+<span class="lineNum">     180 </span>            :   }
+<span class="lineNum">     181 </span>            : 
+<span class="lineNum">     182 </span><span class="lineCov">        150 :   for (const auto&amp; c_field : ls_fields)</span>
+<span class="lineNum">     183 </span>            :   {
+<span class="lineNum">     184 </span><span class="lineCov">        140 :     auto c_item = p_properties.find(&quot;log.formatter.&quot; + p_name + &quot;.format.&quot; + c_field);</span>
+<span class="lineNum">     185 </span><span class="lineCov">        140 :     if (c_item != p_properties.end())</span>
+<span class="lineNum">     186 </span><span class="lineCov">          2 :       l_result-&gt;setFieldFormat(c_field, c_item-&gt;second);</span>
+<span class="lineNum">     187 </span>            :   }
+<span class="lineNum">     188 </span>            : 
+<span class="lineNum">     189 </span><span class="lineCov">         10 :   return l_result;</span>
+<a name="190"><span class="lineNum">     190 </span>            : }</a>
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span><span class="lineCov">         42 : }}</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

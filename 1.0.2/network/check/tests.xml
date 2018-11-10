@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20170115-2239-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.5.1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="721f2a8f257a"
+	OSRelease="4.4.0-51-generic"
+	OSVersion="#72~14.04.1-Ubuntu SMP Thu Nov 24 19:22:30 UTC 2016"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="63"
+	ProcessorCacheSize="46080"
+	NumberOfLogicalCPU="2"
+	NumberOfPhysicalCPU="1"
+	TotalVirtualMemory="0"
+	TotalPhysicalMemory="7480"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2300"
+	>
+	<Testing>
+		<StartDateTime>Jan 15 22:39 UTC</StartDateTime>
+		<StartTestTime>1484519988</StartTestTime>
+		<TestList>
+			<Test>./tHttpServer</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>tHttpServer</Name>
+			<Path>.</Path>
+			<FullName>./tHttpServer</FullName>
+			<FullCommandLine>/home/travis/build/psycofdj/xtdcpp/.release/network/tHttpServer "-p" "-o" "compiler" "--srcdir=/home/travis/build/psycofdj/xtdcpp/network" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/network/unit" "--outputter=compiler" "-p" "-e" "7"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>3.51221</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/travis/build/psycofdj/xtdcpp/.release/network/tHttpServer "-p" "-o" "compiler" "--srcdir=/home/travis/build/psycofdj/xtdcpp/network" "--top-srcdir=/home/travis/build/psycofdj/xtdcpp" "--top-builddir=/home/travis/build/psycofdj/xtdcpp/.release" "--testdir=/home/travis/build/psycofdj/xtdcpp/network/unit" "--outputter=compiler" "-p" "-e" "7"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>TestHttpServer::unhandledRequest : start
+TestHttpServer::unhandledRequest : end Ok
+TestHttpServer::malformedRequest : start
+TestHttpServer::malformedRequest : end Ok
+TestHttpServer::simpleHandler : start
+TestHttpServer::simpleHandler : end Ok
+TestHttpServer::filteredHandler : start
+TestHttpServer::filteredHandler : end Ok
+TestHttpServer::anyHandler : start
+TestHttpServer::anyHandler : end Ok
+TestHttpServer::expiredConnection : start
+TestHttpServer::expiredConnection : end Ok
+
+OK (6)
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Jan 15 22:39 UTC</EndDateTime>
+		<EndTestTime>1484519992</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

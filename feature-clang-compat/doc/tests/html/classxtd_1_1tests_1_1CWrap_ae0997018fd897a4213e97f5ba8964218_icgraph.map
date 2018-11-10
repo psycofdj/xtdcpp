@@ -1,0 +1,8 @@
+<map id="xtd::tests::CWrap::runHooks" name="xtd::tests::CWrap::runHooks">
+<area shape="rect" id="node2" href="$CWrap_8cc.html#a6f1f3704c08cc51ad17680056d67bdf4" title="openlog" alt="" coords="209,5,276,32"/>
+<area shape="rect" id="node3" href="$CWrap_8cc.html#ae1e4e53707d8c3fbc36bbc523fbbcda3" title="closelog" alt="" coords="207,56,278,83"/>
+<area shape="rect" id="node4" href="$CWrap_8cc.html#a953326ea599d38d865695fc7eb992787" title="vsyslog" alt="" coords="209,107,276,133"/>
+<area shape="rect" id="node6" href="$CWrap_8cc.html#ae2a08c9723ceb66d4a709351c36884e5" title="__vsyslog_chk" alt="" coords="188,157,297,184"/>
+<area shape="rect" id="node5" href="$CWrap_8cc.html#aeaabaf69ac2830786d42208e8ce50f49" title="syslog" alt="" coords="367,107,427,133"/>
+<area shape="rect" id="node7" href="$CWrap_8cc.html#a05c03e7cf758e33f41064c3c140b6afb" title="__syslog_chk" alt="" coords="345,157,448,184"/>
+</map>

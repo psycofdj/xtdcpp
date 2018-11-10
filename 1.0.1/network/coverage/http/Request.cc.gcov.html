@@ -1,0 +1,779 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - network unit test coverage - http/Request.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">http</a> - Request.cc<span style="font-size: 80%;"> (source / <a href="Request.cc.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">network unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">309</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2016-12-29 16:00:50</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;Request.hh&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;string&gt;
+<span class="lineNum">       3 </span>            : #include &lt;iomanip&gt;
+<span class="lineNum">       4 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       5 </span>            : #include &lt;sstream&gt;
+<span class="lineNum">       6 </span>            : #include &lt;istream&gt;
+<span class="lineNum">       7 </span>            : #include &lt;iterator&gt;
+<span class="lineNum">       8 </span>            : #include &lt;boost/format.hpp&gt;
+<span class="lineNum">       9 </span>            : #include &lt;boost/algorithm/string/split.hpp&gt;
+<span class="lineNum">      10 </span>            : #include &lt;boost/algorithm/string/trim.hpp&gt;
+<span class="lineNum">      11 </span>            : #include &lt;boost/algorithm/string/predicate.hpp&gt;
+<span class="lineNum">      12 </span>            : #include &lt;boost/algorithm/string/find_format.hpp&gt;
+<span class="lineNum">      13 </span>            : #include &lt;boost/algorithm/string/regex_find_format.hpp&gt;
+<span class="lineNum">      14 </span>            : #include &lt;boost/algorithm/string/case_conv.hpp&gt;
+<span class="lineNum">      15 </span>            : #include &lt;boost/algorithm/string/classification.hpp&gt;
+<span class="lineNum">      16 </span>            : #include &lt;boost/algorithm/string/replace.hpp&gt;
+<span class="lineNum">      17 </span>            : #include &lt;boost/lexical_cast.hpp&gt;
+<span class="lineNum">      18 </span>            : #include &lt;boost/assign/std/vector.hpp&gt;
+<span class="lineNum">      19 </span>            : #include &lt;boost/foreach.hpp&gt;
+<span class="lineNum">      20 </span>            : #include &lt;boost/algorithm/string/join.hpp&gt;
+<span class="lineNum">      21 </span>            : #include &lt;log.hh&gt; // libcore
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : using boost::assign::operator+=;
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : namespace xtd {
+<span class="lineNum">      28 </span>            : namespace network {
+<a name="29"><span class="lineNum">      29 </span>            : namespace http {</a>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span><span class="lineNoCov">          0 : Request::Request(bool p_cgiToLower) :</span>
+<span class="lineNum">      32 </span>            :   m_rawUrl(),
+<span class="lineNum">      33 </span>            :   m_method(METHOD_GET),
+<span class="lineNum">      34 </span>            :   m_path(),
+<span class="lineNum">      35 </span>            :   m_cgi(),
+<span class="lineNum">      36 </span>            :   m_post(),
+<span class="lineNum">      37 </span>            :   m_headers(),
+<span class="lineNum">      38 </span>            :   m_versionStr(&quot;1.0&quot;),
+<span class="lineNum">      39 </span>            :   m_version(Request::VERSION_1_0),
+<span class="lineNum">      40 </span>            :   m_cgiToLower(p_cgiToLower),
+<span class="lineNum">      41 </span>            :   m_regex_tooManyStartingSlash(&quot;\\/{2,}&quot;),
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :   m_regex_tooManyEndingSlash(&quot;[^\\/](\\/+)$&quot;)</span>
+<span class="lineNum">      43 </span>            : {
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 : }</span>
+<a name="45"><span class="lineNum">      45 </span>            : </a>
+<span class="lineNum">      46 </span>            : status
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 : Request::readQS(const string&amp; p_qs)</span>
+<span class="lineNum">      48 </span>            : {
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :   return readUrl(p_qs);</span>
+<span class="lineNum">      50 </span>            : }
+<a name="51"><span class="lineNum">      51 </span>            : </a>
+<span class="lineNum">      52 </span>            : void
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 : Request::setMethod(t_method p_method)</span>
+<span class="lineNum">      54 </span>            : {
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :   m_method = p_method;</span>
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            : /**
+<span class="lineNum">      60 </span>            :  ** @details
+<span class="lineNum">      61 </span>            :  ** 1. on effecture une etape de nornmalisation de la ressource demandee
+<a name="62"><span class="lineNum">      62 </span>            :  */</a>
+<span class="lineNum">      63 </span>            : void
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 : Request::normalizePath(const string&amp; p_path)</span>
+<span class="lineNum">      65 </span>            : {
+<span class="lineNum">      66 </span><span class="lineNoCov">          0 :   boost::smatch l_match;</span>
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :   m_path = paramValueDecode(p_path);</span>
+<span class="lineNum">      70 </span><span class="lineNoCov">          0 :   m_path = boost::regex_replace(m_path, boost::regex(&quot;^/+&quot;), &quot;/&quot;);</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">          0 :   m_path = boost::regex_replace(m_path, boost::regex(&quot;/+$&quot;), &quot;/&quot;);</span>
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      74 </span>            : 
+<a name="75"><span class="lineNum">      75 </span>            : </a>
+<span class="lineNum">      76 </span>            : void
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 : Request::addCgi(const string&amp; p_key,</span>
+<span class="lineNum">      78 </span>            :                 const string&amp; p_value)
+<span class="lineNum">      79 </span>            : {
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 :   m_cgi.insert(make_pair(p_key, p_value));</span>
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 : }</span>
+<a name="82"><span class="lineNum">      82 </span>            : </a>
+<span class="lineNum">      83 </span>            : void
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 : Request::addPost(const string&amp; p_key,</span>
+<span class="lineNum">      85 </span>            :                  const string&amp; p_value)
+<span class="lineNum">      86 </span>            : {
+<span class="lineNum">      87 </span><span class="lineNoCov">          0 :   m_post.insert(make_pair(p_key, p_value));</span>
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">      89 </span>            : 
+<a name="90"><span class="lineNum">      90 </span>            : </a>
+<span class="lineNum">      91 </span>            : void
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 : Request::addHeader(const string&amp; p_name,</span>
+<span class="lineNum">      93 </span>            :                    const string&amp; p_value)
+<span class="lineNum">      94 </span>            : {
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   m_headers[p_name] = p_value;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 : }</span>
+<a name="97"><span class="lineNum">      97 </span>            : </a>
+<span class="lineNum">      98 </span>            : void
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 : Request::setVersion(const string&amp; p_version)</span>
+<span class="lineNum">     100 </span>            : {
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :   m_versionStr = p_version;</span>
+<span class="lineNum">     102 </span><span class="lineNoCov">          0 : }</span>
+<a name="103"><span class="lineNum">     103 </span>            : </a>
+<span class="lineNum">     104 </span>            : void
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 : Request::setVersion(t_version p_version)</span>
+<span class="lineNum">     106 </span>            : {
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :   m_version = p_version;</span>
+<span class="lineNum">     108 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     109 </span>            : 
+<a name="110"><span class="lineNum">     110 </span>            : </a>
+<span class="lineNum">     111 </span>            : void
+<span class="lineNum">     112 </span><span class="lineNoCov">          0 : Request::removeCgi(const string&amp; p_key)</span>
+<span class="lineNum">     113 </span>            : {
+<span class="lineNum">     114 </span><span class="lineNoCov">          0 :   m_cgi.erase(p_key);</span>
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     116 </span>            : 
+<a name="117"><span class="lineNum">     117 </span>            : </a>
+<span class="lineNum">     118 </span>            : void
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 : Request::removePost(const string&amp; p_key)</span>
+<span class="lineNum">     120 </span>            : {
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :   m_post.erase(p_key);</span>
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     123 </span>            : 
+<a name="124"><span class="lineNum">     124 </span>            : </a>
+<span class="lineNum">     125 </span>            : void
+<span class="lineNum">     126 </span><span class="lineNoCov">          0 : Request::removeData(const string&amp; p_key)</span>
+<span class="lineNum">     127 </span>            : {
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :   removeCgi(p_key);</span>
+<span class="lineNum">     129 </span><span class="lineNoCov">          0 :   removePost(p_key);</span>
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 : }</span>
+<span class="lineNum">     131 </span>            : 
+<a name="132"><span class="lineNum">     132 </span>            : </a>
+<span class="lineNum">     133 </span>            : Request::t_method
+<span class="lineNum">     134 </span><span class="lineNoCov">          0 : Request::getMethod(void) const</span>
+<span class="lineNum">     135 </span>            : {
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   return m_method;</span>
+<span class="lineNum">     137 </span>            : }
+<span class="lineNum">     138 </span>            : 
+<a name="139"><span class="lineNum">     139 </span>            : </a>
+<span class="lineNum">     140 </span>            : string
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 : Request::getQS(void) const</span>
+<span class="lineNum">     142 </span>            : {
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :   vector&lt;string&gt; l_parts;</span>
+<span class="lineNum">     144 </span>            : 
+<span class="lineNum">     145 </span><span class="lineNoCov">          0 :   BOOST_FOREACH(const t_param_map::value_type&amp; c_param, m_cgi)</span>
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :     l_parts += c_param.first + &quot;=&quot; + c_param.second;</span>
+<span class="lineNum">     147 </span><span class="lineNoCov">          0 :   return boost::join(l_parts, &quot;&amp;&quot;);</span>
+<span class="lineNum">     148 </span>            : }
+<a name="149"><span class="lineNum">     149 </span>            : </a>
+<span class="lineNum">     150 </span>            : const string&amp;
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 : Request::getPath(void) const</span>
+<span class="lineNum">     152 </span>            : {
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :   return m_path;</span>
+<span class="lineNum">     154 </span>            : }
+<a name="155"><span class="lineNum">     155 </span>            : </a>
+<span class="lineNum">     156 </span>            : const Request::t_param_map&amp;
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 : Request::getCgis(void) const</span>
+<span class="lineNum">     158 </span>            : {
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 :   return m_cgi;</span>
+<span class="lineNum">     160 </span>            : }
+<a name="161"><span class="lineNum">     161 </span>            : </a>
+<span class="lineNum">     162 </span>            : const Request::t_param_map&amp;
+<span class="lineNum">     163 </span><span class="lineNoCov">          0 : Request::getPosts(void) const</span>
+<span class="lineNum">     164 </span>            : {
+<span class="lineNum">     165 </span><span class="lineNoCov">          0 :   return m_post;</span>
+<span class="lineNum">     166 </span>            : }
+<a name="167"><span class="lineNum">     167 </span>            : </a>
+<span class="lineNum">     168 </span>            : Request::t_param_map
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 : Request::getParams(void) const</span>
+<span class="lineNum">     170 </span>            : {
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :   t_param_map l_map;</span>
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span><span class="lineNoCov">          0 :   l_map.insert(m_cgi.begin(), m_cgi.end());</span>
+<span class="lineNum">     174 </span><span class="lineNoCov">          0 :   l_map.insert(m_post.begin(), m_post.end());</span>
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :   return l_map;</span>
+<span class="lineNum">     176 </span>            : }
+<a name="177"><span class="lineNum">     177 </span>            : </a>
+<span class="lineNum">     178 </span>            : bool
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 : Request::existsData(const t_param_map&amp; p_src, const string&amp; p_key) const</span>
+<span class="lineNum">     180 </span>            : {
+<span class="lineNum">     181 </span><span class="lineNoCov">          0 :   return (p_src.count(p_key) != 0);</span>
+<span class="lineNum">     182 </span>            : }
+<a name="183"><span class="lineNum">     183 </span>            : </a>
+<span class="lineNum">     184 </span>            : bool
+<span class="lineNum">     185 </span><span class="lineNoCov">          0 : Request::existsCgi(const string&amp; p_key) const</span>
+<span class="lineNum">     186 </span>            : {
+<span class="lineNum">     187 </span><span class="lineNoCov">          0 :   return existsData(m_cgi, p_key);</span>
+<span class="lineNum">     188 </span>            : }
+<a name="189"><span class="lineNum">     189 </span>            : </a>
+<span class="lineNum">     190 </span>            : bool
+<span class="lineNum">     191 </span><span class="lineNoCov">          0 : Request::existsPost(const string&amp; p_key) const</span>
+<span class="lineNum">     192 </span>            : {
+<span class="lineNum">     193 </span><span class="lineNoCov">          0 :   return existsData(m_post, p_key);</span>
+<span class="lineNum">     194 </span>            : }
+<a name="195"><span class="lineNum">     195 </span>            : </a>
+<span class="lineNum">     196 </span>            : bool
+<span class="lineNum">     197 </span><span class="lineNoCov">          0 : Request::existsParam(const string&amp; p_key) const</span>
+<span class="lineNum">     198 </span>            : {
+<span class="lineNum">     199 </span><span class="lineNoCov">          0 :   return existsData(m_cgi, p_key) || existsData(m_post, p_key);</span>
+<span class="lineNum">     200 </span>            : }
+<a name="201"><span class="lineNum">     201 </span>            : </a>
+<span class="lineNum">     202 </span>            : bool
+<span class="lineNum">     203 </span><span class="lineNoCov">          0 : Request::existsHeader(const string&amp; p_name) const</span>
+<span class="lineNum">     204 </span>            : {
+<span class="lineNum">     205 </span><span class="lineNoCov">          0 :   return m_headers.count(p_name) != 0;</span>
+<span class="lineNum">     206 </span>            : }
+<span class="lineNum">     207 </span>            : 
+<a name="208"><span class="lineNum">     208 </span>            : </a>
+<span class="lineNum">     209 </span>            : bool
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 : Request::getHeader(const string&amp; p_name, string&amp; p_value) const</span>
+<span class="lineNum">     211 </span>            : {
+<span class="lineNum">     212 </span><span class="lineNoCov">          0 :   t_header_map::const_iterator c_header = m_headers.find(p_name);</span>
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span><span class="lineNoCov">          0 :   if (c_header == m_headers.end())</span>
+<span class="lineNum">     215 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :   p_value = c_header-&gt;second;</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">     218 </span>            : }
+<a name="219"><span class="lineNum">     219 </span>            : </a>
+<span class="lineNum">     220 </span>            : const Request::t_header_map&amp;
+<span class="lineNum">     221 </span><span class="lineNoCov">          0 : Request::getHeaders(void) const</span>
+<span class="lineNum">     222 </span>            : {
+<span class="lineNum">     223 </span><span class="lineNoCov">          0 :   return m_headers;</span>
+<span class="lineNum">     224 </span>            : }
+<span class="lineNum">     225 </span>            : 
+<a name="226"><span class="lineNum">     226 </span>            : </a>
+<span class="lineNum">     227 </span>            : const string&amp;
+<span class="lineNum">     228 </span><span class="lineNoCov">          0 : Request::getVersionStr(void) const</span>
+<span class="lineNum">     229 </span>            : {
+<span class="lineNum">     230 </span><span class="lineNoCov">          0 :   return m_versionStr;</span>
+<span class="lineNum">     231 </span>            : }
+<a name="232"><span class="lineNum">     232 </span>            : </a>
+<span class="lineNum">     233 </span>            : Request::t_version
+<span class="lineNum">     234 </span><span class="lineNoCov">          0 : Request::getVersion(void) const</span>
+<span class="lineNum">     235 </span>            : {
+<span class="lineNum">     236 </span><span class="lineNoCov">          0 :   return m_version;</span>
+<span class="lineNum">     237 </span>            : }
+<a name="238"><span class="lineNum">     238 </span>            : </a>
+<span class="lineNum">     239 </span>            : status
+<span class="lineNum">     240 </span><span class="lineNoCov">          0 : Request::read(std::istream&amp; p_request)</span>
+<span class="lineNum">     241 </span>            : {
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 :   if (status::ok != readHead(p_request))</span>
+<span class="lineNum">     243 </span>            :   {
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : bad initial line&quot;, HERE);</span>
+<span class="lineNum">     245 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     246 </span>            :   }
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span><span class="lineNoCov">          0 :   if (status::ok != readData(p_request))</span>
+<span class="lineNum">     249 </span>            :   {
+<span class="lineNum">     250 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : invalid data&quot;, HERE);</span>
+<span class="lineNum">     251 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     252 </span>            :   }
+<span class="lineNum">     253 </span>            : 
+<span class="lineNum">     254 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     255 </span>            : }
+<a name="256"><span class="lineNum">     256 </span>            : </a>
+<span class="lineNum">     257 </span>            : status
+<span class="lineNum">     258 </span><span class="lineNoCov">          0 : Request::readHead(std::istream&amp; p_request)</span>
+<span class="lineNum">     259 </span>            : {
+<span class="lineNum">     260 </span><span class="lineNoCov">          0 :   if (status::ok != readInitial(p_request))</span>
+<span class="lineNum">     261 </span>            :   {
+<span class="lineNum">     262 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : bad initial line&quot;, HERE);</span>
+<span class="lineNum">     263 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     264 </span>            :   }
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span><span class="lineNoCov">          0 :   if (status::ok != readHeaders(p_request))</span>
+<span class="lineNum">     267 </span>            :   {
+<span class="lineNum">     268 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;protocol error : bad headers lines&quot;, HERE);</span>
+<span class="lineNum">     269 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     270 </span>            :   }
+<span class="lineNum">     271 </span>            : 
+<span class="lineNum">     272 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     273 </span>            : }
+<a name="274"><span class="lineNum">     274 </span>            : </a>
+<span class="lineNum">     275 </span>            : status
+<span class="lineNum">     276 </span><span class="lineNoCov">          0 : Request::readInitial(istream&amp; p_request)</span>
+<span class="lineNum">     277 </span>            : {
+<span class="lineNum">     278 </span><span class="lineNoCov">          0 :   string         l_line;</span>
+<span class="lineNum">     279 </span><span class="lineNoCov">          0 :   vector&lt;string&gt; l_parts;</span>
+<span class="lineNum">     280 </span>            : 
+<span class="lineNum">     281 </span><span class="lineNoCov">          0 :   getline(p_request, l_line);</span>
+<span class="lineNum">     282 </span><span class="lineNoCov">          0 :   boost::trim_if(l_line, boost::is_any_of(&quot; \n\r\t&quot;));</span>
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span><span class="lineNoCov">          0 :   if (0 == l_line.size())</span>
+<span class="lineNum">     285 </span>            :   {
+<span class="lineNum">     286 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : no initial line&quot;, HERE);</span>
+<span class="lineNum">     287 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     288 </span>            :   }
+<span class="lineNum">     289 </span>            : 
+<span class="lineNum">     290 </span><span class="lineNoCov">          0 :   boost::split(l_parts, l_line, boost::is_any_of(&quot; &quot;));</span>
+<span class="lineNum">     291 </span><span class="lineNoCov">          0 :   if (3 != l_parts.size())</span>
+<span class="lineNum">     292 </span>            :   {
+<span class="lineNum">     293 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : invalid initial line format '%s'&quot;, l_line, HERE);</span>
+<span class="lineNum">     294 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     295 </span>            :   }
+<span class="lineNum">     296 </span>            : 
+<span class="lineNum">     297 </span><span class="lineNoCov">          0 :   if (status::ok != readMethod(l_parts[0]))</span>
+<span class="lineNum">     298 </span>            :   {
+<span class="lineNum">     299 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : unknown method '%s'&quot;, l_parts[0], HERE);</span>
+<span class="lineNum">     300 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     301 </span>            :   }
+<span class="lineNum">     302 </span>            : 
+<span class="lineNum">     303 </span><span class="lineNoCov">          0 :   if (status::ok != readUrl(l_parts[1]))</span>
+<span class="lineNum">     304 </span>            :   {
+<span class="lineNum">     305 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : invalid url '%s'&quot;, l_parts[1], HERE);</span>
+<span class="lineNum">     306 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     307 </span>            :   }
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span><span class="lineNoCov">          0 :   if (status::ok != readVersion(l_parts[2]))</span>
+<span class="lineNum">     310 </span>            :   {
+<span class="lineNum">     311 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : invalid version '%s'&quot;, l_parts[2], HERE);</span>
+<span class="lineNum">     312 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     313 </span>            :   }
+<span class="lineNum">     314 </span>            : 
+<span class="lineNum">     315 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     316 </span>            : }
+<span class="lineNum">     317 </span>            : 
+<a name="318"><span class="lineNum">     318 </span>            : </a>
+<span class="lineNum">     319 </span>            : status
+<span class="lineNum">     320 </span><span class="lineNoCov">          0 : Request::readMethod(const string&amp; p_method)</span>
+<span class="lineNum">     321 </span>            : {
+<span class="lineNum">     322 </span><span class="lineNoCov">          0 :   string l_value = boost::to_lower_copy(p_method);</span>
+<span class="lineNum">     323 </span>            : 
+<span class="lineNum">     324 </span><span class="lineNoCov">          0 :   if (l_value == &quot;get&quot;)</span>
+<span class="lineNum">     325 </span><span class="lineNoCov">          0 :     setMethod(Request::METHOD_GET);</span>
+<span class="lineNum">     326 </span><span class="lineNoCov">          0 :   else if (l_value == &quot;post&quot;)</span>
+<span class="lineNum">     327 </span><span class="lineNoCov">          0 :     setMethod(Request::METHOD_POST);</span>
+<span class="lineNum">     328 </span><span class="lineNoCov">          0 :   else if (l_value == &quot;head&quot;)</span>
+<span class="lineNum">     329 </span><span class="lineNoCov">          0 :     setMethod(Request::METHOD_HEAD);</span>
+<span class="lineNum">     330 </span>            :   else
+<span class="lineNum">     331 </span>            :   {
+<span class="lineNum">     332 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : unknown method '%s'&quot;, l_value, HERE);</span>
+<span class="lineNum">     333 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     334 </span>            :   }
+<span class="lineNum">     335 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     336 </span>            : }
+<span class="lineNum">     337 </span>            : 
+<span class="lineNum">     338 </span>            : // Assume url is encoded with iso-latin-1 characters
+<span class="lineNum">     339 </span>            : // will convert to ascii
+<span class="lineNum">     340 </span>            : // -&gt; same process as in ke_texttools.cc ISO8859_Normalizer
+<span class="lineNum">     341 </span>            : struct hex_to_string
+<a name="342"><span class="lineNum">     342 </span>            : {</a>
+<span class="lineNum">     343 </span>            :   template&lt;typename T&gt;
+<span class="lineNum">     344 </span><span class="lineNoCov">          0 :   string operator()(const T&amp; p_match) const</span>
+<span class="lineNum">     345 </span>            :   {
+<span class="lineNum">     346 </span><span class="lineNoCov">          0 :     stringstream  l_value;</span>
+<span class="lineNum">     347 </span>            :     int           l_intVal;
+<span class="lineNum">     348 </span>            :     unsigned char l_result;
+<span class="lineNum">     349 </span><span class="lineNoCov">          0 :     l_value &lt;&lt; std::hex &lt;&lt; p_match.match_results().str(1);</span>
+<span class="lineNum">     350 </span><span class="lineNoCov">          0 :     l_value &gt;&gt; l_intVal;</span>
+<span class="lineNum">     351 </span><span class="lineNoCov">          0 :     l_result = l_intVal;</span>
+<span class="lineNum">     352 </span><span class="lineNoCov">          0 :     return boost::str(boost::format(&quot;%c&quot;) % l_result);</span>
+<span class="lineNum">     353 </span>            :   }
+<span class="lineNum">     354 </span>            : };
+<span class="lineNum">     355 </span>            : 
+<span class="lineNum">     356 </span>            : 
+<a name="357"><span class="lineNum">     357 </span>            : </a>
+<span class="lineNum">     358 </span>            : string
+<span class="lineNum">     359 </span><span class="lineNoCov">          0 : Request::paramValueDecode(const string&amp; p_value)</span>
+<span class="lineNum">     360 </span>            : {
+<span class="lineNum">     361 </span><span class="lineNoCov">          0 :   string       l_value(p_value);</span>
+<span class="lineNum">     362 </span><span class="lineNoCov">          0 :   boost::regex l_hexRegex(&quot;%([0-9a-fA-F]{2})&quot;);</span>
+<span class="lineNum">     363 </span><span class="lineNoCov">          0 :   boost::regex l_spaceRegex(&quot;[ \t]{2,}&quot;);</span>
+<span class="lineNum">     364 </span>            : 
+<span class="lineNum">     365 </span>            :   // replace all + by space
+<span class="lineNum">     366 </span><span class="lineNoCov">          0 :   boost::replace_all(l_value, &quot;+&quot;, &quot; &quot;);</span>
+<span class="lineNum">     367 </span>            : 
+<span class="lineNum">     368 </span>            :   // replace hex value by corresponding character
+<span class="lineNum">     369 </span><span class="lineNoCov">          0 :   boost::smatch l_match;</span>
+<span class="lineNum">     370 </span>            :   //CDE while used for %252520
+<span class="lineNum">     371 </span>            :   //maybe a future feature
+<span class="lineNum">     372 </span>            :   //while (boost::regex_search(l_value, l_match, l_hexRegex))
+<span class="lineNum">     373 </span><span class="lineNoCov">          0 :   boost::algorithm::find_format_all(l_value,</span>
+<span class="lineNum">     374 </span>            :                                     boost::algorithm::regex_finder(l_hexRegex),
+<span class="lineNum">     375 </span><span class="lineNoCov">          0 :                                     hex_to_string());</span>
+<span class="lineNum">     376 </span>            : 
+<span class="lineNum">     377 </span>            :   // remove duplicate spaces
+<span class="lineNum">     378 </span><span class="lineNoCov">          0 :   boost::algorithm::find_format_all(l_value,</span>
+<span class="lineNum">     379 </span>            :                                     boost::algorithm::regex_finder(l_spaceRegex),
+<span class="lineNum">     380 </span><span class="lineNoCov">          0 :                                     boost::algorithm::const_formatter(&quot; &quot;));</span>
+<span class="lineNum">     381 </span><span class="lineNoCov">          0 :   boost::trim(l_value);</span>
+<span class="lineNum">     382 </span>            : 
+<span class="lineNum">     383 </span><span class="lineNoCov">          0 :   if (m_cgiToLower) {</span>
+<span class="lineNum">     384 </span><span class="lineNoCov">          0 :     boost::to_lower(l_value);</span>
+<span class="lineNum">     385 </span>            :   }
+<span class="lineNum">     386 </span>            : 
+<span class="lineNum">     387 </span><span class="lineNoCov">          0 :   return l_value;</span>
+<span class="lineNum">     388 </span>            : }
+<span class="lineNum">     389 </span>            : 
+<a name="390"><span class="lineNum">     390 </span>            : </a>
+<span class="lineNum">     391 </span>            : status
+<span class="lineNum">     392 </span><span class="lineNoCov">          0 : Request::readUrl(const string&amp; p_url)</span>
+<span class="lineNum">     393 </span>            : {
+<span class="lineNum">     394 </span><span class="lineNoCov">          0 :   vector&lt;string&gt;                 l_cgiPairs;</span>
+<span class="lineNum">     395 </span><span class="lineNoCov">          0 :   vector&lt;string&gt;                 l_urlParts;</span>
+<span class="lineNum">     396 </span><span class="lineNoCov">          0 :   vector&lt;string&gt;                 l_pathParts;</span>
+<span class="lineNum">     397 </span><span class="lineNoCov">          0 :   vector&lt;string&gt;::const_iterator cc_cgiPair;</span>
+<span class="lineNum">     398 </span><span class="lineNoCov">          0 :   string                         l_query;</span>
+<span class="lineNum">     399 </span>            : 
+<span class="lineNum">     400 </span><span class="lineNoCov">          0 :   if (0 == p_url.size())</span>
+<span class="lineNum">     401 </span>            :   {
+<span class="lineNum">     402 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;url error : invalid 0 size&quot;, HERE);</span>
+<span class="lineNum">     403 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     404 </span>            :   }
+<span class="lineNum">     405 </span><span class="lineNoCov">          0 :   string::size_type l_pos = p_url.find(&quot;?&quot;);</span>
+<span class="lineNum">     406 </span><span class="lineNoCov">          0 :   string l_path           = p_url;</span>
+<span class="lineNum">     407 </span>            : 
+<span class="lineNum">     408 </span><span class="lineNoCov">          0 :   if (string::npos != l_pos)</span>
+<span class="lineNum">     409 </span>            :   {
+<span class="lineNum">     410 </span><span class="lineNoCov">          0 :     l_query  = l_path.substr(l_pos + 1);</span>
+<span class="lineNum">     411 </span><span class="lineNoCov">          0 :     l_path = l_path.substr(0, l_pos);</span>
+<span class="lineNum">     412 </span>            : 
+<span class="lineNum">     413 </span><span class="lineNoCov">          0 :     boost::split(l_cgiPairs, l_query, boost::is_any_of(&quot;&amp;&quot;));</span>
+<span class="lineNum">     414 </span><span class="lineNoCov">          0 :     for (cc_cgiPair = l_cgiPairs.begin(); cc_cgiPair != l_cgiPairs.end(); cc_cgiPair++)</span>
+<span class="lineNum">     415 </span>            :     {
+<span class="lineNum">     416 </span><span class="lineNoCov">          0 :       vector&lt;string&gt; l_cgi;</span>
+<span class="lineNum">     417 </span><span class="lineNoCov">          0 :       string         l_key;</span>
+<span class="lineNum">     418 </span><span class="lineNoCov">          0 :       string         l_value;</span>
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span><span class="lineNoCov">          0 :       if (cc_cgiPair-&gt;size() == 0)</span>
+<span class="lineNum">     421 </span><span class="lineNoCov">          0 :         continue;</span>
+<span class="lineNum">     422 </span><span class="lineNoCov">          0 :       boost::split(l_cgi, *cc_cgiPair, boost::is_any_of(&quot;=&quot;));</span>
+<span class="lineNum">     423 </span><span class="lineNoCov">          0 :       l_key = l_cgi[0];</span>
+<span class="lineNum">     424 </span><span class="lineNoCov">          0 :       if (l_cgi.size() == 2)</span>
+<span class="lineNum">     425 </span><span class="lineNoCov">          0 :         l_value = l_cgi[1];</span>
+<span class="lineNum">     426 </span><span class="lineNoCov">          0 :       else if (l_cgi.size() &gt; 2)</span>
+<span class="lineNum">     427 </span>            :       {
+<span class="lineNum">     428 </span><span class="lineNoCov">          0 :         for (uint32_t c_cgi = 1; c_cgi &lt; l_cgi.size() - 1; c_cgi++)</span>
+<span class="lineNum">     429 </span>            :         {
+<span class="lineNum">     430 </span><span class="lineNoCov">          0 :           l_value += l_cgi[c_cgi] + &quot;%3D&quot;; // %3D represents =</span>
+<span class="lineNum">     431 </span>            :         }
+<span class="lineNum">     432 </span><span class="lineNoCov">          0 :         l_value += l_cgi[l_cgi.size() - 1];</span>
+<span class="lineNum">     433 </span>            :       }
+<span class="lineNum">     434 </span><span class="lineNoCov">          0 :       addCgi(l_key, paramValueDecode(l_value));</span>
+<span class="lineNum">     435 </span>            :     }
+<span class="lineNum">     436 </span>            :   }
+<span class="lineNum">     437 </span>            : 
+<span class="lineNum">     438 </span><span class="lineNoCov">          0 :   normalizePath(l_path);</span>
+<span class="lineNum">     439 </span><span class="lineNoCov">          0 :   m_rawUrl = p_url;</span>
+<span class="lineNum">     440 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     441 </span>            : }
+<span class="lineNum">     442 </span>            : 
+<a name="443"><span class="lineNum">     443 </span>            : </a>
+<span class="lineNum">     444 </span>            : string
+<span class="lineNum">     445 </span><span class="lineNoCov">          0 : Request::getRawUrl(void) const</span>
+<span class="lineNum">     446 </span>            : {
+<span class="lineNum">     447 </span><span class="lineNoCov">          0 :   return m_rawUrl;</span>
+<span class="lineNum">     448 </span>            : }
+<a name="449"><span class="lineNum">     449 </span>            : </a>
+<span class="lineNum">     450 </span>            : status
+<span class="lineNum">     451 </span><span class="lineNoCov">          0 : Request::readVersion(const string&amp; p_version)</span>
+<span class="lineNum">     452 </span>            : {
+<span class="lineNum">     453 </span><span class="lineNoCov">          0 :   size_t l_pos = p_version.find_last_of(&quot;/&quot;);</span>
+<span class="lineNum">     454 </span>            : 
+<span class="lineNum">     455 </span><span class="lineNoCov">          0 :   if (p_version.substr(0, l_pos) != &quot;HTTP&quot;)</span>
+<span class="lineNum">     456 </span>            :   {
+<span class="lineNum">     457 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;version error : invalid&quot;, HERE);</span>
+<span class="lineNum">     458 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     459 </span>            :   }
+<span class="lineNum">     460 </span>            : 
+<span class="lineNum">     461 </span><span class="lineNoCov">          0 :   string l_version = p_version.substr(l_pos + 1);</span>
+<span class="lineNum">     462 </span><span class="lineNoCov">          0 :   setVersion(l_version);</span>
+<span class="lineNum">     463 </span>            : 
+<span class="lineNum">     464 </span><span class="lineNoCov">          0 :   if (l_version == &quot;1.0&quot;)</span>
+<span class="lineNum">     465 </span><span class="lineNoCov">          0 :     setVersion(Request::VERSION_1_0);</span>
+<span class="lineNum">     466 </span><span class="lineNoCov">          0 :   else if (l_version == &quot;1.1&quot;)</span>
+<span class="lineNum">     467 </span><span class="lineNoCov">          0 :     setVersion(Request::VERSION_1_1);</span>
+<span class="lineNum">     468 </span>            :   else
+<span class="lineNum">     469 </span>            :   {
+<span class="lineNum">     470 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;initial line error : unknown version '%s'&quot;, l_version, HERE);</span>
+<span class="lineNum">     471 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     472 </span>            :   }
+<span class="lineNum">     473 </span>            : 
+<span class="lineNum">     474 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     475 </span>            : }
+<span class="lineNum">     476 </span>            : 
+<a name="477"><span class="lineNum">     477 </span>            : </a>
+<span class="lineNum">     478 </span>            : status
+<span class="lineNum">     479 </span><span class="lineNoCov">          0 : Request::readHeaders(istream&amp; p_request)</span>
+<span class="lineNum">     480 </span>            : {
+<span class="lineNum">     481 </span><span class="lineNoCov">          0 :   while (false == p_request.eof())</span>
+<span class="lineNum">     482 </span>            :   {
+<span class="lineNum">     483 </span><span class="lineNoCov">          0 :     vector&lt;string&gt; l_parts;</span>
+<span class="lineNum">     484 </span><span class="lineNoCov">          0 :     string         l_line;</span>
+<span class="lineNum">     485 </span>            : 
+<span class="lineNum">     486 </span><span class="lineNoCov">          0 :     getline(p_request, l_line);</span>
+<span class="lineNum">     487 </span><span class="lineNoCov">          0 :     boost::trim_if(l_line, boost::is_any_of(&quot;\t\r\n &quot;));</span>
+<span class="lineNum">     488 </span><span class="lineNoCov">          0 :     if (0 == l_line.size())</span>
+<span class="lineNum">     489 </span><span class="lineNoCov">          0 :       break;</span>
+<span class="lineNum">     490 </span>            : 
+<span class="lineNum">     491 </span><span class="lineNoCov">          0 :     l_parts.push_back(l_line.substr(0, l_line.find_first_of(&quot;:&quot;)));</span>
+<span class="lineNum">     492 </span><span class="lineNoCov">          0 :     l_parts.push_back(l_line.substr(l_line.find_first_of(&quot;:&quot;) + 1));</span>
+<span class="lineNum">     493 </span><span class="lineNoCov">          0 :     boost::trim(l_parts[0]);</span>
+<span class="lineNum">     494 </span><span class="lineNoCov">          0 :     boost::trim(l_parts[1]);</span>
+<span class="lineNum">     495 </span><span class="lineNoCov">          0 :     addHeader(l_parts[0], l_parts[1]);</span>
+<span class="lineNum">     496 </span><span class="lineNoCov">          0 :     log::info(&quot;network.http.request&quot;, &quot;received header %s: %s&quot;, l_parts[0], l_parts[1], HERE);</span>
+<span class="lineNum">     497 </span>            :   }
+<span class="lineNum">     498 </span>            : 
+<span class="lineNum">     499 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     500 </span>            : }
+<span class="lineNum">     501 </span>            : 
+<a name="502"><span class="lineNum">     502 </span>            : </a>
+<span class="lineNum">     503 </span>            : status
+<span class="lineNum">     504 </span><span class="lineNoCov">          0 : Request::getDataSize(size_t&amp; p_length) const</span>
+<span class="lineNum">     505 </span>            : {
+<span class="lineNum">     506 </span><span class="lineNoCov">          0 :   string l_strVal;</span>
+<span class="lineNum">     507 </span>            : 
+<span class="lineNum">     508 </span><span class="lineNoCov">          0 :   if (false == getHeader(&quot;Content-Length&quot;, l_strVal))</span>
+<span class="lineNum">     509 </span>            :   {
+<span class="lineNum">     510 </span><span class="lineNoCov">          0 :     p_length = 0;</span>
+<span class="lineNum">     511 </span><span class="lineNoCov">          0 :     return status::ok;</span>
+<span class="lineNum">     512 </span>            :   }
+<span class="lineNum">     513 </span>            : 
+<span class="lineNum">     514 </span>            :   try {
+<span class="lineNum">     515 </span><span class="lineNoCov">          0 :     p_length = boost::lexical_cast&lt;size_t&gt;(l_strVal);</span>
+<span class="lineNum">     516 </span>            :   }
+<span class="lineNum">     517 </span><span class="lineNoCov">          0 :   catch (boost::bad_lexical_cast)</span>
+<span class="lineNum">     518 </span>            :   {
+<span class="lineNum">     519 </span>            : 
+<span class="lineNum">     520 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : unable to interpret content-length '%s' as int&quot;, l_strVal, HERE);</span>
+<span class="lineNum">     521 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     522 </span>            :   }
+<span class="lineNum">     523 </span>            : 
+<span class="lineNum">     524 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     525 </span>            : }
+<span class="lineNum">     526 </span>            : 
+<span class="lineNum">     527 </span>            : /**
+<span class="lineNum">     528 </span>            :  ** @details
+<span class="lineNum">     529 </span>            :  ** on lit jusqu'a eof et on append dans m_data chaque chunk
+<a name="530"><span class="lineNum">     530 </span>            :  */</a>
+<span class="lineNum">     531 </span>            : status
+<span class="lineNum">     532 </span><span class="lineNoCov">          0 : Request::readData(istream&amp; p_request)</span>
+<span class="lineNum">     533 </span>            : {
+<span class="lineNum">     534 </span><span class="lineNoCov">          0 :   string l_data;</span>
+<span class="lineNum">     535 </span><span class="lineNoCov">          0 :   string l_contentType;</span>
+<span class="lineNum">     536 </span><span class="lineNoCov">          0 :   string l_contentLength = &quot;0&quot;;</span>
+<span class="lineNum">     537 </span>            :   size_t l_length;
+<span class="lineNum">     538 </span>            : 
+<span class="lineNum">     539 </span>            :   copy(std::istreambuf_iterator&lt;char&gt;(p_request.rdbuf()),
+<span class="lineNum">     540 </span>            :        std::istreambuf_iterator&lt;char&gt;(),
+<span class="lineNum">     541 </span><span class="lineNoCov">          0 :        back_inserter(l_data));</span>
+<span class="lineNum">     542 </span>            : 
+<span class="lineNum">     543 </span><span class="lineNoCov">          0 :   if (status::error == getDataSize(l_length))</span>
+<span class="lineNum">     544 </span>            :   {
+<span class="lineNum">     545 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : error while gettin data length&quot;, HERE);</span>
+<span class="lineNum">     546 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     547 </span>            :   }
+<span class="lineNum">     548 </span>            : 
+<span class="lineNum">     549 </span><span class="lineNoCov">          0 :   if (l_length &lt; l_data.size())</span>
+<span class="lineNum">     550 </span>            :   {
+<span class="lineNum">     551 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : read more data than expected&quot;, HERE);</span>
+<span class="lineNum">     552 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     553 </span>            :   }
+<span class="lineNum">     554 </span>            : 
+<span class="lineNum">     555 </span><span class="lineNoCov">          0 :   if (l_length == 0)</span>
+<span class="lineNum">     556 </span><span class="lineNoCov">          0 :     return status::ok;</span>
+<span class="lineNum">     557 </span>            : 
+<span class="lineNum">     558 </span><span class="lineNoCov">          0 :   if (false == getHeader(&quot;Content-Type&quot;, l_contentType))</span>
+<span class="lineNum">     559 </span>            :   {
+<span class="lineNum">     560 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : unable to get Content-Type&quot;, HERE);</span>
+<span class="lineNum">     561 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     562 </span>            :   }
+<span class="lineNum">     563 </span>            : 
+<span class="lineNum">     564 </span><span class="lineNoCov">          0 :   if (boost::starts_with(l_contentType, &quot;application/x-www-form-urlencoded&quot;))</span>
+<span class="lineNum">     565 </span>            :   {
+<span class="lineNum">     566 </span><span class="lineNoCov">          0 :     return readDataFormEncoded(l_data);</span>
+<span class="lineNum">     567 </span>            :   }
+<span class="lineNum">     568 </span>            :   else
+<span class="lineNum">     569 </span>            :   {
+<span class="lineNum">     570 </span><span class="lineNoCov">          0 :     log::err(&quot;network.http.request&quot;, &quot;read data : unknown content type '%s'&quot;, l_contentType, HERE);</span>
+<span class="lineNum">     571 </span><span class="lineNoCov">          0 :     return status::error;</span>
+<span class="lineNum">     572 </span>            :   }
+<span class="lineNum">     573 </span>            :   return status::ok;
+<span class="lineNum">     574 </span>            : }
+<span class="lineNum">     575 </span>            : 
+<a name="576"><span class="lineNum">     576 </span>            : </a>
+<span class="lineNum">     577 </span>            : status
+<span class="lineNum">     578 </span><span class="lineNoCov">          0 : Request::readDataFormEncoded(const string&amp; p_data)</span>
+<span class="lineNum">     579 </span>            : {
+<span class="lineNum">     580 </span><span class="lineNoCov">          0 :   vector&lt;string&gt;                 l_postPairs;</span>
+<span class="lineNum">     581 </span><span class="lineNoCov">          0 :   vector&lt;string&gt;::const_iterator cc_postPair;</span>
+<span class="lineNum">     582 </span>            : 
+<span class="lineNum">     583 </span><span class="lineNoCov">          0 :   boost::split(l_postPairs, p_data, boost::is_any_of(&quot;&amp;&quot;));</span>
+<span class="lineNum">     584 </span><span class="lineNoCov">          0 :   for (cc_postPair = l_postPairs.begin(); cc_postPair != l_postPairs.end(); cc_postPair++)</span>
+<span class="lineNum">     585 </span>            :   {
+<span class="lineNum">     586 </span><span class="lineNoCov">          0 :     vector&lt;string&gt; l_post;</span>
+<span class="lineNum">     587 </span><span class="lineNoCov">          0 :     string         l_key;</span>
+<span class="lineNum">     588 </span><span class="lineNoCov">          0 :     string         l_value;</span>
+<span class="lineNum">     589 </span>            : 
+<span class="lineNum">     590 </span><span class="lineNoCov">          0 :     if (cc_postPair-&gt;size() == 0)</span>
+<span class="lineNum">     591 </span><span class="lineNoCov">          0 :       continue;</span>
+<span class="lineNum">     592 </span><span class="lineNoCov">          0 :     boost::split(l_post, *cc_postPair, boost::is_any_of(&quot;=&quot;));</span>
+<span class="lineNum">     593 </span><span class="lineNoCov">          0 :     l_key = l_post[0];</span>
+<span class="lineNum">     594 </span><span class="lineNoCov">          0 :     if (l_post.size() == 2)</span>
+<span class="lineNum">     595 </span><span class="lineNoCov">          0 :       l_value = l_post[1];</span>
+<span class="lineNum">     596 </span><span class="lineNoCov">          0 :     else if (l_post.size() &gt; 2)</span>
+<span class="lineNum">     597 </span>            :     {
+<span class="lineNum">     598 </span><span class="lineNoCov">          0 :       log::err(&quot;network.http.request&quot;, &quot;read data form : invalid post&quot;, HERE);</span>
+<span class="lineNum">     599 </span><span class="lineNoCov">          0 :       return status::error;</span>
+<span class="lineNum">     600 </span>            :     }
+<span class="lineNum">     601 </span>            : 
+<span class="lineNum">     602 </span><span class="lineNoCov">          0 :     addPost(l_key, paramValueDecode(l_value));</span>
+<span class="lineNum">     603 </span>            :   }
+<span class="lineNum">     604 </span><span class="lineNoCov">          0 :   return status::ok;</span>
+<span class="lineNum">     605 </span>            : }
+<span class="lineNum">     606 </span>            : 
+<a name="607"><span class="lineNum">     607 </span>            : </a>
+<span class="lineNum">     608 </span>            : bool
+<span class="lineNum">     609 </span><span class="lineNoCov">          0 : Request::as(const string&amp; p_src, string&amp; p_dst) const</span>
+<span class="lineNum">     610 </span>            : {
+<span class="lineNum">     611 </span><span class="lineNoCov">          0 :   p_dst = p_src;</span>
+<span class="lineNum">     612 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">     613 </span>            : }
+<a name="614"><span class="lineNum">     614 </span>            : </a>
+<span class="lineNum">     615 </span>            : bool
+<span class="lineNum">     616 </span><span class="lineNoCov">          0 : Request::as(const string&amp; p_src, bool&amp; p_dst) const</span>
+<span class="lineNum">     617 </span>            : {
+<span class="lineNum">     618 </span><span class="lineNoCov">          0 :   vector&lt;string&gt; l_valuesYes;</span>
+<span class="lineNum">     619 </span><span class="lineNoCov">          0 :   vector&lt;string&gt; l_valuesNo;</span>
+<span class="lineNum">     620 </span>            : 
+<span class="lineNum">     621 </span><span class="lineNoCov">          0 :   l_valuesYes += &quot;1&quot;, &quot;on&quot;,  &quot;oui&quot;, &quot;true&quot;,  &quot;yes&quot;;</span>
+<span class="lineNum">     622 </span><span class="lineNoCov">          0 :   l_valuesNo  += &quot;0&quot;, &quot;off&quot;, &quot;non&quot;, &quot;false&quot;, &quot;no&quot;;</span>
+<span class="lineNum">     623 </span>            : 
+<span class="lineNum">     624 </span><span class="lineNoCov">          0 :   if (l_valuesYes.end() != std::find(l_valuesYes.begin(), l_valuesYes.end(), p_src))</span>
+<span class="lineNum">     625 </span>            :   {
+<span class="lineNum">     626 </span><span class="lineNoCov">          0 :     p_dst = true;</span>
+<span class="lineNum">     627 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     628 </span>            :   }
+<span class="lineNum">     629 </span><span class="lineNoCov">          0 :   if (l_valuesNo.end() != std::find(l_valuesNo.begin(), l_valuesNo.end(), p_src))</span>
+<span class="lineNum">     630 </span>            :   {
+<span class="lineNum">     631 </span><span class="lineNoCov">          0 :     p_dst = false;</span>
+<span class="lineNum">     632 </span><span class="lineNoCov">          0 :     return true;</span>
+<span class="lineNum">     633 </span>            :   }
+<span class="lineNum">     634 </span><span class="lineNoCov">          0 :   return false;</span>
+<span class="lineNum">     635 </span>            : }
+<span class="lineNum">     636 </span>            : 
+<a name="637"><span class="lineNum">     637 </span>            : </a>
+<span class="lineNum">     638 </span>            : bool
+<span class="lineNum">     639 </span><span class="lineNoCov">          0 : Request::as(const string&amp; p_src, uint8_t&amp; p_dst) const</span>
+<span class="lineNum">     640 </span>            : {
+<span class="lineNum">     641 </span>            :   uint64_t l_value;
+<span class="lineNum">     642 </span>            : 
+<span class="lineNum">     643 </span><span class="lineNoCov">          0 :   if ((false == as(p_src, l_value)) ||</span>
+<span class="lineNum">     644 </span><span class="lineNoCov">          0 :       (l_value &gt; std::numeric_limits&lt;uint8_t&gt;::max()))</span>
+<span class="lineNum">     645 </span><span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">     646 </span>            : 
+<span class="lineNum">     647 </span><span class="lineNoCov">          0 :   p_dst = l_value;</span>
+<span class="lineNum">     648 </span><span class="lineNoCov">          0 :   return true;</span>
+<span class="lineNum">     649 </span>            : }
+<span class="lineNum">     650 </span>            : 
+<span class="lineNum">     651 </span>            : 
+<a name="652"><span class="lineNum">     652 </span>            : </a>
+<span class="lineNum">     653 </span>            : 
+<span class="lineNum">     654 </span><span class="lineNoCov">          0 : ostream&amp; operator&lt;&lt;(ostream&amp; p_buf, const Request&amp; p_obj)</span>
+<span class="lineNum">     655 </span>            : {
+<span class="lineNum">     656 </span><span class="lineNoCov">          0 :   Request::t_param_map::const_iterator  cc_cgi;</span>
+<span class="lineNum">     657 </span><span class="lineNoCov">          0 :   Request::t_param_map::const_iterator  cc_post;</span>
+<span class="lineNum">     658 </span><span class="lineNoCov">          0 :   Request::t_header_map::const_iterator cc_header;</span>
+<span class="lineNum">     659 </span>            : 
+<span class="lineNum">     660 </span><span class="lineNoCov">          0 :   switch (p_obj.getMethod())</span>
+<span class="lineNum">     661 </span>            :   {
+<span class="lineNum">     662 </span>            :   case Request::METHOD_GET:
+<span class="lineNum">     663 </span><span class="lineNoCov">          0 :     p_buf &lt;&lt; &quot;method : GET&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     664 </span><span class="lineNoCov">          0 :     break;</span>
+<span class="lineNum">     665 </span>            :   case Request::METHOD_POST:
+<span class="lineNum">     666 </span><span class="lineNoCov">          0 :     p_buf &lt;&lt; &quot;method : POST&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     667 </span><span class="lineNoCov">          0 :     break;</span>
+<span class="lineNum">     668 </span>            :   case Request::METHOD_HEAD:
+<span class="lineNum">     669 </span><span class="lineNoCov">          0 :     p_buf &lt;&lt; &quot;method : HEAD&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     670 </span><span class="lineNoCov">          0 :     break;</span>
+<span class="lineNum">     671 </span>            :   }
+<span class="lineNum">     672 </span>            : 
+<span class="lineNum">     673 </span><span class="lineNoCov">          0 :   p_buf &lt;&lt; &quot;path : &quot; &lt;&lt; p_obj.getPath() &lt;&lt; endl;</span>
+<span class="lineNum">     674 </span><span class="lineNoCov">          0 :   p_buf &lt;&lt; &quot;version : &quot; &lt;&lt; p_obj.getVersionStr() &lt;&lt; endl;</span>
+<span class="lineNum">     675 </span><span class="lineNoCov">          0 :   p_buf &lt;&lt; &quot;headers :&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     676 </span><span class="lineNoCov">          0 :   for (cc_header = p_obj.getHeaders().begin();</span>
+<span class="lineNum">     677 </span><span class="lineNoCov">          0 :        cc_header != p_obj.getHeaders().end();</span>
+<span class="lineNum">     678 </span>            :        cc_header++)
+<span class="lineNum">     679 </span><span class="lineNoCov">          0 :     p_buf &lt;&lt; &quot; -&gt; &quot; &lt;&lt; cc_header-&gt;first &lt;&lt; &quot;: &quot; &lt;&lt; cc_header-&gt;second &lt;&lt; endl;</span>
+<span class="lineNum">     680 </span>            : 
+<span class="lineNum">     681 </span><span class="lineNoCov">          0 :   p_buf &lt;&lt; &quot;cgi list :&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     682 </span><span class="lineNoCov">          0 :   for (cc_cgi = p_obj.getCgis().begin();</span>
+<span class="lineNum">     683 </span><span class="lineNoCov">          0 :        cc_cgi != p_obj.getCgis().end();</span>
+<span class="lineNum">     684 </span>            :        cc_cgi++)
+<span class="lineNum">     685 </span><span class="lineNoCov">          0 :     p_buf &lt;&lt; &quot; -&gt; &quot; &lt;&lt; cc_cgi-&gt;first &lt;&lt; &quot; = &quot; &lt;&lt; cc_cgi-&gt;second &lt;&lt; endl;</span>
+<span class="lineNum">     686 </span><span class="lineNoCov">          0 :   p_buf &lt;&lt; &quot;post list :&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     687 </span><span class="lineNoCov">          0 :   for (cc_post = p_obj.getPosts().begin();</span>
+<span class="lineNum">     688 </span><span class="lineNoCov">          0 :        cc_post != p_obj.getPosts().end();</span>
+<span class="lineNum">     689 </span>            :        cc_post++)
+<span class="lineNum">     690 </span><span class="lineNoCov">          0 :     p_buf &lt;&lt; &quot; -&gt; &quot; &lt;&lt; cc_post-&gt;first &lt;&lt; &quot; = &quot; &lt;&lt; cc_post-&gt;second &lt;&lt; endl;</span>
+<span class="lineNum">     691 </span>            : 
+<span class="lineNum">     692 </span><span class="lineNoCov">          0 :   return p_buf;</span>
+<a name="693"><span class="lineNum">     693 </span>            : }</a>
+<span class="lineNum">     694 </span>            : 
+<span class="lineNum">     695 </span><span class="lineNoCov">          0 : }}} //end namspaces</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

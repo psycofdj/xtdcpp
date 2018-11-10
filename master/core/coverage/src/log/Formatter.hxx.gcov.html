@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - core unit test coverage - src/log/Formatter.hxx</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/log</a> - Formatter.hxx<span style="font-size: 80%;"> (source / <a href="Formatter.hxx.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">core unit test coverage</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">21</td>
+            <td class="headerCovTableEntryMed">81.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-02-18 10:06:59</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryLo">66.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #ifndef CORE_LOG_FORMATTER_HXX_</a>
+<span class="lineNum">       2 </span>            : # define CORE_LOG_FORMATTER_HXX_
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : # include &lt;boost/algorithm/string/regex.hpp&gt;
+<span class="lineNum">       5 </span>            : # include &lt;boost/algorithm/string/split.hpp&gt;
+<span class="lineNum">       6 </span>            : # include &lt;boost/format.hpp&gt;
+<span class="lineNum">       7 </span>            : # include &quot;format.hh&quot;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : namespace xtd {
+<span class="lineNum">      10 </span>            : namespace log {
+<span class="lineNum">      11 </span>            : 
+<a name="12"><span class="lineNum">      12 </span>            : template&lt;typename... Arguments&gt;</a>
+<span class="lineNum">      13 </span>            : FormattedRecord
+<span class="lineNum">      14 </span><span class="lineCov">         40 : Formatter::format(const Record&amp; p_rec, Arguments&amp;&amp;... p_args) const</span>
+<span class="lineNum">      15 </span>            : {
+<span class="lineNum">      16 </span><span class="lineCov">         40 :   FormattedRecord l_rec(p_rec);</span>
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            :   try
+<span class="lineNum">      19 </span>            :   {
+<span class="lineNum">      20 </span><span class="lineCov">         80 :     boost::format   l_format(l_rec.m_format);</span>
+<span class="lineNum">      21 </span><span class="lineCov">         40 :     size_t          l_fmtArgsCount = l_format.expected_args();</span>
+<span class="lineNum">      22 </span><span class="lineCov">         40 :     size_t          l_argsCount    = sizeof...(Arguments);</span>
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span><span class="lineCov">         40 :     if (l_fmtArgsCount == l_argsCount) {</span>
+<span class="lineNum">      25 </span><span class="lineNoCov">          0 :       l_rec.m_message = format::vargs(l_format, p_args...);</span>
+<span class="lineNum">      26 </span>            :     }
+<span class="lineNum">      27 </span><span class="lineCov">         40 :     else if (l_fmtArgsCount + 3 == l_argsCount)</span>
+<span class="lineNum">      28 </span>            :     {
+<span class="lineNum">      29 </span><span class="lineCov">         80 :       vector&lt;string&gt; l_parts;</span>
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span><span class="lineCov">         40 :       l_rec.m_message = format::vargs(p_rec.m_format + &quot;//sep//%s//sep//%s//sep//%s&quot;, p_args...);</span>
+<span class="lineNum">      32 </span><span class="lineCov">         40 :       boost::split_regex(l_parts, l_rec.m_message, boost::regex(&quot;//sep//&quot;));</span>
+<span class="lineNum">      33 </span><span class="lineCov">         40 :       l_rec.m_message  = l_parts[0];</span>
+<span class="lineNum">      34 </span><span class="lineCov">         40 :       l_rec.m_function = l_parts[1];</span>
+<span class="lineNum">      35 </span><span class="lineCov">         40 :       l_rec.m_filename = l_parts[2];</span>
+<span class="lineNum">      36 </span><span class="lineCov">         40 :       l_rec.m_line     = boost::lexical_cast&lt;size_t&gt;(l_parts[3]);</span>
+<span class="lineNum">      37 </span><span class="lineCov">         40 :       l_rec.m_hasLoc   = true;</span>
+<span class="lineNum">      38 </span>            :     } else {
+<span class="lineNum">      39 </span><span class="lineNoCov">          0 :       l_rec.m_message = &quot;unable to render format : &quot; + p_rec.m_format + &quot; : wrong number of arguments&quot;;</span>
+<span class="lineNum">      40 </span>            :     }
+<span class="lineNum">      41 </span><span class="lineNoCov">          0 :   } catch (std::exception&amp; l_error) {</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :     l_rec.m_message = &quot;unable to render format : &quot; + p_rec.m_format + &quot; : &quot; + l_error.what();</span>
+<span class="lineNum">      43 </span>            :   }
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span><span class="lineCov">         40 :   l_rec.m_fulllog = getFulllog(l_rec);</span>
+<span class="lineNum">      46 </span><span class="lineCov">         40 :   return l_rec;</span>
+<span class="lineNum">      47 </span>            : }
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : template&lt;typename Handler&gt;
+<span class="lineNum">      50 </span>            : Formatter&amp;
+<span class="lineNum">      51 </span>            : Formatter::addFormatModifier(Handler p_functor)
+<span class="lineNum">      52 </span>            : {
+<span class="lineNum">      53 </span>            :   t_format_modifier l_modifier = [=](const FormattedRecord&amp; p_rec, t_formats&amp; p_format) mutable {
+<span class="lineNum">      54 </span>            :     p_functor(p_rec, p_format);
+<span class="lineNum">      55 </span>            :   };
+<span class="lineNum">      56 </span>            :   m_formatModifiers.push_back(l_modifier);
+<span class="lineNum">      57 </span>            :   return *this;
+<span class="lineNum">      58 </span>            : }
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : }}
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            : #endif // !CORE_LOG_FORMATTER_HXX_
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : // Local Variables:
+<span class="lineNum">      65 </span>            : // ispell-local-dictionary: &quot;american&quot;
+<span class="lineNum">      66 </span>            : // End:
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.12</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$namespacextd_1_1log.html#a77d7eeda9f5c08df15ef96dcc3591dda" title="Returns (or create) global RootLogger instance. " alt="" coords="152,5,279,32"/>
+<area shape="rect" id="node3" href="$classxtd_1_1log_1_1Logger.html#a0527c0cdbbeb688e15267b7f3428c6be" title="Add an Appender to internal list. " alt="" coords="108,56,323,83"/>
+<area shape="rect" id="node4" href="$classxtd_1_1log_1_1Logger.html#a97fca3b06b4cf02e23e268873799140a" title="Set logger active log level. " alt="" coords="371,187,553,213"/>
+<area shape="rect" id="node5" href="$namespacextd_1_1log.html#a3129473b80d98dd083f45b6990569812" title="Logs to global RootLogger with level::crit severity. " alt="" coords="167,157,264,184"/>
+<area shape="rect" id="node6" href="$namespacextd_1_1log.html#ae95e2feee4ac0e68e4e72b88f091c218" title="Logs to global RootLogger with level::err severity. " alt="" coords="168,208,263,235"/>
+<area shape="rect" id="node7" href="$classxtd_1_1log_1_1RootLogger.html#ae2102a57be10e62aefd95b5b0b822c04" title="Shorthand for get(p_module).setLevel(p_level) " alt="" coords="141,259,290,301"/>
+<area shape="rect" id="node8" href="$classxtd_1_1log_1_1RootLogger.html#a65eaae686994b81f83dc27db4a3bac28" title="Retrieve logger for given module. " alt="" coords="126,325,305,352"/>
+</map>

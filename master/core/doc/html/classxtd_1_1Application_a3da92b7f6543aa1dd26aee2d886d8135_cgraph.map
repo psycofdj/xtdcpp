@@ -1,0 +1,6 @@
+<map id="xtd::Application::Application" name="xtd::Application::Application">
+<area shape="rect" id="node2" href="$classxtd_1_1Application.html#a24fee41865f36ba29f20bfb075563b51" title="Register an option to parser. " alt="" coords="245,5,424,32"/>
+<area shape="rect" id="node4" href="$classxtd_1_1Application.html#a00f6aed6c376028a79492b04e8325968" title="Associate option to given generic callback. " alt="" coords="237,56,432,83"/>
+<area shape="rect" id="node5" href="$classxtd_1_1Application.html#aaa0388f1c96893a26cfe5522b0804dd9" title="Bind option&#39;s parameter to target variable and checks among authorized values. " alt="" coords="243,107,427,133"/>
+<area shape="rect" id="node3" href="$classxtd_1_1Application.html#adf84f52f1388bef1336d0fb5f6345563" title="Prints error and usage on standard error and exit. " alt="" coords="480,5,627,32"/>
+</map>

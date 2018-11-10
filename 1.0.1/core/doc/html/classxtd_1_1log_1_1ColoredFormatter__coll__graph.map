@@ -1,0 +1,6 @@
+<map id="xtd::log::ColoredFormatter" name="xtd::log::ColoredFormatter">
+<area shape="rect" id="node2" href="$classxtd_1_1log_1_1Formatter.html" title="Formats log record data fields for output. " alt="" coords="129,502,271,529"/>
+<area shape="rect" id="node3" href="$structxtd_1_1log_1_1Fields.html" title="xtd::log::Fields\&lt; string \&gt;" alt="" coords="107,250,285,277"/>
+<area shape="rect" id="node7" href="$structxtd_1_1log_1_1Fields.html" title="xtd::log::Fields\&lt; tty\l::style \&gt;" alt="" coords="520,495,664,536"/>
+<area shape="rect" id="node8" href="$structxtd_1_1tty_1_1style.html" title="Aggregates foreground color, background color and display options. " alt="" coords="541,250,645,277"/>
+</map>
