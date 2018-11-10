@@ -1,3 +1,9 @@
+xtdcpp (1.0.3ppa2~trusty) trusty; urgency=medium
+
+  * bump boost dependency to 1.58
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 05 Feb 2018 10:56:41 +0100
+
 xtdcpp (1.0.3ppa1~xenial) xenial; urgency=medium
 
   * [all] replace boost/regex by c++11 std::regexp
