@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     cppcheck \
     cloc \
     libboost-all-dev \
+    python3-minimal \
     python3-pip \
     libcppunit-dev \
     texlive-font-utils \
@@ -19,16 +20,20 @@ RUN apt-get update && apt-get install -y --force-yes \
     zlib1g-dev \
     wget \
     llvm-4.0-dev \
-    libclang-4.0-dev
+    libclang-4.0-dev \
+    netcat-openbsd \
+    libncurses-dev \
+    python3-mako && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y --force-yes python-pip netcat-openbsd
 RUN pip3 install coverxygen lxml requests
-RUN pip install coverxygen lxml requests
-RUN wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip
-RUN unzip -d /usr/share pmd-bin-5.7.0.zip
+
+ADD https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip .
+RUN unzip -d /usr/share pmd-bin-5.7.0.zip && rm -f pmd-bin-5.7.0.zip
+
 ADD https://github.com/include-what-you-use/include-what-you-use/archive/clang_4.0.tar.gz .
-RUN apt-get update && apt-get install -y --force-yes libncurses-dev python3-mako
 RUN tar xvzf clang_4.0.tar.gz && \
  cd include-what-you-use-clang_4.0 && \
  cmake -DIWYU_LLVM_ROOT_PATH=/usr/lib/llvm-4.0 . && \
- make -j2 && make install
+ make -j2 && make install && \
+ cd .. && rm -rf include-what-you-use-clang_4.0

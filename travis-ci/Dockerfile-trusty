@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Xavier MARCELET <xavier@marcelet.com>
 
+RUN apt-get update && apt-get install -y --force-yes software-properties-common
+RUN add-apt-repository -y ppa:openjdk-r/ppa
 RUN apt-get update && apt-get install -y --force-yes \
     cmake \
     doxygen \
@@ -10,27 +12,29 @@ RUN apt-get update && apt-get install -y --force-yes \
     cppcheck \
     cloc \
     libboost-all-dev \
+    python3-minimal \
     python3-pip \
     libcppunit-dev \
     texlive-font-utils \
     valgrind \
     git \
     zlib1g-dev \
-    wget
+    wget \
+    netcat-openbsd \
+    libxml2-dev \
+    libxslt1-dev \
+    unzip \
+    libncurses-dev \
+    python3-mako \
+    openjdk-8-jre && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y --force-yes \
-    plantuml \
-    llvm-4.0-dev \
-    libclang-4.0-dev
+RUN CFLAGS=-I/usr/include/libxml2 pip3  install coverxygen lxml requests
 
-RUN apt-get update && apt-get install -y --force-yes python-pip netcat-openbsd
-RUN pip3 install coverxygen lxml requests
-RUN pip install coverxygen lxml requests
-RUN wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip
-RUN unzip -d /usr/share pmd-bin-5.7.0.zip
-ADD https://github.com/include-what-you-use/include-what-you-use/archive/clang_4.0.tar.gz .
-RUN apt-get update && apt-get install -y --force-yes libncurses-dev python3-mako
-RUN tar xvzf clang_4.0.tar.gz && \
- cd include-what-you-use-clang_4.0 && \
- cmake -DIWYU_LLVM_ROOT_PATH=/usr/lib/llvm-4.0 . && \
- make -j2 && make install
+ADD https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip .
+RUN unzip -d /usr/share pmd-bin-5.7.0.zip && rm -rf pmd-bin-5.7.0.zip
+
+ADD https://freefr.dl.sourceforge.net/project/plantuml/1.2018.12/plantuml.1.2018.12.jar .
+RUN mkdir /usr/share/plantuml/ && mv plantuml.1.2018.12.jar /usr/share/plantuml/plantuml.jar
+
+RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java

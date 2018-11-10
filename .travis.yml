@@ -14,12 +14,19 @@ before_install:
   # use sed to replace the SSH URL with the public URL, then init and update submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - docker pull psycofdj/xtdcpp-xenial:1.2.0
+  - docker pull psycofdj/xtdcpp-xenial:1.3.0
+  - docker pull psycofdj/xtdcpp-bionic:1.3.0
 
 script:
-  - mkdir ${TRAVIS_BUILD_DIR}/.release
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.2.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON"
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.2.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make all -j2"
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.2.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.release && make reports -j2"
-  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.2.0 bash -c "${TRAVIS_BUILD_DIR}/travis-ci/statuses.py --token=${access_token} --build-id=${TRAVIS_BUILD_ID} --commit=${TRAVIS_COMMIT} --branch=${TRAVIS_BRANCH} --build-dir=${TRAVIS_BUILD_DIR}/.release"
-  - cd ${TRAVIS_BUILD_DIR}/.release && ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
+  - mkdir ${TRAVIS_BUILD_DIR}/.build-xenial
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.3.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.build-xenial && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.3.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.build-xenial && make all -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.3.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.build-xenial && make reports -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-xenial:1.3.0 bash -c "${TRAVIS_BUILD_DIR}/travis-ci/statuses.py --token=${access_token} --build-id=${TRAVIS_BUILD_ID} --commit=${TRAVIS_COMMIT} --branch=${TRAVIS_BRANCH} --build-dir=${TRAVIS_BUILD_DIR}/.build-xenial"
+
+  - mkdir ${TRAVIS_BUILD_DIR}/.build-bionic
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-bionic:1.3.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.build-bionic && cmake ${TRAVIS_BUILD_DIR} -DCI=TRUE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-bionic:1.3.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.build-bionic && make all -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-bionic:1.3.0 bash -c "cd ${TRAVIS_BUILD_DIR}/.build-bionic && make reports -j2"
+  - docker run -v ${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR} psycofdj/xtdcpp-bionic:1.3.0 bash -c "${TRAVIS_BUILD_DIR}/travis-ci/statuses.py --token=${access_token} --build-id=${TRAVIS_BUILD_ID} --commit=${TRAVIS_COMMIT} --branch=${TRAVIS_BRANCH} --build-dir=${TRAVIS_BUILD_DIR}/.build-bionic"
+  - cd ${TRAVIS_BUILD_DIR}/.build-bionic && ${TRAVIS_BUILD_DIR}/travis-ci/push-doc
