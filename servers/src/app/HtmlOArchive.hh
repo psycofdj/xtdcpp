@@ -3,12 +3,20 @@
 # include <boost/archive/detail/archive_serializer_map.hpp> // IWYU pragma: keep
 # include <boost/archive/impl/archive_serializer_map.ipp>   // IWYU pragma: keep
 # include <boost/archive/xml_oarchive.hpp>                  // IWYU pragma: keep
-# include <boost/serialization/pfto.hpp>
+// # include <boost/serialization/pfto.hpp>
 # include <deque>
 # include <list>
 # include <stack>
 # include <sstream>  // IWYU pragma: keep
 # include "types.hh" // libcore
+
+# if (BOOST_VERSION / 100) > 1058
+#  define SAVE_OVERRIVE_PROTO
+#  define SAVE_OVERRIVE_CALL
+# else
+#  define SAVE_OVERRIVE_PROTO , int
+#  define SAVE_OVERRIVE_CALL , 0
+# endif
 
 namespace boost { namespace archive { class class_id_optional_type; } }
 namespace boost { namespace archive { class class_id_reference_type; } }
@@ -148,17 +156,17 @@ public:
   void save_end(const char* p_name);
 
   template<class T>
-  void save_override(T & t, BOOST_PFTO int);
+  void save_override(T & t SAVE_OVERRIVE_PROTO);
 
   template<class T>
-  void save_override(const boost::serialization::nvp<T>& t, int);
+  void save_override(const boost::serialization::nvp<T>& t SAVE_OVERRIVE_PROTO);
 
   template<class T>
-  void save_override(const boost::serialization::nvp<vector<T> >& t, int);
+  void save_override(const boost::serialization::nvp<vector<T> >& t SAVE_OVERRIVE_PROTO);
   template<class T>
-  void save_override(const boost::serialization::nvp<std::deque<T> >& t, int);
+  void save_override(const boost::serialization::nvp<std::deque<T> >& t SAVE_OVERRIVE_PROTO);
   template<class T>
-  void save_override(const boost::serialization::nvp<std::list<T> >& t, int);
+  void save_override(const boost::serialization::nvp<std::list<T> >& t SAVE_OVERRIVE_PROTO);
 
   void save(const char* /* t */);
   void save(const string& /* t */);
@@ -177,14 +185,14 @@ public:
   void save(const float& /* t */);
   void save(const boost::serialization::collection_size_type&);
   void save(const boost::serialization::item_version_type&);
-  void save_override(const boost::archive::object_id_type & t, int);
-  void save_override(const boost::archive::object_reference_type&, int);
-  void save_override(const boost::archive::version_type & t, int);
-  void save_override(const boost::archive::class_id_type & t, int);
-  void save_override(const boost::archive::class_id_reference_type&, int);
-  void save_override(const boost::archive::class_id_optional_type & t, int);
-  void save_override(const boost::archive::class_name_type&, int);
-  void save_override(const boost::archive::tracking_type & t, int);
+  void save_override(const boost::archive::object_id_type & t SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::object_reference_type& SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::version_type & t SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::class_id_type & t SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::class_id_reference_type& SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::class_id_optional_type & t SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::class_name_type& SAVE_OVERRIVE_PROTO);
+  void save_override(const boost::archive::tracking_type & t SAVE_OVERRIVE_PROTO);
 public:
   HtmlOArchive(std::ostream& p_stream);
 

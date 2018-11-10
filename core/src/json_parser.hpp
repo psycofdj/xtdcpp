@@ -27,7 +27,13 @@
 # define BOOST_PROPERTY_TREE_DETAIL_JSON_PARSER_WRITE_HPP_INCLUDED
 
 # include <boost/property_tree/ptree.hpp>
-# include <boost/property_tree/detail/json_parser_read.hpp>
+# if BOOST_VERSION > 105800
+#  include <boost/property_tree/json_parser/detail/read.hpp>
+#  include <boost/property_tree/json_parser/error.hpp>
+# else
+#  include <boost/property_tree/detail/json_parser_read.hpp>
+#  include <boost/property_tree/detail/json_parser_error.hpp>
+# endif
 
 /**
  ** warning: comparison is always true due to limited range of data
@@ -37,7 +43,6 @@
 #  pragma GCC diagnostic ignored "-Wtype-limits"
 #   include "json_parser_write.hpp" // libcore
 # pragma GCC diagnostic pop
-# include <boost/property_tree/detail/json_parser_error.hpp>
 
 # include <fstream>
 # include <string>
