@@ -26,5 +26,6 @@ RUN apt-get update && apt-get install -y --force-yes \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install coverxygen lxml requests
+RUN pip  install coverxygen lxml requests
 ADD https://github.com/pmd/pmd/releases/download/pmd_releases%2F5.7.0/pmd-bin-5.7.0.zip .
 RUN unzip -d /usr/share pmd-bin-5.7.0.zip && rm -f pmd-bin-5.7.0.zip
